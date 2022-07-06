@@ -102,10 +102,6 @@ resource "azurerm_kubernetes_cluster" "kubernetes_cluster" {
     ) : null
 
     service_cidr = var.networking_config != null ? var.networking_config.kubernetes_service_address_range : null
-
-    load_balancer_profile {
-      outbound_ip_address_ids = [azurerm_public_ip.outbound_lb_public_ip.id]
-    }
   }
 
   node_resource_group = null  # let's see what the default is

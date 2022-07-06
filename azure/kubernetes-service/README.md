@@ -19,7 +19,7 @@ This example creates an AKS cluster with a `default node pool` and a `secondary 
 
 ```terraform
 module "aks_vnet" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/azure-virtual-network.git?ref=v0.0.1"
 
   azure               = { resource_group_name = "sandbox" }
   name                = "aks-vnet"
@@ -37,7 +37,7 @@ locals {
 }
 
 module "aks_cluster" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/azure-kubernetes-service.git?ref=v0.0.1"
 
   azure = { resource_group_name = "sandbox" }
 
