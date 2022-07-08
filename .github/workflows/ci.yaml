@@ -1,0 +1,30 @@
+name: Continuous Integration
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check-format:
+    name: Check Terraform format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Terraform format
+        uses: dflook/terraform-fmt-check@v1
+
+  markdown-link-check:
+    name: Broken Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check markdown links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          base-branch: main
+          check-modified-files-only: 'yes'
+          config-file: '.github/mlc_config.json'
+          use-quiet-mode: 'no'
+          use-verbose-mode: 'yes'
