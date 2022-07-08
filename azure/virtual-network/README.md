@@ -1,6 +1,6 @@
 # Virtual Network Module
 
-This module will create and configure an [Azure virtual network](azure-virtual-network) and its associated resources such as subnets and NAT gateways.
+This module will create and configure an [Azure virtual network][azure-virtual-network] and its associated resources such as subnets and NAT gateways.
 
 ## Table of Contents
 
@@ -90,7 +90,7 @@ module "demo_vnet" {
 
 - (object) **`nat_gateway = {enabled = false}`** _[since v0.0.1]_
 
-    Enables and configures [NAT gateways](azure-nat-gateway) for the virtual network
+    Enables and configures [NAT gateways][azure-nat-gateway] for the virtual network
 
     ```terraform
     nat_gateway = {
