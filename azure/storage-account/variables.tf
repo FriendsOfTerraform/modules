@@ -106,6 +106,38 @@ variable "firewall" {
   default     = null
 }
 
+variable "lifecycle_policies" {
+  type = map(object({
+    blob_types            = optional(list(string))
+    prefix_match          = optional(list(string))
+    blob_index_tags_match = optional(map(string))
+
+    base_blob = optional(object({
+      delete_after_days_since_last_access                        = optional(number)
+      move_to_archive_storage_after_days_since_last_access       = optional(number)
+      move_to_cool_storage_after_days_since_last_access          = optional(number)
+      delete_after_days_since_last_modification                  = optional(number)
+      move_to_archive_storage_after_days_since_last_modification = optional(number)
+      move_to_cool_storage_after_days_since_last_modification    = optional(number)
+    }))
+
+    snapshot = optional(object({
+      delete_after_days                  = optional(number)
+      move_to_archive_storage_after_days = optional(number)
+      move_to_cool_storage_after_days    = optional(number)
+    }))
+
+    version = optional(object({
+      delete_after_days                  = optional(number)
+      move_to_archive_storage_after_days = optional(number)
+      move_to_cool_storage_after_days    = optional(number)
+    }))
+  }))
+
+  description = "Defines and manages multiple lifecycle policies"
+  default     = {}
+}
+
 variable "redundancy" {
   type        = string
   description = "Defines the type of replication to use for this storage account"

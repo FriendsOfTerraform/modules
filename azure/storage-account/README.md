@@ -8,6 +8,7 @@ This module will create and configure an [Azure Storage Account][azure-storage-a
     - [Blob Storage](#blob-storage)
     - [File Share](#file-share)
     - [Firewall](#firewall)
+    - [Lifecycle Policy](#lifecycle-policy)
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
@@ -21,7 +22,7 @@ This example creates a storage account name `petersinblobdemo` and then a blob c
 
 ```terraform
 module "blob" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v0.0.1"
 
   azure               = { resource_group_name = "sandbox" }
   name                = "petersinblobdemo"
@@ -56,7 +57,7 @@ This example creates a storage account named `petersinfiledemo` and then a file 
 
 ```terraform
 module "file_share" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v0.0.1"
 
   azure               = { resource_group_name = "sandbox" }
   name                = "petersinfiledemo"
@@ -90,7 +91,7 @@ module "file_share" {
 
 ```terraform
 module "blob" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v0.0.1"
 
   azure               = { resource_group_name = "sandbox" }
   name                = "petersinblobdemo"
@@ -110,6 +111,47 @@ module "blob" {
 
   security_config = {
     enable_storage_account_key_access = true
+  }
+}
+```
+
+### Lifecycle Policy
+
+This example creates a lifecycle policy name `test` and scope the rule to only the "test" container and blobs with the tags `{hello = "world, foo = "bar"}`
+
+```terraform
+module "blob" {
+  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v0.0.1"
+
+  azure = { resource_group_name = "sandbox" }
+  name  = "petersinblobdemo"
+
+  additional_tags = {
+    created-by = "Peter Sin"
+  }
+
+  lifecycle_policies = {
+    test = {
+      prefix_match = ["test"]
+      
+      blob_index_tags_match = {
+        hello = "world"
+        foo = "bar"
+      }
+      
+      base_blob = {
+        move_to_archive_storage_after_days_since_last_modification = 45
+        delete_after_days_since_last_modification                  = 90
+      }
+    }
+  }
+
+  security_config = {
+    enable_storage_account_key_access = true
+  }
+
+  containers = {
+    test = {}
   }
 }
 ```
@@ -318,6 +360,99 @@ module "blob" {
     - (list(string)) **`exceptions = []"`** _[since v0.0.1]_
 
         Defines exceptions to traffic for Logging/Metrics/AzureServices. Valid options are any combination of `"Logging", "Metrics", and "AzureServices"`
+
+- (map(object)) **`lifecycle_policies = {}`** _[since v0.0.1]_
+
+    Defines and manages multiple lifecycle policies
+
+    ```terraform
+    lifecycle_policies = {
+      test = {
+        prefix_match = ["test"]
+        
+        blob_index_tags_match = {
+          hello = "world"
+          foo = "bar"
+        }
+        
+        base_blob = {
+          move_to_archive_storage_after_days_since_last_modification = 45
+          delete_after_days_since_last_modification                  = 90
+        }
+      }
+    }
+    ```
+    - (list(string)) **`blob_types = ["blockBlob"]"`** _[since v0.0.1]_
+
+        A list of blob types this rule applies to, valid values are `"blockBlob" and "appendBlob"`. Defaults to `["blockBlob"]`
+
+    - (map(string)) **`blob_index_tags_match = {}"`** _[since v0.0.1]_
+
+        A map of index tags on the blobs to be matched for this rule to take effect
+
+    - (list(string)) **`prefix_match = []"`** _[since v0.0.1]_
+
+        A list of prefixes to be matched for this rule to take effect. Must be in the `"container_name/blob_name"` format.
+
+    - (object) **`base_blob = null"`** _[since v0.0.1]_
+
+        Set lifecycle rules for base blob objects
+
+        - (number) **`delete_after_days_since_last_access = null"`** _[since v0.0.1]_
+  
+          The age in days after last access time to delete the blob. Mutally exclusive to `delete_after_days_since_last_modification`.
+
+        - (number) **`delete_after_days_since_last_modification = null"`** _[since v0.0.1]_
+  
+          The age in days after last modification to delete the blob. Mutally exclusive to `delete_after_days_since_last_access`.
+
+        - (number) **`move_to_archive_storage_after_days_since_last_access = null"`** _[since v0.0.1]_
+  
+          The age in days after last access time to move the blob to archive storage. Mutally exclusive to `move_to_archive_storage_after_days_since_last_modification`.
+
+        - (number) **`move_to_archive_storage_after_days_since_last_modification = null"`** _[since v0.0.1]_
+  
+          The age in days after last modification to move the blob to archive storage. Mutally exclusive to `move_to_archive_storage_after_days_since_last_access`.
+
+        - (number) **`move_to_cool_storage_after_days_since_last_access = null"`** _[since v0.0.1]_
+  
+          The age in days after last access time to move the blob to cool storage. Mutally exclusive to `move_to_cool_storage_after_days_since_last_modification`.
+
+        - (number) **`move_to_cool_storage_after_days_since_last_modification = null"`** _[since v0.0.1]_
+  
+          The age in days after last modification to move the blob to cool storage. Mutally exclusive to `move_to_cool_storage_after_days_since_last_access`.
+
+    - (object) **`snapshot = null"`** _[since v0.0.1]_
+
+        Set lifecycle rules for snapshot blob objects
+
+        - (number) **`delete_after_days = null"`** _[since v0.0.1]_
+  
+          The age in days after creation to delete the snapshot.
+
+        - (number) **`move_to_archive_storage_after_days = null"`** _[since v0.0.1]_
+  
+          The age in days after creation to move the snapshot to archive storage.
+
+        - (number) **`move_to_cool_storage_after_days = null"`** _[since v0.0.1]_
+  
+          The age in days after creation to move the snapshot to cool storage.
+
+    - (object) **`version = null"`** _[since v0.0.1]_
+
+        Set lifecycle rules for versioned blob objects
+
+        - (number) **`delete_after_days = null"`** _[since v0.0.1]_
+  
+          The age in days after creation to delete the versioned object.
+
+        - (number) **`move_to_archive_storage_after_days = null"`** _[since v0.0.1]_
+  
+          The age in days after creation to move the versioned object to archive storage.
+
+        - (number) **`move_to_cool_storage_after_days = null"`** _[since v0.0.1]_
+  
+          The age in days after creation to move the versioned object to cool storage.  
 
 - (string) **`redundancy = "LRS"`** _[since v0.0.1]_
 
