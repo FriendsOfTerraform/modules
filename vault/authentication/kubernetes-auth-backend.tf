@@ -27,5 +27,5 @@ resource "vault_kubernetes_auth_backend_config" "kubernetes_auth_backend_config"
   kubernetes_host    = var.kubernetes_config.host
   kubernetes_ca_cert = var.kubernetes_config.ca_certificate
   token_reviewer_jwt = var.kubernetes_config.token_reviewer_jwt
-  issuer             = var.kubernetes_config.issuer != null ? var.kubernetes_config.issuer : "kubernetes.io/serviceaccount"
+  issuer             = var.kubernetes_config.issuer != null ? var.kubernetes_config.issuer : "kubernetes/serviceaccount"
 }
