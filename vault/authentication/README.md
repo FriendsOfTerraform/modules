@@ -363,7 +363,7 @@ module "oidc_auth_method" {
     
         A Kubernetes service account JWT token that allow Vault to validate incoming authentication request with Kubernetes. Please refer to [this doc][kube-reviewer-jwt] for more information.
 
-    - (string) **`issuer = "kubernetes.io/serviceaccount"`** _[since v0.0.1]_
+    - (string) **`issuer = "kubernetes/serviceaccount"`** _[since v0.0.1]_
     
         The issuer of the `token_reviewer_jwt` token. Please refer to [this doc][kube-issuer] for more information.
 
