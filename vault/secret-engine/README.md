@@ -60,7 +60,7 @@ This example creates a Database secret mount at the `database` path. A `test-rol
 
 ```terraform
 module "database" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/vault-secret-engine.git?ref=v0.0.1"
 
   secret_engine = "database"
   mount_path    = "database"
@@ -87,7 +87,7 @@ This example creates a Key/Value secret mount at the `kv` path.
 
 ```terraform
 module "kv" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/vault-secret-engine.git?ref=v0.0.1"
 
   secret_engine = "kv"
   mount_path    = "kv"
@@ -102,7 +102,7 @@ This example also create two roles to allow the intermediate CA to sign certific
 
 ```terraform
 module "root_ca" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/vault-secret-engine.git?ref=v0.0.1"
 
   secret_engine       = "pki"
   mount_path          = "pki/root-ca"
@@ -121,7 +121,7 @@ module "root_ca" {
 }
 
 module "intermediate_ca" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/vault-secret-engine.git?ref=v0.0.1"
 
   secret_engine       = "pki"
   mount_path          = "pki/intermediate-ca"
@@ -159,7 +159,7 @@ This example creates the Terraform Cloud secret mount at the `terraform` path an
 
 ```terraform
 module "terraform_cloud" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/vault-secret-engine.git?ref=v0.0.1"
 
   secret_engine = "terraform"
   mount_path    = "terraform"
@@ -191,7 +191,7 @@ module "terraform_cloud" {
     - [kv](https://www.vaultproject.io/docs/secrets/kv/kv-v2)
     - [terraform](https://www.vaultproject.io/docs/secrets/terraform)
 
-- (object) **`aws_config = null`** _[since v0.0.8]_
+- (object) **`aws_config = null`** _[since v0.0.1]_
 
     Configuration of an AWS secret engine. This is **OPTIONAL** even if `secret_engine = aws` since Vault can also read AWS credential from other methods such as enviornment variables and local AWS credential file.
     
@@ -205,27 +205,27 @@ module "terraform_cloud" {
     }
     ```
     
-    - (string) **`access_key_id`** _[since v0.0.8]_
+    - (string) **`access_key_id`** _[since v0.0.1]_
 
         AWS access key ID
 
-    - (string) **`region`** _[since v0.0.8]_
+    - (string) **`region`** _[since v0.0.1]_
 
         AWS region
 
-    - (string) **`secret_access_key`** _[since v0.0.8]_
+    - (string) **`secret_access_key`** _[since v0.0.1]_
 
         AWS secret access key
     
-    - (number) **`default_ttl_seconds = null`** _[since v0.0.8]_
+    - (number) **`default_ttl_seconds = null`** _[since v0.0.1]_
     
         Default TTL (time-to-live) for new IAM credential created by this this secret engine
 
-    - (number) **`max_ttl_seconds = null`** _[since v0.0.8]_
+    - (number) **`max_ttl_seconds = null`** _[since v0.0.1]_
     
         Max TTL (time-to-live) for new IAM credential created by this this secret engine
 
-- (map(object)) **`aws_secret_backend_roles = {}`** _[since v0.0.8]_
+- (map(object)) **`aws_secret_backend_roles = {}`** _[since v0.0.1]_
 
     [Configure multiple roles][aws-role] that maps a name in Vault to an IAM entity (IAM User or IAM Role) to create new credentials. When users or machines create new credentials, they are created against this role. Input must be in `role_name = role_config` format.
     
@@ -237,19 +237,19 @@ module "terraform_cloud" {
     }
     ```
     
-    - (list(string)) **`aws_managed_policy_arns = null`** _[since v0.0.8]_
+    - (list(string)) **`aws_managed_policy_arns = null`** _[since v0.0.1]_
 
         Specifies a list of AWS managed policy ARNs that will be attached to the IAM user generated
     
-    - (list(string)) **`iam_group_names = null`** _[since v0.0.8]_
+    - (list(string)) **`iam_group_names = null`** _[since v0.0.1]_
     
         A list of IAM group names. IAM users generated against this vault role will be added to these IAM Groups. This option is mutually exclusive with `aws_managed_policy_arns`
 
-    - (string) **`inline_policy_document = null`** _[since v0.0.8]_
+    - (string) **`inline_policy_document = null`** _[since v0.0.1]_
     
         An AWS IAM policy document that will be attached to the IAM user generated as an inline policy
 
-    - (list(string)) **`role_arns = null`** _[since v0.0.8]_
+    - (list(string)) **`role_arns = null`** _[since v0.0.1]_
     
         Specifies the ARNs of the AWS roles this Vault role is allowed to assume. This option is mutually exclusive with `iam_group_names`
 
@@ -306,7 +306,7 @@ module "terraform_cloud" {
 
         The rotation period for the password of the managed user
 
-- (number) **`default_ttl_seconds = null`** _[since v0.0.6]_
+- (number) **`default_ttl_seconds = null`** _[since v0.0.1]_
 
     Global default TTL (time-to-live) in seconds for all secrets within this secret mount
 
@@ -314,7 +314,7 @@ module "terraform_cloud" {
 
     Description of the secret engine
 
-- (number) **`max_ttl_seconds = null`** _[since v0.0.6]_
+- (number) **`max_ttl_seconds = null`** _[since v0.0.1]_
 
     Global max TTL (time-to-live) in seconds for all secrets within this secret mount
 
@@ -376,7 +376,7 @@ module "terraform_cloud" {
     
         Specifies the common name for this Root CA certificate
 
-    - (string) **`vault_address`** _[since v0.0.3]_
+    - (string) **`vault_address`** _[since v0.0.1]_
     
         Specifies the address of the Hashicorp Vault server. issuing certificate endpoints, CRL distribution points, and OCSP server endpoints that will be encoded into issued certificates. Please refer to [this doc][pki-config-urls] for more information. The generated endpoints will be in this format `<vault_address>/v1/<pki_mount_path>/ca`
 
@@ -388,7 +388,7 @@ module "terraform_cloud" {
     
         Specifies the TTL (time-to-live) for this Root CA certificate
 
-- (map(object)) **`pki_secret_backend_roles = {}`** _[since v0.0.2]_
+- (map(object)) **`pki_secret_backend_roles = {}`** _[since v0.0.1]_
 
     [Configure multiple roles][pki-secret-setup] that maps a name in Vault to a procedure for generating a certificate. When users or machines generate credentials, they are generated against this role. Input must be in `role_name = role_config` format.
     
@@ -402,23 +402,23 @@ module "terraform_cloud" {
     }
     ```
     
-    - (list(string)) **`allowed_domains = null`** _[since v0.0.2]_
+    - (list(string)) **`allowed_domains = null`** _[since v0.0.1]_
 
         A list of domain names this role is allowed to sign the certificate for
     
-    - (list(string)) **`allowed_uri_sans = null`** _[since v0.0.2]_
+    - (list(string)) **`allowed_uri_sans = null`** _[since v0.0.1]_
     
         A list of URI SANs (Subject alternative names) this role is allowed to sign the certificate for
     
-    - (number) **`max_ttl_seconds = null`** _[since v0.0.2]_
+    - (number) **`max_ttl_seconds = null`** _[since v0.0.1]_
     
         Specifies the max TTL (time-to-live) for certificates generated from this role
 
-    - (number) **`ttl_seconds = null`** _[since v0.0.2]_
+    - (number) **`ttl_seconds = null`** _[since v0.0.1]_
     
         Specifies the TTL (time-to-live) for certificates generated from this role
 
-- (object) **`terraform_config = null`** _[since v0.0.7]_
+- (object) **`terraform_config = null`** _[since v0.0.1]_
 
     Configures the Terraform Cloud secret engine. This is required if `secret_engine = terraform`
     
@@ -428,11 +428,11 @@ module "terraform_cloud" {
     }
     ```
     
-    - (string) **`token`** _[since v0.0.7]_
+    - (string) **`token`** _[since v0.0.1]_
 
         The Terraform Cloud management token this backend should use to issue new tokens
 
-- (map(object)) **`terraform_secret_backend_roles = {}`** _[since v0.0.7]_
+- (map(object)) **`terraform_secret_backend_roles = {}`** _[since v0.0.1]_
 
     [Configure multiple roles][terraform-role] that maps a name in Vault to a Terraform Cloud token type (user, team, or organization) to create new tokens. When users or machines create new token, they are created against this role. Input must be in `role_name = role_config` format.
     
@@ -446,7 +446,7 @@ module "terraform_cloud" {
     }
     ```
     
-    - (string) **`token_identity`** _[since v0.0.7]_
+    - (string) **`token_identity`** _[since v0.0.1]_
 
         Specifies the Terraform Cloud entity to be used to generate new tokens with. Must follow the following format:
 
@@ -456,11 +456,11 @@ module "terraform_cloud" {
 
         Note that you must use the Terraform Cloud API to get the [Team ID][terraform-api-team] and the [User ID][terraform-api-user].
     
-    - (number) **`max_ttl_seconds = null`** _[since v0.0.7]_
+    - (number) **`max_ttl_seconds = null`** _[since v0.0.1]_
     
         Specifies the max TTL (time-to-live) for tokens generated from this role
 
-    - (number) **`ttl_seconds = null`** _[since v0.0.7]_
+    - (number) **`ttl_seconds = null`** _[since v0.0.1]_
     
         Specifies the TTL (time-to-live) for tokens generated from this role
 
