@@ -12,8 +12,8 @@ This module will create and configure an [Azure Storage Account][azure-storage-a
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
-- [Outputs](#outputs)
-
+- [Known Issues](#known-issues)
+    - [Naming On Lifecycle Policy Rules](#naming-on-lifecycle-policy-rules)
 ## Example Usage
 
 ### Blob Storage
@@ -483,6 +483,13 @@ module "blob" {
 
     Defines the type of storage account offering to use. Valid values are `"StorageV2", "BlockBlobStorage", and "FileStorage"`
 
+## Known Issues
+
+### Naming On Lifecycle Policy Rules
+
+Currently, spacing in lifecycle policy rule name is not allowed and the following error will be returned: `"invalid value for rule.1.name (A rule name can contain any combination of alpha numeric characters.)"`. This is a bug in the provider ([Issue #17969][issue-17969])
+
 [azure-storage-account]:https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview
 [blob-change-feed]:https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed?tabs=azure-portal
 [hierarchical-namespace]:https://docs.microsoft.com/en-us/azure/storage/blobs/upgrade-to-data-lake-storage-gen2-how-to?tabs=azure-portal
+[issue-17969]:https://github.com/hashicorp/terraform-provider-azurerm/issues/17969
