@@ -485,9 +485,13 @@ module "blob" {
 
 ## Known Issues
 
-### Naming On Lifecycle Policy Rules
+### Spaces in Lifecycle Policy Rule name throws "invalid value" error
 
-Currently, spacing in lifecycle policy rule name is not allowed and the following error will be returned: `"invalid value for rule.1.name (A rule name can contain any combination of alpha numeric characters.)"`. This is a bug in the provider ([Issue #17969][issue-17969])
+```
+"invalid value for rule.1.name (A rule name can contain any combination of alpha numeric characters.)"
+```
+
+For modules using any version <3.19.0 of `terraform-provider-azurerm`, a bug exists where spaces cannot be used in rule names even though Azure itself allows it. This is a bug in the provider ([hashicorp/terraform-provider-azurerm#17969][issue-17969]) and has been fixed in version 3.19.0+ of the provider.
 
 [azure-storage-account]:https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview
 [blob-change-feed]:https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed?tabs=azure-portal
