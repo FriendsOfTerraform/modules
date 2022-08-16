@@ -13,7 +13,7 @@ This module will create and configure an [Azure Storage Account][azure-storage-a
     - [Mandatory](#mandatory)
     - [Optional](#optional)
 - [Known Issues](#known-issues)
-    - [Naming On Lifecycle Policy Rules](#naming-on-lifecycle-policy-rules)
+    - [Naming On Lifecycle Policy Rules](#spaces-in-lifecycle-policy-rule-name-throws-invalid-value-error)
 ## Example Usage
 
 ### Blob Storage
