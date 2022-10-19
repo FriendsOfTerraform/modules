@@ -17,7 +17,7 @@ This example creates a network security group, and then multiple inbound rules.
 
 ```terraform
 module "demo_nsg" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/azure-network-security-group.git?ref=v0.0.1"
 
   azure = {
     resource_group_name = "sandbox"
