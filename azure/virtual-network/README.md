@@ -17,7 +17,7 @@ This example creates a virtual network with two subnets and having all outbound 
 
 ```terraform
 module "demo_vnet" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/azure-virtual-network.git?ref=v0.0.1"
 
   azure = {
     resource_group_name = "sandbox"
@@ -87,6 +87,9 @@ module "demo_vnet" {
 
     Additional tags for all resources deployed with this module
 
+- (string) **`ddos_protection_plan_id = null`** _[since v0.0.1]_
+
+    The DDOS protection plan to be assigned to this vnet
 
 - (object) **`nat_gateway = {enabled = false}`** _[since v0.0.1]_
 
