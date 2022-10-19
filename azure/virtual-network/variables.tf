@@ -12,6 +12,12 @@ variable "cidr_blocks" {
   description = "List of CIDR blocks for the virtual network"
 }
 
+variable "ddos_protection_plan_id" {
+  type        = string
+  description = "Enables DDOS protection"
+  default     = null
+}
+
 variable "name" {
   type        = string
   description = "The name of the virtual network and all of its associated resources"
