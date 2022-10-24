@@ -6,6 +6,7 @@ This module will create and configure a [Vault secret enging][secret-engine].
 
 - [Example Usage](#example-usage)
     - [AWS](#aws)
+    - [Azure](#azure)
     - [Database](#database)
     - [KV](#kv)
     - [PKI](#pki)
@@ -21,7 +22,7 @@ This example creates an AWS secret mount at the `aws` path. Multiple roles are t
 
 ```terraform
 module "aws" {
-  source = {{PLACE_HOLDER}}
+  source = "github.com/FriendsOfTerraform/vault-secret-engine.git?ref=v0.0.2"
 
   secret_engine = "aws"
   mount_path    = "aws"
@@ -53,6 +54,42 @@ module "aws" {
 1. The specification of the AWS credential is optional. You may also use alternative methods such as environment variables or local aws credential file to pass the necessary AWS credential to this secret engine
 2. This secret engine [requires these IAM policy][aws-iam-policy] at minimum to dynamically manage IAM entities (`iam_user` and `assume_role`)
 3. The assumed_role credential type is typically used for cross-account authentication scenario. [Additional IAM permissions are needed][aws-iam-policy-cross-account] to allow IAM to assume role to another AWS account
+
+### Azure
+
+```terraform
+module "azure" {
+  source = "github.com/FriendsOfTerraform/vault-secret-engine.git?ref=v0.0.2"
+
+  secret_engine = "azure"
+  mount_path    = "azure"
+
+  azure_config = {
+    subscription_id     = "5390980b-4d73-483f-bf52-xxxxxxx"
+    tenant_id           = "accd881f-e517-4dbf-a61b-xxxxxxx"
+    client_id           = "3446d619-f7aa-4aba-ba50-xxxxxxx"
+    client_secret       = "oIG8Q~RAn3_XjtAAJ-xxxxxxx"
+    default_ttl_seconds = 300
+    max_ttl_seconds     = 300
+  }
+
+  azure_secret_backend_roles = {
+    "terraform-readonly" = {
+      azure_roles = [
+        {
+          role_name = "Reader"
+          scope     = "/subscriptions/5390980b-4d73-483f-bf52-xxxxxxx"
+        }
+      ]
+    }
+  }
+}
+```
+
+#### Notes
+
+1. The specification of the Azure credential is optional. You may also use alternative methods such as environment variables to pass the necessary Azure credential to this secret engine
+2. This secret engine [requires these permissions][azure-permission] at minimum to dynamically manage credentials
 
 ### Database
 
@@ -186,6 +223,7 @@ module "terraform_cloud" {
 
     The Vault secret engine to configure, currently the following values are supported:
     - [aws](https://www.vaultproject.io/docs/secrets/aws)
+    - [azure](https://developer.hashicorp.com/vault/docs/secrets/azure)
     - [database](https://www.vaultproject.io/docs/secrets/databases)
     - [pki](https://www.vaultproject.io/docs/secrets/pki)
     - [kv](https://www.vaultproject.io/docs/secrets/kv/kv-v2)
@@ -252,6 +290,82 @@ module "terraform_cloud" {
     - (list(string)) **`role_arns = null`** _[since v0.0.1]_
     
         Specifies the ARNs of the AWS roles this Vault role is allowed to assume. This option is mutually exclusive with `iam_group_names`
+
+- (object) **`azure_config = null`** _[since v0.0.2]_
+
+    Configuration of an Azure secret engine. This is **OPTIONAL** even if `secret_engine = azure` since Vault can also read Azure credential from other methods such as enviornment variables
+    
+    ```terraform
+    azure_config = {
+      subscription_id     = "5390980b-4d73-483f-bf52-xxxxxxx"
+      tenant_id           = "accd881f-e517-4dbf-a61b-xxxxxxx"
+      client_id           = "3446d619-f7aa-4aba-ba50-xxxxxxx"
+      client_secret       = "oIG8Q~RAn3_XjtAAJ-xxxxxxx"
+      default_ttl_seconds = 300
+      max_ttl_seconds     = 300
+    }
+    ```
+    
+    - (string) **`subscription_id`** _[since v0.0.2]_
+
+        The ID of the Azure subscription to configure
+
+    - (string) **`tenant_id`** _[since v0.0.2]_
+
+        The ID of the Azure tenant to configure
+
+    - (string) **`client_id = null`** _[since v0.0.2]_
+
+        The client ID of the registered app used for authentication
+
+    - (string) **`client_secret = null`** _[since v0.0.2]_
+
+        The client secret of the registered app used for authentication
+    
+    - (number) **`default_ttl_seconds = null`** _[since v0.0.2]_
+    
+        Default TTL (time-to-live) for new Azure credential created by this this secret engine
+
+    - (number) **`max_ttl_seconds = null`** _[since v0.0.2]_
+    
+        Max TTL (time-to-live) for new Azure credential created by this this secret engine
+
+- (map(object)) **`azure_secret_backend_roles = {}`** _[since v0.0.2]_
+
+    [Configure multiple roles][azure-role] that maps a name in Vault to a registered app entity to create new credentials. When users or machines create new credentials, they are created against this role. Input must be in `role_name = role_config` format.
+    
+    ```terraform
+    azure_secret_backend_roles = {
+      "terraform-readonly" = {
+        azure_roles = [
+          {
+            role_name = "Reader"
+            scope     = "/subscriptions/5390980b-4d73-483f-bf52-985c41d7a982"
+          }
+        ]
+      }
+    }
+    ```
+    
+    - (string) **`application_object_id = null`** _[since v0.0.2]_
+
+        Application Object ID for an existing service principal that will be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
+    
+    - (list(object)) **`azure_roles = null`** _[since v0.0.2]_
+    
+        List of Azure roles to be assigned to the generated service principal. Please refer to [this documentation][azure-role] for examples. If dynamic service principals are used, Azure roles must be configured on the Vault role.
+
+      - (string) **`scope`** _[since v0.0.2]_
+      
+          The scope this role is applied to
+
+      - (list(string)) **`role_id = null`** _[since v0.0.2]_
+      
+          The ID of an Azure role to be attached to the credential generated by this Vault role. `role_name` is ignored if this is set.
+
+      - (list(string)) **`role_name = null`** _[since v0.0.2]_
+      
+          The Name of an Azure role to be attached to the credential generated by this Vault role. If only this is set, Vault will perform a lookup for the actual `role_id`. If `role_id` is set, this option is ignored.
 
 - (map(object)) **`database_config = null`** _[since v0.0.10]_
 
@@ -479,3 +593,5 @@ module "terraform_cloud" {
 [aws-iam-policy]:https://www.vaultproject.io/docs/secrets/aws#example-iam-policy-for-vault
 [aws-iam-policy-cross-account]:https://www.vaultproject.io/docs/secrets/aws#sts-assumerole
 [aws-role]:https://www.vaultproject.io/docs/secrets/aws#setup
+[azure-permission]:https://developer.hashicorp.com/vault/docs/secrets/azure#authentication
+[azure-role]:https://developer.hashicorp.com/vault/docs/secrets/azure#roles
