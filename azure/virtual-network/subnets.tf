@@ -18,3 +18,16 @@ resource "azurerm_subnet_nat_gateway_association" "nat_gateway_associations" {
   nat_gateway_id = azurerm_nat_gateway.nat_gateway[0].id
   subnet_id      = azurerm_subnet.subnets[each.key].id
 }
+
+locals {
+  network_security_group_mapping = {
+    for k, v in var.subnets : k => v.network_security_group_id if v.network_security_group_id != null
+  }
+}
+
+resource "azurerm_subnet_network_security_group_association" "network_security_group_associations" {
+  for_each = local.network_security_group_mapping
+
+  network_security_group_id = each.value
+  subnet_id                 = azurerm_subnet.subnets[each.key].id
+}

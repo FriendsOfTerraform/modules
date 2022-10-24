@@ -17,7 +17,7 @@ This example creates a virtual network with two subnets and having all outbound 
 
 ```terraform
 module "demo_vnet" {
-  source = "github.com/FriendsOfTerraform/azure-virtual-network.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-virtual-network.git?ref=v0.0.2"
 
   azure = {
     resource_group_name = "sandbox"
@@ -133,9 +133,9 @@ module "demo_vnet" {
 
         The CIDR for the subnet
 
-    - (string) **`network_security_group_name = null`** _[since v0.0.1]_
+    - (string) **`network_security_group_id = null`** _[since v0.0.1]_
 
-        The name of an Azure network security group to be attached to this subnet
+        The ID of an Azure network security group to be attached to this subnet
 
     - (string) **`route_table_name = null`** _[since v0.0.1]_
 

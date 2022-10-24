@@ -64,10 +64,10 @@ variable "service_endpoints" {
 variable "subnets" {
   type = map(object(
     {
-      cidr_block                  = string
-      network_security_group_name = optional(string)
-      route_table_name            = optional(string)
-      service_endpoints           = optional(list(string))
+      cidr_block                = string
+      network_security_group_id = optional(string)
+      route_table_name          = optional(string)
+      service_endpoints         = optional(list(string))
     }
   ))
 
