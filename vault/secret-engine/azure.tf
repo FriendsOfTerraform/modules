@@ -5,8 +5,8 @@ locals {
 resource "vault_azure_secret_backend" "azure_secret_backend" {
   count = local.is_azure ? 1 : 0
 
-  path                      = var.mount_path
-  description               = var.description
+  path        = var.mount_path
+  description = var.description
 
   use_microsoft_graph_api = true
   environment             = "AzurePublicCloud"
