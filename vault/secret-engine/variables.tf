@@ -60,6 +60,47 @@ variable "aws_secret_backend_roles" {
 }
 
 //
+// Azure
+//
+
+variable "azure_config" {
+  type = object({
+    subscription_id     = string
+    tenant_id           = string
+    client_id           = optional(string)
+    client_secret       = optional(string)
+    default_ttl_seconds = optional(number)
+    max_ttl_seconds     = optional(number)
+  })
+
+  description = "Azure secret engine configuration"
+  default     = null
+}
+
+variable "azure_secret_backend_roles" {
+  type = map(object({
+    application_object_id = optional(string)
+
+    azure_roles = optional(list(object({
+      role_id   = optional(string)
+      role_name = optional(string)
+      scope     = string
+    })))
+
+    azure_groups = optional(list(object({
+      group_name = optional(string)
+      object_id  = optional(string)
+    })))
+
+    ttl_seconds     = optional(number)
+    max_ttl_seconds = optional(number)
+  }))
+
+  description = "A map of Azure secret engine roles, in the {role_name = {config}} format"
+  default     = {}
+}
+
+//
 // Database
 //
 
