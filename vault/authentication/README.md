@@ -183,7 +183,7 @@ module "oidc_auth_method" {
     - [aws](https://www.vaultproject.io/docs/auth/aws)
     - [github](https://www.vaultproject.io/docs/auth/github)
     - [kubernetes](https://www.vaultproject.io/docs/auth/kubernetes)
-    - [oidc](https://www.vaultproject.io/docs/auth/jwt/oidc_providers)
+    - [oidc](https://developer.hashicorp.com/vault/docs/auth/jwt/oidc-providers)
 
 - (string) **`mount_path`** _[since v0.0.1]_
 
