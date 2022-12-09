@@ -8,7 +8,7 @@ locals {
         certificate_check_name_enabled = o_value.certificate_subject_name_validation != null ? o_value.certificate_subject_name_validation : true
         http_port                      = o_value.http_port
         https_port                     = o_value.https_port
-        origin_host_header             = o_value.origin_host_header
+        origin_host_header             = o_value.origin_host_header != null ? o_value.origin_host_header : o_value.hostname
         priority                       = o_value.priority
         weight                         = o_value.weight
         enabled                        = o_value.enabled != null ? o_value.enabled : true

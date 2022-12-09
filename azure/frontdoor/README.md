@@ -10,6 +10,7 @@ This module will create and configure an Azure Frontdoor and allow you to manage
     - [Mandatory](#mandatory)
     - [Optional](#optional)
 - [Outputs](#outputs)
+- [Notes](#notes)
 
 ## Example Usage
 
@@ -220,3 +221,10 @@ module "frontdoor" {
     - (bool) **`session_affinity_enabled = true`** _[since v0.0.1]_
 
         Specifies whether session affinity should be enabled on this host
+
+## Notes
+
+This module does not support the following and they will be implemented in the next release:
+
+- Custom Domains
+- Rule Set
