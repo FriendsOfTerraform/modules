@@ -1,6 +1,6 @@
-# Azure Frontdoor Module
+# Azure Front Door Module
 
-This module will create and configure an Azure Frontdoor and allow you to manage its resources such as origins, endpoints, and routes
+This module will create and configure an Azure Front Door and allow you to manage its resources such as origins, endpoints, and routes
 
 ## Table of Contents
 
@@ -16,17 +16,17 @@ This module will create and configure an Azure Frontdoor and allow you to manage
 
 ### Basic Usage
 
-This example creates an Azure Frontdoor profile with an origin group named `demo-webapp` with two origins. Then creates an endpoint named `default` and route named `webapp` to route traffic to origins behind `demo-webapp`
+This example creates an Azure Front Door profile with an origin group named `demo-webapp` with two origins. Then creates an endpoint named `default` and route named `webapp` to route traffic to origins behind `demo-webapp`
 
 ```terraform
-module "frontdoor" {
-  source = "github.com/FriendsOfTerraform/azure-frontdoor.git?ref=v0.0.1"
+module "Front Door" {
+  source = "github.com/FriendsOfTerraform/azure-Front Door.git?ref=v0.0.1"
 
   azure = {
     resource_group_name = "aks-dev"
   }
 
-  name = "frontdoor-demo"
+  name = "Front Door-demo"
 
   origin_groups = {
     "demo-webapp" = {
@@ -74,21 +74,21 @@ module "frontdoor" {
 
     - (string) **`resource_group_name`** _[since v0.0.1]_
 
-        The name of an Azure resource group where the frontdoor will be deployed
+        The name of an Azure resource group where the Front Door will be deployed
 
     - (string) **`location = null`** _[since v0.0.1]_
 
-        The name of an Azure location where the frontdoor will be deployed. If unspecified, the resource group's location will be used.
+        The name of an Azure location where the Front Door will be deployed. If unspecified, the resource group's location will be used.
 
 - (string) **`name`** _[since v0.0.1]_
 
-    The name of the Azure Frontdoor profile. This will also be used as a prefix to all associating resources' names.
+    The name of the Azure Front Door profile. This will also be used as a prefix to all associated resources' names.
 
 ### Optional
 
 - (map(string)) **`additional_tags = {}`** _[since v0.0.1]_
 
-    Additional tags for the Azure Frontdoor
+    Additional tags for the Azure Front Door
 
 - (map(string)) **`additional_tags_all = {}`** _[since v0.0.1]_
 
@@ -96,7 +96,7 @@ module "frontdoor" {
 
 - (map(object)) **`endpoints = {}`** _[since v0.0.1]_
 
-    Defines frontdoor endpoints with associating routes
+    Defines Front Door endpoints with associating routes
 
     - (map(string)) **`additional_tags = null`** _[since v0.0.1]_
 
@@ -144,7 +144,7 @@ module "frontdoor" {
 
 - (map(object)) **`origin_groups = {}`** _[since v0.0.1]_
 
-    Defines frontdoor origin groups with associating origins. In `origin_group_name = {config}` format
+    Defines Front Door origin groups with associating origins, in `origin_group_name = {config}` format
 
     - (object) **`health_probe = null`** _[since v0.0.1]_
 
@@ -172,7 +172,7 @@ module "frontdoor" {
 
       - (number) **`latency_sensitivity_milliseconds = 50`** _[since v0.0.1]_
 
-          Latency sensitivity for identifying backends with least latencies. Possible values are between `0` and `1000`
+          Latency sensitivity for identifying backends with least latency. Possible values are between `0` and `1000`
 
       - (number) **`sample_size = 4`** _[since v0.0.1]_
 
@@ -208,7 +208,7 @@ module "frontdoor" {
 
       - (string) **`origin_host_header = null`** _[since v0.0.1]_
 
-          The host header value (an IPv4 address, IPv6 address or Domain name) which is sent to the origin with each request. If unspecified the hostname from the request will be used.
+          The host header value (an IPv4 address, IPv6 address or Domain name), which is sent to the origin with each request. If unspecified the hostname from the request will be used.
 
       - (number) **`priority = 1`** _[since v0.0.1]_
 

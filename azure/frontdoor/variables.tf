@@ -9,18 +9,18 @@ variable "azure" {
 
 variable "name" {
   type        = string
-  description = "The name of the Frontdoor profile. All associated resources' names will also be prefixed by this value"
+  description = "The name of the Front Door profile. All associated resources' names will also be prefixed by this value"
 }
 
 variable "additional_tags" {
   type        = map(string)
-  description = "Additional tags for the Frontdoor profile"
+  description = "Additional tags for the Front Door profile"
   default     = {}
 }
 
 variable "additional_tags_all" {
   type        = map(string)
-  description = "Additional tags for all resources in deployed with this module"
+  description = "Additional tags for all resources deployed with this module"
   default     = {}
 }
 
@@ -42,7 +42,7 @@ variable "endpoints" {
     additional_tags = optional(map(string))
   }))
 
-  description = "Defines a frontdoor endpoint"
+  description = "Defines a Front Door endpoint"
   default     = {}
 }
 
