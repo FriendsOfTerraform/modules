@@ -15,7 +15,7 @@ This module will create and configure an Azure SQL Server and databases.
 
 ### Basic Usage
 
-This example creates an Azure MS SQL server using Azure AD authentication. then it creates two databases with different pricing models. After that, it demonstrates how to configure the firewall to allow incoming traffics.
+This example creates an Azure MS SQL server using Azure AD authentication, then it creates two databases with different pricing models. After that, it demonstrates how to configure the firewall to allow incoming traffic.
 
 ```terraform
 module "mssql" {
@@ -99,7 +99,7 @@ module "mssql" {
 
 - (object) **`azuread_authentication = null`** _[since v0.0.1]_
 
-    Defines an Azure AD identity as administrator for this server. Can be used with `sql_authentication`
+    Defines an Azure AD identity as administrator for this server, can be used with `sql_authentication`
 
     - (string) **`object_id`** _[since v0.0.1]_
 
@@ -111,7 +111,7 @@ module "mssql" {
 
 - (string) **`connection_policy = "Default"`** _[since v0.0.1]_
 
-    The connection policy the server will use. Possible values are `"Default"`, `"Proxy"`, and `"Redirect"`
+    The connection policy the server will use. Possible values are `Default`, `Proxy`, and `Redirect`
 
 - (map(object)) **`databases`** _[since v0.0.1]_
 
@@ -123,7 +123,7 @@ module "mssql" {
 
     - (string) **`backup_storage_redundancy = "Geo"`** _[since v0.0.1]_
 
-        Specifies the storage account type used to store backups for this database. Possible values are `"Geo"`, `"Local"` and `"Zone"`
+        Specifies the storage account type used to store backups for this database. Possible values are `Geo`, `Local` and `Zone`
 
     - (bool) **`bring_your_own_license = false`** _[since v0.0.1]_
 
@@ -133,9 +133,9 @@ module "mssql" {
 
         Database collation defines the rules that sort and compare data, and cannot be changed after database creation
 
-    - (string) **`create_mode = "Default""`** _[since v0.0.1]_
+    - (string) **`create_mode = "Default"`** _[since v0.0.1]_
 
-        Defines the create action of the database. Possible values are `"Copy"`, `"Default"`, `"OnlineSecondary"`, `"PointInTimeRestore"`, `"Recovery"`, `"Restore"`, `"RestoreExternalBackup"`, `"RestoreExternalBackupSecondary"`, `"RestoreLongTermRetentionBackup"` and `"Secondary"`
+        Defines the create action of the database. Possible values are `Copy`, `Default`, `OnlineSecondary`, `PointInTimeRestore`, `Recovery`, `Restore`, `RestoreExternalBackup`, `RestoreExternalBackupSecondary`, `RestoreLongTermRetentionBackup` and `Secondary`
 
     - (number) **`data_max_size = null`** _[since v0.0.1]_
 
@@ -147,7 +147,7 @@ module "mssql" {
 
         - (string) **`tier`** _[since v0.0.1]_
 
-            Defines the tier of this database. Possible values are `"Basic"`, `"Standard"`, and `"Premium"`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`
+            Defines the tier of this database. Possible values are `Basic`, `Standard`, and `Premium`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`
 
         - (number) **`dtu = 10`** _[since v0.0.1]_
 
@@ -159,35 +159,35 @@ module "mssql" {
 
         - (string) **`tier`** _[since v0.0.1]_
 
-            Defines the tier of this database. Possible values are `"GeneralPurpose"`, `"Hyperscale"`, `"BusinessCritical"`, and `"Serverless"`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`
+            Defines the tier of this database. Possible values are `GeneralPurpose`, `Hyperscale`, `BusinessCritical`, and `Serverless`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`
 
-        - (number) **`vcore`** _[since v0.0.1]_
+        - (number) **`vcores`** _[since v0.0.1]_
 
             Defines the number of VCores for the database. Please run the above command to get a list of VCores options applicable to your region.
 
         - (number) **`auto_pause_delay_in_minutes = -1`** _[since v0.0.1]_
 
-            Time in minutes after which database is automatically paused. A value of `-1` means that automatic pause is disabled. This property is only applicable for `Serverless` tier
+            Time in minutes after which database is automatically paused. A value of `-1` means that automatic pause is disabled. This property is only applicable to the `Serverless` tier
 
         - (string) **`compute = "Gen5"`** _[since v0.0.1]_
 
             Defines the compute for the database. Note that certain compute options are only available to certain tiers, and may not be available in some regions. Run this CLI command to get a list of options applicable to your region. `az sql db list-editions --location westus --output table`
 
-        - (number) **`min_vcore = 1`** _[since v0.0.1]_
+        - (number) **`min_vcores = 1`** _[since v0.0.1]_
 
-            Minimal capacity that database will always have allocated, if not paused. This property is only applicable for `Serverless` tier.
+            Minimum capacity that database will always have allocated, if not paused. This property is only applicable to the `Serverless` tier.
 
     - (bool) **`ledger_enabled = false`** _[since v0.0.1]_
 
-        Specifies if this is a ledger database, cannot be changed after database creation
+        Specifies if this is a ledger database; cannot be changed after database creation
 
     - (bool) **`read_scale_out_enabled = true`** _[since v0.0.1]_
 
-        If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property is only settable for `Premium` and `BusinessCritical` tiers.
+        If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property can only be set in `Premium` and `BusinessCritical` tiers.
 
     - (string) **`restore_point_in_time = null`** _[since v0.0.1]_
 
-        Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. This property is only settable for `create_mode = "PointInTimeRestore"` databases.
+        Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. This property can only be set in `create_mode = "PointInTimeRestore"` databases.
 
     - (string) **`source_database_id = null`** _[since v0.0.1]_
 
@@ -195,7 +195,7 @@ module "mssql" {
 
     - (bool) **`zone_redundant = false`** _[since v0.0.1]_
 
-        Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property is only settable for `Premium` and `BusinessCritical` tiers.
+        Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property can only be set in `Premium` and `BusinessCritical` tiers.
 
 - (object) **`firewall = null`** _[since v0.0.1]_
 
@@ -211,7 +211,7 @@ module "mssql" {
 
 - (string) **`minimum_tls_version = "1.2"`** _[since v0.0.1]_
 
-    The Minimum TLS Version for all SQL Database and SQL Data Warehouse databases associated with the server. Valid values are: `"1.0"`, `"1.1"`, `"1.2"` and `"Disabled"`
+    The minimum TLS version for all SQL Database and SQL Data Warehouse databases associated with the server. Valid values are: `1.0`, `1.1`, `1.2` and `Disabled`
 
 - (bool) **`public_network_access_enabled = true`** _[since v0.0.1]_
 
@@ -235,8 +235,8 @@ module "mssql" {
 
 - (list(string)) **`user_assigned_managed_identity_ids = []`** _[since v0.0.1]_
 
-    List of managed identity IDs used by the cluster to manage azure resources
+    List of managed identity IDs used by the SQL server to manage Azure resources
 
 - (string) **`server_version = "12.0"`** _[since v0.0.1]_
 
-    The version for the SQL server. Valid values are: `"2.0"` (for v11 server) and `"12.0"` (for v12 server)
+    The version for the SQL server. Valid values are: `2.0` (for v11 server) and `12.0` (for v12 server)

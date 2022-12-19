@@ -9,12 +9,12 @@ variable "azure" {
 
 variable "name" {
   type        = string
-  description = "The name of the kubernetes cluster. All associated resources' names will also be prefixed by this value"
+  description = "The name of the SQL server"
 }
 
 variable "additional_tags" {
   type        = map(string)
-  description = "Additional tags for the kubernetes cluster"
+  description = "Additional tags for the SQL server"
   default     = {}
 }
 
@@ -85,7 +85,7 @@ variable "firewall" {
 
 variable "minimum_tls_version" {
   type        = string
-  description = "The Minimum TLS Version for all SQL Database and SQL Data Warehouse databases associated with the server. Valid values are: 1.0, 1.1 , 1.2 and Disabled"
+  description = "The minimum TLS version for all SQL Database and SQL Data Warehouse databases associated with the server. Valid values are: 1.0, 1.1 , 1.2 and Disabled"
   default     = "1.2"
 }
 
@@ -113,7 +113,7 @@ variable "sql_authentication" {
 
 variable "user_assigned_managed_identity_ids" {
   type        = list(string)
-  description = "List of managed identity IDs used by the cluster to manage azure resources"
+  description = "List of managed identity IDs used by the SQL server to manage Azure resources"
   default     = []
 }
 
