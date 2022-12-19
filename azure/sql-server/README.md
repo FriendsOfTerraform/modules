@@ -27,7 +27,7 @@ module "mssql" {
 
   name = "petersin-mssql"
 
-  azuread_authentication = {
+  azure_ad_authentication = {
     object_id = "3b170aa6-ac36-472a-xxxx-xxxxxx-xxxxxxx"
   }
 
@@ -97,7 +97,7 @@ module "mssql" {
 
     Additional tags for all resources deployed with this module
 
-- (object) **`azuread_authentication = null`** _[since v0.0.1]_
+- (object) **`azure_ad_authentication = null`** _[since v0.0.1]_
 
     Defines an Azure AD identity as administrator for this server, can be used with `sql_authentication`
 
@@ -147,7 +147,7 @@ module "mssql" {
 
         - (string) **`tier`** _[since v0.0.1]_
 
-            Defines the tier of this database. Possible values are `Basic`, `Standard`, and `Premium`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`
+            Defines the tier of this database. Possible values are `Basic`, `Standard`, and `Premium`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
         - (number) **`dtu = 10`** _[since v0.0.1]_
 
@@ -159,7 +159,7 @@ module "mssql" {
 
         - (string) **`tier`** _[since v0.0.1]_
 
-            Defines the tier of this database. Possible values are `GeneralPurpose`, `Hyperscale`, `BusinessCritical`, and `Serverless`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`
+            Defines the tier of this database. Possible values are `GeneralPurpose`, `Hyperscale`, `BusinessCritical`, and `Serverless`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
         - (number) **`vcores`** _[since v0.0.1]_
 
@@ -171,7 +171,7 @@ module "mssql" {
 
         - (string) **`compute = "Gen5"`** _[since v0.0.1]_
 
-            Defines the compute for the database. Note that certain compute options are only available to certain tiers, and may not be available in some regions. Run this CLI command to get a list of options applicable to your region. `az sql db list-editions --location westus --output table`
+            Defines the compute for the database. Note that certain compute options are only available to certain tiers, and may not be available in some regions. Run this CLI command to get a list of options applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
         - (number) **`min_vcores = 1`** _[since v0.0.1]_
 
@@ -203,7 +203,7 @@ module "mssql" {
 
     - (map(string)) **`rules`** _[since v0.0.1]_
 
-        A map of firewall rules in the following format `{rule_name = start_ip - end_ip}`. For example. `"{Office's Network" = "1.2.3.4 - 5.6.7.8"}`. If `start_ip` and `end_ip` are identical, you can omit `end_ip`. For example. `"{Peter's home network" = "1.2.3.4"}`
+        A map of firewall rules in the following format: `{"rule_name" = "start_ip - end_ip"}`. For example. `{"Office's Network" = "1.2.3.4 - 5.6.7.8"}`. If `start_ip` and `end_ip` are identical, you can omit `end_ip`. For example. `{"Peter's home network" = "1.2.3.4"}`
 
     - (bool) **`allow_access_to_azure_services = false`** _[since v0.0.1]_
 
@@ -223,7 +223,7 @@ module "mssql" {
 
 - (object) **`sql_authentication = null`** _[since v0.0.1]_
 
-    Defines the administrator login credential for this SQL server, can be used with `azuread_authentication`
+    Defines the administrator login credential for this SQL server, can be used with `azure_ad_authentication`
 
     - (string) **`admin_username`** _[since v0.0.1]_
 
@@ -231,7 +231,7 @@ module "mssql" {
 
     - (string) **`admin_password`** _[since v0.0.1]_
 
-        Password of the admin account
+        Password of the admin account in plain text
 
 - (list(string)) **`user_assigned_managed_identity_ids = []`** _[since v0.0.1]_
 

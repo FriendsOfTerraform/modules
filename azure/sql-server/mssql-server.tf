@@ -7,12 +7,12 @@ resource "azurerm_mssql_server" "mssql_server" {
   administrator_login_password = var.sql_authentication != null ? var.sql_authentication.admin_password : null
 
   dynamic "azuread_administrator" {
-    for_each = var.azuread_authentication != null ? [1] : []
+    for_each = var.azure_ad_authentication != null ? [1] : []
 
     content {
       login_username              = "AzureAD Admin"
-      object_id                   = var.azuread_authentication.object_id
-      tenant_id                   = var.azuread_authentication.tenant_id
+      object_id                   = var.azure_ad_authentication.object_id
+      tenant_id                   = var.azure_ad_authentication.tenant_id
       azuread_authentication_only = var.sql_authentication != null ? false : true
     }
   }

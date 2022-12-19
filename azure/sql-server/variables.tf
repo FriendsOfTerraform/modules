@@ -24,7 +24,7 @@ variable "additional_tags_all" {
   default     = {}
 }
 
-variable "azuread_authentication" {
+variable "azure_ad_authentication" {
   type = object({
     object_id = string
     tenant_id = optional(string)
