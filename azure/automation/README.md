@@ -2,6 +2,8 @@
 
 This module will create and configure an [Azure Automation Account][azure-automation-account] and manages related resources such as Runbooks and Schedules
 
+**This repository is a READ-ONLY sub-tree split**. See https://github.com/FriendsOfTerraform/modules to create issues or submit pull requests.
+
 ## Table of Contents
 
 - [Example Usage](#example-usage)

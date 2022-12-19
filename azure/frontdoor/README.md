@@ -2,6 +2,8 @@
 
 This module will create and configure an Azure Front Door and allow you to manage its resources such as origins, endpoints, and routes
 
+**This repository is a READ-ONLY sub-tree split**. See https://github.com/FriendsOfTerraform/modules to create issues or submit pull requests.
+
 ## Table of Contents
 
 - [Example Usage](#example-usage)

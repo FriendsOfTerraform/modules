@@ -2,6 +2,8 @@
 
 This module creates an Azure [Network Security Group][network-security-group] and allows you to manage multiple inbound and outbound rules
 
+**This repository is a READ-ONLY sub-tree split**. See https://github.com/FriendsOfTerraform/modules to create issues or submit pull requests.
+
 ## Table of Contents
 
 - [Example Usage](#example-usage)

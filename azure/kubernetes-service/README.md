@@ -2,6 +2,8 @@
 
 This module will create and configure an [Azure Kubernetes Cluster][azure-kubernetes-service] with additional node pools
 
+**This repository is a READ-ONLY sub-tree split**. See https://github.com/FriendsOfTerraform/modules to create issues or submit pull requests.
+
 ## Table of Contents
 
 - [Example Usage](#example-usage)
