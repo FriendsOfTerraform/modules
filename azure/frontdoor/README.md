@@ -222,6 +222,14 @@ module "Front Door" {
 
         Specifies whether session affinity should be enabled on this host
 
+- (number) **`response_timeout_seconds = 120`** _[since v0.0.1]_
+
+    Number of seconds before the send/received request times out. Valid values `16 - 240`
+
+- (string) **`tier = "Standard"`** _[since v0.0.1]_
+
+    Define the tier of the Front Door service. Valid values are `"Standard"` or `"Premium"`
+
 ## Notes
 
 This module does not support the following and they will be implemented in the next release:
