@@ -22,7 +22,7 @@ This example creates an Azure Front Door profile with an origin group named `dem
 
 ```terraform
 module "Front Door" {
-  source = "github.com/FriendsOfTerraform/azure-Front Door.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-frontdoor.git?ref=v0.0.1"
 
   azure = {
     resource_group_name = "aks-dev"
