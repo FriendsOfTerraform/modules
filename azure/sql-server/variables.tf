@@ -1,7 +1,7 @@
 variable "azure" {
   type = object({
     resource_group_name = string
-    location            = optional(string)
+    location            = optional(string, null)
   })
 
   description = "Where the resources will be deployed on"
@@ -27,7 +27,7 @@ variable "additional_tags_all" {
 variable "azure_ad_authentication" {
   type = object({
     object_id = string
-    tenant_id = optional(string)
+    tenant_id = optional(string, null)
   })
 
   description = "Defines an Azure AD identity as administrator for this SQL server, can be used with SQL Authentication"
@@ -42,31 +42,31 @@ variable "connection_policy" {
 
 variable "databases" {
   type = map(object({
-    additional_tags           = optional(map(string))
-    backup_storage_redundancy = optional(string)
-    bring_your_own_license    = optional(bool)
-    collation                 = optional(string)
-    create_mode               = optional(string)
-    data_max_size             = optional(number) # 2 GB
+    additional_tags           = optional(map(string), {})
+    backup_storage_redundancy = optional(string, "Geo")
+    bring_your_own_license    = optional(bool, false)
+    collation                 = optional(string, "SQL_Latin1_General_CP1_CI_AS")
+    create_mode               = optional(string, "Default")
+    data_max_size             = optional(number, 2)
 
     dtu_model = optional(object({
-      tier = string           # Basic, Standard, Premium
-      dtu  = optional(number) # Standard = 10, Premium = 125
+      tier = string # Basic, Standard, Premium
+      dtu  = optional(number, null)
     }))
 
     vcore_model = optional(object({
       tier                        = string # GeneralPurpose, Hyperscale, Serverless
       vcores                      = number
-      auto_pause_delay_in_minutes = optional(number)
-      compute                     = optional(string) # Gen5
-      min_vcores                  = optional(number) # 1
+      auto_pause_delay_in_minutes = optional(number, -1)
+      compute                     = optional(string, "Gen5")
+      min_vcores                  = optional(number, 1)
     }))
 
-    ledger_enabled         = optional(bool)
-    read_scale_out_enabled = optional(bool) # true
-    restore_point_in_time  = optional(string)
-    source_database_id     = optional(string)
-    zone_redundant         = optional(bool) # false
+    ledger_enabled         = optional(bool, false)
+    read_scale_out_enabled = optional(bool, true)
+    restore_point_in_time  = optional(string, null)
+    source_database_id     = optional(string, null)
+    zone_redundant         = optional(bool, false)
   }))
 
   description = "Defines multiple databases"
@@ -76,7 +76,7 @@ variable "databases" {
 variable "firewall" {
   type = object({
     rules                          = map(string)
-    allow_access_to_azure_services = optional(bool)
+    allow_access_to_azure_services = optional(bool, false)
   })
 
   description = "Defines firewall rules for the SQL server"

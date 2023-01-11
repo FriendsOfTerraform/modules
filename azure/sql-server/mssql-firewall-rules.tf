@@ -9,9 +9,7 @@ resource "azurerm_mssql_firewall_rule" "firewall_rules" {
 
 resource "azurerm_mssql_firewall_rule" "allow_access_to_azure_services" {
   count = var.firewall != null ? (
-    var.firewall.allow_access_to_azure_services != null ? (
-      var.firewall.allow_access_to_azure_services ? 1 : 0
-    ) : 0
+    var.firewall.allow_access_to_azure_services ? 1 : 0
   ) : 0
 
   name             = "Allow Access To Azure Services"
