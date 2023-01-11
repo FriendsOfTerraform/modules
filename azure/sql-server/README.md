@@ -214,7 +214,7 @@ module "mssql" {
 
 - (map(object)) **`failover_groups = {}`** _[since v1.0.0]_
 
-    Manages failover groups for databases failover
+    Manages failover groups for databases failover. In `{failover_group_name = {configurations}}` format. The failover group name must be globally unique.
 
     - (list(string)) **`databases`** _[since v1.0.0]_
 
@@ -234,7 +234,7 @@ module "mssql" {
 
     - (number) **`read_write_grace_period_minutes = 60`** _[since v1.0.0]_
 
-        The grace period in minutes, before failover with data loss is attempted for the read-write endpoint. Required when mode is `"Automatic"`
+        The grace period in minutes, before failover with data loss is attempted for the read-write endpoint. Required when `read_write_failover_policy = "Automatic"`
 
 - (object) **`firewall = null`** _[since v0.0.1]_
 
