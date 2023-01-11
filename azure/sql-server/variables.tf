@@ -63,13 +63,26 @@ variable "databases" {
     }))
 
     ledger_enabled         = optional(bool, false)
-    read_scale_out_enabled = optional(bool, true)
+    read_scale_out_enabled = optional(bool, null)
     restore_point_in_time  = optional(string, null)
     source_database_id     = optional(string, null)
     zone_redundant         = optional(bool, false)
   }))
 
   description = "Defines multiple databases"
+  default     = {}
+}
+
+variable "failover_groups" {
+  type = map(object({
+    databases                       = list(string)
+    secondary_server_id             = string
+    additional_tags                 = optional(map(string), {})
+    read_write_failover_policy      = optional(string, "Automatic")
+    read_write_grace_period_minutes = optional(number, 60)
+  }))
+
+  description = "Defines SQL server failover groups"
   default     = {}
 }
 

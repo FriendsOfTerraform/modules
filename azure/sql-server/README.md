@@ -21,10 +21,10 @@ This example creates an Azure MS SQL server using Azure AD authentication, then 
 
 ```terraform
 module "mssql" {
-  source = "github.com/FriendsOfTerraform/azure-sql-server.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-sql-server.git?ref=v1.0.0"
 
   azure = {
-    resource_group_name = "aks-dev"
+    resource_group_name = "demo"
   }
 
   name = "petersin-mssql"
@@ -50,8 +50,21 @@ module "mssql" {
     }
   }
 
+  failover_groups = {
+    demo-failover-group = {
+      # The database names supplied here must be the same ones created within the same declaration
+      databases = [
+        "demo-dtu",
+        "demo-vcore"
+      ]
+
+      secondary_server_id = "/subscriptions/1528e238-333b-xxxx-xxxx-xxxxxxxxxx/resourceGroups/demo/providers/Microsoft.Sql/servers/petersin-secondary-mssql"
+    }
+  }
+
   firewall = {
     rules = {
+      # You can omit the ending IP address if it is the same as the starting IP address
       "Brian's Home"       = "10.11.12.13"
       "Stewie's Home"      = "9.10.11.12"
       "Primary Datacenter" = "130.166.0.0 - 130.166.255.255"
@@ -87,7 +100,7 @@ module "mssql" {
 
 - (string) **`name`** _[since v0.0.1]_
 
-    The name of the SQL server
+    The name of the SQL server. This value must be globally unique.
 
 ### Optional
 
@@ -115,7 +128,7 @@ module "mssql" {
 
     The connection policy the server will use. Possible values are `Default`, `Proxy`, and `Redirect`
 
-- (map(object)) **`databases`** _[since v0.0.1]_
+- (map(object)) **`databases = {}`** _[since v0.0.1]_
 
     Configures and manages multiple databases that are attached to this server
 
@@ -139,7 +152,7 @@ module "mssql" {
 
         Defines the create action of the database. Possible values are `Copy`, `Default`, `OnlineSecondary`, `PointInTimeRestore`, `Recovery`, `Restore`, `RestoreExternalBackup`, `RestoreExternalBackupSecondary`, `RestoreLongTermRetentionBackup` and `Secondary`
 
-    - (number) **`data_max_size = null`** _[since v0.0.1]_
+    - (number) **`data_max_size = 2`** _[since v0.0.1]_
 
         The max size of the database in gigabytes.        
 
@@ -151,7 +164,7 @@ module "mssql" {
 
             Defines the tier of this database. Possible values are `Basic`, `Standard`, and `Premium`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
-        - (number) **`dtu = 10`** _[since v0.0.1]_
+        - (number) **`dtu = null`** _[since v0.0.1]_
 
             Defines the number of DTU for the database. Please run the above command to get a list of DTU applicable to your region.
 
@@ -183,7 +196,7 @@ module "mssql" {
 
         Specifies if this is a ledger database; cannot be changed after database creation
 
-    - (bool) **`read_scale_out_enabled = true`** _[since v0.0.1]_
+    - (bool) **`read_scale_out_enabled = null`** _[since v0.0.1]_
 
         If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property can only be set in `Premium` and `BusinessCritical` tiers.
 
@@ -198,6 +211,30 @@ module "mssql" {
     - (bool) **`zone_redundant = false`** _[since v0.0.1]_
 
         Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property can only be set in `Premium` and `BusinessCritical` tiers.
+
+- (map(object)) **`failover_groups = {}`** _[since v1.0.0]_
+
+    Manages failover groups for databases failover
+
+    - (list(string)) **`databases`** _[since v1.0.0]_
+
+        A list of database names to be included in this failover group. The names supplied here must be databases deployed using the same module. Please see [Basic Usage](#basic-usage) for an example.
+
+    - (string) **`secondary_server_id`** _[since v1.0.0]_
+
+        Defines the ID of the MS SQL server to failover to. This server must exists in a different region.
+
+    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+
+        Additional tags for this failover group
+
+    - (string) **`read_write_failover_policy = "Automatic"`** _[since v1.0.0]_
+
+        Defines the failover policy of the read-write endpoint for the failover group. Possible values are `"Automatic"` or `"Manual"`
+
+    - (number) **`read_write_grace_period_minutes = 60`** _[since v1.0.0]_
+
+        The grace period in minutes, before failover with data loss is attempted for the read-write endpoint. Required when mode is `"Automatic"`
 
 - (object) **`firewall = null`** _[since v0.0.1]_
 
