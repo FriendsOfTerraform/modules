@@ -6,12 +6,17 @@ This module will create and configure an Azure SQL Server and databases.
 
 ## Table of Contents
 
+- [Requirements](#requirements)
 - [Example Usage](#example-usage)
     - [Basic Usage](#basic-usage)
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
 - [Outputs](#outputs)
+
+## Requirements
+
+- Terraform v1.3.0+
 
 ## Example Usage
 
