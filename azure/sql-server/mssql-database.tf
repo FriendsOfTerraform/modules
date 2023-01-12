@@ -47,12 +47,8 @@ locals {
 
       tags           = db_value.additional_tags
       ledger_enabled = db_value.ledger_enabled
-
-      license_type = db_value.bring_your_own_license != null ? (
-        db_value.bring_your_own_license ? "LicenseIncluded" : "BasePrice"
-      ) : "BasePrice"
-
-      max_size_gb = db_value.data_max_size
+      license_type   = db_value.bring_your_own_license ? "LicenseIncluded" : "BasePrice"
+      max_size_gb    = db_value.data_max_size
 
       recover_database_id = db_value.create_mode != null ? (
         contains(local.create_mode_table["Recovery"], db_value.create_mode) ? db_value.source_database_id : null
@@ -73,8 +69,9 @@ locals {
   vcore_models = {
     for db_name, db_value in var.databases :
     db_name => {
-      collation   = db_value.collation
-      create_mode = db_value.create_mode
+      auto_pause_delay_in_minutes = db_value.vcore_model.auto_pause_delay_in_minutes
+      collation                   = db_value.collation
+      create_mode                 = db_value.create_mode
 
       creation_source_database_id = db_value.create_mode != null ? (
         contains(local.create_mode_table["Create"], db_value.create_mode) ? db_value.source_database_id : null
@@ -82,12 +79,9 @@ locals {
 
       tags           = db_value.additional_tags
       ledger_enabled = db_value.ledger_enabled
-
-      license_type = db_value.bring_your_own_license != null ? (
-        db_value.bring_your_own_license ? "LicenseIncluded" : "BasePrice"
-      ) : "BasePrice"
-
-      max_size_gb = db_value.data_max_size
+      license_type   = db_value.bring_your_own_license ? "LicenseIncluded" : "BasePrice"
+      max_size_gb    = db_value.data_max_size
+      min_capacity   = db_value.vcore_model.tier == "Serverless" ? db_value.vcore_model.min_vcores : null
 
       recover_database_id = db_value.create_mode != null ? (
         contains(local.create_mode_table["Recovery"], db_value.create_mode) ? db_value.source_database_id : null
@@ -100,7 +94,7 @@ locals {
       restore_point_in_time = db_value.restore_point_in_time
 
       # For example: GP_S_Gen5_1
-      sku_name             = "${local.vcore_tier_table[db_value.vcore_model.tier]}${db_value.vcore_model.tier == "Serverless" ? "_S" : ""}_${db_value.vcore_model.compute != null ? db_value.vcore_model.compute : "Gen5"}_${db_value.vcore_model.vcores}"
+      sku_name             = "${local.vcore_tier_table[db_value.vcore_model.tier]}${db_value.vcore_model.tier == "Serverless" ? "_S" : ""}_${db_value.vcore_model.compute}_${db_value.vcore_model.vcores}"
       storage_account_type = db_value.backup_storage_redundancy
       read_scale           = db_value.read_scale_out_enabled
       zone_redundant       = db_value.zone_redundant
