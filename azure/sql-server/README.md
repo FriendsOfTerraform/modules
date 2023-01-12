@@ -227,7 +227,7 @@ module "mssql" {
 
     - (string) **`secondary_server_id`** _[since v1.0.0]_
 
-        Defines the ID of the MS SQL server to failover to. This server must exists in a different region.
+        Defines the ID of the MS SQL server to failover to. This server **must** exist in a different region.
 
     - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
