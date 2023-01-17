@@ -63,7 +63,7 @@ resource "azurerm_kubernetes_cluster" "kubernetes_cluster" {
 
     content {
       secret_rotation_enabled  = true
-      secret_rotation_interval = var.add_ons.azure_key_vault_secrets_provider.secret_rotation_interval_minutes != null ? "${var.add_ons.azure_key_vault_secrets_provider.secret_rotation_interval_minutes}m" : null
+      secret_rotation_interval = "${var.add_ons.azure_key_vault_secrets_provider.secret_rotation_interval_minutes}m"
     }
   }
 

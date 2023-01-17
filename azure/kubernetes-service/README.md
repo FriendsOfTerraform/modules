@@ -160,9 +160,9 @@ module "aks_cluster" {
 
         The Kubernetes version for the node pool, defaults to the latest version. This value must be specified for cluster upgrade to work.
 
-    - (number) **`max_pods_per_node = null`** _[since v0.0.1]_
+    - (number) **`max_pods_per_node = 30`** _[since v0.0.1]_
 
-        The max number of pods that can be deployed on each node. Defaults to `30`
+        The max number of pods that can be deployed on each node.
 
     - (number) **`max_instances = null`** _[since v0.0.1]_
 
