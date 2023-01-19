@@ -143,7 +143,7 @@ module "demo_vnet" {
 
         The name of a route table to be attached to this subnet
 
-    - (list(string)) **`service_endpoints = null`** _[since v0.0.1]_
+    - (list(string)) **`service_endpoints = []`** _[since v0.0.1]_
 
         A list of service endpoints to be enabled in this subnet. Please refer to [this document][service-endpoints] for a list of possible values
 
