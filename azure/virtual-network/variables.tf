@@ -1,7 +1,7 @@
 variable "azure" {
   type = object({
     resource_group_name = string
-    location            = optional(string)
+    location            = optional(string, null)
   })
 
   description = "Where the resources will be deployed on"
@@ -44,8 +44,8 @@ variable "additional_tags_all" {
 variable "nat_gateway" {
   type = object({
     enabled                 = bool
-    public_ip_prefix_length = optional(string)
-    additional_tags         = optional(map(string))
+    public_ip_prefix_length = optional(string, null)
+    additional_tags         = optional(map(string), {})
   })
 
   description = "Enable and configure NAT gateway"
@@ -65,9 +65,9 @@ variable "subnets" {
   type = map(object(
     {
       cidr_block                = string
-      network_security_group_id = optional(string)
-      route_table_name          = optional(string)
-      service_endpoints         = optional(list(string))
+      network_security_group_id = optional(string, null)
+      route_table_name          = optional(string, null)
+      service_endpoints         = optional(list(string), [])
     }
   ))
 

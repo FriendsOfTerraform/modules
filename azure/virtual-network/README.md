@@ -6,10 +6,15 @@ This module will create and configure an [Azure virtual network][azure-virtual-n
 
 ## Table of Contents
 
+- [Requirements](#requirements)
 - [Example Usage](#example-usage)
     - [Basic Usage](#basic-usage)
 - [Argument Reference](#argument-reference)
 - [Outputs](#outputs)
+
+## Requirements
+
+- Terraform v1.3.0+
 
 ## Example Usage
 
@@ -19,7 +24,7 @@ This example creates a virtual network with two subnets and having all outbound 
 
 ```terraform
 module "demo_vnet" {
-  source = "github.com/FriendsOfTerraform/azure-virtual-network.git?ref=v0.0.2"
+  source = "github.com/FriendsOfTerraform/azure-virtual-network.git?ref=v1.0.0"
 
   azure = {
     resource_group_name = "sandbox"
@@ -143,7 +148,7 @@ module "demo_vnet" {
 
         The name of a route table to be attached to this subnet
 
-    - (list(string)) **`service_endpoints = null`** _[since v0.0.1]_
+    - (list(string)) **`service_endpoints = []`** _[since v0.0.1]_
 
         A list of service endpoints to be enabled in this subnet. Please refer to [this document][service-endpoints] for a list of possible values
 

@@ -1,7 +1,7 @@
 variable "azure" {
   type = object({
     resource_group_name = string
-    location            = optional(string)
+    location            = optional(string, null)
   })
 
   description = "Where the resources will be deployed on"
@@ -27,16 +27,16 @@ variable "additional_tags_all" {
 variable "inbound_security_rules" {
   type = map(object({
     priority                                   = number
-    action                                     = optional(string)
-    description                                = optional(string)
-    destination_application_security_group_ids = optional(list(string))
-    destination_ip_addresses                   = optional(list(string))
-    destination_service_tag                    = optional(string)
-    port_ranges                                = optional(list(string))
-    protocol                                   = optional(string)
-    source_application_security_group_ids      = optional(list(string))
-    source_ip_addresses                        = optional(list(string))
-    source_service_tag                         = optional(string)
+    action                                     = optional(string, "Allow")
+    description                                = optional(string, null)
+    destination_application_security_group_ids = optional(list(string), null)
+    destination_ip_addresses                   = optional(list(string), null)
+    destination_service_tag                    = optional(string, null)
+    port_ranges                                = optional(list(string), null)
+    protocol                                   = optional(string, "Tcp")
+    source_application_security_group_ids      = optional(list(string), null)
+    source_ip_addresses                        = optional(list(string), null)
+    source_service_tag                         = optional(string, null)
   }))
 
   description = "Manages multiple inbound security rules"
@@ -46,16 +46,16 @@ variable "inbound_security_rules" {
 variable "outbound_security_rules" {
   type = map(object({
     priority                                   = number
-    action                                     = optional(string)
-    description                                = optional(string)
-    destination_application_security_group_ids = optional(list(string))
-    destination_ip_addresses                   = optional(list(string))
-    destination_service_tag                    = optional(string)
-    port_ranges                                = optional(list(string))
-    protocol                                   = optional(string)
-    source_application_security_group_ids      = optional(list(string))
-    source_ip_addresses                        = optional(list(string))
-    source_service_tag                         = optional(string)
+    action                                     = optional(string, "Allow")
+    description                                = optional(string, null)
+    destination_application_security_group_ids = optional(list(string), null)
+    destination_ip_addresses                   = optional(list(string), null)
+    destination_service_tag                    = optional(string, null)
+    port_ranges                                = optional(list(string), null)
+    protocol                                   = optional(string, "Tcp")
+    source_application_security_group_ids      = optional(list(string), null)
+    source_ip_addresses                        = optional(list(string), null)
+    source_service_tag                         = optional(string, null)
   }))
 
   description = "Manages multiple outbound security rules"
