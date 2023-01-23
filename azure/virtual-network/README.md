@@ -11,7 +11,6 @@ This module will create and configure an [Azure virtual network][azure-virtual-n
     - [Basic Usage](#basic-usage)
 - [Argument Reference](#argument-reference)
 - [Outputs](#outputs)
-- [Known Issues](#known-issues)
 
 ## Requirements
 

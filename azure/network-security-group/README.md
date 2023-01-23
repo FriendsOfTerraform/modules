@@ -6,10 +6,15 @@ This module creates an Azure [Network Security Group][network-security-group] an
 
 ## Table of Contents
 
+- [Requirements](#requirements)
 - [Example Usage](#example-usage)
     - [Basic Usage](#basic-usage)
 - [Argument Reference](#argument-reference)
 - [Outputs](#outputs)
+
+## Requirements
+
+- Terraform v1.3.0+
 
 ## Example Usage
 
@@ -19,7 +24,7 @@ This example creates a network security group, and then multiple inbound rules.
 
 ```terraform
 module "demo_nsg" {
-  source = "github.com/FriendsOfTerraform/azure-network-security-group.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-network-security-group.git?ref=v1.0.0"
 
   azure = {
     resource_group_name = "sandbox"
