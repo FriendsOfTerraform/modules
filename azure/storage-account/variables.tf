@@ -26,39 +26,31 @@ variable "additional_tags_all" {
 
 variable "blob_service_config" {
   type = object({
-    access_tier                    = optional(string)
-    allow_cross_tenant_replication = optional(bool)
-    enable_change_feed             = optional(bool)
-    enable_hierarchical_namespace  = optional(bool)
-    enable_network_file_system_v3  = optional(bool)
-    enable_versioning              = optional(bool)
+    access_tier                    = optional(string, "Hot")
+    allow_cross_tenant_replication = optional(bool, true)
+    enable_change_feed             = optional(bool, false)
+    enable_hierarchical_namespace  = optional(bool, false)
+    enable_network_file_system_v3  = optional(bool, false)
+    enable_versioning              = optional(bool, false)
 
     soft_delete_for_blobs = optional(object({
       enabled          = bool
-      retention_period = optional(number)
+      retention_period = optional(number, 7)
     }))
 
     soft_delete_for_containers = optional(object({
       enabled          = bool
-      retention_period = optional(number)
+      retention_period = optional(number, 7)
     }))
   })
 
   description = "Configures blob storage settings for this storage account"
-
-  default = {
-    access_tier                    = "Hot"
-    allow_cross_tenant_replication = true
-    enable_change_feed             = false
-    enable_hierarchical_namespace  = false
-    enable_network_file_system_v3  = false
-    enable_versioning              = false
-  }
+  default     = null
 }
 
 variable "containers" {
   type = map(object({
-    public_access_level = optional(string)
+    public_access_level = optional(string, "private")
     metadata            = optional(map(string))
   }))
 
@@ -69,9 +61,9 @@ variable "containers" {
 variable "file_shares" {
   type = map(object({
     quota       = number
-    access_tier = optional(string)
+    access_tier = optional(string, "Hot")
     metadata    = optional(map(string))
-    protocol    = optional(string)
+    protocol    = optional(string, "SMB")
   }))
 
   description = "Create and manage multiple file shares"
@@ -80,26 +72,23 @@ variable "file_shares" {
 
 variable "file_service_config" {
   type = object({
-    enable_large_file_share = optional(bool)
+    enable_large_file_share = optional(bool, false)
 
     soft_delete = optional(object({
       enabled          = bool
-      retention_period = optional(number)
+      retention_period = optional(number, 7)
     }))
   })
 
   description = "Configures file storage settings for this storage account"
-
-  default = {
-    enable_large_file_share = false
-  }
+  default     = null
 }
 
 variable "firewall" {
   type = object({
-    allow_public_ips   = optional(list(string))
-    allow_vnet_subnets = optional(list(string))
-    exceptions         = optional(list(string))
+    allow_public_ips   = optional(list(string), [])
+    allow_vnet_subnets = optional(list(string), [])
+    exceptions         = optional(list(string), [])
   })
 
   description = "Rules to restrict access to the storage account"
@@ -108,9 +97,9 @@ variable "firewall" {
 
 variable "lifecycle_policies" {
   type = map(object({
-    blob_types            = optional(list(string))
+    blob_types            = optional(list(string), ["blockBlob"])
     prefix_match          = optional(list(string))
-    blob_index_tags_match = optional(map(string))
+    blob_index_tags_match = optional(map(string), {})
 
     base_blob = optional(object({
       delete_after_days_since_last_access                        = optional(number)
@@ -146,14 +135,12 @@ variable "redundancy" {
 
 variable "security_config" {
   type = object({
-    enable_storage_account_key_access = optional(bool)
+    enable_storage_account_key_access = optional(bool, false)
   })
 
   description = "Configures security settings that impact this storage account"
 
-  default = {
-    enable_storage_account_key_access = false
-  }
+  default = null
 }
 
 variable "storage_account_type" {
