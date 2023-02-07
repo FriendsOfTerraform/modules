@@ -25,7 +25,7 @@ This example creates a storage account name `petersinblobdemo` and then a blob c
 
 ```terraform
 module "blob" {
-  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v1.0.0"
 
   azure               = { resource_group_name = "sandbox" }
   name                = "petersinblobdemo"
@@ -60,7 +60,7 @@ This example creates a storage account named `petersinfiledemo` and then a file 
 
 ```terraform
 module "file_share" {
-  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v1.0.0"
 
   azure               = { resource_group_name = "sandbox" }
   name                = "petersinfiledemo"
@@ -94,7 +94,7 @@ module "file_share" {
 
 ```terraform
 module "blob" {
-  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v1.0.0"
 
   azure               = { resource_group_name = "sandbox" }
   name                = "petersinblobdemo"
@@ -124,7 +124,7 @@ This example creates a lifecycle policy name `test` and scope the rule to only t
 
 ```terraform
 module "blob" {
-  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-storage-account.git?ref=v1.0.0"
 
   azure = { resource_group_name = "sandbox" }
   name  = "petersinblobdemo"
