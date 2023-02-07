@@ -14,6 +14,7 @@ This module will create and configure an [Azure Storage Account][azure-storage-a
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
+- [Outputs](#outputs)
 - [Known Issues](#known-issues)
     - [Naming On Lifecycle Policy Rules](#spaces-in-lifecycle-policy-rule-name-throws-invalid-value-error)
 ## Example Usage
@@ -484,6 +485,20 @@ module "blob" {
 - (string) **`storage_account_type = "StorageV2"`** _[since v0.0.1]_
 
     Defines the type of storage account offering to use. Valid values are `"StorageV2", "BlockBlobStorage", and "FileStorage"`
+
+## Outputs
+
+- (string) **`storage_account_id`** _[since v1.0.0]_
+
+    The ID of the storage account
+
+- (map(string)) **`container_ids`** _[since v1.0.0]_
+
+    A map of IDs of the container
+
+- (map(string)) **`file_share_ids`** _[since v1.0.0]_
+
+    A map of IDS of the file share
 
 ## Known Issues
 

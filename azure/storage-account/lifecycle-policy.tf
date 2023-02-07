@@ -8,11 +8,11 @@ resource "azurerm_storage_management_policy" "lifecycle_policies" {
     enabled = true
 
     filters {
-      blob_types   = each.value.blob_types != null ? each.value.blob_types : ["blockBlob"]
+      blob_types   = each.value.blob_types
       prefix_match = each.value.prefix_match
 
       dynamic "match_blob_index_tag" {
-        for_each = each.value.blob_index_tags_match != null ? each.value.blob_index_tags_match : {}
+        for_each = each.value.blob_index_tags_match
 
         content {
           name  = match_blob_index_tag.key
