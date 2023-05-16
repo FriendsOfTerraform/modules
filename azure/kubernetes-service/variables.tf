@@ -1,7 +1,7 @@
 variable "azure" {
   type = object({
     resource_group_name = string
-    location            = optional(string)
+    location            = optional(string, null)
   })
 
   description = "Where the resources will be deployed on"
@@ -22,13 +22,13 @@ variable "node_pools" {
     desired_instances  = number
     vm_size            = string
     vnet_subnet_id     = string
-    additional_tags    = optional(map(string))
-    disk_size          = optional(number)
-    kubernetes_version = optional(string)
-    max_pods_per_node  = optional(number)
-    max_instances      = optional(number)
-    min_instances      = optional(number)
-    zones              = optional(list(string))
+    additional_tags    = optional(map(string), {})
+    disk_size          = optional(number, 512)
+    kubernetes_version = optional(string, null)
+    max_pods_per_node  = optional(number, 30)
+    max_instances      = optional(number, null)
+    min_instances      = optional(number, null)
+    zones              = optional(list(string), null)
   }))
 
   description = "Map of worker node pool in {node_pool_name = node_pool_config}"
@@ -39,7 +39,7 @@ variable "add_ons" {
     azure_key_vault_secrets_provider = optional(object({
       enabled                          = bool
       key_vault_name                   = string
-      secret_rotation_interval_minutes = optional(number)
+      secret_rotation_interval_minutes = optional(number, 2)
     }))
 
     azure_policy = optional(object({
@@ -48,7 +48,7 @@ variable "add_ons" {
 
     monitoring = optional(object({
       enabled        = bool
-      retention_days = optional(number)
+      retention_days = optional(number, 60)
     }))
   })
 
@@ -97,12 +97,12 @@ variable "networking_config" {
     plugin = string
 
     # common options
-    kubernetes_service_address_range  = optional(string)
-    kubernetes_dns_service_ip_address = optional(string)
-    docker_bridge_address             = optional(string)
+    kubernetes_service_address_range  = optional(string, "10.0.0.0/16")
+    kubernetes_dns_service_ip_address = optional(string, "10.0.0.10")
+    docker_bridge_address             = optional(string, "172.17.0.1/16")
 
     # kubenet options
-    kubernetes_pod_address_range = optional(string)
+    kubernetes_pod_address_range = optional(string, "10.244.0.0/16")
   })
 
   description = "Networking options for the Kubernetes control plane"

@@ -4,5 +4,5 @@ resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
   name                = "${var.name}-log-analytics-workspace"
   resource_group_name = data.azurerm_resource_group.current.name
   location            = local.location
-  retention_in_days   = var.add_ons.monitoring.retention_days != null ? var.add_ons.monitoring.retention_days : 60
+  retention_in_days   = var.add_ons.monitoring.retention_days
 }

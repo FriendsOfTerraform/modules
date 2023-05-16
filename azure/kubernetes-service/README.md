@@ -21,7 +21,7 @@ This example creates an AKS cluster with a `default node pool` and a `secondary 
 
 ```terraform
 module "aks_vnet" {
-  source = "github.com/FriendsOfTerraform/azure-virtual-network.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-virtual-network.git?ref=v1.0.0"
 
   azure               = { resource_group_name = "sandbox" }
   name                = "aks-vnet"
@@ -35,11 +35,11 @@ module "aks_vnet" {
 }
 
 locals {
-  kubernetes_version = "1.22.6"
+  kubernetes_version = "1.26"
 }
 
 module "aks_cluster" {
-  source = "github.com/FriendsOfTerraform/azure-kubernetes-service.git?ref=v0.0.1"
+  source = "github.com/FriendsOfTerraform/azure-kubernetes-service.git?ref=v1.0.0"
 
   azure = { resource_group_name = "sandbox" }
 
@@ -160,9 +160,9 @@ module "aks_cluster" {
 
         The Kubernetes version for the node pool, defaults to the latest version. This value must be specified for cluster upgrade to work.
 
-    - (number) **`max_pods_per_node = null`** _[since v0.0.1]_
+    - (number) **`max_pods_per_node = 30`** _[since v0.0.1]_
 
-        The max number of pods that can be deployed on each node. Defaults to `30`
+        The max number of pods that can be deployed on each node.
 
     - (number) **`max_instances = null`** _[since v0.0.1]_
 
