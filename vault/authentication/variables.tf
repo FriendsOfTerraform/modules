@@ -93,7 +93,7 @@ variable "kubernetes_config" {
     host               = string
     ca_certificate     = string
     token_reviewer_jwt = string
-    issuer             = optional(string)
+    issuer             = optional(string, "kubernetes/serviceaccount")
   })
 
   description = "Configuration of Kubernetes auth method"
