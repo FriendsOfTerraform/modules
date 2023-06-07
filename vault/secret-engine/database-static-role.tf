@@ -6,6 +6,6 @@ resource "vault_database_secret_backend_static_role" "static_roles" {
   name                = each.key
   db_name             = each.value.database_name
   username            = each.key
-  rotation_period     = each.value.rotation_period_seconds != null ? each.value.rotation_period_seconds : 86400 # 24 hours
+  rotation_period     = each.value.rotation_period_seconds
   rotation_statements = [file("${path.module}/_common/database/postgresql-rotation.sql")]
 }

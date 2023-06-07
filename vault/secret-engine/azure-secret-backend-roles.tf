@@ -5,9 +5,7 @@ resource "vault_azure_secret_backend_role" "azure_secret_backend_roles" {
   role    = each.key
 
   dynamic "azure_roles" {
-    for_each = each.value.azure_roles != null ? (
-      toset(each.value.azure_roles)
-    ) : toset([])
+    for_each = toset(each.value.azure_roles)
 
     content {
       role_id   = azure_roles.value.role_id
@@ -17,9 +15,7 @@ resource "vault_azure_secret_backend_role" "azure_secret_backend_roles" {
   }
 
   dynamic "azure_groups" {
-    for_each = each.value.azure_groups != null ? (
-      toset(each.value.azure_groups)
-    ) : toset([])
+    for_each = toset(each.value.azure_groups)
 
     content {
       group_name = azure_groups.value.group_name

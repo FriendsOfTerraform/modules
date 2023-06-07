@@ -1,7 +1,5 @@
 resource "vault_database_secret_backend_connection" "postgres_database_connection" {
-  for_each = lower(var.secret_engine) == "database" ? (
-    var.database_config.postgres != null ? var.database_config.postgres : {}
-  ) : {}
+  for_each = lower(var.secret_engine) == "database" ? var.database_config.postgres : {}
 
   backend       = vault_mount.secret_mount[0].path
   name          = each.key

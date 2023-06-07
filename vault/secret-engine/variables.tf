@@ -49,9 +49,9 @@ variable "aws_config" {
 
 variable "aws_secret_backend_roles" {
   type = map(object({
-    role_arns               = optional(list(string))
-    iam_group_names         = optional(list(string))
-    aws_managed_policy_arns = optional(list(string))
+    role_arns               = optional(list(string), {})
+    iam_group_names         = optional(list(string), {})
+    aws_managed_policy_arns = optional(list(string), {})
     inline_policy_document  = optional(string)
   }))
 
@@ -85,12 +85,12 @@ variable "azure_secret_backend_roles" {
       role_id   = optional(string)
       role_name = optional(string)
       scope     = string
-    })))
+    })), [])
 
     azure_groups = optional(list(object({
       group_name = optional(string)
       object_id  = optional(string)
-    })))
+    })), [])
 
     ttl_seconds     = optional(number)
     max_ttl_seconds = optional(number)
@@ -112,7 +112,7 @@ variable "database_config" {
       max_open_connections            = optional(number)
       max_idle_connections            = optional(number)
       max_connection_lifetime_seconds = optional(number)
-    })))
+    })), {})
   })
 
   description = "Database secret engine configuration"
@@ -122,7 +122,7 @@ variable "database_config" {
 variable "database_static_backend_roles" {
   type = map(object({
     database_name           = string
-    rotation_period_seconds = optional(number)
+    rotation_period_seconds = optional(number, 86400)
   }))
 
   description = "Map a Vault database role to a user in a database"
