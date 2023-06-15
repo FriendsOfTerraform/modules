@@ -247,7 +247,7 @@ module "demo_eks_addon" {
 
         List of subnet IDs. Must be in at least two different availability zones. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your worker nodes and the Kubernetes control plane. Please refer to the [VPC and subnet requirements][vpc-and-subnet-requirements] to make sure your VPC meets the requirement
 
-    - (list(string)) **`security_group_ids = {}`** _[since v1.0.0]_
+    - (list(string)) **`security_group_ids = []`** _[since v1.0.0]_
 
         List of security group IDs for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane.
 
@@ -261,9 +261,9 @@ module "demo_eks_addon" {
 
     Additional tags for all resources deployed with this module
 
-- (map(object)) **`addons`** _[since v1.0.0]_
+- (map(object)) **`addons = {}`** _[since v1.0.0]_
 
-    Configuration for multiple EKS add-ons, in `{"addon_name"={CONFIGURATION}}` format. You can get a list of add-on names by running this aws cli command: 
+    Configures multiple EKS add-ons, in `{"addon_name"={CONFIGURATION}}` format. You can get a list of add-on names by running this aws cli command: 
     
     ```bash
     aws eks describe-addon-versions | jq -r ".addons[] | .addonName"
@@ -330,7 +330,7 @@ module "demo_eks_addon" {
 
 - (object) **`envelope_encryption = null`** _[since v1.0.0]_
 
-    Configures envelope encryption for Kubernetes secrets
+    Configures [envelope encryption][envelope-encryption] for Kubernetes secrets
 
     - (string) **`kms_key_arn`** _[since v1.0.0]_
 
@@ -439,6 +439,7 @@ Because the EKS node group is deployed using EC2 auto scaling group, updating no
 [describe-addon-versions]:https://awscli.amazonaws.com/v2/documentation/api/latest/reference/eks/describe-addon-versions.html
 [ec2-instance-type]:https://aws.amazon.com/ec2/instance-types/
 [eks-log-types]:https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
+[envelope-encryption]:https://docs.aws.amazon.com/eks/latest/userguide/enable-kms.html
 [iam-role-for-service-account]:https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html
 [nodegroup-datatype]:https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
 [oidc-idp]:https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html
