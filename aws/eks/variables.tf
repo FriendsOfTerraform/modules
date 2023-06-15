@@ -97,6 +97,19 @@ variable "kubernetes_version" {
   default     = null
 }
 
+variable "oidc_identity_provider" {
+  type = object({
+    name           = string
+    issuer_url     = string
+    client_id      = string
+    username_claim = string
+    groups_claim   = string
+  })
+
+  description = "Set up an OIDC identity provider as an additional method for user authentication to the Kubernetes cluster"
+  default     = null
+}
+
 variable "service_account_to_iam_role_mappings" {
   type        = map(list(string))
   description = "Map a service account or a namespace to an IAM role that is associated with a list of policies."
