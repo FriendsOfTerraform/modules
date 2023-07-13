@@ -13,7 +13,13 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle_configuration" {
 
       filter {
         dynamic "and" {
-          for_each = length(distinct(values(rule.value.filter))) > 1 ? [1] : []
+          for_each = rule.value.filter != null ? (
+            rule.value.filter.object_tags != null ? (
+              length(rule.value.filter.object_tags) > 1 ? [1] : (
+                length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? [1] : []
+              )
+            ) : length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? [1] : []
+          ) : []
 
           content {
             object_size_greater_than = rule.value.filter.minimum_object_size
@@ -23,10 +29,44 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle_configuration" {
           }
         }
 
-        object_size_greater_than = length(distinct(values(rule.value.filter))) > 1 ? null : rule.value.filter.minimum_object_size
-        object_size_less_than    = length(distinct(values(rule.value.filter))) > 1 ? null : rule.value.filter.maximum_object_size
-        prefix                   = length(distinct(values(rule.value.filter))) > 1 ? null : rule.value.filter.prefix
-        tags                     = length(distinct(values(rule.value.filter))) > 1 ? null : rule.value.filter.object_tags
+        object_size_greater_than = rule.value.filter != null ? (
+          rule.value.filter.object_tags != null ? (
+            length(rule.value.filter.object_tags) > 1 ? null : (
+              length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? null : rule.value.filter.minimum_object_size
+            )
+          ) : length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? null : rule.value.filter.minimum_object_size
+        ) : null
+
+        object_size_less_than = rule.value.filter != null ? (
+          rule.value.filter.object_tags != null ? (
+            length(rule.value.filter.object_tags) > 1 ? null : (
+              length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? null : rule.value.filter.maximum_object_size
+            )
+          ) : length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? null : rule.value.filter.maximum_object_size
+        ) : null
+
+        prefix = rule.value.filter != null ? (
+          rule.value.filter.object_tags != null ? (
+            length(rule.value.filter.object_tags) > 1 ? null : (
+              length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? null : rule.value.filter.prefix
+            )
+          ) : length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? null : rule.value.filter.prefix
+        ) : null
+
+        dynamic "tag" {
+          for_each = rule.value.filter != null ? (
+            rule.value.filter.object_tags != null ? (
+              length(rule.value.filter.object_tags) > 1 ? {} : (
+                length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? {} : rule.value.filter.object_tags
+              )
+            ) : length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? {} : rule.value.filter.object_tags
+          ) : {}
+
+          content {
+            key   = tag.key
+            value = tag.value
+          }
+        }
       }
 
       dynamic "abort_incomplete_multipart_upload" {

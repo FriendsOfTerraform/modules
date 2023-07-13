@@ -1,4 +1,4 @@
-resource "aws_s3_public_access_block" "public_access_block" {
+resource "aws_s3_bucket_public_access_block" "public_access_block" {
   count = var.public_access_block != null ? 1 : 0
 
   bucket                  = aws_s3_bucket.bucket.id

@@ -24,6 +24,7 @@ variable "bucket_owner_account_id" {
 variable "encryption_config" {
   type = object({
     use_kms_master_key = string
+    bucket_key_enabled = optional(bool)
   })
 
   description = "Enable bucket level encryption."
@@ -55,7 +56,7 @@ variable "lifecycle_rules" {
     transitions = optional(list(object({
       days_after_object_creation = number
       storage_class              = string
-    })))
+    })), [])
 
     noncurrent_version_expiration = optional(object({
       days_after_objects_become_noncurrent = number
@@ -66,7 +67,7 @@ variable "lifecycle_rules" {
       days_after_objects_become_noncurrent = number
       number_of_newer_versions_to_retain   = optional(number)
       storage_class                        = string
-    })))
+    })), [])
   }))
 
   description = "Configure lifecycle rules to rotate out objects. In {rule_name = lifecycle_config} format."
