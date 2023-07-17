@@ -37,6 +37,21 @@ variable "force_destroy" {
   default     = false
 }
 
+variable "intelligent_tiering_archive_configurations" {
+  type = map(object({
+    access_tier           = string
+    days_until_transition = number
+
+    filter = optional(object({
+      prefix      = optional(string, null)
+      object_tags = optional(map(string), null)
+    }))
+  }))
+
+  description = "Configure intelligent tiering. In {rule_name = intelligent_tiering_config} format."
+  default     = {}
+}
+
 variable "lifecycle_rules" {
   type = map(object({
     filter = optional(object({
