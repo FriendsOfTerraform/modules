@@ -93,8 +93,8 @@ variable "notification_config" {
   type = object({
     destinations = map(list(object({
       events        = list(string)
-      filter_prefix = string
-      filter_suffix = string
+      filter_prefix = optional(string)
+      filter_suffix = optional(string)
     })))
   })
 
