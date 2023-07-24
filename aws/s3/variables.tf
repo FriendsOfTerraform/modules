@@ -163,6 +163,12 @@ variable "replication_config" {
   default     = null
 }
 
+variable "requester_pays_enabled" {
+  type        = bool
+  description = "Enable requester pays."
+  default     = false
+}
+
 variable "static_website_hosting_config" {
   type = object({
     static_website = optional(object({
@@ -178,6 +184,12 @@ variable "static_website_hosting_config" {
 
   description = "Configuration to enable bucket for static web hosting."
   default     = null
+}
+
+variable "transfer_acceleration_enabled" {
+  type        = bool
+  description = "Enable transfer acceleration."
+  default     = false
 }
 
 variable "versioning_enabled" {
