@@ -59,7 +59,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle_configuration" {
               length(rule.value.filter.object_tags) > 1 ? {} : (
                 length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? {} : rule.value.filter.object_tags
               )
-            ) : length({ for k, v in rule.value.filter : k => v if v != null }) > 1 ? {} : rule.value.filter.object_tags
+            ) : {}
           ) : {}
 
           content {

@@ -123,8 +123,44 @@ variable "public_access_block" {
   })
 
   description = "Block public access to bucket"
+  default     = null
+}
 
-  default = null
+variable "replication_config" {
+  type = object({
+    rules = map(object({
+      destination_bucket_arn = string
+      priority               = number
+
+      additional_replication_options = optional(object({
+        replication_time_control_enabled  = optional(bool, false)
+        replication_metrics_enabled       = optional(bool, false)
+        delete_marker_replication_enabled = optional(bool, false)
+        replica_modification_sync_enabled = optional(bool, false)
+      }))
+
+      change_object_ownership_to_destination_bucket_owner = optional(object({
+        destination_account_id = string
+      }))
+
+      destination_storage_class = optional(string)
+
+      replicate_encrypted_objects = optional(object({
+        kms_key_for_encrypting_destination_objects = string
+      }))
+
+      filter = optional(object({
+        prefix      = optional(string, null)
+        object_tags = optional(map(string), null)
+      }))
+    }))
+
+    iam_role_arn = optional(string)
+    token        = optional(string)
+  })
+
+  description = "Configures bucket replicatoin rules. In {rule_name = replication_config} format."
+  default     = null
 }
 
 variable "static_website_hosting_config" {
