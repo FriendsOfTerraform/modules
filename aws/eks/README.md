@@ -418,9 +418,21 @@ module "demo_eks_addon" {
 
     The endpoint URL of the EKS cluster
 
+- (string) **`cluster_name`** _[since v1.1.0]_
+
+    The name of the EKS cluster
+
+- (string) **`cluster_role_arn`** _[since v1.1.0]_
+
+    The ARN of the cluster IAM role
+
 - (map(string)) **`node_group_arns`** _[since v1.0.0]_
 
     Map of ARNs of all the node groups associated to this cluster
+
+- (string) **`node_role_arn`** _[since v1.1.0]_
+
+    The ARN of the node IAM role
 
 - (string) **`aws_cli_connect_to_cluster_command`** _[since v1.0.0]_
 
