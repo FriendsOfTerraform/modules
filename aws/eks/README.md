@@ -261,7 +261,7 @@ module "demo_eks_addon" {
 
     Additional tags for all resources deployed with this module
 
-- (map(object)) **`addons = {}`** _[since v1.0.0]_
+- (map(object)) **`add_ons = {}`** _[since v1.0.0]_
 
     Configures multiple EKS add-ons, in `{"addon_name"={CONFIGURATION}}` format. You can get a list of add-on names by running this aws cli command: 
     
@@ -270,10 +270,10 @@ module "demo_eks_addon" {
     ```
 
     ```terraform
-    eks_addons = {
+    add_ons = {
       "vpc-cni" = {
-        version           = "v1.12.6-eksbuild.2"
-        resolve_conflicts = "OVERWRITE"
+        version                     = "v1.12.6-eksbuild.2"
+        resolve_conflicts_on_create = "OVERWRITE"
       }
     }
     ```
@@ -313,12 +313,12 @@ module "demo_eks_addon" {
         The version of the EKS add-on. Defaults to the latest version if `null`. You can get a list of add-on and their latest version with this command: 
         
         ```bash
-        aws eks describe-addon-versions | jq -r ".addons[] | .addonName, .addonVersions[0].addonVersion"
+        aws eks describe-addon-versions --kubernetes-version 1.27 | jq -r ".addons[] | .addonName, .addonVersions[0].addonVersion"
         ```
 
 - (list(string)) **`apiserver_allowed_cidrs = ["0.0.0.0/0"]`** _[since v1.0.0]_
 
-    List of CIDR to allow access to the Kubernetes public API endpoint
+    List of CIDR to allow access to the Kubernetes API endpoint
 
 - (bool) **`enable_apiserver_public_endpoint = false`** _[since v1.0.0]_
 
