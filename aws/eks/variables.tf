@@ -27,7 +27,7 @@ variable "node_groups" {
 variable "vpc_config" {
   type = object({
     subnet_ids         = list(string)
-    security_group_ids = optional(list(string))
+    security_group_ids = optional(list(string), [])
   })
   description = "VPC configuration for the kubernetes cluster"
 }
