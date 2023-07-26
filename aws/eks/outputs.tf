@@ -15,6 +15,10 @@ output "cluster_endpoint_url" {
   value = aws_eks_cluster.eks_cluster.endpoint
 }
 
+output "cluster_name" {
+  value = aws_eks_cluster.eks_cluster.id
+}
+
 output "node_group_arns" {
   value = { for k, v in aws_eks_node_group.eks_node_groups : k => v.arn }
 }

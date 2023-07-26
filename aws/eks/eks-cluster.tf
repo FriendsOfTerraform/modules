@@ -32,7 +32,7 @@ resource "aws_eks_cluster" "eks_cluster" {
     endpoint_private_access = true
     endpoint_public_access  = var.enable_apiserver_public_endpoint
     public_access_cidrs     = var.enable_apiserver_public_endpoint ? var.apiserver_allowed_cidrs : null
-    security_group_ids      = var.enable_apiserver_public_endpoint ? var.vpc_config.security_group_ids : concat([aws_security_group.control_plane_security_group.id], var.vpc_config.security_group_ids)
+    security_group_ids      = concat([aws_security_group.control_plane_security_group.id], var.vpc_config.security_group_ids)
     subnet_ids              = var.vpc_config.subnet_ids
   }
 }
