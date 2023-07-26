@@ -52,6 +52,29 @@ variable "intelligent_tiering_archive_configurations" {
   default     = {}
 }
 
+variable "inventory_config" {
+  type = map(object({
+    destination = optional(object({
+      bucket_arn = optional(string)
+      account_id = optional(string)
+    }))
+
+    frequency                  = string
+    additional_metadata_fields = optional(list(string))
+
+    encrypt_inventory_report = optional(object({
+      kms_key_id = optional(string)
+    }))
+
+    filter = optional(object({
+      prefix = optional(string, null)
+    }))
+
+    include_noncurrent_objects = optional(bool, true)
+    output_format              = optional(string, "CSV")
+  }))
+}
+
 variable "lifecycle_rules" {
   type = map(object({
     filter = optional(object({
