@@ -13,6 +13,8 @@ This module configures and manages an S3 bucket and its various configurations s
     - [S3 Intelligent Tiering](#s3-intelligent-tiering)
     - [S3 Inventory](#s3-inventory)
     - [S3 Bucket Replication](#s3-bucket-replication)
+    - [Enables Object Lock For New Bucket](#enables-object-lock-for-new-bucket)
+    - [Enables Object Lock For Existing Bucket](#enables-object-lock-for-existing-bucket)
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
@@ -285,6 +287,40 @@ module "s3_bucket_replication_demo" {
 }
 ```
 
+### Enables Object Lock For New Bucket
+
+```terraform
+module "s3_bucket_object_lock_demo" {
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+
+  name                = "demo-bucket"
+  versioning_enabled  = true
+  enables_object_lock = {}
+}
+```
+
+### Enables Object Lock For Existing Bucket
+
+```terraform
+module "s3_bucket_object_lock_demo" {
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+
+  name = "demo-bucket"
+
+  ##
+  ## 1. Enables versioning. Doing so will generate an "Object lock token" in the back-end
+  ##
+  versioning_enabled = true
+
+  ##
+  ## 2. Contact AWS Support to provide you with the "Object Lock token" for the specified bucket and use the token to enables object lock
+  ##
+  enables_object_lock = {
+    token = "NG2MKsfoLqV3A+aquXneSG4LOu/ekrlXkRXwIPFVfERT7XOPos+/k444d7RIH0E3W3p5"
+  }
+}
+```
+
 ## Argument Reference
 
 ### Mandatory
@@ -306,6 +342,26 @@ module "s3_bucket_replication_demo" {
 - (string) **`bucket_owner_account_id = null`** _[since v1.0.0]_
 
   The account ID of the expected bucket owner
+
+- (object) **`enables_object_lock = null`** _[since v1.0.0]_
+
+  Configures [S3 Object Lock][s3-object-lock]. You must also set `versioning_enabled = true` to enable object lock. See [example](#enables-object-lock-for-new-bucket)
+
+  - (object) **`default_retention = null`** _[since v1.0.0]_
+
+    Configures default retention rule
+
+    - (number) **`retention_days`** _[since v1.0.0]_
+
+      Number of days the objects should be retained
+
+    - (string) **`retention_mode`** _[since v1.0.0]_
+
+      Default Object Lock retention mode you want to apply to new objects placed in the specified bucket. Valid values: `"COMPLIANCE"`, `"GOVERNANCE"`
+
+  - (string) **`token = null`** _[since v1.0.0]_
+
+    Token to allow Object Lock to be enabled for an existing bucket. You must contact AWS support for the bucket's "Object Lock token". The token is generated in the back-end when versioning is enabled on a bucket. See [example](#enables-object-lock-for-existing-bucket)
 
 - (object) **`encryption_config = null`** _[since v1.0.0]_
 
@@ -663,6 +719,7 @@ module "s3_bucket_replication_demo" {
 [s3-inventory-metadata]:https://docs.aws.amazon.com/AmazonS3/latest/API/API_InventoryConfiguration.html#AmazonS3-Type-InventoryConfiguration-OptionalFields
 [s3-inventory-bucket-permission]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-s3-inventory-1
 [s3-lifecycle]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html
+[s3-object-lock]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
 [s3-requester-pays]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html
 [s3-static-website-hosting]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
 [s3-transfer-acceleration]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html

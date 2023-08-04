@@ -21,6 +21,20 @@ variable "bucket_owner_account_id" {
   default     = null
 }
 
+variable "enables_object_lock" {
+  type = object({
+    default_retention = optional(object({
+      retention_days = number
+      retention_mode = string
+    }))
+
+    token = optional(string)
+  })
+
+  description = "Indicates whether this bucket has an Object Lock configuration enabled"
+  default     = null
+}
+
 variable "encryption_config" {
   type = object({
     bucket_key_enabled = optional(bool)
@@ -126,12 +140,6 @@ variable "notification_config" {
 
   description = "Configuration to enable bucket event notification. Destination is in {dest_arn = config} format."
   default     = null
-}
-
-variable "object_lock_enabled" {
-  type        = bool
-  description = "Indicates whether this bucket has an Object Lock configuration enabled"
-  default     = false
 }
 
 variable "policy" {
