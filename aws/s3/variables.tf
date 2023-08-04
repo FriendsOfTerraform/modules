@@ -23,7 +23,7 @@ variable "bucket_owner_account_id" {
 
 variable "encryption_config" {
   type = object({
-    use_kms_master_key = string
+    use_kms_master_key = optional(string)
     bucket_key_enabled = optional(bool)
   })
 
@@ -54,13 +54,13 @@ variable "intelligent_tiering_archive_configurations" {
 
 variable "inventory_config" {
   type = map(object({
+    frequency                  = string
+    additional_metadata_fields = optional(list(string))
+
     destination = optional(object({
       bucket_arn = optional(string)
       account_id = optional(string)
     }))
-
-    frequency                  = string
-    additional_metadata_fields = optional(list(string))
 
     encrypt_inventory_report = optional(object({
       kms_key_id = optional(string)
@@ -73,6 +73,9 @@ variable "inventory_config" {
     include_noncurrent_objects = optional(bool, true)
     output_format              = optional(string, "CSV")
   }))
+
+  description = "Configure inventory. In {rule_name = inventory_config} format."
+  default     = {}
 }
 
 variable "lifecycle_rules" {
