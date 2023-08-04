@@ -26,7 +26,7 @@ This example creates an EKS cluster with a one node `primary` node pool. The pub
 
 ```terraform
 module "demo_eks_cluster" {
-  source = "github.com/FriendsOfTerraform/aws-eks.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-eks.git?ref=v1.1.0"
 
   name = "demo-eks"
 
@@ -44,7 +44,7 @@ module "demo_eks_cluster" {
   node_groups = {
     primary = {
       desired_instances  = 1
-      
+
       # worker nodes should only be deployed in private subnets
       subnet_ids         = [
         "subnet-0e08038xxxxxxxx", # private-us-east-1a
@@ -62,7 +62,7 @@ This example demonstrates how to enable [IAM roles for services account][iam-rol
 
 ```terraform
 module "demo_eks_irsa" {
-  source = "github.com/FriendsOfTerraform/aws-eks.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-eks.git?ref=v1.1.0"
 
   name = "demo-eks-irsa"
 
@@ -77,11 +77,11 @@ module "demo_eks_irsa" {
 
   service_account_to_iam_role_mappings = {
     # Associate every service account in the `default` namespace to AmazonS3FullAccess policy
-    default = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"] 
-    
+    default = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+
     # Associate the `default` service account in the `default` namespace to two policies
     "default/default" = [
-      "arn:aws:iam::aws:policy/AmazonS3FullAccess", 
+      "arn:aws:iam::aws:policy/AmazonS3FullAccess",
       "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
     ]
   }
@@ -94,7 +94,7 @@ This example configures an external [OIDC identity provider][oidc-idp] for authe
 
 ```terraform
 module "demo_eks_oidc" {
-  source = "github.com/FriendsOfTerraform/aws-eks.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-eks.git?ref=v1.1.0"
 
   name = "demo-eks-oidc"
 
@@ -113,7 +113,7 @@ module "demo_eks_oidc" {
     issuer_url     = "https://login.microsoftonline.com/8d6fb1c6-f181-4af2-928e-1c1bd4d56b5e/v2.0"
     name           = "azure-ad"
     username_claim = "email"
-  }  
+  }
 }
 ```
 
@@ -123,7 +123,7 @@ This example demonstrates how to manage multiple [EKS add-ons][addon]. Some add-
 
 ```terraform
 module "demo_eks_addon" {
-  source = "github.com/FriendsOfTerraform/aws-eks.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-eks.git?ref=v1.1.0"
 
   name = "demo-eks-addon"
 
@@ -263,8 +263,8 @@ module "demo_eks_addon" {
 
 - (map(object)) **`add_ons = {}`** _[since v1.0.0]_
 
-    Configures multiple EKS add-ons, in `{"addon_name"={CONFIGURATION}}` format. You can get a list of add-on names by running this aws cli command: 
-    
+    Configures multiple EKS add-ons, in `{"addon_name"={CONFIGURATION}}` format. You can get a list of add-on names by running this aws cli command:
+
     ```bash
     aws eks describe-addon-versions | jq -r ".addons[] | .addonName"
     ```
@@ -284,8 +284,8 @@ module "demo_eks_addon" {
 
     - (string) **`configuration = null`** _[since v1.0.0]_
 
-        Custom configuration values for add-ons with single JSON string. You can use the describe-addon-configuration call to find the correct JSON schema for each add-on. For example: 
-        
+        Custom configuration values for add-ons with single JSON string. You can use the describe-addon-configuration call to find the correct JSON schema for each add-on. For example:
+
         ```bash
         aws eks describe-addon-configuration --addon-name vpc-cni --addon-version v1.12.6-eksbuild.2
         ```
@@ -310,8 +310,8 @@ module "demo_eks_addon" {
 
     - (string) **`version = null`** _[since v1.0.0]_
 
-        The version of the EKS add-on. Defaults to the latest version if `null`. You can get a list of add-on and their latest version with this command: 
-        
+        The version of the EKS add-on. Defaults to the latest version if `null`. You can get a list of add-on and their latest version with this command:
+
         ```bash
         aws eks describe-addon-versions --kubernetes-version 1.27 | jq -r ".addons[] | .addonName, .addonVersions[0].addonVersion"
         ```
@@ -347,7 +347,7 @@ module "demo_eks_addon" {
         - Within one of the following private IP address blocks: `"10.0.0.0/8"`, `"172.16.0.0/12"`, or `"192.168.0.0/16"`
         - Doesn't overlap with any CIDR block assigned to the VPC that you selected for VPC
         - Between /24 and /12
-      
+
     - (string) **`ip_family = "ipv4"`** _[since v1.0.0]_
 
         The IP family used to assign Kubernetes pod and service addresses. Valid values are `"ipv4"`, `"ipv6"`
@@ -377,7 +377,7 @@ module "demo_eks_addon" {
     - (string) **`groups_claim`** _[since v1.0.0]_
 
         The JWT claim that the provider will use to return groups. This is mapped to a Kubernetes group. You can optionally prepend a prefix to this claim by separating the prefix with a `_`. eg `gid:_groups`
-    
+
     - (string) **`issuer_url`** _[since v1.0.0]_
 
         Issuer URL for the OIDC identity provider. This URL should point to the level below [.well-known/openid-configuration][oidc-idp-issuer] and must be publicly accessible over the internet.
