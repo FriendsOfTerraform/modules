@@ -23,8 +23,8 @@ variable "bucket_owner_account_id" {
 
 variable "encryption_config" {
   type = object({
-    use_kms_master_key = optional(string)
     bucket_key_enabled = optional(bool)
+    use_kms_master_key = optional(string)
   })
 
   description = "Enable bucket level encryption."
@@ -43,8 +43,8 @@ variable "intelligent_tiering_archive_configurations" {
     days_until_transition = number
 
     filter = optional(object({
-      prefix      = optional(string, null)
       object_tags = optional(map(string), null)
+      prefix      = optional(string, null)
     }))
   }))
 
@@ -58,8 +58,8 @@ variable "inventory_config" {
     additional_metadata_fields = optional(list(string))
 
     destination = optional(object({
-      bucket_arn = optional(string)
       account_id = optional(string)
+      bucket_arn = optional(string)
     }))
 
     encrypt_inventory_report = optional(object({
@@ -80,24 +80,19 @@ variable "inventory_config" {
 
 variable "lifecycle_rules" {
   type = map(object({
-    filter = optional(object({
-      prefix              = optional(string, null)
-      object_tags         = optional(map(string), null)
-      minimum_object_size = optional(number, null)
-      maximum_object_size = optional(number, null)
-    }))
-
     clean_up_incomplete_multipart_uploads_after = optional(number)
 
     expiration = optional(object({
-      days_after_object_creation             = optional(number)
       clean_up_expired_object_delete_markers = optional(bool)
+      days_after_object_creation             = optional(number)
     }))
 
-    transitions = optional(list(object({
-      days_after_object_creation = number
-      storage_class              = string
-    })), [])
+    filter = optional(object({
+      maximum_object_size = optional(number, null)
+      minimum_object_size = optional(number, null)
+      object_tags         = optional(map(string), null)
+      prefix              = optional(string, null)
+    }))
 
     noncurrent_version_expiration = optional(object({
       days_after_objects_become_noncurrent = number
@@ -106,8 +101,13 @@ variable "lifecycle_rules" {
 
     noncurrent_version_transitions = optional(list(object({
       days_after_objects_become_noncurrent = number
-      number_of_newer_versions_to_retain   = optional(number)
       storage_class                        = string
+      number_of_newer_versions_to_retain   = optional(number)
+    })), [])
+
+    transitions = optional(list(object({
+      days_after_object_creation = number
+      storage_class              = string
     })), [])
   }))
 
@@ -159,10 +159,10 @@ variable "replication_config" {
       priority               = number
 
       additional_replication_options = optional(object({
-        replication_time_control_enabled  = optional(bool, false)
-        replication_metrics_enabled       = optional(bool, false)
         delete_marker_replication_enabled = optional(bool, false)
         replica_modification_sync_enabled = optional(bool, false)
+        replication_metrics_enabled       = optional(bool, false)
+        replication_time_control_enabled  = optional(bool, false)
       }))
 
       change_object_ownership_to_destination_bucket_owner = optional(object({
@@ -171,13 +171,13 @@ variable "replication_config" {
 
       destination_storage_class = optional(string)
 
-      replicate_encrypted_objects = optional(object({
-        kms_key_for_encrypting_destination_objects = string
+      filter = optional(object({
+        object_tags = optional(map(string), null)
+        prefix      = optional(string, null)
       }))
 
-      filter = optional(object({
-        prefix      = optional(string, null)
-        object_tags = optional(map(string), null)
+      replicate_encrypted_objects = optional(object({
+        kms_key_for_encrypting_destination_objects = string
       }))
     }))
 
@@ -197,14 +197,14 @@ variable "requester_pays_enabled" {
 
 variable "static_website_hosting_config" {
   type = object({
-    static_website = optional(object({
-      index_document = string
-      error_document = optional(string)
-    }))
-
     redirect_requests_for_an_object = optional(object({
       host_name = string
       protocol  = optional(string)
+    }))
+
+    static_website = optional(object({
+      index_document = string
+      error_document = optional(string)
     }))
   })
 

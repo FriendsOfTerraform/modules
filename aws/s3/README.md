@@ -5,17 +5,30 @@ This module configures and manages an S3 bucket and its various configurations s
 ## Table of Contents
 
 - [Example Usage](#example-usage)
+    - [Basic Usage](#basic-usage)
     - [Static Web Hosting](#static-web-hosting)
     - [Lifecycle Rules](#lifecycle-rules)
     - [S3 Event Notifications](#s3-event-notifications)
     - [Bucket Level Encryption](#bucket-level-encryption)
     - [S3 Intelligent Tiering](#s3-intelligent-tiering)
+    - [S3 Inventory](#s3-inventory)
+    - [S3 Bucket Replication](#s3-bucket-replication)
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
 - [Outputs](#outputs)
 
 ## Example Usage
+
+### Basic Usage
+
+```terraform
+module "demo_bucket" {
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+
+  name = "demo-bucket"
+}
+```
 
 ### Static Web Hosting
 
@@ -60,6 +73,7 @@ module "lifecycle_rule_demo" {
   versioning_enabled = true
 
   lifecycle_rules = {
+    # The key of the map will be the lifecycle rule's name
     "rotate-logs" = {
       # This rule is scoped to objects with prefix AND tags
       filter = {
@@ -111,6 +125,7 @@ module "bucket_notification_demo" {
 
   notification_config = {
     destinations = {
+      # The key of the map will be the destination's ARN
       local.lambda_arn = [{
         events        = ["s3:ObjectCreated:Put", "s3:ObjectCreated:Post"]
         filter_prefix = "photo/"
@@ -164,6 +179,8 @@ module "s3_intelligent_tiering_demo" {
   name = "demo-bucket"
 
   intelligent_tiering_archive_configurations = {
+    # The key of the map will be the tiering rule's name
+
     # Archive logs after 180 days of no access
     "archive-logs" = {
       filter = {
@@ -176,6 +193,10 @@ module "s3_intelligent_tiering_demo" {
 
     # Deeply achive backups after 90 days of no access
     "archive-backup" = {
+      filter = {
+        prefix = "backup*"
+      }
+
       access_tier           = "DEEP_ARCHIVE_ACCESS"
       days_until_transition = 90
     }
@@ -187,6 +208,82 @@ module "s3_intelligent_tiering_demo" {
 
 - You must grant the necessary permissions to the source and destination bucket via bucket policy.
 - [bucket permission][s3-inventory-bucket-permission]
+
+### S3 Inventory
+
+```terraform
+module "s3_inventory_demo" {
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+
+  name = "demo-bucket"
+
+  inventory_config = {
+    # The key of the map will be the inventory rule's name
+
+    # Daily inventory on backup
+    "backup-daily-report" = {
+      destination                = { bucket_arn = "arn:aws:s3:::psin-backup-inventory" }
+      frequency                  = "Daily"
+      additional_metadata_fields = ["Size", "LastModifiedDate", "StorageClass"]
+
+      filter = {
+        prefix = "backup*"
+      }
+    }
+    # Weekly inventory on logs
+    "log-weekly-report" = {
+      destination = { bucket_arn = "arn:aws:s3:::psin-log-inventory" }
+      frequency   = "Weekly"
+    }
+  }
+}
+```
+
+### S3 Bucket Replication
+
+```terraform
+module "s3_bucket_replication_demo" {
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+
+  name = "demo-bucket"
+
+  replication_config = {
+    rules = {
+      # The key of the map will be the replication rule's name
+
+      # Replicate to bucket belonging to the same account, including encrypted objects
+      "same-account-example" = {
+        destination_bucket_arn = "arn:aws:s3:::psin-replication-dest"
+        priority               = 0
+
+        additional_replication_options = {
+          replication_time_control_enabled  = true
+          replication_metrics_enabled       = true
+          replica_modification_sync_enabled = true
+          delete_marker_replication_enabled = true
+        }
+
+        replicate_encrypted_objects = {
+          kms_key_for_encrypting_destination_objects = "arn:aws:kms:us-east-2:111122223333:key/aaabbbccc-edac-44b6-81b6-29b58ae1bdfb"
+        }
+      }
+      # Replicate to bucket belonging to another account
+      "cross-account" = {
+        destination_bucket_arn = "arn:aws:s3:::psin-replication-dest-777788889999"
+        priority               = 1
+
+        additional_replication_options = {
+          delete_marker_replication_enabled = true
+        }
+
+        change_object_ownership_to_destination_bucket_owner = {
+          destination_account_id = "777788889999"
+        }
+      }
+    }
+  }
+}
+```
 
 ## Argument Reference
 
@@ -214,13 +311,6 @@ module "s3_intelligent_tiering_demo" {
 
   Configures [bucket level encryption][s3-encryption]
 
-  ```terraform
-  encryption_config = {
-    use_kms_master_key = "arn:aws:kms:us-west-2:111122223333:key/6bfabcde-0d12-48ad-927f-48a805b2c62d"
-    bucket_key_enabled = true
-  }
-  ```
-
   - (bool) **`bucket_key_enabled = false`** _[since v1.0.0]_
 
     Enables [S3 bucket key][s3-bucket-key] for encryption
@@ -235,7 +325,7 @@ module "s3_intelligent_tiering_demo" {
 
 - (map(object)) **`intelligent_tiering_archive_configurations = {}`** _[since v1.0.0]_
 
-    Configures [S3 intelligent tiering][s3-intelligent-tiering]. In {rule_name = intelligent_tiering_config} format
+    Configures [S3 intelligent tiering][s3-intelligent-tiering]. See [example](#s3-intelligent-tiering)
 
     - (string) **`access_tier`** _[since v1.0.0]_
 
@@ -255,17 +345,17 @@ module "s3_intelligent_tiering_demo" {
 
         Limit the scope of this configuration using one or more filters
 
-        - (string) **`prefix = null`** _[since v1.0.0]_
-
-            Object key name prefix that identifies the subset of objects to which the configuration applies
-
         - (map(string)) **`object_tags = null`** _[since v1.0.0]_
 
             All of these tags must exist in the object's tag set in order for the configuration to apply
 
+        - (string) **`prefix = null`** _[since v1.0.0]_
+
+            Object key name prefix that identifies the subset of objects to which the configuration applies
+
 - (map(object)) **`inventory_config = {}`** _[since v1.0.0]_
 
-    Configures [S3 inventory][s3-inventory]. In {rule_name = inventory_config} format
+    Configures [S3 inventory][s3-inventory]. See [example](#s3-inventory)
 
     - (string) **`frequency`** _[since v1.0.0]_
 
@@ -279,13 +369,13 @@ module "s3_intelligent_tiering_demo" {
 
         Configures the destination where the report will be sent
 
-        - (string) **`bucket_arn = null`** _[since v1.0.0]_
-
-            Destination bucket arn. The same bucket will be used if set to `null`
-
         - (string) **`account_id = null`** _[since v1.0.0]_
 
             The account ID that owns the destination bucket. Must be set to ensure correct ownership of the report.
+
+        - (string) **`bucket_arn = null`** _[since v1.0.0]_
+
+            Destination bucket arn. The current bucket will be used if set to `null`
 
     - (object) **`encrypt_inventory_report = null`** _[since v1.0.0]_
 
@@ -313,27 +403,7 @@ module "s3_intelligent_tiering_demo" {
 
 - (map(object)) **`lifecycle_rules = null`** _[since v1.0.0]_
 
-    Configures S3 lifecycle rules in {ruleName = ruleConfig}
-
-    - (object) **`filter = null`** _[since v1.0.0]_
-
-        Limit the scope of this configuration using one or more filters
-
-        - (string) **`prefix = null`** _[since v1.0.0]_
-
-            Object key name prefix that identifies the subset of objects to which the configuration applies
-
-        - (map(string)) **`object_tags = null`** _[since v1.0.0]_
-
-            All of these tags must exist in the object's tag set in order for the configuration to apply
-
-        - (number) **`minimum_object_size = null`** _[since v1.0.0]_
-
-            Minimum object size (in bytes) to which the rule applies.
-
-        - (number) **`maximum_object_size = null`** _[since v1.0.0]_
-
-            Maximum object size (in bytes) to which the rule applies.
+    Configures [S3 lifecycle rules][s3-lifecycle]. See [example](#lifecycle-rules)
 
     - (number) **`clean_up_incomplete_multipart_uploads_after = null`** _[since v1.0.0]_
 
@@ -350,6 +420,26 @@ module "s3_intelligent_tiering_demo" {
         - (number) **`days_after_object_creation = null`** _[since v1.0.0]_
 
             Expires objects after x days
+
+    - (object) **`filter = null`** _[since v1.0.0]_
+
+        Limit the scope of this configuration using one or more filters
+
+        - (number) **`maximum_object_size = null`** _[since v1.0.0]_
+
+            Maximum object size (in bytes) to which the rule applies.
+
+        - (number) **`minimum_object_size = null`** _[since v1.0.0]_
+
+            Minimum object size (in bytes) to which the rule applies.
+
+        - (map(string)) **`object_tags = null`** _[since v1.0.0]_
+
+            All of these tags must exist in the object's tag set in order for the configuration to apply
+
+        - (string) **`prefix = null`** _[since v1.0.0]_
+
+            Object key name prefix that identifies the subset of objects to which the configuration applies
 
     - (object) **`noncurrent_version_expiration = null`** _[since v1.0.0]_
 
@@ -379,7 +469,7 @@ module "s3_intelligent_tiering_demo" {
 
             Number of noncurrent versions Amazon S3 will retain
 
-    - (list(object)) **`transitions`** _[since v1.0.0]_
+    - (list(object)) **`transitions = []`** _[since v1.0.0]_
 
         Transitions s3 objects to other storage class.
 
@@ -393,7 +483,7 @@ module "s3_intelligent_tiering_demo" {
 
 - (object) **`notification_config = null`** _[since v1.0.0]_
 
-    Configures S3 event notifiactions
+    Configures S3 event notifiactions. See [example](#s3-event-notifications)
 
     - (map(list(object))) **`destinations`** _[since v1.0.0]_
 
@@ -437,7 +527,7 @@ module "s3_intelligent_tiering_demo" {
 
 - (object) **`replication_config = null`** _[since v1.0.0]_
 
-    Manage [bucket replicatoin][s3-bucket-replication]
+    Manage [bucket replicatoin][s3-bucket-replication]. See [example](#s3-bucket-replication)
 
     - (map(object)) **`rules`** _[since v1.0.0]_
 
@@ -455,14 +545,6 @@ module "s3_intelligent_tiering_demo" {
 
             Enables additional replication options
 
-            - (bool) **`replication_time_control_enabled = false`** _[since v1.0.0]_
-
-                Replication Time Control replicates 99.99% of new objects within 15 minutes and includes replication metrics.
-
-            - (bool) **`replication_metrics_enabled = false`** _[since v1.0.0]_
-
-                With replication metrics, you can monitor the total number and size of objects that are pending replication, and the maximum replication time to the destination Region. You can also view and diagnose replication failures.
-
             - (bool) **`delete_marker_replication_enabled = false`** _[since v1.0.0]_
 
                 Delete markers created by S3 delete operations will be replicated. Delete markers created by lifecycle rules are not replicated.
@@ -470,6 +552,14 @@ module "s3_intelligent_tiering_demo" {
             - (bool) **`replica_modification_sync_enabled = false`** _[since v1.0.0]_
 
                 Replicate metadata changes made to replicas in this bucket to the destination bucket.
+
+            - (bool) **`replication_metrics_enabled = false`** _[since v1.0.0]_
+
+                With replication metrics, you can monitor the total number and size of objects that are pending replication, and the maximum replication time to the destination Region. You can also view and diagnose replication failures.
+
+            - (bool) **`replication_time_control_enabled = false`** _[since v1.0.0]_
+
+                Replication Time Control replicates 99.99% of new objects within 15 minutes and includes replication metrics.
 
         - (object) **`change_object_ownership_to_destination_bucket_owner = null`** _[since v1.0.0]_
 
@@ -483,6 +573,18 @@ module "s3_intelligent_tiering_demo" {
 
             Specify the destination storage class. Defaults to the same storage class of the source object
 
+        - (object) **`filter = null`** _[since v1.0.0]_
+
+            Limit the scope of this configuration using one or more filters
+
+            - (map(string)) **`object_tags = null`** _[since v1.0.0]_
+
+                All of these tags must exist in the object's tag set in order for the configuration to apply
+
+            - (string) **`prefix = null`** _[since v1.0.0]_
+
+                Object key name prefix that identifies the subset of objects to which the configuration applies
+
         - (object) **`replicate_encrypted_objects = null`** _[since v1.0.0]_
 
             specifies whether encrypted objects will be replicated
@@ -491,25 +593,13 @@ module "s3_intelligent_tiering_demo" {
 
                 ARN of the customer managed AWS KMS key stored in AWS Key Management Service (KMS) used to encrypt replicated objects
 
-        - (object) **`filter = null`** _[since v1.0.0]_
-
-            Limit the scope of this configuration using one or more filters
-
-            - (string) **`prefix = null`** _[since v1.0.0]_
-
-                Object key name prefix that identifies the subset of objects to which the configuration applies
-
-            - (map(string)) **`object_tags = null`** _[since v1.0.0]_
-
-                All of these tags must exist in the object's tag set in order for the configuration to apply
-
     - (string) **`iam_role_arn = null`** _[since v1.0.0]_
 
         ARN of the IAM role for Amazon S3 to assume when replicating the objects. One will be automatically generated by the module if this is left empty (`null`).
 
     - (string) **`token = null`** _[since v1.0.0]_
 
-        Token to allow replication to be enabled on an Object Lock-enabled bucket. You must contact AWS support for the bucket's "Object Lock token"
+        Token to allow replication to be enabled on an Object Lock-enabled bucket. You must contact AWS support for the bucket's "Object Lock token". Please refer to [this documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-overview.html#object-lock-bucket-config) for more information
 
 - (bool) **`requester_pays_enabled = false`** _[since v1.0.0]_
 
@@ -518,18 +608,6 @@ module "s3_intelligent_tiering_demo" {
 - (object) **`static_website_hosting_config = null`** _[since v1.0.0]_
 
     Configures [static website hosting][s3-static-website-hosting]
-
-    - (object) **`static_website = null`** _[since v1.0.0]_
-
-        Manages documents S3 returns when a request is made to its web endpoint. Mutually exclusive to `redirect_requests_for_an_object`
-
-        - (string) **`index_document`** _[since v1.0.0]_
-
-            Index document when requests are made to the root domain
-
-        - (string) **`error_document = null`** _[since v1.0.0]_
-
-            Document to return in case of a 4XX error
 
     - (object) **`redirect_requests_for_an_object = null`** _[since v1.0.0]_
 
@@ -542,6 +620,18 @@ module "s3_intelligent_tiering_demo" {
         - (string) **`protocol = null`** _[since v1.0.0]_
 
             Protocol to use when redirecting requests. The default is the protocol that is used in the original request. Valid values: `"http"`, `"https"`
+
+    - (object) **`static_website = null`** _[since v1.0.0]_
+
+        Manages documents S3 returns when a request is made to its web endpoint. Mutually exclusive to `redirect_requests_for_an_object`
+
+        - (string) **`index_document`** _[since v1.0.0]_
+
+            Index document when requests are made to the root domain
+
+        - (string) **`error_document = null`** _[since v1.0.0]_
+
+            Document to return in case of a 4XX error
 
 - (bool) **`transfer_acceleration_enabled = false`** _[since v1.0.0]_
 
@@ -572,6 +662,7 @@ module "s3_intelligent_tiering_demo" {
 [s3-inventory]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html
 [s3-inventory-metadata]:https://docs.aws.amazon.com/AmazonS3/latest/API/API_InventoryConfiguration.html#AmazonS3-Type-InventoryConfiguration-OptionalFields
 [s3-inventory-bucket-permission]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-s3-inventory-1
+[s3-lifecycle]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html
 [s3-requester-pays]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html
 [s3-static-website-hosting]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
 [s3-transfer-acceleration]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
