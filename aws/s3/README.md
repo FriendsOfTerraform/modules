@@ -699,13 +699,29 @@ module "s3_bucket_object_lock_demo" {
 
 ## Outputs
 
+- (string) **`bucket_arn`** _[since v1.0.0]_
+
+    ARN of the S3 bucket
+
+- (string) **`bucket_domain_name`** _[since v1.0.0]_
+
+    Bucket domain name. Will be of format `bucketname.s3.amazonaws.com`
+
 - (string) **`bucket_name`** _[since v1.0.0]_
 
     Name of the S3 bucket
 
-- (string) **`bucket_arn`** _[since v1.0.0]_
+- (string) **`bucket_region`** _[since v1.0.0]_
 
-    ARN of the S3 bucket
+    AWS region this bucket resides in
+
+- (string) **`website_domain`** _[since v1.0.0]_
+
+    Domain of the website endpoint. This is used to create Route 53 alias records.
+
+- (string) **`website_endpoint`** _[since v1.0.0]_
+
+    Website endpoint.
 
 [lambda-resource-based-policy]:https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html
 [bucket-policy]:https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html
