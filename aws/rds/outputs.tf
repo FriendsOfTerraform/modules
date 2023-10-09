@@ -34,20 +34,20 @@ output "aurora_global_cluster_identifier" {
 
 output "cluster_arn" {
   value = local.is_aurora ? (
-    aws_rds_cluster.aurora_cluster.arn
+    aws_rds_cluster.aurora_cluster[0].arn
   ) : var.deployment_option == "MultiAZCluster" ? aws_rds_cluster.multi_az_cluster[0].arn : null
 }
 
 output "cluster_identifier" {
   value = local.is_aurora ? (
-    aws_rds_cluster.aurora_cluster.cluster_identifier
+    aws_rds_cluster.aurora_cluster[0].cluster_identifier
   ) : var.deployment_option == "MultiAZCluster" ? aws_rds_cluster.multi_az_cluster[0].cluster_identifier : null
 }
 
 output "master_user_secret" {
-  value = var.authentication_config.manage_password_in_secrets_manager != null ? (
+  value = var.authentication_config.db_master_account.manage_password_in_secrets_manager != null ? (
     local.is_aurora ? (
-      aws_rds_global_cluster.global_cluster[0].master_user_secret
+      aws_rds_cluster.aurora_cluster[0].master_user_secret
       ) : var.deployment_option == "MultiAZCluster" ? (
       aws_rds_cluster.multi_az_cluster[0].master_user_secret
     ) : aws_db_instance.db_instance[0].master_user_secret
