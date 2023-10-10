@@ -31,6 +31,9 @@ resource "aws_rds_cluster" "multi_az_cluster" {
   vpc_security_group_ids = var.networking_config.security_group_ids
   port                   = var.networking_config.port
 
+  # Database Authentication
+  iam_database_authentication_enabled = var.authentication_config.iam_database_authentication_enabled
+
   # Additional Configuration
   # Database Options
   db_cluster_parameter_group_name = var.db_cluster_parameter_group
@@ -105,7 +108,8 @@ resource "aws_rds_cluster" "aurora_cluster" {
   vpc_security_group_ids = var.networking_config.security_group_ids
   port                   = var.networking_config.port
 
-  # Aurora MySQL config
+  # Database Authentication
+  iam_database_authentication_enabled = var.authentication_config.iam_database_authentication_enabled
 
   # Additional Configuration
   # Database Options
