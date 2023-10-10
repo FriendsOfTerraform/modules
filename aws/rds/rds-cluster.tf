@@ -40,7 +40,8 @@ resource "aws_rds_cluster" "multi_az_cluster" {
   preferred_backup_window = var.enable_automated_backup != null ? var.enable_automated_backup.window : null
 
   # Encryption
-  kms_key_id = var.enable_encryption != null ? var.enable_encryption.kms_key_id : null
+  storage_encrypted = var.enable_encryption != null ? true : false
+  kms_key_id        = var.enable_encryption != null ? var.enable_encryption.kms_key_arn : null
 
   # Log exports
   enabled_cloudwatch_logs_exports = var.cloudwatch_log_exports
@@ -118,7 +119,8 @@ resource "aws_rds_cluster" "aurora_cluster" {
   copy_tags_to_snapshot   = var.enable_automated_backup != null ? var.enable_automated_backup.copy_tags_to_snapshot : null
 
   # Encryption
-  kms_key_id = var.enable_encryption != null ? var.enable_encryption.kms_key_id : null
+  storage_encrypted = var.enable_encryption != null ? true : false
+  kms_key_id        = var.enable_encryption != null ? var.enable_encryption.kms_key_arn : null
 
   # Log exports
   enabled_cloudwatch_logs_exports = var.cloudwatch_log_exports

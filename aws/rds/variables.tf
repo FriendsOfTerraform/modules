@@ -147,7 +147,7 @@ variable "enable_automated_backup" {
 
 variable "enable_encryption" {
   type = object({
-    kms_key_id = string
+    kms_key_arn = string
   })
   description = "Enable RDS encryption"
   default     = null

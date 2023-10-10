@@ -450,9 +450,9 @@ module "aurora_global_demo" {
 
     Enables [RDS DB encryption][rds-db-encryption] to encrypt the DB instance
 
-    - (string) **`kms_key_id`** _[since v1.0.0]_
+    - (string) **`kms_key_arn`** _[since v1.0.0]_
 
-        The KMS CMK used to encrypt the DB
+        The KMS CMK used to encrypt the DB and storage
 
 - (object) **`maintenance_config = null`** _[since v1.0.0]_
 

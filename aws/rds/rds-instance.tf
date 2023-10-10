@@ -58,7 +58,8 @@ resource "aws_db_instance" "db_instance" {
   copy_tags_to_snapshot   = var.enable_automated_backup != null ? var.enable_automated_backup.copy_tags_to_snapshot : false
 
   # Encryption
-  kms_key_id = var.enable_encryption != null ? var.enable_encryption.kms_key_id : null
+  storage_encrypted = var.enable_encryption != null ? true : false
+  kms_key_id        = var.enable_encryption != null ? var.enable_encryption.kms_key_arn : null
 
   # Log exports
   enabled_cloudwatch_logs_exports = var.cloudwatch_log_exports
