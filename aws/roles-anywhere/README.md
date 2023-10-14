@@ -49,7 +49,7 @@ module "rolesanywhere" {
           trust_anchor_name = "it"
           conditions = {
             "x509Subject/CN" = "instance-1"
-            "x509Issuer/O"   = "psin-lab"
+            "x509Issuer/O"   = "MyCompany"
           }
         }
 
