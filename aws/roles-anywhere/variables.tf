@@ -25,7 +25,14 @@ variable "profiles" {
       conditions           = optional(map(string))
     }))
 
-    additional_tags = optional(map(string), {})
+    additional_tags             = optional(map(string), {})
+    require_instance_properties = optional(bool)
+    session_duration_seconds    = optional(number)
+
+    session_policy = optional(object({
+      inline_policy       = optional(string)
+      managed_policy_arns = optional(list(string))
+    }))
   }))
 
   description = "Manages multiple profiles, which are predefined sets of permissions that are applied after successfully authenticating with Roles Anywhere."

@@ -139,6 +139,26 @@ module "rolesanywhere" {
 
         Additional tags for the profile
 
+    - (bool) **`require_instance_properties = null`** _[since v1.0.0]_
+
+        Specifies whether instance properties are required in CreateSession requests with this profile.
+
+    - (number) **`session_duration_seconds = null`** _[since v1.0.0]_
+
+        The number of seconds the vended session credentials are valid for. Defaults to `3600`.
+
+    - (object) **`session_policy = null`** _[since v1.0.0]_
+
+        Specify [IAM session policies][iam-session-policy] that apply to the vended session credentials
+
+      - (string) **`inline_policy = null`** _[since v1.0.0]_
+
+          Specify an inline JSON session policy document
+
+      - (list(string)) **`managed_policy_arns = null`** _[since v1.0.0]_
+
+          A list of managed policy ARNs that apply to the vended session credentials. You can specify `up to 10`.
+
 ## Outputs
 
 - (map(string)) **`profile_arns`** _[since v1.0.0]_
@@ -161,3 +181,4 @@ module "rolesanywhere" {
 [iam-roles-anywhere]:https://docs.aws.amazon.com/rolesanywhere/latest/userguide/introduction.html
 [iam-roles-anywhere-trust-anchor]:https://docs.aws.amazon.com/rolesanywhere/latest/userguide/getting-started.html#getting-started-step1
 [iam-roles-anywhere-profile]:https://docs.aws.amazon.com/rolesanywhere/latest/userguide/getting-started.html#getting-started-step2
+[iam-session-policy]:https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session
