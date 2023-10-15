@@ -1,6 +1,6 @@
 # IAM Roles Anywhere Module
 
-This module will build and configure an [AWS IAM Roles Anywhere][iam-roles-anywhere] by managing multiple trust anchors and profiles
+This module will build and configure [AWS IAM Roles Anywhere][iam-roles-anywhere] by managing multiple trust anchors and profiles
 
 **This repository is a READ-ONLY sub-tree split**. See https://github.com/FriendsOfTerraform/modules to create issues or submit pull requests.
 
@@ -46,6 +46,7 @@ module "rolesanywhere" {
           ]
 
           # Contraints
+          # You can only specify trust anchor that is managed by this module
           trust_anchor_name = "it"
           conditions = {
             "x509Subject/CN" = "instance-1"
@@ -81,11 +82,11 @@ module "rolesanywhere" {
 
         - (string) **`aws_private_certificate_authority_arn = null`** _[since v1.0.0]_
 
-            The ARN of the Certificate authorities (CA) from AWS Certificate Manager in your account for this region. Mutually exclusive to `certificate_authority_source.external_certificate_bundle`
+            The ARN of the Certificate authorities (CA) from AWS Certificate Manager in your account for this region. Mutually exclusive to `external_certificate_bundle`
 
         - (string) **`external_certificate_bundle = null`** _[since v1.0.0]_
 
-            Specify the PEM-encoded private CA certificate bundle. Mutually exclusive to `certificate_authority_source.aws_private_certificate_authority_arn`. The certificate must meet the following constrains:
+            Specify the PEM-encoded private CA certificate bundle. Mutually exclusive to `aws_private_certificate_authority_arn`. The certificate must meet the following constrains:
 
             - The certificates MUST be `X.509v3`
             - The key usage MUST include `critical, keyCertSign, digitalSignature`, and OPTIONALLY `cRLSign`
@@ -102,13 +103,13 @@ module "rolesanywhere" {
 
     Additional tags for all resources deployed with this module
 
-- (map(object)) **`profiles`** _[since v1.0.0]_
+- (map(object)) **`profiles = {}`** _[since v1.0.0]_
 
     Manages multiple [profiles][iam-roles-anywhere-profile]. Profiles are predefined sets of permissions that you can apply to roles that are used by workloads that authenticate with Roles Anywhere.
 
     - (map(object)) **`roles`** _[since v1.0.0]_
 
-        Manages multiple roles that are attached to this profile
+        Manages multiple IAM roles that are attached to this profile
 
         - (list(string)) **`attached_policy_arns`** _[since v1.0.0]_
 
@@ -124,16 +125,16 @@ module "rolesanywhere" {
 
             | Value           | Equates To                             | Example
             |-----------------|----------------------------------------|-----------------------------------
-            | x509Subject/CN  | Subject's Common Name                  | "Instance1"
+            | x509Subject/CN  | Subject's Common Name                  | "instance1"
             | x509Issuer/C    | Issuer's Country                       | "US"
             | x509Issuer/O    | Issuer's Organization                  | "MyCompany"
             | x509Issuer/OU   | Issuer's Organization Unit             | "Sales"
             | x509Issuer/ST   | Issuer's State                         | "California"
             | x509Issuer/L    | Issuer's Location                      | "Los Angeles"
             | x509Issuer/CN   | Issuer's Common Name                   | "sales-intermediate-ca"
-            | x509SAN/DNS     | Subject Alternative Name's DNS         | "Instance1.mycompany.com"
-            | x509SAN/URI     | Subject Alternative Name's URI         | "spiffe://mycompany.com/Instance1"
-            | x509SAN/Name/CN | Subject Alternative Name's Common Name | "Instance1"
+            | x509SAN/DNS     | Subject Alternative Name's DNS         | "instance1.mycompany.com"
+            | x509SAN/URI     | Subject Alternative Name's URI         | "spiffe://mycompany.com/instance1"
+            | x509SAN/Name/CN | Subject Alternative Name's Common Name | "instance1"
 
     - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
@@ -153,11 +154,11 @@ module "rolesanywhere" {
 
       - (string) **`inline_policy = null`** _[since v1.0.0]_
 
-          Specify an inline JSON session policy document
+          An inline JSON session policy document
 
       - (list(string)) **`managed_policy_arns = null`** _[since v1.0.0]_
 
-          A list of managed policy ARNs that apply to the vended session credentials. You can specify `up to 10`.
+          A list of `up to 10` managed policy ARNs that apply to the vended session credentials.
 
 ## Outputs
 
