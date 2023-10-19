@@ -16,6 +16,8 @@ This module will build and configure an [RDS](https://aws.amazon.com/rds/) insta
     - [Mandatory](#mandatory)
     - [Optional](#optional)
 - [Outputs](#outputs)
+- [Known Limitations](#known-limitations)
+    - [Monitoring Config Not Supported For RDS Cluster](#monitoring-config-not-supported-for-rds-cluster)
 
 ## Example Usage
 
@@ -608,6 +610,12 @@ module "aurora_global_demo" {
 - (map(string)) **`rds_connect_iam_policy_arns`** _[since v1.0.0]_
 
     The map of IAM policy ARNs for RDS connect. Only available when `authentication_config.iam_database_authentication.enabled = true`
+
+## Known Limitations
+
+### Monitoring Config Not Supported For RDS Cluster
+
+`monitoring_config` is currently not supported for RDS resource created with the `create-db-cluster` API, which included the following deployment options: `MultiAZCluster`, `Auoroa Regional Cluster`, and `Aurora Global Cluster`. This is due to the respective options not available in the latest AWS provider (`5.21.0`). This will be fixed in the future as they became available.
 
 [aurora-capacity-unit]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html
 [aurora-db-instance-class]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
