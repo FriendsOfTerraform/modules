@@ -23,8 +23,8 @@ resource "aws_rds_cluster" "multi_az_cluster" {
 
   # Storage
   storage_type      = "io1"
-  allocated_storage = var.storage_config.allocated_storage
-  iops              = var.storage_config.provisioned_iops
+  allocated_storage = var.storage_config != null ? var.storage_config.allocated_storage : null
+  iops              = var.storage_config != null ? var.storage_config.provisioned_iops : null
 
   # Connectivity
   db_subnet_group_name   = var.networking_config.db_subnet_group_name

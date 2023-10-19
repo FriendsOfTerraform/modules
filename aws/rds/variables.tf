@@ -204,11 +204,11 @@ variable "skip_final_snapshot" {
 
 variable "storage_config" {
   type = object({
-    allocated_storage     = optional(number)
+    allocated_storage     = number
+    type                  = string
     max_allocated_storage = optional(number)
     provisioned_iops      = optional(number)
     storage_throughput    = optional(number)
-    type                  = optional(string)
   })
   description = "Configures RDS storage"
   default     = null

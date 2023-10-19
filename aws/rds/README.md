@@ -364,11 +364,11 @@ module "aurora_global_demo" {
 
     - (bool) **`enable_ipv6 = false`** _[since v1.0.0]_
 
-        Specify rather the RDS instance or cluster supports IPv6
+        Specify whether the RDS instance or cluster supports IPv6
 
     - (bool) **`enable_public_access = false`** _[since v1.0.0]_
 
-        Specify rather the RDS instance or cluster is publicly accessible
+        Specify whether the RDS instance or cluster is publicly accessible
 
     - (string) **`port = null`** _[since v1.0.0]_
 
@@ -430,7 +430,7 @@ module "aurora_global_demo" {
 
         - (bool) **`enable_public_access = null`** _[since v1.0.0]_
 
-            Specify rather the RDS instance or cluster is publicly accessible
+            Specify whether the RDS instance is publicly accessible
 
 - (string) **`db_name = null`** _[since v1.0.0]_
 
@@ -540,9 +540,13 @@ module "aurora_global_demo" {
 
     Configures RDS storage options
 
-    - (number) **`allocated_storage = null`** _[since v1.0.0]_
+    - (number) **`allocated_storage`** _[since v1.0.0]_
 
         The allocated storage in gibibytes
+
+    - (string) **`type`** _[since v1.0.0]_
+
+        Specify the storage type. Valid values are: `"gp3"` and `"io1"`
 
     - (number) **`max_allocated_storage = null`** _[since v1.0.0]_
 
@@ -550,15 +554,11 @@ module "aurora_global_demo" {
 
     - (number) **`provisioned_iops = null`** _[since v1.0.0]_
 
-        The amount of provisioned IOPS. Can only be set when `storage_config.type` is `"io1"` or `"gp3"`. Please refer to [this documentation][rds-provisioned-iops] for more details.
+        The amount of provisioned IOPS. Can only be set when `type` is `"io1"` or `"gp3"`. Please refer to [this documentation][rds-provisioned-iops] for more details.
 
     - (number) **`storage_throughput = null`** _[since v1.0.0]_
 
-        The storage throughput value for the DB instance. Can only be set when `storage_config.type = "gp3"`. Please refer to [this documentation][rds-storage-throughput] for more details.
-
-    - (string) **`type = null`** _[since v1.0.0]_
-
-        Specify the storage type. Valid values are: `"gp3"` and `"io1"`
+        The storage throughput value for the DB instance. Can only be set when `type = "gp3"`. Please refer to [this documentation][rds-storage-throughput] for more details.
 
 ## Outputs
 

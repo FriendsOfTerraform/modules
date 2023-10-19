@@ -21,11 +21,11 @@ resource "aws_db_instance" "db_instance" {
   instance_class = var.instance_class
 
   # Storage
-  storage_type          = var.storage_config.type
-  allocated_storage     = var.storage_config.allocated_storage
-  iops                  = var.storage_config.provisioned_iops
-  max_allocated_storage = var.storage_config.max_allocated_storage
-  storage_throughput    = var.storage_config.storage_throughput
+  storage_type          = var.storage_config != null ? var.storage_config.type : null
+  allocated_storage     = var.storage_config != null ? var.storage_config.allocated_storage : null
+  iops                  = var.storage_config != null ? var.storage_config.provisioned_iops : null
+  max_allocated_storage = var.storage_config != null ? var.storage_config.max_allocated_storage : null
+  storage_throughput    = var.storage_config != null ? var.storage_config.storage_throughput : null
 
   # Connectivity
   network_type           = var.networking_config.enable_ipv6 ? "DUAL" : "IPV4"
