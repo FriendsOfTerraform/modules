@@ -53,3 +53,9 @@ output "master_user_secret" {
     ) : aws_db_instance.db_instance[0].master_user_secret
   ) : null
 }
+
+output "rds_connect_iam_policy_arns" {
+  value = var.authentication_config.iam_database_authentication != null ? (
+    { for k, v in aws_iam_policy.rds_connection_policies : k => v.arn }
+  ) : null
+}

@@ -606,6 +606,10 @@ module "aurora_global_demo" {
 
         Status of the secret. Value can be: `"creating"`, `"active"`, `"rotating"`, or `"impaired"`.
 
+- (map(string)) **`rds_connect_iam_policy_arns`** _[since v1.0.0]_
+
+    The map of IAM policy ARNs for RDS connect. Only available when `authentication_config.iam_database_authentication.enabled = true`
+
 [aurora-capacity-unit]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html
 [aurora-db-instance-class]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
 [aurora-failover-priority]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
