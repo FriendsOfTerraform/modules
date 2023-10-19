@@ -42,11 +42,24 @@ module "demo_eks_cluster" {
   }
 
   node_groups = {
-    primary = {
-      desired_instances  = 1
+    # Manages multiple node groups
+    # The key of the map will be the node group's name
+    linux = {
+      desired_instances = 1
 
       # worker nodes should only be deployed in private subnets
-      subnet_ids         = [
+      subnet_ids = [
+        "subnet-0e08038xxxxxxxx", # private-us-east-1a
+        "subnet-09b6fc5xxxxxxxx", # private-us-east-1b
+        "subnet-0c7b976xxxxxxxx"  # private-us-east-1c
+      ]
+    }
+    windows = {
+      desired_instances = 1
+      ami_type          = "WINDOWS_CORE_2022_x86_64"
+
+      # worker nodes should only be deployed in private subnets
+      subnet_ids = [
         "subnet-0e08038xxxxxxxx", # private-us-east-1a
         "subnet-09b6fc5xxxxxxxx", # private-us-east-1b
         "subnet-0c7b976xxxxxxxx"  # private-us-east-1c
@@ -76,11 +89,15 @@ module "demo_eks_irsa" {
   }
 
   service_account_to_iam_role_mappings = {
+    # The key of the map specifies the Kubernetes <namespace>/<service account> to create an IAM role for
+    # You can specify only the namespace name in the key to allow the IAM role to be used by all service accounts in the namespace
+    # The IAM role will be attached to the list of IAM policies specified
+
     # Associate every service account in the `default` namespace to AmazonS3FullAccess policy
     default = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
 
-    # Associate the `default` service account in the `default` namespace to two policies
-    "default/default" = [
+    # Associate the `my-sa` service account in the `my-ns` namespace to two policies
+    "my-ns/my-sa" = [
       "arn:aws:iam::aws:policy/AmazonS3FullAccess",
       "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
     ]
@@ -155,20 +172,7 @@ module "demo_eks_addon" {
 
 - (map(object)) **`node_groups`** _[since v1.0.0]_
 
-    Map of worker node groups in {NodeGroupName = Config} format.
-
-    ```terraform
-    eks_node_groups = {
-      "primary" = {
-        desired_instances = 3
-        subnet_ids = [
-          "subnet-0e08038xxxxxxxx", # private-us-east-1a
-          "subnet-09b6fc5xxxxxxxx", # private-us-east-1b
-        ]
-        kubernetes_version = "1.27"
-      }
-    }
-    ```
+    Map of worker node groups, [see example](#basic-usage)
 
     - (number) **`desired_instances`** _[since v1.0.0]_
 
@@ -263,19 +267,10 @@ module "demo_eks_addon" {
 
 - (map(object)) **`add_ons = {}`** _[since v1.0.0]_
 
-    Configures multiple EKS add-ons, in `{"addon_name"={CONFIGURATION}}` format. You can get a list of add-on names by running this aws cli command:
+    Configures multiple EKS add-ons, [see example](#add-ons). You can get a list of add-on names by running this aws cli command:
 
     ```bash
     aws eks describe-addon-versions | jq -r ".addons[] | .addonName"
-    ```
-
-    ```terraform
-    add_ons = {
-      "vpc-cni" = {
-        version                     = "v1.12.6-eksbuild.2"
-        resolve_conflicts_on_create = "OVERWRITE"
-      }
-    }
     ```
 
     - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
@@ -358,17 +353,7 @@ module "demo_eks_addon" {
 
 - (object) **`oidc_identity_provider = null`** _[since v1.0.0]_
 
-    Set up an EKS [OIDC identity provider][oidc-idp]
-
-    ```terraform
-    eks_oidc_identity_provider = {
-      client_id      = "65a083ca-4398-450e-8cc2-af19cee7a423"
-      groups_claim   = "gid:_groups"
-      issuer_url     = "https://login.microsoftonline.com/8d6fb1c6-f181-4af2-928e-1c1bd4d56b5e/v2.0"
-      name           = "azure-ad"
-      username_claim = "email"
-    }
-    ```
+    Set up an EKS [OIDC identity provider][oidc-idp], [see example](#oidc-identity-provider)
 
     - (string) **`client_id`** _[since v1.0.0]_
 
@@ -393,16 +378,6 @@ module "demo_eks_addon" {
 - (map(list(string))) **`service_account_to_iam_role_mappings = {}`** _[since v1.0.0]_
 
     Enables and creates the [components][oidc-provider] needed for IAM roles for service accounts, then map a Kubernetes Namespace/ServiceAccount to a list of IAM policies. You can map the entire namespace to a role by omitting `<service_account>`, please see [example](#iam-roles-for-service-accounts)
-
-    ```hcl
-    {
-        "<k8s_namespace>/<service_account>" = [
-            "iam_policy_arn"
-        ]
-    }
-    ```
-
-    Where `<>` indicates a placeholder and `iam_policy_arn` is a valid ARN.
 
 ## Outputs
 
