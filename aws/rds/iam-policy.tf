@@ -16,4 +16,9 @@ resource "aws_iam_policy" "rds_connection_policies" {
       }
     ]
   })
+
+  tags = merge(
+    local.common_tags,
+    var.additional_tags_all
+  )
 }

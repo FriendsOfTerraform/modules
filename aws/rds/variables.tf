@@ -168,8 +168,8 @@ variable "maintenance_config" {
 variable "monitoring_config" {
   type = object({
     enable_enhanced_monitoring = optional(object({
-      iam_role_arn = string
       interval     = number
+      iam_role_arn = optional(string)
     }))
 
     enable_performance_insight = optional(object({

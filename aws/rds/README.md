@@ -93,8 +93,7 @@ module "multiazinstance_demo" {
 
   monitoring_config = {
     enable_enhanced_monitoring = {
-      interval     = 60
-      iam_role_arn = "arn:aws:iam::111122223333:role/rds-monitoring-role"
+      interval = 60
     }
 
     enable_performance_insight = {
@@ -496,13 +495,13 @@ module "aurora_global_demo" {
 
         Enables [RDS enhanced monitoring][rds-enhanced-monitoring]
 
-        - (string) **`iam_role_arn`** _[since v1.0.0]_
-
-            ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Please refer to [this documentation][rds-enhanced-monitoring-iam-requirement] for information of the required IAM permissions.
-
         - (number) **`interval`** _[since v1.0.0]_
 
             Interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. Valid Values: `0`, `1`, `5`, `10`, `15`, `30`, `60`.
+
+        - (string) **`iam_role_arn = null`** _[since v1.0.0]_
+
+            ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Please refer to [this documentation][rds-enhanced-monitoring-iam-requirement] for information of the required IAM permissions. One will be created if not specified.
 
     - (object) **`enable_performance_insight = null`** _[since v1.0.0]_
 
