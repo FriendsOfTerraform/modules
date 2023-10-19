@@ -66,6 +66,12 @@ variable "additional_tags_all" {
   default     = {}
 }
 
+variable "apply_immediately" {
+  type        = bool
+  description = "Specifies whether any cluster modifications are applied immediately, or during the next maintenance window."
+  default     = null
+}
+
 variable "aurora_global_cluster" {
   type = object({
     join_existing_global_cluster = optional(string)

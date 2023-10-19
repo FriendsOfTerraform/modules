@@ -1,6 +1,8 @@
 resource "aws_db_instance" "db_instance" {
   count = local.is_aurora ? 0 : (var.deployment_option == "MultiAZCluster" ? 0 : 1)
 
+  apply_immediately = var.apply_immediately
+
   # Engine options
   engine         = var.engine.type
   engine_version = var.engine.version

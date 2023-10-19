@@ -31,7 +31,10 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   performance_insights_retention_period = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.retention_period : null
   performance_insights_kms_key_id       = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.kms_key_id : null
   monitoring_interval                   = local.is_enhanced_monitoring_enabled ? var.monitoring_config.enable_enhanced_monitoring.interval : 0
-  monitoring_role_arn                   = local.is_enhanced_monitoring_enabled ? var.monitoring_config.enable_enhanced_monitoring.iam_role_arn : null
+
+  monitoring_role_arn = local.is_enhanced_monitoring_enabled ? (
+    var.monitoring_config.enable_enhanced_monitoring.iam_role_arn != null ? var.monitoring_config.enable_enhanced_monitoring.iam_role_arn : aws_iam_role.rds_enhanced_monitoring[0].arn
+  ) : null
 
   # Additional Configuration
   # Database Options

@@ -5,6 +5,8 @@
 resource "aws_rds_cluster" "multi_az_cluster" {
   count = local.is_aurora ? 0 : (var.deployment_option == "MultiAZCluster" ? 1 : 0)
 
+  apply_immediately = var.apply_immediately
+
   # Engine options
   engine         = var.engine.type
   engine_version = var.engine.version
@@ -70,6 +72,8 @@ resource "aws_rds_cluster" "multi_az_cluster" {
 
 resource "aws_rds_cluster" "aurora_cluster" {
   count = local.is_aurora ? 1 : 0
+
+  apply_immediately = var.apply_immediately
 
   # Aurora global cluster
   global_cluster_identifier = var.aurora_global_cluster != null ? (
