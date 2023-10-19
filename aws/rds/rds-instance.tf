@@ -37,7 +37,7 @@ resource "aws_db_instance" "db_instance" {
   port                   = var.networking_config.port
 
   # Database Authentication
-  iam_database_authentication_enabled = var.authentication_config.iam_database_authentication_enabled
+  iam_database_authentication_enabled = var.authentication_config.iam_database_authentication != null ? var.authentication_config.iam_database_authentication.enabled : null
 
   # Monitoring
   performance_insights_enabled          = local.is_performance_insight_enabled

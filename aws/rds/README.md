@@ -16,8 +16,6 @@ This module will build and configure an [RDS](https://aws.amazon.com/rds/) insta
     - [Mandatory](#mandatory)
     - [Optional](#optional)
 - [Outputs](#outputs)
-- [Known Limitations](#known-limitations)
-    - [Editing Node Group Configuration](#editing-node-group-configuration)
 
 ## Example Usage
 
@@ -36,8 +34,8 @@ module "rds_demo" {
 
   authentication_config = {
     db_master_account = {
-      username = "admin"
-      password = "IloveRDS1234!"
+      username                           = "admin"
+      manage_password_in_secrets_manager = true
     }
   }
 
@@ -73,8 +71,8 @@ module "multiazinstance_demo" {
 
   authentication_config = {
     db_master_account = {
-      username = "admin"
-      password = "IloveRDS1234!"
+      username                           = "admin"
+      manage_password_in_secrets_manager = true
     }
   }
 
@@ -137,8 +135,8 @@ module "multiazcluster_demo" {
 
   authentication_config = {
     db_master_account = {
-      username = "admin"
-      password = "IloveRDS1234!"
+      username                           = "admin"
+      manage_password_in_secrets_manager = true
     }
   }
 
@@ -173,8 +171,17 @@ module "aurora_regional_demo" {
 
   authentication_config = {
     db_master_account = {
-      username = "admin"
-      password = "IloveRDS1234!"
+      username                           = "admin"
+      manage_password_in_secrets_manager = true
+    }
+
+    iam_database_authentication = {
+      enabled = true
+
+      # Creates IAM policies to allow connection to this RDS cluster
+      # The name of the db users must already existed in the DB
+      # IAM policies must be attached to an IAM principal
+      create_iam_policies_for_db_users = ["peter", "jane"]
     }
   }
 
@@ -229,8 +236,8 @@ module "aurora_global_demo" {
 
   authentication_config = {
     db_master_account = {
-      username = "admin"
-      password = "IloveRDS1234!"
+      username                           = "admin"
+      manage_password_in_secrets_manager = true
     }
   }
 
@@ -296,9 +303,20 @@ module "aurora_global_demo" {
 
             Password for the master DB user. Mutually exclusive with `manage_password_in_secrets_manager`
 
-    - (bool) **`iam_database_authentication_enabled = false`** _[since v1.0.0]_
+    - (bool) **`iam_database_authentication = null`** _[since v1.0.0]_
 
-        Specifies whether mappings of [AWS Identity and Access Management (IAM) accounts to database accounts][rds-iam-db-authentication] is enabled. Cannot be used when `deployment_option = "MultiAZCluster"`
+        Configures [AWS Identity and Access Management (IAM) accounts to database accounts][rds-iam-db-authentication]. Cannot be used when `deployment_option = "MultiAZCluster"`. Plesae refer to the following documentations for instruction to each DB engine.
+
+        - [MySQL, MariaDB](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Connecting.AWSCLI.html)
+        - [PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Connecting.AWSCLI.PostgreSQL.html)
+
+      - (bool) **`enabled = true`** _[since v1.0.0]_
+
+          Specify whether IAM DB authentication is enabled. [See example](#aurora-regional-cluster)
+
+      - (list(string)) **`create_iam_policies_for_db_users = []`** _[since v1.0.0]_
+
+          Specify a list of DB user names to create IAM policies for RDS IAM Authentication. This will allow an IAM principal such as an IAM role to request authentication token for the specific DB user. Please refer to [this documentation][rds-iam-authentication-policy] for more information.
 
 - (object) **`engine`** _[since v1.0.0]_
 
@@ -338,7 +356,11 @@ module "aurora_global_demo" {
 
     - (string) **`ca_cert_identifier = null`** _[since v1.0.0]_
 
-        The identifier of the CA certificate for the DB instance
+        The certificate authority (CA) is the certificate that identifies the root CA at the top of the certificate chain. The CA signs the DB server certificate, which is installed on each DB instance. The DB server certificate identifies the DB instance as a trusted server. Please refer to [this documentation][rds-ca] for valid values. Defaults to `"rds-ca-2019"`. Refers to the following documentations for requirements to connect to each DB engine with SSL.
+
+        - [MariaDB](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ssl-certificate-rotation-mariadb.html)
+        - [MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ssl-certificate-rotation-mysql.html)
+        - [PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Concepts.General.SSL.html)
 
     - (bool) **`enable_ipv6 = false`** _[since v1.0.0]_
 
@@ -376,7 +398,7 @@ module "aurora_global_demo" {
 
 - (list(string)) **`cloudwatch_log_exports = null`** _[since v1.0.0]_
 
-    Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine). MySQL and MariaDB: `"audit"`, `"error"`, `"general"`, `"slowquery"`. PostgreSQL: `"postgresql"`, `"upgrade"`.
+    Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine). MySQL and MariaDB: `"audit"`, `"error"`, `"general"`, `"slowquery"`. PostgreSQL: `"postgresql"`.
 
 - (map(object)) **`cluster_instances = {}`** _[since v1.0.0]_
 
@@ -500,7 +522,7 @@ module "aurora_global_demo" {
 
 - (object) **`serverless_capacity = null`** _[since v1.0.0]_
 
-    Specify the capacity range of the serverless instance. Must be used with `instance_class = "db.serverless"`. Refer to [this documentation][aurora-capacity-unit] for more details.
+    Specify the capacity range of the serverless instance. Must be used with `instance_class = "db.serverless"` and an `"aurora-*"` engine type, [see example](#aurora-global-cluster). Refer to [this documentation][aurora-capacity-unit] for more details.
 
     - (number) **`min_acus`** _[since v1.0.0]_
 
@@ -584,22 +606,18 @@ module "aurora_global_demo" {
 
         Status of the secret. Value can be: `"creating"`, `"active"`, `"rotating"`, or `"impaired"`.
 
-## Known Limitations
-
-### Editing Node Group Configuration
-
-Because the EKS node group is deployed using EC2 auto scaling group, updating node groups' configuration after creation will result in the creation of a new auto scaling group, effectively replacing the entire node group. However, node group replacement follows the Kubernetes node termination procedure, where all workloads will be automatically moved to the next healthy node group if available.
-
 [aurora-capacity-unit]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html
 [aurora-db-instance-class]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
 [aurora-failover-priority]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
 [db-instance-class]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
 [manage-password-in-secrets-manager]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html
+[rds-ca]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html#UsingWithRDS.SSL.RegionCertificateAuthorities
 [rds-cluster-parameter-group]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithDBClusterParamGroups.html
 [rds-instance-parameter-group]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithDBInstanceParamGroups.html
 [rds-db-encryption]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
 [rds-enhanced-monitoring]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.overview.html
 [rds-enhanced-monitoring-iam-requirement]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html#USER_Monitoring.OS.Enabling.Prerequisites
+[rds-iam-authentication-policy]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html
 [rds-iam-db-authentication]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html
 [rds-multi-az-instance]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html
 [rds-multi-az-cluster]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html

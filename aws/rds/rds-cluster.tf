@@ -32,7 +32,7 @@ resource "aws_rds_cluster" "multi_az_cluster" {
   port                   = var.networking_config.port
 
   # Database Authentication
-  iam_database_authentication_enabled = var.authentication_config.iam_database_authentication_enabled
+  iam_database_authentication_enabled = var.authentication_config.iam_database_authentication != null ? var.authentication_config.iam_database_authentication.enabled : null
 
   # Additional Configuration
   # Database Options
@@ -109,7 +109,7 @@ resource "aws_rds_cluster" "aurora_cluster" {
   port                   = var.networking_config.port
 
   # Database Authentication
-  iam_database_authentication_enabled = var.authentication_config.iam_database_authentication_enabled
+  iam_database_authentication_enabled = var.authentication_config.iam_database_authentication != null ? var.authentication_config.iam_database_authentication.enabled : null
 
   # Additional Configuration
   # Database Options

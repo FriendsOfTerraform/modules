@@ -11,7 +11,10 @@ variable "authentication_config" {
       password                           = optional(string)
     })
 
-    iam_database_authentication_enabled = optional(bool)
+    iam_database_authentication = optional(object({
+      enabled                          = optional(bool, true)
+      create_iam_policies_for_db_users = optional(list(string), [])
+    }))
   })
   description = "Configures RDS authentication options"
 }
