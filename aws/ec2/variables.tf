@@ -1,8 +1,3 @@
-variable "instances_to_create" {
-  type        = map(string)
-  description = "Number of instance replica."
-}
-
 variable "ami" {
   type        = string
   description = "AMI ID for the instances. All generated instances will use the same AMI."
@@ -26,15 +21,23 @@ variable "key_name" {
   default     = null
 }
 
-variable "root_disk_size" {
-  type        = number
-  description = "Instance disk size in GB. Default is set to 20GB"
-  default     = 20
+variable "root_disk" {
+  type        = object({
+    type = string
+    size = number
+  })
+  description = "Instance disk size in GB."
 }
 
 variable "additional_tags" {
   type        = map(string)
-  description = "Additional tags for EC2 instance"
+  description = "Additional tags for the EC2 instance"
+  default     = {}
+}
+
+variable "additional_tags_all" {
+  type        = map(string)
+  description = "Additional tags for all resources in deployed with this module"
   default     = {}
 }
 
@@ -44,6 +47,10 @@ variable "monitoring" {
   default     = false
 }
 
+variable "name" {
+  type        = string
+  description = "Name of the EC2 instance"
+}
 
 variable "key_pair" {
   type        = string
@@ -54,4 +61,20 @@ variable "key_pair" {
 variable "security_group_ids" {
   type        = list(string)
   description = "A list of Security Group IDs to be associated with the instances."
+}
+
+variable "subnet_id" {
+  type        = string
+  description = "(Optional) The VPC Subnet ID to launch in."
+}
+
+variable "additional_ebs_volumes" {
+  type = map(object({
+    device_name = string
+    size = number
+    type = string
+    provisioned_iops = optional(number)
+    additional_tags = optional(map(string))
+    throughput = optional(number)
+  }))
 }
