@@ -20,6 +20,12 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
+variable "key_name" {
+  type        = string
+  description = "(Optional) AWS key pair to be associated with the instances."
+  default     = null
+}
+
 variable "root_disk_size" {
   type        = number
   description = "Instance disk size in GB. Default is set to 20GB"
@@ -43,4 +49,9 @@ variable "key_pair" {
   type        = string
   description = "(Optional) AWS key pair to be associated with your EC2 instance. Default is set to none."
   default     = null
+}
+
+variable "security_group_ids" {
+  type        = list(string)
+  description = "A list of Security Group IDs to be associated with the instances."
 }
