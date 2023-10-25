@@ -102,7 +102,7 @@ output "external_intermediate_ca_csr" {
 }
 ```
 
-2. After signing the CSR with the external parent CA, import the certificate as follow
+2. After signing the CSR with the external parent CA, update the manifest to import the certificate as follow
 
 ```terraform
 module "external_intermediate_ca" {
@@ -183,7 +183,7 @@ module "external_intermediate_ca" {
 
 - (object) **`crl_configuration = null`** _[since v1.0.0]_
 
-    Configuration of the [certificate revocation list (CRL)][certificate-revocation-list], if any, maintained by your private CA. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason a CRL update fails, Amazon Web Services Private CA makes further attempts every 15 minutes. CRL is distributed to a S3 bucket.
+    Configuration of the [certificate revocation list (CRL)][certificate-revocation-list] maintained by your private CA. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason a CRL update fails, AWS Private CA makes further attempts every 15 minutes. CRL is distributed to a S3 bucket.
 
     - (object) **`create_s3_bucket = null`** _[since v1.0.0]_
 
@@ -215,7 +215,7 @@ module "external_intermediate_ca" {
 
     - (number) **`validity_in_days = 7`** _[since v1.0.0]_
 
-        Validity period of the CRL in days
+        Validity period of the distributed CRLs in days
 
 - (string) **`key_algorithm = "RSA_2048"`** _[since v1.0.0]_
 
@@ -223,7 +223,7 @@ module "external_intermediate_ca" {
 
 - (object) **`ocsp_configuration = null`** _[since v1.0.0]_
 
-    Configuration of [Online Certificate Status Protocol (OCSP)][online-certificate-status-protocol] support, if any, maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.
+    Configuration of [Online Certificate Status Protocol (OCSP)][online-certificate-status-protocol] support maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.
 
     - (string) **`custom_ocsp_endpoint = null`** _[since v1.0.0]_
 
@@ -235,7 +235,7 @@ module "external_intermediate_ca" {
 
 - (string) **`policy = null`** _[since v1.0.0]_
 
-    Attaches a JSON-formatted resource-based IAM policy to the private CA
+    Attaches a JSON-formatted resource-based IAM policy to this private CA
 
 - (string) **`signing_algorithm = "SHA256WITHRSA"`** _[since v1.0.0]_
 
@@ -248,7 +248,7 @@ module "external_intermediate_ca" {
 
 - (object) **`subordinate_ca_configuration = null`** _[since v1.0.0]_
 
-    Specify options to setup a subordinate CA. Requires if `ca_type = "SUBORDINATE"`.
+    Specify options to setup a subordinate CA. Required if `ca_type = "SUBORDINATE"`.
 
     - (object) **`import_certificate = null`** _[since v1.0.0]_
 
@@ -268,7 +268,7 @@ module "external_intermediate_ca" {
 
     - (number) **`path_length = 0`** _[since v1.0.0]_
 
-        Specify the [length constraint][length-contraint] of the subordinate CA, which determines the maximum number of lower-level subordinate CAs that can exist in a valid chain of trust. AWS Private CA supports a maximum chain of up to 5 levels deep, therefore this values must be `<= 3`
+        Specify the [path length constraint][path-length-contraint] of the subordinate CA, which determines the maximum number of lower-level subordinate CAs that can exist in a valid chain of trust. AWS Private CA supports a maximum chain of up to 5 levels deep, therefore this values must be `<= 3`
 
 - (string) **`usage_mode = "GENERAL_PURPOSE"`** _[since v1.0.0]_
 
@@ -309,6 +309,6 @@ If you enable `crl_configuration` with the `create_s3_bucket` option, the creati
 [ca-mode]:https://docs.aws.amazon.com/privateca/latest/userguide/short-lived-certificates.html
 [certificate-revocation-list]:https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html
 [crl-cloudfront]:https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html#s3-bpa
-[length-contraint]:https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html#length-constraints
 [online-certificate-status-protocol]:https://docs.aws.amazon.com/privateca/latest/userguide/ocsp-customize.html
+[path-length-contraint]:https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html#length-constraints
 [private-ca]:https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html
