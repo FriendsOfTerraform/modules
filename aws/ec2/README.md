@@ -166,7 +166,7 @@ module "demo_ec2" {
 
     - (object) **`private_ip_addresses = null`** _[since v1.0.0]_
 
-        Configures private IP addresses for the ENI.
+        Configures custom private IP addresses for the ENI.
 
         - (list(string)) **`ipv4 = null`** _[since v1.0.0]_
 
@@ -268,7 +268,7 @@ module "demo_ec2" {
 
     - (object) **`private_ip_addresses = null`** _[since v1.0.0]_
 
-        Configures private IP addresses for the ENI.
+        Configures custom private IP addresses for the ENI.
 
         - (list(string)) **`ipv4 = null`** _[since v1.0.0]_
 
@@ -382,7 +382,7 @@ module "demo_ec2" {
 
 - (string) **`instance_password_data`** _[since v1.0.0]_
 
-    Base-64 encoded encrypted password data for the instance. Useful for getting the administrator password for instances running Microsoft Windows. This attribute is only exported if `get_password_data = true`
+    Base-64 encoded encrypted password data for the instance. Useful for getting the administrator password for instances running Microsoft Windows. This attribute is only exported if `get_windows_password = true`
 
 - (string) **`instance_primary_network_interface_id`** _[since v1.0.0]_
 
