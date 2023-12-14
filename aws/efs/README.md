@@ -8,11 +8,14 @@ This module will build and configure an [EFS](https://aws.amazon.com/efs/) file 
 
 - [Example Usage](#example-usage)
     - [Basic Usage](#basic-usage)
+    - [Access Points](#access-points)
     - [Replications](#replications)
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
 - [Outputs](#outputs)
+- [Known Limitations](#known-limitations)
+    - [Lifecycle Policy Transition To Archive](#lifecycle-policy-transition-to-archive)
 
 ## Example Usage
 
@@ -29,6 +32,62 @@ module "demo_efs" {
     # The key of the map is the subnet ID to create the mount target on
     "subnet-02cd47a492abcdef0" = { security_group_ids = ["sg-00ce17020babcdef0"] } # us-east-1a
     "subnet-0f44f4247babcdef0" = { security_group_ids = ["sg-00ce17020babcdef0"] } # us-east-1b
+  }
+}
+```
+
+### Access Points
+
+```terraform
+module "demo_efs" {
+  source = "github.com/FriendsOfTerraform/aws-efs.git?ref=v1.0.0"
+
+  name = "demo-efs"
+
+  # You must have at least 1 mount target to create access points
+  # Configures multiple mount targets
+  mount_targets = {
+    # The key of the map is the subnet ID to create the mount target on
+    "subnet-02cd47a492abcdef0" = { security_group_ids = ["sg-00ce17020babcdef0"] } # us-east-1a
+    "subnet-0f44f4247babcdef0" = { security_group_ids = ["sg-00ce17020babcdef0"] } # us-east-1b
+  }
+
+  # Configures multiple access points
+  access_points = {
+    # The key of the map will be the name of the access point
+    "web-frontend" = {
+      posix_user = {
+        group_id = 10001
+        user_id  = 10001
+      }
+
+      root_directory_creation_permissions = {
+        owner_group_id           = 10001
+        owner_user_id            = 10001
+        access_point_permissions = "0774"
+      }
+
+      root_directory_path = "/web"
+    }
+
+    "database" = {
+      posix_user = {
+        group_id = 10002
+        user_id  = 10002
+      }
+
+      root_directory_creation_permissions = {
+        owner_group_id           = 10002
+        owner_user_id            = 10002
+        access_point_permissions = "0770"
+      }
+
+      root_directory_path = "/sql"
+    }
+
+    "scratch" = {
+      root_directory_path = "/scratch"
+    }
   }
 }
 ```
@@ -66,6 +125,50 @@ module "demo_efs" {
     The name of the EFS file system. All associated resources' names will also be prefixed by this value
 
 ### Optional
+
+- (map(object)) **`access_points = {}`** _[since v1.0.0]_
+
+    Configures [access points][efs-access-point]. [See example](#access-points)
+
+    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+
+        Additional tags for the access point
+
+    - (object) **`posix_user = null`** _[since v1.0.0]_
+
+        Configures the full POSIX identity on the access point that is used for all file operations by NFS clients
+
+        - (number) **`group_id`** _[since v1.0.0]_
+
+            POSIX group ID used for all file system operations using this access point. valid value: `0 - 4294967295`
+
+        - (number) **`user_id`** _[since v1.0.0]_
+
+            POSIX user ID used for all file system operations using this access point. valid value: `0 - 4294967295`
+
+        - (list(number)) **`secondary_group_ids = null`** _[since v1.0.0]_
+
+            Secondary POSIX group IDs used for all file system operations using this access point.
+
+    - (object) **`root_directory_creation_permissions = null`** _[since v1.0.0]_
+
+        Configures the permissions EFS use to create the specified root directory if the directory does not already exist.
+
+        - (string) **`access_point_permissions`** _[since v1.0.0]_
+
+            POSIX permissions to apply to the root directory path
+
+        - (number) **`owner_group_id`** _[since v1.0.0]_
+
+            Owner group ID for the access point's root directory, if the directory does not already exist. valid value: `0 - 4294967295`
+
+        - (number) **`owner_user_id`** _[since v1.0.0]_
+
+            Owner user ID for the access point's root directory, if the directory does not already exist. valid value: `0 - 4294967295`
+
+    - (string) **`root_directory_path = "/"`** _[since v1.0.0]_
+
+        Path on the EFS file system to expose as the root directory to NFS clients using the access point to access the EFS file system. A path can have up to four subdirectories. `root_directory_creation_permissions` must be specified if the root path does not exist.
 
 - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
@@ -205,6 +308,13 @@ module "demo_efs" {
 
         The status of the replication
 
+## Known Limitations
+
+### Lifecycle Policy Transition To Archive
+
+Transition to archive is not available as of provider Version 5.29.0.
+
+[efs-access-point]:https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html
 [efs-automatic-backup]:https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups
 [efs-encryption-at-rest]:https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html
 [efs-lifecycle-policy]:https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html

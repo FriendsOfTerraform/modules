@@ -3,6 +3,28 @@ variable "name" {
   description = "The name of the EFS file system. All associated resources' names will also be prefixed by this value"
 }
 
+variable "access_points" {
+  type = map(object({
+    additional_tags = optional(map(string), {})
+
+    posix_user = optional(object({
+      group_id            = number
+      user_id             = number
+      secondary_group_ids = optional(list(number))
+    }))
+
+    root_directory_creation_permissions = optional(object({
+      access_point_permissions = string
+      owner_group_id           = number
+      owner_user_id            = number
+    }))
+
+    root_directory_path = optional(string, "/")
+  }))
+  description = "Configures access points."
+  default     = {}
+}
+
 variable "additional_tags" {
   type        = map(string)
   description = "Additional tags for the EFS instance"
