@@ -75,7 +75,7 @@ module "lambda_basic_usage" {
 
 ### Enhanced Monitoring
 
-The following example demonstrates how to enable [Lambda enhanced monitoring][lambda-enhanced-monitoring]. This feature requires the LambdaInsightsExtension, you can get a list available versions [from here][lambda-insight-extension-versions].
+The following example demonstrates how to enable [Lambda enhanced monitoring][lambda-enhanced-monitoring]. This feature requires the LambdaInsightsExtension, you can get a list of available versions [from here][lambda-insight-extension-versions].
 
 ```terraform
 module "lambda_enhanced_monitoring" {
@@ -299,11 +299,11 @@ module "lambda_versioning" {
 
     - (string) **`on_failure_destination_arn = null`** _[since v1.0.0]_
 
-        Specify the ARN of the destination for failed asynchronous invocations. This ARN must be one of the following resource: SNS, SQS, Lambda, or an EventBus. The required IAM policies will be automatically generated if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided [has the proper permissions][asynchronous-invocation-destination-permission].
+        Specify the ARN of the destination for failed asynchronous invocations. This ARN must be one of the following resources: SNS, SQS, Lambda, or an EventBus. The required IAM policies will be automatically generated if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided [has the proper permissions][asynchronous-invocation-destination-permission].
 
     - (string) **`on_success_destination_arn = null`** _[since v1.0.0]_
 
-        Specify the ARN of the destination for successful asynchronous invocations. This ARN must be one of the following resource: SNS, SQS, Lambda, or an EventBus. The required IAM policies will be automatically generated if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided [has the proper permissions][asynchronous-invocation-destination-permission].
+        Specify the ARN of the destination for successful asynchronous invocations. This ARN must be one of the following resources: SNS, SQS, Lambda, or an EventBus. The required IAM policies will be automatically generated if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided [has the proper permissions][asynchronous-invocation-destination-permission].
 
     - (object) **`retries = null`** _[since v1.0.0]_
 
@@ -355,7 +355,7 @@ module "lambda_versioning" {
 
     - (string) **`mode = "Active"`** _[since v1.0.0]_
 
-        Whether to sample and trace a subset of incoming requests with AWS X-Ray. Valid values are: `"PassThrough"`, `"Active"`. If `"PassThrough"`, Lambda will only trace the request from an upstream service if it contains a tracing header with `"sampled=1"`. If `"Active"`, Lambda will respect any tracing header it receives from an upstream service. If no tracing header is received, Lambda will call X-Ray for a tracing decision
+        Specifies the tracing mode. Valid values are: `"PassThrough"`, `"Active"`. If `"PassThrough"`, Lambda will only trace the request from an upstream service if it contains a tracing header with `"sampled=1"`. If `"Active"`, Lambda will respect any tracing header it receives from an upstream service. If no tracing header is received, Lambda will call X-Ray for a tracing decision
 
 - (object) **`enable_function_url = null`** _[since v1.0.0]_
 
@@ -383,11 +383,11 @@ module "lambda_versioning" {
 
         - (list(string)) **`allow_methods = ["*"]`** _[since v1.0.0]_
 
-            The HTTP methods that are allowed when calling the function URL. For example: `["GET", "POST", "DELETE"]`, or the wildcard character `["*"]`
+            The HTTP methods that are allowed when calling the function URL. For example: `["GET", "POST", "DELETE"]`
 
         - (list(string)) **`allow_origins = ["*"]`** _[since v1.0.0]_
 
-            The origins that can access the function URL. You can list any number of specific origins (or the wildcard character ("*")), separated by a comma. For example: `["https://www.example.com", "http://localhost:60905"]`
+            The origins that can access the function URL. For example: `["https://www.example.com", "http://localhost:60905"]`
 
         - (list(string)) **`expose_headers = null`** _[since v1.0.0]_
 
@@ -401,7 +401,7 @@ module "lambda_versioning" {
 
     Configures environment variables for the function
 
-    - (map(string)) **`variables = null`** _[since v1.0.0]_
+    - (map(string)) **`variables`** _[since v1.0.0]_
 
         A map of environment variables to pass to the function
 
@@ -435,7 +435,7 @@ module "lambda_versioning" {
 
 - (map(object)) **`lambda_permissions = {}`** _[since v1.0.0]_
 
-    Gives an external source such as AWS accounts and services permission to invoke the Lambda function. [See example](#lambda-permission)
+    Grants external sources such as AWS accounts and services permission to invoke the Lambda function. [See example](#lambda-permission)
 
     - (string) **`policy_type`** _[since v1.0.0]_
 
@@ -459,7 +459,7 @@ module "lambda_versioning" {
 
     - (string) **`principal_organization_id = null`** _[since v1.0.0]_
 
-        The ID of an organization in AWS Organizations. Use this to grant permissions to all the AWS accounts under this organization.
+        The ID of an organization in AWS Organizations. Use this to grant permissions to only the AWS accounts under this organization.
 
     - (string) **`source_account_id = null`** _[since v1.0.0]_
 
@@ -511,67 +511,33 @@ module "lambda_versioning" {
 
 ## Outputs
 
-- (string) **`efs_arn`** _[since v1.0.0]_
+- (string) **`function_arn`** _[since v1.0.0]_
 
-    The ARN of the EFS file system
+    The ARN of the Lambda function
 
-- (string) **`efs_availability_zone_id`** _[since v1.0.0]_
+- (string) **`function_invoke_arn`** _[since v1.0.0]_
 
-    The identifier of the Availability Zone in which the file system's One Zone storage classes exist
+    ARN to be used for invoking Lambda Function from API Gateway
 
-- (string) **`efs_id`** _[since v1.0.0]_
+- (string) **`function_qualified_arn`** _[since v1.0.0]_
 
-    The ID that identifies the file system
+    ARN identifying the Lambda Function Version
 
-- (string) **`efs_dns_name`** _[since v1.0.0]_
+- (string) **`function_qualified_invoke_arn`** _[since v1.0.0]_
 
-    The DNS name for the filesystem
+    Qualified ARN (ARN with lambda version number) to be used for invoking Lambda Function from API Gateway
 
-- (number) **`efs_size_in_bytes`** _[since v1.0.0]_
+- (number) **`function_source_code_size`** _[since v1.0.0]_
 
-    The latest known metered size (in bytes) of data stored in the file system, the value is not the exact size that the file system was at any point in time
+    Size in bytes of the function's deployment package (.zip file)
 
-- (object) **`efs_mount_targets`** _[since v1.0.0]_
+- (object) **`function_version`** _[since v1.0.0]_
 
-    Attributes of all mount targets for the file system
+    Latest published version of the Lambda Function
 
-    - (string) **`availability_zone_id`** _[since v1.0.0]_
+- (object) **`function_url_endpoint`** _[since v1.0.0]_
 
-        The unique and consistent identifier of the Availability Zone (AZ) that the mount target resides in
-
-    - (string) **`availability_zone_name`** _[since v1.0.0]_
-
-        The name of the Availability Zone (AZ) that the mount target resides in
-
-    - (string) **`id`** _[since v1.0.0]_
-
-        The ID of the mount target
-
-    - (string) **`mount_target_dns_name`** _[since v1.0.0]_
-
-        The DNS name for the given subnet/AZ
-
-    - (string) **`network_interface_id`** _[since v1.0.0]_
-
-        The ID of the network interface that Amazon EFS created when it created the mount target
-
-- (object) **`efs_replications`** _[since v1.0.0]_
-
-    Attributes of all replications for the file system
-
-    - (string) **`destination_file_system_id`** _[since v1.0.0]_
-
-        The file system ID of the replica
-
-    - (string) **`replication_status`** _[since v1.0.0]_
-
-        The status of the replication
-
-## Known Limitations
-
-### Lifecycle Policy Transition To Archive
-
-Transition to archive is not available as of provider Version 5.29.0.
+    The HTTP URL endpoint for the function
 
 [asynchronous-invocation-destination-permission]:https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations
 [lambda-active-tracing]:https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html
