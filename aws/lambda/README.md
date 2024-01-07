@@ -495,7 +495,7 @@ module "lambda_versioning" {
 
 - (object) **`vpc_config = null`** _[since v1.0.0]_
 
-    Configure this function to [connect to private subnets in a VPC][lambda-vpc-config], allowing it access to private resources
+    Configure this function to [connect to private subnets in a VPC][lambda-vpc-config], allowing it access to private resources. The required IAM policy will be automatically attached to the managed role if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided has the IAM policy `AWSLambdaENIManagementAccess` attached.
 
     - (list(string)) **`security_group_ids`** _[since v1.0.0]_
 
