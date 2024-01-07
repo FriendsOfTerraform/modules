@@ -17,8 +17,6 @@ This module will build and configure a [Lambda](https://aws.amazon.com/lambda/) 
     - [Mandatory](#mandatory)
     - [Optional](#optional)
 - [Outputs](#outputs)
-- [Known Limitations](#known-limitations)
-    - [Lifecycle Policy Transition To Archive](#lifecycle-policy-transition-to-archive)
 
 ## Example Usage
 
