@@ -1,6 +1,6 @@
 # Elastic Container Service Module
 
-This module will build and configure an [ECS](https://aws.amazon.com/ecs/) cluster with additional node pools
+This module will build and configure an [ECS](https://aws.amazon.com/ecs/) cluster with additional capacity providers.
 
 **This repository is a READ-ONLY sub-tree split**. See https://github.com/FriendsOfTerraform/modules to create issues or submit pull requests.
 
@@ -72,11 +72,11 @@ module "ec2_providers" {
     }
 
     "windows" = {
-      desired_instances                 = 1
-      image_id                          = "ami-0016ac38fe0fcb3f5" # Windows Server 2022 Core
-      instance_type                     = "m5.large"
-      security_group_ids                = ["sg-35a55e50"]
-      root_ebs_volume_size              = 100
+      desired_instances    = 1
+      image_id             = "ami-0016ac38fe0fcb3f5" # Windows Server 2022 Core
+      instance_type        = "m5.large"
+      security_group_ids   = ["sg-35a55e50"]
+      root_ebs_volume_size = 100
 
       subnet_ids = [
         "subnet-0ad32d6f", # private-us-west-1a
@@ -87,6 +87,7 @@ module "ec2_providers" {
 
   # Default to schedule a minimum of 2 tasks on the linux capacity provider
   # And schedule 80% of to the linux-spot capacity provider
+  # The keys of the map must be a capacity provider managed in this module
   default_capacity_provider_strategy = {
     "linux" = {
       weight = 20
@@ -143,7 +144,7 @@ module "ec2_providers" {
 
     - (string) **`image_id`** _[since v1.0.0]_
 
-        The AMI from which to launch the instance. Please refer to the links below for instructions on how to get the images for ECS:
+        The AMI from which to launch the instance. Please refer to the links below for instruction on how to get the image IDs for ECS optimized images:
 
         - [linux][ecs-linux-optimized-ami]
         - [windows][ecs-windows-optimized-ami]
@@ -152,10 +153,6 @@ module "ec2_providers" {
     - (string) **`instance_type`** _[since v1.0.0]_
 
         Specify the [EC2 instance type][ec2-instance-type]
-
-    - (list(string)) **`security_group_ids`** _[since v1.0.0]_
-
-        A list of security group IDs to associate with the instances
 
     - (list(string)) **`security_group_ids`** _[since v1.0.0]_
 
@@ -171,7 +168,7 @@ module "ec2_providers" {
 
     - (string) **`instance_iam_role = null`** _[since v1.0.0]_
 
-        The name of an IAM role to be attached to the instance, if non is specified, a default one will be created and attached. Please refer to [this documentation][ecs-container-instance-iam-role] for information in case of creating a custom role.
+        The name of an IAM role to be attached to the instance, if not specified, a default one will be created and attached. Please refer to [this documentation][ecs-container-instance-iam-role] for information in case of creating a custom role.
 
     - (number) **`max_desired_instances = null`** _[since v1.0.0]_
 
