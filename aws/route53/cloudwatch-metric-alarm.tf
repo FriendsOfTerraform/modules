@@ -21,6 +21,9 @@ locals {
   }
 }
 
+# TODOs
+# - Prefix Default Alarm name
+# - Define alarm description
 resource "aws_cloudwatch_metric_alarm" "health_check_cloudwatch_alarms" {
   count = length(local.cloudwatch_alarms)
 

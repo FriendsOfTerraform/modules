@@ -76,6 +76,7 @@ locals {
   }
 }
 
+# TODOs - Give Default name to health_check
 resource "aws_route53_health_check" "health_checks" {
   for_each = local.health_checks
 

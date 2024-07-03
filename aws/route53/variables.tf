@@ -43,10 +43,15 @@ variable "private_zone_vpc_associations" {
 variable "records" {
   type = map(object({
     type            = string
-    values          = list(string)
-    alias_target    = optional(string, null) #TODO
+    values          = optional(list(string), null)
     health_check_id = optional(string, null)
     ttl             = optional(number, 300)
+
+    alias = optional(object({
+      target                 = string
+      hosted_zone_id         = string
+      evaluate_target_health = optional(bool, true)
+    }), null)
 
     failover_routing_policy = optional(object({
       failover_record_type = string

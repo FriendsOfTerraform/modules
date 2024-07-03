@@ -4,10 +4,20 @@ resource "aws_route53_record" "records" {
   zone_id         = aws_route53_zone.hosted_zone.zone_id
   name            = split("/", each.key)[0]
   type            = each.value.type
-  ttl             = each.value.ttl
+  ttl             = each.value.alias != null ? null : each.value.ttl
   records         = each.value.values
   set_identifier  = length(split("/", each.key)) > 1 ? split("/", each.key)[1] : null
   health_check_id = each.value.health_check != null ? aws_route53_health_check.health_checks[each.key].id : each.value.health_check_id
+
+  dynamic "alias" {
+    for_each = each.value.alias != null ? [1] : []
+
+    content {
+      name                   = each.value.alias.target
+      zone_id                = each.value.alias.hosted_zone_id
+      evaluate_target_health = each.value.alias.evaluate_target_health
+    }
+  }
 
   # for some reason, set_identifier is required even when multivalue_answer_routing_policy is set to false...
   # using null instead
