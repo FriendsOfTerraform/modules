@@ -5,7 +5,7 @@ variable "domain_name" {
 
 variable "additional_tags" {
   type        = map(string)
-  description = "Additional tags for the kubernetes cluster"
+  description = "Additional tags for the hosted zone"
   default     = {}
 }
 
@@ -21,7 +21,7 @@ variable "description" {
   default     = null
 }
 
-variable "enables_dnssec" {
+variable "enable_dnssec" {
   type = object({
     key_signing_keys = map(object({
       kms_key_id = optional(string, null)
@@ -29,6 +29,15 @@ variable "enables_dnssec" {
     }))
 
     status = optional(string, "SIGNING")
+  })
+  description = "Enables Route 53 DNSSEC signing"
+  default     = null
+}
+
+# TODO
+variable "enable_query_logging" {
+  type = object({
+    cloudwatch_log_group = optional(string, null)
   })
   description = ""
   default     = null
@@ -72,6 +81,18 @@ variable "records" {
       }), null)
     }), null)
 
+    latency_routing_policy = optional(object({
+      region = string
+    }), null)
+
+    multivalue_answer_routing_policy = optional(object({
+      enabled = optional(bool, true)
+    }), null)
+
+    weighted_routing_policy = optional(object({
+      weight = number
+    }), null)
+
     health_check = optional(object({
       enabled                    = optional(bool, true)
       invert_health_check_status = optional(bool, false)
@@ -105,19 +126,7 @@ variable "records" {
         search_string         = optional(string, null)
       }), null)
     }), null)
-
-    latency_routing_policy = optional(object({
-      region = string
-    }), null)
-
-    multivalue_answer_routing_policy = optional(object({
-      enabled = optional(bool, true)
-    }), null)
-
-    weighted_routing_policy = optional(object({
-      weight = number
-    }), null)
   }))
-  description = ""
+  description = "Manages multiple records"
   default     = {}
 }

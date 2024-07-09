@@ -1,5 +1,5 @@
 resource "aws_route53_key_signing_key" "key_signing_keys" {
-  for_each = var.enables_dnssec != null ? var.enables_dnssec.key_signing_keys : {}
+  for_each = var.enable_dnssec != null ? var.enable_dnssec.key_signing_keys : {}
   depends_on = [
     aws_kms_key.dnssec_kms_key,
     aws_kms_alias.dnssec_kms_key_alias
