@@ -84,6 +84,15 @@ resource "aws_route53_health_check" "health_checks" {
     each.value.endpoint_check_search_string != null ? "${each.value.endpoint_check_protocol}_STR_MATCH" : each.value.endpoint_check_protocol
   ) : each.value.is_calculated_check ? "CALCULATED" : "CLOUDWATCH_METRIC"
 
+  tags = merge(
+    {
+      "hosted-zone" = var.domain_name
+      "record"      = each.key
+    },
+    local.common_tags,
+    var.additional_tags_all
+  )
+
   disabled           = !each.value.enabled
   invert_healthcheck = each.value.invert_health_check_status
 

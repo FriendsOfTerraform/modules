@@ -21,9 +21,6 @@ locals {
   }
 }
 
-# TODOs
-# - Prefix Default Alarm name
-# - Define alarm description
 resource "aws_cloudwatch_metric_alarm" "health_check_cloudwatch_alarms" {
   count = length(local.cloudwatch_alarms)
 
@@ -36,7 +33,7 @@ resource "aws_cloudwatch_metric_alarm" "health_check_cloudwatch_alarms" {
   statistic           = split(" ", local.cloudwatch_alarms[count.index].expression)[0]
   threshold           = split(" ", local.cloudwatch_alarms[count.index].expression)[2]
   alarm_actions       = local.cloudwatch_alarms[count.index].notification_sns_topic != null ? [local.cloudwatch_alarms[count.index].notification_sns_topic] : null
-  alarm_description   = null # TODOs
+  alarm_description   = null
   dimensions          = { HealthCheckId = aws_route53_health_check.health_checks[local.cloudwatch_alarms[count.index].record_name].id }
   ok_actions          = local.cloudwatch_alarms[count.index].notification_sns_topic != null ? [local.cloudwatch_alarms[count.index].notification_sns_topic] : null
 }
