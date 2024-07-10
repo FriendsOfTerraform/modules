@@ -491,6 +491,26 @@ module "psin_lab_com" {
 
         Specify whether to sign the zone with DNSSEC. Valid values: `"SIGNING"`, `"NOT_SIGNING"`
 
+- (object) **`enable_query_logging = null`** _[since v1.0.0]_
+
+    Enables [Route 53 Query Logging][route53-query-logging].
+
+    - (string) **`cloudwatch_log_group_arn = null`** _[since v1.0.0]_
+
+        An existing Cloudwatch log group to send query logging to
+
+    - (bool) **`create_resource_policy = false`** _[since v1.0.0]_
+
+        Creates a Cloudwatch log resource policy named AWSServiceRoleForRoute53 to grant route 53 permissions to send logs to Cloudwatch. You do not need to create this if one is already created
+
+    - (string) **`log_group_class = "STANDARD"`** _[since v1.0.0]_
+
+        Specified the log class of the log group. Possible values are: `"STANDARD"`, `"INFREQUENT_ACCESS"`. Mutually exclusive with `cloudwatch_log_group_arn`
+
+    - (number) **`retention = 0`** _[since v1.0.0]_
+
+        Specifies the number of days you want to retain log events in the specified log group. Possible values are: `1`, `3`, `5`, `7`, `14`, `30`, `60`, `90`, `120`, `150`, `180`, `365`, `400`, `545`, `731`, `1096`, `1827`, `2192`, `2557`, `2922`, `3288`, `3653`,`0`. If you select `0`, the events in the log group are always retained and never expire. Mutually exclusive with `cloudwatch_log_group_arn`
+
 - (map(list(string))) **`private_zone_vpc_associations = {}`** _[since v1.0.0]_
 
     One of more VPC IDs this private hosted zone is used to resolve DNS queries for. Do not specify if you want to create a public hosted zone. Please [see example](#private-hosted-zone)
@@ -728,6 +748,7 @@ module "psin_lab_com" {
 [route53-health-check-types]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-types.html
 [route53-ksk]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-ksk.html
 [route53-ksk-kms-requirements]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-cmk-requirements.html
+[route53-query-logging]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html
 [route53-routing-policy-failover]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-failover.html
 [route53-routing-policy-geolocation]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geo.html
 [route53-routing-policy-geoproximity]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html

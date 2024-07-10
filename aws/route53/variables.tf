@@ -34,12 +34,14 @@ variable "enable_dnssec" {
   default     = null
 }
 
-# TODO
 variable "enable_query_logging" {
   type = object({
-    cloudwatch_log_group = optional(string, null)
+    cloudwatch_log_group_arn = optional(string, null)
+    create_resource_policy   = optional(bool, false)
+    log_group_class          = optional(string, "STANDARD")
+    retention                = optional(number, 0)
   })
-  description = ""
+  description = "Enables Route 53 query log"
   default     = null
 }
 
