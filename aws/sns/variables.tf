@@ -82,6 +82,17 @@ variable "delivery_policy" {
   default     = null
 }
 
+variable "delivery_status_logging" {
+  type = object({
+    protocols                          = list(string)
+    success_sample_rate                = number
+    iam_role_for_successful_deliveries = string
+    iam_role_for_failed_deliveries     = string
+  })
+  description = ""
+  default     = null
+}
+
 variable "display_name" {
   type        = string
   description = "The display name of the topic"
@@ -106,4 +117,18 @@ variable "enable_encryption" {
   })
   description = "Enables SNS at-rest encryption"
   default     = null
+}
+
+variable "subscriptions" {
+  type = list(object({
+    protocol                    = string
+    endpoints                   = list(string)
+    dead_letter_queue_arn       = optional(string, null)
+    enable_raw_message_delivery = optional(bool, false)
+    filter_policy               = optional(string, null)
+    filter_policy_scope         = optional(string, "MessageAttributes")
+    subscription_role_arn       = optional(string, null)
+  }))
+  description = ""
+  default     = []
 }
