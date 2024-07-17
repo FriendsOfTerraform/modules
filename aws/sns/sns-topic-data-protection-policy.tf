@@ -33,9 +33,9 @@ locals {
                         }
                       } : {},
 
-                      statement.operation.audit.destinations.kinesis_data_firehose_delivery_stream != null ? {
+                      statement.operation.audit.destinations.firehose_delivery_stream != null ? {
                         Firehose = {
-                          DeliveryStream = statement.operation.audit.destinations.kinesis_data_firehose_delivery_stream
+                          DeliveryStream = statement.operation.audit.destinations.firehose_delivery_stream
                         }
                       } : {}
                     )

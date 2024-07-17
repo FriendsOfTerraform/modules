@@ -1,6 +1,6 @@
 variable "name" {
   type        = string
-  description = "The domain name of the hosted zone"
+  description = "The name of the SNS topic"
 }
 
 variable "access_policy" {
@@ -11,7 +11,7 @@ variable "access_policy" {
 
 variable "additional_tags" {
   type        = map(string)
-  description = "Additional tags for the hosted zone"
+  description = "Additional tags for the SNS topic"
   default     = {}
 }
 
@@ -33,18 +33,18 @@ variable "data_protection_policy" {
         audit = optional(object({
           sample_rate = number
           destinations = object({
-            cloudwatch_log_group                  = optional(string, null)
-            s3_bucket_name                        = optional(string, null)
-            kinesis_data_firehose_delivery_stream = optional(string, null)
+            cloudwatch_log_group     = optional(string, null)
+            s3_bucket_name           = optional(string, null)
+            firehose_delivery_stream = optional(string, null)
           })
         }), null)
-
-        deny = optional(object({}), null)
 
         deidentify = optional(object({
           mask_with_character = optional(string, null)
           redact              = optional(bool, null)
         }), null)
+
+        deny = optional(object({}), null)
       })
     }))
 
@@ -52,7 +52,7 @@ variable "data_protection_policy" {
       custom_data_identifiers = map(string)
     }), null)
   })
-  description = ""
+  description = "Manages the data protection policy for this topic"
   default     = null
 }
 
@@ -78,7 +78,7 @@ variable "delivery_policy" {
       header_content_type = optional(string, "text/plain; charset=UTF-8")
     }), null)
   })
-  description = ""
+  description = "Topic wide delivery policy that tells SNS how to retry failed message deliveries to HTTP/S endpoints"
   default     = null
 }
 
@@ -89,7 +89,7 @@ variable "delivery_status_logging" {
     iam_role_for_successful_deliveries = string
     iam_role_for_failed_deliveries     = string
   })
-  description = ""
+  description = "Enables logging of the delivery status of notification messages sent to topics"
   default     = null
 }
 
@@ -113,7 +113,7 @@ variable "enable_content_based_message_deduplication" {
 
 variable "enable_encryption" {
   type = object({
-    kms_key_id = optional(string, null)
+    kms_key_id = optional(string, "alias/aws/sns")
   })
   description = "Enables SNS at-rest encryption"
   default     = null
@@ -129,6 +129,6 @@ variable "subscriptions" {
     filter_policy_scope         = optional(string, "MessageAttributes")
     subscription_role_arn       = optional(string, null)
   }))
-  description = ""
+  description = "Manages multiple subscriptions for this topic"
   default     = []
 }

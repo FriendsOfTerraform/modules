@@ -6,6 +6,3 @@ locals {
     managed-by = "Terraform"
   }
 }
-
-#TODOs
-# active tracing requires resource policy - There is no way to create xray resource policy via Terraform today
