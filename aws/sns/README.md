@@ -33,7 +33,7 @@ module "basic_usage" {
       protocol = "email"
       endpoints = [
         "sales@examplecorp.com",
-        "marketing@examplecorp.com
+        "marketing@examplecorp.com"
       ]
 
       filter_policy = jsonencode(
@@ -348,7 +348,7 @@ module "data_protection_policy" {
 
 ### Active Tracing X-Ray resource-based policy
 
-There is no way to create the X-ray resource-based policy required for the SNS active tracing with Terraform today. Therefore, after enabling active tracing in this module, you must follow [this documentation][aws-active-tracing-xray] to create the resource-based policy using different means.
+There is no way to create the X-ray resource-based policy required for the SNS active tracing with Terraform today. Therefore, after enabling active tracing in this module, you must follow [this documentation][sns-active-tracing-xray] to create the resource-based policy using different means.
 
 [sns-active-tracing-xray]:https://docs.aws.amazon.com/xray/latest/devguide/xray-services-sns.html
 [sns-data-protection-policy]:https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-policies.html
