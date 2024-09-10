@@ -1,6 +1,6 @@
 locals {
   health_checks = {
-    for k, v in var.records :
+    for k, v in local.records :
     k => {
       enabled                    = v.health_check.enabled
       invert_health_check_status = v.health_check.invert_health_check_status
