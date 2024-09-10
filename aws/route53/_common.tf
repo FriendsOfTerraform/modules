@@ -6,6 +6,29 @@ locals {
     managed-by = "Terraform"
   }
 
+  records = {
+    for record in var.records :
+    # Keys should be name_<TYPE>/<set_identifier>
+    # check to see if there is a set_identifier, if so, attach to the record key
+    record.set_identifier != null ? "${record.name}_${record.type}/${record.set_identifier}" : "${record.name}_${record.type}" =>
+    {
+      name                             = record.name
+      type                             = record.type
+      values                           = record.values
+      health_check_id                  = record.health_check_id
+      ttl                              = record.ttl
+      set_identifier                   = record.set_identifier
+      alias                            = record.alias
+      failover_routing_policy          = record.failover_routing_policy
+      geolocation_routing_policy       = record.geolocation_routing_policy
+      geoproximity_routing_policy      = record.geoproximity_routing_policy
+      latency_routing_policy           = record.latency_routing_policy
+      multivalue_answer_routing_policy = record.multivalue_answer_routing_policy
+      weighted_routing_policy          = record.weighted_routing_policy
+      health_check                     = record.health_check
+    }
+  }
+
   # replace . to - in the domain name so it can be used to prefix other resources if needed
   prefix = replace(var.domain_name, ".", "-")
 

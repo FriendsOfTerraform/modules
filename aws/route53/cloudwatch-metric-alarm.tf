@@ -1,6 +1,6 @@
 locals {
   cloudwatch_alarms = flatten([
-    for record_name, record_config in var.records : [
+    for record_name, record_config in local.records : [
       for alarm_name, alarm_config in record_config.health_check.cloudwatch_alarms : {
         record_name            = record_name
         alarm_name             = alarm_name

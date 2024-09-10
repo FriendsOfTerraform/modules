@@ -1,12 +1,12 @@
 resource "aws_route53_record" "records" {
-  for_each = var.records
+  for_each = local.records
 
   zone_id         = aws_route53_zone.hosted_zone.zone_id
-  name            = split("/", each.key)[0]
+  name            = each.value.name
   type            = each.value.type
   ttl             = each.value.alias != null ? null : each.value.ttl
   records         = each.value.values
-  set_identifier  = length(split("/", each.key)) > 1 ? split("/", each.key)[1] : null
+  set_identifier  = each.value.set_identifier
   health_check_id = each.value.health_check != null ? aws_route53_health_check.health_checks[each.key].id : each.value.health_check_id
 
   dynamic "alias" {

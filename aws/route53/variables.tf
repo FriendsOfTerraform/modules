@@ -52,11 +52,13 @@ variable "private_zone_vpc_associations" {
 }
 
 variable "records" {
-  type = map(object({
+  type = list(object({
+    name            = string
     type            = string
     values          = optional(list(string), null)
     health_check_id = optional(string, null)
     ttl             = optional(number, 300)
+    set_identifier  = optional(string, null)
 
     alias = optional(object({
       target                 = string
@@ -130,5 +132,5 @@ variable "records" {
     }), null)
   }))
   description = "Manages multiple records"
-  default     = {}
+  default     = []
 }
