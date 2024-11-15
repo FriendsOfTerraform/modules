@@ -142,6 +142,12 @@ variable "notification_config" {
   default     = null
 }
 
+variable "object_ownership" {
+  type        = string
+  description = "Control ownership of objects written to this bucket from other AWS accounts and the use of access control lists (ACLs). Object ownership determines who can specify access to objects."
+  default     = "BucketOwnerEnforced"
+}
+
 variable "policy" {
   type        = string
   description = "Policy document for the bucket policy."

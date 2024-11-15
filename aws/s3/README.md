@@ -26,7 +26,7 @@ This module configures and manages an S3 bucket and its various configurations s
 
 ```terraform
 module "demo_bucket" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 }
@@ -38,7 +38,7 @@ This example uses a public read bucket policy to allow anonymous access to all o
 
 ```terraform
 module "static_web_hosting" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -69,7 +69,7 @@ This example shows a basic lifecycle rule to auto rotate logs that are tagged wi
 
 ```terraform
 module "lifecycle_rule_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name               = "demo-bucket"
   versioning_enabled = true
@@ -121,7 +121,7 @@ locals {
 }
 
 module "bucket_notification_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -157,7 +157,7 @@ module "bucket_notification_demo" {
 
 ```terraform
 module "bucket_encryption_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -176,7 +176,7 @@ module "bucket_encryption_demo" {
 
 ```terraform
 module "s3_intelligent_tiering_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -215,7 +215,7 @@ module "s3_intelligent_tiering_demo" {
 
 ```terraform
 module "s3_inventory_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -245,7 +245,7 @@ module "s3_inventory_demo" {
 
 ```terraform
 module "s3_bucket_replication_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -291,7 +291,7 @@ module "s3_bucket_replication_demo" {
 
 ```terraform
 module "s3_bucket_object_lock_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name                = "demo-bucket"
   versioning_enabled  = true
@@ -303,7 +303,7 @@ module "s3_bucket_object_lock_demo" {
 
 ```terraform
 module "s3_bucket_object_lock_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -557,6 +557,10 @@ module "s3_bucket_object_lock_demo" {
 
             Filters objects by key name suffix
 
+- (string) **`object_ownership = "BucketOwnerEnforced"`** _[since v1.0.0]_
+
+  Control [ownership of objects][s3-object-ownership] written to this bucket from other AWS accounts and the use of access control lists (ACLs). Object ownership determines who can specify access to objects. Valid values: `"BucketOwnerEnforced"`, `"BucketOwnerPreferred"`, `"ObjectWriter"`.
+
 - (string) **`policy = null`** _[since v1.0.0]_
 
     Text of the S3 policy document to attach
@@ -736,6 +740,7 @@ module "s3_bucket_object_lock_demo" {
 [s3-inventory-bucket-permission]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-s3-inventory-1
 [s3-lifecycle]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html
 [s3-object-lock]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+[s3-object-ownership]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-ownership-new-bucket.html
 [s3-requester-pays]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html
 [s3-static-website-hosting]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
 [s3-transfer-acceleration]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
