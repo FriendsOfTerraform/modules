@@ -343,6 +343,34 @@ module "s3_bucket_object_lock_demo" {
 
   The account ID of the expected bucket owner
 
+- (list(object)) **`cors_configurations = null`** _[since v1.1.0]_
+
+    Configures [cross-origin resource sharing (CORS)][s3-cors]
+
+    - (list(string)) **`allowed_methods`** _[since v1.1.0]_
+
+        List of HTTP methods that you allow the origin to execute. Valid values are `"GET"`, `"PUT"`, `"HEAD"`, `"POST"`, `"DELETE"`
+
+    - (list(string)) **`allowed_origins`** _[since v1.1.0]_
+
+        Specify the origins that you want to allow cross-domain requests from. The origin string can contain only one `*` wildcard character, such as `"http://*.example.com"`. You can optionally specify `"*"` as the origin to enable all the origins to send cross-origin requests. You can also specify `https` to enable only secure origins.
+
+    - (list(string)) **`allowed_headers = null`** _[since v1.1.0]_
+
+        Specify which headers are allowed in a preflight request through the Access-Control-Request-Headers header. Each header name in the Access-Control-Request-Headers header must match a corresponding entry in the element. Amazon S3 will send only the allowed headers in a response that were requested. Each header string can contain at most one `*` wildcard character. For example, `"x-amz-*"` will enable all Amazon-specific headers.
+
+    - (list(string)) **`expose_headers = null`** _[since v1.1.0]_
+
+        Specify a list of headers in the response that you want customers to be able to access from their applications
+
+    - (string) **`id = null`** _[since v1.1.0]_
+
+        Unique identifier for the cors rule. The value cannot be longer than 255 characters.
+
+    - (number) **`max_age_seconds = null`** _[since v1.1.0]_
+
+        Specify the time in seconds that your browser can cache the response for a preflight request as identified by the resource, the HTTP method, and the origin.
+
 - (object) **`enables_object_lock = null`** _[since v1.0.0]_
 
   Configures [S3 Object Lock][s3-object-lock]. You must also set `versioning_enabled = true` to enable object lock. See [example](#enables-object-lock-for-new-bucket)
@@ -732,6 +760,7 @@ module "s3_bucket_object_lock_demo" {
 [public-access]:https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html
 [s3-bucket-key]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html
 [s3-bucket-replication]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-what-is-isnot-replicated.html
+[s3-cors]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html?icmpid=docs_amazons3_console
 [s3-encryption]:https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html
 [s3-event]:https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations
 [s3-intelligent-tiering]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering.html
