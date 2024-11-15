@@ -21,6 +21,20 @@ variable "bucket_owner_account_id" {
   default     = null
 }
 
+variable "cors_configurations" {
+  type = list(object({
+    allowed_methods = list(string)
+    allowed_origins = list(string)
+    allowed_headers = optional(list(string), null)
+    expose_headers  = optional(list(string), null)
+    id              = optional(string, null)
+    max_age_seconds = optional(number, null)
+  }))
+
+  description = "Configures the CORS configuration to defines a way for client web applications that are loaded in one domain to interact with resources in a different domain"
+  default     = null
+}
+
 variable "enables_object_lock" {
   type = object({
     default_retention = optional(object({
@@ -140,6 +154,12 @@ variable "notification_config" {
 
   description = "Configuration to enable bucket event notification. Destination is in {dest_arn = config} format."
   default     = null
+}
+
+variable "object_ownership" {
+  type        = string
+  description = "Control ownership of objects written to this bucket from other AWS accounts and the use of access control lists (ACLs). Object ownership determines who can specify access to objects."
+  default     = "BucketOwnerEnforced"
 }
 
 variable "policy" {

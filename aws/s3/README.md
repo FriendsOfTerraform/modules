@@ -26,7 +26,7 @@ This module configures and manages an S3 bucket and its various configurations s
 
 ```terraform
 module "demo_bucket" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 }
@@ -38,7 +38,7 @@ This example uses a public read bucket policy to allow anonymous access to all o
 
 ```terraform
 module "static_web_hosting" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -69,7 +69,7 @@ This example shows a basic lifecycle rule to auto rotate logs that are tagged wi
 
 ```terraform
 module "lifecycle_rule_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name               = "demo-bucket"
   versioning_enabled = true
@@ -121,7 +121,7 @@ locals {
 }
 
 module "bucket_notification_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -157,7 +157,7 @@ module "bucket_notification_demo" {
 
 ```terraform
 module "bucket_encryption_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -176,7 +176,7 @@ module "bucket_encryption_demo" {
 
 ```terraform
 module "s3_intelligent_tiering_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -215,7 +215,7 @@ module "s3_intelligent_tiering_demo" {
 
 ```terraform
 module "s3_inventory_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -245,7 +245,7 @@ module "s3_inventory_demo" {
 
 ```terraform
 module "s3_bucket_replication_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -291,7 +291,7 @@ module "s3_bucket_replication_demo" {
 
 ```terraform
 module "s3_bucket_object_lock_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name                = "demo-bucket"
   versioning_enabled  = true
@@ -303,7 +303,7 @@ module "s3_bucket_object_lock_demo" {
 
 ```terraform
 module "s3_bucket_object_lock_demo" {
-  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-s3.git?ref=v1.1.0"
 
   name = "demo-bucket"
 
@@ -342,6 +342,34 @@ module "s3_bucket_object_lock_demo" {
 - (string) **`bucket_owner_account_id = null`** _[since v1.0.0]_
 
   The account ID of the expected bucket owner
+
+- (list(object)) **`cors_configurations = null`** _[since v1.1.0]_
+
+    Configures [cross-origin resource sharing (CORS)][s3-cors]
+
+    - (list(string)) **`allowed_methods`** _[since v1.1.0]_
+
+        List of HTTP methods that you allow the origin to execute. Valid values are `"GET"`, `"PUT"`, `"HEAD"`, `"POST"`, `"DELETE"`
+
+    - (list(string)) **`allowed_origins`** _[since v1.1.0]_
+
+        Specify the origins that you want to allow cross-domain requests from. The origin string can contain only one `*` wildcard character, such as `"http://*.example.com"`. You can optionally specify `"*"` as the origin to enable all the origins to send cross-origin requests. You can also specify `https` to enable only secure origins.
+
+    - (list(string)) **`allowed_headers = null`** _[since v1.1.0]_
+
+        Specify which headers are allowed in a preflight request through the Access-Control-Request-Headers header. Each header name in the Access-Control-Request-Headers header must match a corresponding entry in the element. Amazon S3 will send only the allowed headers in a response that were requested. Each header string can contain at most one `*` wildcard character. For example, `"x-amz-*"` will enable all Amazon-specific headers.
+
+    - (list(string)) **`expose_headers = null`** _[since v1.1.0]_
+
+        Specify a list of headers in the response that you want customers to be able to access from their applications
+
+    - (string) **`id = null`** _[since v1.1.0]_
+
+        Unique identifier for the cors rule. The value cannot be longer than 255 characters.
+
+    - (number) **`max_age_seconds = null`** _[since v1.1.0]_
+
+        Specify the time in seconds that your browser can cache the response for a preflight request as identified by the resource, the HTTP method, and the origin.
 
 - (object) **`enables_object_lock = null`** _[since v1.0.0]_
 
@@ -557,6 +585,10 @@ module "s3_bucket_object_lock_demo" {
 
             Filters objects by key name suffix
 
+- (string) **`object_ownership = "BucketOwnerEnforced"`** _[since v1.0.0]_
+
+  Control [ownership of objects][s3-object-ownership] written to this bucket from other AWS accounts and the use of access control lists (ACLs). Object ownership determines who can specify access to objects. Valid values: `"BucketOwnerEnforced"`, `"BucketOwnerPreferred"`, `"ObjectWriter"`.
+
 - (string) **`policy = null`** _[since v1.0.0]_
 
     Text of the S3 policy document to attach
@@ -728,6 +760,7 @@ module "s3_bucket_object_lock_demo" {
 [public-access]:https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html
 [s3-bucket-key]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html
 [s3-bucket-replication]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-what-is-isnot-replicated.html
+[s3-cors]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html?icmpid=docs_amazons3_console
 [s3-encryption]:https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html
 [s3-event]:https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations
 [s3-intelligent-tiering]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering.html
@@ -736,6 +769,7 @@ module "s3_bucket_object_lock_demo" {
 [s3-inventory-bucket-permission]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-s3-inventory-1
 [s3-lifecycle]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html
 [s3-object-lock]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+[s3-object-ownership]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-ownership-new-bucket.html
 [s3-requester-pays]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html
 [s3-static-website-hosting]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
 [s3-transfer-acceleration]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
