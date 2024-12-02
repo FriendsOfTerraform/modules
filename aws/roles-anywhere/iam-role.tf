@@ -7,6 +7,7 @@ locals {
           attached_policy_arns = role_value.attached_policy_arns
           trust_anchor_name    = role_value.trust_anchor_name
           conditions           = role_value.conditions
+          permissions_boundary = role_value.permissions_boundary
         }
       ]
     ])
@@ -29,7 +30,8 @@ locals {
 resource "aws_iam_role" "iam_roles" {
   count = length(local.roles)
 
-  name = local.roles[count.index].name
+  name                 = local.roles[count.index].name
+  permissions_boundary = local.roles[count.index].permissions_boundary
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
