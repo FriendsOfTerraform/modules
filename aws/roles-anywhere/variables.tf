@@ -23,7 +23,7 @@ variable "profiles" {
       attached_policy_arns = list(string)
       trust_anchor_name    = string
       conditions           = optional(map(string))
-      permissions_boundary = string
+      permissions_boundary = optional(string)
     }))
 
     additional_tags             = optional(map(string), {})
