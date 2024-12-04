@@ -19,7 +19,7 @@ This module will build and configure [AWS IAM Roles Anywhere][iam-roles-anywhere
 
 ```terraform
 module "rolesanywhere" {
-  source = "github.com/FriendsOfTerraform/aws-roles-anywhere.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-roles-anywhere.git?ref=v1.0.1"
 
   # Manages multiple trust anchors
   trust_anchors = {
@@ -135,6 +135,10 @@ module "rolesanywhere" {
             | x509SAN/DNS     | Subject Alternative Name's DNS         | "instance1.mycompany.com"
             | x509SAN/URI     | Subject Alternative Name's URI         | "spiffe://mycompany.com/instance1"
             | x509SAN/Name/CN | Subject Alternative Name's Common Name | "instance1"
+
+        - (string) **`permissions_boundary = null`** _[since v1.0.1]_
+
+            Specify the ARN of the policy that is used to set the permissions boundary for the role.
 
     - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
