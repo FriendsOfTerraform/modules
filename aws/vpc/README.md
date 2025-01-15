@@ -68,7 +68,7 @@ module "basic_usage" {
       routes = {
         # The key of the route will be the destination
         # The value of the route will be the target
-        # default-internet-gateway refers to the internet gateway this module creates
+        # default-internet-gateway refers to the internet gateway this module created
         "0.0.0.0/0"   = "default-internet-gateway"
         "10.0.10.0/16 = "tgw-012345a9e9dabcdef"
       }
@@ -177,7 +177,7 @@ module "peering_connection_requests" {
   route_tables = {
     "private-route-table" = {
       routes = {
-        # Peering connections made with this module can be referenced by name as a route target
+        # Peering connections created with this module can be referenced by name as a route target
         "10.0.0.0/16"     = "peering-same-acccount-and-region"
         "172.25.100.0/24" = "peering-same-account-different-region"
       }
@@ -496,7 +496,7 @@ module "peering_connection_requests" {
 
 - (map(object)) **`nat_gateways`** _[since v1.0.0]_
 
-    Default NAT gateways. The key of the map is the NAT gateway's name
+    Map of default NAT gateways. The key of the map is the NAT gateway's name
 
     - (string) **`availability_zone`** _[since v1.0.0]_
 
