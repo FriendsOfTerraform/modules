@@ -92,7 +92,7 @@ variable "description" {
 
 variable "enable_ipv6" {
   type        = bool
-  description = ""
+  description = "Whether the IPv6 is enabled for the distribution."
   default     = false
 }
 
@@ -107,7 +107,7 @@ variable "geographic_restrictions" {
 
 variable "max_http_version" {
   type        = string
-  description = "Max HTTP version this distribution supports. HTTP/1.0 and HTTP/1.1 are supported by default"
+  description = "Max HTTP version this distribution supports."
   default     = "http2"
 }
 
@@ -122,7 +122,7 @@ variable "origin_groups" {
 
 variable "price_class" {
   type        = string
-  description = ""
+  description = "Specify the price class for this distribution"
   default     = "PriceClass_All" # "PriceClass_100" "PriceClass_200" "PriceClass_All"
 }
 

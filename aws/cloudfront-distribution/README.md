@@ -23,14 +23,14 @@ module "basic_usage" {
 
   # manages multiple origins
   origins = {
-    # the key of the map is the origin domain name
+    # the key of the map is the origin's domain name
     "psin-test-useast1.s3.us-east-1.amazonaws.com"  = {}
     "psin-test-uswest1.s3.us-west-1.amazonaws.com" = {}
   }
 
   # manages multiple origin groups
   origin_groups = {
-    # the key of the map is the origin group name
+    # the key of the map is the origin group's name
     "s3-group" = {
       origins = [
         "psin-test-useast1.s3.us-east-1.amazonaws.com",
@@ -140,7 +140,6 @@ module "basic_usage" {
 
             When using Lambda@Edge, your function code can access the body of the HTTP request.
 
---------
 - (map(object)) **`origins`** _[since v1.0.0]_
 
     Map of origins for this distribution. Please [see example](#basic-usage)
