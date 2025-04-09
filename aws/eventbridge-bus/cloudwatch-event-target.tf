@@ -35,7 +35,7 @@ resource "aws_cloudwatch_event_target" "event_targets" {
       enable_execute_command  = each.value.ecs_target_config.enable_execute_command
       launch_type             = each.value.ecs_target_config.launch_type
       platform_version        = each.value.ecs_target_config.platform_version
-      propagate_tags          = each.value.ecs_target_config.propagate_tags_from_task_definition
+      propagate_tags          = each.value.ecs_target_config.propagate_tags_from_task_definition ? "TASK_DEFINITION" : null
       task_count              = each.value.ecs_target_config.count
 
       tags = merge(

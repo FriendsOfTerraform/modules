@@ -25,10 +25,7 @@ variable "rules" {
 
       # TODO: task_group, placement_constraint, placement_strategy
       ecs_target_config = optional(object({
-        task_definition_arn                 = string
-        enable_managed_tags                 = optional(bool, true)
-        enable_execute_command              = optional(bool, false)
-        propagate_tags_from_task_definition = optional(bool, false)
+        task_definition_arn = string
 
         network_config = object({
           subnet_ids            = list(string)
@@ -36,10 +33,13 @@ variable "rules" {
           auto_assign_public_ip = optional(bool, false)
         })
 
-        additional_tags  = optional(map(string), {})
-        count            = optional(number, 1)
-        launch_type      = optional(string, null)
-        platform_version = optional(number, null)
+        additional_tags                     = optional(map(string), {})
+        count                               = optional(number, 1)
+        enable_execute_command              = optional(bool, false)
+        enable_managed_tags                 = optional(bool, true)
+        launch_type                         = optional(string, null)
+        platform_version                    = optional(string, "LATEST")
+        propagate_tags_from_task_definition = optional(bool, false)
 
         capacity_provider_strategy = optional(map(object({
           weight = number
@@ -71,7 +71,7 @@ variable "rules" {
 
 variable "additional_tags" {
   type        = map(string)
-  description = "Additional tags for the kubernetes cluster"
+  description = "Additional tags for the event bus"
   default     = {}
 }
 
