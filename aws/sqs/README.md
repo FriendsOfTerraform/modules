@@ -62,8 +62,6 @@ module "dead_letter_queue_destination" {
 
 ### Lambda Triggers
 
-The following example demonstrates how to enable [Lambda enhanced monitoring][lambda-enhanced-monitoring]. This feature requires the LambdaInsightsExtension, you can get a list of available versions [from here][lambda-insight-extension-versions].
-
 ```terraform
 module "lambda_triggers" {
   source = "github.com/FriendsOfTerraform/aws-sqs.git?ref=v1.0.0"
@@ -231,4 +229,4 @@ module "lambda_triggers" {
 
     The URL of the SQS queue. Same as `sqs_queue_id`
 
-[lambda-event-source-mapping-filter-rule-syntax]:https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations
+[lambda-event-source-mapping-filter-rule-syntax]:https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax
