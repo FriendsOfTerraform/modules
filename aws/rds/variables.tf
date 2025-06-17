@@ -114,6 +114,12 @@ variable "cluster_instances" {
   default     = {}
 }
 
+variable "database_insights" {
+  type        = string
+  description = "The mode of Database Insights that is enabled for the cluster or the instance. Valid values: standard, advanced"
+  default     = "standard"
+}
+
 variable "db_name" {
   type        = string
   description = "The name of the database to create when the DB instance is created. If this parameter is not specified, no database is created in the DB instance."
@@ -191,6 +197,39 @@ variable "option_group" {
   type        = string
   description = "Specify the name of the option group to be attached to the instance"
   default     = null
+}
+
+variable "proxies" {
+  type = map(object({
+    authentications = map(object({
+      client_authentication_type = string
+      allow_iam_authentication   = optional(bool, false)
+    }))
+
+    security_group_ids = list(string)
+    subnet_ids         = list(string)
+
+    additional_endpoints = optional(map(object({
+      security_group_ids = optional(list(string), null)
+      subnet_ids         = optional(list(string), null)
+      target_role        = optional(string, "READ_WRITE")
+    })), null)
+
+    activate_enhanced_logging        = optional(bool, false)
+    additional_tags                  = optional(map(string), {})
+    iam_role_arn                     = optional(string, null)
+    idle_client_connection_timeout   = optional(string, "30 minutes")
+    require_transport_layer_security = optional(bool, false)
+    target_group_config = optional(object({
+      connection_borrow_timeout           = optional(string, "2 minutes")
+      connection_pool_maximum_connections = optional(number, 100)
+      initalization_query                 = optional(string, null)
+      max_idle_connections_percent        = optional(number, 50)
+      session_pinning_filters             = optional(list(string), null)
+    }), {})
+  }))
+  description = "Manages multiple RDS proxies"
+  default     = {}
 }
 
 variable "serverless_capacity" {
