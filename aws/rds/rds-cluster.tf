@@ -36,6 +36,17 @@ resource "aws_rds_cluster" "multi_az_cluster" {
   # Database Authentication
   iam_database_authentication_enabled = var.authentication_config.iam_database_authentication != null ? var.authentication_config.iam_database_authentication.enabled : null
 
+  # Monitoring
+  database_insights_mode                = var.database_insights
+  performance_insights_enabled          = local.is_performance_insight_enabled
+  performance_insights_retention_period = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.retention_period : null
+  performance_insights_kms_key_id       = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.kms_key_id : null
+  monitoring_interval                   = local.is_enhanced_monitoring_enabled ? var.monitoring_config.enable_enhanced_monitoring.interval : 0
+
+  monitoring_role_arn = local.is_enhanced_monitoring_enabled ? (
+    var.monitoring_config.enable_enhanced_monitoring.iam_role_arn != null ? var.monitoring_config.enable_enhanced_monitoring.iam_role_arn : aws_iam_role.rds_enhanced_monitoring[0].arn
+  ) : null
+
   # Additional Configuration
   # Database Options
   db_cluster_parameter_group_name = var.db_cluster_parameter_group
@@ -114,6 +125,17 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
   # Database Authentication
   iam_database_authentication_enabled = var.authentication_config.iam_database_authentication != null ? var.authentication_config.iam_database_authentication.enabled : null
+
+  # Monitoring
+  database_insights_mode                = var.database_insights
+  performance_insights_enabled          = local.is_performance_insight_enabled
+  performance_insights_retention_period = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.retention_period : null
+  performance_insights_kms_key_id       = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.kms_key_id : null
+  monitoring_interval                   = local.is_enhanced_monitoring_enabled ? var.monitoring_config.enable_enhanced_monitoring.interval : 0
+
+  monitoring_role_arn = local.is_enhanced_monitoring_enabled ? (
+    var.monitoring_config.enable_enhanced_monitoring.iam_role_arn != null ? var.monitoring_config.enable_enhanced_monitoring.iam_role_arn : aws_iam_role.rds_enhanced_monitoring[0].arn
+  ) : null
 
   # Additional Configuration
   # Database Options

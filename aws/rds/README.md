@@ -12,6 +12,7 @@ This module will build and configure an [RDS](https://aws.amazon.com/rds/) insta
     - [Multi-AZ Cluster](#multi-az-cluster)
     - [Aurora Regional Cluster](#aurora-regional-cluster)
     - [Aurora Global Cluster](#aurora-global-cluster)
+    - [RDS Proxies](#rds-proxies)
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
@@ -23,7 +24,7 @@ This module will build and configure an [RDS](https://aws.amazon.com/rds/) insta
 
 ```terraform
 module "rds_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
 
   engine = {
     type    = "mysql"
@@ -59,7 +60,7 @@ module "rds_demo" {
 
 ```terraform
 module "multiazinstance_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
 
   engine = {
     type    = "mysql"
@@ -122,7 +123,7 @@ module "multiazinstance_demo" {
 
 ```terraform
 module "multiazcluster_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
 
   engine = {
     type    = "mysql"
@@ -159,7 +160,7 @@ module "multiazcluster_demo" {
 
 ```terraform
 module "aurora_regional_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
 
   engine = {
     type    = "aurora-mysql"
@@ -219,7 +220,7 @@ module "aurora_regional_demo" {
 
 ```terraform
 module "aurora_global_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
 
   # Creates a new global cluster
   aurora_global_cluster = {
@@ -274,6 +275,55 @@ module "aurora_global_demo" {
 }
 ```
 
+### RDS Proxies
+
+```terraform
+module "rds_proxies" {
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
+
+  name           = "demo-db"
+  instance_class = "db.t4g.medium"
+
+  engine = {
+    type    = "postgres"
+    version = "14.17"
+  }
+
+  authentication_config = {
+    db_master_account = {
+      username                           = "postgres"
+      manage_password_in_secrets_manager = true
+    }
+  }
+
+  networking_config = {
+    db_subnet_group_name = "default"
+    security_group_ids   = ["sg-01230e2abcdef"]
+    ca_cert_identifier   = "rds-ca-rsa2048-g1"
+  }
+
+  proxies = {
+    # The keys of the map are the proxies' name
+    demo-proxy = {
+      security_group_ids = ["sg-04e232731f6abcdef"]
+      subnet_ids         = ["subnet-abcdef012345", "subnet-543210fedcba"]
+
+      # Manages multiple authentications
+      authentications = {
+        # The keys of the map are secrets manager arn for the DB users
+        "arn:aws:secretsmanager:us-east-1:111122223333:secret:demo-db-user" = { client_authentication_type = "POSTGRES_SCRAM_SHA_256" }
+      }
+
+      # You can create multiple additional endpoints beside the default one
+      additional_endpoints = {
+        # The keys of the map are the endpoints' name
+        demo-proxy-read-only = { target_role = "READ_ONLY" }
+      }
+    }
+  }
+}
+```
+
 ## Argument Reference
 
 ### Mandatory
@@ -302,7 +352,7 @@ module "aurora_global_demo" {
 
             Password for the master DB user. Mutually exclusive with `manage_password_in_secrets_manager`
 
-    - (bool) **`iam_database_authentication = null`** _[since v1.0.0]_
+    - (object) **`iam_database_authentication = null`** _[since v1.0.0]_
 
         Configures [AWS Identity and Access Management (IAM) accounts to database accounts][rds-iam-db-authentication]. Cannot be used when `deployment_option = "MultiAZCluster"`. Plesae refer to the following documentations for instruction to each DB engine.
 
@@ -435,6 +485,10 @@ module "aurora_global_demo" {
 
             Specify whether the RDS instance is publicly accessible
 
+- (string) **`database_insights = "standard"`** _[since v1.0.0]_
+
+    The mode of Database Insights that is enabled for the cluster or the instance. Valid values: `"standard"`, `"advanced"`
+
 - (string) **`db_name = null`** _[since v1.0.0]_
 
     The name of the database to create when the DB instance or cluster is created. If this parameter is not specified, no database is created.
@@ -522,6 +576,90 @@ module "aurora_global_demo" {
 - (string) **`option_group = null`** _[since v1.0.0]_
 
     Specify the name of the [option group][rds-option-group] to be attached to the instance
+
+- (map(object)) **`proxies = {}`** _[since v1.1.0]_
+
+    Manages multiple RDS proxies that are associated to the DB cluster or instance. Please see [example](#rds-proxies)
+
+    - (map(object)) **`authentications`** _[since v1.1.0]_
+
+        Managers multiple authentication configurations. The key of the map will be the Secrets Manager secrets representing the credentials for database user accounts that the proxy can use.
+
+      - (string) **`client_authentication_type`** _[since v1.1.0]_
+
+          The method that the proxy uses to authenticate connections from clients. Valid values: `"MYSQL_CACHING_SHA2_PASSWORD"`, `"MYSQL_NATIVE_PASSWORD"`, `"POSTGRES_SCRAM_SHA_256"`, `"POSTGRES_MD5"`
+
+      - (bool) **`allow_iam_authentication = false`** _[since v1.1.0]_
+
+          Whether to require or disallow Amazon Web Services Identity and Access Management (IAM) authentication for connections to the proxy
+
+    - (list(string)) **`security_group_ids`** _[since v1.1.0]_
+
+        One or more RDS security groups to allow access to your proxy
+
+    - (list(string)) **`subnet_ids`** _[since v1.1.0]_
+
+        List of subnets the database can use in the VPC that you selected. A minimum of 2 subnets in different Availability Zones is required for the proxy.
+
+    - (map(object)) **`additional_endpoints = null`** _[since v1.1.0]_
+
+        Manages additional endpoints beside the default
+
+      - (list(string)) **`security_group_ids = null`** _[since v1.1.0]_
+
+          One or more RDS security groups to allow access to your proxy. If not specified, the security_group_ids of the proxy will be used.
+
+      - (list(string)) **`subnet_ids = null`** _[since v1.1.0]_
+
+          List of subnets the database can use in the VPC that you selected. A minimum of 2 subnets in different Availability Zones is required for the proxy. If not specified, the subnet_ids of the proxy will be used.
+
+      - (string) **`target_role = "READ_WRITE"`** _[since v1.1.0]_
+
+          Defines how the workload for this proxy endpoint will be used. Valid values: `"READ_WRITE"`, `"READ_ONLY"`
+
+    - (bool) **`activate_enhanced_logging = false`** _[since v1.1.0]_
+
+        With enhanced logging, details of queries processed by the proxy are logged and published to CloudWatch Logs.
+
+    - (map(object)) **`additional_tags = {}`** _[since v1.1.0]_
+
+        Additional tags that are attached to the proxy
+
+    - (string) **`iam_role_arn = null`** _[since v1.1.0]_
+
+        ARN of the IAM role the proxy will use to access the AWS Secrets Manager secrets specified in `authentications`. If unspecified, an IAM role will be created with read permissions to all the secrets specified in `authentications`.
+
+    - (string) **`idle_client_connection_timeout = "30 minutes"`** _[since v1.1.0]_
+
+        Idle connection from your application are closed after the specified time. Valid value: `"1 minute" - "8 hours"`
+
+    - (bool) **`require_transport_layer_security = false`** _[since v1.1.0]_
+
+        whether Transport Layer Security (TLS) encryption is required for connections to the proxy
+
+    - (object) **`target_group_config = {}`** _[since v1.1.0]_
+
+        Manages the default target group's configuration
+
+      - (string) **`connection_borrow_timeout = "2 minutes"`** _[since v1.1.0]_
+
+          Timeout for borrowing DB connection from the pool. Valid values: `"1 second" - "5 minutes"`
+
+      - (number) **`connection_pool_maximum_connections = 100`** _[since v1.1.0]_
+
+          Specify the maximum allowed connections, as a percentage of the maximum connection limit of your database. For example, if you have set the maximum connections to 5,000 connections, specifying `50` allows your proxy to create up to 2,500 connections to the database.
+
+      - (string) **`initalization_query = null`** _[since v1.1.0]_
+
+          Specify one or more SQL statements to set up the initial session state for each connection. Separate statements with semicolons.
+
+      - (number) **`max_idle_connections_percent = 50`** _[since v1.1.0]_
+
+          Controls how actively the proxy closes idle database connections in the connection pool. A high value enables the proxy to leave a high percentage of idle connections open. A low value causes the proxy to close idle client connections and return the underlying database connections to the connection pool. For Aurora MySQL, it is expressed as a percentage of the max_connections setting for the RDS DB instance or Aurora DB cluster used by the target group.
+
+      - (list(string)) **`session_pinning_filters = null`** _[since v1.1.0]_
+
+          Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection. Including an item in the list exempts that class of SQL operations from the pinning behavior. This setting is only supported for MySQL engine family databases. Valid values: `"EXCLUDE_VARIABLE_SETS"`
 
 - (object) **`serverless_capacity = null`** _[since v1.0.0]_
 

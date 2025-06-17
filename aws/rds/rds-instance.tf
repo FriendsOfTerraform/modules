@@ -42,6 +42,7 @@ resource "aws_db_instance" "db_instance" {
   iam_database_authentication_enabled = var.authentication_config.iam_database_authentication != null ? var.authentication_config.iam_database_authentication.enabled : null
 
   # Monitoring
+  database_insights_mode                = var.database_insights
   performance_insights_enabled          = local.is_performance_insight_enabled
   performance_insights_retention_period = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.retention_period : null
   performance_insights_kms_key_id       = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.kms_key_id : null
