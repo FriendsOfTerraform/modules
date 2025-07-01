@@ -13,6 +13,7 @@ This module will build and configure an [RDS](https://aws.amazon.com/rds/) insta
     - [Aurora Regional Cluster](#aurora-regional-cluster)
     - [Aurora Global Cluster](#aurora-global-cluster)
     - [RDS Proxies](#rds-proxies)
+    - [Cloudwatch Alarms](#cloudwatch-alarms)
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
@@ -24,7 +25,7 @@ This module will build and configure an [RDS](https://aws.amazon.com/rds/) insta
 
 ```terraform
 module "rds_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
 
   engine = {
     type    = "mysql"
@@ -60,7 +61,7 @@ module "rds_demo" {
 
 ```terraform
 module "multiazinstance_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
 
   engine = {
     type    = "mysql"
@@ -123,7 +124,7 @@ module "multiazinstance_demo" {
 
 ```terraform
 module "multiazcluster_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
 
   engine = {
     type    = "mysql"
@@ -160,7 +161,7 @@ module "multiazcluster_demo" {
 
 ```terraform
 module "aurora_regional_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
 
   engine = {
     type    = "aurora-mysql"
@@ -182,6 +183,21 @@ module "aurora_regional_demo" {
       # The name of the db users must already existed in the DB
       # IAM policies must be attached to an IAM principal
       create_iam_policies_for_db_users = ["peter", "jane"]
+    }
+  }
+
+  # Manages multiple auto scaling policies
+  auto_scaling_policies = {
+    # The keys of the map are the policy names
+    scale_by_cpu = {
+      target_metric = {
+        average_cpu_utilization_of_aurora_replicas = 60
+      }
+    }
+    scale_by_number_of_connections = {
+      target_metric = {
+        average_connections_of_aurora_replicas = 100
+      }
     }
   }
 
@@ -220,7 +236,7 @@ module "aurora_regional_demo" {
 
 ```terraform
 module "aurora_global_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
 
   # Creates a new global cluster
   aurora_global_cluster = {
@@ -279,7 +295,7 @@ module "aurora_global_demo" {
 
 ```terraform
 module "rds_proxies" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v1.1.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
 
   name           = "demo-db"
   instance_class = "db.t4g.medium"
@@ -320,6 +336,73 @@ module "rds_proxies" {
         demo-proxy-read-only = { target_role = "READ_ONLY" }
       }
     }
+  }
+}
+```
+
+### Cloudwatch Alarms
+
+```terraform
+module "cloudwatch_alarms" {
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
+
+  name                = "aurora-demo"
+  db_name             = "demo"
+  instance_class      = "db.t3.medium"
+  skip_final_snapshot = true
+
+  engine = {
+    type    = "aurora-postgresql"
+    version = "14.15"
+  }
+
+  cluster_instances = {
+    primary = {
+      failover_priority = 0
+
+      monitoring_config = {
+        cloudwatch_alarms = {
+          # The key of the map are the alarms' name
+          freeable-memory-anomaly = {
+            metric_name            = "FreeableMemory"
+            expression             = "average < 1000000000"
+            notification_sns_topic = "arn:aws:sns:us-east-1:111122223333:email-admin"
+          }
+
+          cpu-utilization = {
+            metric_name            = "CPUUtilization"
+            expression             = "average >= 85"
+            notification_sns_topic = "arn:aws:sns:us-east-1:111122223333:email-admin"
+          }
+        }
+      }
+    }
+
+    secondary = {
+      failover_priority = 1
+
+      monitoring_config = {
+        cloudwatch_alarms = {
+          cpu-utilization = {
+            metric_name            = "CPUUtilization"
+            expression             = "average >= 85"
+            notification_sns_topic = "arn:aws:sns:us-east-1:111122223333:email-admin"
+          }
+        }
+      }
+    }
+  }
+
+  authentication_config = {
+    db_master_account = {
+      username                           = "postgres"
+      manage_password_in_secrets_manager = true
+    }
+  }
+
+  networking_config = {
+    db_subnet_group_name = "default"
+    security_group_ids   = ["sg-01234593f7eabcdef"]
   }
 }
 ```
@@ -449,6 +532,42 @@ module "rds_proxies" {
 
         Specify the name of the global cluster to be created. Cannot be used with `join_existing_global_cluster`
 
+- (map(object)) **`auto_scaling_policies = {}`** _[since v2.0.0]_
+
+    Manages multiple auto scaling policies. Only applicable to Aurora clusters. Please see [example](#aurora-regional-cluster)
+
+    - (object) **`target_metric`** _[since v2.0.0]_
+
+        The cloudwatch metric to monitor for scaling. Must specify one of the following.
+
+      - (number) **`average_cpu_utilization_of_aurora_replicas = null`** _[since v2.0.0]_
+
+          The average value of the CPUUtilization metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
+
+      - (number) **`average_connections_of_aurora_replicas = null`** _[since v2.0.0]_
+
+          The average value of the DatabaseConnections metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
+
+    - (bool) **`enable_scale_in = true`** _[since v2.0.0]_
+
+        Allow this Auto Scaling policy to remove Aurora Replicas. Aurora Replicas created by you are not removed by Auto Scaling.
+
+    - (number) **`maximum_capacity = 15`** _[since v2.0.0]_
+
+        Specify the maximum number of Aurora Replicas to maintain. Up to 15 Aurora Replicas are supported.
+
+    - (number) **`minimum_capacity = 1`** _[since v2.0.0]_
+
+        Specify the minimum number of Aurora Replicas to maintain.
+
+    - (string) **`scale_in_cooldown_period = "5 minutes"`** _[since v2.0.0]_
+
+        Specify the number of seconds to wait between scale-in actions.
+
+    - (string) **`scale_out_cooldown_period = "5 minutes"`** _[since v2.0.0]_
+
+        Specify the number of seconds to wait between scale-out actions.
+
 - (list(string)) **`cloudwatch_log_exports = null`** _[since v1.0.0]_
 
     Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine). MySQL and MariaDB: `"audit"`, `"error"`, `"general"`, `"slowquery"`. PostgreSQL: `"postgresql"`.
@@ -472,6 +591,62 @@ module "rds_proxies" {
     - (string) **`instance_class = null`** _[since v1.0.0]_
 
         Specify the DB instance class for the individual instance. Do not use for serverless cluster. See [example](#aurora-global-cluster)
+
+    - (object) **`monitoring_config = {}`** _[since v2.0.0]_
+
+        Configures RDS monitoring options for individual cluster instances
+
+        - (map(object)) **`cloudwatch_alarms = {}`** _[since v2.0.0]_
+
+            Configures multiple Cloudwatch alarms. Please see [example](#cloudwatch-alarms)
+
+          - (string) **`metric_name`** _[since v2.0.0]_
+
+              The metric to monitor. Please refer to [this document][aurora-cloudwatch-metrics] for more information
+
+          - (string) **`expression`** _[since v2.0.0]_
+
+            The expression in `<statistic> <operator> <unit>` format. For example: `"Average < 50"`
+
+          - (string) **`notification_sns_topic`** _[since v2.0.0]_
+
+            The SNS topic where notification will be sent
+
+          - (string) **`description = null`** _[since v2.0.0]_
+
+            The description of the alarm
+
+          - (number) **`evaluation_periods = 1`** _[since v2.0.0]_
+
+            The number of periods over which data is compared to the specified threshold.
+
+          - (string) **`period = "1 minute"`** _[since v2.0.0]_
+
+            The period in seconds over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
+
+        - (object) **`enable_enhanced_monitoring = null`** _[since v2.0.0]_
+
+            Enables [RDS enhanced monitoring][rds-enhanced-monitoring].
+
+            - (number) **`interval`** _[since v2.0.0]_
+
+                Interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. Valid Values: `0`, `1`, `5`, `10`, `15`, `30`, `60`.
+
+            - (string) **`iam_role_arn = null`** _[since v2.0.0]_
+
+                ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Please refer to [this documentation][rds-enhanced-monitoring-iam-requirement] for information of the required IAM permissions. One will be created if not specified.
+
+        - (object) **`enable_performance_insight = null`** _[since v2.0.0]_
+
+            Enables [RDS performance insight][rds-performance-insight]
+
+            - (number) **`retention_period`** _[since v2.0.0]_
+
+                Amount of time in days to retain Performance Insights data. Valid values are `7`, `731` (2 years) or a `multiple of 31`.
+
+            - (string) **`kms_key_id = null`** _[since v2.0.0]_
+
+                ARN for the KMS key to encrypt Performance Insights data.
 
     - (object) **`networking_config = null`** _[since v1.0.0]_
 
@@ -527,9 +702,9 @@ module "rds_proxies" {
 
 - (object) **`enable_encryption = null`** _[since v1.0.0]_
 
-    Enables [RDS DB encryption][rds-db-encryption] to encrypt the DB instance
+    Enables [RDS DB encryption][rds-db-encryption] to encrypt the DB instance's underlying storage
 
-    - (string) **`kms_key_arn`** _[since v1.0.0]_
+    - (string) **`kms_key_alias`** _[since v1.0.0]_
 
         The KMS CMK used to encrypt the DB and storage
 
@@ -545,13 +720,42 @@ module "rds_proxies" {
 
         Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window
 
-- (object) **`monitoring_config = null`** _[since v1.0.0]_
+- (object) **`monitoring_config = {}`** _[since v1.0.0]_
 
     Configures RDS monitoring options
 
+    - (map(object)) **`cloudwatch_alarms = {}`** _[since v2.0.0]_
+
+        Configures multiple Cloudwatch alarms. Please see [example](#cloudwatch-alarms)
+
+      - (string) **`metric_name`** _[since v2.0.0]_
+
+          The metric to monitor. Please refer to [this document][rds-cloudwatch-metrics] for more information
+
+      - (string) **`expression`** _[since v2.0.0]_
+
+        The expression in `<statistic> <operator> <unit>` format. For example: `"Average < 50"`
+
+      - (string) **`notification_sns_topic`** _[since v2.0.0]_
+
+        The SNS topic where notification will be sent
+
+      - (string) **`description = null`** _[since v2.0.0]_
+
+        The description of the alarm
+
+      - (number) **`evaluation_periods = 1`** _[since v2.0.0]_
+
+        The number of periods over which data is compared to the specified threshold.
+
+      - (string) **`period = "1 minute"`** _[since v2.0.0]_
+
+        The period in seconds over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
+
+
     - (object) **`enable_enhanced_monitoring = null`** _[since v1.0.0]_
 
-        Enables [RDS enhanced monitoring][rds-enhanced-monitoring]
+        Enables [RDS enhanced monitoring][rds-enhanced-monitoring]. If this is enabled when using a cluster setup, you can no longer enable enhanced monitoring in each individual cluster instances.
 
         - (number) **`interval`** _[since v1.0.0]_
 
@@ -752,6 +956,7 @@ module "rds_proxies" {
     The map of IAM policy ARNs for RDS connect. Only available when `authentication_config.iam_database_authentication.enabled = true`
 
 [aurora-capacity-unit]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html
+[aurora-cloudwatch-metrics]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.AuroraMonitoring.Metrics.html
 [aurora-db-instance-class]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
 [aurora-failover-priority]:https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
 [db-instance-class]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
@@ -764,6 +969,7 @@ module "rds_proxies" {
 [rds-enhanced-monitoring-iam-requirement]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html#USER_Monitoring.OS.Enabling.Prerequisites
 [rds-iam-authentication-policy]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html
 [rds-iam-db-authentication]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html
+[rds-cloudwatch-metrics]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html
 [rds-multi-az-instance]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html
 [rds-multi-az-cluster]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html
 [rds-performance-insight]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.Overview.html

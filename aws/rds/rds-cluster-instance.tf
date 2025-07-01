@@ -27,14 +27,14 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   ) : var.networking_config.enable_public_access != null ? var.networking_config.enable_public_access : null
 
   # Monitoring
-  performance_insights_enabled          = local.is_performance_insight_enabled
-  performance_insights_retention_period = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.retention_period : null
-  performance_insights_kms_key_id       = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.kms_key_id : null
-  monitoring_interval                   = local.is_enhanced_monitoring_enabled ? var.monitoring_config.enable_enhanced_monitoring.interval : 0
+  performance_insights_enabled          = local.is_performance_insight_enabled ? true : each.value.monitoring_config.enable_performance_insight != null
+  performance_insights_retention_period = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.retention_period : (each.value.monitoring_config.enable_performance_insight != null ? each.value.monitoring_config.enable_performance_insight.retention_period : null)
+  performance_insights_kms_key_id       = local.is_performance_insight_enabled ? var.monitoring_config.enable_performance_insight.kms_key_id : (each.value.monitoring_config.enable_performance_insight != null ? each.value.monitoring_config.enable_performance_insight.kms_key_id : null)
+  monitoring_interval                   = local.is_enhanced_monitoring_enabled ? var.monitoring_config.enable_enhanced_monitoring.interval : (each.value.monitoring_config.enable_enhanced_monitoring != null ? each.value.monitoring_config.enable_enhanced_monitoring.interval : 0)
 
   monitoring_role_arn = local.is_enhanced_monitoring_enabled ? (
     var.monitoring_config.enable_enhanced_monitoring.iam_role_arn != null ? var.monitoring_config.enable_enhanced_monitoring.iam_role_arn : aws_iam_role.rds_enhanced_monitoring[0].arn
-  ) : null
+  ) : (each.value.monitoring_config.enable_enhanced_monitoring != null ? each.value.monitoring_config.enable_enhanced_monitoring.iam_role_arn != null ? each.value.monitoring_config.enable_enhanced_monitoring.iam_role_arn : aws_iam_role.rds_enhanced_monitoring[0].arn : null)
 
   # Additional Configuration
   # Database Options
@@ -46,8 +46,8 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   copy_tags_to_snapshot = var.enable_automated_backup != null ? var.enable_automated_backup.copy_tags_to_snapshot : false
 
   # Maintenance
-  auto_minor_version_upgrade   = var.maintenance_config != null ? var.maintenance_config.enable_auto_minor_version_upgrade : true
-  preferred_maintenance_window = var.maintenance_config != null ? var.maintenance_config.window : null
+  auto_minor_version_upgrade   = each.value.maintenance_config.enable_auto_minor_version_upgrade != null ? each.value.maintenance_config.enable_auto_minor_version_upgrade : (var.maintenance_config != null ? var.maintenance_config.enable_auto_minor_version_upgrade : true)
+  preferred_maintenance_window = each.value.maintenance_config.window != null ? each.value.maintenance_config.window : (var.maintenance_config != null ? var.maintenance_config.window : null)
 
   tags = merge(
     local.common_tags,
