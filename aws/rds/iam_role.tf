@@ -1,6 +1,8 @@
 resource "aws_iam_role" "rds_enhanced_monitoring" {
   count = local.is_enhanced_monitoring_enabled ? (
     var.monitoring_config.enable_enhanced_monitoring.iam_role_arn != null ? 0 : 1
+    ) : length(local.is_enhanced_monitoring_enabled_on_cluster_instances) > 0 ? (
+    length({ for k, v in local.is_enhanced_monitoring_enabled_on_cluster_instances : k => v if v.monitoring_config.enable_enhanced_monitoring.iam_role_arn == null }) > 0 ? 1 : 0
   ) : 0
 
   assume_role_policy = jsonencode({
@@ -29,6 +31,8 @@ resource "aws_iam_role" "rds_enhanced_monitoring" {
 resource "aws_iam_role_policy_attachment" "rds_enhanced_monitoring" {
   count = local.is_enhanced_monitoring_enabled ? (
     var.monitoring_config.enable_enhanced_monitoring.iam_role_arn != null ? 0 : 1
+    ) : length(local.is_enhanced_monitoring_enabled_on_cluster_instances) > 0 ? (
+    length({ for k, v in local.is_enhanced_monitoring_enabled_on_cluster_instances : k => v if v.monitoring_config.enable_enhanced_monitoring.iam_role_arn == null }) > 0 ? 1 : 0
   ) : 0
 
   role       = aws_iam_role.rds_enhanced_monitoring[0].name

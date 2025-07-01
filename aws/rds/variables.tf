@@ -27,11 +27,6 @@ variable "engine" {
   description = "Specify database engine options."
 }
 
-variable "instance_class" {
-  type        = string
-  description = "The instance type of the RDS instance."
-}
-
 variable "name" {
   type        = string
   description = "Specify the name of the RDS instance or RDS Cluster"
@@ -105,6 +100,27 @@ variable "cluster_instances" {
     failover_priority  = optional(number)
     instance_class     = optional(string)
 
+    monitoring_config = optional(object({
+      cloudwatch_alarms = optional(map(object({
+        metric_name            = string
+        expression             = string # statistic comparison_operator threshold
+        notification_sns_topic = string
+        description            = optional(string, null)
+        evaluation_periods     = optional(number, 1)
+        period                 = optional(string, "1 minute")
+      })), {})
+
+      enable_enhanced_monitoring = optional(object({
+        interval     = number
+        iam_role_arn = optional(string)
+      }))
+
+      enable_performance_insight = optional(object({
+        retention_period = number
+        kms_key_id       = optional(string)
+      }))
+    }), {})
+
     networking_config = optional(object({
       availability_zone    = optional(string)
       enable_public_access = optional(bool)
@@ -112,12 +128,6 @@ variable "cluster_instances" {
   }))
   description = "Manages multiple cluster instances for aurora cluster"
   default     = {}
-}
-
-variable "database_insights" {
-  type        = string
-  description = "The mode of Database Insights that is enabled for the cluster or the instance. Valid values: standard, advanced"
-  default     = "standard"
 }
 
 variable "db_name" {
@@ -162,9 +172,15 @@ variable "enable_automated_backup" {
 
 variable "enable_encryption" {
   type = object({
-    kms_key_arn = string
+    kms_key_alias = optional(string, "aws/rds")
   })
   description = "Enable RDS encryption"
+  default     = null
+}
+
+variable "instance_class" {
+  type        = string
+  description = "The instance type of the RDS instance"
   default     = null
 }
 
@@ -179,6 +195,17 @@ variable "maintenance_config" {
 
 variable "monitoring_config" {
   type = object({
+    cloudwatch_alarms = optional(map(object({
+      metric_name            = string
+      expression             = string # statistic comparison_operator threshold
+      notification_sns_topic = string
+      description            = optional(string, null)
+      evaluation_periods     = optional(number, 1)
+      period                 = optional(string, "1 minute")
+    })), {})
+
+    database_insights = optional(string, "standard")
+
     enable_enhanced_monitoring = optional(object({
       interval     = number
       iam_role_arn = optional(string)
@@ -190,7 +217,7 @@ variable "monitoring_config" {
     }))
   })
   description = "Configures RDS monitoring options"
-  default     = null
+  default     = {}
 }
 
 variable "option_group" {
