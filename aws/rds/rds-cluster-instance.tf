@@ -46,8 +46,8 @@ resource "aws_rds_cluster_instance" "cluster_instances" {
   copy_tags_to_snapshot = var.enable_automated_backup != null ? var.enable_automated_backup.copy_tags_to_snapshot : false
 
   # Maintenance
-  auto_minor_version_upgrade   = var.maintenance_config != null ? var.maintenance_config.enable_auto_minor_version_upgrade : true
-  preferred_maintenance_window = var.maintenance_config != null ? var.maintenance_config.window : null
+  auto_minor_version_upgrade   = each.value.maintenance_config.enable_auto_minor_version_upgrade != null ? each.value.maintenance_config.enable_auto_minor_version_upgrade : (var.maintenance_config != null ? var.maintenance_config.enable_auto_minor_version_upgrade : true)
+  preferred_maintenance_window = each.value.maintenance_config.window != null ? each.value.maintenance_config.window : (var.maintenance_config != null ? var.maintenance_config.window : null)
 
   tags = merge(
     local.common_tags,

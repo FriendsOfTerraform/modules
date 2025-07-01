@@ -116,6 +116,11 @@ variable "cluster_instances" {
     failover_priority  = optional(number)
     instance_class     = optional(string)
 
+    maintenance_config = object({
+      window                            = string
+      enable_auto_minor_version_upgrade = optional(bool, true)
+    })
+
     monitoring_config = optional(object({
       cloudwatch_alarms = optional(map(object({
         metric_name            = string
