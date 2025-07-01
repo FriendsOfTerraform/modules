@@ -186,6 +186,21 @@ module "aurora_regional_demo" {
     }
   }
 
+  # Manages multiple auto scaling policies
+  auto_scaling_policies = {
+    # The keys of the map are the policy names
+    scale_by_cpu = {
+      target_metric = {
+        average_cpu_utilization_of_aurora_replicas = 60
+      }
+    }
+    scale_by_number_of_connections = {
+      target_metric = {
+        average_connections_of_aurora_replicas = 100
+      }
+    }
+  }
+
   instance_class = "db.t3.medium"
 
   networking_config = {
@@ -516,6 +531,42 @@ module "cloudwatch_alarms" {
     - (string) **`name = null`** _[since v1.0.0]_
 
         Specify the name of the global cluster to be created. Cannot be used with `join_existing_global_cluster`
+
+- (map(object)) **`auto_scaling_policies = {}`** _[since v2.0.0]_
+
+    Manages multiple auto scaling policies. Only applicable to Aurora clusters. Please see [example](#aurora-regional-cluster)
+
+    - (object) **`target_metric`** _[since v2.0.0]_
+
+        The cloudwatch metric to monitor for scaling. Must specify one of the following.
+
+      - (string) **`average_cpu_utilization_of_aurora_replicas = null`** _[since v2.0.0]_
+
+          The average value of the CPUUtilization metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
+
+      - (string) **`average_connections_of_aurora_replicas = null`** _[since v2.0.0]_
+
+          The average value of the DatabaseConnections metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
+
+    - (bool) **`enable_scale_in = true`** _[since v2.0.0]_
+
+        Allow this Auto Scaling policy to remove Aurora Replicas. Aurora Replicas created by you are not removed by Auto Scaling.
+
+    - (number) **`maximum_capacity = 15`** _[since v2.0.0]_
+
+        Specify the maximum number of Aurora Replicas to maintain. Up to 15 Aurora Replicas are supported.
+
+    - (number) **`minimum_capacity = 1`** _[since v2.0.0]_
+
+        Specify the minimum number of Aurora Replicas to maintain.
+
+    - (string) **`scale_in_cooldown_period = "5 minutes"`** _[since v2.0.0]_
+
+        Specify the number of seconds to wait between scale-in actions.
+
+    - (string) **`scale_out_cooldown_period = "5 minutes"`** _[since v2.0.0]_
+
+        Specify the number of seconds to wait between scale-out actions.
 
 - (list(string)) **`cloudwatch_log_exports = null`** _[since v1.0.0]_
 

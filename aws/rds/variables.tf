@@ -87,6 +87,22 @@ variable "aurora_mysql_config" {
   default     = null
 }
 
+variable "auto_scaling_policies" {
+  type = map(object({
+    target_metric = object({
+      average_cpu_utilization_of_aurora_replicas = optional(number, null)
+      average_connections_of_aurora_replicas     = optional(number, null)
+    })
+    enable_scale_in           = optional(bool, true)
+    maximum_capacity          = optional(number, 15)
+    minimum_capacity          = optional(number, 1)
+    scale_in_cooldown_period  = optional(string, "5 minutes")
+    scale_out_cooldown_period = optional(string, "5 minutes")
+  }))
+  description = "Manages multiple auto scaling policies for Aurora cluster"
+  default     = {}
+}
+
 variable "cloudwatch_log_exports" {
   type        = list(string)
   description = "Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported"
