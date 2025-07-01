@@ -540,11 +540,11 @@ module "cloudwatch_alarms" {
 
         The cloudwatch metric to monitor for scaling. Must specify one of the following.
 
-      - (string) **`average_cpu_utilization_of_aurora_replicas = null`** _[since v2.0.0]_
+      - (number) **`average_cpu_utilization_of_aurora_replicas = null`** _[since v2.0.0]_
 
           The average value of the CPUUtilization metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
 
-      - (string) **`average_connections_of_aurora_replicas = null`** _[since v2.0.0]_
+      - (number) **`average_connections_of_aurora_replicas = null`** _[since v2.0.0]_
 
           The average value of the DatabaseConnections metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
 
