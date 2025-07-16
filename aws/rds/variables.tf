@@ -285,7 +285,7 @@ variable "restore" {
     from_snapshot = optional(string, null)
   })
   description = "Restoring DB form a snapshot"
-  default = {}
+  default     = {}
 }
 
 variable "serverless_capacity" {
