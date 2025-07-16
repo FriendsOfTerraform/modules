@@ -116,10 +116,10 @@ variable "cluster_instances" {
     failover_priority  = optional(number)
     instance_class     = optional(string)
 
-    maintenance_config = object({
-      window                            = string
-      enable_auto_minor_version_upgrade = optional(bool, true)
-    })
+    maintenance_config = optional(object({
+      window                            = optional(string, null)
+      enable_auto_minor_version_upgrade = optional(bool, null)
+    }), {})
 
     monitoring_config = optional(object({
       cloudwatch_alarms = optional(map(object({
@@ -278,6 +278,14 @@ variable "proxies" {
   }))
   description = "Manages multiple RDS proxies"
   default     = {}
+}
+
+variable "restore" {
+  type = object({
+    from_snapshot = optional(string, null)
+  })
+  description = "Restoring DB form a snapshot"
+  default = {}
 }
 
 variable "serverless_capacity" {

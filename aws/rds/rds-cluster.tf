@@ -14,6 +14,9 @@ resource "aws_rds_cluster" "multi_az_cluster" {
   # Settings
   cluster_identifier = var.name
 
+  # Restore
+  snapshot_identifier = var.restore.from_snapshot
+
   # Credentials Settings
   master_username               = var.authentication_config.db_master_account.username
   master_password               = var.authentication_config.db_master_account.password
@@ -98,6 +101,9 @@ resource "aws_rds_cluster" "aurora_cluster" {
 
   # Settings
   cluster_identifier = var.name
+
+  # Restore
+  snapshot_identifier = var.restore.from_snapshot
 
   # Credentials Settings
   master_username               = var.authentication_config.db_master_account.username

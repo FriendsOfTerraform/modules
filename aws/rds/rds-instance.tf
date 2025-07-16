@@ -13,6 +13,9 @@ resource "aws_db_instance" "db_instance" {
   # Settings
   identifier = var.name
 
+  # Restore
+  snapshot_identifier = var.restore.from_snapshot
+
   # Credentials Settings
   username                      = var.authentication_config.db_master_account.username
   password                      = var.authentication_config.db_master_account.password

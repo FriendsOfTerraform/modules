@@ -25,7 +25,7 @@ This module will build and configure an [RDS](https://aws.amazon.com/rds/) insta
 
 ```terraform
 module "rds_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.1.0"
 
   engine = {
     type    = "mysql"
@@ -61,7 +61,7 @@ module "rds_demo" {
 
 ```terraform
 module "multiazinstance_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.1.0"
 
   engine = {
     type    = "mysql"
@@ -124,7 +124,7 @@ module "multiazinstance_demo" {
 
 ```terraform
 module "multiazcluster_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.1.0"
 
   engine = {
     type    = "mysql"
@@ -161,7 +161,7 @@ module "multiazcluster_demo" {
 
 ```terraform
 module "aurora_regional_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.1.0"
 
   engine = {
     type    = "aurora-mysql"
@@ -236,7 +236,7 @@ module "aurora_regional_demo" {
 
 ```terraform
 module "aurora_global_demo" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.1.0"
 
   # Creates a new global cluster
   aurora_global_cluster = {
@@ -295,7 +295,7 @@ module "aurora_global_demo" {
 
 ```terraform
 module "rds_proxies" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.1.0"
 
   name           = "demo-db"
   instance_class = "db.t4g.medium"
@@ -344,7 +344,7 @@ module "rds_proxies" {
 
 ```terraform
 module "cloudwatch_alarms" {
-  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-rds.git?ref=v2.1.0"
 
   name                = "aurora-demo"
   db_name             = "demo"
@@ -591,6 +591,18 @@ module "cloudwatch_alarms" {
     - (string) **`instance_class = null`** _[since v1.0.0]_
 
         Specify the DB instance class for the individual instance. Do not use for serverless cluster. See [example](#aurora-global-cluster)
+
+    - (object) **`maintenance_config = {}`** _[since v2.0.0]_
+
+        Configures RDS maintenance options. If not specified, the cluster level options will be used.
+
+        - (string) **`window = null`** _[since v2.0.0]_
+
+            Window to perform maintenance in (in UTC). Syntax: `"ddd:hh24:mi-ddd:hh24:mi"`. For example `"Mon:00:00-Mon:03:00"`.
+
+        - (bool) **`enable_auto_minor_version_upgrade = null`** _[since v2.0.0]_
+
+            Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window
 
     - (object) **`monitoring_config = {}`** _[since v2.0.0]_
 
@@ -864,6 +876,14 @@ module "cloudwatch_alarms" {
       - (list(string)) **`session_pinning_filters = null`** _[since v1.1.0]_
 
           Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection. Including an item in the list exempts that class of SQL operations from the pinning behavior. This setting is only supported for MySQL engine family databases. Valid values: `"EXCLUDE_VARIABLE_SETS"`
+
+- (object) **`restore = {}`** _[since v2.1.0]_
+
+    Restore RDS cluster or instance from a particular source.
+
+    - (string) **`from_snapshot = null`** _[since v2.1.0]_
+
+        The snapshot ARN from which RDS restored
 
 - (object) **`serverless_capacity = null`** _[since v1.0.0]_
 
