@@ -25,8 +25,29 @@ variable "attachments" {
   type = map(object({
     additional_tags = optional(map(string), {})
 
+    flow_logs = optional(map(object({
+      destination = object({
+        cloudwatch_logs = optional(object({
+          log_group_arn    = string
+          service_role_arn = optional(string, null)
+        }), null)
+
+        s3 = optional(object({
+          bucket_arn                       = string
+          log_file_format                  = optional(string, "plain-text")
+          enable_hive_compatible_s3_prefix = optional(bool, false)
+          partition_logs_every_hour        = optional(bool, false)
+        }), null)
+      })
+
+      additional_tags          = optional(map(string), {})
+      custom_log_record_format = optional(string, null)
+      filter                   = optional(string, "ALL")
+    })), {})
+
     peering_connection = optional(object({
-      peer_transit_gateway_id = string
+      accept_connection_from  = optional(string, null)
+      peer_transit_gateway_id = optional(string, null)
       peer_account_id         = optional(string, null)
       peer_region             = optional(string, null)
     }), null)
@@ -37,10 +58,73 @@ variable "attachments" {
       enable_dns_support                        = optional(bool, true)
       enable_security_group_referencing_support = optional(bool, true)
       enable_ipv6_support                       = optional(bool, false)
-      enable_application_support                = optional(bool, false)
+      enable_appliance_mode_support             = optional(bool, false)
+    }), null)
+
+    vpn = optional(object({
+      customer_gateway_id                     = string
+      routing_options                         = optional(string, "dynamic")
+      preshared_key_storage                   = optional(string, "Standard")
+      enable_acceleration                     = optional(bool, false)
+      local_ipv4_network_cidr                 = optional(string, "0.0.0.0/0")
+      remote_ipv4_network_cidr                = optional(string, "0.0.0.0/0")
+      outside_ip_address_type                 = optional(string, "PublicIpv4")
+      transport_transit_gateway_attachment_id = optional(string, null)
+
+      tunnel1_options = optional(object({
+        dpd_timeout                              = optional(string, "30 seconds")
+        dpd_timeout_action                       = optional(string, "clear")
+        enable_tunnel_endpoint_lifecycle_control = optional(bool, false)
+        ike_version                              = optional(list(string), ["ikev1", "ikev2"])
+        inside_ipv4_cidr                         = optional(string, null)
+        phase1_dh_group_numbers                  = optional(list(number), [2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
+        phase1_encryption_algorithms             = optional(list(string), ["AES128", "AES256", "AES128-GCM-16", "AES256-GCM-16"])
+        phase1_integrity_algorithms              = optional(list(string), ["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"])
+        phase1_lifetime                          = optional(string, "8 hours")
+        phase2_dh_group_numbers                  = optional(list(number), [2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
+        phase2_encryption_algorithms             = optional(list(string), ["AES128", "AES256", "AES128-GCM-16", "AES256-GCM-16"])
+        phase2_integrity_algorithms              = optional(list(string), ["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"])
+        phase2_lifetime                          = optional(string, "1 hour")
+        preshared_key                            = optional(string, null)
+        rekey_fuzz_percentage                    = optional(number, 100)
+        rekey_margin_time                        = optional(string, "270 seconds")
+        replay_window_size                       = optional(number, 1024)
+        startup_action                           = optional(string, "add")
+
+        enable_tunnel_activity_log = optional(object({
+          cloudwatch_log_group_arn = string
+          output_format            = optional(string, "json")
+        }), null)
+      }), null)
+
+      tunnel2_options = optional(object({
+        dpd_timeout                              = optional(string, "30 seconds")
+        dpd_timeout_action                       = optional(string, "clear")
+        enable_tunnel_endpoint_lifecycle_control = optional(bool, false)
+        ike_version                              = optional(list(string), ["ikev1", "ikev2"])
+        inside_ipv4_cidr                         = optional(string, null)
+        phase1_dh_group_numbers                  = optional(list(number), [2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
+        phase1_encryption_algorithms             = optional(list(string), ["AES128", "AES256", "AES128-GCM-16", "AES256-GCM-16"])
+        phase1_integrity_algorithms              = optional(list(string), ["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"])
+        phase1_lifetime                          = optional(string, "8 hours")
+        phase2_dh_group_numbers                  = optional(list(number), [2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24])
+        phase2_encryption_algorithms             = optional(list(string), ["AES128", "AES256", "AES128-GCM-16", "AES256-GCM-16"])
+        phase2_integrity_algorithms              = optional(list(string), ["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"])
+        phase2_lifetime                          = optional(string, "1 hour")
+        preshared_key                            = optional(string, null)
+        rekey_fuzz_percentage                    = optional(number, 100)
+        rekey_margin_time                        = optional(string, "270 seconds")
+        replay_window_size                       = optional(number, 1024)
+        startup_action                           = optional(string, "add")
+
+        enable_tunnel_activity_log = optional(object({
+          cloudwatch_log_group_arn = string
+          output_format            = optional(string, "json")
+        }), null)
+      }), null)
     }), null)
   }))
-  description = ""
+  description = "Manages multiple transit gateway attachments"
   default     = {}
 }
 
@@ -119,5 +203,16 @@ variable "flow_logs" {
     filter                   = optional(string, "ALL")
   }))
   description = "Configure multiple transit gateway flow logs"
+  default     = {}
+}
+
+variable "route_tables" {
+  type = map(object({
+    additional_tags         = optional(map(string), {})
+    routes                  = optional(map(string), {})
+    attachment_associations = optional(list(string), [])
+    propagations            = optional(list(string), [])
+  }))
+  description = "Manage multiple route tables"
   default     = {}
 }

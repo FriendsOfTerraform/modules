@@ -1,6 +1,6 @@
 resource "aws_ec2_transit_gateway" "transit_gateway" {
   amazon_side_asn                    = var.amazon_side_autonomous_system_numnber
-  auto_accept_shared_attachments     = var.auto_accept_shared_attachments
+  auto_accept_shared_attachments     = var.auto_accept_shared_attachments ? "enable" : "disable"
   default_route_table_association    = var.enable_default_route_table_association ? "enable" : "disable"
   default_route_table_propagation    = var.enable_default_route_table_propagation ? "enable" : "disable"
   description                        = var.description
