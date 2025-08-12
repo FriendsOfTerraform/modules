@@ -70,7 +70,7 @@ module "basic_usage" {
 
 - (list(string)) **`principals = []`** _[since v1.0.0]_
 
-    List of principals to grant afcess of the resources to. Valid values include: `the 12-digits AWS account ID, ARN of an AWS Organization, AWS Organization's OU, IAM role, IAM user, or a Service principal`.
+    List of principals to grant access of the resources to. Valid values include: `the 12-digits AWS account ID, ARN of an AWS Organization, AWS Organization's OU, IAM role, IAM user, or a Service principal`.
 
 - (list(string)) **`resources = []`** _[since v1.0.0]_
 
