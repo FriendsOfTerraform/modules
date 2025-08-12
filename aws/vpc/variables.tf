@@ -102,6 +102,7 @@ variable "peering_connection_requests" {
 variable "route_tables" {
   type = map(object({
     additional_tags     = optional(map(string), {})
+    main_route_table    = optional(bool, false)
     routes              = optional(map(string), {})
     subnet_associations = optional(list(string), [])
   }))
