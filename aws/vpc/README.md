@@ -15,6 +15,7 @@ This module creates and configures a [VPC](https://aws.amazon.com/vpc/) and mult
     - [Optional](#optional)
 - [Outputs](#outputs)
 - [Known Limitations](#known-limitations)
+    - [default route table](#default_route_table)
     - [vpc_endpoint_id conflicts with destination_prefix_list_id](#vpc_endpoint_id-conflicts-with-destination_prefix_list_id)
 
 ## Example Usage
@@ -23,7 +24,7 @@ This module creates and configures a [VPC](https://aws.amazon.com/vpc/) and mult
 
 ```terraform
 module "basic_usage" {
-  source = "github.com/FriendsOfTerraform/aws-vpc.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-vpc.git?ref=v1.1.0"
 
   name = "demo-vpc"
 
@@ -97,7 +98,7 @@ You can create flow logs at the VPC or the subnet level
 
 ```terraform
 module "flow_logs" {
-  source = "github.com/FriendsOfTerraform/aws-vpc.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-vpc.git?ref=v1.1.0"
 
   name = "demo-vpc"
 
@@ -149,7 +150,7 @@ module "flow_logs" {
 
 ```terraform
 module "peering_connection_requests" {
-  source = "github.com/FriendsOfTerraform/aws-vpc.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-vpc.git?ref=v1.1.0"
 
   name = "demo-vpc"
 
@@ -364,6 +365,10 @@ module "peering_connection_requests" {
 
         Additional tags for the route table
 
+    - (bool) **`main_route_table = false`** _[since v1.1.0]_
+
+        Weather this is the main route table. You may only set one route table as the main route table
+
     - (map(string)) **`routes = {}`** _[since v1.0.0]_
 
         Map of routes in the `{ <route_destination> = <route_target> }` format
@@ -567,6 +572,10 @@ module "peering_connection_requests" {
     The ID of the VPC
 
 ## Known Limitations
+
+### default route table
+
+A default route table will be created by the VPC even if a main route table is set. You may delete that default route table as long as it is not set as the main route table.
 
 ### vpc_endpoint_id conflicts with destination_prefix_list_id
 
