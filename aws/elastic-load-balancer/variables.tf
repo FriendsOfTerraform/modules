@@ -23,11 +23,11 @@ variable "application_load_balancer" {
     listeners = map(object({
       default_action = object({
         authenticate_users = optional(object({
-          action_on_unauthenticatedd_request = optional(string, "authenticate")
-          extra_request_parameters           = optional(map(string), {})
-          scope                              = optional(string, "openid")
-          session_cookie_name                = optional(string, "AWSELBAuthSessionCookie")
-          session_timeout                    = optional(string, "7 days")
+          action_on_unauthenticated_request = optional(string, "authenticate")
+          extra_request_parameters          = optional(map(string), {})
+          scope                             = optional(string, "openid")
+          session_cookie_name               = optional(string, "AWSELBAuthSessionCookie")
+          session_timeout                   = optional(string, "7 days")
 
           amazon_cognito = optional(object({
             app_client       = string
@@ -121,11 +121,11 @@ variable "application_load_balancer" {
 
         action = object({
           authenticate_users = optional(object({
-            action_on_unauthenticatedd_request = optional(string, "authenticate")
-            extra_request_parameters           = optional(map(string), {})
-            scope                              = optional(string, "openid")
-            session_cookie_name                = optional(string, "AWSELBAuthSessionCookie")
-            session_timeout                    = optional(string, "7 days")
+            action_on_unauthenticated_request = optional(string, "authenticate")
+            extra_request_parameters          = optional(map(string), {})
+            scope                             = optional(string, "openid")
+            session_cookie_name               = optional(string, "AWSELBAuthSessionCookie")
+            session_timeout                   = optional(string, "7 days")
 
             amazon_cognito = optional(object({
               app_client       = string
@@ -194,7 +194,7 @@ variable "application_load_balancer" {
       x_forwarded_for_header_processing_mode          = optional(string, "append")
     }), {})
   })
-  description = ""
+  description = "Setup an Application load balancer"
   default     = null
 }
 
@@ -214,7 +214,7 @@ variable "gateway_load_balancer" {
       enable_cross_zone_load_balancing = optional(bool, false)
     }), {})
   })
-  description = ""
+  description = "Setup a Gateway load balancer"
   default     = null
 }
 
@@ -244,13 +244,13 @@ variable "network_load_balancer" {
       enable_cross_zone_load_balancing   = optional(bool, false)
     }), {})
   })
-  description = ""
+  description = "Setup a Network load balancer"
   default     = null
 }
 
 variable "additional_tags" {
   type        = map(string)
-  description = "Additional tags for the share"
+  description = "Additional tags for the load balancer"
   default     = {}
 }
 
@@ -262,30 +262,30 @@ variable "additional_tags_all" {
 
 variable "capacity_unit_reservation" {
   type        = number
-  description = ""
+  description = "Minimum capacity for the load balancer."
   default     = null
 }
 
 variable "enable_deletion_protection" {
   type        = bool
-  description = ""
+  description = "If enabled, you must turn it off before you can delete the load balancer"
   default     = false
 }
 
 variable "internet_facing" {
   type        = bool
-  description = ""
+  description = "Whether the load balancer is publicly accessible"
   default     = true
 }
 
 variable "ip_address_type" {
   type        = string
-  description = ""
+  description = "The front-end IP address type to assign to the load balancer."
   default     = "ipv4"
 }
 
 variable "security_group_ids" {
   type        = list(string)
-  description = ""
+  description = "List of security group IDs to assign to the load balancer"
   default     = null
 }

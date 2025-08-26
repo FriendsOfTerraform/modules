@@ -38,7 +38,7 @@ resource "aws_lb_listener_rule" "listener_rules" {
         user_pool_client_id                 = each.value.action.authenticate_users.amazon_cognito.app_client
         user_pool_domain                    = each.value.action.authenticate_users.amazon_cognito.user_pool_domain
         authentication_request_extra_params = each.value.action.authenticate_users.extra_request_parameters
-        on_unauthenticated_request          = each.value.action.authenticate_users.action_on_unauthenticatedd_request
+        on_unauthenticated_request          = each.value.action.authenticate_users.action_on_unauthenticated_request
         scope                               = each.value.action.authenticate_users.scope
         session_cookie_name                 = each.value.action.authenticate_users.session_cookie_name
         session_timeout                     = split(" ", each.value.action.authenticate_users.session_timeout)[0] * local.time_table[trimsuffix(split(" ", each.value.action.authenticate_users.session_timeout)[1], "s")]
@@ -56,7 +56,7 @@ resource "aws_lb_listener_rule" "listener_rules" {
         token_endpoint                      = each.value.action.authenticate_users.oidc.token_endpoint
         user_info_endpoint                  = each.value.action.authenticate_users.oidc.user_info_endpoint
         authentication_request_extra_params = each.value.action.authenticate_users.extra_request_parameters
-        on_unauthenticated_request          = each.value.action.authenticate_users.action_on_unauthenticatedd_request
+        on_unauthenticated_request          = each.value.action.authenticate_users.action_on_unauthenticated_request
         scope                               = each.value.action.authenticate_users.scope
         session_cookie_name                 = each.value.action.authenticate_users.session_cookie_name
         session_timeout                     = split(" ", each.value.action.authenticate_users.session_timeout)[0] * local.time_table[trimsuffix(split(" ", each.value.action.authenticate_users.session_timeout)[1], "s")]

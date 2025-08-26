@@ -1,6 +1,6 @@
 # Elastic Load Balancer Module
 
-This module creates and configures a [Elastic Load Balancer](https://aws.amazon.com/elb/) and its associated listeners and rules
+This module creates and configures a [Elastic Load Balancer](https://aws.amazon.com/elasticloadbalancing/) and its associated listeners and rules
 
 **This repository is a READ-ONLY sub-tree split**. See https://github.com/FriendsOfTerraform/modules to create issues or submit pull requests.
 
@@ -68,7 +68,7 @@ module "application_load_balancer" {
             conditions = [
               # http_headers can be specified multiple times
               # this rule is matched if:
-              # (http header "hello" exists with the value "world" OR "worldz") AND (http header "quz" exists with the value "quux")
+              # (http header "hello" exists with the value "world" OR "worldz")(2 values) AND (http header "quz" exists with the value "quux")(1 value)
               { http_headers = { hello = ["world", "worldz*"] } },
               { http_headers = { quz = ["quux"] } }
             ]
@@ -100,7 +100,7 @@ module "application_load_balancer" {
             conditions = [
               # You can specify multiple conditions to match, with a maximum of 5 values per rule
               # this rule is matched if:
-              # (host headers equal "demo-dev" OR "demo-uat")(2 values) AND (http request methods equal "GET" OR "LIST")(2 values) AND (source IP equal "10.0.0.0/16")(1 value)
+              # (host headers equal "demo.dev" OR "demo.uat")(2 values) AND (http request methods equal "GET" OR "LIST")(2 values) AND (source IP equal "10.0.0.0/16")(1 value)
               { host_headers = ["demo.dev", "demo.uat"] },
               { http_request_methods = ["GET", "LIST"] },
               { source_ips = ["10.0.0.0/16"] }
@@ -222,7 +222,7 @@ module "network_load_balancer" {
 
 - (object) **`application_load_balancer = null`** _[since v1.0.0]_
 
-    Specify an Application load balancer. Mutually exclusive to `gateway_load_balancer`, `network_load_balancer`. Please [see example](#application-load-balacner)
+    Setup an Application load balancer. Mutually exclusive to `gateway_load_balancer`, `network_load_balancer`. Please [see example](#application-load-balacner)
 
     - (map(object)) **`listeners`** _[since v1.0.0]_
 
@@ -236,7 +236,7 @@ module "network_load_balancer" {
 
                 Configure user authentication through either OpenID Connect (OIDC) or Amazon Cognito. Please refer to [this documentation][alb-user-authentication] for prerequisites for both methods.
 
-                - (string) **`action_on_unauthenticatedd_request = "authenticate"`** _[since v1.0.0]_
+                - (string) **`action_on_unauthenticated_request = "authenticate"`** _[since v1.0.0]_
 
                     The response to a request from a user that is not authenticated. Valid values: `"authenticate"`, `"allow"`, `"deny"`
 
@@ -358,13 +358,113 @@ module "network_load_balancer" {
 
                         HTTP response code. Valid values: `301`, `302`
 
+        - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+
+            Additional tags for the listener
+
+        - (object) **`attributes = {}`** _[since v1.0.0]_
+
+            Configure listener attributes
+
+            - (bool) **`add_alb_server_response_header = true`** _[since v1.0.0]_
+
+                Whether your Application Load Balancer adds a response header with value `awselb/2.0`.
+
+            - (object) **`add_response_headers = {}`** _[since v1.0.0]_
+
+                Control whether your Application Load Balancer adds certain headers to HTTP responses. If the HTTP response from your load balancer's target already includes a header, the load balancer will overwrite it with the configured value.
+
+                - (string) **`access_control_allow_credentials = null`** _[since v1.0.0]_
+
+                    Specifies whether the client should include credentials such as cookies, HTTP authentication or client certificates in cross-origin requests.
+
+                - (string) **`access_control_allow_headers = null`** _[since v1.0.0]_
+
+                    Specifies which custom or non-simple headers can be included in a cross-origin request. This header gives targets control over which headers can be sent by clients from different origins.
+
+                - (string) **`access_control_allow_methods = null`** _[since v1.0.0]_
+
+                    Specifies the HTTP methods that are allowed when making cross-origin requests to the target. It provides control over which actions can be performed from different origins.
+
+                - (string) **`access_control_allow_origin = null`** _[since v1.0.0]_
+
+                    Controls whether resources on a target can be accessed from different origins. This allows secure cross-origin interactions while preventing unauthorized access.
+
+                - (string) **`access_control_expose_headers = null`** _[since v1.0.0]_
+
+                    Allows the target to specify which additional response headers can be access by the client in cross-origin requests.
+
+                - (string) **`access_control_max_age = null`** _[since v1.0.0]_
+
+                    Defines how long the browser can cache the result of a preflight request, reducing the need for repeated preflight checks. This helps to optimize performance by reducing the number of OPTIONS requests required for certain cross-origin requests.
+
+                - (string) **`content_security_policy = null`** _[since v1.0.0]_
+
+                    Security feature that prevents code injection attacks like XSS by controlling which resources such as scripts, styles, images, etc. can be loaded and executed by a website.
+
+                - (string) **`http_strict_transport_security = null`** _[since v1.0.0]_
+
+                    Enforces HTTPS-only connections by the browser for a specified duration
+
+                - (string) **`x_content_type_options = null`** _[since v1.0.0]_
+
+                    With the no-sniff directive, enhances web security by preventing browsers from guessing the MIME type of a resource. It ensures that browsers only interpret content according to the declared Content-Type
+
+                - (string) **`x_frame_options = null`** _[since v1.0.0]_
+
+                    Header security mechanism that helps prevent click-jacking attacks by controlling whether a web page can be embedded in frames. Values such as DENY and SAMEORIGIN can ensure that content is not embedded on malicious or untrusted websites.
+
+            - (object) **`modify_mtls_header_names = {}`** _[since v1.0.0]_
+
+                Configure the HTTP headers added by the load balancer when using TLS or mTLS
+
+                - (string) **`x_amzn_mtls_clientcert = null`** _[since v1.0.0]_
+
+                    Carries the full client certificate. Allowing the target to verify the certificate’s authenticity, validate the certificate chain, and authenticate the client during the mTLS handshake process.
+
+                - (string) **`x_amzn_mtls_clientcert_issuer = null`** _[since v1.0.0]_
+
+                    Helps the target validate and authenticate the client certificate by identifying the certificate authority that issued the certificate.
+
+                - (string) **`x_amzn_mtls_clientcert_leaf = null`** _[since v1.0.0]_
+
+                    Provides the client certificate used in the mTLS handshake, allowing the server to authenticate the client and validate the certificate chain. This ensures the connection is secure and authorized.
+
+                - (string) **`x_amzn_mtls_clientcert_serial_number = null`** _[since v1.0.0]_
+
+                    Ensures that the target can identify and verify the specific certificate presented by the client during the TLS handshake.
+
+                - (string) **`x_amzn_mtls_clientcert_subject = null`** _[since v1.0.0]_
+
+                    Provides the target with detailed information about the entity the client certificate was issued to, which helps in identification, authentication, authorization, and logging during mTLS authentication.
+
+                - (string) **`x_amzn_mtls_clientcert_validity = null`** _[since v1.0.0]_
+
+                    Allows the target to verify that the client certificate being used is within its defined validity period, ensuring the certificate is not expired or prematurely used.
+
+                - (string) **`x_amzn_tls_cipher_suite = null`** _[since v1.0.0]_
+
+                    Indicates the combination of cryptographic algorithms used to secure a connection in TLS. This allows the server to assess the security of the connection, helping with compatibility troubleshooting, and ensuring compliance with security policies.
+
+                - (string) **`x_amzn_tls_version = null`** _[since v1.0.0]_
+
+                    Indicates the version of the TLS protocol used for a connection. It facilitates determining the security level of the communication, troubleshoot connection issues and ensuring compliance.
+
+        - (list(string)) **`certificates_for_sni = []`** _[since v1.0.0]_
+
+            Additional certificates for Server Name Indication (SNI). This enables the load balancer to support multiple domains on the same port and provide a different certificate for each domain.
+
+        - (string) **`default_ssl_certificate_arn = null`** _[since v1.0.0]_
+
+            The certificate to use if a client connects without SNI protocol, or if there are no matching certificates. This is required if a `HTTPS` listner is specified.
+
         - (object) **`enable_mutual_authentication = null`** _[since v1.0.0]_
 
             Enable mTLS. Configure how the listener handles requests that present client certificates. This includes how the load balancer authenticates certificates and the amount of certificate metadata that is sent to the backend targets.
 
             - (object) **`verify_with_trust_store = null`** _[since v1.0.0]_
 
-                The load balancer and client verify each other's identity and establish a TLS connection to encrypt communication between them. If this is not specified, the incoming certificate will be sent to the backend target as-it (`Passthrough`)
+                The load balancer and client verify each other's identity and establish a TLS connection to encrypt communication between them. If this is not specified, the incoming certificate will be sent to the backend target as-is (`Passthrough`)
 
                 - (bool) **`advertise_trust_store_ca_subject_name = false`** _[since v1.0.0]_
 
@@ -422,7 +522,7 @@ module "network_load_balancer" {
 
                     Configure user authentication through either OpenID Connect (OIDC) or Amazon Cognito. Please refer to [this documentation][alb-user-authentication] for prerequisites for both methods.
 
-                    - (string) **`action_on_unauthenticatedd_request = "authenticate"`** _[since v1.0.0]_
+                    - (string) **`action_on_unauthenticated_request = "authenticate"`** _[since v1.0.0]_
 
                         The response to a request from a user that is not authenticated. Valid values: `"authenticate"`, `"allow"`, `"deny"`
 
@@ -576,106 +676,6 @@ module "network_load_balancer" {
 
                 Additional tags for the listener rule
 
-        - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
-
-            Additional tags for the listener
-
-        - (object) **`attributes = {}`** _[since v1.0.0]_
-
-            Configure listener attributes
-
-            - (bool) **`add_alb_server_response_header = true`** _[since v1.0.0]_
-
-                Whether your Application Load Balancer adds a response header with value `awselb/2.0`.
-
-            - (object) **`add_response_headers = {}`** _[since v1.0.0]_
-
-                Control whether your Application Load Balancer adds certain headers to HTTP responses. If the HTTP response from your load balancer's target already includes a header, the load balancer will overwrite it with the configured value.
-
-                - (string) **`access_control_allow_credentials = null`** _[since v1.0.0]_
-
-                    Specifies whether the client should include credentials such as cookies, HTTP authentication or client certificates in cross-origin requests.
-
-                - (string) **`access_control_allow_headers = null`** _[since v1.0.0]_
-
-                    Specifies which custom or non-simple headers can be included in a cross-origin request. This header gives targets control over which headers can be sent by clients from different origins.
-
-                - (string) **`access_control_allow_methods = null`** _[since v1.0.0]_
-
-                    Specifies the HTTP methods that are allowed when making cross-origin requests to the target. It provides control over which actions can be performed from different origins.
-
-                - (string) **`access_control_allow_origin = null`** _[since v1.0.0]_
-
-                    Controls whether resources on a target can be accessed from different origins. This allows secure cross-origin interactions while preventing unauthorized access.
-
-                - (string) **`access_control_expose_headers = null`** _[since v1.0.0]_
-
-                    Allows the target to specify which additional response headers can be access by the client in cross-origin requests.
-
-                - (string) **`access_control_max_age = null`** _[since v1.0.0]_
-
-                    Defines how long the browser can cache the result of a preflight request, reducing the need for repeated preflight checks. This helps to optimize performance by reducing the number of OPTIONS requests required for certain cross-origin requests.
-
-                - (string) **`content_security_policy = null`** _[since v1.0.0]_
-
-                    Security feature that prevents code injection attacks like XSS by controlling which resources such as scripts, styles, images, etc. can be loaded and executed by a website.
-
-                - (string) **`http_strict_transport_security = null`** _[since v1.0.0]_
-
-                    Enforces HTTPS-only connections by the browser for a specified duration
-
-                - (string) **`x_content_type_options = null`** _[since v1.0.0]_
-
-                    With the no-sniff directive, enhances web security by preventing browsers from guessing the MIME type of a resource. It ensures that browsers only interpret content according to the declared Content-Type
-
-                - (string) **`x_frame_options = null`** _[since v1.0.0]_
-
-                    Header security mechanism that helps prevent click-jacking attacks by controlling whether a web page can be embedded in frames. Values such as DENY and SAMEORIGIN can ensure that content is not embedded on malicious or untrusted websites.
-
-            - (object) **`modify_mtls_header_names = {}`** _[since v1.0.0]_
-
-                Configure the HTTP headers added by the load balancer when using TLS or mTLS
-
-                - (string) **`x_amzn_mtls_clientcert = null`** _[since v1.0.0]_
-
-                    Carries the full client certificate. Allowing the target to verify the certificate’s authenticity, validate the certificate chain, and authenticate the client during the mTLS handshake process.
-
-                - (string) **`x_amzn_mtls_clientcert_issuer = null`** _[since v1.0.0]_
-
-                    Helps the target validate and authenticate the client certificate by identifying the certificate authority that issued the certificate.
-
-                - (string) **`x_amzn_mtls_clientcert_leaf = null`** _[since v1.0.0]_
-
-                    Provides the client certificate used in the mTLS handshake, allowing the server to authenticate the client and validate the certificate chain. This ensures the connection is secure and authorized.
-
-                - (string) **`x_amzn_mtls_clientcert_serial_number = null`** _[since v1.0.0]_
-
-                    Ensures that the target can identify and verify the specific certificate presented by the client during the TLS handshake.
-
-                - (string) **`x_amzn_mtls_clientcert_subject = null`** _[since v1.0.0]_
-
-                    Provides the target with detailed information about the entity the client certificate was issued to, which helps in identification, authentication, authorization, and logging during mTLS authentication.
-
-                - (string) **`x_amzn_mtls_clientcert_validity = null`** _[since v1.0.0]_
-
-                    Allows the target to verify that the client certificate being used is within its defined validity period, ensuring the certificate is not expired or prematurely used.
-
-                - (string) **`x_amzn_tls_cipher_suite = null`** _[since v1.0.0]_
-
-                    Indicates the combination of cryptographic algorithms used to secure a connection in TLS. This allows the server to assess the security of the connection, helping with compatibility troubleshooting, and ensuring compliance with security policies.
-
-                - (string) **`x_amzn_tls_version = null`** _[since v1.0.0]_
-
-                    Indicates the version of the TLS protocol used for a connection. It facilitates determining the security level of the communication, troubleshoot connection issues and ensuring compliance.
-
-        - (list(string)) **`certificates_for_sni = []`** _[since v1.0.0]_
-
-            Additional certificates for Server Name Indication (SNI). This enables the load balancer to support multiple domains on the same port and provide a different certificate for each domain.
-
-        - (string) **`default_ssl_certificate_arn = null`** _[since v1.0.0]_
-
-            The certificate to use if a client connects without SNI protocol, or if there are no matching certificates. This is required if a `HTTPS` listner is specified.
-
         - (string) **`security_policy = "ELBSecurityPolicy-TLS13-1-2-Res-2021-06"`** _[since v1.0.0]_
 
             Name of the SSL Policy for the listener. This is required if a `HTTPS` listner is specified.
@@ -738,7 +738,7 @@ module "network_load_balancer" {
 
 - (object) **`gateway_load_balancer = null`** _[since v1.0.0]_
 
-    Specify a Gateway load balancer. Mutually exclusive to `application_load_balancer`, `network_load_balancer`. Please [see example](#gateway-load-balacner)
+    Setup a Gateway load balancer. Mutually exclusive to `application_load_balancer`, `network_load_balancer`. Please [see example](#gateway-load-balacner)
 
     - (object) **`listener`** _[since v1.0.0]_
 
@@ -784,7 +784,7 @@ module "network_load_balancer" {
 
 - (object) **`network_load_balancer = null`** _[since v1.0.0]_
 
-    Specify a Network load balancer. Mutually exclusive to `application_load_balancer`, `gateway_load_balancer`. Please [see example](#network-load-balacner)
+    Setup a Network load balancer. Mutually exclusive to `application_load_balancer`, `gateway_load_balancer`. Please [see example](#network-load-balacner)
 
     - (map(object)) **`listeners`** _[since v1.0.0]_
 

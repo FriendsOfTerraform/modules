@@ -30,6 +30,14 @@ resource "aws_lb" "load_balancer" {
     }
   }
 
+  dynamic "ipam_pools" {
+    for_each = local.application_load_balancer ? (var.network_mapping.ipam_pool_id != null ? [1] : []) : []
+
+    content {
+      ipv4_ipam_pool_id = var.network_mapping.ipam_pool_id
+    }
+  }
+
   dynamic "minimum_load_balancer_capacity" {
     for_each = var.capacity_unit_reservation != null ? [1] : []
 

@@ -47,7 +47,7 @@ resource "aws_lb_listener" "application_load_balancer_listeners" {
         user_pool_client_id                 = each.value.default_action.authenticate_users.amazon_cognito.app_client
         user_pool_domain                    = each.value.default_action.authenticate_users.amazon_cognito.user_pool_domain
         authentication_request_extra_params = each.value.default_action.authenticate_users.extra_request_parameters
-        on_unauthenticated_request          = each.value.default_action.authenticate_users.action_on_unauthenticatedd_request
+        on_unauthenticated_request          = each.value.default_action.authenticate_users.action_on_unauthenticated_request
         scope                               = each.value.default_action.authenticate_users.scope
         session_cookie_name                 = each.value.default_action.authenticate_users.session_cookie_name
         session_timeout                     = split(" ", each.value.default_action.authenticate_users.session_timeout)[0] * local.time_table[trimsuffix(split(" ", each.value.default_action.authenticate_users.session_timeout)[1], "s")]
@@ -65,7 +65,7 @@ resource "aws_lb_listener" "application_load_balancer_listeners" {
         token_endpoint                      = each.value.default_action.authenticate_users.oidc.token_endpoint
         user_info_endpoint                  = each.value.default_action.authenticate_users.oidc.user_info_endpoint
         authentication_request_extra_params = each.value.default_action.authenticate_users.extra_request_parameters
-        on_unauthenticated_request          = each.value.default_action.authenticate_users.action_on_unauthenticatedd_request
+        on_unauthenticated_request          = each.value.default_action.authenticate_users.action_on_unauthenticated_request
         scope                               = each.value.default_action.authenticate_users.scope
         session_cookie_name                 = each.value.default_action.authenticate_users.session_cookie_name
         session_timeout                     = split(" ", each.value.default_action.authenticate_users.session_timeout)[0] * local.time_table[trimsuffix(split(" ", each.value.default_action.authenticate_users.session_timeout)[1], "s")]
