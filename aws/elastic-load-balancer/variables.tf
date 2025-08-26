@@ -66,6 +66,34 @@ variable "application_load_balancer" {
         }), null)
       })
 
+      attributes = optional(object({
+        add_alb_server_response_header = optional(bool, true)
+
+        add_response_headers = optional(object({
+          access_control_allow_credentials = optional(string, null)
+          access_control_allow_headers     = optional(string, null)
+          access_control_allow_methods     = optional(string, null)
+          access_control_allow_origin      = optional(string, null)
+          access_control_expose_headers    = optional(string, null)
+          access_control_max_age           = optional(string, null)
+          content_security_policy          = optional(string, null)
+          http_strict_transport_security   = optional(string, null)
+          x_content_type_options           = optional(string, null)
+          x_frame_options                  = optional(string, null)
+        }), {})
+
+        modify_mtls_header_names = optional(object({
+          x_amzn_mtls_clientcert               = optional(string, null)
+          x_amzn_mtls_clientcert_issuer        = optional(string, null)
+          x_amzn_mtls_clientcert_leaf          = optional(string, null)
+          x_amzn_mtls_clientcert_serial_number = optional(string, null)
+          x_amzn_mtls_clientcert_subject       = optional(string, null)
+          x_amzn_mtls_clientcert_validity      = optional(string, null)
+          x_amzn_tls_cipher_suite              = optional(string, null)
+          x_amzn_tls_version                   = optional(string, null)
+        }), {})
+      }), {})
+
       enable_mutual_authentication = optional(object({
         verify_with_trust_store = optional(object({
           advertise_trust_store_ca_subject_name = optional(bool, false)
@@ -198,6 +226,10 @@ variable "network_load_balancer" {
           target_group = string
         })
       })
+
+      attributes = optional(object({
+        tcp_idle_timeout = optional(string, "350 seconds")
+      }), {})
 
       additional_tags             = optional(map(string), {})
       alpn_policy                 = optional(string, null)
