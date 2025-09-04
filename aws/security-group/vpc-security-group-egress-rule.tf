@@ -3,6 +3,7 @@ locals {
     for port_range, egress in var.egress_rules : flatten([
       for destination in egress.destinations :
       {
+        rule_name                    = "${port_range}-${destination}"
         cidr_ipv4                    = length(regexall("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(3[0-2]|[1-2][0-9]|[0-9]))$", destination)) > 0 ? destination : null
         cidr_ipv6                    = length(regexall("^s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:)))(%.+)?s*(\\/(12[0-8]|1[0-1][0-9]|[1-9][0-9]|[0-9]))$", destination)) > 0 ? destination : null
         prefix_list_id               = length(regexall("pl-[0-9a-f]{8}", destination)) > 0 ? destination : null
@@ -38,16 +39,16 @@ locals {
 }
 
 resource "aws_vpc_security_group_egress_rule" "egress_rules" {
-  count = length(local.egress_rules)
+  for_each = tomap({ for egress_rule in local.egress_rules : egress_rule.rule_name => egress_rule })
 
   security_group_id            = aws_security_group.security_group.id
-  cidr_ipv4                    = local.egress_rules[count.index].cidr_ipv4
-  cidr_ipv6                    = local.egress_rules[count.index].cidr_ipv6
-  description                  = local.egress_rules[count.index].description
-  from_port                    = local.egress_rules[count.index].from_port
-  ip_protocol                  = local.egress_rules[count.index].ip_protocol
-  prefix_list_id               = local.egress_rules[count.index].prefix_list_id
-  referenced_security_group_id = local.egress_rules[count.index].referenced_security_group_id
-  tags                         = local.egress_rules[count.index].tags
-  to_port                      = local.egress_rules[count.index].to_port
+  cidr_ipv4                    = each.value.cidr_ipv4
+  cidr_ipv6                    = each.value.cidr_ipv6
+  description                  = each.value.description
+  from_port                    = each.value.from_port
+  ip_protocol                  = each.value.ip_protocol
+  prefix_list_id               = each.value.prefix_list_id
+  referenced_security_group_id = each.value.referenced_security_group_id
+  tags                         = each.value.tags
+  to_port                      = each.value.to_port
 }
