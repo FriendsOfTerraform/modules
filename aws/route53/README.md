@@ -30,7 +30,7 @@ This example creates a hosted zone psin-lab.com and several records
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -65,7 +65,7 @@ This example creates a private hosted zone psin-lab.local
 
 ```terraform
 module "psin_lab_local" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.local"
 
@@ -80,6 +80,19 @@ module "psin_lab_local" {
       "vpc-049fc30abcde12345" # EKS VPC
     ]
   }
+
+  ########################################################################
+  # To associate this private hosted zone to VPCs from external accounts #
+  ########################################################################
+  vpc_association_authorizations = ["vpc-01234567898fc2074"] # private subnet from account 2
+
+  # You must complete the associate in the external account after the authorization is created
+  resource "aws_route53_zone_association" "account2_private_vpc" {
+    provider = aws.account2
+
+    vpc_id  = "vpc-01234567898fc2074"
+    zone_id = module.psin_lab_local.route53_hosted_zone_id
+  }
 }
 ```
 
@@ -89,7 +102,7 @@ This example demonstrates how to enable DNSSEC signing by using a default KSK. A
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -111,7 +124,7 @@ This example demonstrates the [Failover Routing Policy][route53-routing-policy-f
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -158,7 +171,7 @@ This example demonstrates the [Geolocation Routing Policy][route53-routing-polic
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -208,7 +221,7 @@ This example demonstrates the [Geoproximity Routing Policy][route53-routing-poli
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -261,7 +274,7 @@ This example demonstrates the [Latency-based Routing Policy][route53-routing-pol
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -300,7 +313,7 @@ This example demonstrates the [Multivalue Answer Routing Policy][route53-routing
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -347,7 +360,7 @@ This example demonstrates the [Weighted Routing Policy][route53-routing-policy-w
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -386,7 +399,7 @@ This example demonstrates managing health checks and notification for records
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.0.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
 
   domain_name = "psin-lab.com"
 
@@ -748,6 +761,10 @@ module "psin_lab_com" {
 
                 The string that you want Route 53 to searh for in the body of the response from the specified endpoint
 
+- (list(string)) **`vpc_association_authorizations = []`** _[since v2.1.0]_
+
+    List of VPC IDs from external accounts that you want to authorize to be associated with this zone. Only applicable to private hosted zone. Please refer to [this documentation][route53-hosted-zone-private-associate-vpcs-different-accounts] for more infomation. Please [see example](#private-hosted-zone)
+
 ## Outputs
 
 - (string) **`route53_hosted_zone_arn`** _[since v1.0.0]_
@@ -774,6 +791,7 @@ module "psin_lab_com" {
 [route53-health-check]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html
 [route53-health-check-cloudwatch-alarm]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-monitor-view-status.html
 [route53-health-check-types]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-types.html
+[route53-hosted-zone-private-associate-vpcs-different-accounts]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-associate-vpcs-different-accounts.html
 [route53-ksk]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-ksk.html
 [route53-ksk-kms-requirements]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-cmk-requirements.html
 [route53-query-logging]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html
