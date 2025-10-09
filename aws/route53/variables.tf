@@ -134,3 +134,9 @@ variable "records" {
   description = "Manages multiple records"
   default     = []
 }
+
+variable "vpc_association_authorizations" {
+  type        = list(string)
+  description = "List of VPC IDs from external accounts that you want to authorize to be associated with this zone. Only applicable to private hosted zone"
+  default     = []
+}
