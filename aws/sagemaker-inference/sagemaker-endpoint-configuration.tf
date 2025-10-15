@@ -1,8 +1,3 @@
-locals {
-  provisioned_endpoints = { for k, v in var.endpoints : k => v if v.provisioned != null }
-  serverless_endpoints  = { for k, v in var.endpoints : k => v if v.serverless != null }
-}
-
 resource "aws_sagemaker_endpoint_configuration" "provisioned_endpoint_configurations" {
   for_each = local.provisioned_endpoints
 
