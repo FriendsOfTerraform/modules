@@ -482,6 +482,1337 @@ module "psin_lab_com" {
 }
 ```
 
+## Required
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Additional tags for the hosted zone
+
+
+
+</tr>
+
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Additional tags for all resources in deployed with this module
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The description of the hosted zone
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">domain_name</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The domain name of the hosted zone
+
+
+
+</tr>
+
+<tr>
+    <td><code>object(EnableDnssec)</code></td>
+    <td width="100%">enable_dnssec</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Enables Route 53 DNSSEC signing
+
+
+
+</tr>
+
+<tr>
+    <td><code>object(EnableQueryLogging)</code></td>
+    <td width="100%">enable_query_logging</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Enables Route 53 query log
+
+
+
+</tr>
+
+<tr>
+    <td><code>map(list(string))</code></td>
+    <td width="100%">private_zone_vpc_associations</td>
+    <td><code>{}</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+one or more VPC IDs this private hosted zone is used to resolve DNS queries for
+
+
+
+</tr>
+
+<tr>
+    <td><code>list(object(Records))</code></td>
+    <td width="100%">records</td>
+    <td><code>[]</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Manages multiple records
+
+
+
+</tr>
+
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">vpc_association_authorizations</td>
+    <td><code>[]</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+List of VPC IDs from external accounts that you want to authorize to be associated with this zone. Only applicable to private hosted zone
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+## Optional
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+</tbody>
+</table>
+
+## Objects
+
+
+
+### Alias
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">target</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the endpoint where this alias record routes traffic to. Please
+refer to [this documentation][route53-alias-record] for a list of
+supported services that you can create Alias record for.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">hosted_zone_id</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the hosted zone ID of the target endpoint. You can find the
+value for each supported endpoints in [this documentation][aws-service-endpoints].
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">evaluate_target_health</td>
+    <td><code>true</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Whether the alias records evaluate the health of the target endpoint
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### CalculatedCheck
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">health_checks_to_monitor</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+List of health checks that must be healthy for this check to be
+considered healthy
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">healthy_threshold</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the number of monitoring health checks that must be healthy
+for this check to be considered healthy. If not specified, all health
+checks must be healthy for this check to be considered healthy
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### CloudwatchAlarmCheck
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">alarm_name</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The name of the alarm that determines the status of this health check
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">alarm_region</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The Cloudwatch region that contains the alarm that you want Route 53
+to use for this health check. If not specified, the current region
+will be used.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">insufficient_data_health_status</td>
+    <td><code>"LastKnownStatus"</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The status of this health check when Cloudwatch doesn't have enough
+data to determine whether the alarm is in the OK or the ALARM state.
+
+
+
+**enum:** Healthy|Unhealthy|LastKnownStatus
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### Coordinates
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">latitude</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The latitude of the coordinates
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">longitude</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The longitude of the coordinates
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### EnableDnssec
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>map(object())</code></td>
+    <td width="100%">key_signing_keys</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Manages the KSKs route 53 used to sign records. You can define up to two
+KSK for key rotation purposes.
+
+
+
+**since:** 1.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">status</td>
+    <td><code>"SIGNING"</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify whether to sign the zone with DNSSEC.
+
+
+
+**enum:** SIGNING|NOT_SIGNING
+
+
+
+**since:** 1.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### EnableQueryLogging
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">cloudwatch_log_group_arn</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+An existing Cloudwatch log group to send query logging to
+
+
+
+**since:** 1.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">create_resource_policy</td>
+    <td><code>false</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Creates a Cloudwatch log resource policy named AWSServiceRoleForRoute53
+to grant route 53 permissions to send logs to Cloudwatch. You do not need
+to create this if one is already created.
+
+
+
+**since:** 1.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">log_group_class</td>
+    <td><code>"STANDARD"</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specified the log class of the log group. Mutually exclusive with
+`cloudwatch_log_group_arn`.
+
+
+
+**enum:** STANDARD|INFREQUENT_ACCESS
+
+
+
+</tr>
+
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">retention</td>
+    <td><code>0</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specifies the number of days you want to retain log events in the
+specified log group.
+
+If you select `0`, the events in the log group are always retained and
+never expire. Mutually exclusive with `cloudwatch_log_group_arn`
+
+
+
+**enum:** 0|1|3|5|7|14|30|60|90|120|150|180|365|400|545|731|1096|1827|2192|2557|2922|3288|3653
+
+
+
+**since:** 1.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### EndpointCheck
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">url</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The full URL
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_latency_graphs</td>
+    <td><code>false</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Whether you want Route 53 to display the latency graph on the health
+check page in the Route 53 console
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">failure_threshold</td>
+    <td><code>3</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The number of consecutive health checks that an endpoint must pass or
+fail for Route 53 to change the current status of the endpoint from
+healthy to unhealthy or vice versa
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">hostname</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Route 53 passes this value in a HOST header when establishing the
+connection.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">regions</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+A list of AWS regions that you want Amazon Route 53 health checkers
+to check the specified endpoint from
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">request_interval</td>
+    <td><code>30</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The number of seconds between the time that Amazon Route 53 gets a
+response from your endpoint and the time that it sends the next
+health-check request.
+
+
+
+**enum:** 10|30
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">search_string</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The string that you want Route 53 to search for in the body of the
+response from the specified endpoint.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### FailoverRoutingPolicy
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">failover_record_type</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the failover routing policy type.
+
+
+
+**enum:** PRIMARY|SECONDARY
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### GeolocationRoutingPolicy
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">location</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the location where your resources are deployed in. Please refer
+to [this file](./_common.tf) for a list of supported values.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### GeoproximityRoutingPolicy
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">bias</td>
+    <td><code>0</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Expand or shrink the size of the geographic region from which Route 53
+routes traffic to a resource. Refer to [this documentation][route53-routing-policy-geoproximity]
+for more information. Valid value is between `-99` to `99`
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">local_zone_group</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the AWS local zone where your resources are deployed in. To use
+AWS Local Zones, you have to first [enable them][aws-local-zones].
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">region</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the AWS region where your resources are deployed in.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>Coordinates</code></td>
+    <td width="100%">coordinates</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the coordinates where your resources are deployed in.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### HealthCheck
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enabled</td>
+    <td><code>true</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Whether this health check is enabled
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">invert_health_check_status</td>
+    <td><code>false</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Whether you want Route 53 to invert the status of the health check. For
+example, to consider a health check as healthy when it is otherwise
+would be considered unhealthy
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>CalculatedCheck</code></td>
+    <td width="100%">calculated_check</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [calculated health check][route53-health-check-types],
+where the health of this health check depends on the status of the other
+health checks
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>CloudwatchAlarmCheck</code></td>
+    <td width="100%">cloudwatch_alarm_check</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [Cloudwatch Alarm Checks][route53-health-check-types].
+The status of this health check is based on the state of a specified
+CloudWatch alarm
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>map(object())</code></td>
+    <td width="100%">cloudwatch_alarms</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Create [Cloudwatch alarms][route53-health-check-cloudwatch-alarm] to
+notify you health check status changes. Please [see example](#health-check)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>EndpointCheck</code></td>
+    <td width="100%">endpoint_check</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [Endpoint check][route53-health-check-types]. Multiple
+Route 53 health checkers will try to establish a TCP connection with
+the specified endpoint to determine whether it is healthy.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### LatencyRoutingPolicy
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">region</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The AWS region where the resource that you specified in this record
+resides. You can only create one latency record for each region.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### MultivalueAnswerRoutingPolicy
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enabled</td>
+    <td><code>true</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Whether this routing policy is enabled
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### Records
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The name of the record
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">type</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the record type.
+
+
+
+**enum:** A|AAAA|CAA|CNAME|DS|MX|NAPTR|NS|PTR|SOA|SPF|SRV|TXT
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">values</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+A list of values this record routes traffic to. This is required for
+non-alias records. Mutually exclusive with `alias`
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">health_check_id</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify an existing health check this reocrd is associated to
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">ttl</td>
+    <td><code>300</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify the time-to-live(TTL) of the record. This is ignored for alias
+records.
+
+Mutually exclusive with `alias`
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">set_identifier</td>
+    <td><code>null</code></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Specify a value that uniquely identifies each record that has the same
+name and type. Required with routing policy other than simple (no
+routing policy)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>Alias</code></td>
+    <td width="100%">alias</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Create an alias record. Mutually exclusive with `values` and `ttl`
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>FailoverRoutingPolicy</code></td>
+    <td width="100%">failover_routing_policy</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [Failover Routing Policy][route53-routing-policy-failover].
+You may only define one routing policy for a single record. Please
+[see example](#failover-routing-policy)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>GeolocationRoutingPolicy</code></td>
+    <td width="100%">geolocation_routing_policy</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [Geolocation Routing Policy][route53-routing-policy-geolocation].
+You may only define one routing policy for a single record. Please
+[see example](#geolocation-routing-policy)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>GeoproximityRoutingPolicy</code></td>
+    <td width="100%">geoproximity_routing_policy</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [Geoproximity Routing Policy][route53-routing-policy-geoproximity].
+You may only define one routing policy for a single record. Please
+[see example](#geoproximity-routing-policy)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>LatencyRoutingPolicy</code></td>
+    <td width="100%">latency_routing_policy</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [Latency-based Routing Policy][route53-routing-policy-latency].
+You may only define one routing policy for a single record. Please
+[see example](#latency-based-routing-policy)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>MultivalueAnswerRoutingPolicy</code></td>
+    <td width="100%">multivalue_answer_routing_policy</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [Multivalue Answer Routing Policy][route53-routing-policy-multivalue-answer].
+You may only define one routing policy for a single record. Please
+[see example](#multivalue-answer-routing-policy)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>WeightedRoutingPolicy</code></td>
+    <td width="100%">weighted_routing_policy</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Configures the [Weighted Routing Policy][route53-routing-policy-weighted].
+You may only define one routing policy for a single record. Please
+[see example](#weighted-routing-policy)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+<tr>
+    <td><code>HealthCheck</code></td>
+    <td width="100%">health_check</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+Creates a [Route 53 health check][route53-health-check] and attach it to
+this record. Only available when a routing policy is specified. Mutually
+exclusive with `health_check_id`. Please [see example](#health-check)
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
+
+
+### WeightedRoutingPolicy
+
+<table>
+<thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead>
+<tbody>
+
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">weight</td>
+    <td></td>
+</tr>
+<tr>
+<td colspan="3">
+
+The weight that determines the proportion of DNS queries that Route 53
+will respond to.
+
+
+
+**since:** 2.0.0
+
+
+
+</tr>
+
+</tbody>
+</table>
+
 ## Argument Reference
 
 ### Mandatory
