@@ -47,6 +47,26 @@ variable "endpoints" {
         initial_weight              = optional(number, 1)
         model_data_download_timeout = optional(string, null)
         volume_size                 = optional(number, null)
+
+        auto_scaling = optional(object({
+          policies = map(object({
+            expression                = string # <metric_name> <statistic> = <TargetValue>
+            enable_scale_in           = optional(bool, true)
+            scale_in_cooldown_period  = optional(string, "5 minutes")
+            scale_out_cooldown_period = optional(string, "5 minutes")
+          }))
+
+          maximum_capacity = optional(number, 15)
+          minimum_capacity = optional(number, 1)
+        }), null)
+
+        cloudwatch_alarms = optional(map(object({
+          expression             = string # <metric_name> <statistic> <comparison_operator> <threshold>
+          description            = optional(string, null)
+          evaluation_periods     = optional(number, 1)
+          notification_sns_topic = optional(string, null)
+          period                 = optional(string, "1 minute")
+        })), {})
       }))
 
       async_invocation_config = optional(object({
