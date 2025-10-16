@@ -4,7 +4,7 @@ locals {
       for variant_name, variant_config in endpoint_config.provisioned.production_variants : {
         endpoint_name = endpoint_name
         variant_name  = variant_name
-        auto_scaling = variant_config.auto_scaling
+        auto_scaling  = variant_config.auto_scaling
       } if variant_config.auto_scaling != null
     ]
   ])

@@ -60,7 +60,7 @@ resource "aws_sagemaker_endpoint_configuration" "provisioned_endpoint_configurat
     content {
       initial_sampling_percentage = each.value.provisioned.enable_data_capture.sampling_percentage
       destination_s3_uri          = each.value.provisioned.enable_data_capture.s3_location_to_store_data_collected
-      kms_key_id                  = each.value.provisioned.enable_data_capture.encryption_key
+      kms_key_id                  = each.value.encryption_key
       enable_capture              = true
 
       dynamic "capture_content_type_header" {

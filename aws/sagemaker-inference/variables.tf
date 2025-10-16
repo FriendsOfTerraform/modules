@@ -25,7 +25,7 @@ variable "models" {
       subnet_ids         = list(string)
     }), null)
   }))
-  description = ""
+  description = "deploy multiple models"
 }
 
 variable "additional_tags_all" {
@@ -56,7 +56,7 @@ variable "endpoints" {
             scale_out_cooldown_period = optional(string, "5 minutes")
           }))
 
-          maximum_capacity = optional(number, 15)
+          maximum_capacity = optional(number, 1)
           minimum_capacity = optional(number, 1)
         }), null)
 
@@ -73,7 +73,6 @@ variable "endpoints" {
         s3_output_path                          = string
         encryption_key                          = optional(string, null)
         error_notification_location             = optional(string, null)
-        include_response_in_topics              = optional(string, "None")
         max_concurrent_invocations_per_instance = optional(number, null)
         s3_failure_path                         = optional(string, null)
         success_notification_location           = optional(string, null)
@@ -113,6 +112,6 @@ variable "endpoints" {
       })
     }), null)
   }))
-  description = ""
+  description = "Configures multiple endpoints"
   default     = {}
 }
