@@ -144,15 +144,15 @@ module "basic_usage" {
 
 - (map(object)) **`endpoints = {}`** _[since v1.0.0]_
 
-    Specifies whether any database modifications are applied immediately, or during the next maintenance window. Using `apply_immediately` can result in a brief downtime as the server reboots.
+    Configures multiple endpoints
 
     - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-        Additional tags for all resources deployed with this module
+        Additional tags for the endpoint
 
     - (string) **`encryption_key = null`** _[since v1.0.0]_
 
-        Additional tags for all resources deployed with this module
+        Specify an existing KMS key's ARN to encrypt your response output in S3.
 
     - (object) **`provisioned = null`** _[since v1.0.0]_
 
@@ -165,26 +165,6 @@ module "basic_usage" {
             - (string) **`instance_type`** _[since v1.0.0]_
 
                 The EC2 instance type
-
-            - (string) **`container_startup_timeout = null`** _[since v1.0.0]_
-
-                The timeout value for the inference container to pass health check by SageMaker AI Hosting. Valid values: `"1 minute"` - `"1 hour"`.
-
-            - (number) **`initial_instance_count = 1`** _[since v1.0.0]_
-
-                Specify the initial number of instances used for auto-scaling.
-
-            - (number) **`initial_weight = 1`** _[since v1.0.0]_
-
-                Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.
-
-            - (string) **`model_data_download_timeout = null`** _[since v1.0.0]_
-
-                The timeout value to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant. Valid values: `"1 minute"` - `"1 hour"`.
-
-            - (number) **`volume_size = null`** _[since v1.0.0]_
-
-                The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Valid values: `1` - `512`.
 
             - (object) **`auto_scaling = null`** _[since v1.0.0]_
 
@@ -222,25 +202,45 @@ module "basic_usage" {
 
                 Configures multiple Cloudwatch alarms. Please see [example](#basic-usage)
 
-            - (string) **`expression`** _[since v1.0.0]_
+                - (string) **`expression`** _[since v1.0.0]_
 
-                The expression in `<metric_name> <statistic> <comparison_operator> <threshold>` format. For example: `"Invocations average >= 100"`
+                    The expression in `<metric_name> <statistic> <comparison_operator> <threshold>` format. For example: `"Invocations average >= 100"`
 
-            - (string) **`description = null`** _[since v1.0.0]_
+                - (string) **`description = null`** _[since v1.0.0]_
 
-                The description of the alarm
+                    The description of the alarm
 
-            - (number) **`evaluation_periods = 1`** _[since v1.0.0]_
+                - (number) **`evaluation_periods = 1`** _[since v1.0.0]_
 
-                The number of periods over which data is compared to the specified threshold.
+                    The number of periods over which data is compared to the specified threshold.
 
-            - (string) **`notification_sns_topic`** _[since v1.0.0]_
+                - (string) **`notification_sns_topic = null`** _[since v1.0.0]_
 
-                The SNS topic where notification will be sent
+                    The SNS topic where notification will be sent
 
-            - (string) **`period = "1 minute"`** _[since v1.0.0]_
+                - (string) **`period = "1 minute"`** _[since v1.0.0]_
 
-                The period over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
+                    The period over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
+
+            - (string) **`container_startup_timeout = null`** _[since v1.0.0]_
+
+                The timeout value for the inference container to pass health check by SageMaker AI Hosting. Valid values: `"1 minute"` - `"1 hour"`.
+
+            - (number) **`initial_instance_count = 1`** _[since v1.0.0]_
+
+                Specify the initial number of instances used for auto-scaling.
+
+            - (number) **`initial_weight = 1`** _[since v1.0.0]_
+
+                Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.
+
+            - (string) **`model_data_download_timeout = null`** _[since v1.0.0]_
+
+                The timeout value to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant. Valid values: `"1 minute"` - `"1 hour"`.
+
+            - (number) **`volume_size = null`** _[since v1.0.0]_
+
+                The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Valid values: `1` - `512`.
 
         - (object) **`async_invocation_config = null`** _[since v1.0.0]_
 
@@ -278,10 +278,6 @@ module "basic_usage" {
 
                 Amazon SageMaker will save the prediction requests and responses along with metadata for your endpoint at this location.
 
-            - (number) **`sampling_percentage = 30`** _[since v1.0.0]_
-
-                Amazon SageMaker will randomly sample and save the specified percentage of traffic to your endpoint.
-
             - (object) **`capture_content_type = null`** _[since v1.0.0]_
 
                 The content type headers to capture. Must specify one of `csv_text` or `json`
@@ -305,6 +301,10 @@ module "basic_usage" {
                 - (bool) **`prediction_response = true`** _[since v1.0.0]_
 
                     Capture prediction responses (Output)
+
+            - (number) **`sampling_percentage = 30`** _[since v1.0.0]_
+
+                Amazon SageMaker will randomly sample and save the specified percentage of traffic to your endpoint.
 
         - (map(object)) **`shadow_variants = {}`** _[since v1.0.0]_
 
