@@ -10,7 +10,7 @@ resource "aws_sagemaker_model" "models" {
 
     content {
       image              = container.value.image
-      mode               = container.value.use_multiple_models != null ? "MultiModdel" : "SingleModel"
+      mode               = container.value.use_multiple_models != null ? "MultiModel" : "SingleModel"
       model_data_url     = lower(container.value.compression_type) == "compressedmodel" ? container.value.model_data_location : null
       container_hostname = container.key
       environment        = container.value.environment_variables
