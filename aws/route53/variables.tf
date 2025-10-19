@@ -1,38 +1,42 @@
-/// @required
-/// @since 1.0.0
 variable "domain_name" {
   type        = string
-  description = "The domain name of the hosted zone"
+  description = <<EOT
+    The domain name of the hosted zone
+
+    @since 1.0.0
+  EOT
 }
 
-/// @optional
-/// @since 1.0.0
 variable "additional_tags" {
   type        = map(string)
-  description = "Additional tags for the hosted zone"
   default     = {}
+  description = <<EOT
+    Additional tags for the hosted zone
+
+    @since 1.0.0
+  EOT
 }
 
-/// @optional
-/// @since 1.0.0
 variable "additional_tags_all" {
   type        = map(string)
-  description = "Additional tags for all resources in deployed with this module"
+  description = <<EOT
+    Additional tags for all resources in deployed with this module
+
+    @since 1.0.0
+  EOT
   default     = {}
 }
 
-/// @optional
-/// @since 1.0.0
 variable "description" {
   type        = string
-  description = "The description of the hosted zone"
+  description = <<EOT
+    The description of the hosted zone
+
+    @since 1.0.0
+  EOT
   default     = null
 }
 
-/// Enables [Route 53 DNSSEC][route53-dnssec] signing. Please [see example](#dnssec).
-///
-/// @optional
-/// @since 1.0.0
 variable "enable_dnssec" {
   type = object({
     /// Manages the KSKs route 53 used to sign records. You can define up to two
@@ -60,12 +64,14 @@ variable "enable_dnssec" {
     /// @since 1.0.0
     status = optional(string, "SIGNING")
   })
-  description = "Enables Route 53 DNSSEC signing"
+  description = <<EOT
+    Enables [Route 53 DNSSEC][route53-dnssec] signing. Please [see example](#dnssec).
+
+    @since 1.0.0
+  EOT
   default     = null
 }
 
-/// @optional
-/// @since 1.0.0
 variable "enable_query_logging" {
   type = object({
     /// An existing Cloudwatch log group to send query logging to
@@ -96,26 +102,26 @@ variable "enable_query_logging" {
     /// @since 1.0.0
     retention                = optional(number, 0)
   })
-  description = "Enables Route 53 query log"
+  description = <<EOT
+    Enables Route 53 query log
+
+    @since 1.0.0
+  EOT
   default     = null
 }
 
-/// One of more VPC IDs this private hosted zone is used to resolve DNS queries
-/// for. Do not specify if you want to create a public hosted zone. Please
-/// [see example](#private-hosted-zone).
-///
-/// @optional
-/// @since 1.0.0
 variable "private_zone_vpc_associations" {
   type        = map(list(string))
-  description = "one or more VPC IDs this private hosted zone is used to resolve DNS queries for"
+  description = <<EOT
+    One of more VPC IDs this private hosted zone is used to resolve DNS queries
+    for. Do not specify if you want to create a public hosted zone. Please
+    [see example](#private-hosted-zone).
+
+    @since 1.0.0
+  EOT
   default     = {}
 }
 
-/// Manages multiple records. Please [see example](#basic-usage).
-///
-/// @optional
-/// @since 2.0.0
 variable "records" {
   type = list(object({
     /// The name of the record
@@ -443,18 +449,22 @@ variable "records" {
       }), null)
     }), null)
   }))
-  description = "Manages multiple records"
+  description = <<EOT
+    Manages multiple records. Please [see example](#basic-usage).
+
+    @since 2.0.0
+  EOT
   default     = []
 }
 
-/// List of VPC IDs from external accounts that you want to authorize to be
-/// associated with this zone. Only applicable to private hosted zone. Please
-/// refer to [this documentation][route53-hosted-zone-private-associate-vpcs-different-accounts] for more infomation. Please [see example](#private-hosted-zone)
-///
-/// @optional
-/// @since 2.1.0
 variable "vpc_association_authorizations" {
   type        = list(string)
-  description = "List of VPC IDs from external accounts that you want to authorize to be associated with this zone. Only applicable to private hosted zone"
+  description = <<EOT
+    List of VPC IDs from external accounts that you want to authorize to be
+    associated with this zone. Only applicable to private hosted zone. Please
+    refer to [this documentation][route53-hosted-zone-private-associate-vpcs-different-accounts] for more infomation. Please [see example](#private-hosted-zone).
+
+    @since 2.1.0
+  EOT
   default     = []
 }
