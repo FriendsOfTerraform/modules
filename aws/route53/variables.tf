@@ -48,6 +48,7 @@ variable "enable_dnssec" {
       /// specified, a default one will be created. The customer managed KMS key
       /// must meet all requirements described in [this documentation][route53-ksk-kms-requirements].
       ///
+      /// @link {route53-ksk-kms-requirements} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-cmk-requirements.html
       /// @since 1.0.0
       kms_key_id = optional(string, null)
 
@@ -55,7 +56,7 @@ variable "enable_dnssec" {
       ///
       /// @enum ACTIVE|INACTIVE
       /// @since 1.0.0
-      status     = optional(string, "ACTIVE")
+      status = optional(string, "ACTIVE")
     }))
 
     /// Specify whether to sign the zone with DNSSEC.
@@ -65,8 +66,10 @@ variable "enable_dnssec" {
     status = optional(string, "SIGNING")
   })
   description = <<EOT
-    Enables [Route 53 DNSSEC][route53-dnssec] signing. Please [see example](#dnssec).
+    Enables [Route 53 DNSSEC][route53-dnssec] signing.
 
+    @example "DNSSEC Example" #dnssec
+    @link {route53-dnssec} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-configure-dnssec.html
     @since 1.0.0
   EOT
   default     = null
@@ -84,13 +87,13 @@ variable "enable_query_logging" {
     /// to create this if one is already created.
     ///
     /// @since 1.0.0
-    create_resource_policy   = optional(bool, false)
+    create_resource_policy = optional(bool, false)
 
     /// Specified the log class of the log group. Mutually exclusive with
     /// `cloudwatch_log_group_arn`.
     ///
     /// @enum STANDARD|INFREQUENT_ACCESS
-    log_group_class          = optional(string, "STANDARD")
+    log_group_class = optional(string, "STANDARD")
 
     /// Specifies the number of days you want to retain log events in the
     /// specified log group.
@@ -100,7 +103,7 @@ variable "enable_query_logging" {
     ///
     /// @enum 0|1|3|5|7|14|30|60|90|120|150|180|365|400|545|731|1096|1827|2192|2557|2922|3288|3653
     /// @since 1.0.0
-    retention                = optional(number, 0)
+    retention = optional(number, 0)
   })
   description = <<EOT
     Enables Route 53 query log
@@ -114,9 +117,9 @@ variable "private_zone_vpc_associations" {
   type        = map(list(string))
   description = <<EOT
     One of more VPC IDs this private hosted zone is used to resolve DNS queries
-    for. Do not specify if you want to create a public hosted zone. Please
-    [see example](#private-hosted-zone).
+    for. Do not specify if you want to create a public hosted zone.
 
+    @example "Private Hosted Zone Example" #private-hosted-zone
     @since 1.0.0
   EOT
   default     = {}
@@ -127,56 +130,55 @@ variable "records" {
     /// The name of the record
     ///
     /// @since 2.0.0
-    name            = string
+    name = string
 
     /// Specify the record type.
     ///
     /// @enum A|AAAA|CAA|CNAME|DS|MX|NAPTR|NS|PTR|SOA|SPF|SRV|TXT
     /// @since 2.0.0
-    type            = string
+    type = string
 
     /// A list of values this record routes traffic to. This is required for
     /// non-alias records. Mutually exclusive with `alias`
     ///
     /// @since 2.0.0
-    values          = optional(list(string), null)
+    values = optional(list(string), null)
 
     /// Specify an existing health check this reocrd is associated to
     ///
     /// @since 2.0.0
     health_check_id = optional(string, null)
 
-    /// Specify the time-to-live(TTL) of the record. This is ignored for alias
+    /// Specify the time-to-live (TTL) of the record. This is ignored for alias
     /// records.
     ///
     /// Mutually exclusive with `alias`
     ///
     /// @since 2.0.0
-    ttl             = optional(number, 300)
+    ttl = optional(number, 300)
 
     /// Specify a value that uniquely identifies each record that has the same
     /// name and type. Required with routing policy other than simple (no
     /// routing policy)
     ///
     /// @since 2.0.0
-    set_identifier  = optional(string, null)
+    set_identifier = optional(string, null)
 
     /// Create an alias record. Mutually exclusive with `values` and `ttl`
     ///
     /// @since 2.0.0
     alias = optional(object({
-      /// Specify the endpoint where this alias record routes traffic to. Please
-      /// refer to [this documentation][route53-alias-record] for a list of
-      /// supported services that you can create Alias record for.
+      /// Specify the endpoint where this alias record routes traffic to.
       ///
+      /// @link "Supported services you can create an Alias record for" https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-aws-resources.html
       /// @since 2.0.0
-      target                 = string
+      target = string
 
-      /// Specify the hosted zone ID of the target endpoint. You can find the
-      /// value for each supported endpoints in [this documentation][aws-service-endpoints].
+      /// Specify the hosted zone ID of the target endpoint.
       ///
+      /// @link "Supported AWS service endpoints" https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html
       /// @since 2.0.0
-      hosted_zone_id         = string
+      hosted_zone_id = string
 
       /// Whether the alias records evaluate the health of the target endpoint
       ///
@@ -185,9 +187,10 @@ variable "records" {
     }), null)
 
     /// Configures the [Failover Routing Policy][route53-routing-policy-failover].
-    /// You may only define one routing policy for a single record. Please
-    /// [see example](#failover-routing-policy)
+    /// You may only define one routing policy for a single record.
     ///
+    /// @example "Failover Routing Policy Example" #failover-routing-policy
+    /// @link {route53-routing-policy-failover} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-failover.html
     /// @since 2.0.0
     failover_routing_policy = optional(object({
       /// Specify the failover routing policy type.
@@ -198,9 +201,10 @@ variable "records" {
     }), null)
 
     /// Configures the [Geolocation Routing Policy][route53-routing-policy-geolocation].
-    /// You may only define one routing policy for a single record. Please
-    /// [see example](#geolocation-routing-policy)
+    /// You may only define one routing policy for a single record.
     ///
+    /// @example "Geolocation Routing Policy Example" #geolocation-routing-policy
+    /// @link {route53-routing-policy-geolocation} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geo.html
     /// @since 2.0.0
     geolocation_routing_policy = optional(object({
       /// Specify the location where your resources are deployed in. Please refer
@@ -211,28 +215,29 @@ variable "records" {
     }), null)
 
     /// Configures the [Geoproximity Routing Policy][route53-routing-policy-geoproximity].
-    /// You may only define one routing policy for a single record. Please
-    /// [see example](#geoproximity-routing-policy)
+    /// You may only define one routing policy for a single record.
     ///
+    /// @example "Geoproximity Routing Policy Example" #geoproximity-routing-policy
+    /// @link {route53-routing-policy-geoproximity} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html
     /// @since 2.0.0
     geoproximity_routing_policy = optional(object({
       /// Expand or shrink the size of the geographic region from which Route 53
-      /// routes traffic to a resource. Refer to [this documentation][route53-routing-policy-geoproximity]
-      /// for more information. Valid value is between `-99` to `99`
+      /// routes traffic to a resource. Valid value is between `-99` to `99`
       ///
       /// @since 2.0.0
-      bias             = optional(number, 0)
+      bias = optional(number, 0)
 
       /// Specify the AWS local zone where your resources are deployed in. To use
       /// AWS Local Zones, you have to first [enable them][aws-local-zones].
       ///
+      /// @link {aws-local-zones} https://docs.aws.amazon.com/local-zones/latest/ug/getting-started.html
       /// @since 2.0.0
       local_zone_group = optional(string, null)
 
       /// Specify the AWS region where your resources are deployed in.
       ///
       /// @since 2.0.0
-      region           = optional(string, null)
+      region = optional(string, null)
 
       /// Specify the coordinates where your resources are deployed in.
       ///
@@ -241,7 +246,7 @@ variable "records" {
         /// The latitude of the coordinates
         ///
         /// @since 2.0.0
-        latitude  = string
+        latitude = string
 
         /// The longitude of the coordinates
         ///
@@ -251,9 +256,10 @@ variable "records" {
     }), null)
 
     /// Configures the [Latency-based Routing Policy][route53-routing-policy-latency].
-    /// You may only define one routing policy for a single record. Please
-    /// [see example](#latency-based-routing-policy)
+    /// You may only define one routing policy for a single record.
     ///
+    /// @example "Latency-based Routing Policy Example" #latency-based-routing-policy
+    /// @link {route53-routing-policy-latency} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-latency.html
     /// @since 2.0.0
     latency_routing_policy = optional(object({
       /// The AWS region where the resource that you specified in this record
@@ -264,9 +270,10 @@ variable "records" {
     }), null)
 
     /// Configures the [Multivalue Answer Routing Policy][route53-routing-policy-multivalue-answer].
-    /// You may only define one routing policy for a single record. Please
-    /// [see example](#multivalue-answer-routing-policy)
+    /// You may only define one routing policy for a single record.
     ///
+    /// @example "Multivalue Answer Routing Policy Example" #multivalue-answer-routing-policy
+    /// @link {route53-routing-policy-multivalue-answer} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html
     /// @since 2.0.0
     multivalue_answer_routing_policy = optional(object({
       /// Whether this routing policy is enabled
@@ -276,9 +283,10 @@ variable "records" {
     }), null)
 
     /// Configures the [Weighted Routing Policy][route53-routing-policy-weighted].
-    /// You may only define one routing policy for a single record. Please
-    /// [see example](#weighted-routing-policy)
+    /// You may only define one routing policy for a single record.
     ///
+    /// @example "Weighted Routing Policy Example" #weighted-routing-policy
+    /// @link {route53-routing-policy-weighted} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html
     /// @since 2.0.0
     weighted_routing_policy = optional(object({
       /// The weight that determines the proportion of DNS queries that Route 53
@@ -290,14 +298,16 @@ variable "records" {
 
     /// Creates a [Route 53 health check][route53-health-check] and attach it to
     /// this record. Only available when a routing policy is specified. Mutually
-    /// exclusive with `health_check_id`. Please [see example](#health-check)
+    /// exclusive with `health_check_id`.
     ///
+    /// @example "Health Check Example" #health-check
+    /// @link {route53-health-check} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html
     /// @since 2.0.0
     health_check = optional(object({
       /// Whether this health check is enabled
       ///
       /// @since 2.0.0
-      enabled                    = optional(bool, true)
+      enabled = optional(bool, true)
 
       /// Whether you want Route 53 to invert the status of the health check. For
       /// example, to consider a health check as healthy when it is otherwise
@@ -310,6 +320,7 @@ variable "records" {
       /// where the health of this health check depends on the status of the other
       /// health checks
       ///
+      /// @link {route53-health-check-types} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-types.html
       /// @since 2.0.0
       calculated_check = optional(object({
         /// List of health checks that must be healthy for this check to be
@@ -323,26 +334,27 @@ variable "records" {
         /// checks must be healthy for this check to be considered healthy
         ///
         /// @since 2.0.0
-        healthy_threshold        = optional(number, null)
+        healthy_threshold = optional(number, null)
       }), null)
 
       /// Configures the [Cloudwatch Alarm Checks][route53-health-check-types].
       /// The status of this health check is based on the state of a specified
       /// CloudWatch alarm
       ///
+      /// @link {route53-health-check-types} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-types.html
       /// @since 2.0.0
       cloudwatch_alarm_check = optional(object({
         /// The name of the alarm that determines the status of this health check
         ///
         /// @since 2.0.0
-        alarm_name                      = string
+        alarm_name = string
 
         /// The Cloudwatch region that contains the alarm that you want Route 53
         /// to use for this health check. If not specified, the current region
         /// will be used.
         ///
         /// @since 2.0.0
-        alarm_region                    = optional(string, null)
+        alarm_region = optional(string, null)
 
         /// The status of this health check when Cloudwatch doesn't have enough
         /// data to determine whether the alarm is in the OK or the ALARM state.
@@ -353,15 +365,17 @@ variable "records" {
       }), null)
 
       /// Create [Cloudwatch alarms][route53-health-check-cloudwatch-alarm] to
-      /// notify you health check status changes. Please [see example](#health-check)
+      /// notify you health check status changes.
       ///
+      /// @example "Health Check Example" #health-check
+      /// @link {route53-health-check-cloudwatch-alarm} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-monitor-view-status.html
       /// @since 2.0.0
       cloudwatch_alarms = optional(map(object({
         /// The metric to monitor.
         ///
         /// @enum ChildHealthCheckHealthyCount|HealthCheckPercentageHealthy|HealthCheckStatus
         /// @since 2.0.0
-        metric_name            = string
+        metric_name = string
 
         /// The expression in `<statistic> <operator> <unit>` format. For example: `Average < 50`
         ///
@@ -377,19 +391,19 @@ variable "records" {
         ///
         /// @since 2.0.0
         /// @regex /(Average|Minimum|Maximum) (<=|<|>=|>) (\d+)/
-        expression             = string # statistic comparison_operator threshold
+        expression = string # statistic comparison_operator threshold
 
         /// The number of periods over which data is compared to the specified threshold.
         ///
         /// @since 2.0.0
-        evaluation_periods     = optional(number, 1)
+        evaluation_periods = optional(number, 1)
 
         /// The period in seconds over which the specified statistic is applied.
         ///
         /// Valid values are 10, 30, and any multiple of 60.
         ///
         /// @since 2.0.0
-        period                 = optional(number, 60)
+        period = optional(number, 60)
 
         /// The SNS topic where notification will be sent
         ///
@@ -401,12 +415,13 @@ variable "records" {
       /// Route 53 health checkers will try to establish a TCP connection with
       /// the specified endpoint to determine whether it is healthy.
       ///
+      /// @link {route53-health-check-types} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-types.html
       /// @since 2.0.0
       endpoint_check = optional(object({
         /// The full URL
         ///
         /// @since 2.0.0
-        url                   = string
+        url = string
 
         /// Whether you want Route 53 to display the latency graph on the health
         /// check page in the Route 53 console
@@ -419,19 +434,19 @@ variable "records" {
         /// healthy to unhealthy or vice versa
         ///
         /// @since 2.0.0
-        failure_threshold     = optional(number, 3)
+        failure_threshold = optional(number, 3)
 
         /// Route 53 passes this value in a HOST header when establishing the
         /// connection.
         ///
         /// @since 2.0.0
-        hostname              = optional(string, null)
+        hostname = optional(string, null)
 
         /// A list of AWS regions that you want Amazon Route 53 health checkers
         /// to check the specified endpoint from
         ///
         /// @since 2.0.0
-        regions               = optional(list(string), null)
+        regions = optional(list(string), null)
 
         /// The number of seconds between the time that Amazon Route 53 gets a
         /// response from your endpoint and the time that it sends the next
@@ -439,19 +454,20 @@ variable "records" {
         ///
         /// @enum 10|30
         /// @since 2.0.0
-        request_interval      = optional(number, 30)
+        request_interval = optional(number, 30)
 
         /// The string that you want Route 53 to search for in the body of the
         /// response from the specified endpoint.
         ///
         /// @since 2.0.0
-        search_string         = optional(string, null)
+        search_string = optional(string, null)
       }), null)
     }), null)
   }))
   description = <<EOT
-    Manages multiple records. Please [see example](#basic-usage).
+    Manages multiple records.
 
+    @example "Basic Usage" #basic-usage
     @since 2.0.0
   EOT
   default     = []
@@ -462,8 +478,11 @@ variable "vpc_association_authorizations" {
   description = <<EOT
     List of VPC IDs from external accounts that you want to authorize to be
     associated with this zone. Only applicable to private hosted zone. Please
-    refer to [this documentation][route53-hosted-zone-private-associate-vpcs-different-accounts] for more infomation. Please [see example](#private-hosted-zone).
+    refer to [this documentation][route53-private-vps-diff-accts] for more
+    infomation.
 
+    @example "Private Hosted Zone Example" #private-hosted-zone
+    @link {route53-private-vps-diff-accts} https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-associate-vpcs-different-accounts.html
     @since 2.1.0
   EOT
   default     = []
