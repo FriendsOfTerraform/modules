@@ -100,123 +100,645 @@ module "ec2_providers" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
 
-- (string) **`name`** _[since v1.0.0]_
 
-    The name of the ECS cluster. Associated resources will also have their name prefixed with this value
+
+
+
+## Inputs
+
+### Required
+
+
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the ECS cluster. Associated resources will also have their name prefixed with this value
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
 
 ### Optional
 
-- (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-    Additional tags for the ECS cluster
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
+    
 
-    Additional tags for all resources deployed with this module
+    
 
-- (map(object)) **`default_capacity_provider_strategy = {}`** _[since v1.0.0]_
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Specify the default capacity provider strategy that is used when creating services in the cluster. Please [see example](#ec2-providers)
+Additional tags for the ECS cluster
 
-    - (number) **`weight`** _[since v1.0.0]_
+    
 
-        The relative percentage of the total number of launched tasks that should use the specified capacity provider. `weight` is taken into consideration only after the `base` count of tasks has been satisfied.
+    
 
-    - (number) **`base = 0`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-        The number of tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider in a capacity provider strategy can have `base` defined. Defaults to `0`.
 
-- (string) **`default_service_connect_namespace = null`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Specify a default Service Connect namespace that is used when you create a service and don't specify a Service Connect configuration
+Additional tags for all resources deployed with this module
 
-- (map(object)) **`ec2_capacity_providers = {}`** _[since v1.0.0]_
+    
 
-    Configures multiple EC2 capacity providers for the cluster. Please [see example](#ec2-providers)
+    
 
-    - (number) **`desired_instances`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-        Specify the number of EC2 instances that should be running in the group
 
-    - (string) **`image_id`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#defaultcapacityproviderstrategy">DefaultCapacityProviderStrategy</a>))</code></td>
+    <td width="100%">default_capacity_provider_strategy</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-        The AMI from which to launch the instance. Please refer to the links below for instruction on how to get the image IDs for ECS optimized images:
+Specify the default capacity provider strategy that is used when creating services in the cluster.
 
-        - [linux][ecs-linux-optimized-ami]
-        - [windows][ecs-windows-optimized-ami]
-        - [bottlerocket][ecs-bottlerocket-optimized-ami]
+    
+**Examples:**
+- [EC2 Providers](#ec2-providers)
 
-    - (string) **`instance_type`** _[since v1.0.0]_
+    
 
-        Specify the [EC2 instance type][ec2-instance-type]
+    
+**Since:** 1.0.0
+        
 
-    - (list(string)) **`security_group_ids`** _[since v1.0.0]_
 
-        A list of security group IDs to associate with the instances
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">default_service_connect_namespace</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (list(string)) **`subnet_ids`** _[since v1.0.0]_
+Specify a default Service Connect namespace that is used when you create a
+service and don't specify a Service Connect configuration
 
-        List of subnet IDs to launch resources in. It is recommended to spread the resources in subnets located in multiple availability zones.
+    
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+    
 
-        Addtional tags to be attached to the instances at launch
+    
+**Since:** 1.0.0
+        
 
-    - (string) **`instance_iam_role = null`** _[since v1.0.0]_
 
-        The name of an IAM role to be attached to the instance, if not specified, a default one will be created and attached. Please refer to [this documentation][ecs-container-instance-iam-role] for information in case of creating a custom role.
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#ec2capacityproviders">Ec2CapacityProviders</a>))</code></td>
+    <td width="100%">ec2_capacity_providers</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (number) **`max_desired_instances = null`** _[since v1.0.0]_
+Configures multiple EC2 capacity providers for the cluster.
 
-        Maximum instances to scale to
+    
+**Examples:**
+- [EC2 Providers](#ec2-providers)
 
-    - (number) **`min_desired_instances = null`** _[since v1.0.0]_
+    
 
-        Minimum instances to scale to
+    
+**Since:** 1.0.0
+        
 
-    - (number) **`root_ebs_volume_size = 30`** _[since v1.0.0]_
 
-        The size of the root volume in GB
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_fargate_capacity_provider</td>
+    <td><code>true</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`spot_instance_allocation_strategy = null`** _[since v1.0.0]_
+Enables the [FARGATE and the FARGATE_SPOT][ecs-fargate] capacity providers
 
-        Specify the [spot instance allocation strategy][spot-allocation-strategy], valid values are: `"lowest-price"`, `"capacity-optimized"`, `"capacity-optimized-prioritized"`, `"price-capacity-optimized"`
+    
 
-    - (string) **`ssh_keypair_name = null`** _[since v1.0.0]_
+    
 
-        The instance key pair to be used to SSH into the instance
+    
+**Since:** 1.0.0
+        
 
-    - (object) **`enable_managed_scaling = {}`** _[since v1.0.0]_
 
-        Enables managed scaling to have Amazon ECS manage the scale-in and scale-out actions of the Auto Scaling group
+</td></tr>
+<tr>
+    <td><code>object(<a href="#monitoring">Monitoring</a>)</code></td>
+    <td width="100%">monitoring</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-        - (bool) **`enable_managed_scaling_draining = true`** _[since v1.0.0]_
+Configures ECS monitoring options
 
-            Enables managed instance draining to have Amazon ECS gracefully drain EC2 instances in an Auto Scaling group.
+    
 
-        - (bool) **`enable_scale_in_protection = false`** _[since v1.0.0]_
+    
 
-            Enables scale-in protection to prevent the Amazon EC2 instances in the Auto Scaling group from being terminated during a scale-in action
+    
+**Since:** 1.0.0
+        
 
-        - (number) **`target_capacity_percent = 100`** _[since v1.0.0]_
 
-            When managed scaling is turned on, the target capacity value is used as the target value for the CloudWatch metric used in the Amazon ECS-managed target tracking scaling policy. For example, a value of 100 will result in the Amazon EC2 instances in your Auto Scaling group being completely utilized.
+</td></tr>
+</tbody></table>
 
-- (bool) **`enable_fargate_capacity_provider = true`** _[since v1.0.0]_
+### Objects
 
-    Enables the [FARGATE and the FARGATE_SPOT][ecs-fargate] capacity providers
 
-- (object) **`monitoring = null`** _[since v1.0.0]_
 
-    Configures ECS monitoring options
+#### DefaultCapacityProviderStrategy
 
-    - (bool) **`enable_container_insights = false`** _[since v1.0.0]_
 
-        Enables [ECS container insights][ecs-container-insights]
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">weight</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The relative percentage of the total number of launched tasks that should use the specified capacity provider.
+`weight` is taken into consideration only after the `base` count of tasks has been satisfied.
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">base</td>
+    <td><code>0</code></td>
+</tr>
+<tr><td colspan="3">
+
+The number of tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider
+in a capacity provider strategy can have `base` defined. Defaults to `0`.
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Ec2CapacityProviders
+
+
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">desired_instances</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the number of EC2 instances that should be running in the group
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">image_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The AMI from which to launch the instance. Please refer to the links below for instruction on how to get the image IDs for ECS optimized images:
+
+- [linux][ecs-linux-optimized-ami]
+- [windows][ecs-windows-optimized-ami]
+- [bottlerocket][ecs-bottlerocket-optimized-ami]
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_type</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the [EC2 instance type][ec2-instance-type]
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">security_group_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A list of security group IDs to associate with the instances
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">subnet_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+List of subnet IDs to launch resources in. It is recommended to spread the resources in subnets located in multiple availability zones.
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags to be attached to the instances at launch
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_iam_role</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The name of an IAM role to be attached to the instance. If not specified, a default one will be created and attached.
+
+    
+
+    
+**Links:**
+- [ECS Container Instance IAM Roles](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html)
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">max_desired_instances</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Maximum instances to scale to
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">min_desired_instances</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Minimum instances to scale to
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">root_ebs_volume_size</td>
+    <td><code>30</code></td>
+</tr>
+<tr><td colspan="3">
+
+The size of the root volume in GB
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">spot_instance_allocation_strategy</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the [spot instance allocation strategy][spot-allocation-strategy]
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">ssh_keypair_name</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The instance key pair to be used to SSH into the instance
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#enablemanagedscaling">EnableManagedScaling</a>)</code></td>
+    <td width="100%">enable_managed_scaling</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Enables managed scaling to have Amazon ECS manage the scale-in and scale-out actions of the Auto Scaling group
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### EnableManagedScaling
+
+Enables managed scaling to have Amazon ECS manage the scale-in and scale-out actions of the Auto Scaling group
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_managed_scaling_draining</td>
+    <td><code>true</code></td>
+</tr>
+<tr><td colspan="3">
+
+Enables managed instance draining to have Amazon ECS gracefully drain EC2 instances in an Auto Scaling group
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_scale_in_protection</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Enables scale-in protection to prevent the Amazon EC2 instances in the Auto Scaling group from being terminated during a scale-in action
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">target_capacity_percent</td>
+    <td><code>100</code></td>
+</tr>
+<tr><td colspan="3">
+
+When managed scaling is turned on, the target capacity value is used as the target value for the CloudWatch metric used in the Amazon ECS-managed
+target tracking scaling policy. For example, a value of 100 will result in the Amazon EC2 instances in your Auto Scaling group being completely utilized.
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Monitoring
+
+
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_container_insights</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Enables [ECS container insights][ecs-container-insights]
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+
+[ec2-instance-type]: https://aws.amazon.com/ec2/instance-types/
+
+[ecs-bottlerocket-optimized-ami]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-bottlerocket-retrieve-ami.html
+
+[ecs-container-insights]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
+
+[ecs-fargate]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html
+
+[ecs-linux-optimized-ami]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/retrieve-ecs-optimized_AMI.html#ecs-optimized-ami-parameter-examples
+
+[ecs-windows-optimized-ami]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/retrieve-ecs-optimized_windows_AMI.html#ecs-optimized-ami-windows-parameter-examples
+
+[spot-allocation-strategy]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-allocation-strategy.html
+
+
+<!-- TFDOCS_EXTRAS_END -->
 
 ## Outputs
 
