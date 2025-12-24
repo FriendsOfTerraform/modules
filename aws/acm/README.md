@@ -7,9 +7,11 @@ This module manages multiple certificates in [Certificate Manager](https://aws.a
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-- [Argument Reference](#argument-reference)
-    - [Optional](#optional)
+  - [Basic Usage](#basic-usage)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
+  - [Objects](#objects)
 - [Outputs](#outputs)
 
 ## Example Usage
@@ -29,37 +31,237 @@ module "basic_usage" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
+
+
+
+
+
+
+## Inputs
+
+### Required
+
+_No required inputs._
+
 
 ### Optional
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
 
-    Additional tags for all resources deployed with this module
 
-- (map(object)) **`public_certificates = {}`** _[since v1.0.0]_
 
-    Manage multiple public SSL/TLS certificates from Amazon. By default, public certificates are trusted by browsers and operating systems. Please [see example](#basic-usage)
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-        Additional tags associated with the certificate
 
-    - (bool) **`allow_export = false`** _[since v1.0.0]_
 
-        If enabled, you can export your ACM public certificate's private key. You can use the certificate for different workloads like in the AWS Cloud, on-premises, and hybrid.
 
-    - (string) **`key_algorithm = "RSA_2048"`** _[since v1.0.0]_
 
-        The encryption algorithm. Some algorithms may not be supported by all AWS services. Valid values: `"RSA_2048"`, `"EC_prime256v1"`, `"EC_secp384r1"`
 
-    - (list(string)) **`subject_alternative_names = []`** _[since v1.0.0]_
 
-        List of additional names for this certificate
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`validation_method = "DNS"`** _[since v1.0.0]_
+Additional tags for all resources deployed with this module
 
-        Method for validating domain ownership. Valid values: `"DNS"`, `"EMAIL"`. Please refer to [this documentation][acm-domain-ownership-validation] for more information
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#publiccertificates">PublicCertificates</a>))</code></td>
+    <td width="100%">public_certificates</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Manage multiple public SSL/TLS certificates from Amazon. By default, public
+certificates are trusted by browsers and operating systems.
+
+
+
+
+
+
+**Examples:**
+- [Basic Usage](#basic-usage)
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+</tbody></table>
+
+### Objects
+
+
+
+#### PublicCertificates
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags associated with the certificate
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">allow_export</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+If enabled, you can export your ACM public certificate's private key.
+You can use the certificate for different workloads like in the AWS Cloud,
+on-premises, and hybrid.
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">key_algorithm</td>
+    <td><code>"RSA_2048"</code></td>
+</tr>
+<tr><td colspan="3">
+
+The encryption algorithm. Some algorithms may not be supported by all
+AWS services.
+
+
+**Allowed Values:**
+- `RSA_2048`
+- `EC_prime256v1`
+- `EC_secp384r1`
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">subject_alternative_names</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+List of additional names for this certificate
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">validation_method</td>
+    <td><code>"DNS"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Method for validating domain ownership.
+
+
+**Allowed Values:**
+- `DNS`
+- `EMAIL`
+
+
+
+
+
+
+**Links:**
+- [Domain Ownership Validation](https://docs.aws.amazon.com/acm/latest/userguide/domain-ownership-validation.html)
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+</tbody></table>
+
+
+
+
+
+<!-- TFDOCS_EXTRAS_END -->
 
 ## Outputs
 

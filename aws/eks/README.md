@@ -7,16 +7,17 @@ This module will build and configure an [EKS](https://aws.amazon.com/eks/) clust
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [IAM Roles For Service Accounts](#iam-roles-for-service-accounts)
-    - [OIDC Identity Provider](#oidc-identity-provider)
-    - [Add-Ons](#add-ons)
-- [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Basic Usage](#basic-usage)
+  - [IAM Roles For Service Accounts](#iam-roles-for-service-accounts)
+  - [OIDC Identity Provider](#oidc-identity-provider)
+  - [Add-Ons](#add-ons)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
+  - [Objects](#objects)
 - [Outputs](#outputs)
 - [Known Limitations](#known-limitations)
-    - [Editing Node Group Configuration](#editing-node-group-configuration)
+  - [Editing Node Group Configuration](#editing-node-group-configuration)
 
 ## Example Usage
 
@@ -162,222 +163,1343 @@ module "demo_eks_addon" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
 
-- (string) **`name`** _[since v1.0.0]_
 
-    The name of the EKS cluster. All associated resources will also have their name prefixed with this value
 
-- (map(object)) **`node_groups`** _[since v1.0.0]_
 
-    Map of worker node groups, [see example](#basic-usage)
 
-    - (number) **`desired_instances`** _[since v1.0.0]_
+## Inputs
 
-        Number of desired worker nodes
+### Required
 
-    - (list(string)) **`subnet_ids`** _[since v1.0.0]_
 
-        List of subnet IDs where the nodes will be deployed on. In addition, you must ensure that the subnets are tagged with the following values in order for a load balancer service to deployed successfully. Please refer to the [VPC and subnet requirements][vpc-and-subnet-requirements] for more information
 
-      | Subnet type | Tag
-      |-------------|-------------------------------------
-      | public      | kubernetes.io/role/elb = 1
-      | private     | kubernetes.io/role/internal-elb = 1
+    
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+    
 
-        Additional tags for the node group
+    
 
-    - (string) **`ami_type = "AL2_x86_64"`** _[since v1.0.0]_
+    
 
-        Type of Amazon Machine Image (AMI) associated with the EKS Node Group. Please refer to [this documentation][nodegroup-datatype] for valid values
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`ami_release_version = null`** _[since v1.0.0]_
+The name of the Kubernetes cluster. All associated resources will also have their name prefixed with this value
 
-        AMI version of the EKS Node Group. Defaults to latest version for Kubernetes version. Please refer to this [link][ami-release-versions] for a list of the latest release versions.
+    
 
-    - (string) **`capacity_type = "ON_DEMAND"`** _[since v1.0.0]_
+    
 
-        Type of capacity associated with the EKS Node Group. Valid values are `ON_DEMAND`, `SPOT`
+    
 
-    - (number) **`disk_size = 20`** _[since v1.0.0]_
+    
 
-        EBS size for the worker nodes in GB
+    
+**Since:** 1.0.0
+        
 
-    - (bool) **`ignores_pod_disruption_budget = false`** _[since v1.0.0]_
 
-        Force version update if existing pods are unable to be drained due to a pod disruption budget issue
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#nodegroups">NodeGroups</a>))</code></td>
+    <td width="100%">node_groups</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`instance_type = "t3.medium"`** _[since v1.0.0]_
+Map of worker node groups
 
-        [EC2 instance type][ec2-instance-type] for the worker nodes
+    
 
-    - (map(string)) **`kubernetes_labels = {}`** _[since v1.0.0]_
+    
 
-        Map of Kubernetes labels for the nodes
+    
+**Examples:**
+- [Basic Usage](#basic-usage)
 
-    - (map(string)) **`kubernetes_taints = {}`** _[since v1.0.0]_
+    
 
-        Map of Kubernetes taints for the nodes. In the following format: `{key = value:effect}`. Valid effects are: `NO_EXECUTE`, `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`. For example
+    
+**Since:** 1.0.0
+        
 
-        ```
-        kubernetes_taints = {foo = "bar:NO_EXECUTE"}
-        ```
 
-    - (string) **`kubernetes_version = null`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>object(<a href="#vpcconfig">VpcConfig</a>)</code></td>
+    <td width="100%">vpc_config</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        Desired Kubernetes worker version. Refer to this page for a list of [supported versions][supported-k8s-version]. Defaults to latest version if `null`.
+VPC configuration for the EKS cluster
 
-    - (number) **`max_instances = null`** _[since v1.0.0]_
+    
 
-        Number of maximum worker nodes this group can scale to. Defaults to `desired_instances` if unspecifed
+    
 
-    - (string) **`max_unavailable_instances_during_update = 1`** _[since v1.0.0]_
+    
 
-        Desired max number of unavailable worker nodes during node group update. This can be a whole number (`"2"`), or a percentage (`"50%"`)
+    
 
-    - (number) **`min_instances = null`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-        Number of minimum worker nodes this group can scale to. Defaults to `desired_instances` if unspecifed
 
-- (object) **`vpc_config`** _[since v1.0.0]_
+</td></tr>
+</tbody></table>
 
-    VPC configuration for the EKS cluster
-
-    - (list(string)) **`subnet_ids`** _[since v1.0.0]_
-
-        List of subnet IDs. Must be in at least two different availability zones. Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication between your worker nodes and the Kubernetes control plane. Please refer to the [VPC and subnet requirements][vpc-and-subnet-requirements] to make sure your VPC meets the requirement
-
-    - (list(string)) **`security_group_ids = []`** _[since v1.0.0]_
-
-        List of security group IDs for the cross-account elastic network interfaces that Amazon EKS creates to use to allow communication between your worker nodes and the Kubernetes control plane.
 
 ### Optional
 
-- (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-    Additional tags for the Kubernetes cluster
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
+    
 
-    Additional tags for all resources deployed with this module
+    
 
-- (map(object)) **`add_ons = {}`** _[since v1.0.0]_
+    
 
-    Configures multiple EKS add-ons, [see example](#add-ons). You can get a list of add-on names by running this aws cli command:
+    
 
-    ```bash
-    aws eks describe-addon-versions | jq -r ".addons[] | .addonName"
-    ```
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#addons">AddOns</a>))</code></td>
+    <td width="100%">add_ons</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+Configures multiple EKS add-ons.
 
-        Additional tags for the add-on
+You can get a list of add-on names by running this aws cli command:
 
-    - (string) **`configuration = null`** _[since v1.0.0]_
+```bash
+aws eks describe-addon-versions | jq -r ".addons[] | .addonName"
+```
 
-        Custom configuration values for add-ons with single JSON string. You can use the describe-addon-configuration call to find the correct JSON schema for each add-on. For example:
+    
 
-        ```bash
-        aws eks describe-addon-configuration --addon-name vpc-cni --addon-version v1.12.6-eksbuild.2
-        ```
+    
 
-    - (string) **`iam_role_arn = null`** _[since v1.0.0]_
+    
+**Examples:**
+- [Add-Ons Example](#add-ons)
 
-        The arn of an existing IAM role to bind to the add-on's service account. The role must be assigned the IAM permissions required by the add-on. If you don't specify an existing IAM role, an IAM role will be created automatically for supported add-ons (see below), otherwise the add-on uses the permissions assigned to the node IAM role.
+    
 
-        supported add-ons: `vpc-cni`, `aws-ebs-csi-driver`, and `adot`
+    
+**Since:** 1.0.0
+        
 
-    - (bool) **`preserve = false`** _[since v1.0.0]_
 
-        Indicates if you want to preserve the created resources when deleting the EKS add-on
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`resolve_conflicts_on_create = "NONE"`** _[since v1.0.0]_
+Additional tags for the Kubernetes cluster
 
-        How to resolve field value conflicts when migrating a self-managed add-on to an Amazon EKS add-on. Valid values are `"NONE"` and `"OVERWRITE"`
+    
 
-    - (string) **`resolve_conflicts_on_update = "NONE"`** _[since v1.0.0]_
+    
 
-        How to resolve field value conflicts for an Amazon EKS add-on if you've changed a value from the Amazon EKS default value. Valid values are `"NONE"` and `"OVERWRITE"`
+    
 
-    - (string) **`version = null`** _[since v1.0.0]_
+    
 
-        The version of the EKS add-on. Defaults to the latest version if `null`. You can get a list of add-on and their latest version with this command:
+    
+**Since:** 1.0.0
+        
 
-        ```bash
-        aws eks describe-addon-versions --kubernetes-version 1.27 | jq -r ".addons[] | .addonName, .addonVersions[0].addonVersion"
-        ```
 
-- (list(string)) **`apiserver_allowed_cidrs = ["0.0.0.0/0"]`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    List of CIDR to allow access to the Kubernetes API endpoint
+Additional tags for all resources deployed with this module
 
-- (bool) **`enable_apiserver_public_endpoint = false`** _[since v1.0.0]_
+    
 
-    Enables the EKS public endpoint. Cluster internal traffic will still be private.
+    
 
-- (list(string)) **`enable_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]`** _[since v1.0.0]_
+    
 
-    List of the desired control plane logging to enable. [Refer to this link for valid values][eks-log-types].
+    
 
-- (object) **`envelope_encryption = null`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-    Configures [envelope encryption][envelope-encryption] for Kubernetes secrets
 
-    - (string) **`kms_key_arn`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">apiserver_allowed_cidrs</td>
+    <td><code>[
+  "0.0.0.0/0"
+]</code></td>
+</tr>
+<tr><td colspan="3">
 
-        ARN of the Key Management Service (KMS) customer master key (CMK) for encryption. The CMK must be symmetric, created in the same region as the cluster, and if the CMK was created in a different account, the user must have access to the CMK.
+List of CIDR blocks that can access the Amazon EKS public API server endpoint
 
-- (object) **`kubernetes_networking_config = null`** _[since v1.0.0]_
+    
 
-    Configures various Kubernetes networking options
+    
 
-    - (string) **`kubernetes_service_address_range = null`** _[since v1.0.0]_
+    
 
-        The CIDR block to assign Kubernetes pod and service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. The block must meet the following requirements:
+    
 
-        - Within one of the following private IP address blocks: `"10.0.0.0/8"`, `"172.16.0.0/12"`, or `"192.168.0.0/16"`
-        - Doesn't overlap with any CIDR block assigned to the VPC that you selected for VPC
-        - Between /24 and /12
+    
+**Since:** 1.0.0
+        
 
-    - (string) **`ip_family = "ipv4"`** _[since v1.0.0]_
 
-        The IP family used to assign Kubernetes pod and service addresses. Valid values are `"ipv4"`, `"ipv6"`
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_apiserver_public_endpoint</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (string) **`kubernetes_version = null`** _[since v1.0.0]_
+Enables the EKS public endpoint. Cluster internal traffic will still be private
 
-    Desired Kubernetes master version. Refer to this page for a list of [supported versions][supported-k8s-version]
+    
 
-- (object) **`oidc_identity_provider = null`** _[since v1.0.0]_
+    
 
-    Set up an EKS [OIDC identity provider][oidc-idp], [see example](#oidc-identity-provider)
+    
 
-    - (string) **`client_id`** _[since v1.0.0]_
+    
 
-        Client ID for the OIDC provider
+    
+**Since:** 1.0.0
+        
 
-    - (string) **`groups_claim`** _[since v1.0.0]_
 
-        The JWT claim that the provider will use to return groups. This is mapped to a Kubernetes group. You can optionally prepend a prefix to this claim by separating the prefix with a `_`. eg `gid:_groups`
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">enable_cluster_log_types</td>
+    <td><code>[
+  "api",
+  "audit",
+  "authenticator",
+  "controllerManager",
+  "scheduler"
+]</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`issuer_url`** _[since v1.0.0]_
+List of the desired control plane logging types to enable
 
-        Issuer URL for the OIDC identity provider. This URL should point to the level below [.well-known/openid-configuration][oidc-idp-issuer] and must be publicly accessible over the internet.
+    
 
-    - (string) **`name`** _[since v1.0.0]_
+    
 
-        A friendly name for this identity provider
+    
 
-    - (string) **`username_claim`** _[since v1.0.0]_
+    
+**Links:**
+- [Valid EKS Log Types](https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
 
-        The JWT claim that the provider will use as the username. This is mapped to a Kubernetes user. You can optionally prepend a prefix to this claim by separating the prefix with a `_`. eg `uid:_email`
+    
+**Since:** 1.0.0
+        
 
-- (map(list(string))) **`service_account_to_iam_role_mappings = {}`** _[since v1.0.0]_
 
-    Enables and creates the [components][oidc-provider] needed for IAM roles for service accounts, then map a Kubernetes Namespace/ServiceAccount to a list of IAM policies. You can map the entire namespace to a role by omitting `<service_account>`, please see [example](#iam-roles-for-service-accounts)
+</td></tr>
+<tr>
+    <td><code>object(<a href="#envelopeencryption">EnvelopeEncryption</a>)</code></td>
+    <td width="100%">envelope_encryption</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configures envelope encryption for Kubernetes secrets
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#kubernetesnetworkingconfig">KubernetesNetworkingConfig</a>)</code></td>
+    <td width="100%">kubernetes_networking_config</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configures various Kubernetes networking options
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">kubernetes_version</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Desired Kubernetes master version. Defaults to latest version if null
+
+    
+
+    
+
+    
+
+    
+**Links:**
+- [Supported Kubernetes Versions](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html)
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#oidcidentityprovider">OidcIdentityProvider</a>)</code></td>
+    <td width="100%">oidc_identity_provider</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Set up an EKS [OIDC identity provider][oidc-idp] for authenticating to the Kubernetes API server
+
+    
+
+    
+
+    
+**Examples:**
+- [OIDC Identity Provider](#oidc-identity-provider)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(list(string))</code></td>
+    <td width="100%">service_account_to_iam_role_mappings</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Enables and creates the [components][oidc-provider] needed for IAM roles for
+service accounts, then map a Kubernetes Namespace/ServiceAccount to a list of
+IAM policies. You can map the entire namespace to a role by omitting
+`<service_account>`.
+
+    
+
+    
+
+    
+**Examples:**
+- [IAM Roles For Service Accounts](#iam-roles-for-service-accounts)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+### Objects
+
+
+
+#### AddOns
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for the add-on
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">configuration</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Custom configuration values for add-ons with single JSON string. You can use the describe-addon-configuration call to find the correct JSON schema for each add-on. For example:
+
+```bash
+aws eks describe-addon-configuration --addon-name vpc-cni --addon-version v1.12.6-eksbuild.2
+```
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">iam_role_arn</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The arn of an existing IAM role to bind to the add-on's service account.
+The role must be assigned the IAM permissions required by the add-on. If
+you don't specify an existing IAM role, an IAM role will be created
+automatically for supported add-ons (see below), otherwise the add-on
+uses the permissions assigned to the node IAM role.
+
+Supported add-ons: `vpc-cni`, `aws-ebs-csi-driver`, and `adot`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">preserve</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Indicates if you want to preserve the created resources when deleting the EKS add-on
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">resolve_conflicts_on_create</td>
+    <td><code>"NONE"</code></td>
+</tr>
+<tr><td colspan="3">
+
+How to resolve field value conflicts when migrating a self-managed add-on to an Amazon EKS add-on
+
+    
+**Allowed Values:**
+- `NONE`
+- `OVERWRITE`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">resolve_conflicts_on_update</td>
+    <td><code>"NONE"</code></td>
+</tr>
+<tr><td colspan="3">
+
+How to resolve field value conflicts for an Amazon EKS add-on if you've changed a value from the Amazon EKS default value
+
+    
+**Allowed Values:**
+- `NONE`
+- `OVERWRITE`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">version</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The version of the EKS add-on. Defaults to the latest version if null
+
+You can get a list of add-on and their latest version with this command:
+
+```bash
+aws eks describe-addon-versions --kubernetes-version 1.27 | jq -r ".addons[] | .addonName, .addonVersions[0].addonVersion"
+```
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### EnvelopeEncryption
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">kms_key_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+ARN of the Key Management Service (KMS) customer master key (CMK) for encryption.
+The CMK must be symmetric, created in the same region as the cluster, and if the CMK was created in a different account,
+the user must have access to the CMK
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### KubernetesNetworkingConfig
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">kubernetes_service_address_range</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The CIDR block to assign Kubernetes pod and service IP addresses from.
+If you don't specify a block, Kubernetes assigns addresses from either
+the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. The block must meet the
+following requirements:
+
+- Within one of the following private IP address blocks: `"10.0.0.0/8"`, `"172.16.0.0/12"`, or `"192.168.0.0/16"`
+- Doesn't overlap with any CIDR block assigned to the VPC that you selected for VPC
+- Between /24 and /12
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">ip_family</td>
+    <td><code>"ipv4"</code></td>
+</tr>
+<tr><td colspan="3">
+
+The IP family used to assign Kubernetes pod and service addresses
+
+    
+**Allowed Values:**
+- `ipv4`
+- `ipv6`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### NodeGroups
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">desired_instances</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Number of desired worker nodes
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">subnet_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+List of subnet IDs where the nodes will be deployed on. In addition, you must ensure that the subnets are tagged
+with the following values in order for a load balancer service to deployed successfully.
+
+Public subnets: kubernetes.io/role/elb = 1
+Private subnets: kubernetes.io/role/internal-elb = 1
+
+    
+
+    
+
+    
+
+    
+**Links:**
+- [VPC and Subnet Requirements](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for the node group
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">ami_type</td>
+    <td><code>"AL2_x86_64"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Type of Amazon Machine Image (AMI) associated with the EKS Node Group
+
+    
+**Allowed Values:**
+- `AL2_x86_64`
+- `AL2_x86_64_GPU`
+- `AL2_ARM_64`
+- `CUSTOM`
+- `BOTTLEROCKET_ARM_64`
+- `BOTTLEROCKET_x86_64`
+- `BOTTLEROCKET_ARM_64_FIPS`
+- `BOTTLEROCKET_x86_64_FIPS`
+- `BOTTLEROCKET_ARM_64_NVIDIA`
+- `BOTTLEROCKET_x86_64_NVIDIA`
+- `WINDOWS_CORE_2019_x86_64`
+- `WINDOWS_FULL_2019_x86_64`
+- `WINDOWS_CORE_2022_x86_64`
+- `WINDOWS_FULL_2022_x86_64`
+- `AL2023_x86_64_STANDARD`
+- `AL2023_ARM_64_STANDARD`
+- `AL2023_x86_64_NEURON`
+- `AL2023_x86_64_NVIDIA`
+- `AL2023_ARM_64_NVIDIA`
+
+    
+
+    
+
+    
+**Links:**
+- [Valid AMI Types](https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType)
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">ami_release_version</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+AMI version of the EKS Node Group. Defaults to latest version for Kubernetes version.
+
+    
+
+    
+
+    
+
+    
+**Links:**
+- [Latest AMI Release Versions](https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html)
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">capacity_type</td>
+    <td><code>"ON_DEMAND"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Type of capacity associated with the EKS Node Group
+
+    
+**Allowed Values:**
+- `ON_DEMAND`
+- `SPOT`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">disk_size</td>
+    <td><code>20</code></td>
+</tr>
+<tr><td colspan="3">
+
+EBS size for the worker nodes in GB
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">ignores_pod_disruption_budget</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Force version update if existing pods are unable to be drained due to a pod disruption budget issue
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_type</td>
+    <td><code>"t3.medium"</code></td>
+</tr>
+<tr><td colspan="3">
+
+[EC2 instance type][ec2-instance-type] for the worker nodes
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">kubernetes_labels</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Map of Kubernetes labels for the nodes
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">kubernetes_taints</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Map of Kubernetes taints for the nodes. In the following format: `{key = value:effect}`.
+
+    
+**Allowed Values:**
+- `NO_EXECUTE`
+- `NO_SCHEDULE`
+- `PREFER_NO_SCHEDULE`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">kubernetes_version</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Desired Kubernetes worker version. Defaults to latest version if null
+
+    
+
+    
+
+    
+
+    
+**Links:**
+- [Supported Kubernetes Versions](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html)
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">max_instances</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Number of maximum worker nodes this group can scale to. Defaults to `desired_instances` if unspecified
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">max_unavailable_instances_during_update</td>
+    <td><code>"1"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Desired max number of unavailable worker nodes during node group update
+This can be a whole number or a percentage (e.g., "50%")
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">min_instances</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Number of minimum worker nodes this group can scale to. Defaults to `desired_instances` if unspecified
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### OidcIdentityProvider
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">client_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Client ID for the OIDC provider
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">groups_claim</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The JWT claim that the provider will use to return groups. This is mapped to a Kubernetes group.
+You can optionally prepend a prefix to this claim by separating the prefix with a `_`. eg `gid:_groups`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">issuer_url</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Issuer URL for the OIDC identity provider. This URL should point to the
+level below [.well-known/openid-configuration][oidc-idp-issuer] and must
+be publicly accessible over the internet
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A friendly name for this identity provider
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">username_claim</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The JWT claim that the provider will use as the username. This is mapped to a Kubernetes user.
+You can optionally prepend a prefix to this claim by separating the prefix with a `_`. eg `uid:_email`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### VpcConfig
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">subnet_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+List of subnet IDs. Must be in at least two different availability zones.
+Amazon EKS creates cross-account elastic network interfaces in these subnets to allow communication
+between your worker nodes and the Kubernetes control plane.
+
+    
+
+    
+
+    
+
+    
+**Links:**
+- [VPC and Subnet Requirements](https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">security_group_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+List of security group IDs for the cross-account elastic network interfaces that Amazon EKS creates
+to use to allow communication between your worker nodes and the Kubernetes control plane
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+
+[ec2-instance-type]: https://aws.amazon.com/ec2/instance-types/
+
+[envelope-encryption]: https://docs.aws.amazon.com/eks/latest/userguide/enable-kms.html
+
+[oidc-idp]: https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html
+
+[oidc-idp-issuer]: https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html#associate-oidc-identity-provider
+
+[oidc-provider]: https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
+
+
+<!-- TFDOCS_EXTRAS_END -->
 
 ## Outputs
 
