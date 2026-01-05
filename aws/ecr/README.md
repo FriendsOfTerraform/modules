@@ -7,10 +7,12 @@ This module builds and configures private and public [ECR](https://aws.amazon.co
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [Private Registry Features](#private-registry-features)
-- [Argument Reference](#argument-reference)
-    - [Optional](#optional)
+  - [Basic Usage](#basic-usage)
+  - [Private Registry Features](#private-registry-features)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
+  - [Objects](#objects)
 - [Outputs](#outputs)
 
 ## Example Usage
@@ -118,171 +120,1070 @@ module "private_registry_features" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
+
+
+
+
+
+
+## Inputs
+
+### Required
+
+_No required inputs._
+
 
 ### Optional
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
 
-    Additional tags for all resources deployed with this module
 
-- (object) **`private_registry = null`** _[since v1.0.0]_
+    
 
-    Manages the private registry
+    
 
-    - (string) **`permissions = null`** _[since v1.0.0]_
+    
 
-        Specifies the JSON policy document defining the [registry policy][ecr-private-registry-policy]
+    
 
-    - (map(object)) **`pull_through_cache_rules = {}`** _[since v1.0.0]_
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-        Configures [pull through cache rules][ecr-private-registry-pull-through-cache-rules]. Please see [example](#private-registry-features)
+Additional tags for all resources deployed with this module
 
-        - (string) **`upstream_registry_url`** _[since v1.0.0]_
+    
 
-            The registry URL of the upstream public registry to use as the source
+    
 
-            | upstream registry         | URL
-            |---------------------------|-------------------------------------
-            | ECR Public                | public.ecr.aws
-            | Docker Hub                | registry-1.docker.io
-            | Kubernetes                | registry.k8s.io
-            | Quay                      | quay.io
-            | Github Container Registry | ghcr.io
-            | Azure Container Registry  | {custom}.azurecr.io
-            | Gitlab Container Registry | registry.gitlab.com
+    
 
-        - (string) **`credential_arn = null`** _[since v1.0.0]_
+    
 
-            ARN of the Secret which will be used to authenticate against the registry. Required when using the following upstream registry: Docker Hub, Github Container Registry, Azure Container Registry, Gitlab Container Registry
+    
+**Since:** 1.0.0
+        
 
-    - (list(object)) **`replication_rules = []`** _[since v1.0.0]_
 
-        Configures ECR [replication rules][ecr-private-registry-image-replication]. Please see [example](#private-registry-features)
+</td></tr>
+<tr>
+    <td><code>object(<a href="#privateregistry">PrivateRegistry</a>)</code></td>
+    <td width="100%">private_registry</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-        - (list(string)) **`destinations`** _[since v1.0.0]_
+Manages the private registry
 
-            The destinations images are replicated into. in `"account_id/region"` format. if `account_id` is omitted, the current account will be used. For cross account replication, please make sure you grant proper [registry permissions][ecr-private-registry-image-replication-permissions]
+    
 
-        - (list(string)) **`filters = []`** _[since v1.0.0]_
+    
 
-            Add filters for this rule to specify the repositories to replicate. Supported filters are repository name prefixes. If no filter is added, all images in the repository are replicated.
+    
 
-    - (map(object)) **`repositories = {}`** _[since v1.0.0]_
+    
 
-        Manages multiple [private repositories][ecr-private-registry-repository]. Please see [example](#basic-usage)
+    
+**Since:** 1.0.0
+        
 
-        - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-            Additional tags to be added to the repository
+</td></tr>
+<tr>
+    <td><code>object(<a href="#publicregistry">PublicRegistry</a>)</code></td>
+    <td width="100%">public_registry</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-        - (bool) **`enable_tag_immutability = false`** _[since v1.0.0]_
+Manages the public registry
 
-            When tag immutability is enabled, tags are prevented from being overwritten.
+    
 
-        - (object) **`encrypt_with_kms = null`** _[since v1.0.0]_
+    
 
-            Encrypts the repository with KMS. If unspecified, ECR will be encrypted with `AES-256` by default
+    
 
-            - (string) **`kms_key_id = null`** _[since v1.0.0]_
+    
 
-                Specify the customer managed KMS key ID to be used for encryption. if unspecified, the default AWS managed key will be used.
+    
+**Since:** 1.0.0
+        
 
-        - (bool) **`force_delete = false`** _[since v1.0.0]_
 
-            If true, repository can be deleted even if it containes images
+</td></tr>
+</tbody></table>
 
-        - (string) **`permissions = null`** _[since v1.0.0]_
+### Objects
 
-            Specifies the JSON policy document defining the [repository policy][ecr-private-registry-repository-policy]
 
-        - (list(object)) **`lifecycle_policy_rules = []`** _[since v1.0.0]_
 
-            Configures [lifecycle police rules][ecr-private-registry-lifecycle-police-rule] to automatically clean up images
+#### ContinuousScanning
 
-            - (object) **`match_criteria`** _[since v1.0.0]_
+Enables continuous scanning, which will continually scan images after it is pushed into a matching repository. This setting is only available if scan_type = "ENHANCED"
 
-                Specify the count type to apply to the images. Must specify one of the below.
+    
 
-                - (number) **`days_since_image_pushed = null`** _[since v1.0.0]_
+    
 
-                    Specifies how many days should pass since pushed before an image expires
+    
 
-                - (number) **`image_count_more_than = null`** _[since v1.0.0]_
+    
 
-                    Sets a limit on the number of images that exist in the repository
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">filters</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-            - (number) **`priority`** _[since v1.0.0]_
+Specifies which repositories will continuously have images scanned
+for vulnerabilities. Filters with no wildcard will match all repository
+names that contain the filter. Filters with wildcards (*) will match
+on a repository name where the wildcard replaces zero or more
+characters in the repository name.
 
-                Specify a rule priority, which must be unique. Values do not need to be sequential across rules in a policy. Lower number has higher priority.
+    
 
-            - (string) **`description = null`** _[since v1.0.0]_
+    
 
-                Describes the purpose of a rule within a lifecycle policy
+    
 
-            - (list(string)) **`tag_filters = null`** _[since v1.0.0]_
+    
 
-                Specify a list of image tags to match images to apply lifecycle rule towards. If not specified, untagged images will be matched. If `["*"]`, all images, including untagged images, willl be matched. Wildcard match will be used if wildcards are used in the filter, otherwise, prefix match will be used. Please see [example](#basic-usage)
+    
+**Since:** 1.0.0
+        
 
-    - (object) **`scanning_configuration = null`** _[since v1.0.0]_
 
-        Configure [image scanning][ecr-private-registry-image-scanning]. Please see [example](#private-registry-features)
+</td></tr>
+</tbody></table>
 
-        - (string) **`scan_type = "BASIC"`** _[since v1.0.0]_
 
-            Specifies the scanning type that will be used for this registry. Valid values are: `"BASIC"`, `"ENHANCED"`
 
-        - (object) **`continuous_scanning = null`** _[since v1.0.0]_
+#### EncryptWithKms
 
-            Enables continuous scanning, which will continually scans images after it is pushed into a matching repository. This setting is only available if `scan_type = "ENHANCED"`
+Encrypts the repository with KMS. If unspecified, ECR will be encrypted with AES-256 by default
 
-            - (list(string)) **`filters = ["*"]`** _[since v1.0.0]_
+    
 
-                Specifies which repositories will continuously have images scanned for vulnerabilities. Filters with no wildcard will match all repository names that contain the filter. Filters with wildcards (*) will match on a repository name where the wildcard replaces zero or more characters in the repository name.
+    
 
-        - (object) **`scan_on_push = null`** _[since v1.0.0]_
+    
 
-            Enables scan on push, which scans images when it is pushed into a matching repository.
+    
 
-            - (string) **`filters = ["*"]`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">kms_key_id</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-                Specifies which repositories to scan for vulnerabilities on image push. Filters with no wildcard will match all repository names that contain the filter. Filters with wildcards (*) will match on a repository name where the wildcard replaces zero or more characters in the repository name.
+Specify the customer managed KMS key ID to be used for encryption. If unspecified, the default AWS managed key will be used.
 
-- (object) **`public_registry = null`** _[since v1.0.0]_
+    
 
-    Manages the public registry
+    
 
-    - (map(object)) **`repositories = {}`** _[since v1.0.0]_
+    
 
-        Manages multiple public repositories
+    
 
-        - (string) **`about_text = null`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-            Provide a detailed description of the repository. Identify what is included in the repository, any licensing details, or other relevant information.
 
-        - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+</td></tr>
+</tbody></table>
 
-            Additional tags to be added to the public repository
 
-        - (list(string)) **`architectures = null`** _[since v1.0.0]_
 
-            The system architecture that the images in the repository are compatible with. Valid values: `"ARM"`, `"ARM 64"`, `"x86"`, `"x86-64"`
+#### LifecyclePolicyRules
 
-        - (string) **`description = null`** _[since v1.0.0]_
+Configures [lifecycle policy rules][ecr-private-registry-lifecycle-policy-rule] to automatically clean up images
 
-            The short description is displayed in search results and on the repository detail page.
+    
 
-        - (string) **`logo_image_blob = null`** _[since v1.0.0]_
+    
 
-            The base64-encoded repository logo payload. (Only visible for verified accounts) Note that drift detection is disabled for this attribute.
+    
 
-        - (list(string)) **`operating_systems = null`** _[since v1.0.0]_
+    
 
-            The operating systems that the images in the repository are compatible with. Valid values: `"Linux"`, `"Windows"`
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#matchcriteria">MatchCriteria</a>)</code></td>
+    <td width="100%">match_criteria</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        - (string) **`usage_text = null`** _[since v1.0.0]_
+Specify the count type to apply to the images. Must specify one of the below.
 
-            Provide detailed information about how to use the images in the repository. This provides context, support information, and additional usage details for users of the repository.
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">priority</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify a rule priority, which must be unique. Values do not need to
+be sequential across rules in a policy. Lower number has higher priority.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Describes the purpose of a rule within a lifecycle policy
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">tag_filters</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify a list of image tags to match images to apply lifecycle rule
+towards. If not specified, untagged images will be matched. If `["*"]`,
+all images, including untagged images, willl be matched. Wildcard match
+will be used if wildcards are used in the filter, otherwise, prefix
+match will be used.
+
+    
+
+    
+
+    
+**Examples:**
+- [Basic Usage](#basic-usage)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### MatchCriteria
+
+Specify the count type to apply to the images. Must specify one of the below.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">days_since_image_pushed</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies how many days should pass since pushed before an image expires
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">image_count_more_than</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Sets a limit on the number of images that exist in the repository
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### PrivateRegistry
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">permissions</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies the JSON policy document defining the registry policy
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#pullthroughcacherules">PullThroughCacheRules</a>))</code></td>
+    <td width="100%">pull_through_cache_rules</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configures pull through cache rules. Please see example for usage
+
+    
+
+    
+
+    
+**Examples:**
+- [Private Registry Features](#private-registry-features)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(object(<a href="#replicationrules">ReplicationRules</a>))</code></td>
+    <td width="100%">replication_rules</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Configures ECR replication rules
+
+    
+
+    
+
+    
+**Examples:**
+- [Private Registry Features](#private-registry-features)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#repositories">Repositories</a>))</code></td>
+    <td width="100%">repositories</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Manages multiple private repositories
+
+    
+
+    
+
+    
+**Examples:**
+- [Basic Example](#basic-usage)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#scanningconfiguration">ScanningConfiguration</a>)</code></td>
+    <td width="100%">scanning_configuration</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configure [image scanning][ecr-private-registry-image-scanning]
+
+    
+
+    
+
+    
+**Examples:**
+- [Private Registry Features](#private-registry-features)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### PublicRegistry
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#repositories">Repositories</a>))</code></td>
+    <td width="100%">repositories</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Manages multiple public repositories
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### PullThroughCacheRules
+
+Configures pull through cache rules. Please see example for usage
+
+    
+
+    
+
+    
+**Examples:**
+- [Private Registry Features](#private-registry-features)
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">upstream_registry_url</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The registry URL of the upstream public registry to use as the source
+
+| upstream registry         | URL
+|---------------------------|------------------------
+| ECR Public                | public.ecr.aws
+| Docker Hub                | registry-1.docker.io
+| Kubernetes                | registry.k8s.io
+| Quay                      | quay.io
+| Github Container Registry | ghcr.io
+| Azure Container Registry  | {custom}.azurecr.io
+| Gitlab Container Registry | registry.gitlab.com
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">credential_arn</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+ARN of the Secret which will be used to authenticate against the registry.
+Required when using the following upstream registry: Docker Hub, Github
+Container Registry, Azure Container Registry, Gitlab Container Registry
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### ReplicationRules
+
+Configures ECR replication rules
+
+    
+
+    
+
+    
+**Examples:**
+- [Private Registry Features](#private-registry-features)
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">destinations</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The destinations images are replicated into. in `"account_id/region"`
+format. If `account_id` is omitted, the current account will be used.
+For cross account replication, please make sure you grant proper
+[registry permissions][ecr-private-registry-image-replication-permissions]
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">filters</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Add filters for this rule to specify the repositories to replicate.
+Supported filters are repository name prefixes. If no filter is added,
+all images in the repository are replicated.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Repositories
+
+Manages multiple public repositories
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">about_text</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Provide a detailed description of the repository. Identify what is
+included in the repository, any licensing details, or other relevant
+information.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags to be added to the public repository
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">architectures</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The system architecture that the images in the repository are compatible with
+
+    
+**Allowed Values:**
+- `ARM`
+- `ARM 64`
+- `x86`
+- `x86-64`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The short description is displayed in search results and on the repository detail page
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">logo_image_blob</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The base64-encoded repository logo payload. (Only visible for verified accounts) Note that drift detection is disabled for this attribute.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">operating_systems</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The operating systems that the images in the repository are compatible with
+
+    
+**Allowed Values:**
+- `Linux`
+- `Windows`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">usage_text</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Provide detailed information about how to use the images in the repository. This provides context, support information, and additional usage details for users of the repository.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### ScanOnPush
+
+Enables scan on push, which scans images when it is pushed into a matching repository
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">filters</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies which repositories to scan for vulnerabilities on image
+push. Filters with no wildcard will match all repository names that
+contain the filter. Filters with wildcards (*) will match on a
+repository name where the wildcard replaces zero or more characters
+in the repository name.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### ScanningConfiguration
+
+Configure [image scanning][ecr-private-registry-image-scanning]
+
+    
+
+    
+
+    
+**Examples:**
+- [Private Registry Features](#private-registry-features)
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">scan_type</td>
+    <td><code>"BASIC"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies the scanning type that will be used for this registry
+
+    
+**Allowed Values:**
+- `BASIC`
+- `ENHANCED`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#continuousscanning">ContinuousScanning</a>)</code></td>
+    <td width="100%">continuous_scanning</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Enables continuous scanning, which will continually scan images after it is pushed into a matching repository. This setting is only available if scan_type = "ENHANCED"
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#scanonpush">ScanOnPush</a>)</code></td>
+    <td width="100%">scan_on_push</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Enables scan on push, which scans images when it is pushed into a matching repository
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+
+[ecr-private-registry-image-replication]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/replication.html
+
+[ecr-private-registry-image-replication-permissions]: https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/registry-permissions-create-replication.html
+
+[ecr-private-registry-image-scanning]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html
+
+[ecr-private-registry-lifecycle-policy-rule]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html
+
+[ecr-private-registry-policy]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html
+
+[ecr-private-registry-pull-through-cache-rules]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html
+
+[ecr-private-registry-repository]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html
+
+[ecr-private-registry-repository-policy]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html
+
+
+<!-- TFDOCS_EXTRAS_END -->
 
 ## Outputs
 

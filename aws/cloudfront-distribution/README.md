@@ -8,9 +8,10 @@ This module will build and configure a [CloudFront Distribution](https://aws.ama
 
 - [Example Usage](#example-usage)
     - [Basic Usage](#basic-usage)
-- [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
+  - [Objects](#objects)
 - [Outputs](#outputs)
 
 ## Example Usage
@@ -76,235 +77,1669 @@ module "basic_usage" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
 
-- (map(object)) **`behaviors`** _[since v1.0.0]_
 
-    Map of cache behaviors resource for this distribution. List from top to bottom in order of precedence. The topmost cache behavior will have precedence 0. The default behavior (`"*"`) must be specified. Please [see example](#basic-usage)
 
-    - (string) **`target_origin`** _[since v1.0.0]_
 
-        Name of the origin or origin group that you want CloudFront to route requests to when a request matches the path pattern
 
-    - (string) **`cache_policy_name`** _[since v1.0.0]_
+## Inputs
 
-        The name of the [cache policy][cloudfront-cache-policy] that is attached to the cache behavior.
+### Required
 
-    - (list(string)) **`allowed_http_methods = ["GET", "HEAD"]`** _[since v1.0.0]_
 
-        Controls which HTTP methods CloudFront processes and forwards to your origin. Valid values: `"GET"`, `"HEAD"`, `"OPTIONS"`, `"PUT"`, `"POST"`, `"PATCH"`, `"DELETE"`
 
-    - (bool) **`compress_objects_automatically = true`** _[since v1.0.0]_
+    
 
-        Whether you want CloudFront to automatically compress content for web requests that include `Accept-Encoding: gzip` in the request header.
+    
 
-    - (string) **`field_level_encryption_id = null`** _[since v1.0.0]_
+    
 
-        Associate a [field-level encryption configuration][cloudfront-field-level-encryption-configuration] with the cache behavior
+    
 
-    - (string) **`origin_request_policy_name = null`** _[since v1.0.0]_
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#behaviors">Behaviors</a>))</code></td>
+    <td width="100%">behaviors</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        Associate an [origin request policy][cloudfront-origin-request-policy] with the cache behavior
+Map of cache behaviors resource for this distribution. List from top to
+bottom in order of precedence. The topmost cache behavior will have
+precedence 0. The default behavior (`"*"`) must be specified.
 
-    - (string) **`realtime_log_config_arn = null`** _[since v1.0.0]_
+    
 
-        Associate a [real-time logs configuration][cloudfront-real-time-logs-configuration] with the cache behavior
+    
 
-    - (string) **`response_headers_policy_name = null`** _[since v1.0.0]_
+    
+**Examples:**
+- [Basic Usage](#basic-usage)
 
-        Associate a [response headers policy][cloudfront-response-headers-policy] with the cache behavior
+    
 
-    - (bool) **`smooth_streaming = false`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-        Whether you want to distribute media files in Microsoft Smooth Streaming format using the origin that is associated with this cache behavior
 
-    - (list(string)) **`trusted_key_groups = null`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#origins">Origins</a>))</code></td>
+    <td width="100%">origins</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        List of key group IDs that CloudFront can use to validate signed URLs or signed cookies. Please refer to [this documentation][cloudfront-trusted-key-groups] for more information.
+Map of origins for this distribution.
 
-    - (string) **`viewer_protocol_policy = "redirect-to-https"`** _[since v1.0.0]_
+    
 
-        Specify the protocol that users can use to access the files in the origin when a request matches. Valid values: `"allow-all"`, `"https-only"`, `"redirect-to-https"`
+    
 
-    - (map(object)) **`function_associations = {}`** _[since v1.0.0]_
+    
+**Examples:**
+- [Basic Usage](#basic-usage)
 
-        Associate multiple edge functions (CloudFront Function or Lambda@Edge) to various cloudfront events. With edge functions you can write your own code to customize how your CloudFront distribution processes HTTP requests and responses. You can have up to four edge functions per cache behavior, one for each event type: `"viewer-request"`, `"viewer-response"`, `"origin-request"`, and `"origin-response"`. CloudFront Functions are only available for `"viewer-request"` and `viewer-response` event types. Please see [example](#basic-usage)
+    
 
-        - (string) **`function_arn`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-            The ARN of a CloudFront function or Lambda@Edge function
 
-        - (bool) **`include_body = false`** _[since v1.0.0]_
+</td></tr>
+</tbody></table>
 
-            When using Lambda@Edge, your function code can access the body of the HTTP request.
-
-- (map(object)) **`origins`** _[since v1.0.0]_
-
-    Map of origins for this distribution. Please [see example](#basic-usage)
-
-    - (number) **`connection_attempts = 3`** _[since v1.0.0]_
-
-        The number of times that CloudFront attempts to connect to the origin. Valid values: `1 - 3`
-
-    - (number) **`connection_timeout = 10`** _[since v1.0.0]_
-
-        The number of seconds that CloudFront waits for a response from the origin, from `1 - 10`
-
-    - (map(string)) **`custom_headers = {}`** _[since v1.0.0]_
-
-        Map of headers that CloudFront includes in all requests that it sends to your origin
-
-    - (string) **`origin_path = null`** _[since v1.0.0]_
-
-        Specify a URL path to append to the origin domain name for origin requests
-
-    - (object) **`custom_origin_config = null`** _[since v1.0.0]_
-
-        Configurations for [Cloudfront custom origins][cloudfront-origins]
-
-        - (number) **`http_port = 80`** _[since v1.0.0]_
-
-            Specify the origin's HTTP port
-
-        - (number) **`https_port = 443`** _[since v1.0.0]_
-
-            Specify the origin's HTTPS port
-
-        - (number) **`keep_alive_timeout = 5`** _[since v1.0.0]_
-
-            The number of seconds that CloudFront maintains an idle connection with the origin, from `1 - 60`
-
-        - (string) **`minimum_ssl_protocol = "TLSv1.2"`** _[since v1.0.0]_
-
-            The minimum SSL protocol that CloudFront uses with the origin. Valid values: `"TLSv1.2"`, `"TLSv1.1"`, `"TLSv1"`, `"SSLv3"`
-
-        - (string) **`protocol_policy = "https-only"`** _[since v1.0.0]_
-
-            The origin protocol policy determines the protocol (HTTP or HTTPS) that you want CloudFront to use when connecting to the origin. Valid values: `"http-only"`, `"https-only"`, `"match-viewer"`
-
-        - (number) **`response_timeout = 30`** _[since v1.0.0]_
-
-            The number of seconds that CloudFront waits for a response from the origin, from `1 - 60`
-
-    - (object) **`enable_origin_shield = null`** _[since v1.0.0]_
-
-        [Origin shield][cloudfront-origin-shield] is an additional caching layer that can help reduce the load on your origin and help protect its availability
-
-        - (string) **`region`** _[since v1.0.0]_
-
-            Specify the origin shield region
-
-    - (object) **`s3_origin_config = null`** _[since v1.0.0]_
-
-        Configurations for [S3 origins][cloudfront-origins]
-
-        - (object) **`origin_access`** _[since v1.0.0]_
-
-            You can limit the access to your origin to only authenticated requests from CloudFront. We recommend using origin access control (OAC) in favor of origin access identity (OAI) for its wider range of features, including support of S3 buckets in all AWS Regions.
-
-            - (string) **`origin_access_control_id = null`** _[since v1.0.0]_
-
-                The ID of the origin access control to be associated to this origin. Mutually exclusive to `origin_access_identity`
-
-            - (string) **`origin_access_identity = null`** _[since v1.0.0]_
-
-                The ID of the origin access identity to be associated to this origin. Mutually exclusive to `origin_access_control_id`
 
 ### Optional
 
-- (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-    Additional tags for the distribution
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
+    
 
-    Additional tags for all resources deployed with this module
+    
 
-- (list(string)) **`alternate_domain_names = null`** _[since v1.0.0]_
+    
 
-    A list of custom domain names (CNAME) that you use in URLs for the files served by this distribution
+    
 
-- (map(object)) **`custom_error_responses = {}`** _[since v1.0.0]_
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Configure CloudFront to return a custom error page for a matching HTTP status code. Please refer to [this documentation][cloudfront-custom-error-response] for more information. See [example](#basic-usage)
+Additional tags for the distribution
 
-    - (number) **`error_caching_minimum_ttl = 10`** _[since v1.0.0]_
+    
 
-        Specify the error caching minimum time to live (TTL), in seconds.
+    
 
-    - (number) **`http_response_code = null`** _[since v1.0.0]_
+    
 
-        Specify the HTTP status code to return to the viewer. CloudFront can return a different status code to the viewer than what it received from the origin
+    
 
-    - (string) **`response_page_path = null`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-        Specify the path to the custom error response page.
 
-- (string) **`default_root_object = null`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    The object (file name) to return when a viewer requests the root URL (/) instead of a specific object
+Additional tags for all resources deployed with this module
 
-- (string) **`description = null`** _[since v1.0.0]_
+    
 
-    The description of the distribution
+    
 
-- (bool) **`enable_ipv6 = false`** _[since v1.0.0]_
+    
 
-    Whether the IPv6 is enabled for the distribution.
+    
 
-- (object) **`geographic_restrictions = null`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-    Configures the CloudFront [geographic restriction][cloudfront-geographic-restriction]. You can only specify one of `allow_list` or `block_list`. If none are specified, the distribution is unrestricted.
 
-    - (list(string)) **`allow_list = null`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">alternate_domain_names</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-        Whitelist a list of locations in this distribution. Please refer to [this file](./_common.tf) for a list of supported values.
+A list of custom domain names (CNAME) that you use in URLs for the files
+served by this distribution
 
-    - (list(string)) **`block_list = null`** _[since v1.0.0]_
+    
 
-        Blacklist a list of locations in this distribution. Please refer to [this file](./_common.tf) for a list of supported values.
+    
 
-- (string) **`max_http_version = "http2"`** _[since v1.0.0]_
+    
 
-    Specify the max HTTP version this distribution supports. Valid values: `"http1.1"`, `"http2"`, `"http2and3"`, `"http3"`
+    
 
-- (map(object)) **`origin_groups = {}`** _[since v1.0.0]_
+    
+**Since:** 1.0.0
+        
 
-    Manages multiple [origin groups][cloudfront-origin-failover] for this distribution. Please see [example](#basic-usage)
 
-    - (list(string)) **`origins`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#customerrorresponses">CustomErrorResponses</a>))</code></td>
+    <td width="100%">custom_error_responses</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-        Specify a list of members for this origin group
+Configure CloudFront to return a custom error page for a matching HTTP status
+code.
 
-    - (list(number)) **`failover_criteria = [500]`** _[since v1.0.0]_
+    
 
-        Specify the criteria for failover when CloudFront returns specific HTTP response status codes that indicate a failure
+    
 
-- (string) **`price_class = "PriceClass_All"`** _[since v1.0.0]_
+    
+**Examples:**
+- [Basic Usage](#basic-usage)
 
-    Specify the price class for this distribution. Valid values:
+    
+**Links:**
+- [Custom Error Response Documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GeneratingCustomErrorResponses.html?icmpid=docs_cf_help_panel)
 
-    - `"PriceClass_100"` - USA, Canada, Europe, & Israel
-    - `"PriceClass_200"` - PriceClass_100 + South Africa, Kenya, Middle East, Japan, Singapore, South Korea, Taiwan, Hong Kong, & Philippines
-    - `"PriceClass_All"` - All locations
+    
+**Since:** 1.0.0
+        
 
-- (object) **`viewer_certificate = {}`** _[since v1.0.0]_
 
-    Configure a custom SSL certificate for this distribution. If not specified, the Cloudfront default certificate will be used.
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">default_root_object</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`acm_certificate_arn = null`** _[since v1.0.0]_
+The object (file name) to return when a viewer requests the root URL (/)
+instead of a specific object
 
-        Associate a certificate from AWS Certificate Manager. The certificate must be in the US East (N. Virginia) Region (us-east-1). If not specified, the Cloudfront default certificate will be used
+    
 
-    - (string) **`security_policy = "TLSv1.2_2021"`** _[since v1.0.0]_
+    
 
-        The security policy determines the SSL or TLS protocol and the specific ciphers that CloudFront uses for HTTPS connections with viewers (clients). Valid values: `"TLSv1.2_2021"`, `"TLSv1.2_2019"`, `"TLSv1.2_2018"`, `"TLSv1.1_2016"`, `"TLSv1_2016"`, `"TLSv1"`
+    
 
-    - (string) **`ssl_support_method = "sni-only"`** _[since v1.0.0]_
+    
 
-        Specify how you want CloudFront to serve HTTPS requests. Valid values: `"vip"`, `"sni-only"`, `"static-ip"`
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The description of the distribution
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_ipv6</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Whether IPv6 is enabled for the distribution.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#geographicrestrictions">GeographicRestrictions</a>)</code></td>
+    <td width="100%">geographic_restrictions</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configures the CloudFront [geographic restriction][cloudfront-geographic-restriction].
+You can only specify one of `allow_list` or `block_list`. If none are
+specified, the distribution is unrestricted.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">max_http_version</td>
+    <td><code>"http2"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the max HTTP version this distribution supports.
+
+    
+**Allowed Values:**
+- `http1.1`
+- `http2`
+- `http2and3`
+- `http3`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#origingroups">OriginGroups</a>))</code></td>
+    <td width="100%">origin_groups</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Manages multiple [origin groups][cloudfront-origin-failover] for this
+distribution.
+
+    
+
+    
+
+    
+**Examples:**
+- [Basic Usage](#basic-usage)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">price_class</td>
+    <td><code>"PriceClass_All"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the price class for this distribution.
+
+- `PriceClass_100` - USA, Canada, Europe, & Israel
+- `PriceClass_200` - PriceClass_100 + South Africa, Kenya, Middle East, Japan, Singapore, South Korea, Taiwan, Hong Kong, & Philippines
+- `PriceClass_All` - All locations
+
+    
+**Allowed Values:**
+- `PriceClass_100`
+- `PriceClass_200`
+- `PriceClass_All`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#viewercertificate">ViewerCertificate</a>)</code></td>
+    <td width="100%">viewer_certificate</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configure a custom SSL certificate for this distribution. If not specified,
+the CloudFront default certificate will be used.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+### Objects
+
+
+
+#### Behaviors
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">target_origin</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Name of the origin or origin group that you want CloudFront to route
+requests to when a request matches the path pattern
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">cache_policy_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the [cache policy][cloudfront-cache-policy] that is attached
+to the cache behavior.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">allowed_http_methods</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Controls which HTTP methods CloudFront processes and forwards to your
+origin.
+
+    
+**Allowed Values:**
+- `GET`
+- `HEAD`
+- `OPTIONS`
+- `PUT`
+- `POST`
+- `PATCH`
+- `DELETE`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">compress_objects_automatically</td>
+    <td><code>true</code></td>
+</tr>
+<tr><td colspan="3">
+
+Whether you want CloudFront to automatically compress content for web
+requests that include `Accept-Encoding: gzip` in the request header.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">field_level_encryption_id</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Associate a [field-level encryption configuration][cloudfront-field-level-encryption-configuration]
+with the cache behavior
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">origin_request_policy_name</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Associate an [origin request policy][cloudfront-origin-request-policy]
+with the cache behavior
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">realtime_log_config_arn</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Associate a [real-time logs configuration][cloudfront-real-time-logs-configuration]
+with the cache behavior
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">response_headers_policy_name</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Associate a [response headers policy][cloudfront-response-headers-policy]
+with the cache behavior
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">smooth_streaming</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Whether you want to distribute media files in Microsoft Smooth Streaming
+format using the origin that is associated with this cache behavior
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">trusted_key_groups</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+List of key group IDs that CloudFront can use to validate signed URLs or
+signed cookies.
+
+    
+
+    
+
+    
+
+    
+**Links:**
+- [Trusted Key Groups Documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html)
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">viewer_protocol_policy</td>
+    <td><code>"redirect-to-https"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the protocol that users can use to access the files in the origin
+when a request matches.
+
+    
+**Allowed Values:**
+- `allow-all`
+- `https-only`
+- `redirect-to-https`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#functionassociations">FunctionAssociations</a>))</code></td>
+    <td width="100%">function_associations</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Associate multiple edge functions (CloudFront Function or Lambda@Edge) to
+various CloudFront events. With edge functions you can write your own code
+to customize how your CloudFront distribution processes HTTP requests and
+responses. You can have up to four edge functions per cache behavior, one
+for each event type: `"viewer-request"`, `"viewer-response"`,
+`"origin-request"`, and `"origin-response"`. CloudFront Functions are only
+available for `"viewer-request"` and `"viewer-response"` event types.
+
+    
+
+    
+
+    
+**Examples:**
+- [Basic Usage](#basic-usage)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### CustomErrorResponses
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">error_caching_minimum_ttl</td>
+    <td><code>10</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the error caching minimum time to live (TTL), in seconds.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">http_response_code</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the HTTP status code to return to the viewer. CloudFront can
+return a different status code to the viewer than what it received from
+the origin
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">response_page_path</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the path to the custom error response page.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### CustomOriginConfig
+
+Configurations for [CloudFront custom origins][cloudfront-origins]
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">http_port</td>
+    <td><code>80</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the origin's HTTP port
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">https_port</td>
+    <td><code>443</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the origin's HTTPS port
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">keep_alive_timeout</td>
+    <td><code>5</code></td>
+</tr>
+<tr><td colspan="3">
+
+The number of seconds that CloudFront maintains an idle connection with
+the origin, from `1 - 60`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">minimum_ssl_protocol</td>
+    <td><code>"TLSv1.2"</code></td>
+</tr>
+<tr><td colspan="3">
+
+The minimum SSL protocol that CloudFront uses with the origin.
+
+    
+**Allowed Values:**
+- `TLSv1.2`
+- `TLSv1.1`
+- `TLSv1`
+- `SSLv3`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">protocol_policy</td>
+    <td><code>"https-only"</code></td>
+</tr>
+<tr><td colspan="3">
+
+The origin protocol policy determines the protocol (HTTP or HTTPS) that
+you want CloudFront to use when connecting to the origin.
+
+    
+**Allowed Values:**
+- `http-only`
+- `https-only`
+- `match-viewer`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">response_timeout</td>
+    <td><code>30</code></td>
+</tr>
+<tr><td colspan="3">
+
+The number of seconds that CloudFront waits for a response from the
+origin, from `1 - 60`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### EnableOriginShield
+
+[Origin shield][cloudfront-origin-shield] is an additional caching layer
+that can help reduce the load on your origin and help protect its
+availability
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">region</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the origin shield region
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### FunctionAssociations
+
+Associate multiple edge functions (CloudFront Function or Lambda@Edge) to
+various CloudFront events. With edge functions you can write your own code
+to customize how your CloudFront distribution processes HTTP requests and
+responses. You can have up to four edge functions per cache behavior, one
+for each event type: `"viewer-request"`, `"viewer-response"`,
+`"origin-request"`, and `"origin-response"`. CloudFront Functions are only
+available for `"viewer-request"` and `"viewer-response"` event types.
+
+    
+
+    
+
+    
+**Examples:**
+- [Basic Usage](#basic-usage)
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">function_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of a CloudFront function or Lambda@Edge function
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">include_body</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+When using Lambda@Edge, your function code can access the body of the
+HTTP request.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### GeographicRestrictions
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">allow_list</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Whitelist a list of locations in this distribution. Please refer to
+[this file](./_common.tf) for a list of supported values.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">block_list</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Blacklist a list of locations in this distribution. Please refer to
+[this file](./_common.tf) for a list of supported values.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### OriginAccess
+
+You can limit the access to your origin to only authenticated requests
+from CloudFront. We recommend using origin access control (OAC) in favor
+of origin access identity (OAI) for its wider range of features,
+including support of S3 buckets in all AWS Regions.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">origin_access_control_id</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The ID of the origin access control to be associated to this origin.
+Mutually exclusive to `origin_access_identity`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">origin_access_identity</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The ID of the origin access identity to be associated to this origin.
+Mutually exclusive to `origin_access_control_id`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### OriginGroups
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">origins</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify a list of members for this origin group
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(number)</code></td>
+    <td width="100%">failover_criteria</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the criteria for failover when CloudFront returns specific HTTP
+response status codes that indicate a failure
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Origins
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">connection_attempts</td>
+    <td><code>3</code></td>
+</tr>
+<tr><td colspan="3">
+
+The number of times that CloudFront attempts to connect to the origin.
+
+    
+**Allowed Values:**
+- `1`
+- `2`
+- `3`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">connection_timeout</td>
+    <td><code>10</code></td>
+</tr>
+<tr><td colspan="3">
+
+The number of seconds that CloudFront waits for a response from the
+origin, from `1 - 10`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">custom_headers</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Map of headers that CloudFront includes in all requests that it sends to
+your origin
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">origin_path</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify a URL path to append to the origin domain name for origin requests
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#customoriginconfig">CustomOriginConfig</a>)</code></td>
+    <td width="100%">custom_origin_config</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configurations for [CloudFront custom origins][cloudfront-origins]
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#enableoriginshield">EnableOriginShield</a>)</code></td>
+    <td width="100%">enable_origin_shield</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+[Origin shield][cloudfront-origin-shield] is an additional caching layer
+that can help reduce the load on your origin and help protect its
+availability
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#s3originconfig">S3OriginConfig</a>)</code></td>
+    <td width="100%">s3_origin_config</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configurations for [S3 origins][cloudfront-origins]
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### S3OriginConfig
+
+Configurations for [S3 origins][cloudfront-origins]
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#originaccess">OriginAccess</a>)</code></td>
+    <td width="100%">origin_access</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+You can limit the access to your origin to only authenticated requests
+from CloudFront. We recommend using origin access control (OAC) in favor
+of origin access identity (OAI) for its wider range of features,
+including support of S3 buckets in all AWS Regions.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### ViewerCertificate
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">acm_certificate_arn</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Associate a certificate from AWS Certificate Manager. The certificate must
+be in the US East (N. Virginia) Region (us-east-1). If not specified, the
+CloudFront default certificate will be used
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">security_policy</td>
+    <td><code>"TLSv1.2_2021"</code></td>
+</tr>
+<tr><td colspan="3">
+
+The security policy determines the SSL or TLS protocol and the specific
+ciphers that CloudFront uses for HTTPS connections with viewers (clients).
+
+    
+**Allowed Values:**
+- `TLSv1.2_2021`
+- `TLSv1.2_2019`
+- `TLSv1.2_2018`
+- `TLSv1.1_2016`
+- `TLSv1_2016`
+- `TLSv1`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">ssl_support_method</td>
+    <td><code>"sni-only"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify how you want CloudFront to serve HTTPS requests.
+
+    
+**Allowed Values:**
+- `vip`
+- `sni-only`
+- `static-ip`
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+
+[cloudfront-cache-policy]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html
+
+[cloudfront-field-level-encryption-configuration]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html
+
+[cloudfront-geographic-restriction]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html
+
+[cloudfront-origin-failover]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html
+
+[cloudfront-origin-request-policy]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html
+
+[cloudfront-origin-shield]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html
+
+[cloudfront-origins]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html
+
+[cloudfront-real-time-logs-configuration]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html
+
+[cloudfront-response-headers-policy]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html
+
+
+<!-- TFDOCS_EXTRAS_END -->
 
 ## Outputs
 
