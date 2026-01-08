@@ -22,6 +22,8 @@ This module configures an Amazon [Route 53](https://aws.amazon.com/route53/) hos
   - [Optional](#optional)
   - [Objects](#objects)
 - [Outputs](#outputs)
+- [Known Limitations](#known-limitations)
+  - [Managing Cross-Account VPC Associations](#managing-cross-account-vpc-associations)
 
 ## Example Usage
 
@@ -31,7 +33,7 @@ This example creates a hosted zone psin-lab.com and several records
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -66,9 +68,16 @@ This example creates a private hosted zone psin-lab.local
 
 ```terraform
 module "psin_lab_local" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.local"
+  
+  # This association will be managed by the VPC block in the aws_route53_zone resource
+  # The VPC block will then be ignored for any changes going forward
+  # The VPC block is required in order to create a private hosted zone
+  # Use private_zone_vpc_associations for all additional zone associations
+  # Please read the Managing Cross-Account VPC Associations under Known Limitations for more details
+  primary_private_zone_vpc_association = { vpc_id = "vpc-abcdef012345" } 
 
   # Resolve DNS queries for these associated VPCs
   private_zone_vpc_associations = {
@@ -103,7 +112,7 @@ This example demonstrates how to enable DNSSEC signing by using a default KSK. A
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -125,7 +134,7 @@ This example demonstrates the [Failover Routing Policy][route53-routing-policy-f
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -172,7 +181,7 @@ This example demonstrates the [Geolocation Routing Policy][route53-routing-polic
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -222,7 +231,7 @@ This example demonstrates the [Geoproximity Routing Policy][route53-routing-poli
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -275,7 +284,7 @@ This example demonstrates the [Latency-based Routing Policy][route53-routing-pol
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -314,7 +323,7 @@ This example demonstrates the [Multivalue Answer Routing Policy][route53-routing
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -361,7 +370,7 @@ This example demonstrates the [Weighted Routing Policy][route53-routing-policy-w
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -400,7 +409,7 @@ This example demonstrates managing health checks and notification for records
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -2668,6 +2677,12 @@ will respond to.
 - (string) **`route53_hosted_zone_primary_name_server`** _[since v1.1.0]_
 
     The Route 53 name server that created the SOA record
+
+## Known Limitations
+
+### Managing Cross-Account VPC Associations
+
+Terraform provides both exclusive VPC associations defined in-line in the `aws_route53_zone` resource via the `vpc` configuration blocks and a separate `aws_route53_zone_association` resource. At this time, you cannot use in-line VPC associations in conjunction with any `aws_route53_zone_association` resources with the same zone ID otherwise Terraform will attempt to destroy any VPC associations declared outside of the `aws_route53_zone.vpc` configuration blocks in future applies. This problem surfaces when one must setup cross-account zone associations. However, in order to create a private hosted zone, at least one VPC association must be declared in the `aws_route53_zone.vpc` configuration block. As a workaround to this problem, v3.0.0 introduces a new variable `primary_private_zone_vpc_association` for the first association using the `aws_route53_zone.vpc` configuration block so that the private hosted zone can be created properly, afterward, any changes to the `aws_route53_zone.vpc` configuration block will be ignored, and any additional VPC associations should be declared with the `private_zone_vpc_associations` variable. Since the association declared with the `primary_private_zone_vpc_association` variable will be ignored, **WE RECOMMEND CREATING A DUMMY VPC FOR THIS FIRST ASSOCIATION**
 
 [aws-local-zones]:https://docs.aws.amazon.com/local-zones/latest/ug/getting-started.html
 [aws-service-endpoints]:https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html

@@ -113,6 +113,23 @@ variable "enable_query_logging" {
   default     = null
 }
 
+variable "primary_private_zone_vpc_association" {
+  type = object({
+    vpc_id = string
+    region = optional(string)
+  })
+  description = <<EOT
+    The primary VPC ID this private hosted zone is used to resolve DNS queries for. 
+    Do not specify if you want to create a public hosted zone. Please read the Managing
+    Cross-Account VPC Associations in the Known Limitation for more information and recommended
+    usage. This will be removed when AWS updated a fix.
+
+    @example "Private Hosted Zone Example" #private-hosted-zone
+    @since 3.0.0
+  EOT
+  default     = null
+}
+
 variable "private_zone_vpc_associations" {
   type        = map(list(string))
   description = <<EOT

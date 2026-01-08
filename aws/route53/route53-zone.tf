@@ -9,18 +9,15 @@ resource "aws_route53_zone" "hosted_zone" {
   )
 
   dynamic "vpc" {
-    for_each = toset(flatten([
-      for region, vpc_ids in var.private_zone_vpc_associations : [
-        for vpc_id in vpc_ids : {
-          region = region
-          vpc_id = vpc_id
-        }
-      ]
-    ]))
+    for_each = var.primary_private_zone_vpc_association != null ? [1] : []
 
     content {
-      vpc_id     = vpc.value.vpc_id
-      vpc_region = vpc.value.region
+      vpc_id     = var.primary_private_zone_vpc_association.vpc_id
+      vpc_region = var.primary_private_zone_vpc_association.region != null ? var.primary_private_zone_vpc_association.region : data.aws_region.current.region
     }
+  }
+
+  lifecycle {
+    ignore_changes = [vpc]
   }
 }
