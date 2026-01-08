@@ -116,7 +116,7 @@ variable "enable_query_logging" {
 variable "primary_private_zone_vpc_association" {
   type = object({
     vpc_id = string
-    region = optional(string)
+    region = optional(string, null)
   })
   description = <<EOT
     The primary VPC ID this private hosted zone is used to resolve DNS queries for. 

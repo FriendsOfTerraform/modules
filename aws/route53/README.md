@@ -2267,7 +2267,7 @@ Whether this routing policy is enabled
 <tr>
     <td><code>string</code></td>
     <td width="100%">region</td>
-    <td></td>
+    <td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
