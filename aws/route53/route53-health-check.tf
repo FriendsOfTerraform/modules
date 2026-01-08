@@ -25,7 +25,7 @@ locals {
 
       # defaults to current region if one is not specified
       cloudwatch_alarm_check_alarm_region = v.health_check.cloudwatch_alarm_check != null ? (
-        v.health_check.cloudwatch_alarm_check.alarm_region != null ? v.health_check.cloudwatch_alarm_check.alarm_region : data.aws_region.current.name
+        v.health_check.cloudwatch_alarm_check.alarm_region != null ? v.health_check.cloudwatch_alarm_check.alarm_region : data.aws_region.current.region
       ) : null
 
       ######################################

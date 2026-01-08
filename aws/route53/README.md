@@ -22,6 +22,8 @@ This module configures an Amazon [Route 53](https://aws.amazon.com/route53/) hos
   - [Optional](#optional)
   - [Objects](#objects)
 - [Outputs](#outputs)
+- [Known Limitations](#known-limitations)
+  - [Managing Cross-Account VPC Associations](#managing-cross-account-vpc-associations)
 
 ## Example Usage
 
@@ -31,7 +33,7 @@ This example creates a hosted zone psin-lab.com and several records
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -66,9 +68,16 @@ This example creates a private hosted zone psin-lab.local
 
 ```terraform
 module "psin_lab_local" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.local"
+  
+  # This association will be managed by the VPC block in the aws_route53_zone resource
+  # The VPC block will then be ignored for any changes going forward
+  # The VPC block is required in order to create a private hosted zone
+  # Use private_zone_vpc_associations for all additional zone associations
+  # Please read the Managing Cross-Account VPC Associations under Known Limitations for more details
+  primary_private_zone_vpc_association = { vpc_id = "vpc-abcdef012345" } 
 
   # Resolve DNS queries for these associated VPCs
   private_zone_vpc_associations = {
@@ -103,7 +112,7 @@ This example demonstrates how to enable DNSSEC signing by using a default KSK. A
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -125,7 +134,7 @@ This example demonstrates the [Failover Routing Policy][route53-routing-policy-f
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -172,7 +181,7 @@ This example demonstrates the [Geolocation Routing Policy][route53-routing-polic
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -222,7 +231,7 @@ This example demonstrates the [Geoproximity Routing Policy][route53-routing-poli
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -275,7 +284,7 @@ This example demonstrates the [Latency-based Routing Policy][route53-routing-pol
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -314,7 +323,7 @@ This example demonstrates the [Multivalue Answer Routing Policy][route53-routing
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -361,7 +370,7 @@ This example demonstrates the [Weighted Routing Policy][route53-routing-policy-w
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -400,7 +409,7 @@ This example demonstrates managing health checks and notification for records
 
 ```terraform
 module "psin_lab_com" {
-  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v2.1.0"
+  source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.com"
 
@@ -664,6 +673,34 @@ Enables Route 53 query log
 
 </td></tr>
 <tr>
+    <td><code>object(<a href="#primaryprivatezonevpcassociation">PrimaryPrivateZoneVpcAssociation</a>)</code></td>
+    <td width="100%">primary_private_zone_vpc_association</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The primary VPC ID this private hosted zone is used to resolve DNS queries for.
+Do not specify if you want to create a public hosted zone. Please read the Managing
+Cross-Account VPC Associations in the Known Limitation for more information and recommended
+usage. This will be removed when AWS updated a fix.
+
+    
+
+    
+
+    
+**Examples:**
+- [Private Hosted Zone Example](#private-hosted-zone)
+
+    
+
+    
+**Since:** 3.0.0
+        
+
+
+</td></tr>
+<tr>
     <td><code>map(list(string))</code></td>
     <td width="100%">private_zone_vpc_associations</td>
     <td><code>{}</code></td>
@@ -761,7 +798,7 @@ Create an alias record. Mutually exclusive with `values` and `ttl`
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -784,7 +821,7 @@ Specify the endpoint where this alias record routes traffic to.
 - [Supported services you can create an Alias record for](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-aws-resources.html)
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -809,7 +846,7 @@ Specify the hosted zone ID of the target endpoint.
 - [Supported AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -832,7 +869,7 @@ Whether the alias records evaluate the health of the target endpoint
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -856,7 +893,7 @@ health checks
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -878,7 +915,7 @@ considered healthy
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -903,7 +940,7 @@ checks must be healthy for this check to be considered healthy
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -927,7 +964,7 @@ CloudWatch alarm
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -948,7 +985,7 @@ The name of the alarm that determines the status of this health check
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -973,7 +1010,7 @@ will be used.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1001,7 +1038,7 @@ data to determine whether the alarm is in the OK or the ALARM state.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1026,7 +1063,7 @@ notify you health check status changes.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1051,7 +1088,7 @@ The metric to monitor.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1091,7 +1128,7 @@ Valid For Healthcheck Types: All
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1114,7 +1151,7 @@ The number of periods over which data is compared to the specified threshold.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1139,7 +1176,7 @@ Valid values are 10, 30, and any multiple of 60.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1162,7 +1199,7 @@ The SNS topic where notification will be sent
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1184,7 +1221,7 @@ Specify the coordinates where your resources are deployed in.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1205,7 +1242,7 @@ The latitude of the coordinates
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1228,7 +1265,7 @@ The longitude of the coordinates
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1270,7 +1307,7 @@ KSK for key rotation purposes.
     
 
     
-**Since:** 1.0.0
+**Since:** 1.0.0
         
 
 
@@ -1296,7 +1333,7 @@ Specify whether to sign the zone with DNSSEC.
     
 
     
-**Since:** 1.0.0
+**Since:** 1.0.0
         
 
 
@@ -1337,7 +1374,7 @@ An existing Cloudwatch log group to send query logging to
     
 
     
-**Since:** 1.0.0
+**Since:** 1.0.0
         
 
 
@@ -1362,7 +1399,7 @@ to create this if one is already created.
     
 
     
-**Since:** 1.0.0
+**Since:** 1.0.0
         
 
 
@@ -1438,7 +1475,7 @@ never expire. Mutually exclusive with `cloudwatch_log_group_arn`
     
 
     
-**Since:** 1.0.0
+**Since:** 1.0.0
         
 
 
@@ -1462,7 +1499,7 @@ the specified endpoint to determine whether it is healthy.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1483,7 +1520,7 @@ The full URL
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1507,7 +1544,7 @@ check page in the Route 53 console
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1532,7 +1569,7 @@ healthy to unhealthy or vice versa
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1556,7 +1593,7 @@ connection.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1580,7 +1617,7 @@ to check the specified endpoint from
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1608,7 +1645,7 @@ health-check request.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1632,7 +1669,7 @@ response from the specified endpoint.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1657,7 +1694,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1681,7 +1718,7 @@ Specify the failover routing policy type.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1706,7 +1743,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1728,7 +1765,7 @@ to [this file](./_common.tf) for a list of supported values.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1753,7 +1790,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1775,7 +1812,7 @@ routes traffic to a resource. Valid value is between `-99` to `99`
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1799,7 +1836,7 @@ AWS Local Zones, you have to first [enable them][aws-local-zones].
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1822,7 +1859,7 @@ Specify the AWS region where your resources are deployed in.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1845,7 +1882,7 @@ Specify the coordinates where your resources are deployed in.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1871,7 +1908,7 @@ exclusive with `health_check_id`.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1892,7 +1929,7 @@ Whether this health check is enabled
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1917,7 +1954,7 @@ would be considered unhealthy
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1942,7 +1979,7 @@ health checks
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1967,7 +2004,7 @@ CloudWatch alarm
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -1993,7 +2030,7 @@ notify you health check status changes.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2018,7 +2055,7 @@ the specified endpoint to determine whether it is healthy.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2041,7 +2078,7 @@ KSK for key rotation purposes.
     
 
     
-**Since:** 1.0.0
+**Since:** 1.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -2064,7 +2101,7 @@ must meet all requirements described in [this documentation][route53-ksk-kms-req
     
 
     
-**Since:** 1.0.0
+**Since:** 1.0.0
         
 
 
@@ -2090,7 +2127,7 @@ The status of the KSK
     
 
     
-**Since:** 1.0.0
+**Since:** 1.0.0
         
 
 
@@ -2115,7 +2152,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -2137,7 +2174,7 @@ resides. You can only create one latency record for each region.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2162,7 +2199,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -2183,8 +2220,68 @@ Whether this routing policy is enabled
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### PrimaryPrivateZoneVpcAssociation
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">vpc_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">region</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
 
 
 </td></tr>
@@ -2224,7 +2321,7 @@ The name of the record
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2261,7 +2358,7 @@ Specify the record type.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2285,7 +2382,7 @@ non-alias records. Mutually exclusive with `alias`
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2308,7 +2405,7 @@ Specify an existing health check this reocrd is associated to
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2334,7 +2431,7 @@ Mutually exclusive with `alias`
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2359,7 +2456,7 @@ routing policy)
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2382,7 +2479,7 @@ Create an alias record. Mutually exclusive with `values` and `ttl`
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2408,7 +2505,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2434,7 +2531,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2460,7 +2557,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2486,7 +2583,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2512,7 +2609,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2538,7 +2635,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2565,7 +2662,7 @@ exclusive with `health_check_id`.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2590,7 +2687,7 @@ You may only define one routing policy for a single record.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -2612,7 +2709,7 @@ will respond to.
     
 
     
-**Since:** 2.0.0
+**Since:** 2.0.0
         
 
 
@@ -2668,6 +2765,12 @@ will respond to.
 - (string) **`route53_hosted_zone_primary_name_server`** _[since v1.1.0]_
 
     The Route 53 name server that created the SOA record
+
+## Known Limitations
+
+### Managing Cross-Account VPC Associations
+
+Terraform provides both exclusive VPC associations defined in-line in the `aws_route53_zone` resource via the `vpc` configuration blocks and a separate `aws_route53_zone_association` resource. At this time, you cannot use in-line VPC associations in conjunction with any `aws_route53_zone_association` resources with the same zone ID otherwise Terraform will attempt to destroy any VPC associations declared outside of the `aws_route53_zone.vpc` configuration blocks in future applies. This problem surfaces when one must setup cross-account zone associations. However, in order to create a private hosted zone, at least one VPC association must be declared in the `aws_route53_zone.vpc` configuration block. As a workaround to this problem, v3.0.0 introduces a new variable `primary_private_zone_vpc_association` for the first association using the `aws_route53_zone.vpc` configuration block so that the private hosted zone can be created properly, afterward, any changes to the `aws_route53_zone.vpc` configuration block will be ignored, and any additional VPC associations should be declared with the `private_zone_vpc_associations` variable. Since the association declared with the `primary_private_zone_vpc_association` variable will be ignored, **WE RECOMMEND CREATING A DUMMY VPC FOR THIS FIRST ASSOCIATION**
 
 [aws-local-zones]:https://docs.aws.amazon.com/local-zones/latest/ug/getting-started.html
 [aws-service-endpoints]:https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html
