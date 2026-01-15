@@ -305,6 +305,58 @@ None. All arguments are optional, but you typically need to define at least one 
 
         Enable reputation metrics for the configuration set
 
+    - (map(object)) **`event_destinations = {}`** _[since v1.0.0]_
+
+        Manages event destinations for the configuration set to route email events to external services
+
+        - (list(string)) **`event_types`** _[since v1.0.0]_
+
+            The list of event types to route. Valid values: `"SEND"`, `"BOUNCE"`, `"COMPLAINT"`, `"DELIVERY"`, `"OPEN"`, `"CLICK"`, `"RENDERING_FAILURE"`, `"DELIVERY_DELAY"`, `"SUBSCRIBE"`, `"UNSUBSCRIBE"`
+
+        - (bool) **`enabled = true`** _[since v1.0.0]_
+
+            Whether this event destination is enabled
+
+        - (object) **`destination`** _[since v1.0.0]_
+
+            The destination where events will be sent to. Only one destination type can be specified.
+
+            - (object) **`cloudwatch = null`** _[since v1.0.0]_
+
+                Send events to CloudWatch Logs
+
+                - (map(string)) **`dimensions`** _[since v1.0.0]_
+
+                    CloudWatch Logs dimensions. Format: `{ "ValueSource/DimensionName" = "DimensionValue" }`. `ValueSource` valid values: `"MESSAGE_TAG"`, `EMAIL_HEADER""`,`"LINK_TAG"`
+
+            - (object) **`kinesis_firehose = null`** _[since v1.0.0]_
+
+                Send events to Kinesis Firehose
+
+                - (string) **`delivery_stream_arn`** _[since v1.0.0]_
+
+                    The ARN of the Kinesis Firehose delivery stream
+
+                - (string) **`iam_role_arn`** _[since v1.0.0]_
+
+                    The ARN of the IAM role with permissions to write to the Firehose stream
+
+            - (object) **`pinpoint = null`** _[since v1.0.0]_
+
+                Send events to Amazon Pinpoint
+
+                - (string) **`application_arn`** _[since v1.0.0]_
+
+                    The ARN of the Amazon Pinpoint application
+
+            - (object) **`sns = null`** _[since v1.0.0]_
+
+                Send events to SNS
+
+                - (string) **`topic_arn`** _[since v1.0.0]_
+
+                    The ARN of the SNS topic
+
     - (object) **`override_account_level_settings = null`** _[since v1.0.0]_
 
         Override account-level settings for this configuration set. Please [see example](#configuration-sets)

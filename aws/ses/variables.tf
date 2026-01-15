@@ -31,6 +31,7 @@ variable "domains" {
     }), null)
   }))
   description = "Manages SES Domains and Email Addresses"
+  default     = {}
 }
 
 variable "additional_tags_all" {
@@ -48,6 +49,30 @@ variable "configuration_sets" {
     reputation_metrics_enabled = optional(bool, false)
     # tenant                     = optional(string, null)
 
+    event_destinations = optional(map(object({
+      event_types = list(string)
+      enabled     = optional(bool, true)
+
+      destination = object({
+        cloudwatch = optional(object({
+          dimensions = map(string) # e.g. { ValueSource/DimensionName = "DimensionValue" }
+        }), null)
+
+        kinesis_firehose = optional(object({
+          delivery_stream_arn = string
+          iam_role_arn        = string
+        }), null)
+
+        pinpoint = optional(object({
+          application_arn = string
+        }), null)
+
+        sns = optional(object({
+          topic_arn = string
+        }), null)
+      })
+    })), {})
+
     override_account_level_settings = optional(object({
       # auto_validation_settings = optional(object({
       #   validation_threshold = optional(string, null)
@@ -62,7 +87,6 @@ variable "configuration_sets" {
         optimized_shared_delivery_enabled = optional(bool, false)
       }), null)
     }), null)
-
 
     use_a_custom_redirect_domain = optional(object({
       domain_name  = string
