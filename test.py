@@ -1,82 +1,106 @@
 import re
 
-folder = 'aws/eventbridge-scheduler'
-varFile = ''
-
 docRe = r'([ ]*)- \([\w()]+\) \*\*`([^`\s]+)(?:\s=.+)?`\*\*\s_\[since\sv([\w\d.]+)\]_\n+(\s*)(.*)'
 linkRefRe = r'\[([^\]]+)\]\[([^\]]+)\]'
 linkRefDefRe = r'\[([^\]]+)\]:\s*(.*)'
 
-with open(f'{folder}/variables.tf', 'r') as f:
-  varFile = f.read()
+def migrate_module(folder: str):
+    with open(f'{folder}/variables.tf', 'r') as f:
+      var_file = f.read()
 
-with open(f'{folder}/README.md', 'r') as f:
-  lines = f.read()
-  variables = re.findall(docRe, lines)
-  linkRefDictMatches = re.findall(linkRefDefRe, lines)
-  linkRefDict = { m[0]: m[1] for m in linkRefDictMatches }
+    with open(f'{folder}/README.md', 'r') as f:
+      lines = f.read()
+      variables = re.findall(docRe, lines)
+      link_ref_dict_matches = re.findall(linkRefDefRe, lines)
+      linkRefDict = { m[0]: m[1] for m in link_ref_dict_matches }
 
-  variablesDict = {}
-  for idx, match in enumerate(variables):
-    pathName = []
-    rawIndentation = match[0]
-    isTopLevel = len(rawIndentation) == 0
-    varName = match[1]
-    since = match[2]
-    description = match[4]
+      variables_dict = {}
+      for idx, match in enumerate(variables):
+        raw_indentation = match[0]
+        is_top_level = len(raw_indentation) == 0
+        var_name = match[1]
+        since = match[2]
+        description = match[4]
 
-    if isTopLevel:
-      pathName = [match[1]]
-    else:
-      pathName = [variables[idx][1]]
-      currentLevel = len(variables[idx][0])
+        if is_top_level:
+          path_name = [match[1]]
+        else:
+          path_name = [variables[idx][1]]
+          current_level = len(variables[idx][0])
 
-      for i in range(idx - 1, -1, -1):
-        prevIndent = len(variables[i][0])
+          for i in range(idx - 1, -1, -1):
+            prev_indent = len(variables[i][0])
 
-        if prevIndent < currentLevel:
-          pathName.insert(0, variables[i][1])
-          currentLevel = prevIndent
+            if prev_indent < current_level:
+              path_name.insert(0, variables[i][1])
+              current_level = prev_indent
 
-          if prevIndent == 0:
-            break
+              if prev_indent == 0:
+                break
 
-    pathKey = '.'.join(pathName)
-    variablesDict[pathKey] = (rawIndentation, varName, since, description)
+        path_key = '.'.join(path_name)
+        variables_dict[path_key] = (raw_indentation, var_name, since, description)
 
-  for pathName, [rawIndentation, varName, since, description] in variablesDict.items():
-    isTopLevel = len(rawIndentation) == 0
-    linkRefs = re.findall(linkRefRe, description)
-    if linkRefs:
-      pass
+      for path_name, [raw_indentation, var_name, since, description] in variables_dict.items():
+        is_top_level = len(raw_indentation) == 0
+        link_refs = re.findall(linkRefRe, description)
+        if link_refs:
+          pass
 
-    docBlkSrc = [description, '', f'@since {since}']
-    renderDocBlk = lambda prefix: '\n'.join([f'{prefix}{l}' for l in docBlkSrc])
+        doc_blk_src = [description, '', f'@since {since}']
+        render_doc_blk = lambda prefix: '\n'.join([f'{prefix}{l}' for l in doc_blk_src])
 
-    if isTopLevel:
-      varDefRe = r'(variable "' + re.escape(varName) + r'"[\s\S]*?description = )("[^\n]*")'
-      varFileSplit = re.search(varDefRe, varFile, re.MULTILINE)
-      descReplacement = f"""<<EOT
-{renderDocBlk('    ')}
+        if is_top_level:
+          var_def_re = r'(variable "' + re.escape(var_name) + r'"[\s\S]*?description = )("[^\n]*")'
+          var_file_split = re.search(var_def_re, var_file, re.MULTILINE)
+          desc_replacement = f"""<<EOT
+{render_doc_blk('    ')}
   EOT"""
 
-      if varFileSplit is None:
-        print(f'Variable definition not found for top-level variable: {varName}')
-        continue
+          if var_file_split is None:
+            print(f'Variable definition not found for top-level variable: {var_name}')
+            continue
 
-      varFile = f'{varFile[0:varFileSplit.end(1)]}{descReplacement}{varFile[varFileSplit.end(2):]}'
-    else:
-      delimiterRe = r'(?:[\s\S]+?)'
-      pathNameArr = pathName.split('.')
-      varDefRe = r'(variable "' + pathNameArr[0] + delimiterRe + ''.join(map(lambda x: x + r'\s+=' + delimiterRe, pathNameArr[1:-1])) + r'\n)([ ]+)(' + pathNameArr[-1] + r'\s+=)'
-      varFileSplit = re.search(varDefRe, varFile, re.MULTILINE)
+          var_file = f'{var_file[0:var_file_split.end(1)]}{desc_replacement}{var_file[var_file_split.end(2):]}'
+        else:
+          delimiter_re = r'(?:[\s\S]+?)'
+          path_name_arr = path_name.split('.')
+          var_def_re = r'(variable "' + path_name_arr[0] + delimiter_re + ''.join(map(lambda x: x + r'\s+=' + delimiter_re, path_name_arr[1:-1])) + r'\n)([ ]+)(' + path_name_arr[-1] + r'\s+=)'
+          var_file_split = re.search(var_def_re, var_file, re.MULTILINE)
 
-      if varFileSplit is None:
-        print(f'Variable definition not found for nested variable: {varName}')
-        continue
+          if var_file_split is None:
+            print(f'Variable definition not found for nested variable: {var_name}')
+            continue
 
-      descReplacement = renderDocBlk(varFileSplit.group(2) + '/// ')
-      varFile = f'{varFile[0:varFileSplit.end(1)]}{descReplacement}\n{varFileSplit.group(2)}{varFile[varFileSplit.start(3):]}'
+          desc_replacement = render_doc_blk(var_file_split.group(2) + '/// ')
+          var_file = f'{var_file[0:var_file_split.end(1)]}{desc_replacement}\n{var_file_split.group(2)}{var_file[var_file_split.start(3):]}'
 
-with open(f'{folder}/variables.tf', 'w') as f:
-  f.write(varFile)
+    with open(f'{folder}/variables.tf', 'w') as f:
+      f.write(var_file)
+
+if __name__ == '__main__':
+    provider = 'aws'
+    exclude = [
+        'acm',
+        'cloudfront-distribution',
+        'ec2',
+        'ecr',
+        'ecs',
+        'ecs-service',
+        'efs',
+        'eks',
+        'route53',
+    ]
+
+    from pathlib import Path
+
+    modules = Path(provider)
+    for module in modules.iterdir():
+        if module.name in exclude:
+            continue
+
+        if module.is_file():
+            continue
+
+        print(f'Migrating {module.name}...')
+        migrate_module(f'{provider}/{module.name}')
