@@ -1,6 +1,6 @@
 import re
 
-folder = 'aws/elastic-load-balancer'
+folder = 'aws/eventbridge-scheduler'
 varFile = ''
 
 docRe = r'([ ]*)- \([\w()]+\) \*\*`([^`\s]+)(?:\s=.+)?`\*\*\s_\[since\sv([\w\d.]+)\]_\n+(\s*)(.*)'
@@ -54,7 +54,7 @@ with open(f'{folder}/README.md', 'r') as f:
     renderDocBlk = lambda prefix: '\n'.join([f'{prefix}{l}' for l in docBlkSrc])
 
     if isTopLevel:
-      varDefRe = r'(variable "' + re.escape(varName) + r'"[\s\S]*?description = )([^\n]*)'
+      varDefRe = r'(variable "' + re.escape(varName) + r'"[\s\S]*?description = )("[^\n]*")'
       varFileSplit = re.search(varDefRe, varFile, re.MULTILINE)
       descReplacement = f"""<<EOT
 {renderDocBlk('    ')}
@@ -78,5 +78,5 @@ with open(f'{folder}/README.md', 'r') as f:
       descReplacement = renderDocBlk(varFileSplit.group(2) + '/// ')
       varFile = f'{varFile[0:varFileSplit.end(1)]}{descReplacement}\n{varFileSplit.group(2)}{varFile[varFileSplit.start(3):]}'
 
-with open(f'{folder}/variables-new.tf', 'w') as f:
+with open(f'{folder}/variables.tf', 'w') as f:
   f.write(varFile)
