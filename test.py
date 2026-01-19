@@ -16,13 +16,36 @@ with open(f'{folder}/README.md', 'r') as f:
   linkRefDictMatches = re.findall(linkRefDefRe, lines)
   linkRefDict = { m[0]: m[1] for m in linkRefDictMatches }
 
+  variablesDict = {}
   for idx, match in enumerate(variables):
-    indent = len(match[0]) // 2
-    pathName = '.'.join([m[1] for m in variables[max(0, idx-indent):min(len(variables)-1, idx+1)]])
+    pathName = []
+    rawIndentation = match[0]
+    isTopLevel = len(rawIndentation) == 0
     varName = match[1]
     since = match[2]
     description = match[4]
 
+    if isTopLevel:
+      pathName = [match[1]]
+    else:
+      pathName = [variables[idx][1]]
+      currentLevel = len(variables[idx][0])
+
+      for i in range(idx - 1, -1, -1):
+        prevIndent = len(variables[i][0])
+
+        if prevIndent < currentLevel:
+          pathName.insert(0, variables[i][1])
+          currentLevel = prevIndent
+
+          if prevIndent == 0:
+            break
+
+    pathKey = '.'.join(pathName)
+    variablesDict[pathKey] = (rawIndentation, varName, since, description)
+
+  for pathName, [rawIndentation, varName, since, description] in variablesDict.items():
+    isTopLevel = len(rawIndentation) == 0
     linkRefs = re.findall(linkRefRe, description)
     if linkRefs:
       pass
@@ -30,7 +53,7 @@ with open(f'{folder}/README.md', 'r') as f:
     docBlkSrc = [description, '', f'@since {since}']
     renderDocBlk = lambda prefix: '\n'.join([f'{prefix}{l}' for l in docBlkSrc])
 
-    if indent == 0:
+    if isTopLevel:
       varDefRe = r'(variable "' + re.escape(varName) + r'"[\s\S]*?description = )([^\n]*)'
       varFileSplit = re.search(varDefRe, varFile, re.MULTILINE)
       descReplacement = f"""<<EOT
@@ -43,15 +66,17 @@ with open(f'{folder}/README.md', 'r') as f:
 
       varFile = f'{varFile[0:varFileSplit.end(1)]}{descReplacement}{varFile[varFileSplit.end(2):]}'
     else:
-      pass
+      delimiterRe = r'(?:[\s\S]+?)'
+      pathNameArr = pathName.split('.')
+      varDefRe = r'(variable "' + pathNameArr[0] + delimiterRe + ''.join(map(lambda x: x + r'\s+=' + delimiterRe, pathNameArr[1:-1])) + r'\n)([ ]+)(' + pathNameArr[-1] + r'\s+=)'
+      varFileSplit = re.search(varDefRe, varFile, re.MULTILINE)
 
-#     docBlk = f"""
-# /// {description}
-# ///
-# /// @since {since}
-# {varName} =
-# """.rstrip()
+      if varFileSplit is None:
+        print(f'Variable definition not found for nested variable: {varName}')
+        continue
 
-#     varFile = re.sub(rf'\s+{varName}\s+=', docBlk, varFile)
+      descReplacement = renderDocBlk(varFileSplit.group(2) + '/// ')
+      varFile = f'{varFile[0:varFileSplit.end(1)]}{descReplacement}\n{varFileSplit.group(2)}{varFile[varFileSplit.start(3):]}'
 
-  print(varFile)
+with open(f'{folder}/variables-new.tf', 'w') as f:
+  f.write(varFile)
