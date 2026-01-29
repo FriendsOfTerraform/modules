@@ -65,7 +65,7 @@ def migrate_module(folder: str):
         else:
           delimiter_re = r'(?:[\s\S]+?)'
           path_name_arr = path_name.split('.')
-          var_def_re = r'(variable "' + path_name_arr[0] + delimiter_re + ''.join(map(lambda x: x + r'\s+=' + delimiter_re, path_name_arr[1:-1])) + r'\n)([ ]+)(' + path_name_arr[-1] + r'\s+=)'
+          var_def_re = r'(variable "' + path_name_arr[0] + delimiter_re + ''.join(map(lambda x: r'\s+' + x + r'\s+=' + delimiter_re, path_name_arr[1:-1])) + r'\n)([ ]+)(' + path_name_arr[-1] + r'\s+=)'
           var_file_split = re.search(var_def_re, var_file, re.MULTILINE)
 
           if var_file_split is None:
