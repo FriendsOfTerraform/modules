@@ -4,6 +4,40 @@ docRe = r'([ ]*)- \([\w()]+\) \*\*`([^`\s]+)(?:\s=.+)?`\*\*\s_\[since\sv([\w\d.]
 linkRefRe = r'\[([^\]]+)\]\[([^\]]+)\]'
 linkRefDefRe = r'\[([^\]]+)\]:\s*(.*)'
 
+def return_enums_if_exists(str_val) -> list[str]:
+    patterns = [
+        r'Valid values:?\s*(?:are:?)?\s*(.+?)(?:\.|$)',
+        r'Possible values are\s+(.+?)(?:\.|$)',
+        r'Can be\s+(.+?)(?:\.|$)',
+        r'Valid values are\s+(.+?)(?:\.|$)',
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, str_val, re.IGNORECASE | re.DOTALL)
+        if match:
+            values_str = match.group(1)
+
+            # Extract values from backticks with optional quotes
+            value_pattern = r'`"?([^"`]+?)"?`'
+            values = re.findall(value_pattern, values_str)
+
+            if values:
+                cleaned_values = []
+                for val in values:
+                    val = val.strip()
+                    # Filter out non-value patterns like ranges, time expressions, etc.
+                    if val and not any(skip in val.lower() for skip in [
+                        'example', 'e.g.', 'for example', 'such as',
+                        'within', 'between', 'hours', 'minutes', 'days',
+                        'default', 'null', 'arn:', 'http://', 'https://'
+                    ]) and '-' not in val and '<' not in val and '>' not in val:
+                        cleaned_values.append(val)
+
+                if cleaned_values:
+                    return cleaned_values
+
+    return []
+
 def migrate_module(folder: str):
     with open(f'{folder}/variables.tf', 'r') as f:
       var_file = f.read()
@@ -47,7 +81,15 @@ def migrate_module(folder: str):
         if link_refs:
           pass
 
-        doc_blk_src = [description, '', f'@since {since}']
+        doc_blk_src = [description, '']
+
+        enum_values = return_enums_if_exists(description)
+        if enum_values:
+          enum_str = '@enum ' + '|'.join(enum_values)
+          doc_blk_src.append(enum_str)
+
+        doc_blk_src.append(f'@since {since}')
+
         render_doc_blk = lambda prefix: '\n'.join([f'{prefix}{l}' for l in doc_blk_src])
 
         if is_top_level:
