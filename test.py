@@ -38,6 +38,29 @@ def return_enums_if_exists(str_val) -> list[str]:
 
     return []
 
+def return_examples_if_exists(str_val) -> list[str]:
+    examples = []
+    patterns = [
+        r'\[(?:[Ss]ee\s+)?[Ee]xample\]\[([^\]]+)\]',
+        r'\[(?:[Ss]ee\s+)?[Ee]xample\]\(([^)]+)\)',
+        r'(?:[Pp]lease\s+)?[Ss]ee\s+\[example\]\[([^\]]+)\]',
+        r'(?:[Pp]lease\s+)?[Ss]ee\s+\[example\]\(([^)]+)\)',
+    ]
+
+    for pattern in patterns:
+        matches = re.findall(pattern, str_val)
+        for match in matches:
+            ref = match.strip()
+            if ref.startswith('#'):
+                ref = ref[1:]
+            if ref and ref not in examples:
+                examples.append(ref)
+
+    return examples
+
+def kebab_to_title(string):
+    return string.replace('-', ' ').title()
+
 def migrate_module(folder: str):
     with open(f'{folder}/variables.tf', 'r') as f:
       var_file = f.read()
@@ -83,10 +106,17 @@ def migrate_module(folder: str):
 
         doc_blk_src = [description, '']
 
+        # Extract enum values if they exist
         enum_values = return_enums_if_exists(description)
         if enum_values:
           enum_str = '@enum ' + '|'.join(enum_values)
           doc_blk_src.append(enum_str)
+
+        # Extract example references if they exist
+        example_refs = return_examples_if_exists(description)
+        if example_refs:
+          for example_ref in example_refs:
+            doc_blk_src.append(f'@example "{kebab_to_title(example_ref)}" #{example_ref}')
 
         doc_blk_src.append(f'@since {since}')
 
