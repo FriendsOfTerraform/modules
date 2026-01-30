@@ -1,7 +1,7 @@
 import re
 
 docRe = r'([ ]*)- \([\w()]+\) \*\*`([^`\s]+)(?:\s=.+)?`\*\*\s_\[since\sv([\w\d.]+)\]_\n+(\s*)(.*)'
-linkRefRe = r'\[([^\]]+)\]\[([^\]]+)\]'
+linkRefRe = r'\[([^\]]+)\][\(\[]([^\]\)]+)[\]\)]'
 linkRefDefRe = r'\[([^\]]+)\]:\s*(.*)'
 
 def return_enums_if_exists(str_val) -> list[str]:
@@ -57,6 +57,11 @@ def return_examples_if_exists(str_val) -> list[str]:
                 examples.append(ref)
 
     return examples
+
+def return_links_if_exists(str_val) -> list[tuple[str, str]]:
+    linkMatches = re.findall(linkRefRe, str_val)
+
+    return [(match[0], match[1]) for match in linkMatches]
 
 def kebab_to_title(string):
     return string.replace('-', ' ').title()
@@ -118,6 +123,14 @@ def migrate_module(folder: str):
           for example_ref in example_refs:
             doc_blk_src.append(f'@example "{kebab_to_title(example_ref)}" #{example_ref}')
 
+        links = return_links_if_exists(description)
+        if links:
+            for link_name, link_url in links:
+                if link_url.startswith('http'):
+                    doc_blk_src.append(f'@link "{link_name}" {link_url}')
+                else:
+                    doc_blk_src.append(f'@link {{{link_url}}} {linkRefDict.get(link_url)}')
+
         doc_blk_src.append(f'@since {since}')
 
         render_doc_blk = lambda prefix: '\n'.join([f'{prefix}{l}' for l in doc_blk_src])
@@ -176,3 +189,4 @@ if __name__ == '__main__':
 
         print(f'Migrating {module.name}...')
         migrate_module(f'{provider}/{module.name}')
+        break
