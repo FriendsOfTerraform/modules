@@ -66,18 +66,60 @@ def return_links_if_exists(str_val) -> list[tuple[str, str]]:
 def kebab_to_title(string):
     return string.replace('-', ' ').title()
 
-def migrate_module(folder: str):
-    with open(f'{folder}/variables.tf', 'r') as f:
-      var_file = f.read()
+def build_doc_block(description: str, since: str, link_ref_dict: dict) -> list[str]:
+    doc_blk_src = [description, '']
 
-    with open(f'{folder}/README.md', 'r') as f:
-      lines = f.read()
-      variables = re.findall(docRe, lines)
-      link_ref_dict_matches = re.findall(linkRefDefRe, lines)
-      linkRefDict = { m[0]: m[1] for m in link_ref_dict_matches }
+    enum_values = return_enums_if_exists(description)
+    if enum_values:
+        enum_str = '@enum ' + '|'.join(enum_values)
+        doc_blk_src.append(enum_str)
 
-      variables_dict = {}
-      for idx, match in enumerate(variables):
+    example_refs = return_examples_if_exists(description)
+    if example_refs:
+        for example_ref in example_refs:
+            doc_blk_src.append(f'@example "{kebab_to_title(example_ref)}" #{example_ref}')
+
+    links = return_links_if_exists(description)
+    if links:
+        for link_name, link_url in links:
+            if link_url.startswith('http'):
+                doc_blk_src.append(f'@link "{link_name}" {link_url}')
+            else:
+                doc_blk_src.append(f'@link {{{link_url}}} {link_ref_dict.get(link_url)}')
+
+    doc_blk_src.append(f'@since {since}')
+
+    return doc_blk_src
+
+def render_doc_block(doc_blk_src: list[str], prefix: str = '    ') -> str:
+    content = '\n'.join([f'{prefix}{l}' for l in doc_blk_src])
+
+    return f"""<<EOT
+{content}
+  EOT"""
+
+def read_file_safe(filepath: str) -> str | None:
+    try:
+        with open(filepath, 'r') as f:
+            return f.read()
+    except FileNotFoundError:
+        return None
+
+def split_readme_sections(readme_content: str) -> tuple[str, str | None]:
+    outputs_section_match = re.search(r'## Outputs', readme_content)
+    if outputs_section_match:
+        variables_section = readme_content[:outputs_section_match.start()]
+        outputs_section = readme_content[outputs_section_match.start():]
+    else:
+        variables_section = readme_content
+        outputs_section = None
+
+    return variables_section, outputs_section
+
+def build_variable_path_dict(variables: list) -> dict:
+    variables_dict = {}
+
+    for idx, match in enumerate(variables):
         raw_indentation = match[0]
         is_top_level = len(raw_indentation) == 0
         var_name = match[1]
@@ -85,62 +127,49 @@ def migrate_module(folder: str):
         description = match[4]
 
         if is_top_level:
-          path_name = [match[1]]
+            path_name = [match[1]]
         else:
-          path_name = [variables[idx][1]]
-          current_level = len(variables[idx][0])
+            path_name = [variables[idx][1]]
+            current_level = len(variables[idx][0])
 
-          for i in range(idx - 1, -1, -1):
-            prev_indent = len(variables[i][0])
+            for i in range(idx - 1, -1, -1):
+                prev_indent = len(variables[i][0])
 
-            if prev_indent < current_level:
-              path_name.insert(0, variables[i][1])
-              current_level = prev_indent
+                if prev_indent < current_level:
+                    path_name.insert(0, variables[i][1])
+                    current_level = prev_indent
 
-              if prev_indent == 0:
-                break
+                    if prev_indent == 0:
+                        break
 
         path_key = '.'.join(path_name)
         variables_dict[path_key] = (raw_indentation, var_name, since, description)
 
-      for path_name, [raw_indentation, var_name, since, description] in variables_dict.items():
+    return variables_dict
+
+def migrate_module(folder: str):
+    with open(f'{folder}/variables.tf', 'r') as f:
+        var_file = f.read()
+
+    output_file = read_file_safe(f'{folder}/outputs.tf')
+
+    with open(f'{folder}/README.md', 'r') as f:
+        readme_content = f.read()
+
+    variables_section, outputs_section = split_readme_sections(readme_content)
+    variables = re.findall(docRe, variables_section)
+    link_ref_dict_matches = re.findall(linkRefDefRe, readme_content)
+    linkRefDict = { m[0]: m[1] for m in link_ref_dict_matches }
+    variables_dict = build_variable_path_dict(variables)
+
+    for path_name, [raw_indentation, var_name, since, description] in variables_dict.items():
         is_top_level = len(raw_indentation) == 0
-        link_refs = re.findall(linkRefRe, description)
-        if link_refs:
-          pass
-
-        doc_blk_src = [description, '']
-
-        # Extract enum values if they exist
-        enum_values = return_enums_if_exists(description)
-        if enum_values:
-          enum_str = '@enum ' + '|'.join(enum_values)
-          doc_blk_src.append(enum_str)
-
-        # Extract example references if they exist
-        example_refs = return_examples_if_exists(description)
-        if example_refs:
-          for example_ref in example_refs:
-            doc_blk_src.append(f'@example "{kebab_to_title(example_ref)}" #{example_ref}')
-
-        links = return_links_if_exists(description)
-        if links:
-            for link_name, link_url in links:
-                if link_url.startswith('http'):
-                    doc_blk_src.append(f'@link "{link_name}" {link_url}')
-                else:
-                    doc_blk_src.append(f'@link {{{link_url}}} {linkRefDict.get(link_url)}')
-
-        doc_blk_src.append(f'@since {since}')
-
-        render_doc_blk = lambda prefix: '\n'.join([f'{prefix}{l}' for l in doc_blk_src])
+        doc_blk_src = build_doc_block(description, since, linkRefDict)
 
         if is_top_level:
           var_def_re = r'(variable "' + re.escape(var_name) + r'"[\s\S]*?description = )("[^\n]*")'
           var_file_split = re.search(var_def_re, var_file, re.MULTILINE)
-          desc_replacement = f"""<<EOT
-{render_doc_blk('    ')}
-  EOT"""
+          desc_replacement = render_doc_block(doc_blk_src)
 
           if var_file_split is None:
             print(f'Variable definition not found for top-level variable: {var_name}')
@@ -157,11 +186,50 @@ def migrate_module(folder: str):
             print(f'Variable definition not found for nested variable: {var_name}')
             continue
 
-          desc_replacement = render_doc_blk(var_file_split.group(2) + '/// ')
+          nested_prefix = var_file_split.group(2) + '/// '
+          desc_replacement = '\n'.join([f'{nested_prefix}{l}' for l in doc_blk_src])
           var_file = f'{var_file[0:var_file_split.end(1)]}{desc_replacement}\n{var_file_split.group(2)}{var_file[var_file_split.start(3):]}'
 
     with open(f'{folder}/variables.tf', 'w') as f:
       f.write(var_file)
+
+    if output_file is not None and outputs_section is not None:
+      outputs = re.findall(docRe, outputs_section)
+
+      for match in outputs:
+        raw_indentation = match[0]
+        is_top_level = len(raw_indentation) == 0
+
+        if not is_top_level:
+          continue
+
+        output_name = match[1]
+        since = match[2]
+        description = match[4]
+
+        doc_blk_src = build_doc_block(description, since, linkRefDict)
+
+        output_def_re = r'(output "' + re.escape(output_name) + r'"[\s\S]*?description = )("[^\n]*")'
+        output_file_split = re.search(output_def_re, output_file, re.MULTILINE)
+
+        if output_file_split is None:
+          output_def_re_no_desc = r'(output "' + re.escape(output_name) + r'"\s*\{)'
+          output_file_split_no_desc = re.search(output_def_re_no_desc, output_file, re.MULTILINE)
+
+          if output_file_split_no_desc is not None:
+            desc_replacement = f"""
+  description = {render_doc_block(doc_blk_src)}
+""".rstrip()
+            output_file = f'{output_file[:output_file_split_no_desc.end()]}{desc_replacement}{output_file[output_file_split_no_desc.end():]}'
+          else:
+            print(f'Output definition not found for: {output_name}')
+            continue
+        else:
+          desc_replacement = render_doc_block(doc_blk_src)
+          output_file = f'{output_file[0:output_file_split.end(1)]}{desc_replacement}{output_file[output_file_split.end(2):]}'
+
+      with open(f'{folder}/outputs.tf', 'w') as f:
+        f.write(output_file)
 
 if __name__ == '__main__':
     provider = 'aws'
@@ -189,4 +257,3 @@ if __name__ == '__main__':
 
         print(f'Migrating {module.name}...')
         migrate_module(f'{provider}/{module.name}')
-        break
