@@ -1,6 +1,7 @@
 import re
+from typing import Optional
 
-docRe = r'([ ]*)- \([\w()]+\) \*\*`([^`\s]+)(?:\s=.+)?`\*\*\s_\[since\sv([\w\d.]+)\]_\n+(\s*)(.*)'
+docRe = r'([ ]*)- \(([\w()]+)\) \*\*`([^`\s]+)(?:\s=.+)?`\*\*\s_\[since\sv([\w\d.]+)\]_\n+(\s*)(.*)'
 linkRefRe = r'\[([^\]]+)\][\(\[]([^\]\)]+)[\]\)]'
 linkRefDefRe = r'\[([^\]]+)\]:\s*(.*)'
 
@@ -66,7 +67,7 @@ def return_links_if_exists(str_val) -> list[tuple[str, str]]:
 def kebab_to_title(string):
     return string.replace('-', ' ').title()
 
-def build_doc_block(description: str, since: str, link_ref_dict: dict) -> list[str]:
+def build_doc_block(description: str, since: str, link_ref_dict: dict, data_type: Optional[str] = None) -> list[str]:
     doc_blk_src = [description, '']
 
     enum_values = return_enums_if_exists(description)
@@ -86,6 +87,9 @@ def build_doc_block(description: str, since: str, link_ref_dict: dict) -> list[s
                 doc_blk_src.append(f'@link "{link_name}" {link_url}')
             else:
                 doc_blk_src.append(f'@link {{{link_url}}} {link_ref_dict.get(link_url)}')
+
+    if data_type is not None:
+        doc_blk_src.append(f'@type {data_type}')
 
     doc_blk_src.append(f'@since {since}')
 
@@ -122,28 +126,29 @@ def build_variable_path_dict(variables: list) -> dict:
     for idx, match in enumerate(variables):
         raw_indentation = match[0]
         is_top_level = len(raw_indentation) == 0
-        var_name = match[1]
-        since = match[2]
-        description = match[4]
+        data_type = match[1]
+        var_name = match[2]
+        since = match[3]
+        description = match[5]
 
         if is_top_level:
-            path_name = [match[1]]
+            path_name = [match[2]]
         else:
-            path_name = [variables[idx][1]]
+            path_name = [variables[idx][2]]
             current_level = len(variables[idx][0])
 
             for i in range(idx - 1, -1, -1):
                 prev_indent = len(variables[i][0])
 
                 if prev_indent < current_level:
-                    path_name.insert(0, variables[i][1])
+                    path_name.insert(0, variables[i][2])
                     current_level = prev_indent
 
                     if prev_indent == 0:
                         break
 
         path_key = '.'.join(path_name)
-        variables_dict[path_key] = (raw_indentation, var_name, since, description)
+        variables_dict[path_key] = (raw_indentation, data_type, var_name, since, description)
 
     return variables_dict
 
@@ -162,7 +167,7 @@ def migrate_module(folder: str):
     linkRefDict = { m[0]: m[1] for m in link_ref_dict_matches }
     variables_dict = build_variable_path_dict(variables)
 
-    for path_name, [raw_indentation, var_name, since, description] in variables_dict.items():
+    for path_name, [raw_indentation, _, var_name, since, description] in variables_dict.items():
         is_top_level = len(raw_indentation) == 0
         doc_blk_src = build_doc_block(description, since, linkRefDict)
 
@@ -203,11 +208,12 @@ def migrate_module(folder: str):
         if not is_top_level:
           continue
 
-        output_name = match[1]
-        since = match[2]
-        description = match[4]
+        data_type = match[1]
+        output_name = match[2]
+        since = match[3]
+        description = match[5]
 
-        doc_blk_src = build_doc_block(description, since, linkRefDict)
+        doc_blk_src = build_doc_block(description, since, linkRefDict, data_type)
 
         output_def_re = r'(output "' + re.escape(output_name) + r'"[\s\S]*?description = )("[^\n]*")'
         output_file_split = re.search(output_def_re, output_file, re.MULTILINE)
@@ -243,6 +249,7 @@ if __name__ == '__main__':
         'efs',
         'eks',
         'route53',
+        's3',
     ]
 
     from pathlib import Path
