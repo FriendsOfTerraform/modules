@@ -98,7 +98,10 @@ def build_doc_block(description: str, since: str, link_ref_dict: dict, data_type
             if link_url.startswith('http'):
                 doc_blk_src.append(f'@link "{link_name}" {link_url}')
             else:
-                doc_blk_src.append(f'@link {{{link_url}}} {link_ref_dict.get(link_url)}')
+                linked_ref_exists = link_ref_dict.get(link_url)
+
+                if linked_ref_exists is not None:
+                    doc_blk_src.append(f'@link {{{link_url}}} {linked_ref_exists}')
 
     if data_type is not None:
         doc_blk_src.append(f'@type {data_type}')
