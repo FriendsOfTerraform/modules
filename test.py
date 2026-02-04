@@ -5,7 +5,7 @@ docRe = r'([ ]*)- \(([\w()]+)\) \*\*`([^`\s]+)(?:\s=.+)?`\*\*\s_\[since\sv([\w\d
 linkRefRe = r'\[([^\]]+)\][\(\[]([^\]\)]+)[\]\)]'
 linkRefDefRe = r'\[([^\]]+)\]:\s*(.*)'
 
-def return_enums_if_exists(str_val) -> list[str]:
+def return_enums_if_exists(str_val) -> tuple[list[str], str]:
     patterns = [
         r'Valid values:?\s*(?:are:?)?\s*(.+?)(?:\.|$)',
         r'Possible values are\s+(.+?)(?:\.|$)',
@@ -35,12 +35,16 @@ def return_enums_if_exists(str_val) -> list[str]:
                         cleaned_values.append(val)
 
                 if cleaned_values:
-                    return cleaned_values
+                    # Remove the matched text from the description
+                    cleaned_str = str_val[:match.start()] + str_val[match.end():]
+                    cleaned_str = re.sub(r'\s+', ' ', cleaned_str).strip()
+                    return cleaned_values, cleaned_str
 
-    return []
+    return [], str_val
 
-def return_examples_if_exists(str_val) -> list[str]:
+def return_examples_if_exists(str_val) -> tuple[list[str], str]:
     examples = []
+    cleaned_str = str_val
     patterns = [
         r'\[(?:[Ss]ee\s+)?[Ee]xample\]\[([^\]]+)\]',
         r'\[(?:[Ss]ee\s+)?[Ee]xample\]\(([^)]+)\)',
@@ -49,15 +53,20 @@ def return_examples_if_exists(str_val) -> list[str]:
     ]
 
     for pattern in patterns:
-        matches = re.findall(pattern, str_val)
+        matches = re.finditer(pattern, cleaned_str)
         for match in matches:
-            ref = match.strip()
+            ref = match.group(1).strip()
             if ref.startswith('#'):
                 ref = ref[1:]
             if ref and ref not in examples:
                 examples.append(ref)
+        # Remove the matched text from the description
+        cleaned_str = re.sub(pattern, '', cleaned_str)
 
-    return examples
+    # Clean up extra whitespace
+    cleaned_str = re.sub(r'\s+', ' ', cleaned_str).strip()
+
+    return examples, cleaned_str
 
 def return_links_if_exists(str_val) -> list[tuple[str, str]]:
     linkMatches = re.findall(linkRefRe, str_val)
@@ -68,14 +77,17 @@ def kebab_to_title(string):
     return string.replace('-', ' ').title()
 
 def build_doc_block(description: str, since: str, link_ref_dict: dict, data_type: Optional[str] = None) -> list[str]:
-    doc_blk_src = [description, '']
+    cleaned_description = description
 
-    enum_values = return_enums_if_exists(description)
+    enum_values, cleaned_description = return_enums_if_exists(cleaned_description)
+    example_refs, cleaned_description = return_examples_if_exists(cleaned_description)
+
+    doc_blk_src = [cleaned_description, '']
+
     if enum_values:
         enum_str = '@enum ' + '|'.join(enum_values)
         doc_blk_src.append(enum_str)
 
-    example_refs = return_examples_if_exists(description)
     if example_refs:
         for example_ref in example_refs:
             doc_blk_src.append(f'@example "{kebab_to_title(example_ref)}" #{example_ref}')
