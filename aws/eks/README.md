@@ -14,8 +14,8 @@ This module will build and configure an [EKS](https://aws.amazon.com/eks/) clust
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 - [Known Limitations](#known-limitations)
   - [Editing Node Group Configuration](#editing-node-group-configuration)
 
@@ -556,7 +556,207 @@ IAM policies. You can map the entire namespace to a role by omitting
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">aws_cli_connect_to_cluster_command</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The AWS cli command to connect to the EKS cluster
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">cluster_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of the EKS cluster
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">cluster_certificate_authority</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The public CA certificate (based64) of the EKS cluster
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">cluster_endpoint_url</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The endpoint URL of the EKS cluster
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">cluster_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the EKS cluster
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.1.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">cluster_role_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of the cluster IAM role
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.1.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">node_group_arns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Map of ARNs of all the node groups associated to this cluster
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">node_role_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of the node IAM role
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.1.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 
 
@@ -1501,40 +1701,6 @@ to use to allow communication between your worker nodes and the Kubernetes contr
 
 <!-- TFDOCS_EXTRAS_END -->
 
-## Outputs
-
-- (string) **`cluster_arn`** _[since v1.0.0]_
-
-    The ARN of the EKS cluster
-
-- (string) **`cluster_certificate_authority`** _[since v1.0.0]_
-
-    The public CA certificate (based64) of the EKS cluster
-
-- (string) **`cluster_endpoint_url`** _[since v1.0.0]_
-
-    The endpoint URL of the EKS cluster
-
-- (string) **`cluster_name`** _[since v1.1.0]_
-
-    The name of the EKS cluster
-
-- (string) **`cluster_role_arn`** _[since v1.1.0]_
-
-    The ARN of the cluster IAM role
-
-- (map(string)) **`node_group_arns`** _[since v1.0.0]_
-
-    Map of ARNs of all the node groups associated to this cluster
-
-- (string) **`node_role_arn`** _[since v1.1.0]_
-
-    The ARN of the node IAM role
-
-- (string) **`aws_cli_connect_to_cluster_command`** _[since v1.0.0]_
-
-    The AWS cli command to connect to the EKS cluster
-
 ## Known Limitations
 
 ### Editing Node Group Configuration
@@ -1542,17 +1708,6 @@ to use to allow communication between your worker nodes and the Kubernetes contr
 Because the EKS node group is deployed using EC2 auto scaling group, updating node groups' configuration after creation will result in the creation of a new auto scaling group, effectively replacing the entire node group. However, node group replacement follows the Kubernetes node termination procedure, where all workloads will be automatically moved to the next healthy node group if available.
 
 [addon]:https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html
-[addon-conflict]:https://docs.aws.amazon.com/eks/latest/userguide/add-ons-configuration.html#add-on-config-management-understanding-field-management
-[ami-release-versions]:https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html
 [associate-an-iam-role-to-a-service-account]:https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html
 [describe-addon-versions]:https://awscli.amazonaws.com/v2/documentation/api/latest/reference/eks/describe-addon-versions.html
-[ec2-instance-type]:https://aws.amazon.com/ec2/instance-types/
-[eks-log-types]:https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
-[envelope-encryption]:https://docs.aws.amazon.com/eks/latest/userguide/enable-kms.html
 [iam-role-for-service-account]:https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html
-[nodegroup-datatype]:https://docs.aws.amazon.com/eks/latest/APIReference/API_Nodegroup.html#AmazonEKS-Type-Nodegroup-amiType
-[oidc-idp]:https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html
-[oidc-idp-issuer]:https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html#associate-oidc-identity-provider
-[oidc-provider]:https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
-[supported-k8s-version]:https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html
-[vpc-and-subnet-requirements]:https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html
