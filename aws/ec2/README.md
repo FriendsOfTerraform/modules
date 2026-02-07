@@ -12,8 +12,8 @@ This module will build and configure an [EC2](https://aws.amazon.com/ec2/) insta
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -630,7 +630,138 @@ Configures the [user data][ec2-user-data] of the instance.
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of the EC2 instance
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_password_data</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Base-64 encoded encrypted password data for the instance. Useful for getting the administrator password for instances running Microsoft Windows. This attribute is only exported if `get_windows_password = true`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_primary_network_interface_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+ID of the instance's primary network interface
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_private_dns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Private DNS name assigned to the instance. Can only be used inside the Amazon EC2, and only available if you've enabled DNS hostnames for your VPC
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.1.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_public_dns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Public DNS name assigned to the instance. For EC2-VPC, this is only available if you've enabled DNS hostnames for your VPC.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.1.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 
 
@@ -1938,45 +2069,3 @@ User data document in base64. Mutually exclusive to `user_data`
 
 
 <!-- TFDOCS_EXTRAS_END -->
-
-## Outputs
-
-- (string) **`instance_arn`** _[since v1.0.0]_
-
-    The ARN of the EC2 instance
-
-- (string) **`instance_password_data`** _[since v1.0.0]_
-
-    Base-64 encoded encrypted password data for the instance. Useful for getting the administrator password for instances running Microsoft Windows. This attribute is only exported if `get_windows_password = true`
-
-- (string) **`instance_primary_network_interface_id`** _[since v1.0.0]_
-
-    ID of the instance's primary network interface
-
-- (string) **`instance_private_dns`** _[since v1.1.0]_
-
-    Private DNS name assigned to the instance. Can only be used inside the Amazon EC2, and only available if you've enabled DNS hostnames for your VPC
-
-- (string) **`instance_public_dns`** _[since v1.1.0]_
-
-    Public DNS name assigned to the instance. For EC2-VPC, this is only available if you've enabled DNS hostnames for your VPC.
-
-[cpu-credit-standard]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-standard-mode.html
-[cpu-credit-unlimited]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode.html
-[device-name-linux]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html
-[device-name-windows]:https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/device_naming.html?icmpid=docs_ec2_console#available-ec2-device-names
-[ec2-auto-recovery]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html
-[ec2-detailed-monitoring]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html
-[ec2-iam-role]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
-[ec2-instance-type]:https://aws.amazon.com/ec2/instance-types/
-[ec2-key-pair]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
-[ec2-prefixes]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html
-[ec2-user-data]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
-[elastic-fabric-adapter]:https://aws.amazon.com/hpc/efa/
-[instance-hibernation]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enabling-hibernation.html
-[instance-metadata-service]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html
-[instance-termination-protection]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminate-instances-considerations.html#Using_ChangingDisableAPITermination
-[instance-stop-protection]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection
-[nitro-system-type]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances
-[resource-based-naming-options]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html
-[volume-type]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html
