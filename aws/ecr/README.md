@@ -12,8 +12,8 @@ This module builds and configures private and public [ECR](https://aws.amazon.co
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -219,7 +219,46 @@ Manages the public registry
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#privaterepositories">PrivateRepositories</a>))</code></td>
+    <td width="100%">private_repositories</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Map of all private repositories
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 
 
@@ -626,6 +665,93 @@ Configure [image scanning][ecr-private-registry-image-scanning]
     
 **Examples:**
 - [Private Registry Features](#private-registry-features)
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### PrivateRepositories
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of the repository.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">registry_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The account ID where the repository is created
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">repository_url</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The URL of the repository. In the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`
+
+    
+
+    
+
+    
 
     
 
@@ -1184,30 +1310,3 @@ Enables scan on push, which scans images when it is pushed into a matching repos
 
 
 <!-- TFDOCS_EXTRAS_END -->
-
-## Outputs
-
-- (map(object)) **`private_repositories`** _[since v1.0.0]_
-
-    Map of all private repositories
-
-    - (string) **`arn`** _[since v1.0.0]_
-
-        The ARN of the repository
-
-    - (string) **`registry_id`** _[since v1.0.0]_
-
-        The account ID where the repository is created
-
-    - (string) **`repository_url`** _[since v1.0.0]_
-
-        The URL of the repository. In the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`
-
-[ecr-private-registry-image-replication]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/replication.html
-[ecr-private-registry-image-replication-permissions]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/registry-permissions-create-replication.html
-[ecr-private-registry-image-scanning]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/image-scanning.html
-[ecr-private-registry-lifecycle-police-rule]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/LifecyclePolicies.html
-[ecr-private-registry-pull-through-cache-rules]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/pull-through-cache.html
-[ecr-private-registry-policy]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/registry-permissions.html
-[ecr-private-registry-repository]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/Repositories.html
-[ecr-private-registry-repository-policy]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/repository-policies.html
