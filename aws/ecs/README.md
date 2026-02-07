@@ -12,8 +12,8 @@ This module will build and configure an [ECS](https://aws.amazon.com/ecs/) clust
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 - [Known Limitations](#known-limitations)
   - [Editing EC2 Capacity Providers](#editing-ec2-capacity-providers)
 
@@ -332,7 +332,69 @@ Configures ECS monitoring options
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">ec2_capacity_provider_arns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Map of ARNs of all EC2 capacity providers
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">ecs_cluster_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of the ECS cluster
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 
 
@@ -879,27 +941,8 @@ Enables [ECS container insights][ecs-container-insights]
 
 <!-- TFDOCS_EXTRAS_END -->
 
-## Outputs
-
-- (map(string)) **`ec2_capacity_provider_arns`** _[since v1.0.0]_
-
-    Map of ARNs of all EC2 capacity providers
-
-- (string) **`ecs_cluster_arn`** _[since v1.0.0]_
-
-    The ARN of the ECS cluster
-
 ## Known Limitations
 
 ### Editing EC2 Capacity Providers
 
 Modifications of EC2 capacity providers does not apply to running instances. It is because it only updates the launch template used to launch the fleet. You must replace the running instances to see the changes.
-
-[ec2-instance-type]:https://aws.amazon.com/ec2/instance-types/
-[ecs-container-insights]:https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
-[ecs-container-instance-iam-role]:https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html
-[ecs-fargate]:https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html
-[ecs-linux-optimized-ami]:https://docs.aws.amazon.com/AmazonECS/latest/developerguide/retrieve-ecs-optimized_AMI.html#ecs-optimized-ami-parameter-examples
-[ecs-windows-optimized-ami]:https://docs.aws.amazon.com/AmazonECS/latest/developerguide/retrieve-ecs-optimized_windows_AMI.html#ecs-optimized-ami-windows-parameter-examples
-[ecs-bottlerocket-optimized-ami]:https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-bottlerocket-retrieve-ami.html
-[spot-allocation-strategy]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-allocation-strategy.html
