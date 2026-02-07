@@ -11,8 +11,8 @@ This module will build and configure a [CloudFront Distribution](https://aws.ama
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -473,7 +473,115 @@ the CloudFront default certificate will be used.
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">distribution_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+ARN for the distribution
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">distribution_domain_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Domain name corresponding to the distribution.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">distribution_hosted_zone_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+CloudFront Route 53 zone ID that can be used to route an Alias Resource Record Set to.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">distribution_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Identifier for the distribution
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 
 
@@ -1740,33 +1848,3 @@ Specify how you want CloudFront to serve HTTPS requests.
 
 
 <!-- TFDOCS_EXTRAS_END -->
-
-## Outputs
-
-- (string) **`distribution_arn`** _[since v1.0.0]_
-
-    ARN for the distribution
-
-- (string) **`distribution_domain_name`** _[since v1.0.0]_
-
-    Domain name corresponding to the distribution.
-
-- (string) **`distribution_hosted_zone_id`** _[since v1.0.0]_
-
-    CloudFront Route 53 zone ID that can be used to route an Alias Resource Record Set to.
-
-- (string) **`distribution_id`** _[since v1.0.0]_
-
-    Identifier for the distribution
-
-[cloudfront-cache-policy]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html
-[cloudfront-custom-error-response]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GeneratingCustomErrorResponses.html?icmpid=docs_cf_help_panel
-[cloudfront-field-level-encryption-configuration]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html
-[cloudfront-geographic-restriction]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html
-[cloudfront-origin-failover]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html
-[cloudfront-origin-request-policy]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html
-[cloudfront-origin-shield]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html
-[cloudfront-origins]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html
-[cloudfront-real-time-logs-configuration]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html
-[cloudfront-response-headers-policy]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html
-[cloudfront-trusted-key-groups]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html
