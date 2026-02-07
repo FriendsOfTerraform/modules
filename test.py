@@ -168,8 +168,13 @@ def build_variable_path_dict(variables: list) -> dict:
     return variables_dict
 
 def migrate_module(folder: str):
+    inputs_are_migrated = False
+
     with open(f'{folder}/variables.tf', 'r') as f:
         var_file = f.read()
+
+        if var_file.find('///') != -1:
+            inputs_are_migrated = True
 
     output_file = read_file_safe(f'{folder}/outputs.tf')
 
@@ -210,8 +215,9 @@ def migrate_module(folder: str):
           desc_replacement = '\n'.join([f'{nested_prefix}{l}' for l in doc_blk_src])
           var_file = f'{var_file[0:var_file_split.end(1)]}{desc_replacement}\n{var_file_split.group(2)}{var_file[var_file_split.start(3):]}'
 
-    with open(f'{folder}/variables.tf', 'w') as f:
-      f.write(var_file)
+    if not inputs_are_migrated:
+        with open(f'{folder}/variables.tf', 'w') as f:
+          f.write(var_file)
 
     if output_file is not None and outputs_section is not None:
       outputs = re.findall(docRe, outputs_section)
@@ -256,15 +262,6 @@ if __name__ == '__main__':
     provider = 'aws'
     exclude = [
         'acm',
-        'cloudfront-distribution',
-        'ec2',
-        'ecr',
-        'ecs',
-        'ecs-service',
-        'efs',
-        'eks',
-        'route53',
-        's3',
     ]
 
     from pathlib import Path
