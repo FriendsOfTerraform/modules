@@ -76,6 +76,26 @@ def return_links_if_exists(str_val) -> list[tuple[str, str]]:
 def kebab_to_title(string):
     return string.replace('-', ' ').title()
 
+def build_nested_type_declaration(output_name: str, outputs_dict: dict, link_ref_dict: dict, prefix: str = '    ') -> str | None:
+    nested_props = []
+    inner_prefix = prefix + '  '  # Additional indentation for children of object({
+
+    for path_key, (raw_indentation, data_type, var_name, since, description) in outputs_dict.items():
+        parts = path_key.split('.')
+        if len(parts) == 2 and parts[0] == output_name:
+            prop_name = parts[1]
+            doc_blk_src = build_doc_block(description, since, link_ref_dict)
+
+            prop_lines = [f'{inner_prefix}/// {line}' for line in doc_blk_src]
+            prop_lines.append(f'{inner_prefix}{prop_name} = {data_type}')
+            nested_props.append('\n'.join(prop_lines))
+
+    if nested_props:
+        props_str = '\n\n'.join(nested_props)
+        return f'map(object({{\n{props_str}\n{prefix}}}))'
+
+    return None
+
 def build_doc_block(description: str, since: str, link_ref_dict: dict, data_type: Optional[str] = None) -> list[str]:
     cleaned_description = description
 
@@ -221,6 +241,7 @@ def migrate_module(folder: str):
 
     if output_file is not None and outputs_section is not None:
       outputs = re.findall(docRe, outputs_section)
+      outputs_dict = build_variable_path_dict(outputs)
 
       for match in outputs:
         raw_indentation = match[0]
@@ -234,7 +255,9 @@ def migrate_module(folder: str):
         since = match[3]
         description = match[5]
 
-        doc_blk_src = build_doc_block(description, since, linkRefDict, data_type)
+        nested_type = build_nested_type_declaration(output_name, outputs_dict, linkRefDict)
+        effective_data_type = nested_type if nested_type is not None else data_type
+        doc_blk_src = build_doc_block(description, since, linkRefDict, effective_data_type)
 
         output_def_re = r'(output "' + re.escape(output_name) + r'"[\s\S]*?description = )("[^\n]*")'
         output_file_split = re.search(output_def_re, output_file, re.MULTILINE)
@@ -262,6 +285,11 @@ if __name__ == '__main__':
     provider = 'aws'
     exclude = [
         'acm',
+        'cloudfront-distribution',
+        'ec2',
+        'ecr',
+        'ecs',
+        'ecs-service',
     ]
 
     from pathlib import Path
