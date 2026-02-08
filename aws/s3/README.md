@@ -839,7 +839,161 @@ Enables [bucket versioning][s3-versioning]
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">bucket_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+ARN of the S3 bucket
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">bucket_domain_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Bucket domain name. Will be of format `bucketname.s3.amazonaws.com`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">bucket_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Name of the S3 bucket
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">bucket_region</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+AWS region this bucket resides in
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">website_domain</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Domain of the website endpoint. This is used to create Route 53 alias records.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">website_endpoint</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Website endpoint.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 1.0.0
+        
+
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 
 
