@@ -8,10 +8,11 @@ This module creates and configures a [Resource Access Manager](https://aws.amazo
 
 - [Example Usage](#example-usage)
     - [Basic Usage](#basic-usage)
-- [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
 - [Outputs](#outputs)
+- [Objects](#objects)
 - [Known Limitations](#known-limitations)
     - [shared resources have empty name](#shared-resources-have-empty-name)
 
@@ -42,51 +43,260 @@ module "basic_usage" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
 
-- (string) **`name`** _[since v1.0.0]_
 
-    The name of the resource share. All associated resources will also have their name prefixed with this value
+
+
+
+## Inputs
+
+### Required
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the resource share. All associated resources will also have their name prefixed with this value
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+</tbody></table>
+
 
 ### Optional
 
-- (list(string)) **`accept_sharings = []`** _[since v1.0.0]_
 
-    List of share ARNs to accept sharing from
 
-- (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-    Additional tags for the resource share
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
 
-    Additional tags for all resources deployed with this module
 
-- (bool) **`allow_external_principals = false`** _[since v1.0.0]_
 
-    If enabled, you can share resources with any AWS accounts, roles, and users. If you are in an organization, you can also share with the entire organization or organizational units in that organization.
 
-- (list(string)) **`principals = []`** _[since v1.0.0]_
 
-    List of principals to grant access of the resources to. Valid values include: `the 12-digits AWS account ID, ARN of an AWS Organization, AWS Organization's OU, IAM role, IAM user, or a Service principal`.
 
-- (list(string)) **`resources = []`** _[since v1.0.0]_
 
-    List of ARNs of supported resources to share. Please refer to [this documentation][ram-shareable-resources] for a list of shareable resources.
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">accept_sharings</td>
+    <td><code>[]</code></td>
+</tr>
+<tr><td colspan="3">
+
+List of share ARNs to accept sharing from
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for the resource share
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for all resources deployed with this module
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">allow_external_principals</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+If enabled, you can share resources with any AWS accounts, roles, and users. If you are in an organization, you can also share with the entire organization or organizational units in that organization.
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">principals</td>
+    <td><code>[]</code></td>
+</tr>
+<tr><td colspan="3">
+
+List of principals to grant access of the resources to. Valid values include: `the 12-digits AWS account ID, ARN of an AWS Organization, AWS Organization's OU, IAM role, IAM user, or a Service principal`.
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">resources</td>
+    <td><code>[]</code></td>
+</tr>
+<tr><td colspan="3">
+
+List of ARNs of supported resources to share. Please refer to [this documentation][ram-shareable-resources] for a list of shareable resources.
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+</tbody></table>
 
 ## Outputs
 
-- (string) **`resource_share_id`** _[since v1.0.0]_
 
-    The ID of the resource share
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">resource_share_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ID of the resource share
+
+
+
+
+
+
+
+
+
+
+**Since:** 1.0.0
+
+
+
+</td></tr>
+</tbody></table>
+
+## Objects
+
+
+
+
+[ram-shareable-resources]: https://docs.aws.amazon.com/ram/latest/userguide/shareable.html
+
+
+<!-- TFDOCS_EXTRAS_END -->
 
 ## Known Limitations
 
 ### shared resources have empty name
 
 The name of the shared resources do not get carried over to the remote accounts, and must manually updated as necessary.
-
-[ram-shareable-resources]:https://docs.aws.amazon.com/ram/latest/userguide/shareable.html
-
