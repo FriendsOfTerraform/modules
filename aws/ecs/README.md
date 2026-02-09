@@ -103,26 +103,10 @@ module "ec2_providers" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -133,36 +117,13 @@ module "ec2_providers" {
 
 The name of the ECS cluster. Associated resources will also have their name prefixed with this value
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -173,18 +134,7 @@ The name of the ECS cluster. Associated resources will also have their name pref
 
 Additional tags for the ECS cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -196,18 +146,7 @@ Additional tags for the ECS cluster
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -219,20 +158,11 @@ Additional tags for all resources deployed with this module
 
 Specify the default capacity provider strategy that is used when creating services in the cluster.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [EC2 Providers](#ec2-providers)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -245,18 +175,7 @@ Specify the default capacity provider strategy that is used when creating servic
 Specify a default Service Connect namespace that is used when you create a
 service and don't specify a Service Connect configuration
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -268,20 +187,11 @@ service and don't specify a Service Connect configuration
 
 Configures multiple EC2 capacity providers for the cluster.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [EC2 Providers](#ec2-providers)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -293,18 +203,7 @@ Configures multiple EC2 capacity providers for the cluster.
 
 Enables the [FARGATE and the FARGATE_SPOT][ecs-fargate] capacity providers
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -316,35 +215,13 @@ Enables the [FARGATE and the FARGATE_SPOT][ecs-fargate] capacity providers
 
 Configures ECS monitoring options
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -355,18 +232,7 @@ Configures ECS monitoring options
 
 Map of ARNs of all EC2 capacity providers
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -378,39 +244,15 @@ Map of ARNs of all EC2 capacity providers
 
 The ARN of the ECS cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### DefaultCapacityProviderStrategy
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -422,18 +264,7 @@ The ARN of the ECS cluster
 The relative percentage of the total number of launched tasks that should use the specified capacity provider.
 `weight` is taken into consideration only after the `base` count of tasks has been satisfied.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -446,37 +277,13 @@ The relative percentage of the total number of launched tasks that should use th
 The number of tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider
 in a capacity provider strategy can have `base` defined. Defaults to `0`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Ec2CapacityProviders
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -487,18 +294,7 @@ in a capacity provider strategy can have `base` defined. Defaults to `0`.
 
 Specify the number of EC2 instances that should be running in the group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -514,18 +310,7 @@ The AMI from which to launch the instance. Please refer to the links below for i
 - [windows][ecs-windows-optimized-ami]
 - [bottlerocket][ecs-bottlerocket-optimized-ami]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -537,18 +322,7 @@ The AMI from which to launch the instance. Please refer to the links below for i
 
 Specify the [EC2 instance type][ec2-instance-type]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -560,18 +334,7 @@ Specify the [EC2 instance type][ec2-instance-type]
 
 A list of security group IDs to associate with the instances
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -583,18 +346,7 @@ A list of security group IDs to associate with the instances
 
 List of subnet IDs to launch resources in. It is recommended to spread the resources in subnets located in multiple availability zones.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -606,18 +358,7 @@ List of subnet IDs to launch resources in. It is recommended to spread the resou
 
 Additional tags to be attached to the instances at launch
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -629,20 +370,11 @@ Additional tags to be attached to the instances at launch
 
 The name of an IAM role to be attached to the instance. If not specified, a default one will be created and attached.
 
-    
-
-    
-
-    
-
-    
 **Links:**
+
 - [ECS Container Instance IAM Roles](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance_IAM_role.html)
 
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -654,18 +386,7 @@ The name of an IAM role to be attached to the instance. If not specified, a defa
 
 Maximum instances to scale to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -677,18 +398,7 @@ Maximum instances to scale to
 
 Minimum instances to scale to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -700,18 +410,7 @@ Minimum instances to scale to
 
 The size of the root volume in GB
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -723,23 +422,14 @@ The size of the root volume in GB
 
 Specify the [spot instance allocation strategy][spot-allocation-strategy]
 
-    
 **Allowed Values:**
+
 - `lowest-price`
 - `capacity-optimized`
 - `capacity-optimized-prioritized`
 - `price-capacity-optimized`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -751,18 +441,7 @@ Specify the [spot instance allocation strategy][spot-allocation-strategy]
 
 The instance key pair to be used to SSH into the instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -774,39 +453,17 @@ The instance key pair to be used to SSH into the instance
 
 Enables managed scaling to have Amazon ECS manage the scale-in and scale-out actions of the Auto Scaling group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EnableManagedScaling
 
 Enables managed scaling to have Amazon ECS manage the scale-in and scale-out actions of the Auto Scaling group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -817,18 +474,7 @@ Enables managed scaling to have Amazon ECS manage the scale-in and scale-out act
 
 Enables managed instance draining to have Amazon ECS gracefully drain EC2 instances in an Auto Scaling group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -840,18 +486,7 @@ Enables managed instance draining to have Amazon ECS gracefully drain EC2 instan
 
 Enables scale-in protection to prevent the Amazon EC2 instances in the Auto Scaling group from being terminated during a scale-in action
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -864,37 +499,13 @@ Enables scale-in protection to prevent the Amazon EC2 instances in the Auto Scal
 When managed scaling is turned on, the target capacity value is used as the target value for the CloudWatch metric used in the Amazon ECS-managed
 target tracking scaling policy. For example, a value of 100 will result in the Amazon EC2 instances in your Auto Scaling group being completely utilized.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Monitoring
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -905,39 +516,18 @@ target tracking scaling policy. For example, a value of 100 will result in the A
 
 Enables [ECS container insights][ecs-container-insights]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [ec2-instance-type]: https://aws.amazon.com/ec2/instance-types/
-
 [ecs-bottlerocket-optimized-ami]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-bottlerocket-retrieve-ami.html
-
 [ecs-container-insights]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-container-insights.html
-
 [ecs-fargate]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html
-
 [ecs-linux-optimized-ami]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/retrieve-ecs-optimized_AMI.html#ecs-optimized-ami-parameter-examples
-
 [ecs-windows-optimized-ami]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/retrieve-ecs-optimized_windows_AMI.html#ecs-optimized-ami-windows-parameter-examples
-
 [spot-allocation-strategy]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-allocation-strategy.html
-
 
 <!-- TFDOCS_EXTRAS_END -->
 

@@ -60,26 +60,10 @@ module "basic_usage" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -90,18 +74,7 @@ module "basic_usage" {
 
 The name of the event bus
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -113,38 +86,17 @@ The name of the event bus
 
 Manage multiple rules for the bus.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -155,18 +107,7 @@ Manage multiple rules for the bus.
 
 Additional tags for the event bus
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -178,18 +119,7 @@ Additional tags for the event bus
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -201,18 +131,7 @@ Additional tags for all resources deployed with this module
 
 The description of the event bus
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -224,18 +143,7 @@ The description of the event bus
 
 The AWS KMS customer managed key for EventBridge to use for encryption. If not specified, the AWS default key will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -247,35 +155,13 @@ The AWS KMS customer managed key for EventBridge to use for encryption. If not s
 
 Specify the JSON document for the event bus' resource-based policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -286,18 +172,7 @@ Specify the JSON document for the event bus' resource-based policy
 
 ARN of the event bus
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -309,41 +184,19 @@ ARN of the event bus
 
 Name of the event bus
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### CapacityProviderStrategy
 
 The capacity provider strategy to use for the task. Mutually exclusive to `launch_type`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -354,18 +207,7 @@ The capacity provider strategy to use for the task. Mutually exclusive to `launc
 
 The weight value designates the relative percentage of the total number of tasks launched that should use the specified capacity provider. The weight value is taken into consideration after the base value, if defined, is satisfied.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -377,39 +219,17 @@ The weight value designates the relative percentage of the total number of tasks
 
 The base value designates how many tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider in a capacity provider strategy can have a base defined.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ConfigureTargetInput
 
 Customize the text from an event before EventBridge passes the event to the target of a rule. Can only define only one of the following: `constant`, `input_transformer`. If this is not specified, the original event will be sent to the target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -420,18 +240,7 @@ Customize the text from an event before EventBridge passes the event to the targ
 
 The JSON document to be sent to the target instead of the original event
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -443,39 +252,17 @@ The JSON document to be sent to the target instead of the original event
 
 Specify how to change some of the event text before passing it to the target. One or more JSON paths are extracted from the event text and used in a template that you provide. Refer to [this documentation][eventbridge-input-transformer] for more information
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EcsTargetConfig
 
 Configuration options for ECS target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -486,18 +273,7 @@ Configuration options for ECS target
 
 The ARN of the task definition to use to create new ECS task
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -509,18 +285,7 @@ The ARN of the task definition to use to create new ECS task
 
 Configures networking options for the ECS task
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -532,18 +297,7 @@ Configures networking options for the ECS task
 
 Additional tags for the ECS task
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -555,18 +309,7 @@ Additional tags for the ECS task
 
 The number of tasks to be created
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -578,18 +321,7 @@ The number of tasks to be created
 
 Whether or not to enable the execute command functionality for the containers in this task. If true, this enables execute command functionality on all containers in the task.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -601,18 +333,7 @@ Whether or not to enable the execute command functionality for the containers in
 
 Specifies whether to enable Amazon ECS managed tags for the task.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -624,22 +345,13 @@ Specifies whether to enable Amazon ECS managed tags for the task.
 
 Specifies the launch type on which your task is running. Mutually exclusive to `capacity_provider_strategy`
 
-    
 **Allowed Values:**
+
 - `EC2`
 - `EXTERNAL`
 - `FARGATE`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -651,18 +363,7 @@ Specifies the launch type on which your task is running. Mutually exclusive to `
 
 Specifies the platform version for the task. This is used only if `launch_type = "FARGATE"`. For more information about valid platform versions, see [AWS Fargate Platform Versions][fargate-platform-version].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -674,18 +375,7 @@ Specifies the platform version for the task. This is used only if `launch_type =
 
 Specifies whether to propagate the tags from the task definition to the task.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -697,39 +387,17 @@ Specifies whether to propagate the tags from the task definition to the task.
 
 The capacity provider strategy to use for the task. Mutually exclusive to `launch_type`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### HttpTargetConfig
 
 Configuration options for HTTP and api gateway target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -740,18 +408,7 @@ Configuration options for HTTP and api gateway target
 
 A map of HTTP headers to add to the request.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -763,39 +420,17 @@ A map of HTTP headers to add to the request.
 
 A map of query string parameters that are appended to the invoked endpoint.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### InputTransformer
 
 Specify how to change some of the event text before passing it to the target. One or more JSON paths are extracted from the event text and used in a template that you provide. Refer to [this documentation][eventbridge-input-transformer] for more information
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -806,18 +441,7 @@ Specify how to change some of the event text before passing it to the target. On
 
 Key-value pairs that is used to define variables. You use JSON path to reference items in your event and store those values in variables. For instance, you could create an Input Path to reference values in the event.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -829,39 +453,17 @@ Key-value pairs that is used to define variables. You use JSON path to reference
 
 The Input Template is a template for the information you want to pass to your target. You can create a template that passes either a string or JSON to the target.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### NetworkConfig
 
 Configures networking options for the ECS task
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -872,18 +474,7 @@ Configures networking options for the ECS task
 
 A list of subnets the ECS task may be created on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -895,18 +486,7 @@ A list of subnets the ECS task may be created on
 
 A list of security groups associated with the task
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -918,39 +498,17 @@ A list of security groups associated with the task
 
 Assign a public IP address to the ENI (Fargate launch type only).
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### RedshiftTargetConfig
 
 Configuration options for Redshift target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -961,18 +519,7 @@ Configuration options for Redshift target
 
 The name of the database
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -984,18 +531,7 @@ The name of the database
 
 The database user name
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1007,18 +543,7 @@ The database user name
 
 The ARN of the secret that enables access to the database.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1030,18 +555,7 @@ The ARN of the secret that enables access to the database.
 
 The SQL statement text to run.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1053,39 +567,17 @@ The SQL statement text to run.
 
 Indicates whether to send an event back to EventBridge after the SQL statement runs.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### RetryPolicy
 
 Configures retry policy and dead-letter queue
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1096,18 +588,7 @@ Configures retry policy and dead-letter queue
 
 The age in seconds to continue to make retry attempts.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1119,18 +600,7 @@ The age in seconds to continue to make retry attempts.
 
 The maximum number of retry attempts to make before the request fails
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1142,37 +612,13 @@ The maximum number of retry attempts to make before the request fails
 
 The ARN of the SQS queue specified as the target for the dead-letter queue.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Rules
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1183,18 +629,7 @@ The ARN of the SQS queue specified as the target for the dead-letter queue.
 
 Specify the [event pattern][eventbridge-event-pattern] that this rule will be triggered when an event matching the pattern occurs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1204,19 +639,6 @@ Specify the [event pattern][eventbridge-event-pattern] that this rule will be tr
 </tr>
 <tr><td colspan="3">
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
 </td></tr>
 <tr>
     <td><code>string</code></td>
@@ -1225,19 +647,6 @@ Specify the [event pattern][eventbridge-event-pattern] that this rule will be tr
 </tr>
 <tr><td colspan="3">
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
 </td></tr>
 <tr>
     <td><code>string</code></td>
@@ -1245,19 +654,6 @@ Specify the [event pattern][eventbridge-event-pattern] that this rule will be tr
     <td><code>"ENABLED"</code></td>
 </tr>
 <tr><td colspan="3">
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
 
 </td></tr>
 <tr>
@@ -1269,39 +665,17 @@ Specify the [event pattern][eventbridge-event-pattern] that this rule will be tr
 
 Specify up to 5 targets to send the event to when the rule is triggered
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Targets
 
 Specify up to 5 targets to send the event to when the rule is triggered
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1312,18 +686,7 @@ Specify up to 5 targets to send the event to when the rule is triggered
 
 The Amazon Resource Name (ARN) of the target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1335,18 +698,7 @@ The Amazon Resource Name (ARN) of the target
 
 An execution role that EventBridge uses to send events to the target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1358,18 +710,7 @@ An execution role that EventBridge uses to send events to the target
 
 Customize the text from an event before EventBridge passes the event to the target of a rule. Can only define only one of the following: `constant`, `input_transformer`. If this is not specified, the original event will be sent to the target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1381,18 +722,7 @@ Customize the text from an event before EventBridge passes the event to the targ
 
 Configuration options for ECS target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1404,18 +734,7 @@ Configuration options for ECS target
 
 Configuration options for HTTP and api gateway target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1427,18 +746,7 @@ Configuration options for HTTP and api gateway target
 
 Configuration options for Redshift target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1450,30 +758,13 @@ Configuration options for Redshift target
 
 Configures retry policy and dead-letter queue
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [eventbridge-event-pattern]: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html?icmpid=docs_ev_console
-
 [eventbridge-input-transformer]: https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-transform-target-input.html?icmpid=docs_ev_console
-
 [fargate-platform-version]: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform-fargate.html
-
 
 <!-- TFDOCS_EXTRAS_END -->

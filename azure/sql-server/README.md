@@ -8,10 +8,10 @@ This module will create and configure an Azure SQL Server and databases.
 
 - [Requirements](#requirements)
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Mandatory](#mandatory)
+  - [Optional](#optional)
 - [Outputs](#outputs)
 
 ## Requirements
@@ -82,26 +82,10 @@ module "mssql" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">Azure</a>)</code></td>
@@ -119,18 +103,7 @@ location = "westus"
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -142,36 +115,13 @@ location = "westus"
 
 The name of the SQL server. This value must be globally unique.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -182,18 +132,7 @@ The name of the SQL server. This value must be globally unique.
 
 Additional tags for the SQL server
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -205,18 +144,7 @@ Additional tags for the SQL server
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -228,18 +156,7 @@ Additional tags for all resources deployed with this module
 
 Defines an Azure AD identity as administrator for this server, can be used with `sql_authentication`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -251,22 +168,13 @@ Defines an Azure AD identity as administrator for this server, can be used with 
 
 The connection policy the server will use.
 
-    
 **Allowed Values:**
+
 - `Default`
 - `Proxy`
 - `Redirect`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -278,18 +186,7 @@ The connection policy the server will use.
 
 Configures and manages multiple databases that are attached to this server
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -301,18 +198,7 @@ Configures and manages multiple databases that are attached to this server
 
 Manages failover groups for databases failover. In `{failover_group_name = {configurations}}` format. The failover group name must be globally unique.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -324,18 +210,7 @@ Manages failover groups for databases failover. In `{failover_group_name = {conf
 
 Manages firewall rules to allow incoming traffic
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -347,23 +222,14 @@ Manages firewall rules to allow incoming traffic
 
 The minimum TLS version for all SQL Database and SQL Data Warehouse databases associated with the server.
 
-    
 **Allowed Values:**
+
 - `1.0`
 - `1.1`
 - `1.2`
 - `Disabled`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -375,18 +241,7 @@ The minimum TLS version for all SQL Database and SQL Data Warehouse databases as
 
 Whether outbound network traffic is restricted for this server
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -398,18 +253,7 @@ Whether outbound network traffic is restricted for this server
 
 Whether public network access is allowed for this server
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -424,21 +268,12 @@ The version for the SQL server.
 - `2.0` for v11 server
 - `12.0` for v12 server
 
-    
 **Allowed Values:**
+
 - `2.0`
 - `12.0`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -450,18 +285,7 @@ The version for the SQL server.
 
 Defines the administrator login credential for this SQL server, can be used with `azure_ad_authentication`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -473,55 +297,20 @@ Defines the administrator login credential for this SQL server, can be used with
 
 List of managed identity IDs used by the SQL server to manage Azure resources
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         </tbody></table>
 
 ## Objects
 
-
-
 #### Azure
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -532,18 +321,7 @@ List of managed identity IDs used by the SQL server to manage Azure resources
 
 The name of an Azure resource group where the server will be deployed
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -555,37 +333,13 @@ The name of an Azure resource group where the server will be deployed
 
 The name of an Azure location where the server will be deployed. If unspecified, the resource group's location will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### AzureAdAuthentication
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -596,18 +350,7 @@ The name of an Azure location where the server will be deployed. If unspecified,
 
 The object ID of an Azure AD identity (user, group)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -619,37 +362,13 @@ The object ID of an Azure AD identity (user, group)
 
 The tenant ID for the domain where the identity lives
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Databases
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -660,18 +379,7 @@ The tenant ID for the domain where the identity lives
 
 Additional tags for the database
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -683,22 +391,13 @@ Additional tags for the database
 
 Specifies the storage account type used to store backups for this database.
 
-    
 **Allowed Values:**
+
 - `Geo`
 - `Local`
 - `Zone`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -710,18 +409,7 @@ Specifies the storage account type used to store backups for this database.
 
 Use your license you already own with Azure Hybrid Benefit
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -733,18 +421,7 @@ Use your license you already own with Azure Hybrid Benefit
 
 Database collation defines the rules that sort and compare data, and cannot be changed after database creation
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -756,8 +433,8 @@ Database collation defines the rules that sort and compare data, and cannot be c
 
 Defines the create action of the database.
 
-    
 **Allowed Values:**
+
 - `Copy`
 - `Default`
 - `OnlineSecondary`
@@ -769,16 +446,7 @@ Defines the create action of the database.
 - `RestoreLongTermRetentionBackup`
 - `Secondary`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -790,18 +458,7 @@ Defines the create action of the database.
 
 The max size of the database in gigabytes.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -813,18 +470,7 @@ The max size of the database in gigabytes.
 
 Configures the database using the DTU pricing model
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -836,18 +482,7 @@ Configures the database using the DTU pricing model
 
 Configures the database using the VCore pricing model
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -859,18 +494,7 @@ Configures the database using the VCore pricing model
 
 Specifies if this is a ledger database; cannot be changed after database creation
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -882,18 +506,7 @@ Specifies if this is a ledger database; cannot be changed after database creatio
 
 If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property can only be set in `Premium` and `BusinessCritical` tiers.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -905,18 +518,7 @@ If enabled, connections that have application intent set to readonly in their co
 
 Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. This property can only be set in `create_mode = "PointInTimeRestore"` databases.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -928,18 +530,7 @@ Specifies the point in time (ISO8601 format) of the source database that will be
 
 The ID of the source database from which to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -951,39 +542,17 @@ The ID of the source database from which to create the new database. This should
 
 Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property can only be set in `Premium` and `BusinessCritical` tiers.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### DtuModel
 
 Configures the database using the DTU pricing model
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -994,22 +563,13 @@ Configures the database using the DTU pricing model
 
 Defines the tier of this database. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
-    
 **Allowed Values:**
+
 - `Basic`
 - `Standard`
 - `Premium`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1021,37 +581,13 @@ Defines the tier of this database. Note that some tiers are not available for so
 
 Defines the number of DTU for the database. Please run the above command to get a list of DTU applicable to your region.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### FailoverGroups
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1062,20 +598,11 @@ Defines the number of DTU for the database. Please run the above command to get 
 
 A list of database names to be included in this failover group. The names supplied here must be databases deployed using the same module.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1087,18 +614,7 @@ A list of database names to be included in this failover group. The names suppli
 
 Defines the ID of the MS SQL server to failover to. This server **must** exist in a different region.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1110,18 +626,7 @@ Defines the ID of the MS SQL server to failover to. This server **must** exist i
 
 Additional tags for this failover group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1133,21 +638,12 @@ Additional tags for this failover group
 
 Defines the failover policy of the read-write endpoint for the failover group.
 
-    
 **Allowed Values:**
+
 - `Automatic`
 - `Manual`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1159,37 +655,13 @@ Defines the failover policy of the read-write endpoint for the failover group.
 
 The grace period in minutes, before failover with data loss is attempted for the read-write endpoint. Required when `read_write_failover_policy = "Automatic"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Firewall
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -1200,18 +672,7 @@ The grace period in minutes, before failover with data loss is attempted for the
 
 A map of firewall rules in the following format: `{"rule_name" = "start_ip - end_ip"}`. For example. `{"Office's Network" = "1.2.3.4 - 5.6.7.8"}`. If `start_ip` and `end_ip` are identical, you can omit `end_ip`. For example. `{"Peter's home network" = "1.2.3.4"}`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1223,37 +684,13 @@ A map of firewall rules in the following format: `{"rule_name" = "start_ip - end
 
 Allows Azure services to access the database
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### SqlAuthentication
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1264,18 +701,7 @@ Allows Azure services to access the database
 
 Username of the admin account
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1287,39 +713,17 @@ Username of the admin account
 
 Password of the admin account in plain text
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### VcoreModel
 
 Configures the database using the VCore pricing model
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1330,23 +734,14 @@ Configures the database using the VCore pricing model
 
 Defines the tier of this database. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
-    
 **Allowed Values:**
+
 - `GeneralPurpose`
 - `Hyperscale`
 - `BusinessCritical`
 - `Serverless`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1358,18 +753,7 @@ Defines the tier of this database. Note that some tiers are not available for so
 
 Defines the number of VCores for the database. Please run the above command to get a list of VCores options applicable to your region.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1381,18 +765,7 @@ Defines the number of VCores for the database. Please run the above command to g
 
 Time in minutes after which database is automatically paused. A value of `-1` means that automatic pause is disabled. This property is only applicable to the `Serverless` tier
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1404,18 +777,7 @@ Time in minutes after which database is automatically paused. A value of `-1` me
 
 Defines the compute for the database. Note that certain compute options are only available to certain tiers, and may not be available in some regions. Run this CLI command to get a list of options applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1427,24 +789,9 @@ Defines the compute for the database. Note that certain compute options are only
 
 Minimum capacity that database will always have allocated, if not paused. This property is only applicable to the `Serverless` tier.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
-
-
 
 <!-- TFDOCS_EXTRAS_END -->

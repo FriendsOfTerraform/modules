@@ -7,7 +7,7 @@ This module will create and configure an [Azure Kubernetes Cluster][azure-kubern
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
@@ -95,26 +95,10 @@ module "aks_cluster" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">Azure</a>)</code></td>
@@ -132,18 +116,7 @@ location = "westus"
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -155,18 +128,7 @@ location = "westus"
 
 List of Azure active directory group IDs that will be added as the `cluster admins` on the cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -178,18 +140,7 @@ List of Azure active directory group IDs that will be added as the `cluster admi
 
 The name of the Kubernetes cluster. This will also be used as a prefix to all associating resources' names.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -210,36 +161,13 @@ kubernetes_version = local.kubernetes_version
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#addons">AddOns</a>)</code></td>
@@ -272,18 +200,7 @@ retention_days = 180
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -295,18 +212,7 @@ retention_days = 180
 
 Additional tags for the Kubernetes cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -318,18 +224,7 @@ Additional tags for the Kubernetes cluster
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -343,18 +238,7 @@ Additional tags for all resources deployed with this module
 
 List of IP addresses that are allowed to communicate with the API server. This option is only available if `enable_private_cluster = false`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -366,18 +250,7 @@ List of IP addresses that are allowed to communicate with the API server. This o
 
 List of ACR resource IDs to grant pull access to the cluster's kubelet identity. Please refer to [this document][acr-integration] for more information
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -389,18 +262,7 @@ List of ACR resource IDs to grant pull access to the cluster's kubelet identity.
 
 Enables [private AKS cluster][private-aks-cluster], where the control plane can only be accessed internally
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -412,18 +274,7 @@ Enables [private AKS cluster][private-aks-cluster], where the control plane can 
 
 The Kubernetes version for the control plane. The `latest` version is used if unspecified. This value must be specified to enable cluster upgrade.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -441,18 +292,7 @@ plugin = "kubenet"
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -464,55 +304,20 @@ plugin = "kubenet"
 
 List of managed identity IDs used by the cluster to manage azure resources
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         </tbody></table>
 
 ## Objects
 
-
-
 #### AddOns
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azurekeyvaultsecretsprovider">AzureKeyVaultSecretsProvider</a>)</code></td>
@@ -523,18 +328,7 @@ List of managed identity IDs used by the cluster to manage azure resources
 
 Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -546,18 +340,7 @@ Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 
 Configures the [Azure Policy][azure-policy] add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -569,37 +352,13 @@ Configures the [Azure Policy][azure-policy] add-on
 
 Configures the [Container Insights][container-insights] add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Azure
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -610,18 +369,7 @@ Configures the [Container Insights][container-insights] add-on
 
 The name of an Azure resource group where the cluster will be deployed
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -633,39 +381,17 @@ The name of an Azure resource group where the cluster will be deployed
 
 The name of an Azure location where the cluster will be deployed. If unspecified, the resource group's location will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### AzureKeyVaultSecretsProvider
 
 Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -676,18 +402,7 @@ Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 
 Enables this add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -699,18 +414,7 @@ Enables this add-on
 
 Name of the Azure Key Vault to allow this cluster to retrieve secrets from
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -722,39 +426,17 @@ Name of the Azure Key Vault to allow this cluster to retrieve secrets from
 
 The interval in minutes that the secrets in the cluster will be refreshed
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### AzurePolicy
 
 Configures the [Azure Policy][azure-policy] add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -765,39 +447,17 @@ Configures the [Azure Policy][azure-policy] add-on
 
 Enables this add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Monitoring
 
 Configures the [Container Insights][container-insights] add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -808,18 +468,7 @@ Configures the [Container Insights][container-insights] add-on
 
 Enables this add-on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -831,37 +480,13 @@ Enables this add-on
 
 How long in days the logs will be retained
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### NetworkingConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -872,21 +497,12 @@ How long in days the logs will be retained
 
 The Kubernetes network plugin to use.
 
-    
 **Allowed Values:**
+
 - `kubenet`
 - `azure`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -898,18 +514,7 @@ The Kubernetes network plugin to use.
 
 The Network Range used by the Kubernetes service
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -921,18 +526,7 @@ The Network Range used by the Kubernetes service
 
 IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -944,18 +538,7 @@ IP address within the Kubernetes service address range that will be used by clus
 
 IP address (in CIDR notation) used as the Docker bridge IP address on nodes
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -967,37 +550,13 @@ IP address (in CIDR notation) used as the Docker bridge IP address on nodes
 
 The CIDR to use for pod IP addresses. This field can only be set when `plugin = kubenet`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### NodePools
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1008,18 +567,7 @@ The CIDR to use for pod IP addresses. This field can only be set when `plugin = 
 
 The initial number of nodes for this node pool
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1031,18 +579,7 @@ The initial number of nodes for this node pool
 
 [Azure VM size][azure-vm-size]. Also see [Azure VM Naming Convention][azure-vm-naming-convention]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1054,18 +591,7 @@ The initial number of nodes for this node pool
 
 The ID of the subnet where new nodes from this pool will be deployed into
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1077,18 +603,7 @@ The ID of the subnet where new nodes from this pool will be deployed into
 
 Additional tags for this node pool
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1100,18 +615,7 @@ Additional tags for this node pool
 
 The size of OS disk in GB, defaults to `512 GB`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1123,18 +627,7 @@ The size of OS disk in GB, defaults to `512 GB`
 
 The Kubernetes version for the node pool, defaults to the latest version. This value must be specified for cluster upgrade to work.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1146,18 +639,7 @@ The Kubernetes version for the node pool, defaults to the latest version. This v
 
 The max number of pods that can be deployed on each node.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1169,18 +651,7 @@ The max number of pods that can be deployed on each node.
 
 The maximum number of nodes this pool can scale up to. `cluster auto scaling` will be enabled if both this and `min_instances` are specified.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1192,18 +663,7 @@ The maximum number of nodes this pool can scale up to. `cluster auto scaling` wi
 
 The minimum number of nodes this pool can scale down to. `cluster auto scaling` will be enabled if both this and `man_instances` are specified.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1215,42 +675,20 @@ The minimum number of nodes this pool can scale down to. `cluster auto scaling` 
 
 A list of availability zones the nodes should be deployed onto
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [acr-integration]: https://docs.microsoft.com/en-us/azure/aks/cluster-container-registry-integration?tabs=azure-cli
-
 [aks-add-ons]: https://docs.microsoft.com/en-us/azure/aks/integrations#add-ons
-
 [azure-key-vault-provider]: https://docs.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
-
 [azure-policy]: https://docs.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
-
 [azure-vm-naming-convention]: https://docs.microsoft.com/en-us/azure/virtual-machines/vm-naming-conventions
-
 [azure-vm-size]: https://docs.microsoft.com/en-us/azure/virtual-machines/sizes
-
 [container-insights]: https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-
 [private-aks-cluster]: https://docs.microsoft.com/en-us/azure/aks/private-clusters
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
-[azure-kubernetes-service]:https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes
+[azure-kubernetes-service]: https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes

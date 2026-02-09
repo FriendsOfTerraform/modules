@@ -7,9 +7,9 @@ This module will build and configure an [Amazon SQS](https://aws.amazon.com/sqs/
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [Dead-Letter Queue](#dead-letter-queue)
-    - [Lambda Triggers](#lambda-triggers)
+  - [Basic Usage](#basic-usage)
+  - [Dead-Letter Queue](#dead-letter-queue)
+  - [Lambda Triggers](#lambda-triggers)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
@@ -88,26 +88,10 @@ module "lambda_triggers" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -118,36 +102,13 @@ module "lambda_triggers" {
 
 The name of the SQS queue. All associated resources' names will also be prefixed by this value. If the name is suffixed with `".fifo"`, a FIFO queue will be created. For example: `"demo-sqs.fifo"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -158,20 +119,11 @@ The name of the SQS queue. All associated resources' names will also be prefixed
 
 A JSON document that defines the accounts, users and roles that can access this queue, and the actions that are allowed. Note that you MUST explicitly set `Version = "2012-10-17"` in the policy document otherwise AWS will hang indefinitely.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -183,18 +135,7 @@ A JSON document that defines the accounts, users and roles that can access this 
 
 Additional tags for the SQS queue
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -206,18 +147,7 @@ Additional tags for the SQS queue
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -229,20 +159,11 @@ Additional tags for all resources deployed with this module
 
 A destination SQS queue for messages that failed to be consumed successfully.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Dead Letter Queue](#dead-letter-queue)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -254,18 +175,7 @@ A destination SQS queue for messages that failed to be consumed successfully.
 
 Specify the amount of time to delay the first delivery of each message added to the queue. In `"value unit"` format. Supported units: `"seconds"`, `"minutes"`. Valid value: `"0 second"` - `"15 minutes"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -277,18 +187,7 @@ Specify the amount of time to delay the first delivery of each message added to 
 
 Enable SSE KMS encryption. If not specified, SSE SQS is enabled by default
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -300,18 +199,7 @@ Enable SSE KMS encryption. If not specified, SSE SQS is enabled by default
 
 Configuration options that apply to FIFO SQS queue
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -323,20 +211,11 @@ Configuration options that apply to FIFO SQS queue
 
 Configure the queue to trigger an AWS Lambda function when new messages arrive in the queue.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Lambda Triggers](#lambda-triggers)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -348,18 +227,7 @@ Configure the queue to trigger an AWS Lambda function when new messages arrive i
 
 The maximum message size, in Kibibytes (KiB), for your queue. Valid value: `1 - 256`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -371,18 +239,7 @@ The maximum message size, in Kibibytes (KiB), for your queue. Valid value: `1 - 
 
 The amount of time that Amazon SQS retains a message that does not get deleted. In `"value unit"` format. Supported units: `"minutes"`, `"hours"`, `"days"`. Valid value: `"1 minute"` - `"14 days"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -394,18 +251,7 @@ The amount of time that Amazon SQS retains a message that does not get deleted. 
 
 The maximum amount of time, in seconds, that polling will wait for messages to become available to receive. Valid value: `0 - 20`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -417,20 +263,11 @@ The maximum amount of time, in seconds, that polling will wait for messages to b
 
 Specify which source SQS queues can use this queue as the destination dead-letter queue.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Dead Letter Queue](#dead-letter-queue)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -442,35 +279,13 @@ Specify which source SQS queues can use this queue as the destination dead-lette
 
 Specify the length of time that a message received from a queue (by one consumer) will not be visible to the other message consumers. In `"value unit"` format. Supported units: `"seconds"`, `"minutes"`, `"hours"`. Valid value: `"0 second"` - `"12 hours"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -481,18 +296,7 @@ Specify the length of time that a message received from a queue (by one consumer
 
 The ARN of the SQS queue
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -504,18 +308,7 @@ The ARN of the SQS queue
 
 The URL of the SQS queue
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -527,39 +320,15 @@ The URL of the SQS queue
 
 The URL of the SQS queue. Same as `sqs_queue_id`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### DeadLetterQueue
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -570,18 +339,7 @@ The URL of the SQS queue. Same as `sqs_queue_id`
 
 The ARN of the destination SQS queue
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -593,37 +351,13 @@ The ARN of the destination SQS queue
 
 The number of times a consumer can receive a message from a source queue before it is moved to a dead-letter queue
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnableServerSideEncryptionKms
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -634,18 +368,7 @@ The number of times a consumer can receive a message from a source queue before 
 
 The time period in which Amazon SQS can cache and use a data key before calling KMS again to obtain a new data key. In `"value unit"` format. Supported units: `"minutes"`, `"hours"`. Valid value: `"1 minute"` - `"24 hours"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -657,37 +380,13 @@ The time period in which Amazon SQS can cache and use a data key before calling 
 
 The KMS key to be used for encryption
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### FifoQueueSettings
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -698,18 +397,7 @@ The KMS key to be used for encryption
 
 When enabled, the message deduplication ID is optional.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -721,21 +409,12 @@ When enabled, the message deduplication ID is optional.
 
 Specify the scope of deduplication for a FIFO queue.
 
-    
 **Allowed Values:**
+
 - `queue`
 - `messageGroup`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -747,42 +426,22 @@ Specify the scope of deduplication for a FIFO queue.
 
 Specify how to apply the throughput limit on FIFO queue.
 
-    
 **Allowed Values:**
+
 - `perQueue`
 - `perMessageGroupId`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### FilterCriteria
 
 Define the filtering criteria to determine whether or not to process an event
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -793,18 +452,7 @@ Define the filtering criteria to determine whether or not to process an event
 
 You can specify up to 5 filter patterns. Please refer to [this documentation][lambda-event-source-mapping-filter-rule-syntax] for a list of valid filter syntaxes
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -816,37 +464,13 @@ You can specify up to 5 filter patterns. Please refer to [this documentation][la
 
 The KMS key to encrypt and decrypt the filter criteria
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### LambdaTriggers
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -857,18 +481,7 @@ The KMS key to encrypt and decrypt the filter criteria
 
 Additional tags associated to the lambda trigger
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -880,18 +493,7 @@ Additional tags associated to the lambda trigger
 
 The maximum number of records in each batch to send to the function. The maximum is `10000` for standard queues and `10` for FIFO queues.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -903,18 +505,7 @@ The maximum number of records in each batch to send to the function. The maximum
 
 The maximum amount of time to gather records before invoking the function, in seconds. When the batch size is greater than 10, set the batch window to at least 1 second.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -926,18 +517,7 @@ The maximum amount of time to gather records before invoking the function, in se
 
 Monitor your event source with metrics. You can view those metrics in CloudWatch console. Enabling this feature incurs additional costs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -949,18 +529,7 @@ Monitor your event source with metrics. You can view those metrics in CloudWatch
 
 Whether this lambda trigger is enabled
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -972,18 +541,7 @@ Whether this lambda trigger is enabled
 
 Define the filtering criteria to determine whether or not to process an event
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -995,18 +553,7 @@ Define the filtering criteria to determine whether or not to process an event
 
 The maximum number of concurrent function instances that the SQS event source can invoke. Valid values: `2 - 1000`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1018,26 +565,11 @@ The maximum number of concurrent function instances that the SQS event source ca
 
 Allow your function to return a partial successful response for a batch of records.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [lambda-event-source-mapping-filter-rule-syntax]: https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax
-
 
 <!-- TFDOCS_EXTRAS_END -->

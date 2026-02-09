@@ -220,26 +220,10 @@ module "lambda_versioning" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#codesource">CodeSource</a>)</code></td>
@@ -250,18 +234,7 @@ module "lambda_versioning" {
 
 Specify the code source. Exactly one of `container_image_uri`, `filename`, or `s3` must be specified
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -273,36 +246,13 @@ Specify the code source. Exactly one of `container_image_uri`, `filename`, or `s
 
 The name of the Lambda function. All associated resources' names will also be prefixed by this value
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -313,18 +263,7 @@ The name of the Lambda function. All associated resources' names will also be pr
 
 Additional IAM policies to be attached to the managed execution IAM role. This is ignored if `execution_role_arn` is specified
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -336,18 +275,7 @@ Additional IAM policies to be attached to the managed execution IAM role. This i
 
 Additional tags for the Lambda function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -359,18 +287,7 @@ Additional tags for the Lambda function
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -382,20 +299,11 @@ Additional tags for all resources deployed with this module
 
 Manages multiple Lambda aliases.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Versioning And Aliases](#versioning-and-aliases)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -407,21 +315,12 @@ Manages multiple Lambda aliases.
 
 Specify the instruction set architecture for this Lambda function.
 
-    
 **Allowed Values:**
+
 - `x86_64`
 - `arm64`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -433,20 +332,11 @@ Specify the instruction set architecture for this Lambda function.
 
 Configures error handling and destinations for [asynchronous invocation][lambda-asynchronous-invocation].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Asynchronous Invocation Configuration](#asynchronous-invocation-configuration)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -458,18 +348,7 @@ Configures error handling and destinations for [asynchronous invocation][lambda-
 
 Configures [Lambda concurrency][lambda-concurrency]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -481,18 +360,7 @@ Configures [Lambda concurrency][lambda-concurrency]
 
 Container image configuration values that override the values in the container image Dockerfile. Only applicable if `code_source.container_image_uri` is specified
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -504,18 +372,7 @@ Container image configuration values that override the values in the container i
 
 The description for this Lambda function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -527,18 +384,7 @@ The description for this Lambda function
 
 Enables Lambda [active tracing with AWS X-Ray][lambda-active-tracing]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -550,18 +396,7 @@ Enables Lambda [active tracing with AWS X-Ray][lambda-active-tracing]
 
 Enables [Lambda function URL][lambda-function-url], a dedicated HTTP(S) endpoint for the function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -573,18 +408,7 @@ Enables [Lambda function URL][lambda-function-url], a dedicated HTTP(S) endpoint
 
 Configures environment variables for the function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -596,18 +420,7 @@ Configures environment variables for the function
 
 The size of the Lambda function Ephemeral storage(/tmp) in MB. Valid values: `512 - 10240`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -619,18 +432,7 @@ The size of the Lambda function Ephemeral storage(/tmp) in MB. Valid values: `51
 
 Specify the ARN of the function's execution role. The role provides the function's identity and access to AWS services and resources. If not specified, a role will be generated and managed automatically by the module.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -642,18 +444,7 @@ Specify the ARN of the function's execution role. The role provides the function
 
 Connects the function to an EFS file system
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -665,18 +456,7 @@ Connects the function to an EFS file system
 
 Specify the function entrypoint in your code
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -688,20 +468,11 @@ Specify the function entrypoint in your code
 
 Grants external sources such as AWS accounts and services permission to invoke the Lambda function.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Lambda Permission](#lambda-permission)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -713,18 +484,7 @@ Grants external sources such as AWS accounts and services permission to invoke t
 
 List of [Lambda Layer][lambda-layer] Version ARNs (maximum of 5) to attach to your Lambda Function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -736,18 +496,7 @@ List of [Lambda Layer][lambda-layer] Version ARNs (maximum of 5) to attach to yo
 
 Amount of memory in MB your Lambda Function can use at runtime. Valid values: `128 - 10240`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -759,18 +508,7 @@ Amount of memory in MB your Lambda Function can use at runtime. Valid values: `1
 
 Whether to publish creation/change as new Lambda Function Version
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -782,18 +520,7 @@ Whether to publish creation/change as new Lambda Function Version
 
 Specify the language runtime. Please refer to [this documentation][lambda-runtime] for a list of valid values.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -805,18 +532,7 @@ Specify the language runtime. Please refer to [this documentation][lambda-runtim
 
 Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the deployment package file. The usual way to set this is `filebase64sha256("source.zip")`. Only applicable if `code_source.filename` or `code_source.s3` is specified
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -828,18 +544,7 @@ Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the depl
 
 Specify timeout in seconds for the function, up to `900`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -851,35 +556,13 @@ Specify timeout in seconds for the function, up to `900`
 
 Configure this function to [connect to private subnets in a VPC][lambda-vpc-config], allowing it access to private resources. The required IAM policy will be automatically attached to the managed role if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided has the IAM policy `AWSLambdaENIManagementAccess` attached.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -890,18 +573,7 @@ Configure this function to [connect to private subnets in a VPC][lambda-vpc-conf
 
 The ARN of the Lambda function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -913,18 +585,7 @@ The ARN of the Lambda function
 
 ARN to be used for invoking Lambda Function from API Gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -936,18 +597,7 @@ ARN to be used for invoking Lambda Function from API Gateway
 
 ARN identifying the Lambda Function Version
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -959,18 +609,7 @@ ARN identifying the Lambda Function Version
 
 Qualified ARN (ARN with lambda version number) to be used for invoking Lambda Function from API Gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -982,18 +621,7 @@ Qualified ARN (ARN with lambda version number) to be used for invoking Lambda Fu
 
 Size in bytes of the function's deployment package (.zip file)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1005,18 +633,7 @@ Size in bytes of the function's deployment package (.zip file)
 
 The HTTP URL endpoint for the function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1028,39 +645,15 @@ The HTTP URL endpoint for the function
 
 Latest published version of the Lambda Function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### Aliases
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1071,18 +664,7 @@ Latest published version of the Lambda Function
 
 Lambda function version for which you are creating the alias
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1094,18 +676,7 @@ Lambda function version for which you are creating the alias
 
 Description of the alias
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1117,37 +688,13 @@ Description of the alias
 
 Configures this alias to send a portion of traffic to a second function version. Used for canary deployment scenarios. Please refer to [this documentation][lambda-alias-routing] for a list of requirements for this feature.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### AsynchronousInvocation
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1158,18 +705,7 @@ Configures this alias to send a portion of traffic to a second function version.
 
 Specify the ARN of the destination for failed asynchronous invocations. This ARN must be one of the following resources: SNS, SQS, Lambda, or an EventBus. The required IAM policies will be automatically generated if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided [has the proper permissions][asynchronous-invocation-destination-permission].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1181,18 +717,7 @@ Specify the ARN of the destination for failed asynchronous invocations. This ARN
 
 Specify the ARN of the destination for successful asynchronous invocations. This ARN must be one of the following resources: SNS, SQS, Lambda, or an EventBus. The required IAM policies will be automatically generated if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided [has the proper permissions][asynchronous-invocation-destination-permission].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1204,37 +729,13 @@ Specify the ARN of the destination for successful asynchronous invocations. This
 
 Configures error handling
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### CodeSource
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1245,18 +746,7 @@ Configures error handling
 
 Specify the Amazon ECR image URI of the container image to use for this function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1268,18 +758,7 @@ Specify the Amazon ECR image URI of the container image to use for this function
 
 Path to the function's deployment package within the local filesystem
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1291,37 +770,13 @@ Path to the function's deployment package within the local filesystem
 
 S3 bucket location containing the function's deployment package. This bucket must reside in the same AWS region where you are creating the Lambda function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Concurrency
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1332,18 +787,7 @@ S3 bucket location containing the function's deployment package. This bucket mus
 
 Specify the maximum number of concurrent instances allocated to the function. A value of `0` disables lambda from being triggered and `-1` removes any concurrency limitations
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1355,39 +799,17 @@ Specify the maximum number of concurrent instances allocated to the function. A 
 
 Map of provisioned concurrences assigned to Lambda qualifiers.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Provisioned Concurrency](#provisioned-concurrency)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### ContainerImageOverrides
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1398,18 +820,7 @@ Map of provisioned concurrences assigned to Lambda qualifiers.
 
 Specifies parameters that you want to pass in with ENTRYPOINT
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1421,18 +832,7 @@ Specifies parameters that you want to pass in with ENTRYPOINT
 
 Specifies the absolute path to the entry point of the application
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1444,39 +844,17 @@ Specifies the absolute path to the entry point of the application
 
 Specifies the absolute path to the working directory
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CorsConfig
 
 Configures the cross-origin resource sharing (CORS) settings for the function URL
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1487,18 +865,7 @@ Configures the cross-origin resource sharing (CORS) settings for the function UR
 
 Whether to allow cookies or other credentials in requests to the function URL
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1510,18 +877,7 @@ Whether to allow cookies or other credentials in requests to the function URL
 
 The HTTP headers that origins can include in requests to the function URL. For example: `["date", "keep-alive", "x-custom-header"]`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1533,18 +889,7 @@ The HTTP headers that origins can include in requests to the function URL. For e
 
 The HTTP methods that are allowed when calling the function URL. For example: `["GET", "POST", "DELETE"]`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1556,18 +901,7 @@ The HTTP methods that are allowed when calling the function URL. For example: `[
 
 The origins that can access the function URL. For example: `["https://www.example.com", "http://localhost:60905"]`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1579,18 +913,7 @@ The origins that can access the function URL. For example: `["https://www.exampl
 
 The HTTP headers in your function response that you want to expose to origins that call the function URL
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1602,37 +925,13 @@ The HTTP headers in your function response that you want to expose to origins th
 
 The maximum amount of time, in seconds, that web browsers can cache results of a preflight request. Valid values: `0 - 86400`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnableActiveTracing
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1643,40 +942,18 @@ The maximum amount of time, in seconds, that web browsers can cache results of a
 
 Specifies the tracing mode. If `"PassThrough"`, Lambda will only trace the request from an upstream service if it contains a tracing header with `"sampled=1"`. If `"Active"`, Lambda will respect any tracing header it receives from an upstream service. If no tracing header is received, Lambda will call X-Ray for a tracing decision
 
-    
 **Allowed Values:**
+
 - `PassThrough`
 - `Active`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnableFunctionUrl
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1687,22 +964,13 @@ Specifies the tracing mode. If `"PassThrough"`, Lambda will only trace the reque
 
 The type of authentication that the function URL uses. Set to `"NONE"` to bypass IAM authentication and create a public endpoint.
 
-    
 **Allowed Values:**
+
 - `AWS_IAM`
 - `NONE`
 - `AWS_IAM`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1714,21 +982,12 @@ The type of authentication that the function URL uses. Set to `"NONE"` to bypass
 
 Determines how the Lambda function responds to an invocation.
 
-    
 **Allowed Values:**
+
 - `BUFFERED`
 - `RESPONSE_STREAM`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1740,37 +999,13 @@ Determines how the Lambda function responds to an invocation.
 
 Configures the cross-origin resource sharing (CORS) settings for the function URL
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnvironmentVariables
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -1781,18 +1016,7 @@ Configures the cross-origin resource sharing (CORS) settings for the function UR
 
 A map of environment variables to pass to the function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1804,37 +1028,13 @@ A map of environment variables to pass to the function
 
 Specify the ARN of the KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### FileSystemConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1845,18 +1045,7 @@ Specify the ARN of the KMS key that is used to encrypt environment variables. If
 
 ARN of the Amazon EFS Access Point that provides access to the file system
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1868,37 +1057,13 @@ ARN of the Amazon EFS Access Point that provides access to the file system
 
 Path where the function can access the file system; must start with `/mnt/`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### LambdaPermissions
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1909,22 +1074,13 @@ Path where the function can access the file system; must start with `/mnt/`
 
 The external source this policy is configured for.
 
-    
 **Allowed Values:**
+
 - `aws_account`
 - `aws_service`
 - `function_url`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1936,18 +1092,7 @@ The external source this policy is configured for.
 
 Specify the principal who is getting this permission. If `policy_type = "aws_service"`, you must specify an AWS service URL such as `"s3.amazonaws.com"`. Otherwise, you can specify an AWS account ID such as `"111122223333"` or an IAM user ARN.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1959,18 +1104,7 @@ Specify the principal who is getting this permission. If `policy_type = "aws_ser
 
 The AWS Lambda action you want to allow in this statement. Defaults to `"lambda:InvokeFunctionUrl"` if `policy_type = "function_url"`, and `"lambda:InvokeFunction"` otherwise.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1982,18 +1116,7 @@ The AWS Lambda action you want to allow in this statement. Defaults to `"lambda:
 
 The Event Source Token to validate. Valid only with an Alexa Skill principal.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2005,21 +1128,12 @@ The Event Source Token to validate. Valid only with an Alexa Skill principal.
 
 Lambda Function URLs authentication type. Only supported for `policy_type = "function_url"` and `action = "lambda:InvokeFunctionUrl"`
 
-    
 **Allowed Values:**
+
 - `AWS_IAM`
 - `NONE`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2031,18 +1145,7 @@ Lambda Function URLs authentication type. Only supported for `policy_type = "fun
 
 The ID of an organization in AWS Organizations. Use this to grant permissions to only the AWS accounts under this organization.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2054,18 +1157,7 @@ The ID of an organization in AWS Organizations. Use this to grant permissions to
 
 The AWS account ID of the source owner. Used to grant permissions to an AWS service outside of this function's account, such as an S3 bucket. Only valid if `policy_type = "aws_service"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2077,39 +1169,17 @@ The AWS account ID of the source owner. Used to grant permissions to an AWS serv
 
 The ARN of the specific resource within that service to grant permission to, such as an S3 bucket ARN. Only valid if `policy_type = "aws_service"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Retries
 
 Configures error handling
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -2120,18 +1190,7 @@ Configures error handling
 
 The maximum amount of time Lambda retains an event in the asynchronous event queue, up to 6 hours
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2143,39 +1202,17 @@ The maximum amount of time Lambda retains an event in the asynchronous event que
 
 The number of times Lambda retries when the function returns an error, between 0 and 2
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### S3
 
 S3 bucket location containing the function's deployment package. This bucket must reside in the same AWS region where you are creating the Lambda function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2186,20 +1223,11 @@ S3 bucket location containing the function's deployment package. This bucket mus
 
 Specify the S3 URI of the deployment package to use for this function.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2211,37 +1239,13 @@ Specify the S3 URI of the deployment package to use for this function.
 
 Object version containing the function's deployment package
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### VpcConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -2252,18 +1256,7 @@ Object version containing the function's deployment package
 
 List of security group IDs associated with the ENIs of the Lambda function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2275,18 +1268,7 @@ List of security group IDs associated with the ENIs of the Lambda function
 
 List of subnet IDs associated with the ENIs of the Lambda function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2298,39 +1280,17 @@ List of subnet IDs associated with the ENIs of the Lambda function
 
 Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### WeightedAlias
 
 Configures this alias to send a portion of traffic to a second function version. Used for canary deployment scenarios. Please refer to [this documentation][lambda-alias-routing] for a list of requirements for this feature.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2341,18 +1301,7 @@ Configures this alias to send a portion of traffic to a second function version.
 
 The second function version to route portion of the traffic to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2364,46 +1313,22 @@ The second function version to route portion of the traffic to
 
 The weight, in percentage, of the total traffic routed to the second function version
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [asynchronous-invocation-destination-permission]: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-async-destinations
-
 [lambda-active-tracing]: https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html
-
 [lambda-alias-routing]: https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuring-alias-routing
-
 [lambda-asynchronous-invocation]: https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html
-
 [lambda-concurrency]: https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html
-
 [lambda-function-url]: https://docs.aws.amazon.com/lambda/latest/dg/lambda-urls.html
-
 [lambda-layer]: https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html
-
 [lambda-runtime]: https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Runtime
-
 [lambda-vpc-config]: https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
-
-[lambda-enhanced-monitoring]:https://docs.aws.amazon.com/lambda/latest/dg/monitoring-insights.html
-[lambda-insight-extension-versions]:https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-extension-versions.html
+[lambda-enhanced-monitoring]: https://docs.aws.amazon.com/lambda/latest/dg/monitoring-insights.html
+[lambda-insight-extension-versions]: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-extension-versions.html

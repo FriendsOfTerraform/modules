@@ -5,19 +5,19 @@ This module configures and manages an S3 bucket and its various configurations s
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [Static Web Hosting](#static-web-hosting)
-    - [Lifecycle Rules](#lifecycle-rules)
-    - [S3 Event Notifications](#s3-event-notifications)
-    - [Bucket Level Encryption](#bucket-level-encryption)
-    - [S3 Intelligent Tiering](#s3-intelligent-tiering)
-    - [S3 Inventory](#s3-inventory)
-    - [S3 Bucket Replication](#s3-bucket-replication)
-    - [Enables Object Lock For New Bucket](#enables-object-lock-for-new-bucket)
-    - [Enables Object Lock For Existing Bucket](#enables-object-lock-for-existing-bucket)
+  - [Basic Usage](#basic-usage)
+  - [Static Web Hosting](#static-web-hosting)
+  - [Lifecycle Rules](#lifecycle-rules)
+  - [S3 Event Notifications](#s3-event-notifications)
+  - [Bucket Level Encryption](#bucket-level-encryption)
+  - [S3 Intelligent Tiering](#s3-intelligent-tiering)
+  - [S3 Inventory](#s3-inventory)
+  - [S3 Bucket Replication](#s3-bucket-replication)
+  - [Enables Object Lock For New Bucket](#enables-object-lock-for-new-bucket)
+  - [Enables Object Lock For Existing Bucket](#enables-object-lock-for-existing-bucket)
 - [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Mandatory](#mandatory)
+  - [Optional](#optional)
 - [Outputs](#outputs)
 
 ## Example Usage
@@ -149,9 +149,9 @@ module "bucket_notification_demo" {
 #### Notes
 
 - You must ensure proper permissions are granted to S3 on each destination. Refers to the following documentations for more detail:
-    - [Lambda Permission][lambda-resource-based-policy]
-    - [SNS Permission](#blank)
-    - [SQS Permission](#blank)
+  - [Lambda Permission][lambda-resource-based-policy]
+  - [SNS Permission](#blank)
+  - [SQS Permission](#blank)
 
 ### Bucket Level Encryption
 
@@ -323,26 +323,10 @@ module "s3_bucket_object_lock_demo" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -353,36 +337,13 @@ module "s3_bucket_object_lock_demo" {
 
 Name of the S3 bucket. Must be globally unique
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -393,18 +354,7 @@ Name of the S3 bucket. Must be globally unique
 
 Additional tags for the S3 bucket
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -416,18 +366,7 @@ Additional tags for the S3 bucket
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -439,18 +378,7 @@ Additional tags for all resources deployed with this module
 
 The account ID of the expected bucket owner
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -462,18 +390,7 @@ The account ID of the expected bucket owner
 
 Configures [cross-origin resource sharing (CORS)][s3-cors]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -485,20 +402,11 @@ Configures [cross-origin resource sharing (CORS)][s3-cors]
 
 Configures [S3 Object Lock][s3-object-lock]. You must also set `versioning_enabled = true` to enable object lock.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Enables Object Lock For New Bucket](#enables-object-lock-for-new-bucket)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -510,18 +418,7 @@ Configures [S3 Object Lock][s3-object-lock]. You must also set `versioning_enabl
 
 Configures [bucket level encryption][s3-encryption]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -533,18 +430,7 @@ Configures [bucket level encryption][s3-encryption]
 
 Force destroy of the bucket even if it is not empty
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -556,20 +442,11 @@ Force destroy of the bucket even if it is not empty
 
 Configures [S3 intelligent tiering][s3-intelligent-tiering].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [S3 Intelligent Tiering](#s3-intelligent-tiering)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -581,20 +458,11 @@ Configures [S3 intelligent tiering][s3-intelligent-tiering].
 
 Configures [S3 inventory][s3-inventory].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [S3 Inventory](#s3-inventory)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -606,20 +474,11 @@ Configures [S3 inventory][s3-inventory].
 
 Configures [S3 lifecycle rules][s3-lifecycle].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Lifecycle Rules](#lifecycle-rules)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -631,20 +490,11 @@ Configures [S3 lifecycle rules][s3-lifecycle].
 
 Configures S3 event notifications.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [S3 Event Notifications](#s3-event-notifications)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -656,22 +506,13 @@ Configures S3 event notifications.
 
 Control [ownership of objects][s3-object-ownership] written to this bucket from other AWS accounts and the use of access control lists (ACLs). Object ownership determines who can specify access to objects.
 
-    
 **Allowed Values:**
+
 - `BucketOwnerEnforced`
 - `BucketOwnerPreferred`
 - `ObjectWriter`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -683,18 +524,7 @@ Control [ownership of objects][s3-object-ownership] written to this bucket from 
 
 Text of the S3 policy document to attach
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -706,18 +536,7 @@ Text of the S3 policy document to attach
 
 Configures bucket to [block public access][public-access]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -729,20 +548,11 @@ Configures bucket to [block public access][public-access]
 
 Manage [bucket replication][s3-bucket-replication].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [S3 Bucket Replication](#s3-bucket-replication)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -754,18 +564,7 @@ Manage [bucket replication][s3-bucket-replication].
 
 Enables [Requester Pays bucket][s3-requester-pays] so that the requester pays the cost of the request and data download instead of the bucket owner. Must also specify `bucket_owner_account_id`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -777,18 +576,7 @@ Enables [Requester Pays bucket][s3-requester-pays] so that the requester pays th
 
 Configures [static website hosting][s3-static-website-hosting]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -800,18 +588,7 @@ Configures [static website hosting][s3-static-website-hosting]
 
 Enables [transfer acceleration][s3-transfer-acceleration]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -823,35 +600,13 @@ Enables [transfer acceleration][s3-transfer-acceleration]
 
 Enables [bucket versioning][s3-versioning]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -862,18 +617,7 @@ Enables [bucket versioning][s3-versioning]
 
 ARN of the S3 bucket
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -885,18 +629,7 @@ ARN of the S3 bucket
 
 Bucket domain name. Will be of format `bucketname.s3.amazonaws.com`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -908,18 +641,7 @@ Bucket domain name. Will be of format `bucketname.s3.amazonaws.com`
 
 Name of the S3 bucket
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -931,18 +653,7 @@ Name of the S3 bucket
 
 AWS region this bucket resides in
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -954,18 +665,7 @@ AWS region this bucket resides in
 
 Domain of the website endpoint. This is used to create Route 53 alias records.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -977,41 +677,19 @@ Domain of the website endpoint. This is used to create Route 53 alias records.
 
 Website endpoint.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### AdditionalReplicationOptions
 
 Enables additional replication options
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1022,18 +700,7 @@ Enables additional replication options
 
 Delete markers created by S3 delete operations will be replicated. Delete markers created by lifecycle rules are not replicated.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1045,18 +712,7 @@ Delete markers created by S3 delete operations will be replicated. Delete marker
 
 Replicate metadata changes made to replicas in this bucket to the destination bucket.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1068,18 +724,7 @@ Replicate metadata changes made to replicas in this bucket to the destination bu
 
 With replication metrics, you can monitor the total number and size of objects that are pending replication, and the maximum replication time to the destination Region. You can also view and diagnose replication failures.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1091,39 +736,17 @@ With replication metrics, you can monitor the total number and size of objects t
 
 Replication Time Control replicates 99.99% of new objects within 15 minutes and includes replication metrics.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ChangeObjectOwnershipToDestinationBucketOwner
 
 Specifies the overrides to use for object owners on replication. Specify this only in a cross-account scenario (where source and destination bucket owners are not the same), and you want to change replica ownership to the AWS account that owns the destination bucket. If this is not specified in the replication configuration, the replicas are owned by same AWS account that owns the source object.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1134,37 +757,13 @@ Specifies the overrides to use for object owners on replication. Specify this on
 
 Account ID to specify the replica ownership
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### CorsConfigurations
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1175,24 +774,15 @@ Account ID to specify the replica ownership
 
 List of HTTP methods that you allow the origin to execute.
 
-    
 **Allowed Values:**
+
 - `GET`
 - `PUT`
 - `HEAD`
 - `POST`
 - `DELETE`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1204,18 +794,7 @@ List of HTTP methods that you allow the origin to execute.
 
 Specify the origins that you want to allow cross-domain requests from. The origin string can contain only one `*` wildcard character, such as `"http://*.example.com"`. You can optionally specify `"*"` as the origin to enable all the origins to send cross-origin requests. You can also specify `https` to enable only secure origins.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1227,18 +806,7 @@ Specify the origins that you want to allow cross-domain requests from. The origi
 
 Specify which headers are allowed in a preflight request through the Access-Control-Request-Headers header. Each header name in the Access-Control-Request-Headers header must match a corresponding entry in the element. Amazon S3 will send only the allowed headers in a response that were requested. Each header string can contain at most one `*` wildcard character. For example, `"x-amz-*"` will enable all Amazon-specific headers.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1250,18 +818,7 @@ Specify which headers are allowed in a preflight request through the Access-Cont
 
 Specify a list of headers in the response that you want customers to be able to access from their applications
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1273,18 +830,7 @@ Specify a list of headers in the response that you want customers to be able to 
 
 Unique identifier for the cors rule. The value cannot be longer than 255 characters.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1296,39 +842,17 @@ Unique identifier for the cors rule. The value cannot be longer than 255 charact
 
 Specify the time in seconds that your browser can cache the response for a preflight request as identified by the resource, the HTTP method, and the origin.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### DefaultRetention
 
 Configures default retention rule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1339,18 +863,7 @@ Configures default retention rule
 
 Number of days the objects should be retained
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1362,42 +875,22 @@ Number of days the objects should be retained
 
 Default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
 
-    
 **Allowed Values:**
+
 - `COMPLIANCE`
 - `GOVERNANCE`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Destination
 
 Configures the destination where the report will be sent
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1408,18 +901,7 @@ Configures the destination where the report will be sent
 
 The account ID that owns the destination bucket. Must be set to ensure correct ownership of the report.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1431,37 +913,13 @@ The account ID that owns the destination bucket. Must be set to ensure correct o
 
 Destination bucket arn. The current bucket will be used if set to `null`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnablesObjectLock
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#defaultretention">DefaultRetention</a>)</code></td>
@@ -1472,18 +930,7 @@ Destination bucket arn. The current bucket will be used if set to `null`
 
 Configures default retention rule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1495,41 +942,21 @@ Configures default retention rule
 
 Token to allow Object Lock to be enabled for an existing bucket. You must contact AWS support for the bucket's "Object Lock token." The token is generated in the back-end when versioning is enabled on a bucket.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Enables Object Lock For Existing Bucket](#enables-object-lock-for-existing-bucket)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EncryptInventoryReport
 
 Configures the type of server-side encryption to use to encrypt the inventory report
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1540,37 +967,13 @@ Configures the type of server-side encryption to use to encrypt the inventory re
 
 ARN of the KMS customer master key (CMK) used to encrypt the inventory file. If left empty (`null`), `sse_s3` will be used for encryption
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EncryptionConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1581,18 +984,7 @@ ARN of the KMS customer master key (CMK) used to encrypt the inventory file. If 
 
 Enables [S3 bucket key][s3-bucket-key] for encryption
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1604,39 +996,17 @@ Enables [S3 bucket key][s3-bucket-key] for encryption
 
 CMK arn, encrypts bucket using `sse:kms`. If this is set to `null`, `sse:s3` will be used. e.g. `arn:aws:kms:us-west-2:111122223333:key/6bfabcde-0d12-48ad-927f-48a805b2c62d`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Expiration
 
 Expiration configuration to expires current objects
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1647,18 +1017,7 @@ Expiration configuration to expires current objects
 
 Permanently delete an object even if versioning is enabled
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1670,39 +1029,17 @@ Permanently delete an object even if versioning is enabled
 
 Expires objects after x days
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Filter
 
 Limit the scope of this configuration using one or more filters
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -1713,18 +1050,7 @@ Limit the scope of this configuration using one or more filters
 
 All of these tags must exist in the object's tag set in order for the configuration to apply
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1736,37 +1062,13 @@ All of these tags must exist in the object's tag set in order for the configurat
 
 Object key name prefix that identifies the subset of objects to which the configuration applies
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### IntelligentTieringArchiveConfigurations
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1779,26 +1081,17 @@ S3 Intelligent-Tiering access tier.
 
 Restore time:
 
-| Tier                | Expedited  | Standard        | Bulk
-|---------------------|------------|-----------------|----------------
-| Archive Access      | 1 - 5 mins | 3 - 5 hours     | 5 - 12 hours
-| Deep Archive Access | N/A        | Within 12 hours | Within 48 hours
+| Tier                | Expedited  | Standard        | Bulk            |
+| ------------------- | ---------- | --------------- | --------------- |
+| Archive Access      | 1 - 5 mins | 3 - 5 hours     | 5 - 12 hours    |
+| Deep Archive Access | N/A        | Within 12 hours | Within 48 hours |
 
-    
 **Allowed Values:**
+
 - `ARCHIVE_ACCESS`
 - `DEEP_ARCHIVE_ACCESS`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1810,18 +1103,7 @@ Restore time:
 
 Number of consecutive days of no access after which an object will be eligible to be transitioned to the corresponding tier
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1833,37 +1115,13 @@ Number of consecutive days of no access after which an object will be eligible t
 
 Limit the scope of this configuration using one or more filters
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### InventoryConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1874,21 +1132,12 @@ Limit the scope of this configuration using one or more filters
 
 Specifies how frequently inventory results are produced.
 
-    
 **Allowed Values:**
+
 - `Daily`
 - `Weekly`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1900,8 +1149,8 @@ Specifies how frequently inventory results are produced.
 
 List of optional metadata to be included in the inventory results.
 
-    
 **Allowed Values:**
+
 - `Size`
 - `LastModifiedDate`
 - `StorageClass`
@@ -1919,18 +1168,11 @@ List of optional metadata to be included in the inventory results.
 - `ObjectOwner`
 - `LifecycleExpirationDate`
 
-    
-
-    
-
-    
 **Links:**
+
 - [Available metadata field names](https://docs.aws.amazon.com/AmazonS3/latest/API/API_InventoryConfiguration.html#AmazonS3-Type-InventoryConfiguration-OptionalFields)
 
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1942,18 +1184,7 @@ List of optional metadata to be included in the inventory results.
 
 Configures the destination where the report will be sent
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1965,18 +1196,7 @@ Configures the destination where the report will be sent
 
 Configures the type of server-side encryption to use to encrypt the inventory report
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1988,18 +1208,7 @@ Configures the type of server-side encryption to use to encrypt the inventory re
 
 Limit the scope of this configuration using one or more filters
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2011,18 +1220,7 @@ Limit the scope of this configuration using one or more filters
 
 Specify if the report should include non current object versions
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2034,41 +1232,19 @@ Specify if the report should include non current object versions
 
 Specifies the output format of the inventory results.
 
-    
 **Allowed Values:**
+
 - `CSV`
 - `ORC`
 - `Parquet`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### LifecycleRules
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -2079,18 +1255,7 @@ Specifies the output format of the inventory results.
 
 Delete failed multipart uploads after x days
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2102,18 +1267,7 @@ Delete failed multipart uploads after x days
 
 Expiration configuration to expires current objects
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2125,18 +1279,7 @@ Expiration configuration to expires current objects
 
 Limit the scope of this configuration using one or more filters
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2148,18 +1291,7 @@ Limit the scope of this configuration using one or more filters
 
 Expiration configuration to expires noncurrent s3 objects
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2171,18 +1303,7 @@ Expiration configuration to expires noncurrent s3 objects
 
 Transitions noncurrent s3 objects to other storage class.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2194,39 +1315,17 @@ Transitions noncurrent s3 objects to other storage class.
 
 Transitions s3 objects to other storage class.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### NoncurrentVersionExpiration
 
 Expiration configuration to expires noncurrent s3 objects
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -2237,18 +1336,7 @@ Expiration configuration to expires noncurrent s3 objects
 
 Expires noncurrent objects after x days
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2260,39 +1348,17 @@ Expires noncurrent objects after x days
 
 Number of noncurrent versions Amazon S3 will retain
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### NoncurrentVersionTransitions
 
 Transitions noncurrent s3 objects to other storage class.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -2303,18 +1369,7 @@ Transitions noncurrent s3 objects to other storage class.
 
 Transition noncurrent objects after x days
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2326,8 +1381,8 @@ Transition noncurrent objects after x days
 
 Specify the destination storage class.
 
-    
 **Allowed Values:**
+
 - `ONEZONE_IA`
 - `STANDARD_IA`
 - `INTELLIGENT_TIERING`
@@ -2335,16 +1390,7 @@ Specify the destination storage class.
 - `DEEP_ARCHIVE`
 - `GLACIER_IR`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2356,37 +1402,13 @@ Specify the destination storage class.
 
 Number of noncurrent versions Amazon S3 will retain
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### NotificationConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(list(object()))</code></td>
@@ -2397,37 +1419,13 @@ Number of noncurrent versions Amazon S3 will retain
 
 Map of event notification in {destinationARN = [events]}. Supported AWS services include **Lambda**, **SQS**, and **SNS**. You can include up to one each **SQS** and **SNS** destination, but you can include multiple **Lambda** destinations.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### PublicAccessBlock
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -2438,18 +1436,7 @@ Map of event notification in {destinationARN = [events]}. Supported AWS services
 
 Whether Amazon S3 should block public ACLs for this bucket
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2461,18 +1448,7 @@ Whether Amazon S3 should block public ACLs for this bucket
 
 Whether Amazon S3 should block public bucket policies for this bucket
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2484,18 +1460,7 @@ Whether Amazon S3 should block public bucket policies for this bucket
 
 Whether Amazon S3 should ignore public ACLs for this bucket
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2507,39 +1472,17 @@ Whether Amazon S3 should ignore public ACLs for this bucket
 
 Whether Amazon S3 should restrict public bucket policies for this bucket
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### RedirectRequestsForAnObject
 
 Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `static_website`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2550,18 +1493,7 @@ Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `sta
 
 Name of the host where requests are redirected
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2573,42 +1505,22 @@ Name of the host where requests are redirected
 
 Protocol to use when redirecting requests. The default is the protocol that is used in the original request.
 
-    
 **Allowed Values:**
+
 - `http`
 - `https`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ReplicateEncryptedObjects
 
 Specifies whether encrypted objects will be replicated
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2619,37 +1531,13 @@ Specifies whether encrypted objects will be replicated
 
 ARN of the customer managed AWS KMS key stored in AWS Key Management Service (KMS) used to encrypt replicated objects
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### ReplicationConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#rules">Rules</a>))</code></td>
@@ -2660,18 +1548,7 @@ ARN of the customer managed AWS KMS key stored in AWS Key Management Service (KM
 
 Configures bucket replication rules. In {rule_name = replication_config} format
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2683,18 +1560,7 @@ Configures bucket replication rules. In {rule_name = replication_config} format
 
 ARN of the IAM role for Amazon S3 to assume when replicating the objects. One will be automatically generated by the module if this is left empty (`null`).
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2706,41 +1572,21 @@ ARN of the IAM role for Amazon S3 to assume when replicating the objects. One wi
 
 Token to allow replication to be enabled on an Object Lock-enabled bucket. You must contact AWS support for the bucket's "Object Lock token."
 
-    
-
-    
-
-    
-
-    
 **Links:**
+
 - [Object lock overview](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-overview.html#object-lock-bucket-config)
 
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Rules
 
 Configures bucket replication rules. In {rule_name = replication_config} format
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2751,18 +1597,7 @@ Configures bucket replication rules. In {rule_name = replication_config} format
 
 ARN of the bucket where you want Amazon S3 to store the results
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2774,18 +1609,7 @@ ARN of the bucket where you want Amazon S3 to store the results
 
 Priority associated with the rule. Priority must be unique between multiple rules.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2797,18 +1621,7 @@ Priority associated with the rule. Priority must be unique between multiple rule
 
 Enables additional replication options
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2820,18 +1633,7 @@ Enables additional replication options
 
 Specifies the overrides to use for object owners on replication. Specify this only in a cross-account scenario (where source and destination bucket owners are not the same), and you want to change replica ownership to the AWS account that owns the destination bucket. If this is not specified in the replication configuration, the replicas are owned by same AWS account that owns the source object.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2843,18 +1645,7 @@ Specifies the overrides to use for object owners on replication. Specify this on
 
 Specify the destination storage class. Defaults to the same storage class of the source object
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2866,18 +1657,7 @@ Specify the destination storage class. Defaults to the same storage class of the
 
 Limit the scope of this configuration using one or more filters
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2889,39 +1669,17 @@ Limit the scope of this configuration using one or more filters
 
 Specifies whether encrypted objects will be replicated
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### StaticWebsite
 
 Manages documents S3 returns when a request is made to its web endpoint. Mutually exclusive to `redirect_requests_for_an_object`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2932,18 +1690,7 @@ Manages documents S3 returns when a request is made to its web endpoint. Mutuall
 
 Index document when requests are made to the root domain
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2955,37 +1702,13 @@ Index document when requests are made to the root domain
 
 Document to return in case of a 4XX error
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### StaticWebsiteHostingConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#redirectrequestsforanobject">RedirectRequestsForAnObject</a>)</code></td>
@@ -2996,18 +1719,7 @@ Document to return in case of a 4XX error
 
 Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `static_website`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3019,39 +1731,17 @@ Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `sta
 
 Manages documents S3 returns when a request is made to its web endpoint. Mutually exclusive to `redirect_requests_for_an_object`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Transitions
 
 Transitions s3 objects to other storage class.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -3062,18 +1752,7 @@ Transitions s3 objects to other storage class.
 
 Transition objects after x days
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3085,8 +1764,8 @@ Transition objects after x days
 
 Specify the destination storage class.
 
-    
 **Allowed Values:**
+
 - `ONEZONE_IA`
 - `STANDARD_IA`
 - `INTELLIGENT_TIERING`
@@ -3094,55 +1773,28 @@ Specify the destination storage class.
 - `DEEP_ARCHIVE`
 - `GLACIER_IR`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [public-access]: https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html
-
 [s3-bucket-key]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html
-
 [s3-bucket-replication]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-what-is-isnot-replicated.html
-
 [s3-cors]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html?icmpid=docs_amazons3_console
-
 [s3-encryption]: https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html
-
 [s3-intelligent-tiering]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/intelligent-tiering.html
-
 [s3-inventory]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-inventory.html
-
 [s3-lifecycle]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html
-
 [s3-object-lock]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
-
 [s3-object-ownership]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-ownership-new-bucket.html
-
 [s3-requester-pays]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html
-
 [s3-static-website-hosting]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
-
 [s3-transfer-acceleration]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html
-
 [s3-versioning]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html
-
 [s3-webpage-redirect]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-page-redirect.html
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
-[lambda-resource-based-policy]:https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html
-[s3-inventory-bucket-permission]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-s3-inventory-1
+[lambda-resource-based-policy]: https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html
+[s3-inventory-bucket-permission]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-s3-inventory-1

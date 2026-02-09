@@ -7,18 +7,18 @@ This module will create and configure a [Vault authentication method][auth-metho
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [AppRole](#approle)
-    - [AWS](#aws)
-    - [GitHub](#github)
-    - [Kubernetes](#kubernetes)
-    - [OIDC](#oidc)
+  - [AppRole](#approle)
+  - [AWS](#aws)
+  - [GitHub](#github)
+  - [Kubernetes](#kubernetes)
+  - [OIDC](#oidc)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
 - [Outputs](#outputs)
 - [Objects](#objects)
 - [Known Limitations](#known-limitations)
-    - [Experimental Options](#experimental-options)
+  - [Experimental Options](#experimental-options)
 
 ## Example Usage
 
@@ -181,26 +181,10 @@ module "oidc_auth_method" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -217,18 +201,7 @@ The Vault authentication method to configure, currently the following values are
 - [kubernetes](https://www.vaultproject.io/docs/auth/kubernetes)
 - [oidc](https://developer.hashicorp.com/vault/docs/auth/jwt/oidc-providers)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -240,36 +213,13 @@ The Vault authentication method to configure, currently the following values are
 
 The mount path of the authentication method
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#approleauthroles">ApproleAuthRoles</a>))</code></td>
@@ -291,18 +241,7 @@ token_ttl_seconds     = 600
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -324,18 +263,7 @@ token_policies           = ["admin"]
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -354,18 +282,7 @@ secret_access_key = "P+N4XXXXXXXXXXXXXXXXXXXXXX"
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -377,18 +294,7 @@ secret_access_key = "P+N4XXXXXXXXXXXXXXXXXXXXXX"
 
 Description of the authentication method
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -407,18 +313,7 @@ users = {"petersin0422" = ["octopus-api-policy"]}
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -440,18 +335,7 @@ token_policies                   = ["webapp-frontend"]
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -471,18 +355,7 @@ token_reviewer_jwt = "eyJhbGciOiJSUzI1NiIsImtpZCI6IkJOMmw3eFUtVVZYOXRyQmZ1bmVUdW
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -502,18 +375,7 @@ listing_visibility = "unauth"
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -547,18 +409,7 @@ token_policies = ["cloudops-users"]
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -579,35 +430,13 @@ client_secret = "some-secret...."
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -618,39 +447,15 @@ client_secret = "some-secret...."
 
 The mount path of the authentication method
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### ApproleAuthRoles
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -661,18 +466,7 @@ The mount path of the authentication method
 
 Specifies blocks of IP addresses which can perform the login operation using this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -684,18 +478,7 @@ Specifies blocks of IP addresses which can perform the login operation using thi
 
 The number of times any particular SecretID can be used to fetch a token from this AppRole, after which the SecretID will expire. A value of `0` or `null` will allow unlimited uses.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -707,18 +490,7 @@ The number of times any particular SecretID can be used to fetch a token from th
 
 Specify the token's TTL (time-to-live) in seconds
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -730,18 +502,7 @@ Specify the token's TTL (time-to-live) in seconds
 
 Specify the token's max TTL (time-to-live) in seconds
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -753,37 +514,13 @@ Specify the token's max TTL (time-to-live) in seconds
 
 A list of Vault policies to be attached to tokens generated by this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### AwsAuthRoles
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -794,18 +531,7 @@ A list of Vault policies to be attached to tokens generated by this role
 
 The IAM role Vault assume to validate authentication requests to IAM roles in this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -817,18 +543,7 @@ The IAM role Vault assume to validate authentication requests to IAM roles in th
 
 List of IAM arns that is allowed to authenticate using this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -840,18 +555,7 @@ List of IAM arns that is allowed to authenticate using this role
 
 Specify the token's TTL (time-to-live) in seconds
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -863,18 +567,7 @@ Specify the token's TTL (time-to-live) in seconds
 
 Specify the token's max TTL (time-to-live) in seconds
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -886,37 +579,13 @@ Specify the token's max TTL (time-to-live) in seconds
 
 A list of Vault policies to be attached to tokens generated by this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### AwsBackendCredential
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -927,18 +596,7 @@ A list of Vault policies to be attached to tokens generated by this role
 
 Access key ID of an IAM user
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -950,37 +608,13 @@ Access key ID of an IAM user
 
 Secret access key of an IAM user
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### GithubConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -991,18 +625,7 @@ Secret access key of an IAM user
 
 The GitHub organization
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1014,18 +637,7 @@ The GitHub organization
 
 A map of GitHub teams (**team name must be slugified**) to be allowed to authenticate using this authentication endpoint and a list of policies associated to the team, in the `team_name = [policies]` format. ex: `{my-team = ["policy-1", "policy-2"]}`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1037,37 +649,13 @@ A map of GitHub teams (**team name must be slugified**) to be allowed to authent
 
 A map of GitHub users to be allowed to authenticate using this authentication endpoint and a list of policies associated to the users, in the `username = [policies]` format. ex: `{petersin = ["policy-1", "policy-2"]}`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### KubernetesAuthRoles
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1078,18 +666,7 @@ A map of GitHub users to be allowed to authenticate using this authentication en
 
 A list of Kubernetes service account names that is permitted to authenticate using this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1101,18 +678,7 @@ A list of Kubernetes service account names that is permitted to authenticate usi
 
 A list of Kubernetes namespaces that is permitted to authenticate using this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1124,18 +690,7 @@ A list of Kubernetes namespaces that is permitted to authenticate using this rol
 
 Specify the token's TTL (time-to-live) in seconds
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1147,18 +702,7 @@ Specify the token's TTL (time-to-live) in seconds
 
 Specify the token's max TTL (time-to-live) in seconds
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1170,37 +714,13 @@ Specify the token's max TTL (time-to-live) in seconds
 
 A list of Vault policies to be attached to tokens generated by this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### KubernetesConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1211,18 +731,7 @@ A list of Vault policies to be attached to tokens generated by this role
 
 The URL of the Kubernetes API server. Must be `https://`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1234,20 +743,11 @@ The URL of the Kubernetes API server. Must be `https://`
 
 The CA certificate Vault will use to connect to the Kubernetes API server. Most providers (like AWS) returns this value in base64 encoded string, make sure the decoded value is passed in.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Kubernetes](#kubernetes)
 
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1259,18 +759,7 @@ The CA certificate Vault will use to connect to the Kubernetes API server. Most 
 
 A Kubernetes service account JWT token that allow Vault to validate incoming authentication request with Kubernetes. Please refer to [this doc][kube-reviewer-jwt] for more information.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1282,37 +771,13 @@ A Kubernetes service account JWT token that allow Vault to validate incoming aut
 
 The issuer of the `token_reviewer_jwt` token. Please refer to [this doc][kube-issuer] for more information.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### MethodOptions
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1323,18 +788,7 @@ The issuer of the `token_reviewer_jwt` token. Please refer to [this doc][kube-is
 
 Specifies the default token time-to-live. If set, this overrides the global default. Must be a [valid duration string][duration-string]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1346,18 +800,7 @@ Specifies the default token time-to-live. If set, this overrides the global defa
 
 Specifies the maximum token time-to-live. If set, this overrides the global default. Must be a [valid duration string][duration-string]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1372,40 +815,18 @@ Specifies whether to show this mount in the UI-specific listing endpoint.
 - unauth - Show this auth method in the web UI
 - hidden - Do not show this auth method in the web UI
 
-    
 **Allowed Values:**
+
 - `unauth`
 - `hidden`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### OidcAuthRoles
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1416,18 +837,7 @@ Specifies whether to show this mount in the UI-specific listing endpoint.
 
 The claim to use to uniquely identify the user
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1439,18 +849,7 @@ The claim to use to uniquely identify the user
 
 A map of claims that restrict only the identity that has matching claims in its token. For example, `this identity must be in groups = <group_id>`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1462,18 +861,7 @@ A map of claims that restrict only the identity that has matching claims in its 
 
 The claim to use to uniquely identify the set of groups to which the user belongs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1485,18 +873,7 @@ The claim to use to uniquely identify the set of groups to which the user belong
 
 A list of OIDC scopes to be used with an OIDC role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1508,18 +885,7 @@ A list of OIDC scopes to be used with an OIDC role
 
 A list of redirect URIs where authentication responses can be redirected back to the caller
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1531,18 +897,7 @@ A list of redirect URIs where authentication responses can be redirected back to
 
 Specify the token's TTL (time-to-live) in seconds
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1554,18 +909,7 @@ Specify the token's TTL (time-to-live) in seconds
 
 Specify the token's max TTL (time-to-live) in seconds
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1577,37 +921,13 @@ Specify the token's max TTL (time-to-live) in seconds
 
 A list of Vault policies to be attached to tokens generated by this role
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### OidcConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1618,18 +938,7 @@ A list of Vault policies to be attached to tokens generated by this role
 
 The default role to use if none is provided during login
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1641,20 +950,11 @@ The default role to use if none is provided during login
 
 The OIDC Discovery URL, without any .well-known component (base path).
 
-    
-
-    
-
-    
 **Examples:**
+
 - [OIDC](#oidc)
 
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1666,18 +966,7 @@ The OIDC Discovery URL, without any .well-known component (base path).
 
 Client ID used for OIDC backends
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1689,33 +978,15 @@ Client ID used for OIDC backends
 
 Client Secret used for OIDC backends
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [duration-string]: https://pkg.go.dev/time#ParseDuration
-
 [kube-issuer]: https://www.vaultproject.io/docs/auth/kubernetes#discovering-the-service-account-issuer
-
 [kube-reviewer-jwt]: https://www.vaultproject.io/docs/auth/kubernetes#configuring-kubernetes
-
 [kubernetes-auth-role]: https://www.vaultproject.io/docs/auth/kubernetes#configuration
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
@@ -1727,4 +998,4 @@ This module enabled the following Terraform experimental features, a warning is 
 
 - [Optional Object Type Attributes](https://www.terraform.io/docs/language/expressions/type-constraints.html#experimental-optional-object-type-attributes)
 
-[auth-method]:https://www.vaultproject.io/docs/auth
+[auth-method]: https://www.vaultproject.io/docs/auth

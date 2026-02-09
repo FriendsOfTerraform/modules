@@ -7,17 +7,17 @@ This module creates and configures a [VPC](https://aws.amazon.com/vpc/) and mult
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [Flow Logs](#flow-logs)
-    - [Peering Connection Requests](#peering-connection-requests)
+  - [Basic Usage](#basic-usage)
+  - [Flow Logs](#flow-logs)
+  - [Peering Connection Requests](#peering-connection-requests)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
 - [Outputs](#outputs)
 - [Objects](#objects)
 - [Known Limitations](#known-limitations)
-    - [default route table](#default_route_table)
-    - [vpc_endpoint_id conflicts with destination_prefix_list_id](#vpc_endpoint_id-conflicts-with-destination_prefix_list_id)
+  - [default route table](#default_route_table)
+  - [vpc_endpoint_id conflicts with destination_prefix_list_id](#vpc_endpoint_id-conflicts-with-destination_prefix_list_id)
 
 ## Example Usage
 
@@ -190,26 +190,10 @@ module "peering_connection_requests" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#cidrblock">CidrBlock</a>)</code></td>
@@ -220,18 +204,7 @@ module "peering_connection_requests" {
 
 Configures the VPC CIDR block
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -243,36 +216,13 @@ Configures the VPC CIDR block
 
 The name of the VPC. All associated resources will also have their name prefixed with this value
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -283,18 +233,7 @@ The name of the VPC. All associated resources will also have their name prefixed
 
 Additional tags for the VPC
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -306,18 +245,7 @@ Additional tags for the VPC
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -329,20 +257,11 @@ Additional tags for all resources deployed with this module
 
 If enabled, one NAT gateway will be created on the first public subnets in each availability zone. You can then refer to them on the route table with `default-nat-gateway/<availability_zone_name>`.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -354,18 +273,7 @@ If enabled, one NAT gateway will be created on the first public subnets in each 
 
 DHCP option sets give you control over various aspects of routing in your virtual network, such as the DNS servers, domain names, or Network Time Protocol (NTP) servers used by the devices in your VPC. The Amazon default option set will be used if not specified
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -377,18 +285,7 @@ DHCP option sets give you control over various aspects of routing in your virtua
 
 Configures DNS settings for the VPC
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -400,18 +297,7 @@ Configures DNS settings for the VPC
 
 [Network Address Usage (NAU)][vpc-network-address-usage] is a metric applied to resources in your virtual network to help you plan for and monitor the size of your VPC
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -423,20 +309,11 @@ Configures DNS settings for the VPC
 
 Configures multiple VPC level flow logs.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Flow Logs](#flow-logs)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -448,20 +325,11 @@ Configures multiple VPC level flow logs.
 
 Manages multiple VPC peering connection requests.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Peering Connection Requests](#peering-connection-requests)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -473,20 +341,11 @@ Manages multiple VPC peering connection requests.
 
 Manages multiple route tables.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -498,20 +357,11 @@ Manages multiple route tables.
 
 Manages multiple subnets.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -523,38 +373,18 @@ Manages multiple subnets.
 
 Specify the VPC's tenancy.
 
-    
 **Allowed Values:**
+
 - `default`
 - `dedicated`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#dhcpoptions">DhcpOptions</a>))</code></td>
@@ -565,18 +395,7 @@ Specify the VPC's tenancy.
 
 DHCP option
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -588,18 +407,7 @@ DHCP option
 
 The default internet gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -611,18 +419,7 @@ The default internet gateway
 
 Map of default NAT gateways. The key of the map is the NAT gateway's name
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -634,18 +431,7 @@ Map of default NAT gateways. The key of the map is the NAT gateway's name
 
 Map of peering connection requests. The key of the map is the peering connection request's name
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -657,18 +443,7 @@ Map of peering connection requests. The key of the map is the peering connection
 
 Map of route tables. The key of the map is the route table's name
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -680,18 +455,7 @@ Map of route tables. The key of the map is the route table's name
 
 Map of subnets. The key of the map is the subnet's name
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -703,18 +467,7 @@ Map of subnets. The key of the map is the subnet's name
 
 The ARN of the VPC
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -726,39 +479,15 @@ The ARN of the VPC
 
 The ID of the VPC
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### CidrBlock
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#ipv4">Ipv4</a>)</code></td>
@@ -769,39 +498,17 @@ The ID of the VPC
 
 Configures the IPv4 CIDR block
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CloudwatchLogs
 
 Configures CloudWatch Logs as destination
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -812,18 +519,7 @@ Configures CloudWatch Logs as destination
 
 The ARN of the CloudWatch log group to send logs to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -835,39 +531,17 @@ The ARN of the CloudWatch log group to send logs to
 
 Arn of an IAM role that [gives permission to flow logs to send logs to CloudWatch][vpc-flow-logs-cloudwatch-service-role]. A default service role will be created if not specified
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Destination
 
 Where the flow log will be sent to. Must specify only one of the following: `cloudwatch_logs`, `s3`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#cloudwatchlogs">CloudwatchLogs</a>)</code></td>
@@ -878,18 +552,7 @@ Where the flow log will be sent to. Must specify only one of the following: `clo
 
 Configures CloudWatch Logs as destination
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -901,37 +564,13 @@ Configures CloudWatch Logs as destination
 
 Configures S3 as destination
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### DhcpOptions
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -942,18 +581,7 @@ Configures S3 as destination
 
 The ARN of the DHCP option
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -965,37 +593,13 @@ The ARN of the DHCP option
 
 The ID of the DHCP option
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### DnsSettings
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1006,18 +610,7 @@ The ID of the DHCP option
 
 Whether DNS resolution through the Amazon DNS server is supported for the VPC
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1029,41 +622,21 @@ Whether DNS resolution through the Amazon DNS server is supported for the VPC
 
 Whether instances launched in the VPC receive public DNS hostnames that correspond to their public IP addresses
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### FlowLogs
 
 Configures multiple subnet level flow logs.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Flow Logs](#flow-logs)
 
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#destination">Destination</a>)</code></td>
@@ -1074,18 +647,7 @@ Configures multiple subnet level flow logs.
 
 Where the flow log will be sent to. Must specify only one of the following: `cloudwatch_logs`, `s3`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1097,18 +659,7 @@ Where the flow log will be sent to. Must specify only one of the following: `clo
 
 Additional tags for the flow log
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1120,18 +671,7 @@ Additional tags for the flow log
 
 The fields to include in the flow log record. Accepted format example: `"$${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport}"`. Please refer to [this documentation][vpc-flow-logs-log-record-available-fields] for a list of available fields
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1143,22 +683,13 @@ The fields to include in the flow log record. Accepted format example: `"$${inte
 
 The type of traffic to capture.
 
-    
 **Allowed Values:**
+
 - `ALL`
 - `ACCEPT`
 - `REJECT`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1170,40 +701,18 @@ The type of traffic to capture.
 
 The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record.
 
-    
 **Allowed Values:**
+
 - `60`
 - `600`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### InternetGateway
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1214,18 +723,7 @@ The maximum interval of time during which a flow of packets is captured and aggr
 
 The ARN of the internet gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1237,18 +735,7 @@ The ARN of the internet gateway
 
 The ID of the internet gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1260,39 +747,17 @@ The ID of the internet gateway
 
 The ID of the AWS account that owns the internet gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Ipam
 
 Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IPv4 CIDR automatically. If you select an IPAM pool, the size of the CIDR is limited by the allocation rules on the IPAM pool (allowed minimum, allowed maximum, and default). Mutually exclusive to `cidr`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1303,18 +768,7 @@ Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IP
 
 The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1326,39 +780,17 @@ The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR
 
 The netmask length of the IPv4 CIDR you want to allocate to this VPC
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Ipv4
 
 Configures the IPv4 CIDR block
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1369,18 +801,7 @@ Configures the IPv4 CIDR block
 
 Manually input an IPv4 CIDR. The CIDR block size must have a size between /16 and /28. Mutually exclusive to `ipam`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1392,37 +813,13 @@ Manually input an IPv4 CIDR. The CIDR block size must have a size between /16 an
 
 Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IPv4 CIDR automatically. If you select an IPAM pool, the size of the CIDR is limited by the allocation rules on the IPAM pool (allowed minimum, allowed maximum, and default). Mutually exclusive to `cidr`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### NatGateways
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1433,18 +830,7 @@ Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IP
 
 The availability of the NAT gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1456,18 +842,7 @@ The availability of the NAT gateway
 
 The association ID of the Elastic IP address that's associated with the NAT Gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1479,18 +854,7 @@ The association ID of the Elastic IP address that's associated with the NAT Gate
 
 The ID of the NAT gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1502,18 +866,7 @@ The ID of the NAT gateway
 
 The ID of the network interface associated with the NAT Gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1525,37 +878,13 @@ The ID of the network interface associated with the NAT Gateway
 
 The Elastic IP address associated with the NAT Gateway
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### PeeringConnectionRequests
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1566,18 +895,7 @@ The Elastic IP address associated with the NAT Gateway
 
 The peering connection ID
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1589,39 +907,17 @@ The peering connection ID
 
 The status of the VPC Peering Connection request
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ResourceBasedNameSettings
 
 Specify the hostname type for EC2 instances in this subnet and optional RBN DNS query settings
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1632,18 +928,7 @@ Specify the hostname type for EC2 instances in this subnet and optional RBN DNS 
 
 Choose if DNS A record queries for the resource-based name should return the IPv4 address or not
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1658,40 +943,18 @@ Determines if the guest OS hostname of EC2 instances in this subnet should be ba
 - If you choose `"resource-name"`, when you launch an EC2 instance in this subnet, the guest OS hostname of the EC2 instance will be configured to use the EC2 instance ID: `ec2-instance-id.region.compute.internal`.
 - If you choose `"ip-name"`, when you launch an EC2 instance in this subnet, the guest OS hostname of the EC2 instance will be configured to use an IP-based name: `private-ipv4-address.region.compute.internal`
 
-    
 **Allowed Values:**
+
 - `ip-name`
 - `resource-name`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### RouteTables
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1702,18 +965,7 @@ Determines if the guest OS hostname of EC2 instances in this subnet should be ba
 
 The ARN of the route tables
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1725,39 +977,17 @@ The ARN of the route tables
 
 The ID of the route tables
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### S3
 
 Configures S3 as destination
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1768,18 +998,7 @@ Configures S3 as destination
 
 The ARN of the S3 bucket to send logs to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1791,21 +1010,12 @@ The ARN of the S3 bucket to send logs to
 
 The format for the flow log.
 
-    
 **Allowed Values:**
+
 - `plain-text`
 - `parquet`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1817,18 +1027,7 @@ The format for the flow log.
 
 Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1840,37 +1039,13 @@ Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon
 
 Indicates whether to partition the flow log per hour. This reduces the cost and response time for queries.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Subnets
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1881,18 +1056,7 @@ Indicates whether to partition the flow log per hour. This reduces the cost and 
 
 The ARN of the subnets
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1904,18 +1068,7 @@ The ARN of the subnets
 
 The ID of the subnets
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1927,33 +1080,15 @@ The ID of the subnets
 
 The ID of the AWS account that owns the subnet
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [vpc-flow-logs-cloudwatch-service-role]: https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-iam-role.html
-
 [vpc-flow-logs-log-record-available-fields]: https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields
-
 [vpc-ipam]: https://docs.aws.amazon.com/vpc/latest/ipam/what-it-is-ipam.html
-
 [vpc-network-address-usage]: https://docs.aws.amazon.com/vpc/latest/userguide/network-address-usage.html
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
@@ -1967,4 +1102,4 @@ A default route table will be created by the VPC even if a main route table is s
 
 Specifying a route with a prefix_list_id as destination and vpc_endpoint_id as target, for example: `{ "pl-02cabcde" = "vpce-0123454fcbbabcdef" }` will return an error `vpc_endpoint_id conflicts with destination_prefix_list_id`. This is expected since the AWS API disallow this combination. VPC endpoints must be associated with the route table separately using the [aws_vpc_endpoint_route_table_association][terraform-aws-provider-aws_vpc_endpoint_route_table_association] instead.
 
-[terraform-aws-provider-aws_vpc_endpoint_route_table_association]:https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint_route_table_association
+[terraform-aws-provider-aws_vpc_endpoint_route_table_association]: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint_route_table_association

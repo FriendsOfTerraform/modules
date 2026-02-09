@@ -33,30 +33,13 @@ module "basic_usage" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
 _No required inputs._
 
-
 ### Optional
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -68,18 +51,7 @@ _No required inputs._
 
 Additional tags for all resources deployed with this module
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -92,36 +64,16 @@ Additional tags for all resources deployed with this module
 Manage multiple public SSL/TLS certificates from Amazon. By default, public
 certificates are trusted by browsers and operating systems.
 
-
-
-
-
-
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
@@ -133,38 +85,14 @@ certificates are trusted by browsers and operating systems.
 
 Information of all the public certificates managed by this module
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### PublicCertificates
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -176,18 +104,7 @@ Information of all the public certificates managed by this module
 
 ARN of the certificate
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -199,18 +116,7 @@ ARN of the certificate
 
 Set of domain validation objects which can be used to complete certificate validation.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -222,18 +128,7 @@ Set of domain validation objects which can be used to complete certificate valid
 
 ARN of the certificate
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -245,18 +140,7 @@ ARN of the certificate
 
 Expiration date and time of the certificate
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -268,18 +152,7 @@ Expiration date and time of the certificate
 
 Start of the validity period of the certificate.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -291,18 +164,7 @@ Start of the validity period of the certificate.
 
 Whether the certificate is eligible for managed renewal.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -314,18 +176,7 @@ Whether the certificate is eligible for managed renewal.
 
 Contains information about the status of ACM's managed renewal for the certificate.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -337,18 +188,7 @@ Contains information about the status of ACM's managed renewal for the certifica
 
 Status of the certificate.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -360,26 +200,11 @@ Status of the certificate.
 
 List of addresses that received a validation email. Only set if EMAIL validation was used.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
-
 <!-- TFDOCS_EXTRAS_END -->
 
-[acm-domain-ownership-validation]:https://docs.aws.amazon.com/acm/latest/userguide/domain-ownership-validation.html
+[acm-domain-ownership-validation]: https://docs.aws.amazon.com/acm/latest/userguide/domain-ownership-validation.html

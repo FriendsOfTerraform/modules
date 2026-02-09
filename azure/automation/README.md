@@ -7,7 +7,7 @@ This module will create and configure an [Azure Automation Account][azure-automa
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Runbooks](#runbooks)
+  - [Runbooks](#runbooks)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
@@ -119,26 +119,10 @@ module "automation" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">Azure</a>)</code></td>
@@ -156,18 +140,7 @@ location = "westus"
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -179,36 +152,13 @@ location = "westus"
 
 The name of the automation account
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -219,18 +169,7 @@ The name of the automation account
 
 Additional tags for the automation account
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -242,18 +181,7 @@ Additional tags for the automation account
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -280,18 +208,7 @@ hourly     = { interval = 1 }
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -303,35 +220,13 @@ hourly     = { interval = 1 }
 
 List of managed identity IDs used by the automation account to manage azure resources
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>list(object)</code></td>
@@ -342,18 +237,7 @@ List of managed identity IDs used by the automation account to manage azure reso
 
 List of identities attached to the automation account
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -365,18 +249,7 @@ List of identities attached to the automation account
 
 List of runbook IDs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -388,39 +261,15 @@ List of runbook IDs
 
 List of schedule IDs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### Azure
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -431,18 +280,7 @@ List of schedule IDs
 
 The name of an Azure resource group where the automation account will be deployed
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -454,39 +292,17 @@ The name of an Azure resource group where the automation account will be deploye
 
 The name of an Azure location where the automation account will be deployed. If unspecified, the resource group's location will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Daily
 
 Defines a daily schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -497,39 +313,17 @@ Defines a daily schedule
 
 Defines how many days per schedule trigger
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Hourly
 
 Defines a hourly schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -540,39 +334,17 @@ Defines a hourly schedule
 
 Defines how many hours per schedule trigger
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Monthly
 
 Defines a monthly schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -583,18 +355,7 @@ Defines a monthly schedule
 
 Defines how many months per schedule trigger
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -609,37 +370,13 @@ Defines one of the following:
 - A list of days in the month this schedule should run. Valid values are `numbers between "1" and "31", and "-1" (representing last day of the month)`. Example: `["1", "5", "20", "-1"]` means 1st, 5th, 20th, and the last day of the month.
 - The `[{week}, {day_of_week}]` this schedule should run. Valid values are: {week}: `"First", "Second", "Third", "Fourth", "Last"`. {day_of_week}: `"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"`. Example: `["First", "Thursday"]`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Runbooks
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -650,18 +387,7 @@ Defines one of the following:
 
 The content of the runbook. This can either be the actual script itself, or a `uri` referencing the content remotely.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -673,18 +399,7 @@ The content of the runbook. This can either be the actual script itself, or a `u
 
 Additional tags for the runbook
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -696,18 +411,7 @@ Additional tags for the runbook
 
 Description of the runbook
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -719,18 +423,7 @@ Description of the runbook
 
 Enables logging the progress of the runbook
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -742,18 +435,7 @@ Enables logging the progress of the runbook
 
 Enables verbose logging
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -765,8 +447,8 @@ Enables verbose logging
 
 Defines the type of the runbook.
 
-    
 **Allowed Values:**
+
 - `Graph`
 - `GraphPowerShell`
 - `GraphPowerShellWorkflow`
@@ -774,16 +456,7 @@ Defines the type of the runbook.
 - `PowerShell`
 - `Script`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -795,39 +468,17 @@ Defines the type of the runbook.
 
 Defines schedule to automatically trigger this runbook
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Schedule
 
 Defines schedule to automatically trigger this runbook
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -838,18 +489,7 @@ Defines schedule to automatically trigger this runbook
 
 Description of the schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -861,18 +501,7 @@ Description of the schedule
 
 Defines the timezone this runbook schedules on. Refer to [this list][azure-timezones] for valid timezones.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -884,18 +513,7 @@ Defines the timezone this runbook schedules on. Refer to [this list][azure-timez
 
 Defines the start time of the schedule, in [RFC3339 DateTime format][rfc3339]. Defaults to `current time + 7 minutes`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -907,18 +525,7 @@ Defines the start time of the schedule, in [RFC3339 DateTime format][rfc3339]. D
 
 Defines the expiry time of the schedule, in [RFC3339 DateTime format][rfc3339].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -930,18 +537,7 @@ Defines the expiry time of the schedule, in [RFC3339 DateTime format][rfc3339].
 
 Defines a map of parameters to be passed into the runbook when this schedule runs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -953,18 +549,7 @@ Defines a map of parameters to be passed into the runbook when this schedule run
 
 Defines a hourly schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -976,18 +561,7 @@ Defines a hourly schedule
 
 Defines a daily schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -999,18 +573,7 @@ Defines a daily schedule
 
 Defines a weekly schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1022,39 +585,17 @@ Defines a weekly schedule
 
 Defines a monthly schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Weekly
 
 Defines a weekly schedule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1065,18 +606,7 @@ Defines a weekly schedule
 
 Defines how many weeks per schedule trigger
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -1088,8 +618,8 @@ Defines how many weeks per schedule trigger
 
 Defines the days of the week this schedule should run on.
 
-    
 **Allowed Values:**
+
 - `Monday`
 - `Tuesday`
 - `Wednesday`
@@ -1098,28 +628,14 @@ Defines the days of the week this schedule should run on.
 - `Saturday`
 - `Sunday`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [azure-timezones]: https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/timezone
-
 [rfc3339]: https://medium.com/easyread/understanding-about-rfc-3339-for-datetime-formatting-in-software-engineering-940aa5d5f68a
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
-[azure-automation-account]:https://docs.microsoft.com/en-us/azure/automation/overview
+[azure-automation-account]: https://docs.microsoft.com/en-us/azure/automation/overview

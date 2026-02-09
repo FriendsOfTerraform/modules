@@ -8,7 +8,7 @@ This module creates an Azure [Network Security Group][network-security-group] an
 
 - [Requirements](#requirements)
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
@@ -58,26 +58,10 @@ module "demo_nsg" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">Azure</a>)</code></td>
@@ -95,18 +79,7 @@ location = "westus"
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -118,36 +91,13 @@ location = "westus"
 
 The name of the network security group. This will also be used as a prefix to all associating resources' names.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -158,18 +108,7 @@ The name of the network security group. This will also be used as a prefix to al
 
 Additional tags for the network security group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -181,18 +120,7 @@ Additional tags for the network security group
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -215,18 +143,7 @@ port_ranges         = ["3389"]
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -249,35 +166,13 @@ protocol    = "Udp"
 }
 ```
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -288,39 +183,15 @@ protocol    = "Udp"
 
 The ID of the network security group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### Azure
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -331,18 +202,7 @@ The ID of the network security group
 
 The name of an Azure resource group where the virtual network will be deployed
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -354,37 +214,13 @@ The name of an Azure resource group where the virtual network will be deployed
 
 The name of an Azure location where the virtual network will be deployed. If unspecified, the resource group's location will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### InboundSecurityRules
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -395,18 +231,7 @@ The name of an Azure location where the virtual network will be deployed. If uns
 
 The priority of the rule. Lower number has higher priority
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -418,21 +243,12 @@ The priority of the rule. Lower number has higher priority
 
 Defines if the matching rule should be allowed or denied.
 
-    
 **Allowed Values:**
+
 - `Allow`
 - `Deny`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -444,18 +260,7 @@ Defines if the matching rule should be allowed or denied.
 
 Description of the security rule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -467,18 +272,7 @@ Description of the security rule
 
 Defines a list of destination application security group IDs that match this rule. This option is mutually exclusive to `destination_ip_addresses` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -490,18 +284,7 @@ Defines a list of destination application security group IDs that match this rul
 
 Defines a list of destination ip addresses or CIDR that match this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -513,18 +296,7 @@ Defines a list of destination ip addresses or CIDR that match this rule. This op
 
 Defines a destination [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_ip_addresses`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -536,18 +308,7 @@ Defines a destination [Service Tag][service-tag] that matches this rule. This op
 
 Defines a list of port ranges that match this rule. Input can either be a range eg. `"0-1024"` or a port number eg. `"8080"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -559,8 +320,8 @@ Defines a list of port ranges that match this rule. Input can either be a range 
 
 The protocol of the connection that matches this rule.
 
-    
 **Allowed Values:**
+
 - `Tcp`
 - `Udp`
 - `Icmp`
@@ -568,16 +329,7 @@ The protocol of the connection that matches this rule.
 - `Ah`
 - `*`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -589,18 +341,7 @@ The protocol of the connection that matches this rule.
 
 Defines a list of source application security group IDs that match this rule. This option is mutually exclusive to `source_ip_addresses` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -612,18 +353,7 @@ Defines a list of source application security group IDs that match this rule. Th
 
 Defines a list of source ip addresses or CIDR that match this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -635,37 +365,13 @@ Defines a list of source ip addresses or CIDR that match this rule. This option 
 
 Defines a source [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_ip_addresses`. If none of the sources are specified, all sources (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### OutboundSecurityRules
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -676,18 +382,7 @@ Defines a source [Service Tag][service-tag] that matches this rule. This option 
 
 The priority of the rule. Lower number has higher priority
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -699,21 +394,12 @@ The priority of the rule. Lower number has higher priority
 
 Defines if the matching rule should be allowed or denied.
 
-    
 **Allowed Values:**
+
 - `Allow`
 - `Deny`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -725,18 +411,7 @@ Defines if the matching rule should be allowed or denied.
 
 Description of the security rule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -748,18 +423,7 @@ Description of the security rule
 
 Defines a list of destination application security group IDs that match this rule. This option is mutually exclusive to `destination_ip_addresses` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -771,18 +435,7 @@ Defines a list of destination application security group IDs that match this rul
 
 Defines a list of destination ip addresses or CIDR that match this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -794,18 +447,7 @@ Defines a list of destination ip addresses or CIDR that match this rule. This op
 
 Defines a destination [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_ip_addresses`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -817,18 +459,7 @@ Defines a destination [Service Tag][service-tag] that matches this rule. This op
 
 Defines a list of port ranges that match this rule. Input can either be a range eg. `"0-1024"` or a port number eg. `"8080"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -840,8 +471,8 @@ Defines a list of port ranges that match this rule. Input can either be a range 
 
 The protocol of the connection that matches this rule.
 
-    
 **Allowed Values:**
+
 - `Tcp`
 - `Udp`
 - `Icmp`
@@ -849,16 +480,7 @@ The protocol of the connection that matches this rule.
 - `Ah`
 - `*`
 
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -870,18 +492,7 @@ The protocol of the connection that matches this rule.
 
 Defines a list of source application security group IDs that match this rule. This option is mutually exclusive to `source_ip_addresses` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -893,18 +504,7 @@ Defines a list of source application security group IDs that match this rule. Th
 
 Defines a list of source ip addresses or CIDR that match this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 <tr>
@@ -916,28 +516,13 @@ Defines a list of source ip addresses or CIDR that match this rule. This option 
 
 Defines a source [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_ip_addresses`. If none of the sources are specified, all sources (`Any`) will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 0.0.1
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [service-tag]: https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
-[network-security-group]:https://docs.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview
+[network-security-group]: https://docs.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview

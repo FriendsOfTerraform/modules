@@ -7,13 +7,12 @@ This module will build and configure a [Security Group](https://docs.aws.amazon.
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
 - [Outputs](#outputs)
 - [Objects](#objects)
-
 
 ## Example Usage
 
@@ -75,26 +74,10 @@ module "security_group_basic_usage" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -105,18 +88,7 @@ module "security_group_basic_usage" {
 
 The name of the security group. All associated resources will also have their name prefixed with this value
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -126,36 +98,11 @@ The name of the security group. All associated resources will also have their na
 </tr>
 <tr><td colspan="3">
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -166,18 +113,7 @@ The name of the security group. All associated resources will also have their na
 
 Additional tags for the security group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -189,18 +125,7 @@ Additional tags for the security group
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -212,18 +137,7 @@ Additional tags for all resources deployed with this module
 
 Description of the security group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -235,20 +149,11 @@ Description of the security group
 
 Configures multiple [egress rules][security-group-rules].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -260,37 +165,17 @@ Configures multiple [egress rules][security-group-rules].
 
 Configures multiple [ingress rules][security-group-rules].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -301,18 +186,7 @@ Configures multiple [ingress rules][security-group-rules].
 
 ARN of the security group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -324,39 +198,15 @@ ARN of the security group
 
 ID of the security group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### EgressRules
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -367,18 +217,7 @@ ID of the security group
 
 A list of destinations this rule applies to. Destinations can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -390,18 +229,7 @@ A list of destinations this rule applies to. Destinations can be a combination o
 
 Additional tags for the egress rule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -413,37 +241,13 @@ Additional tags for the egress rule
 
 Description for the egress rule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### IngressRules
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -454,18 +258,7 @@ Description for the egress rule
 
 A list of sources this rule applies to. Sources can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -477,18 +270,7 @@ A list of sources this rule applies to. Sources can be a combination of IPv4 CID
 
 Additional tags for the ingress rule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -500,26 +282,11 @@ Additional tags for the ingress rule
 
 Description for the ingress rule
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [security-group-rules]: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
-
 
 <!-- TFDOCS_EXTRAS_END -->

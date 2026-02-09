@@ -7,15 +7,15 @@ This module creates and configures an [SNS](https://aws.amazon.com/sns/) topic a
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [Data Protection Policy](#data-protection-policy)
+  - [Basic Usage](#basic-usage)
+  - [Data Protection Policy](#data-protection-policy)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
 - [Outputs](#outputs)
 - [Objects](#objects)
 - [Known Limitations](#known-limitations)
-    - [Active Tracing X-Ray resource-based policy](#active-tracing-x-ray-resource-based-policy)
+  - [Active Tracing X-Ray resource-based policy](#active-tracing-x-ray-resource-based-policy)
 
 ## Example Usage
 
@@ -108,26 +108,10 @@ module "data_protection_policy" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -138,36 +122,13 @@ module "data_protection_policy" {
 
 The name of the SNS topic. All associated resources will also have their name prefixed with this value
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -178,18 +139,7 @@ The name of the SNS topic. All associated resources will also have their name pr
 
 Defines who can access the topic. By default, only the topic owner can publish or subscribe to the topic
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -201,18 +151,7 @@ Defines who can access the topic. By default, only the topic owner can publish o
 
 Additional tags for the SNS topic
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -224,18 +163,7 @@ Additional tags for the SNS topic
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -247,20 +175,11 @@ Additional tags for all resources deployed with this module
 
 Manages the [data protection policy][sns-data-protection-policy] for this topic.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Data Protection Policy](#data-protection-policy)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -272,18 +191,7 @@ Manages the [data protection policy][sns-data-protection-policy] for this topic.
 
 Topic wide delivery policy that tells SNS how to retry failed message deliveries to endpoints with the `http`, `https` protocol
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -295,18 +203,7 @@ Topic wide delivery policy that tells SNS how to retry failed message deliveries
 
 Enables logging of the delivery status of notification messages sent to topics
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -318,18 +215,7 @@ Enables logging of the delivery status of notification messages sent to topics
 
 The display name of the topic. Optional for all transports. For SMS subscriptions only the first 10 characters are used. If not specified, the `name` of the topic will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -341,18 +227,7 @@ The display name of the topic. Optional for all transports. For SMS subscription
 
 Enable to have AWS X-Ray collect data about the messages that this topic receives. Additional steps are needed, please see [Active Tracing X-Ray resource-based policy](#active-tracing-x-ray-resource-based-policy)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -364,18 +239,7 @@ Enable to have AWS X-Ray collect data about the messages that this topic receive
 
 Enable default message deduplication based on message content. If false, a deduplication ID must be provided for every publish request
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -387,18 +251,7 @@ Enable default message deduplication based on message content. If false, a dedup
 
 Enables SNS encryption at-rest
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -410,37 +263,17 @@ Enables SNS encryption at-rest
 
 Manages multiple subscriptions for this topic.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -451,18 +284,7 @@ Manages multiple subscriptions for this topic.
 
 The ARN of the SNS topic
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -474,41 +296,19 @@ The ARN of the SNS topic
 
 The ARNs of the subscribers for this SNS topic
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### Audit
 
 Audit matching sensitive data and send audit result to a destination
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -519,18 +319,7 @@ Audit matching sensitive data and send audit result to a destination
 
 The percentage of messages to audit for sensitive information. Valid value: between `0` to `99`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -542,39 +331,17 @@ The percentage of messages to audit for sensitive information. Valid value: betw
 
 The AWS services to send the audit finding results. Must specify at least one of the following: `cloudwatch_log_group`, `s3_bucket_name`, `firehose_delivery_stream`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Configuration
 
 Define Custom Data identifiers that can be used in data protection policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -585,37 +352,13 @@ Define Custom Data identifiers that can be used in data protection policy
 
 Map of custom data identifiers in `{Name = Regex}` format
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### DataProtectionPolicy
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#statements">Statements</a>))</code></td>
@@ -626,18 +369,7 @@ Map of custom data identifiers in `{Name = Regex}` format
 
 Manages multiple statements in this policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -649,39 +381,17 @@ Manages multiple statements in this policy
 
 Define Custom Data identifiers that can be used in data protection policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Deidentify
 
 De-identify matching sensitive data by either redacting them or masking them with a specific character. Must specify one and only one of the following: `mask_with_character`, `redact`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -692,18 +402,7 @@ De-identify matching sensitive data by either redacting them or masking them wit
 
 Replaces the data with single characters. All printable ASCII characters except delete are supported
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -715,37 +414,13 @@ Replaces the data with single characters. All printable ASCII characters except 
 
 Completely removes the data
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### DeliveryPolicy
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -753,19 +428,6 @@ Completely removes the data
     <td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
 
 </td></tr>
 <tr>
@@ -777,18 +439,7 @@ Completely removes the data
 
 Define the retry policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -800,18 +451,7 @@ Define the retry policy
 
 Define the throttle policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -823,37 +463,13 @@ Define the throttle policy
 
 Define the request policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### DeliveryStatusLogging
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -864,24 +480,15 @@ Define the request policy
 
 Subscriber protocols which logs will be generated for.
 
-    
 **Allowed Values:**
+
 - `application`
 - `http`
 - `lambda`
 - `sqs`
 - `firehose`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -893,18 +500,7 @@ Subscriber protocols which logs will be generated for.
 
 The percentage of successful message deliveries to log. Valid value: between `0` and `100`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -916,18 +512,7 @@ The percentage of successful message deliveries to log. Valid value: between `0`
 
 Arn of an IAM role that gives permission to SNS to write successful delivery logs to Cloudwatch
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -939,39 +524,17 @@ Arn of an IAM role that gives permission to SNS to write successful delivery log
 
 Arn of an IAM role that gives permission to SNS to write failed delivery logs to Cloudwatch
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Destinations
 
 The AWS services to send the audit finding results. Must specify at least one of the following: `cloudwatch_log_group`, `s3_bucket_name`, `firehose_delivery_stream`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -982,18 +545,7 @@ The AWS services to send the audit finding results. Must specify at least one of
 
 The Cloudwatch log group to send audit results to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1005,18 +557,7 @@ The Cloudwatch log group to send audit results to
 
 The name of an S3 bucket to send audit results to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1028,37 +569,13 @@ The name of an S3 bucket to send audit results to
 
 The name of a Kinese Firehose Delivery Stream to send audit results to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnableEncryption
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1069,39 +586,17 @@ The name of a Kinese Firehose Delivery Stream to send audit results to
 
 The ID of a KMS key used for encryption
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### HealthyRetryPolicy
 
 Define the retry policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1112,18 +607,7 @@ Define the retry policy
 
 The minimum delay for a retry in seconds. Valid value: between `1` and `max_delay_target`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1135,18 +619,7 @@ The minimum delay for a retry in seconds. Valid value: between `1` and `max_dela
 
 The maximum delay for a retry in seconds. Valid value: between `min_delay_target` and `3600`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1158,18 +631,7 @@ The maximum delay for a retry in seconds. Valid value: between `min_delay_target
 
 The total number of retries, including immediate, pre-backoff, backoff, and post-backoff retries. Valid value: between `0` to `100`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1181,18 +643,7 @@ The total number of retries, including immediate, pre-backoff, backoff, and post
 
 The number of retries to be done immediately, with no delay between them
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1204,18 +655,7 @@ The number of retries to be done immediately, with no delay between them
 
 The number of retries in the pre-backoff phase, with the specified `min_delay_target` between them
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1227,18 +667,7 @@ The number of retries in the pre-backoff phase, with the specified `min_delay_ta
 
 The number of retries in the post-backoff phase, with the `max_delay_target` between them.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1250,44 +679,24 @@ The number of retries in the post-backoff phase, with the `max_delay_target` bet
 
 The model for backoff between retries.
 
-    
 **Allowed Values:**
+
 - `arithmetic`
 - `exponential`
 - `geometric`
 - `linear`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Operation
 
 The [operation to trigger][sns-data-protection-policy-operations] upon finding sensitive data as specified by this statement. You must specify one and only one of the following: `audit`, `deidentify`, `deny`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#audit">Audit</a>)</code></td>
@@ -1298,18 +707,7 @@ The [operation to trigger][sns-data-protection-policy-operations] upon finding s
 
 Audit matching sensitive data and send audit result to a destination
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1321,18 +719,7 @@ Audit matching sensitive data and send audit result to a destination
 
 De-identify matching sensitive data by either redacting them or masking them with a specific character. Must specify one and only one of the following: `mask_with_character`, `redact`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1344,39 +731,17 @@ De-identify matching sensitive data by either redacting them or masking them wit
 
 Denies the delivery of the message if the message contains sensitive data
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### RequestPolicy
 
 Define the request policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1387,42 +752,22 @@ Define the request policy
 
 The content type of the notification being sent to HTTP/S endpoints.
 
-    
 **Allowed Values:**
+
 - `application/json`
 - `text/plain`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Statements
 
 Manages multiple statements in this policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1433,21 +778,12 @@ Manages multiple statements in this policy
 
 The direction of messages to which this statement applies.
 
-    
 **Allowed Values:**
+
 - `Inbound`
 - `Outbound`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1459,18 +795,7 @@ The direction of messages to which this statement applies.
 
 A list of data identifiers that represent sensitive data this statement applies to. Please refer to [this documentation][sns-managed-data-identifier] for the valid values. Can also include names specified in the `data_protection_policy.configuration.custom_data_identifiers`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1482,18 +807,7 @@ A list of data identifiers that represent sensitive data this statement applies 
 
 A list of IAM principals this statement applies to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1505,37 +819,13 @@ A list of IAM principals this statement applies to
 
 The [operation to trigger][sns-data-protection-policy-operations] upon finding sensitive data as specified by this statement. You must specify one and only one of the following: `audit`, `deidentify`, `deny`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Subscriptions
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1546,8 +836,8 @@ The [operation to trigger][sns-data-protection-policy-operations] upon finding s
 
 The type of endpoint to subscribe.
 
-    
 **Allowed Values:**
+
 - `application`
 - `firehose`
 - `lambda`
@@ -1557,16 +847,7 @@ The type of endpoint to subscribe.
 - `http`
 - `https`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1578,30 +859,19 @@ The type of endpoint to subscribe.
 
 List of endpoints to send data to. The contents vary with the protocol. See details below:
 
-| Protocol    | Endpoint
-|-------------|---------------------------------------------------------
-| application | ARN of a mobile app and device
-| firehose    | ARN of an Amazon Kinesis Data Firehose delivery stream
-| lambda      | ARN of an AWS Lambda function
-| sms         | Phone number of an SMS-enabled device.
-| sqs         | ARN of an Amazon SQS queue
-| email       | An email address
-| email-json  | An email address
-| http        | A URL beginning with http://
-| https       | A URL beginning with https://
+| Protocol    | Endpoint                                               |
+| ----------- | ------------------------------------------------------ |
+| application | ARN of a mobile app and device                         |
+| firehose    | ARN of an Amazon Kinesis Data Firehose delivery stream |
+| lambda      | ARN of an AWS Lambda function                          |
+| sms         | Phone number of an SMS-enabled device.                 |
+| sqs         | ARN of an Amazon SQS queue                             |
+| email       | An email address                                       |
+| email-json  | An email address                                       |
+| http        | A URL beginning with http://                           |
+| https       | A URL beginning with https://                          |
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1613,18 +883,7 @@ List of endpoints to send data to. The contents vary with the protocol. See deta
 
 ARN of a SQS queue where SNS will forward messages that can't be delivered to subscribers successfully to
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1636,18 +895,7 @@ ARN of a SQS queue where SNS will forward messages that can't be delivered to su
 
 Whether to enable raw message delivery, where the original message is directly passed and not wrapped in JSON with the original message in the message property
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1659,18 +907,7 @@ Whether to enable raw message delivery, where the original message is directly p
 
 JSON String with the [filter policy][sns-subscription-filter-policy] that will be used in the subscription to filter messages seen by the target resource
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1682,21 +919,12 @@ JSON String with the [filter policy][sns-subscription-filter-policy] that will b
 
 The [filter policy scope][sns-subscription-filter-policy-scope].
 
-    
 **Allowed Values:**
+
 - `MessageAttributes`
 - `MessageBody`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1708,39 +936,17 @@ The [filter policy scope][sns-subscription-filter-policy-scope].
 
 ARN of the IAM role to publish to Kinesis Data Firehose delivery stream. Required only if `protocol = "firehose"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ThrottlePolicy
 
 Define the throttle policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1751,35 +957,16 @@ Define the throttle policy
 
 The maximum number of deliveries per second, per subscription. Valid value: `1` or greater
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [sns-data-protection-policy]: https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-policies.html
-
 [sns-data-protection-policy-operations]: https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-operations.html#statement-operation-json-properties-deidentify
-
 [sns-managed-data-identifier]: https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-managed-data-identifiers.html#what-are-data-managed-data-identifiers
-
 [sns-subscription-filter-policy]: https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html
-
 [sns-subscription-filter-policy-scope]: https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering-scope.html
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
@@ -1789,5 +976,5 @@ The maximum number of deliveries per second, per subscription. Valid value: `1` 
 
 There is no way to create the X-ray resource-based policy required for the SNS active tracing with Terraform today. Therefore, after enabling active tracing in this module, you must follow [this documentation][sns-active-tracing-xray] to create the resource-based policy using different means.
 
-[sns-active-tracing-xray]:https://docs.aws.amazon.com/xray/latest/devguide/xray-services-sns.html
-[sns-data-protection-policy]:https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-policies.html
+[sns-active-tracing-xray]: https://docs.aws.amazon.com/xray/latest/devguide/xray-services-sns.html
+[sns-data-protection-policy]: https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-policies.html

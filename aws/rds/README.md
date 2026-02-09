@@ -7,13 +7,13 @@ This module will build and configure an [RDS](https://aws.amazon.com/rds/) insta
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [Multi-AZ Instance](#multi-az-instance)
-    - [Multi-AZ Cluster](#multi-az-cluster)
-    - [Aurora Regional Cluster](#aurora-regional-cluster)
-    - [Aurora Global Cluster](#aurora-global-cluster)
-    - [RDS Proxies](#rds-proxies)
-    - [Cloudwatch Alarms](#cloudwatch-alarms)
+  - [Basic Usage](#basic-usage)
+  - [Multi-AZ Instance](#multi-az-instance)
+  - [Multi-AZ Cluster](#multi-az-cluster)
+  - [Aurora Regional Cluster](#aurora-regional-cluster)
+  - [Aurora Global Cluster](#aurora-global-cluster)
+  - [RDS Proxies](#rds-proxies)
+  - [Cloudwatch Alarms](#cloudwatch-alarms)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
@@ -410,26 +410,10 @@ module "cloudwatch_alarms" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#authenticationconfig">AuthenticationConfig</a>)</code></td>
@@ -440,18 +424,7 @@ module "cloudwatch_alarms" {
 
 Configures RDS authentication methods
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -463,18 +436,7 @@ Configures RDS authentication methods
 
 Configures RDS engine options
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -486,18 +448,7 @@ Configures RDS engine options
 
 Specify the name of the RDS instance or the RDS cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -509,36 +460,13 @@ Specify the name of the RDS instance or the RDS cluster
 
 Configures RDS connectivity options
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -549,18 +477,7 @@ Configures RDS connectivity options
 
 Additional tags for the RDS instance or cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -572,18 +489,7 @@ Additional tags for the RDS instance or cluster
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -595,18 +501,7 @@ Additional tags for all resources deployed with this module
 
 Specifies whether any database modifications are applied immediately, or during the next maintenance window. Using `apply_immediately` can result in a brief downtime as the server reboots.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -618,18 +513,7 @@ Specifies whether any database modifications are applied immediately, or during 
 
 Creates new or join existing Aurora Global cluster. Must be used with an `"aurora-*"` engine type
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -641,20 +525,11 @@ Creates new or join existing Aurora Global cluster. Must be used with an `"auror
 
 Manages multiple auto scaling policies. Only applicable to Aurora clusters.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Aurora Regional Cluster](#aurora-regional-cluster)
 
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -669,18 +544,7 @@ Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs
 - MySQL and MariaDB: `audit`, `error`, `general`, `slowquery`
 - PostgreSQL: `postgresql`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -692,20 +556,11 @@ Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs
 
 Manages multiple instances for an Aurora cluster. Must be used with an `"aurora-*"` engine type.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Aurora Regional Cluster](#aurora-regional-cluster)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -717,18 +572,7 @@ Manages multiple instances for an Aurora cluster. Must be used with an `"aurora-
 
 Specify the name of the DB parameter group to be attached to all instances in the cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -740,18 +584,7 @@ Specify the name of the DB parameter group to be attached to all instances in th
 
 The name of the database to create when the DB instance or cluster is created. If this parameter is not specified, no database is created.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -763,18 +596,7 @@ The name of the database to create when the DB instance or cluster is created. I
 
 Specify the name of the DB parameter group to be attached to the instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -786,18 +608,7 @@ Specify the name of the DB parameter group to be attached to the instance
 
 Prevent the instance or cluster from deletion when this value is set to `true`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -809,25 +620,18 @@ Prevent the instance or cluster from deletion when this value is set to `true`
 
 Specify the option for non-aurora deployment. `MultiAZInstance` and `MultiAZCluster` only support the `"mysql"` and `"postgres"` engine type.
 
-    
 **Allowed Values:**
+
 - `SingleInstance`
 - `MultiAZInstance`
 - `MultiAZCluster`
 
-    
-
-    
-
-    
 **Links:**
+
 - [MultiAZInstance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZSingleStandby.html)
 - [MultiAZCluster](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
 
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -839,18 +643,7 @@ Specify the option for non-aurora deployment. `MultiAZInstance` and `MultiAZClus
 
 Configures RDS automated backup
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -862,18 +655,7 @@ Configures RDS automated backup
 
 Enables [RDS DB encryption][rds-db-encryption] to encrypt the DB instance's underlying storage
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -885,18 +667,7 @@ Enables [RDS DB encryption][rds-db-encryption] to encrypt the DB instance's unde
 
 The compute and memory capacity of the DB instance, for example `"db.m5.large"`. For the full list of DB instance classes, please refer to [DB instance class][db-instance-class] and [Aurora DB instance class][aurora-db-instance-class]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -908,18 +679,7 @@ The compute and memory capacity of the DB instance, for example `"db.m5.large"`.
 
 Configures RDS maintenance options
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -931,18 +691,7 @@ Configures RDS maintenance options
 
 Configures RDS monitoring options
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -954,18 +703,7 @@ Configures RDS monitoring options
 
 Specify the name of the [option group][rds-option-group] to be attached to the instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -977,20 +715,11 @@ Specify the name of the [option group][rds-option-group] to be attached to the i
 
 Manages multiple RDS proxies that are associated to the DB cluster or instance.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [RDS Proxies](#rds-proxies)
 
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1002,18 +731,7 @@ Manages multiple RDS proxies that are associated to the DB cluster or instance.
 
 Restore RDS cluster or instance from a particular source.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1025,20 +743,11 @@ Restore RDS cluster or instance from a particular source.
 
 Specify the capacity range of the serverless instance. Must be used with `instance_class = "db.serverless"` and an `"aurora-*"` engine type. Refer to [this documentation][aurora-capacity-unit] for more details.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Aurora Global Cluster](#aurora-global-cluster)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1050,18 +759,7 @@ Specify the capacity range of the serverless instance. Must be used with `instan
 
 Determines whether a final DB snapshot is created before the DB cluster is deleted
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1073,35 +771,13 @@ Determines whether a final DB snapshot is created before the DB cluster is delet
 
 Configures RDS storage options
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1112,18 +788,7 @@ Configures RDS storage options
 
 DNS address of the Writer instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1135,18 +800,7 @@ DNS address of the Writer instance
 
 List of RDS Instances that are a part of this Aurora cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1158,18 +812,7 @@ List of RDS Instances that are a part of this Aurora cluster
 
 Read-only endpoint for the Aurora cluster, automatically load-balanced across replicas
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1181,18 +824,7 @@ Read-only endpoint for the Aurora cluster, automatically load-balanced across re
 
 The ARN of the Aurora global cluster created by this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1204,18 +836,7 @@ The ARN of the Aurora global cluster created by this module
 
 The name of the Aurora global cluster created by this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1227,18 +848,7 @@ The name of the Aurora global cluster created by this module
 
 The ARN of the RDS cluster. Only applicable if deploying an `Aurora cluster` or a `Multi-AZ Cluster`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1250,18 +860,7 @@ The ARN of the RDS cluster. Only applicable if deploying an `Aurora cluster` or 
 
 The name of the RDS cluster. Only applicable if deploying an `Aurora cluster` or a `Multi-AZ Cluster`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1273,18 +872,7 @@ The name of the RDS cluster. Only applicable if deploying an `Aurora cluster` or
 
 Retrieve master user secret. Only available when `authentication_config.db_master_account.manage_password_in_secrets_manager = true`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1296,41 +884,19 @@ Retrieve master user secret. Only available when `authentication_config.db_maste
 
 The map of IAM policy ARNs for RDS connect. Only available when `authentication_config.iam_database_authentication.enabled = true`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
 #### AdditionalEndpoints
 
 Manages additional endpoints beside the default
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1341,18 +907,7 @@ Manages additional endpoints beside the default
 
 One or more RDS security groups to allow access to your proxy. If not specified, the security_group_ids of the proxy will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1364,18 +919,7 @@ One or more RDS security groups to allow access to your proxy. If not specified,
 
 List of subnets the database can use in the VPC that you selected. A minimum of 2 subnets in different Availability Zones is required for the proxy. If not specified, the subnet_ids of the proxy will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1387,40 +931,18 @@ List of subnets the database can use in the VPC that you selected. A minimum of 
 
 Defines how the workload for this proxy endpoint will be used.
 
-    
 **Allowed Values:**
+
 - `READ_WRITE`
 - `READ_ONLY`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### AuroraGlobalCluster
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1431,18 +953,7 @@ Defines how the workload for this proxy endpoint will be used.
 
 The name of an existing global Aurora cluster to join. Cannot be used with `name`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1454,37 +965,13 @@ The name of an existing global Aurora cluster to join. Cannot be used with `name
 
 Specify the name of the global cluster to be created. Cannot be used with `join_existing_global_cluster`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### AuthenticationConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#dbmasteraccount">DbMasterAccount</a>)</code></td>
@@ -1495,18 +982,7 @@ Specify the name of the global cluster to be created. Cannot be used with `join_
 
 Manages the DB master account
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1521,39 +997,17 @@ Configures [AWS Identity and Access Management (IAM) accounts to database accoun
 - [MySQL, MariaDB](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Connecting.AWSCLI.html)
 - [PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Connecting.AWSCLI.PostgreSQL.html)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Authentications
 
 Managers multiple authentication configurations. The key of the map will be the Secrets Manager secrets representing the credentials for database user accounts that the proxy can use.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1564,23 +1018,14 @@ Managers multiple authentication configurations. The key of the map will be the 
 
 The method that the proxy uses to authenticate connections from clients.
 
-    
 **Allowed Values:**
+
 - `MYSQL_CACHING_SHA2_PASSWORD`
 - `MYSQL_NATIVE_PASSWORD`
 - `POSTGRES_SCRAM_SHA_256`
 - `POSTGRES_MD5`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -1592,37 +1037,13 @@ The method that the proxy uses to authenticate connections from clients.
 
 Whether to require or disallow Amazon Web Services Identity and Access Management (IAM) authentication for connections to the proxy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### AutoScalingPolicies
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#targetmetric">TargetMetric</a>)</code></td>
@@ -1633,18 +1054,7 @@ Whether to require or disallow Amazon Web Services Identity and Access Managemen
 
 The cloudwatch metric to monitor for scaling. Must specify one of the following.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1656,18 +1066,7 @@ The cloudwatch metric to monitor for scaling. Must specify one of the following.
 
 Allow this Auto Scaling policy to remove Aurora Replicas. Aurora Replicas created by you are not removed by Auto Scaling.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1679,18 +1078,7 @@ Allow this Auto Scaling policy to remove Aurora Replicas. Aurora Replicas create
 
 Specify the maximum number of Aurora Replicas to maintain. Up to 15 Aurora Replicas are supported.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1702,18 +1090,7 @@ Specify the maximum number of Aurora Replicas to maintain. Up to 15 Aurora Repli
 
 Specify the minimum number of Aurora Replicas to maintain.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1725,18 +1102,7 @@ Specify the minimum number of Aurora Replicas to maintain.
 
 Specify the number of seconds to wait between scale-in actions.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1748,41 +1114,21 @@ Specify the number of seconds to wait between scale-in actions.
 
 Specify the number of seconds to wait between scale-out actions.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CloudwatchAlarms
 
 Configures multiple Cloudwatch alarms.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Cloudwatch Alarms](#cloudwatch-alarms)
 
-    
-
-    
 **Since:** 2.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1793,18 +1139,7 @@ Configures multiple Cloudwatch alarms.
 
 The metric to monitor. Please refer to [this document][rds-cloudwatch-metrics] for more information
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1816,18 +1151,7 @@ The metric to monitor. Please refer to [this document][rds-cloudwatch-metrics] f
 
 The expression in `<statistic> <operator> <unit>` format. For example: `"Average < 50"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1839,18 +1163,7 @@ The expression in `<statistic> <operator> <unit>` format. For example: `"Average
 
 The SNS topic where notification will be sent
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1862,18 +1175,7 @@ The SNS topic where notification will be sent
 
 The description of the alarm
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1885,18 +1187,7 @@ The description of the alarm
 
 The number of periods over which data is compared to the specified threshold.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1908,37 +1199,13 @@ The number of periods over which data is compared to the specified threshold.
 
 The period in seconds over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### ClusterInstances
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -1949,18 +1216,7 @@ The period in seconds over which the specified statistic is applied. Valid value
 
 Additional tags for the individual cluster instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1972,18 +1228,7 @@ Additional tags for the individual cluster instance
 
 Specify the name of the DB parameter group to be associated to the instance.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1995,18 +1240,7 @@ Specify the name of the DB parameter group to be associated to the instance.
 
 Default 0. [Failover Priority][aurora-failover-priority] setting on instance level. The reader who has lower tier has higher priority to get promoted to writer.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2018,20 +1252,11 @@ Default 0. [Failover Priority][aurora-failover-priority] setting on instance lev
 
 Specify the DB instance class for the individual instance. Do not use for serverless cluster.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Aurora Global Cluster](#aurora-global-cluster)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2043,18 +1268,7 @@ Specify the DB instance class for the individual instance. Do not use for server
 
 Configures RDS maintenance options. If not specified, the cluster level options will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2066,18 +1280,7 @@ Configures RDS maintenance options. If not specified, the cluster level options 
 
 Configures RDS monitoring options for individual cluster instances
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2089,39 +1292,17 @@ Configures RDS monitoring options for individual cluster instances
 
 Configures connectivity options for the individual instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### DbMasterAccount
 
 Manages the DB master account
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2132,18 +1313,7 @@ Manages the DB master account
 
 Username for the master DB user
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2155,18 +1325,7 @@ Username for the master DB user
 
 Specify the KMS key to encrypt the master password in secrets manager. If not specified, the default KMS key for your AWS account is used. Used when `manage_password_in_secrets_manager = true`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2178,18 +1337,7 @@ Specify the KMS key to encrypt the master password in secrets manager. If not sp
 
 Set to true to allow RDS to [manage the master user password in Secrets Manager][manage-password-in-secrets-manager]. Mutually exclusive with `password`. This feature does not support Aurora global cluster.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2201,37 +1349,13 @@ Set to true to allow RDS to [manage the master user password in Secrets Manager]
 
 Password for the master DB user. Mutually exclusive with `manage_password_in_secrets_manager`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnableAutomatedBackup
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -2242,18 +1366,7 @@ Password for the master DB user. Mutually exclusive with `manage_password_in_sec
 
 The number of days (1-35) for which automatic backups are kept.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2265,18 +1378,7 @@ The number of days (1-35) for which automatic backups are kept.
 
 Indicates whether to copy all of the user-defined tags from the DB instance to snapshots of the DB instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2288,37 +1390,13 @@ Indicates whether to copy all of the user-defined tags from the DB instance to s
 
 Daily time range (in UTC) during which automated backups are created. In the `"hh24:mi-hh24:mi"` format. For example `"04:00-09:00"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnableEncryption
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2329,39 +1407,17 @@ Daily time range (in UTC) during which automated backups are created. In the `"h
 
 The KMS CMK used to encrypt the DB and storage
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EnableEnhancedMonitoring
 
 Enables [RDS enhanced monitoring][rds-enhanced-monitoring]. If this is enabled when using a cluster setup, you can no longer enable enhanced monitoring in each individual cluster instances.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -2372,8 +1428,8 @@ Enables [RDS enhanced monitoring][rds-enhanced-monitoring]. If this is enabled w
 
 Interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0.
 
-    
 **Allowed Values:**
+
 - `0`
 - `1`
 - `5`
@@ -2382,16 +1438,7 @@ Interval, in seconds, between points when Enhanced Monitoring metrics are collec
 - `30`
 - `60`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2403,39 +1450,17 @@ Interval, in seconds, between points when Enhanced Monitoring metrics are collec
 
 ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Please refer to [this documentation][rds-enhanced-monitoring-iam-requirement] for information of the required IAM permissions. One will be created if not specified.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EnablePerformanceInsight
 
 Enables [RDS performance insight][rds-performance-insight]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -2446,18 +1471,7 @@ Enables [RDS performance insight][rds-performance-insight]
 
 Amount of time in days to retain Performance Insights data. Valid values are `7`, `731` (2 years) or a `multiple of 31`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2469,37 +1483,13 @@ Amount of time in days to retain Performance Insights data. Valid values are `7`
 
 ARN for the KMS key to encrypt Performance Insights data.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Engine
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2510,24 +1500,15 @@ ARN for the KMS key to encrypt Performance Insights data.
 
 Specify the engine type
 
-    
 **Allowed Values:**
+
 - `aurora-mysql`
 - `aurora-postgresql`
 - `mysql`
 - `postgres`
 - `mariadb`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2539,23 +1520,10 @@ Specify the engine type
 
 Specify the engine version. You can get a list of engine version with `aws rds describe-db-engine-versions --engine aurora-mysql --query DBEngineVersions[].[EngineVersion]`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### IamDatabaseAuthentication
 
@@ -2564,17 +1532,8 @@ Configures [AWS Identity and Access Management (IAM) accounts to database accoun
 - [MySQL, MariaDB](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Connecting.AWSCLI.html)
 - [PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Connecting.AWSCLI.PostgreSQL.html)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -2585,20 +1544,11 @@ Configures [AWS Identity and Access Management (IAM) accounts to database accoun
 
 Specify whether IAM DB authentication is enabled.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Aurora Regional Cluster](#aurora-regional-cluster)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2610,37 +1560,13 @@ Specify whether IAM DB authentication is enabled.
 
 Specify a list of DB user names to create IAM policies for RDS IAM Authentication. This will allow an IAM principal such as an IAM role to request authentication token for the specific DB user. Please refer to [this documentation][rds-iam-authentication-policy] for more information.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### MaintenanceConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2651,18 +1577,7 @@ Specify a list of DB user names to create IAM policies for RDS IAM Authenticatio
 
 Window to perform maintenance in (in UTC). Syntax: `"ddd:hh24:mi-ddd:hh24:mi"`. For example `"Mon:00:00-Mon:03:00"`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2674,37 +1589,13 @@ Window to perform maintenance in (in UTC). Syntax: `"ddd:hh24:mi-ddd:hh24:mi"`. 
 
 Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### MasterUserSecret
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2715,18 +1606,7 @@ Indicates that minor engine upgrades will be applied automatically to the DB ins
 
 Amazon Web Services KMS key identifier that is used to encrypt the secret.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2738,18 +1618,7 @@ Amazon Web Services KMS key identifier that is used to encrypt the secret.
 
 Amazon Resource Name (ARN) of the secret.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2761,42 +1630,20 @@ Amazon Resource Name (ARN) of the secret.
 
 Status of the secret
 
-    
 **Allowed Values:**
+
 - `creating`
 - `active`
 - `rotating`
 - `impaired`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### MonitoringConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#cloudwatchalarms">CloudwatchAlarms</a>))</code></td>
@@ -2807,20 +1654,11 @@ Status of the secret
 
 Configures multiple Cloudwatch alarms.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Cloudwatch Alarms](#cloudwatch-alarms)
 
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2832,21 +1670,12 @@ Configures multiple Cloudwatch alarms.
 
 The mode of Database Insights that is enabled for the cluster or the instance.
 
-    
 **Allowed Values:**
+
 - `standard`
 - `advanced`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2858,18 +1687,7 @@ The mode of Database Insights that is enabled for the cluster or the instance.
 
 Enables [RDS enhanced monitoring][rds-enhanced-monitoring]. If this is enabled when using a cluster setup, you can no longer enable enhanced monitoring in each individual cluster instances.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2881,37 +1699,13 @@ Enables [RDS enhanced monitoring][rds-enhanced-monitoring]. If this is enabled w
 
 Enables [RDS performance insight][rds-performance-insight]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### NetworkingConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2922,18 +1716,7 @@ Enables [RDS performance insight][rds-performance-insight]
 
 Name of DB subnet group. DB instance will be created in the VPC associated with the DB subnet group. A DB subnet group with at least three AZs must be specified if `deployment_option = "MultiAZCluster"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2945,18 +1728,7 @@ Name of DB subnet group. DB instance will be created in the VPC associated with 
 
 List of VPC security groups to associate to the RDS instance or cluster
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2968,18 +1740,7 @@ List of VPC security groups to associate to the RDS instance or cluster
 
 The availability zone to deploy the RDS instance in
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2995,18 +1756,7 @@ The certificate authority (CA) is the certificate that identifies the root CA at
 - [MySQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ssl-certificate-rotation-mysql.html)
 - [PostgreSQL](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/PostgreSQL.Concepts.General.SSL.html)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3018,18 +1768,7 @@ The certificate authority (CA) is the certificate that identifies the root CA at
 
 Specify whether the RDS instance or cluster supports IPv6
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3041,18 +1780,7 @@ Specify whether the RDS instance or cluster supports IPv6
 
 Specify whether the RDS instance or cluster is publicly accessible
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3064,37 +1792,13 @@ Specify whether the RDS instance or cluster is publicly accessible
 
 Specify the port on which the DB accepts connections.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Proxies
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#authentications">Authentications</a>))</code></td>
@@ -3105,18 +1809,7 @@ Specify the port on which the DB accepts connections.
 
 Managers multiple authentication configurations. The key of the map will be the Secrets Manager secrets representing the credentials for database user accounts that the proxy can use.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3128,18 +1821,7 @@ Managers multiple authentication configurations. The key of the map will be the 
 
 One or more RDS security groups to allow access to your proxy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3151,18 +1833,7 @@ One or more RDS security groups to allow access to your proxy
 
 List of subnets the database can use in the VPC that you selected. A minimum of 2 subnets in different Availability Zones is required for the proxy.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3174,18 +1845,7 @@ List of subnets the database can use in the VPC that you selected. A minimum of 
 
 Manages additional endpoints beside the default
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3197,18 +1857,7 @@ Manages additional endpoints beside the default
 
 With enhanced logging, details of queries processed by the proxy are logged and published to CloudWatch Logs.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3220,18 +1869,7 @@ With enhanced logging, details of queries processed by the proxy are logged and 
 
 Additional tags that are attached to the proxy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3243,18 +1881,7 @@ Additional tags that are attached to the proxy
 
 ARN of the IAM role the proxy will use to access the AWS Secrets Manager secrets specified in `authentications`. If unspecified, an IAM role will be created with read permissions to all the secrets specified in `authentications`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3266,18 +1893,7 @@ ARN of the IAM role the proxy will use to access the AWS Secrets Manager secrets
 
 Idle connection from your application are closed after the specified time. Valid value: `"1 minute" - "8 hours"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3289,18 +1905,7 @@ Idle connection from your application are closed after the specified time. Valid
 
 whether Transport Layer Security (TLS) encryption is required for connections to the proxy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3312,37 +1917,13 @@ whether Transport Layer Security (TLS) encryption is required for connections to
 
 Manages the default target group's configuration
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Restore
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -3353,37 +1934,13 @@ Manages the default target group's configuration
 
 The snapshot ARN from which RDS restored
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.1.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### ServerlessCapacity
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -3394,18 +1951,7 @@ The snapshot ARN from which RDS restored
 
 Specify the minimum Aurora capacity unit. Each ACU corresponds to approximately 2 GiB of memory
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3417,37 +1963,13 @@ Specify the minimum Aurora capacity unit. Each ACU corresponds to approximately 
 
 Specify the maximum Aurora capacity unit. Each ACU corresponds to approximately 2 GiB of memory. Must be greater than `min_acus`, if unspecified, the value of `min_acus` will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### StorageConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -3458,18 +1980,7 @@ Specify the maximum Aurora capacity unit. Each ACU corresponds to approximately 
 
 The allocated storage in gibibytes
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3481,21 +1992,12 @@ The allocated storage in gibibytes
 
 Specify the storage type
 
-    
 **Allowed Values:**
+
 - `gp3`
 - `io1`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3507,18 +2009,7 @@ Specify the storage type
 
 When configured, the upper limit to which Amazon RDS can automatically scale the storage of the DB instance. Configuring this will automatically ignore differences to `allocated_storage`. Must be greater than or equal to allocated_storage or `0` to disable Storage Autoscaling
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3530,18 +2021,7 @@ When configured, the upper limit to which Amazon RDS can automatically scale the
 
 The amount of provisioned IOPS. Can only be set when `type` is `"io1"` or `"gp3"`. Please refer to [this documentation][rds-provisioned-iops] for more details.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3553,39 +2033,17 @@ The amount of provisioned IOPS. Can only be set when `type` is `"io1"` or `"gp3"
 
 The storage throughput value for the DB instance. Can only be set when `type = "gp3"`. Please refer to [this documentation][rds-storage-throughput] for more details.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### TargetGroupConfig
 
 Manages the default target group's configuration
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -3596,18 +2054,7 @@ Manages the default target group's configuration
 
 Timeout for borrowing DB connection from the pool. Valid values: `"1 second" - "5 minutes"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3619,18 +2066,7 @@ Timeout for borrowing DB connection from the pool. Valid values: `"1 second" - "
 
 Specify the maximum allowed connections, as a percentage of the maximum connection limit of your database. For example, if you have set the maximum connections to 5,000 connections, specifying `50` allows your proxy to create up to 2,500 connections to the database.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3642,18 +2078,7 @@ Specify the maximum allowed connections, as a percentage of the maximum connecti
 
 Specify one or more SQL statements to set up the initial session state for each connection. Separate statements with semicolons.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3665,18 +2090,7 @@ Specify one or more SQL statements to set up the initial session state for each 
 
 Controls how actively the proxy closes idle database connections in the connection pool. A high value enables the proxy to leave a high percentage of idle connections open. A low value causes the proxy to close idle client connections and return the underlying database connections to the connection pool. For Aurora MySQL, it is expressed as a percentage of the max_connections setting for the RDS DB instance or Aurora DB cluster used by the target group.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 <tr>
@@ -3688,41 +2102,21 @@ Controls how actively the proxy closes idle database connections in the connecti
 
 Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection. Including an item in the list exempts that class of SQL operations from the pinning behavior. This setting is only supported for MySQL engine family databases.
 
-    
 **Allowed Values:**
+
 - `EXCLUDE_VARIABLE_SETS`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.1.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### TargetMetric
 
 The cloudwatch metric to monitor for scaling. Must specify one of the following.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -3733,18 +2127,7 @@ The cloudwatch metric to monitor for scaling. Must specify one of the following.
 
 The average value of the CPUUtilization metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -3756,61 +2139,30 @@ The average value of the CPUUtilization metric in CloudWatch across all Aurora R
 
 The average value of the DatabaseConnections metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [aurora-capacity-unit]: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.setting-capacity.html
-
 [aurora-cloudwatch-metrics]: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.AuroraMonitoring.Metrics.html
-
 [aurora-db-instance-class]: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.DBInstanceClass.html
-
 [aurora-failover-priority]: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
-
 [db-instance-class]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
-
 [manage-password-in-secrets-manager]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html
-
 [rds-ca]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html#UsingWithRDS.SSL.RegionCertificateAuthorities
-
 [rds-cloudwatch-metrics]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html
-
 [rds-db-encryption]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html
-
 [rds-enhanced-monitoring]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.overview.html
-
 [rds-enhanced-monitoring-iam-requirement]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html#USER_Monitoring.OS.Enabling.Prerequisites
-
 [rds-iam-authentication-policy]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html
-
 [rds-iam-db-authentication]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html
-
 [rds-option-group]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithOptionGroups.html
-
 [rds-performance-insight]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.Overview.html
-
 [rds-provisioned-iops]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
-
 [rds-storage-throughput]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
-
 
 <!-- TFDOCS_EXTRAS_END -->
 
-[db-instance-class]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
-[rds-ca]:https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html#UsingWithRDS.SSL.RegionCertificateAuthorities
+[db-instance-class]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
+[rds-ca]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html#UsingWithRDS.SSL.RegionCertificateAuthorities

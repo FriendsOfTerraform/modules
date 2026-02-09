@@ -7,14 +7,14 @@ This module creates and configures a [Resource Access Manager](https://aws.amazo
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
 - [Outputs](#outputs)
 - [Objects](#objects)
 - [Known Limitations](#known-limitations)
-    - [shared resources have empty name](#shared-resources-have-empty-name)
+  - [shared resources have empty name](#shared-resources-have-empty-name)
 
 ## Example Usage
 
@@ -45,25 +45,9 @@ module "basic_usage" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -75,35 +59,12 @@ module "basic_usage" {
 
 The name of the resource share. All associated resources will also have their name prefixed with this value
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -115,18 +76,7 @@ The name of the resource share. All associated resources will also have their na
 
 List of share ARNs to accept sharing from
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -138,18 +88,7 @@ List of share ARNs to accept sharing from
 
 Additional tags for the resource share
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -161,18 +100,7 @@ Additional tags for the resource share
 
 Additional tags for all resources deployed with this module
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -184,18 +112,7 @@ Additional tags for all resources deployed with this module
 
 If enabled, you can share resources with any AWS accounts, roles, and users. If you are in an organization, you can also share with the entire organization or organizational units in that organization.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -207,18 +124,7 @@ If enabled, you can share resources with any AWS accounts, roles, and users. If 
 
 List of principals to grant access of the resources to. Valid values include: `the 12-digits AWS account ID, ARN of an AWS Organization, AWS Organization's OU, IAM role, IAM user, or a Service principal`.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -230,34 +136,12 @@ List of principals to grant access of the resources to. Valid values include: `t
 
 List of ARNs of supported resources to share. Please refer to [this documentation][ram-shareable-resources] for a list of shareable resources.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
@@ -269,29 +153,14 @@ List of ARNs of supported resources to share. Please refer to [this documentatio
 
 The ID of the resource share
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
 ## Objects
 
-
-
-
 [ram-shareable-resources]: https://docs.aws.amazon.com/ram/latest/userguide/shareable.html
-
 
 <!-- TFDOCS_EXTRAS_END -->
 

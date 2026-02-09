@@ -7,7 +7,7 @@ This module builds and configures SageMaker inference models and endpoints
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
@@ -72,26 +72,10 @@ module "basic_usage" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#models">Models</a>))</code></td>
@@ -102,38 +86,17 @@ module "basic_usage" {
 
 Deploy multiple models.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -144,18 +107,7 @@ Deploy multiple models.
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -167,57 +119,24 @@ Additional tags for all resources deployed with this module
 
 Configures multiple endpoints
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         </tbody></table>
 
 ## Objects
 
-
-
 #### AsyncInvocationConfig
 
 Specifies configuration for how an endpoint performs asynchronous inference
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -228,18 +147,7 @@ Specifies configuration for how an endpoint performs asynchronous inference
 
 Location to upload response output on success. Must be an S3 url(s3 path)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -251,18 +159,7 @@ Location to upload response output on success. Must be an S3 url(s3 path)
 
 Specify an existing KMS key's ARN to encrypt your response output in S3.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -274,18 +171,7 @@ Specify an existing KMS key's ARN to encrypt your response output in S3.
 
 SNS topic to post a notification when inference fails. If no topic is provided, no notification is sent
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -297,18 +183,7 @@ SNS topic to post a notification when inference fails. If no topic is provided, 
 
 The maximum number concurrent requests sent to model container. If no value is provided, SageMaker chooses an optimal value.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -320,18 +195,7 @@ The maximum number concurrent requests sent to model container. If no value is p
 
 Location to upload response output on failure. Must be an S3 url (s3 path).
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -343,39 +207,17 @@ Location to upload response output on failure. Must be an S3 url (s3 path).
 
 SNS topic to post a notification when inference completes successfully. If no topic is provided, no notification is sent
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### AutoScaling
 
 Enables auto scaling
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#policies">Policies</a>))</code></td>
@@ -386,18 +228,7 @@ Enables auto scaling
 
 Manages multiple auto scaling policies
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -409,18 +240,7 @@ Manages multiple auto scaling policies
 
 Specify the maximum number of EC2 instances to maintain.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -432,39 +252,17 @@ Specify the maximum number of EC2 instances to maintain.
 
 Specify the minimum number of EC2 instances to maintain.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CaptureContentType
 
 The content type headers to capture. Must specify one of `csv_text` or `json`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -475,18 +273,7 @@ The content type headers to capture. Must specify one of `csv_text` or `json`
 
 The CSV content type headers to capture.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -498,41 +285,21 @@ The CSV content type headers to capture.
 
 The JSON content type headers to capture.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CloudwatchAlarms
 
 Configures multiple Cloudwatch alarms.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -543,18 +310,7 @@ Configures multiple Cloudwatch alarms.
 
 The expression in `<metric_name> <statistic> <comparison_operator> <threshold>` format. For example: `"Invocations average >= 100"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -566,18 +322,7 @@ The expression in `<metric_name> <statistic> <comparison_operator> <threshold>` 
 
 The description of the alarm
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -589,18 +334,7 @@ The description of the alarm
 
 The number of periods over which data is compared to the specified threshold.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -612,18 +346,7 @@ The number of periods over which data is compared to the specified threshold.
 
 The SNS topic where notification will be sent
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -635,39 +358,17 @@ The SNS topic where notification will be sent
 
 The period over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ContainerDefinitions
 
 Container images containing inference code that are used when the model is deployed for predictions.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -678,18 +379,7 @@ Container images containing inference code that are used when the model is deplo
 
 The registry path where the inference code image is stored in Amazon ECR
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -701,21 +391,12 @@ The registry path where the inference code image is stored in Amazon ECR
 
 Specify the model compression type.
 
-    
 **Allowed Values:**
+
 - `CompressedModel`
 - `UncompressedModel`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -727,18 +408,7 @@ Specify the model compression type.
 
 Environment variables for the container
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -750,18 +420,7 @@ Environment variables for the container
 
 The URL where model artifacts are stored in S3
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -773,39 +432,17 @@ The URL where model artifacts are stored in S3
 
 Configure this container to host multiple models
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### DataCaptureOptions
 
 Specifies what data to capture.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -816,18 +453,7 @@ Specifies what data to capture.
 
 Capture prediction requests (Input)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -839,39 +465,17 @@ Capture prediction requests (Input)
 
 Capture prediction responses (Output)
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EnableDataCapture
 
 Enables data capture, where SageMaker can save prediction request and prediction response information from your endpoint to a specified location
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -882,18 +486,7 @@ Enables data capture, where SageMaker can save prediction request and prediction
 
 Amazon SageMaker will save the prediction requests and responses along with metadata for your endpoint at this location.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -905,18 +498,7 @@ Amazon SageMaker will save the prediction requests and responses along with meta
 
 Amazon SageMaker will randomly sample and save the specified percentage of traffic to your endpoint.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -928,18 +510,7 @@ Amazon SageMaker will randomly sample and save the specified percentage of traff
 
 The content type headers to capture. Must specify one of `csv_text` or `json`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -951,37 +522,13 @@ The content type headers to capture. Must specify one of `csv_text` or `json`
 
 Specifies what data to capture.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Endpoints
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -992,18 +539,7 @@ Specifies what data to capture.
 
 Additional tags for the endpoint
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1015,18 +551,7 @@ Additional tags for the endpoint
 
 Specify an existing KMS key's ARN to encrypt your response output in S3.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1038,18 +563,7 @@ Specify an existing KMS key's ARN to encrypt your response output in S3.
 
 Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify one of `provisioned` or `serverless`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1061,39 +575,17 @@ Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify
 
 Creates a serverless endpoint, mutually exclusive to `provisioned`. Must specify one of `provisioned` or `serverless`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### InferenceExecutionConfig
 
 Specifies details of how containers in a multi-container endpoint are called.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1107,40 +599,18 @@ How containers in a multi-container are run.
 - `Serial`: containers run as a serial pipeline.
 - `Direct`: only the individual container that you specify is run.
 
-    
 **Allowed Values:**
+
 - `Serial`
 - `Direct`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Models
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1151,18 +621,7 @@ How containers in a multi-container are run.
 
 A role that SageMaker AI can assume to access model artifacts and docker images for deployment
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1174,18 +633,7 @@ A role that SageMaker AI can assume to access model artifacts and docker images 
 
 Container images containing inference code that are used when the model is deployed for predictions.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1197,18 +645,7 @@ Container images containing inference code that are used when the model is deplo
 
 Specifies details of how containers in a multi-container endpoint are called.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1220,18 +657,7 @@ Specifies details of how containers in a multi-container endpoint are called.
 
 Additional tags for the model
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1243,18 +669,7 @@ Additional tags for the model
 
 If enabled, containers cannot make any outbound network calls.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1266,39 +681,17 @@ If enabled, containers cannot make any outbound network calls.
 
 Specifies the VPC that you want your model to connect to. This is used in hosting services and in batch transform.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Policies
 
 Manages multiple auto scaling policies
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1309,18 +702,7 @@ Manages multiple auto scaling policies
 
 The expression in `<metric_name> <statistic> = <TargetValue>` format. For example: `"Invocations average = 100"`. If using a predefined metric such as `SageMakerVariantInvocationsPerInstance`, you can omit `<statistic>` from the expression. For example: `"SageMakerVariantInvocationsPerInstance = 100"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1332,18 +714,7 @@ The expression in `<metric_name> <statistic> = <TargetValue>` format. For exampl
 
 Allow this Auto Scaling policy to scale-in (removing EC2 instances).
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1355,18 +726,7 @@ Allow this Auto Scaling policy to scale-in (removing EC2 instances).
 
 Specify the number of seconds to wait between scale-in actions.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1378,39 +738,17 @@ Specify the number of seconds to wait between scale-in actions.
 
 Specify the number of seconds to wait between scale-out actions.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ProductionVariants
 
 Configure multiple production variants, one for each model that you want to host at this endpoint.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1421,18 +759,7 @@ Configure multiple production variants, one for each model that you want to host
 
 The EC2 instance type
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1444,21 +771,12 @@ The EC2 instance type
 
 The timeout value for the inference container to pass health check by SageMaker AI Hosting.
 
-    
 **Allowed Values:**
+
 - `1 minute`
 - `1 hour`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1470,18 +788,7 @@ The timeout value for the inference container to pass health check by SageMaker 
 
 Specify the initial number of instances used for auto-scaling.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1493,18 +800,7 @@ Specify the initial number of instances used for auto-scaling.
 
 Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1516,21 +812,12 @@ Determines initial traffic distribution among all of the models that you specify
 
 The timeout value to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant.
 
-    
 **Allowed Values:**
+
 - `1 minute`
 - `1 hour`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1542,21 +829,12 @@ The timeout value to download and extract the model that you want to host from A
 
 The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant.
 
-    
 **Allowed Values:**
+
 - `1`
 - `512`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1568,18 +846,7 @@ The size, in GB, of the ML storage volume attached to individual inference insta
 
 Enables auto scaling
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1591,41 +858,21 @@ Enables auto scaling
 
 Configures multiple Cloudwatch alarms.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Provisioned
 
 Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify one of `provisioned` or `serverless`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#productionvariants">ProductionVariants</a>))</code></td>
@@ -1636,18 +883,7 @@ Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify
 
 Configure multiple production variants, one for each model that you want to host at this endpoint.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1659,18 +895,7 @@ Configure multiple production variants, one for each model that you want to host
 
 Specifies configuration for how an endpoint performs asynchronous inference
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1682,18 +907,7 @@ Specifies configuration for how an endpoint performs asynchronous inference
 
 Enables data capture, where SageMaker can save prediction request and prediction response information from your endpoint to a specified location
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1705,39 +919,17 @@ Enables data capture, where SageMaker can save prediction request and prediction
 
 Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Serverless
 
 Creates a serverless endpoint, mutually exclusive to `provisioned`. Must specify one of `provisioned` or `serverless`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#variant">Variant</a>)</code></td>
@@ -1748,39 +940,17 @@ Creates a serverless endpoint, mutually exclusive to `provisioned`. Must specify
 
 Configures variant for this endpoint
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ShadowVariants
 
 Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1791,18 +961,7 @@ Specify shadow variants to receive production traffic replicated from the model 
 
 The EC2 instance type
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1814,18 +973,7 @@ The EC2 instance type
 
 The timeout value for the inference container to pass health check by SageMaker AI Hosting. Valid values: `"1 minute"` - `"1 hour"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1837,18 +985,7 @@ The timeout value for the inference container to pass health check by SageMaker 
 
 Specify the initial number of instances used for auto-scaling.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1860,18 +997,7 @@ Specify the initial number of instances used for auto-scaling.
 
 Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1883,18 +1009,7 @@ Determines initial traffic distribution among all of the models that you specify
 
 The timeout value to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant. Valid values: `"1 minute"` - `"1 hour"`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1906,39 +1021,17 @@ The timeout value to download and extract the model that you want to host from A
 
 The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Valid values: `1` - `512`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### UseMultipleModels
 
 Configure this container to host multiple models
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1949,39 +1042,17 @@ Configure this container to host multiple models
 
 Whether to cache models for a multi-model endpoint. By default, multi-model endpoints cache models so that a model does not have to be loaded into memory each time it is invoked. Some use cases do not benefit from model caching. For example, if an endpoint hosts a large number of models that are each invoked infrequently, the endpoint might perform better if you disable model caching.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Variant
 
 Configures variant for this endpoint
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1992,18 +1063,7 @@ Configures variant for this endpoint
 
 The name of the model to be used for this endpoint. The model specified must be managed by the same module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2015,18 +1075,7 @@ The name of the model to be used for this endpoint. The model specified must be 
 
 The maximum number of concurrent invocations your serverless endpoint can process. Valid values: `1` - `200`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2038,8 +1087,8 @@ The maximum number of concurrent invocations your serverless endpoint can proces
 
 The memory size of your serverless endpoint.
 
-    
 **Allowed Values:**
+
 - `1024`
 - `2048`
 - `3072`
@@ -2047,16 +1096,7 @@ The memory size of your serverless endpoint.
 - `5120`
 - `6144`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2068,39 +1108,17 @@ The memory size of your serverless endpoint.
 
 Provisioned concurrency enables you to deploy models on serverless endpoints with predictable performance and high scalability. For the set number of concurrent invocations, SageMaker will keep underlying compute warm and ready to respond instantaneously without cold starts. Must be `<= max_concurrency`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### VpcConfig
 
 Specifies the VPC that you want your model to connect to. This is used in hosting services and in batch transform.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -2111,18 +1129,7 @@ Specifies the VPC that you want your model to connect to. This is used in hostin
 
 List of security group IDs the models use to access private resources
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -2134,24 +1141,9 @@ List of security group IDs the models use to access private resources
 
 List of subnet IDs to be used for this VPC connection
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
-
-
 
 <!-- TFDOCS_EXTRAS_END -->

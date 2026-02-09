@@ -7,13 +7,12 @@ This module will build and configure an [EventBridge](https://aws.amazon.com/eve
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
 - [Outputs](#outputs)
 - [Objects](#objects)
-
 
 ## Example Usage
 
@@ -97,25 +96,9 @@ module "basic_usage" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -127,18 +110,7 @@ module "basic_usage" {
 
 The name of the schedule group
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -150,37 +122,16 @@ The name of the schedule group
 
 Manage multiple schedules for the group.
 
-
-
-
-
-
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -192,18 +143,7 @@ Manage multiple schedules for the group.
 
 Additional tags for the schedule group
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -215,54 +155,21 @@ Additional tags for the schedule group
 
 Additional tags for all resources deployed with this module
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
 ## Outputs
 
-
-
-
-
-
-
-
-
-
-
-
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         </tbody></table>
 
 ## Objects
 
-
-
 #### CronBasedSchedule
 
 A schedule set using a cron expression that runs at a specific time, such as every day 1 of the month, at 12:00AM.
-
-
-
-
-
-
-
-
-
 
 **Since:** 1.0.0
 
@@ -276,36 +183,14 @@ A schedule set using a cron expression that runs at a specific time, such as eve
 
 Specify the cron expression for the schedule, for example: `"0 0 1 * *"`
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### OneTimeSchedule
 
 A one-time schedule invokes it's target only once at the date, time, and in the time zone that you provide
-
-
-
-
-
-
-
-
-
 
 **Since:** 1.0.0
 
@@ -319,36 +204,14 @@ A one-time schedule invokes it's target only once at the date, time, and in the 
 
 The date and time this schedule run, in `yyyy-mm-ddThh:mm:ss` format. For example: `"2030-01-01T01:00:00"`
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### RateBasedSchedule
 
 A rate-based schedule runs at a regular rate, such as every 10 minutes
-
-
-
-
-
-
-
-
-
 
 **Since:** 1.0.0
 
@@ -362,36 +225,14 @@ A rate-based schedule runs at a regular rate, such as every 10 minutes
 
 The rate to invoke this trigger, in `value unit` format. For example: `"1 hour"`
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### RetryPolicy
 
 Configures retry policy and dead-letter queue
-
-
-
-
-
-
-
-
-
 
 **Since:** 1.0.0
 
@@ -405,18 +246,7 @@ Configures retry policy and dead-letter queue
 
 The age in seconds to continue to make retry attempts.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -428,18 +258,7 @@ The age in seconds to continue to make retry attempts.
 
 The maximum number of retry attempts to make before the request fails
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -451,36 +270,14 @@ The maximum number of retry attempts to make before the request fails
 
 The ARN of the SQS queue specified as the target for the dead-letter queue.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### SchedulePattern
 
 Define a one-time, or recurring invocation for the schedule. Must define one of: `one_time_schedule`, `rate_based_schedule`, `cron_based_schedule`
-
-
-
-
-
-
-
-
-
 
 **Since:** 1.0.0
 
@@ -494,18 +291,7 @@ Define a one-time, or recurring invocation for the schedule. Must define one of:
 
 Specify the time window that Scheduler invokes your schedule within, in minutes. For example, if you choose 15 minutes, your schedule runs within 15 minutes after the schedule start time. Valid value: `1` to `1440` minutes
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -517,18 +303,7 @@ Specify the time window that Scheduler invokes your schedule within, in minutes.
 
 Timezone in which the scheduling expression is evaluated. For example: `"America/Los_Angeles"`
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -540,18 +315,7 @@ Timezone in which the scheduling expression is evaluated. For example: `"America
 
 The date, in UTC, after which the schedule can begin invoking its target. Depending on the schedule's recurrence expression, invocations might occur on, or after, the start date you specify. EventBridge Scheduler ignores the start date for one-time schedules. Example: `"2030-01-01T01:00:00Z"`
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -563,18 +327,7 @@ The date, in UTC, after which the schedule can begin invoking its target. Depend
 
 The date, in UTC, before which the schedule can invoke its target. Depending on the schedule's recurrence expression, invocations might stop on, or before, the end date you specify. EventBridge Scheduler ignores the end date for one-time schedules. Example: `"2030-01-01T01:00:00Z"`
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -586,18 +339,7 @@ The date, in UTC, before which the schedule can invoke its target. Depending on 
 
 A one-time schedule invokes it's target only once at the date, time, and in the time zone that you provide
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -609,18 +351,7 @@ A one-time schedule invokes it's target only once at the date, time, and in the 
 
 A rate-based schedule runs at a regular rate, such as every 10 minutes
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -632,36 +363,12 @@ A rate-based schedule runs at a regular rate, such as every 10 minutes
 
 A schedule set using a cron expression that runs at a specific time, such as every day 1 of the month, at 12:00AM.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Schedules
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -673,18 +380,7 @@ A schedule set using a cron expression that runs at a specific time, such as eve
 
 The description of the schedule
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -696,18 +392,7 @@ The description of the schedule
 
 ARN for the customer managed KMS key that EventBridge Scheduler will use to encrypt and decrypt your data
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -719,21 +404,12 @@ ARN for the customer managed KMS key that EventBridge Scheduler will use to encr
 
 Specifies whether the schedule is enabled or disabled.
 
-
 **Allowed Values:**
+
 - `ENABLED`
 - `DISABLED`
 
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -745,18 +421,7 @@ Specifies whether the schedule is enabled or disabled.
 
 Define a one-time, or recurring invocation for the schedule. Must define one of: `one_time_schedule`, `rate_based_schedule`, `cron_based_schedule`
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -768,36 +433,14 @@ Define a one-time, or recurring invocation for the schedule. Must define one of:
 
 A target is an AWS API operation that EventBridge Scheduler invokes at the time and using the pattern that you specify when you configure your schedule
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Target
 
 A target is an AWS API operation that EventBridge Scheduler invokes at the time and using the pattern that you specify when you configure your schedule
-
-
-
-
-
-
-
-
-
 
 **Since:** 1.0.0
 
@@ -811,18 +454,7 @@ A target is an AWS API operation that EventBridge Scheduler invokes at the time 
 
 The AWS API to invoke. For example: `"lambda:invoke"`, `"ecs:runTask"`. Please refer to [this documentation][eventbridge-scheduler-universal-target] for more details.
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -834,18 +466,7 @@ The AWS API to invoke. For example: `"lambda:invoke"`, `"ecs:runTask"`. Please r
 
 A JSON document containing the parameters to pass into the API. The available options depend on the AWS API to invoke, please refer to their respective API reference for valid values. For example: [lambda:invoke][lambda-invoke-api-reference]
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -857,18 +478,7 @@ A JSON document containing the parameters to pass into the API. The available op
 
 The ARN of an IAM role EventBridge Scheduler assumes to send events to the target
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -880,28 +490,12 @@ The ARN of an IAM role EventBridge Scheduler assumes to send events to the targe
 
 Configures retry policy and dead-letter queue
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [eventbridge-scheduler-universal-target]: https://docs.aws.amazon.com/scheduler/latest/UserGuide/managing-targets-universal.html?icmpid=docs_console_unmapped
-
 [lambda-invoke-api-reference]: https://docs.aws.amazon.com/lambda/latest/api/API_Invoke.html
-
 
 <!-- TFDOCS_EXTRAS_END -->
