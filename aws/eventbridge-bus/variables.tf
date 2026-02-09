@@ -26,7 +26,7 @@ variable "rules" {
       /// The Amazon Resource Name (ARN) of the target
       ///
       /// @since 1.0.0
-      arn          = string
+      arn = string
       /// An execution role that EventBridge uses to send events to the target
       ///
       /// @since 1.0.0
@@ -52,7 +52,7 @@ variable "rules" {
           /// The Input Template is a template for the information you want to pass to your target. You can create a template that passes either a string or JSON to the target.
           ///
           /// @since 1.0.0
-          template    = string
+          template = string
         }), null)
       }))
 
@@ -73,11 +73,11 @@ variable "rules" {
           /// A list of subnets the ECS task may be created on
           ///
           /// @since 1.0.0
-          subnet_ids            = list(string)
+          subnet_ids = list(string)
           /// A list of security groups associated with the task
           ///
           /// @since 1.0.0
-          security_group_ids    = list(string)
+          security_group_ids = list(string)
           /// Assign a public IP address to the ENI (Fargate launch type only).
           ///
           /// @since 1.0.0
@@ -87,29 +87,29 @@ variable "rules" {
         /// Additional tags for the ECS task
         ///
         /// @since 1.0.0
-        additional_tags                     = optional(map(string), {})
+        additional_tags = optional(map(string), {})
         /// The number of tasks to be created
         ///
         /// @since 1.0.0
-        count                               = optional(number, 1)
+        count = optional(number, 1)
         /// Whether or not to enable the execute command functionality for the containers in this task. If true, this enables execute command functionality on all containers in the task.
         ///
         /// @since 1.0.0
-        enable_execute_command              = optional(bool, false)
+        enable_execute_command = optional(bool, false)
         /// Specifies whether to enable Amazon ECS managed tags for the task.
         ///
         /// @since 1.0.0
-        enable_managed_tags                 = optional(bool, true)
+        enable_managed_tags = optional(bool, true)
         /// Specifies the launch type on which your task is running. Mutually exclusive to `capacity_provider_strategy`
         ///
         /// @enum EC2|EXTERNAL|FARGATE
         /// @since 1.0.0
-        launch_type                         = optional(string, null)
+        launch_type = optional(string, null)
         /// Specifies the platform version for the task. This is used only if `launch_type = "FARGATE"`. For more information about valid platform versions, see [AWS Fargate Platform Versions][fargate-platform-version].
         ///
         /// @link {fargate-platform-version} https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform-fargate.html
         /// @since 1.0.0
-        platform_version                    = optional(string, "LATEST")
+        platform_version = optional(string, "LATEST")
         /// Specifies whether to propagate the tags from the task definition to the task.
         ///
         /// @since 1.0.0
@@ -126,7 +126,7 @@ variable "rules" {
           /// The base value designates how many tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider in a capacity provider strategy can have a base defined.
           ///
           /// @since 1.0.0
-          base   = optional(number, null)
+          base = optional(number, null)
         })), {})
       }), null)
 
@@ -137,7 +137,7 @@ variable "rules" {
         /// A map of HTTP headers to add to the request.
         ///
         /// @since 1.0.0
-        header_parameters       = optional(map(string), null)
+        header_parameters = optional(map(string), null)
         /// A map of query string parameters that are appended to the invoked endpoint.
         ///
         /// @since 1.0.0
@@ -151,11 +151,11 @@ variable "rules" {
         /// The name of the database
         ///
         /// @since 1.0.0
-        database_name      = string
+        database_name = string
         /// The database user name
         ///
         /// @since 1.0.0
-        database_user      = optional(string, null)
+        database_user = optional(string, null)
         /// The ARN of the secret that enables access to the database.
         ///
         /// @since 1.0.0
@@ -163,11 +163,11 @@ variable "rules" {
         /// The SQL statement text to run.
         ///
         /// @since 1.0.0
-        sql_statement      = optional(string, null)
+        sql_statement = optional(string, null)
         /// Indicates whether to send an event back to EventBridge after the SQL statement runs.
         ///
         /// @since 1.0.0
-        with_event         = optional(bool, false)
+        with_event = optional(bool, false)
       }), null)
 
       /// Configures retry policy and dead-letter queue
@@ -181,11 +181,11 @@ variable "rules" {
         /// The maximum number of retry attempts to make before the request fails
         ///
         /// @since 1.0.0
-        retry_attempts       = optional(number, 185)
+        retry_attempts = optional(number, 185)
         /// The ARN of the SQS queue specified as the target for the dead-letter queue.
         ///
         /// @since 1.0.0
-        dead_letter_queue    = optional(string, null)
+        dead_letter_queue = optional(string, null)
       }), {})
     }))
   }))

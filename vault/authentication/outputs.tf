@@ -5,5 +5,5 @@ output "mount_path" {
     @type string
     @since 0.0.1
   EOT
-  value = var.mount_path
+  value       = var.mount_path
 }

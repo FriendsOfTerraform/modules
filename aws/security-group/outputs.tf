@@ -5,7 +5,7 @@ output "security_group_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_security_group.security_group.arn
+  value       = aws_security_group.security_group.arn
 }
 
 output "security_group_id" {
@@ -15,5 +15,5 @@ output "security_group_id" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_security_group.security_group.id
+  value       = aws_security_group.security_group.id
 }

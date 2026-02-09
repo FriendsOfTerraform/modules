@@ -21,7 +21,7 @@ variable "schedules" {
     ///
     /// @enum ENABLED|DISABLED
     /// @since 1.0.0
-    state       = optional(string, "ENABLED")
+    state = optional(string, "ENABLED")
 
     /// Define a one-time, or recurring invocation for the schedule. Must define one of: `one_time_schedule`, `rate_based_schedule`, `cron_based_schedule`
     ///
@@ -34,15 +34,15 @@ variable "schedules" {
       /// Timezone in which the scheduling expression is evaluated. For example: `"America/Los_Angeles"`
       ///
       /// @since 1.0.0
-      time_zone            = optional(string, "UTC")
+      time_zone = optional(string, "UTC")
       /// The date, in UTC, after which the schedule can begin invoking its target. Depending on the schedule's recurrence expression, invocations might occur on, or after, the start date you specify. EventBridge Scheduler ignores the start date for one-time schedules. Example: `"2030-01-01T01:00:00Z"`
       ///
       /// @since 1.0.0
-      start_date_and_time  = optional(string, null)
+      start_date_and_time = optional(string, null)
       /// The date, in UTC, before which the schedule can invoke its target. Depending on the schedule's recurrence expression, invocations might stop on, or before, the end date you specify. EventBridge Scheduler ignores the end date for one-time schedules. Example: `"2030-01-01T01:00:00Z"`
       ///
       /// @since 1.0.0
-      end_date_and_time    = optional(string, null)
+      end_date_and_time = optional(string, null)
 
       /// A one-time schedule invokes it's target only once at the date, time, and in the time zone that you provide
       ///
@@ -88,11 +88,11 @@ variable "schedules" {
       ///
       /// @link {lambda-invoke-api-reference} https://docs.aws.amazon.com/lambda/latest/api/API_Invoke.html
       /// @since 1.0.0
-      input          = string
+      input = string
       /// The ARN of an IAM role EventBridge Scheduler assumes to send events to the target
       ///
       /// @since 1.0.0
-      iam_role_arn   = optional(string, null)
+      iam_role_arn = optional(string, null)
 
       /// Configures retry policy and dead-letter queue
       ///
@@ -105,11 +105,11 @@ variable "schedules" {
         /// The maximum number of retry attempts to make before the request fails
         ///
         /// @since 1.0.0
-        retry_attempts       = optional(number, 185)
+        retry_attempts = optional(number, 185)
         /// The ARN of the SQS queue specified as the target for the dead-letter queue.
         ///
         /// @since 1.0.0
-        dead_letter_queue    = optional(string, null)
+        dead_letter_queue = optional(string, null)
       }), {})
     })
   }))

@@ -7,7 +7,7 @@ variable "azure" {
     /// The name of an Azure location where the automation account will be deployed. If unspecified, the resource group's location will be used.
     ///
     /// @since 0.0.1
-    location            = optional(string)
+    location = optional(string)
   })
 
   description = <<EOT
@@ -58,7 +58,7 @@ variable "runbooks" {
     /// The content of the runbook. This can either be the actual script itself, or a `uri` referencing the content remotely.
     ///
     /// @since 0.0.1
-    content         = string
+    content = string
     /// Additional tags for the runbook
     ///
     /// @since 0.0.1
@@ -66,20 +66,20 @@ variable "runbooks" {
     /// Description of the runbook
     ///
     /// @since 0.0.1
-    description     = optional(string)
+    description = optional(string)
     /// Enables logging the progress of the runbook
     ///
     /// @since 0.0.1
-    log_progress    = optional(bool)
+    log_progress = optional(bool)
     /// Enables verbose logging
     ///
     /// @since 0.0.1
-    log_verbose     = optional(bool)
+    log_verbose = optional(bool)
     /// Defines the type of the runbook.
     ///
     /// @enum Graph|GraphPowerShell|GraphPowerShellWorkflow|PowerShellWorkflow|PowerShell|Script
     /// @since 0.0.1
-    runbook_type    = optional(string)
+    runbook_type = optional(string)
 
     /// Defines schedule to automatically trigger this runbook
     ///
@@ -93,12 +93,12 @@ variable "runbooks" {
       ///
       /// @link {azure-timezones} https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/timezone
       /// @since 0.0.1
-      timezone    = optional(string)
+      timezone = optional(string)
       /// Defines the start time of the schedule, in [RFC3339 DateTime format][rfc3339]. Defaults to `current time + 7 minutes`.
       ///
       /// @link {rfc3339} https://medium.com/easyread/understanding-about-rfc-3339-for-datetime-formatting-in-software-engineering-940aa5d5f68a
       /// @since 0.0.1
-      start_time  = optional(string)
+      start_time = optional(string)
       /// Defines the expiry time of the schedule, in [RFC3339 DateTime format][rfc3339].
       ///
       /// @link {rfc3339} https://medium.com/easyread/understanding-about-rfc-3339-for-datetime-formatting-in-software-engineering-940aa5d5f68a
@@ -107,7 +107,7 @@ variable "runbooks" {
       /// Defines a map of parameters to be passed into the runbook when this schedule runs
       ///
       /// @since 0.0.1
-      parameters  = optional(map(string))
+      parameters = optional(map(string))
 
       /// Defines a hourly schedule
       ///
@@ -141,7 +141,7 @@ variable "runbooks" {
         ///
         /// @enum Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday
         /// @since 0.0.1
-        every    = list(string)
+        every = list(string)
       }))
 
       /// Defines a monthly schedule
@@ -158,7 +158,7 @@ variable "runbooks" {
         /// - The `[{week}, {day_of_week}]` this schedule should run. Valid values are: {week}: `"First", "Second", "Third", "Fourth", "Last"`. {day_of_week}: `"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"`. Example: `["First", "Thursday"]`
         ///
         /// @since 0.0.1
-        every    = list(string)
+        every = list(string)
       }))
     }))
   }))

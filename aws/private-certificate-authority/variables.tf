@@ -3,19 +3,19 @@ variable "subject" {
     /// Specify the common name of the CA. For CA and end-entity certificates in a private PKI, the common name (CN) can be any string within the length limit
     ///
     /// @since 1.0.0
-    common_name       = string
+    common_name = string
     /// Two-digit code that specifies the country in which the certificate subject located. For example: `"US"`
     ///
     /// @since 1.0.0
-    country           = optional(string)
+    country = optional(string)
     /// The locality (such as a city or town) in which the certificate subject is located. For example: `"Los Angeles"`
     ///
     /// @since 1.0.0
-    locality          = optional(string)
+    locality = optional(string)
     /// Legal name of the organization with which the certificate subject is affiliated.
     ///
     /// @since 1.0.0
-    organization      = optional(string)
+    organization = optional(string)
     /// A subdivision or unit of the organization (such as `"sales"` or `"finance"`) with which the certificate subject is affiliated.
     ///
     /// @since 1.0.0
@@ -23,7 +23,7 @@ variable "subject" {
     /// State in which the subject of the certificate is located. For example: `"California"`
     ///
     /// @since 1.0.0
-    state             = optional(string)
+    state = optional(string)
   })
   description = <<EOT
     The X509 subject of the CA certificate
@@ -83,11 +83,11 @@ variable "crl_configuration" {
       /// The name of the S3 bucket. Must be globally unique.
       ///
       /// @since 1.0.0
-      bucket_name       = string
+      bucket_name = string
       /// Additional tags attached to the S3 bucket
       ///
       /// @since 1.0.0
-      additional_tags   = optional(map(string), {})
+      additional_tags = optional(map(string), {})
       /// Whether S3 bucket versioning is enabled
       ///
       /// @since 1.0.0
@@ -96,15 +96,15 @@ variable "crl_configuration" {
     /// Name inserted into the certificate CRL Distribution Points extension that enables the use of an alias for the CRL distribution point.
     ///
     /// @since 1.0.0
-    custom_crl_name  = optional(string)
+    custom_crl_name = optional(string)
     /// Specifies whether CRL is enabled
     ///
     /// @since 1.0.0
-    enabled          = optional(bool, true)
+    enabled = optional(bool, true)
     /// The S3 bucket where the CRLs are distributed to. Mutually exclusive to `create_s3_bucket`
     ///
     /// @since 1.0.0
-    s3_bucket_name   = optional(string)
+    s3_bucket_name = optional(string)
     /// Validity period of the distributed CRLs in days
     ///
     /// @since 1.0.0
@@ -140,7 +140,7 @@ variable "ocsp_configuration" {
     /// Specifies whether OCSP is enabled
     ///
     /// @since 1.0.0
-    enabled              = optional(bool, true)
+    enabled = optional(bool, true)
   })
   description = <<EOT
     Configuration of [Online Certificate Status Protocol (OCSP)][online-certificate-status-protocol] support maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.
@@ -187,7 +187,7 @@ variable "subordinate_ca_configuration" {
       /// Specify the PEM-encoded subordinate CA certificate
       ///
       /// @since 1.0.0
-      certificate       = string
+      certificate = string
       /// Specify the PEM-encoded subordinate CA certificate chain
       ///
       /// @since 1.0.0
@@ -202,7 +202,7 @@ variable "subordinate_ca_configuration" {
     ///
     /// @link {path-length-constraint} https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html#length-constraints
     /// @since 1.0.0
-    path_length   = optional(number, 0)
+    path_length = optional(number, 0)
   })
   description = <<EOT
     Specify options to setup a subordinate CA. Required if `ca_type = "SUBORDINATE"`.

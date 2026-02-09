@@ -16,7 +16,7 @@ variable "trust_anchors" {
       /// - The signing algorithm MUST include `SHA256` or stronger. MD5 and SHA1 signing algorithms are rejected.
       ///
       /// @since 1.0.0
-      external_certificate_bundle           = optional(string)
+      external_certificate_bundle = optional(string)
     })
 
     /// Additional tags for the trust anchor
@@ -56,7 +56,7 @@ variable "profiles" {
       /// Specify the name of the trust anchor this role constraints to. Valid values include only the trust anchors created by this module.
       ///
       /// @since 1.0.0
-      trust_anchor_name    = string
+      trust_anchor_name = string
       /// Specify conditions that further restrict which workloads may assume this role. Please see below for valid values:
       ///
       /// | Value           | Equates To                             | Example
@@ -74,7 +74,7 @@ variable "profiles" {
       ///
       /// @enum x509Subject/CN|x509Issuer/C|x509Issuer/O|x509Issuer/OU|x509Issuer/ST|x509Issuer/L|x509Issuer/CN|x509SAN/DNS|x509SAN/URI|x509SAN/Name/CN
       /// @since 1.0.0
-      conditions           = optional(map(string))
+      conditions = optional(map(string))
       /// Specify the ARN of the policy that is used to set the permissions boundary for the role.
       ///
       /// @since 1.0.1
@@ -84,7 +84,7 @@ variable "profiles" {
     /// Additional tags for the profile
     ///
     /// @since 1.0.0
-    additional_tags             = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// Specifies whether instance properties are required in CreateSession requests with this profile.
     ///
     /// @since 1.0.0
@@ -92,7 +92,7 @@ variable "profiles" {
     /// The number of seconds the vended session credentials are valid for. Defaults to `3600`.
     ///
     /// @since 1.0.0
-    session_duration_seconds    = optional(number)
+    session_duration_seconds = optional(number)
 
     /// Specify [IAM session policies][iam-session-policy] that apply to the vended session credentials
     ///
@@ -102,7 +102,7 @@ variable "profiles" {
       /// An inline JSON session policy document
       ///
       /// @since 1.0.0
-      inline_policy       = optional(string)
+      inline_policy = optional(string)
       /// A list of `up to 10` managed policy ARNs that apply to the vended session credentials.
       ///
       /// @since 1.0.0

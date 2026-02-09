@@ -10,7 +10,7 @@ output "cluster_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_eks_cluster.eks_cluster.arn
+  value       = aws_eks_cluster.eks_cluster.arn
 }
 
 output "cluster_certificate_authority" {
@@ -20,7 +20,7 @@ output "cluster_certificate_authority" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_eks_cluster.eks_cluster.certificate_authority[0].data
+  value       = aws_eks_cluster.eks_cluster.certificate_authority[0].data
 }
 
 output "cluster_endpoint_url" {
@@ -30,7 +30,7 @@ output "cluster_endpoint_url" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_eks_cluster.eks_cluster.endpoint
+  value       = aws_eks_cluster.eks_cluster.endpoint
 }
 
 output "cluster_name" {
@@ -40,7 +40,7 @@ output "cluster_name" {
     @type string
     @since 1.1.0
   EOT
-  value = aws_eks_cluster.eks_cluster.id
+  value       = aws_eks_cluster.eks_cluster.id
 }
 
 output "cluster_role_arn" {
@@ -50,7 +50,7 @@ output "cluster_role_arn" {
     @type string
     @since 1.1.0
   EOT
-  value = aws_iam_role.eks_cluster_role.arn
+  value       = aws_iam_role.eks_cluster_role.arn
 }
 
 output "node_group_arns" {
@@ -60,7 +60,7 @@ output "node_group_arns" {
     @type map(string)
     @since 1.0.0
   EOT
-  value = { for k, v in aws_eks_node_group.eks_node_groups : k => v.arn }
+  value       = { for k, v in aws_eks_node_group.eks_node_groups : k => v.arn }
 }
 
 output "node_role_arn" {
@@ -70,7 +70,7 @@ output "node_role_arn" {
     @type string
     @since 1.1.0
   EOT
-  value = aws_iam_role.eks_node_instance_role.arn
+  value       = aws_iam_role.eks_node_instance_role.arn
 }
 
 output "aws_cli_connect_to_cluster_command" {
@@ -80,5 +80,5 @@ output "aws_cli_connect_to_cluster_command" {
     @type string
     @since 1.0.0
   EOT
-  value = "aws eks --region ${local.cluster_region} update-kubeconfig --name ${local.cluster_name}"
+  value       = "aws eks --region ${local.cluster_region} update-kubeconfig --name ${local.cluster_name}"
 }

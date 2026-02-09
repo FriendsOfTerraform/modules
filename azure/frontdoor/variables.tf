@@ -7,7 +7,7 @@ variable "azure" {
     /// The name of an Azure location where the Front Door will be deployed. If unspecified, the resource group's location will be used.
     ///
     /// @since 0.0.1
-    location            = optional(string)
+    location = optional(string)
   })
 
   description = <<EOT
@@ -66,26 +66,26 @@ variable "endpoints" {
       /// Enables the route
       ///
       /// @since 0.0.1
-      enabled           = optional(bool)
+      enabled = optional(bool)
       # custom_domains = optional(list(string))
       /// The Protocol that will be use when forwarding traffic to backends.
       ///
       /// @enum HttpOnly|HttpsOnly|MatchRequest
       /// @since 0.0.1
-      forwarding_protocol    = optional(string)
+      forwarding_protocol = optional(string)
       /// The route patterns of the rule
       ///
       /// @since 0.0.1
-      patterns_to_match      = optional(list(string))
+      patterns_to_match = optional(list(string))
       /// One or more Protocols supported by this Front Door Route.
       ///
       /// @enum Http|Https
       /// @since 0.0.1
-      accepted_protocols     = optional(list(string))
+      accepted_protocols = optional(list(string))
       /// A directory path on the Front Door Origin that can be used to retrieve content
       ///
       /// @since 0.0.1
-      origin_path            = optional(string)
+      origin_path = optional(string)
       /// Automatically redirect HTTP traffic to HTTPS traffic
       ///
       /// @since 0.0.1
@@ -99,7 +99,7 @@ variable "endpoints" {
     /// Enables the endpoint
     ///
     /// @since 0.0.1
-    enabled         = optional(bool)
+    enabled = optional(bool)
     /// Additional tags for the endpoint
     ///
     /// @since 0.0.1
@@ -123,7 +123,7 @@ variable "origin_groups" {
       /// The IPv4 address, IPv6 address or Domain name of the Origin
       ///
       /// @since 0.0.1
-      hostname                            = string
+      hostname = string
       /// Specifies whether certificate name checks are enabled for this origin
       ///
       /// @since 0.0.1
@@ -131,27 +131,27 @@ variable "origin_groups" {
       /// The value of the HTTP port. Must be between `1` and `65535`
       ///
       /// @since 0.0.1
-      http_port                           = optional(number)
+      http_port = optional(number)
       /// The value of the HTTPS port. Must be between `1` and `65535`
       ///
       /// @since 0.0.1
-      https_port                          = optional(number)
+      https_port = optional(number)
       /// The host header value (an IPv4 address, IPv6 address or Domain name), which is sent to the origin with each request. If unspecified the hostname from the request will be used.
       ///
       /// @since 0.0.1
-      origin_host_header                  = optional(string)
+      origin_host_header = optional(string)
       /// Priority of origin in given origin group for load balancing. Higher priorities will not be used for load balancing if any lower priority origin is healthy. Must be between `1` and `5`
       ///
       /// @since 0.0.1
-      priority                            = optional(number)
+      priority = optional(number)
       /// The weight of the origin in a given origin group for load balancing. Must be between `1` and `1000`
       ///
       /// @since 0.0.1
-      weight                              = optional(number)
+      weight = optional(number)
       /// Enables the origin
       ///
       /// @since 0.0.1
-      enabled                             = optional(bool)
+      enabled = optional(bool)
     })))
 
     /// Specifies whether session affinity should be enabled on this host
@@ -167,7 +167,7 @@ variable "origin_groups" {
       ///
       /// @enum Http|Https
       /// @since 0.0.1
-      protocol         = optional(string) # Http
+      protocol = optional(string) # Http
       /// Specifies the number of seconds between health probes. Possible values are between `5` and `31536000` seconds
       ///
       /// @since 0.0.1
@@ -176,11 +176,11 @@ variable "origin_groups" {
       ///
       /// @enum GET|HEAD
       /// @since 0.0.1
-      probe_method     = optional(string) # HEAD
+      probe_method = optional(string) # HEAD
       /// Specifies the path relative to the origin that is used to determine the health of the origin.
       ///
       /// @since 0.0.1
-      path             = optional(string) # /
+      path = optional(string) # /
     }))
 
     /// Configure the load balancing settings to define what sample set we need to use to call the backend as healthy or unhealthy
@@ -194,11 +194,11 @@ variable "origin_groups" {
       /// Sample size to assess backend availability. Possible values are between `0` and `255`
       ///
       /// @since 0.0.1
-      sample_size                      = optional(number)
+      sample_size = optional(number)
       /// Successful samples required to declare the backend healthy. Possible values are between `0` and `255`
       ///
       /// @since 0.0.1
-      successful_samples_required      = optional(number)
+      successful_samples_required = optional(number)
     }))
   }))
 

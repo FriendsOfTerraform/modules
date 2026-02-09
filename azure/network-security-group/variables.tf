@@ -7,7 +7,7 @@ variable "azure" {
     /// The name of an Azure location where the virtual network will be deployed. If unspecified, the resource group's location will be used.
     ///
     /// @since 0.0.1
-    location            = optional(string, null)
+    location = optional(string, null)
   })
 
   description = <<EOT
@@ -58,16 +58,16 @@ variable "inbound_security_rules" {
     /// The priority of the rule. Lower number has higher priority
     ///
     /// @since 0.0.1
-    priority                                   = number
+    priority = number
     /// Defines if the matching rule should be allowed or denied.
     ///
     /// @enum Allow|Deny
     /// @since 0.0.1
-    action                                     = optional(string, "Allow")
+    action = optional(string, "Allow")
     /// Description of the security rule
     ///
     /// @since 0.0.1
-    description                                = optional(string, null)
+    description = optional(string, null)
     /// Defines a list of destination application security group IDs that match this rule. This option is mutually exclusive to `destination_ip_addresses` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
     ///
     /// @since 0.0.1
@@ -75,34 +75,34 @@ variable "inbound_security_rules" {
     /// Defines a list of destination ip addresses or CIDR that match this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
     ///
     /// @since 0.0.1
-    destination_ip_addresses                   = optional(list(string), null)
+    destination_ip_addresses = optional(list(string), null)
     /// Defines a destination [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_ip_addresses`. If none of the destinations are specified, all destinations (`Any`) will be used.
     ///
     /// @link {service-tag} https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags
     /// @since 0.0.1
-    destination_service_tag                    = optional(string, null)
+    destination_service_tag = optional(string, null)
     /// Defines a list of port ranges that match this rule. Input can either be a range eg. `"0-1024"` or a port number eg. `"8080"`
     ///
     /// @since 0.0.1
-    port_ranges                                = optional(list(string), null)
+    port_ranges = optional(list(string), null)
     /// The protocol of the connection that matches this rule.
     ///
     /// @enum Tcp|Udp|Icmp|Esp|Ah|*
     /// @since 0.0.1
-    protocol                                   = optional(string, "Tcp")
+    protocol = optional(string, "Tcp")
     /// Defines a list of source application security group IDs that match this rule. This option is mutually exclusive to `source_ip_addresses` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
     ///
     /// @since 0.0.1
-    source_application_security_group_ids      = optional(list(string), null)
+    source_application_security_group_ids = optional(list(string), null)
     /// Defines a list of source ip addresses or CIDR that match this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
     ///
     /// @since 0.0.1
-    source_ip_addresses                        = optional(list(string), null)
+    source_ip_addresses = optional(list(string), null)
     /// Defines a source [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_ip_addresses`. If none of the sources are specified, all sources (`Any`) will be used.
     ///
     /// @link {service-tag} https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags
     /// @since 0.0.1
-    source_service_tag                         = optional(string, null)
+    source_service_tag = optional(string, null)
   }))
 
   description = <<EOT
@@ -129,16 +129,16 @@ variable "outbound_security_rules" {
     /// The priority of the rule. Lower number has higher priority
     ///
     /// @since 0.0.1
-    priority                                   = number
+    priority = number
     /// Defines if the matching rule should be allowed or denied.
     ///
     /// @enum Allow|Deny
     /// @since 0.0.1
-    action                                     = optional(string, "Allow")
+    action = optional(string, "Allow")
     /// Description of the security rule
     ///
     /// @since 0.0.1
-    description                                = optional(string, null)
+    description = optional(string, null)
     /// Defines a list of destination application security group IDs that match this rule. This option is mutually exclusive to `destination_ip_addresses` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
     ///
     /// @since 0.0.1
@@ -146,34 +146,34 @@ variable "outbound_security_rules" {
     /// Defines a list of destination ip addresses or CIDR that match this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
     ///
     /// @since 0.0.1
-    destination_ip_addresses                   = optional(list(string), null)
+    destination_ip_addresses = optional(list(string), null)
     /// Defines a destination [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_ip_addresses`. If none of the destinations are specified, all destinations (`Any`) will be used.
     ///
     /// @link {service-tag} https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags
     /// @since 0.0.1
-    destination_service_tag                    = optional(string, null)
+    destination_service_tag = optional(string, null)
     /// Defines a list of port ranges that match this rule. Input can either be a range eg. `"0-1024"` or a port number eg. `"8080"`
     ///
     /// @since 0.0.1
-    port_ranges                                = optional(list(string), null)
+    port_ranges = optional(list(string), null)
     /// The protocol of the connection that matches this rule.
     ///
     /// @enum Tcp|Udp|Icmp|Esp|Ah|*
     /// @since 0.0.1
-    protocol                                   = optional(string, "Tcp")
+    protocol = optional(string, "Tcp")
     /// Defines a list of source application security group IDs that match this rule. This option is mutually exclusive to `source_ip_addresses` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
     ///
     /// @since 0.0.1
-    source_application_security_group_ids      = optional(list(string), null)
+    source_application_security_group_ids = optional(list(string), null)
     /// Defines a list of source ip addresses or CIDR that match this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
     ///
     /// @since 0.0.1
-    source_ip_addresses                        = optional(list(string), null)
+    source_ip_addresses = optional(list(string), null)
     /// Defines a source [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_ip_addresses`. If none of the sources are specified, all sources (`Any`) will be used.
     ///
     /// @link {service-tag} https://docs.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags
     /// @since 0.0.1
-    source_service_tag                         = optional(string, null)
+    source_service_tag = optional(string, null)
   }))
 
   description = <<EOT

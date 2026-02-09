@@ -5,7 +5,7 @@ output "distribution_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_cloudfront_distribution.distribution.arn
+  value       = aws_cloudfront_distribution.distribution.arn
 }
 
 output "distribution_domain_name" {
@@ -15,7 +15,7 @@ output "distribution_domain_name" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_cloudfront_distribution.distribution.domain_name
+  value       = aws_cloudfront_distribution.distribution.domain_name
 }
 
 output "distribution_hosted_zone_id" {
@@ -25,7 +25,7 @@ output "distribution_hosted_zone_id" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_cloudfront_distribution.distribution.hosted_zone_id
+  value       = aws_cloudfront_distribution.distribution.hosted_zone_id
 }
 
 output "distribution_id" {
@@ -35,5 +35,5 @@ output "distribution_id" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_cloudfront_distribution.distribution.id
+  value       = aws_cloudfront_distribution.distribution.id
 }

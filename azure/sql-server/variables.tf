@@ -7,7 +7,7 @@ variable "azure" {
     /// The name of an Azure location where the server will be deployed. If unspecified, the resource group's location will be used.
     ///
     /// @since 0.0.1
-    location            = optional(string, null)
+    location = optional(string, null)
   })
 
   description = <<EOT
@@ -89,7 +89,7 @@ variable "databases" {
     /// Additional tags for the database
     ///
     /// @since 0.0.1
-    additional_tags           = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// Specifies the storage account type used to store backups for this database.
     ///
     /// @enum Geo|Local|Zone
@@ -98,20 +98,20 @@ variable "databases" {
     /// Use your license you already own with Azure Hybrid Benefit
     ///
     /// @since 0.0.1
-    bring_your_own_license    = optional(bool, false)
+    bring_your_own_license = optional(bool, false)
     /// Database collation defines the rules that sort and compare data, and cannot be changed after database creation
     ///
     /// @since 0.0.1
-    collation                 = optional(string, "SQL_Latin1_General_CP1_CI_AS")
+    collation = optional(string, "SQL_Latin1_General_CP1_CI_AS")
     /// Defines the create action of the database.
     ///
     /// @enum Copy|Default|OnlineSecondary|PointInTimeRestore|Recovery|Restore|RestoreExternalBackup|RestoreExternalBackupSecondary|RestoreLongTermRetentionBackup|Secondary
     /// @since 0.0.1
-    create_mode               = optional(string, "Default")
+    create_mode = optional(string, "Default")
     /// The max size of the database in gigabytes.
     ///
     /// @since 0.0.1
-    data_max_size             = optional(number, 2)
+    data_max_size = optional(number, 2)
 
     /// Configures the database using the DTU pricing model
     ///
@@ -125,7 +125,7 @@ variable "databases" {
       /// Defines the number of DTU for the database. Please run the above command to get a list of DTU applicable to your region.
       ///
       /// @since 0.0.1
-      dtu  = optional(number, null)
+      dtu = optional(number, null)
     }))
 
     /// Configures the database using the VCore pricing model
@@ -136,11 +136,11 @@ variable "databases" {
       ///
       /// @enum GeneralPurpose|Hyperscale|BusinessCritical|Serverless
       /// @since 0.0.1
-      tier                        = string # GeneralPurpose, Hyperscale, Serverless
+      tier = string # GeneralPurpose, Hyperscale, Serverless
       /// Defines the number of VCores for the database. Please run the above command to get a list of VCores options applicable to your region.
       ///
       /// @since 0.0.1
-      vcores                      = number
+      vcores = number
       /// Time in minutes after which database is automatically paused. A value of `-1` means that automatic pause is disabled. This property is only applicable to the `Serverless` tier
       ///
       /// @since 0.0.1
@@ -148,17 +148,17 @@ variable "databases" {
       /// Defines the compute for the database. Note that certain compute options are only available to certain tiers, and may not be available in some regions. Run this CLI command to get a list of options applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
       ///
       /// @since 0.0.1
-      compute                     = optional(string, "Gen5")
+      compute = optional(string, "Gen5")
       /// Minimum capacity that database will always have allocated, if not paused. This property is only applicable to the `Serverless` tier.
       ///
       /// @since 0.0.1
-      min_vcores                  = optional(number, 1)
+      min_vcores = optional(number, 1)
     }))
 
     /// Specifies if this is a ledger database; cannot be changed after database creation
     ///
     /// @since 0.0.1
-    ledger_enabled         = optional(bool, false)
+    ledger_enabled = optional(bool, false)
     /// If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property can only be set in `Premium` and `BusinessCritical` tiers.
     ///
     /// @since 0.0.1
@@ -166,15 +166,15 @@ variable "databases" {
     /// Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. This property can only be set in `create_mode = "PointInTimeRestore"` databases.
     ///
     /// @since 0.0.1
-    restore_point_in_time  = optional(string, null)
+    restore_point_in_time = optional(string, null)
     /// The ID of the source database from which to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created.
     ///
     /// @since 0.0.1
-    source_database_id     = optional(string, null)
+    source_database_id = optional(string, null)
     /// Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property can only be set in `Premium` and `BusinessCritical` tiers.
     ///
     /// @since 0.0.1
-    zone_redundant         = optional(bool, false)
+    zone_redundant = optional(bool, false)
   }))
 
   description = <<EOT
@@ -191,20 +191,20 @@ variable "failover_groups" {
     ///
     /// @example "Basic Usage" #basic-usage
     /// @since 1.0.0
-    databases                       = list(string)
+    databases = list(string)
     /// Defines the ID of the MS SQL server to failover to. This server **must** exist in a different region.
     ///
     /// @since 1.0.0
-    secondary_server_id             = string
+    secondary_server_id = string
     /// Additional tags for this failover group
     ///
     /// @since 1.0.0
-    additional_tags                 = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// Defines the failover policy of the read-write endpoint for the failover group.
     ///
     /// @enum Automatic|Manual
     /// @since 1.0.0
-    read_write_failover_policy      = optional(string, "Automatic")
+    read_write_failover_policy = optional(string, "Automatic")
     /// The grace period in minutes, before failover with data loss is attempted for the read-write endpoint. Required when `read_write_failover_policy = "Automatic"`
     ///
     /// @since 1.0.0
@@ -224,7 +224,7 @@ variable "firewall" {
     /// A map of firewall rules in the following format: `{"rule_name" = "start_ip - end_ip"}`. For example. `{"Office's Network" = "1.2.3.4 - 5.6.7.8"}`. If `start_ip` and `end_ip` are identical, you can omit `end_ip`. For example. `{"Peter's home network" = "1.2.3.4"}`
     ///
     /// @since 0.0.1
-    rules                          = map(string)
+    rules = map(string)
     /// Allows Azure services to access the database
     ///
     /// @since 0.0.1

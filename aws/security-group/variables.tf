@@ -47,7 +47,7 @@ variable "egress_rules" {
     /// A list of destinations this rule applies to. Destinations can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
     /// 
     /// @since 1.0.0
-    destinations    = list(string)
+    destinations = list(string)
     /// Additional tags for the egress rule
     /// 
     /// @since 1.0.0
@@ -55,7 +55,7 @@ variable "egress_rules" {
     /// Description for the egress rule
     /// 
     /// @since 1.0.0
-    description     = optional(string)
+    description = optional(string)
   }))
   description = <<EOT
     Configures multiple [egress rules][security-group-rules].
@@ -72,7 +72,7 @@ variable "ingress_rules" {
     /// A list of sources this rule applies to. Sources can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
     /// 
     /// @since 1.0.0
-    sources         = list(string)
+    sources = list(string)
     /// Additional tags for the ingress rule
     /// 
     /// @since 1.0.0
@@ -80,7 +80,7 @@ variable "ingress_rules" {
     /// Description for the ingress rule
     /// 
     /// @since 1.0.0
-    description     = optional(string)
+    description = optional(string)
   }))
   description = <<EOT
     Configures multiple [ingress rules][security-group-rules].

@@ -43,7 +43,7 @@ variable "dead_letter_queue" {
     /// The ARN of the destination SQS queue
     ///
     /// @since 1.0.0
-    arn              = string
+    arn = string
     /// The number of times a consumer can receive a message from a source queue before it is moved to a dead-letter queue
     ///
     /// @since 1.0.0
@@ -77,7 +77,7 @@ variable "enable_server_side_encryption_kms" {
     /// The KMS key to be used for encryption
     ///
     /// @since 1.0.0
-    kms_key_id            = optional(string, "alias/aws/sqs")
+    kms_key_id = optional(string, "alias/aws/sqs")
   })
   description = <<EOT
     Enable SSE KMS encryption. If not specified, SSE SQS is enabled by default
@@ -97,12 +97,12 @@ variable "fifo_queue_settings" {
     ///
     /// @enum queue|messageGroup
     /// @since 1.0.0
-    deduplication_scope                = optional(string, "queue")
+    deduplication_scope = optional(string, "queue")
     /// Specify how to apply the throughput limit on FIFO queue.
     ///
     /// @enum perQueue|perMessageGroupId
     /// @since 1.0.0
-    fifo_throughput_limit              = optional(string, "perQueue")
+    fifo_throughput_limit = optional(string, "perQueue")
   })
   description = <<EOT
     Configuration options that apply to FIFO SQS queue
@@ -121,19 +121,19 @@ variable "lambda_triggers" {
     /// The maximum number of records in each batch to send to the function. The maximum is `10000` for standard queues and `10` for FIFO queues.
     ///
     /// @since 1.0.0
-    batch_size      = optional(number, 10)
+    batch_size = optional(number, 10)
     /// The maximum amount of time to gather records before invoking the function, in seconds. When the batch size is greater than 10, set the batch window to at least 1 second.
     ///
     /// @since 1.0.0
-    batch_window    = optional(number, 0)
+    batch_window = optional(number, 0)
     /// Monitor your event source with metrics. You can view those metrics in CloudWatch console. Enabling this feature incurs additional costs
     ///
     /// @since 1.0.0
-    enable_metrics  = optional(bool, false)
+    enable_metrics = optional(bool, false)
     /// Whether this lambda trigger is enabled
     ///
     /// @since 1.0.0
-    enabled         = optional(bool, true)
+    enabled = optional(bool, true)
     /// Define the filtering criteria to determine whether or not to process an event
     ///
     /// @since 1.0.0
@@ -142,7 +142,7 @@ variable "lambda_triggers" {
       ///
       /// @link {lambda-event-source-mapping-filter-rule-syntax} https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax
       /// @since 1.0.0
-      patterns    = list(string)
+      patterns = list(string)
       /// The KMS key to encrypt and decrypt the filter criteria
       ///
       /// @since 1.0.0
@@ -151,7 +151,7 @@ variable "lambda_triggers" {
     /// The maximum number of concurrent function instances that the SQS event source can invoke. Valid values: `2 - 1000`
     ///
     /// @since 1.0.0
-    maximum_concurrency        = optional(number, 100)
+    maximum_concurrency = optional(number, 100)
     /// Allow your function to return a partial successful response for a batch of records.
     ///
     /// @since 1.0.0

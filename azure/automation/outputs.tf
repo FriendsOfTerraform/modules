@@ -5,7 +5,7 @@ output "automation_account_identity" {
     @type list(object)
     @since 0.0.1
   EOT
-  value = azurerm_automation_account.automation_account.identity
+  value       = azurerm_automation_account.automation_account.identity
 }
 
 output "runbook_ids" {
@@ -15,7 +15,7 @@ output "runbook_ids" {
     @type map(string)
     @since 0.0.1
   EOT
-  value = { for k, v in azurerm_automation_runbook.runbooks : k => v.id }
+  value       = { for k, v in azurerm_automation_runbook.runbooks : k => v.id }
 }
 
 output "schedule_ids" {
@@ -25,5 +25,5 @@ output "schedule_ids" {
     @type map(string)
     @since 0.0.1
   EOT
-  value = { for k, v in azurerm_automation_schedule.schedule : k => v.id }
+  value       = { for k, v in azurerm_automation_schedule.schedule : k => v.id }
 }

@@ -5,7 +5,7 @@ output "storage_account_id" {
     @type string
     @since 1.0.0
   EOT
-  value = azurerm_storage_account.storage_account.id
+  value       = azurerm_storage_account.storage_account.id
 }
 
 output "container_ids" {

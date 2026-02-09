@@ -12,12 +12,12 @@ variable "models" {
       /// The registry path where the inference code image is stored in Amazon ECR
       ///
       /// @since 1.0.0
-      image                 = string
+      image = string
       /// Specify the model compression type.
       ///
       /// @enum CompressedModel|UncompressedModel
       /// @since 1.0.0
-      compression_type      = optional(string, "CompressedModel")
+      compression_type = optional(string, "CompressedModel")
       /// Environment variables for the container
       ///
       /// @since 1.0.0
@@ -25,7 +25,7 @@ variable "models" {
       /// The URL where model artifacts are stored in S3
       ///
       /// @since 1.0.0
-      model_data_location   = optional(string, null)
+      model_data_location = optional(string, null)
 
       /// Configure this container to host multiple models
       ///
@@ -55,7 +55,7 @@ variable "models" {
     /// Additional tags for the model
     ///
     /// @since 1.0.0
-    additional_tags          = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// If enabled, containers cannot make any outbound network calls.
     ///
     /// @since 1.0.0
@@ -72,7 +72,7 @@ variable "models" {
       /// List of subnet IDs to be used for this VPC connection
       ///
       /// @since 1.0.0
-      subnet_ids         = list(string)
+      subnet_ids = list(string)
     }), null)
   }))
   description = <<EOT
@@ -102,7 +102,7 @@ variable "endpoints" {
     /// Specify an existing KMS key's ARN to encrypt your response output in S3.
     ///
     /// @since 1.0.0
-    encryption_key  = optional(string, null)
+    encryption_key = optional(string, null)
 
     /// Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify one of `provisioned` or `serverless`
     ///
@@ -115,20 +115,20 @@ variable "endpoints" {
         /// The EC2 instance type
         ///
         /// @since 1.0.0
-        instance_type               = string
+        instance_type = string
         /// The timeout value for the inference container to pass health check by SageMaker AI Hosting.
         ///
         /// @enum 1 minute|1 hour
         /// @since 1.0.0
-        container_startup_timeout   = optional(string, null)
+        container_startup_timeout = optional(string, null)
         /// Specify the initial number of instances used for auto-scaling.
         ///
         /// @since 1.0.0
-        initial_instance_count      = optional(number, 1)
+        initial_instance_count = optional(number, 1)
         /// Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.
         ///
         /// @since 1.0.0
-        initial_weight              = optional(number, 1)
+        initial_weight = optional(number, 1)
         /// The timeout value to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant.
         ///
         /// @enum 1 minute|1 hour
@@ -138,7 +138,7 @@ variable "endpoints" {
         ///
         /// @enum 1|512
         /// @since 1.0.0
-        volume_size                 = optional(number, null)
+        volume_size = optional(number, null)
 
         /// Enables auto scaling
         ///
@@ -151,15 +151,15 @@ variable "endpoints" {
             /// The expression in `<metric_name> <statistic> = <TargetValue>` format. For example: `"Invocations average = 100"`. If using a predefined metric such as `SageMakerVariantInvocationsPerInstance`, you can omit `<statistic>` from the expression. For example: `"SageMakerVariantInvocationsPerInstance = 100"`
             ///
             /// @since 1.0.0
-            expression                = string # <metric_name> <statistic> = <TargetValue>
+            expression = string # <metric_name> <statistic> = <TargetValue>
             /// Allow this Auto Scaling policy to scale-in (removing EC2 instances).
             ///
             /// @since 1.0.0
-            enable_scale_in           = optional(bool, true)
+            enable_scale_in = optional(bool, true)
             /// Specify the number of seconds to wait between scale-in actions.
             ///
             /// @since 1.0.0
-            scale_in_cooldown_period  = optional(string, "5 minutes")
+            scale_in_cooldown_period = optional(string, "5 minutes")
             /// Specify the number of seconds to wait between scale-out actions.
             ///
             /// @since 1.0.0
@@ -184,15 +184,15 @@ variable "endpoints" {
           /// The expression in `<metric_name> <statistic> <comparison_operator> <threshold>` format. For example: `"Invocations average >= 100"`
           ///
           /// @since 1.0.0
-          expression             = string # <metric_name> <statistic> <comparison_operator> <threshold>
+          expression = string # <metric_name> <statistic> <comparison_operator> <threshold>
           /// The description of the alarm
           ///
           /// @since 1.0.0
-          description            = optional(string, null)
+          description = optional(string, null)
           /// The number of periods over which data is compared to the specified threshold.
           ///
           /// @since 1.0.0
-          evaluation_periods     = optional(number, 1)
+          evaluation_periods = optional(number, 1)
           /// The SNS topic where notification will be sent
           ///
           /// @since 1.0.0
@@ -200,7 +200,7 @@ variable "endpoints" {
           /// The period over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
           ///
           /// @since 1.0.0
-          period                 = optional(string, "1 minute")
+          period = optional(string, "1 minute")
         })), {})
       }))
 
@@ -211,15 +211,15 @@ variable "endpoints" {
         /// Location to upload response output on success. Must be an S3 url(s3 path)
         ///
         /// @since 1.0.0
-        s3_output_path                          = string
+        s3_output_path = string
         /// Specify an existing KMS key's ARN to encrypt your response output in S3.
         ///
         /// @since 1.0.0
-        encryption_key                          = optional(string, null)
+        encryption_key = optional(string, null)
         /// SNS topic to post a notification when inference fails. If no topic is provided, no notification is sent
         ///
         /// @since 1.0.0
-        error_notification_location             = optional(string, null)
+        error_notification_location = optional(string, null)
         /// The maximum number concurrent requests sent to model container. If no value is provided, SageMaker chooses an optimal value.
         ///
         /// @since 1.0.0
@@ -227,11 +227,11 @@ variable "endpoints" {
         /// Location to upload response output on failure. Must be an S3 url (s3 path).
         ///
         /// @since 1.0.0
-        s3_failure_path                         = optional(string, null)
+        s3_failure_path = optional(string, null)
         /// SNS topic to post a notification when inference completes successfully. If no topic is provided, no notification is sent
         ///
         /// @since 1.0.0
-        success_notification_location           = optional(string, null)
+        success_notification_location = optional(string, null)
       }), null)
 
       /// Enables data capture, where SageMaker can save prediction request and prediction response information from your endpoint to a specified location
@@ -245,7 +245,7 @@ variable "endpoints" {
         /// Amazon SageMaker will randomly sample and save the specified percentage of traffic to your endpoint.
         ///
         /// @since 1.0.0
-        sampling_percentage                 = optional(number, 30)
+        sampling_percentage = optional(number, 30)
 
         /// The content type headers to capture. Must specify one of `csv_text` or `json`
         ///
@@ -258,7 +258,7 @@ variable "endpoints" {
           /// The JSON content type headers to capture.
           ///
           /// @since 1.0.0
-          json     = optional(list(string), null)
+          json = optional(list(string), null)
         }), null)
 
         /// Specifies what data to capture.
@@ -268,7 +268,7 @@ variable "endpoints" {
           /// Capture prediction requests (Input)
           ///
           /// @since 1.0.0
-          prediction_request  = optional(bool, true)
+          prediction_request = optional(bool, true)
           /// Capture prediction responses (Output)
           ///
           /// @since 1.0.0
@@ -283,19 +283,19 @@ variable "endpoints" {
         /// The EC2 instance type
         ///
         /// @since 1.0.0
-        instance_type               = string
+        instance_type = string
         /// The timeout value for the inference container to pass health check by SageMaker AI Hosting. Valid values: `"1 minute"` - `"1 hour"`
         ///
         /// @since 1.0.0
-        container_startup_timeout   = optional(number, null)
+        container_startup_timeout = optional(number, null)
         /// Specify the initial number of instances used for auto-scaling.
         ///
         /// @since 1.0.0
-        initial_instance_count      = optional(number, 1)
+        initial_instance_count = optional(number, 1)
         /// Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.
         ///
         /// @since 1.0.0
-        initial_weight              = optional(number, 1)
+        initial_weight = optional(number, 1)
         /// The timeout value to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant. Valid values: `"1 minute"` - `"1 hour"`.
         ///
         /// @since 1.0.0
@@ -303,7 +303,7 @@ variable "endpoints" {
         /// The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Valid values: `1` - `512`.
         ///
         /// @since 1.0.0
-        volume_size                 = optional(number, null)
+        volume_size = optional(number, null)
       })), {})
     }), null)
 
@@ -318,16 +318,16 @@ variable "endpoints" {
         /// The name of the model to be used for this endpoint. The model specified must be managed by the same module
         ///
         /// @since 1.0.0
-        model_name              = string
+        model_name = string
         /// The maximum number of concurrent invocations your serverless endpoint can process. Valid values: `1` - `200`
         ///
         /// @since 1.0.0
-        max_concurrency         = optional(number, 20)
+        max_concurrency = optional(number, 20)
         /// The memory size of your serverless endpoint.
         ///
         /// @enum 1024|2048|3072|4096|5120|6144
         /// @since 1.0.0
-        memory_size             = optional(number, 1024)
+        memory_size = optional(number, 1024)
         /// Provisioned concurrency enables you to deploy models on serverless endpoints with predictable performance and high scalability. For the set number of concurrent invocations, SageMaker will keep underlying compute warm and ready to respond instantaneously without cold starts. Must be `<= max_concurrency`
         ///
         /// @since 1.0.0

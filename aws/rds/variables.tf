@@ -11,11 +11,11 @@ variable "authentication_config" {
       /// Username for the master DB user
       ///
       /// @since 1.0.0
-      username                           = string
+      username = string
       /// Specify the KMS key to encrypt the master password in secrets manager. If not specified, the default KMS key for your AWS account is used. Used when `manage_password_in_secrets_manager = true`
       ///
       /// @since 1.0.0
-      customer_kms_key_id                = optional(string)
+      customer_kms_key_id = optional(string)
       /// Set to true to allow RDS to [manage the master user password in Secrets Manager][manage-password-in-secrets-manager]. Mutually exclusive with `password`. This feature does not support Aurora global cluster.
       ///
       /// @link {manage-password-in-secrets-manager} https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-secrets-manager.html
@@ -24,7 +24,7 @@ variable "authentication_config" {
       /// Password for the master DB user. Mutually exclusive with `manage_password_in_secrets_manager`
       ///
       /// @since 1.0.0
-      password                           = optional(string)
+      password = optional(string)
     })
 
     /// Configures [AWS Identity and Access Management (IAM) accounts to database accounts][rds-iam-db-authentication]. Cannot be used when `deployment_option = "MultiAZCluster"`. Refer to the following documentations for instruction to each DB engine.
@@ -39,7 +39,7 @@ variable "authentication_config" {
       ///
       /// @example "Aurora Regional Cluster" #aurora-regional-cluster
       /// @since 1.0.0
-      enabled                          = optional(bool, true)
+      enabled = optional(bool, true)
       /// Specify a list of DB user names to create IAM policies for RDS IAM Authentication. This will allow an IAM principal such as an IAM role to request authentication token for the specific DB user. Please refer to [this documentation][rds-iam-authentication-policy] for more information.
       ///
       /// @link {rds-iam-authentication-policy} https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.IAMPolicy.html
@@ -60,7 +60,7 @@ variable "engine" {
     ///
     /// @enum aurora-mysql|aurora-postgresql|mysql|postgres|mariadb
     /// @since 1.0.0
-    type    = string
+    type = string
     /// Specify the engine version. You can get a list of engine version with `aws rds describe-db-engine-versions --engine aurora-mysql --query DBEngineVersions[].[EngineVersion]`
     ///
     /// @since 1.0.0
@@ -91,11 +91,11 @@ variable "networking_config" {
     /// List of VPC security groups to associate to the RDS instance or cluster
     ///
     /// @since 1.0.0
-    security_group_ids   = list(string)
+    security_group_ids = list(string)
     /// The availability zone to deploy the RDS instance in
     ///
     /// @since 1.0.0
-    availability_zone    = optional(string)
+    availability_zone = optional(string)
     /// The certificate authority (CA) is the certificate that identifies the root CA at the top of the certificate chain. The CA signs the DB server certificate, which is installed on each DB instance. The DB server certificate identifies the DB instance as a trusted server. Please refer to [this documentation][rds-ca] for valid values. Defaults to `"rds-ca-2019"`. Refers to the following documentations for requirements to connect to each DB engine with SSL.
     ///
     /// - [MariaDB](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ssl-certificate-rotation-mariadb.html)
@@ -104,11 +104,11 @@ variable "networking_config" {
     ///
     /// @link {rds-ca} https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html#UsingWithRDS.SSL.RegionCertificateAuthorities
     /// @since 1.0.0
-    ca_cert_identifier   = optional(string)
+    ca_cert_identifier = optional(string)
     /// Specify whether the RDS instance or cluster supports IPv6
     ///
     /// @since 1.0.0
-    enable_ipv6          = optional(bool, false)
+    enable_ipv6 = optional(bool, false)
     /// Specify whether the RDS instance or cluster is publicly accessible
     ///
     /// @since 1.0.0
@@ -116,7 +116,7 @@ variable "networking_config" {
     /// Specify the port on which the DB accepts connections.
     ///
     /// @since 1.0.0
-    port                 = optional(number)
+    port = optional(number)
   })
   description = <<EOT
     Configures RDS connectivity options
@@ -168,7 +168,7 @@ variable "aurora_global_cluster" {
     /// Specify the name of the global cluster to be created. Cannot be used with `join_existing_global_cluster`
     ///
     /// @since 1.0.0
-    name                         = optional(string)
+    name = optional(string)
   })
   description = <<EOT
     Creates new or join existing Aurora Global cluster. Must be used with an `"aurora-*"` engine type
@@ -191,24 +191,24 @@ variable "auto_scaling_policies" {
       /// The average value of the DatabaseConnections metric in CloudWatch across all Aurora Replicas in the Aurora DB cluster.
       ///
       /// @since 2.0.0
-      average_connections_of_aurora_replicas     = optional(number, null)
+      average_connections_of_aurora_replicas = optional(number, null)
     })
     /// Allow this Auto Scaling policy to remove Aurora Replicas. Aurora Replicas created by you are not removed by Auto Scaling.
     ///
     /// @since 2.0.0
-    enable_scale_in           = optional(bool, true)
+    enable_scale_in = optional(bool, true)
     /// Specify the maximum number of Aurora Replicas to maintain. Up to 15 Aurora Replicas are supported.
     ///
     /// @since 2.0.0
-    maximum_capacity          = optional(number, 15)
+    maximum_capacity = optional(number, 15)
     /// Specify the minimum number of Aurora Replicas to maintain.
     ///
     /// @since 2.0.0
-    minimum_capacity          = optional(number, 1)
+    minimum_capacity = optional(number, 1)
     /// Specify the number of seconds to wait between scale-in actions.
     ///
     /// @since 2.0.0
-    scale_in_cooldown_period  = optional(string, "5 minutes")
+    scale_in_cooldown_period = optional(string, "5 minutes")
     /// Specify the number of seconds to wait between scale-out actions.
     ///
     /// @since 2.0.0
@@ -241,7 +241,7 @@ variable "cluster_instances" {
     /// Additional tags for the individual cluster instance
     ///
     /// @since 1.0.0
-    additional_tags    = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// Specify the name of the DB parameter group to be associated to the instance.
     ///
     /// @since 1.0.0
@@ -250,12 +250,12 @@ variable "cluster_instances" {
     ///
     /// @link {aurora-failover-priority} https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.AuroraHighAvailability.html#Aurora.Managing.FaultTolerance
     /// @since 1.0.0
-    failover_priority  = optional(number)
+    failover_priority = optional(number)
     /// Specify the DB instance class for the individual instance. Do not use for serverless cluster.
     ///
     /// @example "Aurora Global Cluster" #aurora-global-cluster
     /// @since 1.0.0
-    instance_class     = optional(string)
+    instance_class = optional(string)
 
     /// Configures RDS maintenance options. If not specified, the cluster level options will be used.
     ///
@@ -264,7 +264,7 @@ variable "cluster_instances" {
       /// Window to perform maintenance in (in UTC). Syntax: `"ddd:hh24:mi-ddd:hh24:mi"`. For example `"Mon:00:00-Mon:03:00"`.
       ///
       /// @since 2.0.0
-      window                            = optional(string, null)
+      window = optional(string, null)
       /// Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window
       ///
       /// @since 2.0.0
@@ -284,11 +284,11 @@ variable "cluster_instances" {
         ///
         /// @link {aurora-cloudwatch-metrics} https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.AuroraMonitoring.Metrics.html
         /// @since 2.0.0
-        metric_name            = string
+        metric_name = string
         /// The expression in `<statistic> <operator> <unit>` format. For example: `"Average < 50"`
         ///
         /// @since 2.0.0
-        expression             = string # statistic comparison_operator threshold
+        expression = string # statistic comparison_operator threshold
         /// The SNS topic where notification will be sent
         ///
         /// @since 2.0.0
@@ -296,15 +296,15 @@ variable "cluster_instances" {
         /// The description of the alarm
         ///
         /// @since 2.0.0
-        description            = optional(string, null)
+        description = optional(string, null)
         /// The number of periods over which data is compared to the specified threshold.
         ///
         /// @since 2.0.0
-        evaluation_periods     = optional(number, 1)
+        evaluation_periods = optional(number, 1)
         /// The period in seconds over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
         ///
         /// @since 2.0.0
-        period                 = optional(string, "1 minute")
+        period = optional(string, "1 minute")
       })), {})
 
       /// Enables [RDS enhanced monitoring][rds-enhanced-monitoring].
@@ -316,7 +316,7 @@ variable "cluster_instances" {
         ///
         /// @enum 0|1|5|10|15|30|60
         /// @since 2.0.0
-        interval     = number
+        interval = number
         /// ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Please refer to [this documentation][rds-enhanced-monitoring-iam-requirement] for information of the required IAM permissions. One will be created if not specified.
         ///
         /// @link {rds-enhanced-monitoring-iam-requirement} https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html#USER_Monitoring.OS.Enabling.Prerequisites
@@ -336,7 +336,7 @@ variable "cluster_instances" {
         /// ARN for the KMS key to encrypt Performance Insights data.
         ///
         /// @since 2.0.0
-        kms_key_id       = optional(string)
+        kms_key_id = optional(string)
       }))
     }), {})
 
@@ -347,7 +347,7 @@ variable "cluster_instances" {
       /// The availability zone to deploy the RDS instance in
       ///
       /// @since 1.0.0
-      availability_zone    = optional(string)
+      availability_zone = optional(string)
       /// Specify whether the RDS instance is publicly accessible
       ///
       /// @since 1.0.0
@@ -421,7 +421,7 @@ variable "enable_automated_backup" {
     /// The number of days (1-35) for which automatic backups are kept.
     ///
     /// @since 1.0.0
-    retention_period      = number
+    retention_period = number
     /// Indicates whether to copy all of the user-defined tags from the DB instance to snapshots of the DB instance
     ///
     /// @since 1.0.0
@@ -429,7 +429,7 @@ variable "enable_automated_backup" {
     /// Daily time range (in UTC) during which automated backups are created. In the `"hh24:mi-hh24:mi"` format. For example `"04:00-09:00"`
     ///
     /// @since 1.0.0
-    window                = optional(string)
+    window = optional(string)
   })
   description = <<EOT
     Configures RDS automated backup
@@ -472,7 +472,7 @@ variable "maintenance_config" {
     /// Window to perform maintenance in (in UTC). Syntax: `"ddd:hh24:mi-ddd:hh24:mi"`. For example `"Mon:00:00-Mon:03:00"`.
     ///
     /// @since 1.0.0
-    window                            = string
+    window = string
     /// Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window
     ///
     /// @since 1.0.0
@@ -497,11 +497,11 @@ variable "monitoring_config" {
       ///
       /// @link {rds-cloudwatch-metrics} https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-metrics.html
       /// @since 2.0.0
-      metric_name            = string
+      metric_name = string
       /// The expression in `<statistic> <operator> <unit>` format. For example: `"Average < 50"`
       ///
       /// @since 2.0.0
-      expression             = string # statistic comparison_operator threshold
+      expression = string # statistic comparison_operator threshold
       /// The SNS topic where notification will be sent
       ///
       /// @since 2.0.0
@@ -509,15 +509,15 @@ variable "monitoring_config" {
       /// The description of the alarm
       ///
       /// @since 2.0.0
-      description            = optional(string, null)
+      description = optional(string, null)
       /// The number of periods over which data is compared to the specified threshold.
       ///
       /// @since 2.0.0
-      evaluation_periods     = optional(number, 1)
+      evaluation_periods = optional(number, 1)
       /// The period in seconds over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
       ///
       /// @since 2.0.0
-      period                 = optional(string, "1 minute")
+      period = optional(string, "1 minute")
     })), {})
 
     /// The mode of Database Insights that is enabled for the cluster or the instance.
@@ -535,7 +535,7 @@ variable "monitoring_config" {
       ///
       /// @enum 0|1|5|10|15|30|60
       /// @since 1.0.0
-      interval     = number
+      interval = number
       /// ARN for the IAM role that permits RDS to send enhanced monitoring metrics to CloudWatch Logs. Please refer to [this documentation][rds-enhanced-monitoring-iam-requirement] for information of the required IAM permissions. One will be created if not specified.
       ///
       /// @link {rds-enhanced-monitoring-iam-requirement} https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.Enabling.html#USER_Monitoring.OS.Enabling.Prerequisites
@@ -555,7 +555,7 @@ variable "monitoring_config" {
       /// ARN for the KMS key to encrypt Performance Insights data.
       ///
       /// @since 1.0.0
-      kms_key_id       = optional(string)
+      kms_key_id = optional(string)
     }))
   })
   description = <<EOT
@@ -591,7 +591,7 @@ variable "proxies" {
       /// Whether to require or disallow Amazon Web Services Identity and Access Management (IAM) authentication for connections to the proxy
       ///
       /// @since 1.1.0
-      allow_iam_authentication   = optional(bool, false)
+      allow_iam_authentication = optional(bool, false)
     }))
 
     /// One or more RDS security groups to allow access to your proxy
@@ -601,7 +601,7 @@ variable "proxies" {
     /// List of subnets the database can use in the VPC that you selected. A minimum of 2 subnets in different Availability Zones is required for the proxy.
     ///
     /// @since 1.1.0
-    subnet_ids         = list(string)
+    subnet_ids = list(string)
 
     /// Manages additional endpoints beside the default
     ///
@@ -614,30 +614,30 @@ variable "proxies" {
       /// List of subnets the database can use in the VPC that you selected. A minimum of 2 subnets in different Availability Zones is required for the proxy. If not specified, the subnet_ids of the proxy will be used.
       ///
       /// @since 1.1.0
-      subnet_ids         = optional(list(string), null)
+      subnet_ids = optional(list(string), null)
       /// Defines how the workload for this proxy endpoint will be used.
       ///
       /// @enum READ_WRITE|READ_ONLY
       /// @since 1.1.0
-      target_role        = optional(string, "READ_WRITE")
+      target_role = optional(string, "READ_WRITE")
     })), null)
 
     /// With enhanced logging, details of queries processed by the proxy are logged and published to CloudWatch Logs.
     ///
     /// @since 1.1.0
-    activate_enhanced_logging        = optional(bool, false)
+    activate_enhanced_logging = optional(bool, false)
     /// Additional tags that are attached to the proxy
     ///
     /// @since 1.1.0
-    additional_tags                  = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// ARN of the IAM role the proxy will use to access the AWS Secrets Manager secrets specified in `authentications`. If unspecified, an IAM role will be created with read permissions to all the secrets specified in `authentications`.
     ///
     /// @since 1.1.0
-    iam_role_arn                     = optional(string, null)
+    iam_role_arn = optional(string, null)
     /// Idle connection from your application are closed after the specified time. Valid value: `"1 minute" - "8 hours"`
     ///
     /// @since 1.1.0
-    idle_client_connection_timeout   = optional(string, "30 minutes")
+    idle_client_connection_timeout = optional(string, "30 minutes")
     /// whether Transport Layer Security (TLS) encryption is required for connections to the proxy
     ///
     /// @since 1.1.0
@@ -649,7 +649,7 @@ variable "proxies" {
       /// Timeout for borrowing DB connection from the pool. Valid values: `"1 second" - "5 minutes"`
       ///
       /// @since 1.1.0
-      connection_borrow_timeout           = optional(string, "2 minutes")
+      connection_borrow_timeout = optional(string, "2 minutes")
       /// Specify the maximum allowed connections, as a percentage of the maximum connection limit of your database. For example, if you have set the maximum connections to 5,000 connections, specifying `50` allows your proxy to create up to 2,500 connections to the database.
       ///
       /// @since 1.1.0
@@ -657,16 +657,16 @@ variable "proxies" {
       /// Specify one or more SQL statements to set up the initial session state for each connection. Separate statements with semicolons.
       ///
       /// @since 1.1.0
-      initalization_query                 = optional(string, null)
+      initalization_query = optional(string, null)
       /// Controls how actively the proxy closes idle database connections in the connection pool. A high value enables the proxy to leave a high percentage of idle connections open. A low value causes the proxy to close idle client connections and return the underlying database connections to the connection pool. For Aurora MySQL, it is expressed as a percentage of the max_connections setting for the RDS DB instance or Aurora DB cluster used by the target group.
       ///
       /// @since 1.1.0
-      max_idle_connections_percent        = optional(number, 50)
+      max_idle_connections_percent = optional(number, 50)
       /// Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection. Including an item in the list exempts that class of SQL operations from the pinning behavior. This setting is only supported for MySQL engine family databases.
       ///
       /// @enum EXCLUDE_VARIABLE_SETS
       /// @since 1.1.0
-      session_pinning_filters             = optional(list(string), null)
+      session_pinning_filters = optional(list(string), null)
     }), {})
   }))
   description = <<EOT
@@ -733,12 +733,12 @@ variable "storage_config" {
     /// The allocated storage in gibibytes
     ///
     /// @since 1.0.0
-    allocated_storage     = number
+    allocated_storage = number
     /// Specify the storage type
     ///
     /// @enum gp3|io1
     /// @since 1.0.0
-    type                  = string
+    type = string
     /// When configured, the upper limit to which Amazon RDS can automatically scale the storage of the DB instance. Configuring this will automatically ignore differences to `allocated_storage`. Must be greater than or equal to allocated_storage or `0` to disable Storage Autoscaling
     ///
     /// @since 1.0.0
@@ -747,12 +747,12 @@ variable "storage_config" {
     ///
     /// @link {rds-provisioned-iops} https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
     /// @since 1.0.0
-    provisioned_iops      = optional(number)
+    provisioned_iops = optional(number)
     /// The storage throughput value for the DB instance. Can only be set when `type = "gp3"`. Please refer to [this documentation][rds-storage-throughput] for more details.
     ///
     /// @link {rds-storage-throughput} https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#gp3-storage
     /// @since 1.0.0
-    storage_throughput    = optional(number)
+    storage_throughput = optional(number)
   })
   description = <<EOT
     Configures RDS storage options

@@ -7,7 +7,7 @@ variable "azure" {
     /// The name of an Azure location where the cluster will be deployed. If unspecified, the resource group's location will be used.
     ///
     /// @since 0.0.1
-    location            = optional(string)
+    location = optional(string)
   })
 
   description = <<EOT
@@ -59,7 +59,7 @@ variable "blob_service_config" {
     ///
     /// @enum Hot|Cold
     /// @since 0.0.1
-    access_tier                    = optional(string, "Hot")
+    access_tier = optional(string, "Hot")
     /// When object replication is enabled, blobs are copied asynchronously from a source storage account to a destination account
     ///
     /// @since 0.0.1
@@ -68,20 +68,20 @@ variable "blob_service_config" {
     ///
     /// @link {blob-change-feed} https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed?tabs=azure-portal
     /// @since 0.0.1
-    enable_change_feed             = optional(bool, false)
+    enable_change_feed = optional(bool, false)
     /// Enables hierarchical namespace support for the blob storage. Please refer to [this document][hierarchical-namespace] for more information.
     ///
     /// @link {hierarchical-namespace} https://docs.microsoft.com/en-us/azure/storage/blobs/upgrade-to-data-lake-storage-gen2-how-to?tabs=azure-portal
     /// @since 0.0.1
-    enable_hierarchical_namespace  = optional(bool, false)
+    enable_hierarchical_namespace = optional(bool, false)
     /// Enables the NFSv3 protocol. This options can only be enabled if `enable_hierarchical_namespace = true`
     ///
     /// @since 0.0.1
-    enable_network_file_system_v3  = optional(bool, false)
+    enable_network_file_system_v3 = optional(bool, false)
     /// Enables versioning to automatically maintain previous versions of your blobs for recovery and restoration
     ///
     /// @since 0.0.1
-    enable_versioning              = optional(bool, false)
+    enable_versioning = optional(bool, false)
 
     /// Enables you to recover blobs that were previously marked for deletion, including blobs that were overwritten
     ///
@@ -90,7 +90,7 @@ variable "blob_service_config" {
       /// Enables soft delete for blobs
       ///
       /// @since 0.0.1
-      enabled          = bool
+      enabled = bool
       /// Set the number of days that a blob marked for deletion persists until it's permanently deleted
       ///
       /// @since 0.0.1
@@ -104,7 +104,7 @@ variable "blob_service_config" {
       /// Enables soft delete for containers
       ///
       /// @since 0.0.1
-      enabled          = bool
+      enabled = bool
       /// Set the number of days that a container marked for deletion persists until it's permanently deleted
       ///
       /// @since 0.0.1
@@ -142,7 +142,7 @@ variable "containers" {
     /// A mapping of metadata for this container
     ///
     /// @since 0.0.1
-    metadata            = optional(map(string))
+    metadata = optional(map(string))
   }))
 
   description = <<EOT
@@ -164,7 +164,7 @@ variable "file_shares" {
     /// The maximum size of the share, in gigabytes. Must be between `1` and `5120` if `storage_account_type = "StorageV2"`. And between `100` and `102400` if `storage_account_type = "FileStorage"`
     ///
     /// @since 0.0.1
-    quota       = number
+    quota = number
     /// Defines the access tier of the file share.
     ///
     /// @enum Hot|Cold|TransactionOptimized
@@ -173,12 +173,12 @@ variable "file_shares" {
     /// A mapping of metadata for this file share
     ///
     /// @since 0.0.1
-    metadata    = optional(map(string))
+    metadata = optional(map(string))
     /// The protocol for this file share. `"NFS"` is only available if `storage_account_type = "FileStorage"`
     ///
     /// @enum SMB|NFS
     /// @since 0.0.1
-    protocol    = optional(string, "SMB")
+    protocol = optional(string, "SMB")
   }))
 
   description = <<EOT
@@ -213,7 +213,7 @@ variable "file_service_config" {
       /// Enables soft delete
       ///
       /// @since 0.0.1
-      enabled          = bool
+      enabled = bool
       /// Defines the number of days that soft deleted data is available for recovery. You can retain soft deleted data for between `1 and 365 days`
       ///
       /// @since 0.0.1
@@ -243,7 +243,7 @@ variable "firewall" {
     /// Allows list of `public IPs` or `CIDRs` to connect to the storage account
     ///
     /// @since 0.0.1
-    allow_public_ips   = optional(list(string), [])
+    allow_public_ips = optional(list(string), [])
     /// Allows list of virtual network subnets `IDs` to connect to the storage account
     ///
     /// @since 0.0.1
@@ -252,7 +252,7 @@ variable "firewall" {
     ///
     /// @enum Logging|Metrics|AzureServices
     /// @since 0.0.1
-    exceptions         = optional(list(string), [])
+    exceptions = optional(list(string), [])
   })
 
   description = <<EOT
@@ -280,11 +280,11 @@ variable "lifecycle_policies" {
     ///
     /// @enum blockBlob|appendBlob
     /// @since 0.0.1
-    blob_types            = optional(list(string), ["blockBlob"])
+    blob_types = optional(list(string), ["blockBlob"])
     /// A list of prefixes to be matched for this rule to take effect. Must be in the `"container_name/blob_name"` format.
     ///
     /// @since 0.0.1
-    prefix_match          = optional(list(string))
+    prefix_match = optional(list(string))
     /// A map of index tags on the blobs to be matched for this rule to take effect
     ///
     /// @since 0.0.1
@@ -297,19 +297,19 @@ variable "lifecycle_policies" {
       /// The age in days after last access time to delete the blob. Mutually exclusive to `delete_after_days_since_last_modification`.
       ///
       /// @since 0.0.1
-      delete_after_days_since_last_access                        = optional(number)
+      delete_after_days_since_last_access = optional(number)
       /// The age in days after last access time to move the blob to archive storage. Mutually exclusive to `move_to_archive_storage_after_days_since_last_modification`.
       ///
       /// @since 0.0.1
-      move_to_archive_storage_after_days_since_last_access       = optional(number)
+      move_to_archive_storage_after_days_since_last_access = optional(number)
       /// The age in days after last access time to move the blob to cool storage. Mutually exclusive to `move_to_cool_storage_after_days_since_last_modification`.
       ///
       /// @since 0.0.1
-      move_to_cool_storage_after_days_since_last_access          = optional(number)
+      move_to_cool_storage_after_days_since_last_access = optional(number)
       /// The age in days after last modification to delete the blob. Mutually exclusive to `delete_after_days_since_last_access`.
       ///
       /// @since 0.0.1
-      delete_after_days_since_last_modification                  = optional(number)
+      delete_after_days_since_last_modification = optional(number)
       /// The age in days after last modification to move the blob to archive storage. Mutually exclusive to `move_to_archive_storage_after_days_since_last_access`.
       ///
       /// @since 0.0.1
@@ -317,7 +317,7 @@ variable "lifecycle_policies" {
       /// The age in days after last modification to move the blob to cool storage. Mutually exclusive to `move_to_cool_storage_after_days_since_last_access`.
       ///
       /// @since 0.0.1
-      move_to_cool_storage_after_days_since_last_modification    = optional(number)
+      move_to_cool_storage_after_days_since_last_modification = optional(number)
     }))
 
     /// Set lifecycle rules for snapshot blob objects
@@ -327,7 +327,7 @@ variable "lifecycle_policies" {
       /// The age in days after creation to delete the snapshot.
       ///
       /// @since 0.0.1
-      delete_after_days                  = optional(number)
+      delete_after_days = optional(number)
       /// The age in days after creation to move the snapshot to archive storage.
       ///
       /// @since 0.0.1
@@ -335,7 +335,7 @@ variable "lifecycle_policies" {
       /// The age in days after creation to move the snapshot to cool storage.
       ///
       /// @since 0.0.1
-      move_to_cool_storage_after_days    = optional(number)
+      move_to_cool_storage_after_days = optional(number)
     }))
 
     /// Set lifecycle rules for versioned blob objects
@@ -345,7 +345,7 @@ variable "lifecycle_policies" {
       /// The age in days after creation to delete the versioned object.
       ///
       /// @since 0.0.1
-      delete_after_days                  = optional(number)
+      delete_after_days = optional(number)
       /// The age in days after creation to move the versioned object to archive storage.
       ///
       /// @since 0.0.1
@@ -353,7 +353,7 @@ variable "lifecycle_policies" {
       /// The age in days after creation to move the versioned object to cool storage.
       ///
       /// @since 0.0.1
-      move_to_cool_storage_after_days    = optional(number)
+      move_to_cool_storage_after_days = optional(number)
     }))
   }))
 

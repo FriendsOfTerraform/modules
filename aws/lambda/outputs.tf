@@ -5,7 +5,7 @@ output "function_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_lambda_function.function.arn
+  value       = aws_lambda_function.function.arn
 }
 
 output "function_invoke_arn" {
@@ -15,7 +15,7 @@ output "function_invoke_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_lambda_function.function.invoke_arn
+  value       = aws_lambda_function.function.invoke_arn
 }
 
 output "function_qualified_arn" {
@@ -25,7 +25,7 @@ output "function_qualified_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_lambda_function.function.qualified_arn
+  value       = aws_lambda_function.function.qualified_arn
 }
 
 output "function_qualified_invoke_arn" {
@@ -35,7 +35,7 @@ output "function_qualified_invoke_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_lambda_function.function.qualified_invoke_arn
+  value       = aws_lambda_function.function.qualified_invoke_arn
 }
 
 output "function_source_code_size" {
@@ -45,7 +45,7 @@ output "function_source_code_size" {
     @type number
     @since 1.0.0
   EOT
-  value = aws_lambda_function.function.source_code_size
+  value       = aws_lambda_function.function.source_code_size
 }
 
 output "function_version" {
@@ -55,7 +55,7 @@ output "function_version" {
     @type object
     @since 1.0.0
   EOT
-  value = aws_lambda_function.function.version
+  value       = aws_lambda_function.function.version
 }
 
 output "function_url_endpoint" {
@@ -65,5 +65,5 @@ output "function_url_endpoint" {
     @type object
     @since 1.0.0
   EOT
-  value = var.enable_function_url != null ? aws_lambda_function_url.function_url[0].function_url : null
+  value       = var.enable_function_url != null ? aws_lambda_function_url.function_url[0].function_url : null
 }

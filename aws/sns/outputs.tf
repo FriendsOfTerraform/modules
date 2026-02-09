@@ -5,7 +5,7 @@ output "sns_topic_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_sns_topic.sns_topic.arn
+  value       = aws_sns_topic.sns_topic.arn
 }
 
 output "sns_topic_subscription_arns" {

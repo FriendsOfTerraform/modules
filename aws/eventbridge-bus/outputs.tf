@@ -5,7 +5,7 @@ output "event_bus_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_cloudwatch_event_bus.event_bus.arn
+  value       = aws_cloudwatch_event_bus.event_bus.arn
 }
 
 output "event_bus_id" {
@@ -15,5 +15,5 @@ output "event_bus_id" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_cloudwatch_event_bus.event_bus.id
+  value       = aws_cloudwatch_event_bus.event_bus.id
 }

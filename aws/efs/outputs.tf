@@ -5,7 +5,7 @@ output "efs_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_efs_file_system.efs.arn
+  value       = aws_efs_file_system.efs.arn
 }
 
 output "efs_availability_zone_id" {
@@ -15,7 +15,7 @@ output "efs_availability_zone_id" {
     @type string
     @since 1.0.0
   EOT
-  value = var.availability_zone != null ? aws_efs_file_system.efs.availability_zone_id : null
+  value       = var.availability_zone != null ? aws_efs_file_system.efs.availability_zone_id : null
 }
 
 output "efs_id" {
@@ -25,7 +25,7 @@ output "efs_id" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_efs_file_system.efs.id
+  value       = aws_efs_file_system.efs.id
 }
 
 output "efs_dns_name" {
@@ -35,7 +35,7 @@ output "efs_dns_name" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_efs_file_system.efs.dns_name
+  value       = aws_efs_file_system.efs.dns_name
 }
 
 output "efs_size_in_bytes" {
@@ -45,7 +45,7 @@ output "efs_size_in_bytes" {
     @type number
     @since 1.0.0
   EOT
-  value = aws_efs_file_system.efs.size_in_bytes
+  value       = aws_efs_file_system.efs.size_in_bytes
 }
 
 output "efs_mount_targets" {

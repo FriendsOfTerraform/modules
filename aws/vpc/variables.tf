@@ -76,15 +76,15 @@ variable "dhcp_options" {
     /// If you're using `AmazonProvidedDNS` in `us-east-1`, specify `ec2.internal`. If you're using `AmazonProvidedDNS` in another region, specify `region.compute.internal` (for example, `ap-northeast-1.compute.internal`). Otherwise, specify a domain name (for example, example.com). This value is used to complete unqualified DNS hostnames.
     ///
     /// @since 1.0.0
-    domain_name          = optional(string, null)
+    domain_name = optional(string, null)
     /// The IP addresses of up to four domain name servers, or AmazonProvidedDNS. Although you can specify up to four domain name servers, note that some operating systems may impose lower limits. If you want your instance to receive a custom DNS hostname as specified in domain-name, you must set domain-name-servers to a custom DNS server.
     ///
     /// @since 1.0.0
-    domain_name_servers  = optional(list(string), ["AmazonProvidedDNS"])
+    domain_name_servers = optional(list(string), ["AmazonProvidedDNS"])
     /// The IP addresses of up to four NTP servers
     ///
     /// @since 1.0.0
-    ntp_servers          = optional(list(string), null)
+    ntp_servers = optional(list(string), null)
     /// The IP addresses of up to four NetBIOS name servers
     ///
     /// @since 1.0.0
@@ -92,11 +92,11 @@ variable "dhcp_options" {
     /// The NetBIOS node type (`1`, `2`, `4`, or `8`). AWS recommends to specify `2` since broadcast and multicast are not supported in their network.
     ///
     /// @since 1.0.0
-    netbios_node_type    = optional(number, null)
+    netbios_node_type = optional(number, null)
     /// Additional tags for the option set
     ///
     /// @since 1.0.0
-    additional_tags      = optional(map(string), {})
+    additional_tags = optional(map(string), {})
   })
   description = <<EOT
     DHCP option sets give you control over various aspects of routing in your virtual network, such as the DNS servers, domain names, or Network Time Protocol (NTP) servers used by the devices in your VPC. The Amazon default option set will be used if not specified
@@ -115,7 +115,7 @@ variable "dns_settings" {
     /// Whether instances launched in the VPC receive public DNS hostnames that correspond to their public IP addresses
     ///
     /// @since 1.0.0
-    enable_dns_hostnames  = optional(bool, false)
+    enable_dns_hostnames = optional(bool, false)
   })
   description = <<EOT
     Configures DNS settings for the VPC
@@ -149,7 +149,7 @@ variable "flow_logs" {
         /// The ARN of the CloudWatch log group to send logs to
         ///
         /// @since 1.0.0
-        log_group_arn    = string
+        log_group_arn = string
         /// Arn of an IAM role that [gives permission to flow logs to send logs to CloudWatch][vpc-flow-logs-cloudwatch-service-role]. A default service role will be created if not specified
         ///
         /// @link {vpc-flow-logs-cloudwatch-service-role} https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-iam-role.html
@@ -164,12 +164,12 @@ variable "flow_logs" {
         /// The ARN of the S3 bucket to send logs to
         ///
         /// @since 1.0.0
-        bucket_arn                       = string
+        bucket_arn = string
         /// The format for the flow log.
         ///
         /// @enum plain-text|parquet
         /// @since 1.0.0
-        log_file_format                  = optional(string, "plain-text")
+        log_file_format = optional(string, "plain-text")
         /// Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3
         ///
         /// @since 1.0.0
@@ -177,24 +177,24 @@ variable "flow_logs" {
         /// Indicates whether to partition the flow log per hour. This reduces the cost and response time for queries.
         ///
         /// @since 1.0.0
-        partition_logs_every_hour        = optional(bool, false)
+        partition_logs_every_hour = optional(bool, false)
       }), null)
     })
 
     /// Additional tags for the flow log
     ///
     /// @since 1.0.0
-    additional_tags              = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// The fields to include in the flow log record. Accepted format example: `"$${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport}"`. Please refer to [this documentation][vpc-flow-logs-log-record-available-fields] for a list of available fields
     ///
     /// @link {vpc-flow-logs-log-record-available-fields} https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields
     /// @since 1.0.0
-    custom_log_record_format     = optional(string, null)
+    custom_log_record_format = optional(string, null)
     /// The type of traffic to capture.
     ///
     /// @enum ALL|ACCEPT|REJECT
     /// @since 1.0.0
-    filter                       = optional(string, "ALL")
+    filter = optional(string, "ALL")
     /// The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record.
     ///
     /// - `60` seconds (1 minute)
@@ -218,11 +218,11 @@ variable "peering_connection_requests" {
     /// The ID of the target VPC with which you are creating the VPC Peering Connection
     ///
     /// @since 1.0.0
-    peer_vpc_id                     = string
+    peer_vpc_id = string
     /// Additional tags for the peering connection request
     ///
     /// @since 1.0.0
-    additional_tags                 = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// Allow a local VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC. To use DNS resolution over peering you must enable DNS Hostname on both the requester's and accepter's VPC
     ///
     /// @since 1.0.0
@@ -230,11 +230,11 @@ variable "peering_connection_requests" {
     /// The AWS account ID of the target peer VPC. Defaults to the current account if unspecified.
     ///
     /// @since 1.0.0
-    peer_account_id                 = optional(string, null)
+    peer_account_id = optional(string, null)
     /// The region of the accepter VPC of the VPC Peering Connection. Defaults to the current region if unspecified.
     ///
     /// @since 1.0.0
-    peer_region                     = optional(string, null)
+    peer_region = optional(string, null)
   }))
   description = <<EOT
     Manages multiple VPC peering connection requests.
@@ -250,15 +250,15 @@ variable "route_tables" {
     /// Additional tags for the route table
     ///
     /// @since 1.0.0
-    additional_tags     = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// Weather this is the main route table. You may only set one route table as the main route table
     ///
     /// @since 1.1.0
-    main_route_table    = optional(bool, false)
+    main_route_table = optional(bool, false)
     /// Map of routes in the `{ <route_destination> = <route_target> }` format
     ///
     /// @since 1.0.0
-    routes              = optional(map(string), {})
+    routes = optional(map(string), {})
     /// List of subnet names this route table is associated to
     ///
     /// @since 1.0.0
@@ -278,15 +278,15 @@ variable "subnets" {
     /// Availability zone of the subnet
     ///
     /// @since 1.0.0
-    availability_zone                      = string
+    availability_zone = string
     /// The IPv4 CIDR block for the subnet
     ///
     /// @since 1.0.0
-    ipv4_cidr_block                        = string
+    ipv4_cidr_block = string
     /// Additional tags for the subnet
     ///
     /// @since 1.0.0
-    additional_tags                        = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// If true, instances launched into the subnet should be assigned a public IP address. The subnet will also be considered a public subnet and an internet gateway will be created for the VPC.
     ///
     /// @since 1.0.0
@@ -308,7 +308,7 @@ variable "subnets" {
           /// The ARN of the CloudWatch log group to send logs to
           ///
           /// @since 1.0.0
-          log_group_arn    = string
+          log_group_arn = string
           /// Arn of an IAM role that [gives permission to flow logs to send logs to CloudWatch][vpc-flow-logs-cloudwatch-service-role]. A default service role will be created if not specified
           ///
           /// @link {vpc-flow-logs-cloudwatch-service-role} https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-iam-role.html
@@ -323,12 +323,12 @@ variable "subnets" {
           /// The ARN of the S3 bucket to send logs to
           ///
           /// @since 1.0.0
-          bucket_arn                       = string
+          bucket_arn = string
           /// The format for the flow log.
           ///
           /// @enum plain-text|parquet
           /// @since 1.0.0
-          log_file_format                  = optional(string, "plain-text")
+          log_file_format = optional(string, "plain-text")
           /// Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3
           ///
           /// @since 1.0.0
@@ -336,24 +336,24 @@ variable "subnets" {
           /// Indicates whether to partition the flow log per hour. This reduces the cost and response time for queries.
           ///
           /// @since 1.0.0
-          partition_logs_every_hour        = optional(bool, false)
+          partition_logs_every_hour = optional(bool, false)
         }), null)
       })
 
       /// Additional tags for the flow log
       ///
       /// @since 1.0.0
-      additional_tags              = optional(map(string), {})
+      additional_tags = optional(map(string), {})
       /// The fields to include in the flow log record. Accepted format example: `"$${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport}"`. Please refer to [this documentation][vpc-flow-logs-log-record-available-fields] for a list of available fields
       ///
       /// @link {vpc-flow-logs-log-record-available-fields} https://docs.aws.amazon.com/vpc/latest/userguide/flow-log-records.html#flow-logs-fields
       /// @since 1.0.0
-      custom_log_record_format     = optional(string, null)
+      custom_log_record_format = optional(string, null)
       /// The type of traffic to capture.
       ///
       /// @enum ALL|ACCEPT|REJECT
       /// @since 1.0.0
-      filter                       = optional(string, "ALL")
+      filter = optional(string, "ALL")
       /// The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record.
       ///
       /// @enum 60|600
@@ -376,7 +376,7 @@ variable "subnets" {
       ///
       /// @enum ip-name|resource-name
       /// @since 1.0.0
-      hostname_type                               = optional(string, "ip-name")
+      hostname_type = optional(string, "ip-name")
     }), {})
   }))
   description = <<EOT

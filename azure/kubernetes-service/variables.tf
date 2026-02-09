@@ -7,7 +7,7 @@ variable "azure" {
     /// The name of an Azure location where the cluster will be deployed. If unspecified, the resource group's location will be used.
     ///
     /// @since 0.0.1
-    location            = optional(string, null)
+    location = optional(string, null)
   })
 
   description = <<EOT
@@ -47,25 +47,25 @@ variable "node_pools" {
     /// The initial number of nodes for this node pool
     ///
     /// @since 0.0.1
-    desired_instances  = number
+    desired_instances = number
     /// [Azure VM size][azure-vm-size]. Also see [Azure VM Naming Convention][azure-vm-naming-convention]
     ///
     /// @link {azure-vm-size} https://docs.microsoft.com/en-us/azure/virtual-machines/sizes
     /// @link {azure-vm-naming-convention} https://docs.microsoft.com/en-us/azure/virtual-machines/vm-naming-conventions
     /// @since 0.0.1
-    vm_size            = string
+    vm_size = string
     /// The ID of the subnet where new nodes from this pool will be deployed into
     ///
     /// @since 0.0.1
-    vnet_subnet_id     = string
+    vnet_subnet_id = string
     /// Additional tags for this node pool
     ///
     /// @since 0.0.1
-    additional_tags    = optional(map(string), {})
+    additional_tags = optional(map(string), {})
     /// The size of OS disk in GB, defaults to `512 GB`
     ///
     /// @since 0.0.1
-    disk_size          = optional(number, 512)
+    disk_size = optional(number, 512)
     /// The Kubernetes version for the node pool, defaults to the latest version. This value must be specified for cluster upgrade to work.
     ///
     /// @since 0.0.1
@@ -73,19 +73,19 @@ variable "node_pools" {
     /// The max number of pods that can be deployed on each node.
     ///
     /// @since 0.0.1
-    max_pods_per_node  = optional(number, 30)
+    max_pods_per_node = optional(number, 30)
     /// The maximum number of nodes this pool can scale up to. `cluster auto scaling` will be enabled if both this and `min_instances` are specified.
     ///
     /// @since 0.0.1
-    max_instances      = optional(number, null)
+    max_instances = optional(number, null)
     /// The minimum number of nodes this pool can scale down to. `cluster auto scaling` will be enabled if both this and `man_instances` are specified.
     ///
     /// @since 0.0.1
-    min_instances      = optional(number, null)
+    min_instances = optional(number, null)
     /// A list of availability zones the nodes should be deployed onto
     ///
     /// @since 0.0.1
-    zones              = optional(list(string), null)
+    zones = optional(list(string), null)
   }))
 
   description = <<EOT
@@ -114,11 +114,11 @@ variable "add_ons" {
       /// Enables this add-on
       ///
       /// @since 0.0.1
-      enabled                          = bool
+      enabled = bool
       /// Name of the Azure Key Vault to allow this cluster to retrieve secrets from
       ///
       /// @since 0.0.1
-      key_vault_name                   = string
+      key_vault_name = string
       /// The interval in minutes that the secrets in the cluster will be refreshed
       ///
       /// @since 0.0.1
@@ -144,7 +144,7 @@ variable "add_ons" {
       /// Enables this add-on
       ///
       /// @since 0.0.1
-      enabled        = bool
+      enabled = bool
       /// How long in days the logs will be retained
       ///
       /// @since 0.0.1
@@ -260,7 +260,7 @@ variable "networking_config" {
     /// The Network Range used by the Kubernetes service
     ///
     /// @since 0.0.1
-    kubernetes_service_address_range  = optional(string, "10.0.0.0/16")
+    kubernetes_service_address_range = optional(string, "10.0.0.0/16")
     /// IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns)
     ///
     /// @since 0.0.1
@@ -268,7 +268,7 @@ variable "networking_config" {
     /// IP address (in CIDR notation) used as the Docker bridge IP address on nodes
     ///
     /// @since 0.0.1
-    docker_bridge_address             = optional(string, "172.17.0.1/16")
+    docker_bridge_address = optional(string, "172.17.0.1/16")
 
     # kubenet options
     /// The CIDR to use for pod IP addresses. This field can only be set when `plugin = kubenet`

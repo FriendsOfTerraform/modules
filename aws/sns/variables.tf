@@ -47,7 +47,7 @@ variable "data_protection_policy" {
       ///
       /// @enum Inbound|Outbound
       /// @since 1.0.0
-      data_direction   = string # Inbound, Outbound
+      data_direction = string # Inbound, Outbound
       /// A list of data identifiers that represent sensitive data this statement applies to. Please refer to [this documentation][sns-managed-data-identifier] for the valid values. Can also include names specified in the `data_protection_policy.configuration.custom_data_identifiers`
       ///
       /// @link {sns-managed-data-identifier} https://docs.aws.amazon.com/sns/latest/dg/sns-message-data-protection-managed-data-identifiers.html#what-are-data-managed-data-identifiers
@@ -56,7 +56,7 @@ variable "data_protection_policy" {
       /// A list of IAM principals this statement applies to
       ///
       /// @since 1.0.0
-      principals       = optional(list(string), ["*"])
+      principals = optional(list(string), ["*"])
 
       /// The [operation to trigger][sns-data-protection-policy-operations] upon finding sensitive data as specified by this statement. You must specify one and only one of the following: `audit`, `deidentify`, `deny`
       ///
@@ -78,11 +78,11 @@ variable "data_protection_policy" {
             /// The Cloudwatch log group to send audit results to
             ///
             /// @since 1.0.0
-            cloudwatch_log_group     = optional(string, null)
+            cloudwatch_log_group = optional(string, null)
             /// The name of an S3 bucket to send audit results to
             ///
             /// @since 1.0.0
-            s3_bucket_name           = optional(string, null)
+            s3_bucket_name = optional(string, null)
             /// The name of a Kinese Firehose Delivery Stream to send audit results to
             ///
             /// @since 1.0.0
@@ -101,7 +101,7 @@ variable "data_protection_policy" {
           /// Completely removes the data
           ///
           /// @since 1.0.0
-          redact              = optional(bool, null)
+          redact = optional(bool, null)
         }), null)
 
         /// Denies the delivery of the message if the message contains sensitive data
@@ -142,19 +142,19 @@ variable "delivery_policy" {
       /// The minimum delay for a retry in seconds. Valid value: between `1` and `max_delay_target`
       ///
       /// @since 1.0.0
-      min_delay_target      = optional(number, 20)
+      min_delay_target = optional(number, 20)
       /// The maximum delay for a retry in seconds. Valid value: between `min_delay_target` and `3600`
       ///
       /// @since 1.0.0
-      max_delay_target      = optional(number, 20)
+      max_delay_target = optional(number, 20)
       /// The total number of retries, including immediate, pre-backoff, backoff, and post-backoff retries. Valid value: between `0` to `100`
       ///
       /// @since 1.0.0
-      num_retries           = optional(number, 3)
+      num_retries = optional(number, 3)
       /// The number of retries to be done immediately, with no delay between them
       ///
       /// @since 1.0.0
-      num_no_delay_retries  = optional(number, 0)
+      num_no_delay_retries = optional(number, 0)
       /// The number of retries in the pre-backoff phase, with the specified `min_delay_target` between them
       ///
       /// @since 1.0.0
@@ -167,7 +167,7 @@ variable "delivery_policy" {
       ///
       /// @enum arithmetic|exponential|geometric|linear
       /// @since 1.0.0
-      backoff_function      = optional(string, "linear")
+      backoff_function = optional(string, "linear")
     }), null)
 
     /// Define the throttle policy
@@ -205,11 +205,11 @@ variable "delivery_status_logging" {
     ///
     /// @enum application|http|lambda|sqs|firehose
     /// @since 1.0.0
-    protocols                          = list(string)
+    protocols = list(string)
     /// The percentage of successful message deliveries to log. Valid value: between `0` and `100`
     ///
     /// @since 1.0.0
-    success_sample_rate                = number
+    success_sample_rate = number
     /// Arn of an IAM role that gives permission to SNS to write successful delivery logs to Cloudwatch
     ///
     /// @since 1.0.0
@@ -217,7 +217,7 @@ variable "delivery_status_logging" {
     /// Arn of an IAM role that gives permission to SNS to write failed delivery logs to Cloudwatch
     ///
     /// @since 1.0.0
-    iam_role_for_failed_deliveries     = string
+    iam_role_for_failed_deliveries = string
   })
   description = <<EOT
     Enables logging of the delivery status of notification messages sent to topics
@@ -278,7 +278,7 @@ variable "subscriptions" {
     ///
     /// @enum application|firehose|lambda|sms|sqs|email|http|https
     /// @since 1.0.0
-    protocol                    = string
+    protocol = string
     /// List of endpoints to send data to. The contents vary with the protocol. See details below:
     ///
     /// | Protocol    | Endpoint
@@ -294,11 +294,11 @@ variable "subscriptions" {
     /// | https       | A URL beginning with https://
     ///
     /// @since 1.0.0
-    endpoints                   = list(string)
+    endpoints = list(string)
     /// ARN of a SQS queue where SNS will forward messages that can't be delivered to subscribers successfully to
     ///
     /// @since 1.0.0
-    dead_letter_queue_arn       = optional(string, null)
+    dead_letter_queue_arn = optional(string, null)
     /// Whether to enable raw message delivery, where the original message is directly passed and not wrapped in JSON with the original message in the message property
     ///
     /// @since 1.0.0
@@ -307,17 +307,17 @@ variable "subscriptions" {
     ///
     /// @link {sns-subscription-filter-policy} https://docs.aws.amazon.com/sns/latest/dg/sns-subscription-filter-policies.html
     /// @since 1.0.0
-    filter_policy               = optional(string, null)
+    filter_policy = optional(string, null)
     /// The [filter policy scope][sns-subscription-filter-policy-scope].
     ///
     /// @enum MessageAttributes|MessageBody
     /// @link {sns-subscription-filter-policy-scope} https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering-scope.html
     /// @since 1.0.0
-    filter_policy_scope         = optional(string, "MessageAttributes")
+    filter_policy_scope = optional(string, "MessageAttributes")
     /// ARN of the IAM role to publish to Kinesis Data Firehose delivery stream. Required only if `protocol = "firehose"`
     ///
     /// @since 1.0.0
-    subscription_role_arn       = optional(string, null)
+    subscription_role_arn = optional(string, null)
   }))
   description = <<EOT
     Manages multiple subscriptions for this topic.

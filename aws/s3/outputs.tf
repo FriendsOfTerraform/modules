@@ -5,7 +5,7 @@ output "bucket_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_s3_bucket.bucket.arn
+  value       = aws_s3_bucket.bucket.arn
 }
 
 output "bucket_domain_name" {
@@ -15,7 +15,7 @@ output "bucket_domain_name" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_s3_bucket.bucket.bucket_domain_name
+  value       = aws_s3_bucket.bucket.bucket_domain_name
 }
 
 output "bucket_name" {
@@ -25,7 +25,7 @@ output "bucket_name" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_s3_bucket.bucket.id
+  value       = aws_s3_bucket.bucket.id
 }
 
 output "bucket_region" {
@@ -35,7 +35,7 @@ output "bucket_region" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_s3_bucket.bucket.region
+  value       = aws_s3_bucket.bucket.region
 }
 
 output "website_domain" {
@@ -45,7 +45,7 @@ output "website_domain" {
     @type string
     @since 1.0.0
   EOT
-  value = local.static_website_hosting_enabled ? aws_s3_bucket_website_configuration.bucket_website_configuration[0].website_domain : null
+  value       = local.static_website_hosting_enabled ? aws_s3_bucket_website_configuration.bucket_website_configuration[0].website_domain : null
 }
 
 output "website_endpoint" {
@@ -55,5 +55,5 @@ output "website_endpoint" {
     @type string
     @since 1.0.0
   EOT
-  value = local.static_website_hosting_enabled ? aws_s3_bucket_website_configuration.bucket_website_configuration[0].website_endpoint : null
+  value       = local.static_website_hosting_enabled ? aws_s3_bucket_website_configuration.bucket_website_configuration[0].website_endpoint : null
 }

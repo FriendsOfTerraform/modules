@@ -55,11 +55,11 @@ variable "cors_configurations" {
     /// Specify a list of headers in the response that you want customers to be able to access from their applications
     ///
     /// @since 1.1.0
-    expose_headers  = optional(list(string), null)
+    expose_headers = optional(list(string), null)
     /// Unique identifier for the cors rule. The value cannot be longer than 255 characters.
     ///
     /// @since 1.1.0
-    id              = optional(string, null)
+    id = optional(string, null)
     /// Specify the time in seconds that your browser can cache the response for a preflight request as identified by the resource, the HTTP method, and the origin.
     ///
     /// @since 1.1.0
@@ -154,7 +154,7 @@ variable "intelligent_tiering_archive_configurations" {
     ///
     /// @enum ARCHIVE_ACCESS|DEEP_ARCHIVE_ACCESS
     /// @since 1.0.0
-    access_tier           = string
+    access_tier = string
     /// Number of consecutive days of no access after which an object will be eligible to be transitioned to the corresponding tier
     ///
     /// @since 1.0.0
@@ -171,7 +171,7 @@ variable "intelligent_tiering_archive_configurations" {
       /// Object key name prefix that identifies the subset of objects to which the configuration applies
       ///
       /// @since 1.0.0
-      prefix      = optional(string, null)
+      prefix = optional(string, null)
     }))
   }))
 
@@ -191,7 +191,7 @@ variable "inventory_config" {
     ///
     /// @enum Daily|Weekly
     /// @since 1.0.0
-    frequency                  = string
+    frequency = string
     /// List of optional metadata to be included in the inventory results.
     ///
     /// @enum Size|LastModifiedDate|StorageClass|ETag|IsMultipartUploaded|ReplicationStatus|EncryptionStatus|ObjectLockRetainUntilDate|ObjectLockMode|ObjectLockLegalHoldStatus|IntelligentTieringAccessTier|BucketKeyStatus|ChecksumAlgorithm|ObjectAccessControlList|ObjectOwner|LifecycleExpirationDate
@@ -241,7 +241,7 @@ variable "inventory_config" {
     ///
     /// @enum CSV|ORC|Parquet
     /// @since 1.0.0
-    output_format              = optional(string, "CSV")
+    output_format = optional(string, "CSV")
   }))
 
   description = <<EOT
@@ -272,7 +272,7 @@ variable "lifecycle_rules" {
       /// Expires objects after x days
       ///
       /// @since 1.0.0
-      days_after_object_creation             = optional(number)
+      days_after_object_creation = optional(number)
     }))
 
     /// Limit the scope of this configuration using one or more filters
@@ -290,11 +290,11 @@ variable "lifecycle_rules" {
       /// All of these tags must exist in the object's tag set in order for the configuration to apply
       ///
       /// @since 1.0.0
-      object_tags         = optional(map(string), null)
+      object_tags = optional(map(string), null)
       /// Object key name prefix that identifies the subset of objects to which the configuration applies
       ///
       /// @since 1.0.0
-      prefix              = optional(string, null)
+      prefix = optional(string, null)
     }))
 
     /// Expiration configuration to expires noncurrent s3 objects
@@ -308,7 +308,7 @@ variable "lifecycle_rules" {
       /// Number of noncurrent versions Amazon S3 will retain
       ///
       /// @since 1.0.0
-      number_of_newer_versions_to_retain   = optional(number)
+      number_of_newer_versions_to_retain = optional(number)
     }))
 
     /// Transitions noncurrent s3 objects to other storage class.
@@ -323,11 +323,11 @@ variable "lifecycle_rules" {
       ///
       /// @enum ONEZONE_IA|STANDARD_IA|INTELLIGENT_TIERING|GLACIER|DEEP_ARCHIVE|GLACIER_IR
       /// @since 1.0.0
-      storage_class                        = string
+      storage_class = string
       /// Number of noncurrent versions Amazon S3 will retain
       ///
       /// @since 1.0.0
-      number_of_newer_versions_to_retain   = optional(number)
+      number_of_newer_versions_to_retain = optional(number)
     })), [])
 
     /// Transitions s3 objects to other storage class.
@@ -342,7 +342,7 @@ variable "lifecycle_rules" {
       ///
       /// @enum ONEZONE_IA|STANDARD_IA|INTELLIGENT_TIERING|GLACIER|DEEP_ARCHIVE|GLACIER_IR
       /// @since 1.0.0
-      storage_class              = string
+      storage_class = string
     })), [])
   }))
 
@@ -366,7 +366,7 @@ variable "notification_config" {
       ///
       /// @link {s3-event} https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html#notification-how-to-event-types-and-destinations
       /// @since 1.0.0
-      events        = list(string)
+      events = list(string)
       /// Filters objects by key name prefix
       ///
       /// @since 1.0.0
@@ -414,15 +414,15 @@ variable "public_access_block" {
     /// Whether Amazon S3 should block public ACLs for this bucket
     ///
     /// @since 1.0.0
-    block_public_acls       = optional(bool)
+    block_public_acls = optional(bool)
     /// Whether Amazon S3 should block public bucket policies for this bucket
     ///
     /// @since 1.0.0
-    block_public_policy     = optional(bool)
+    block_public_policy = optional(bool)
     /// Whether Amazon S3 should ignore public ACLs for this bucket
     ///
     /// @since 1.0.0
-    ignore_public_acls      = optional(bool)
+    ignore_public_acls = optional(bool)
     /// Whether Amazon S3 should restrict public bucket policies for this bucket
     ///
     /// @since 1.0.0
@@ -451,7 +451,7 @@ variable "replication_config" {
       /// Priority associated with the rule. Priority must be unique between multiple rules.
       ///
       /// @since 1.0.0
-      priority               = number
+      priority = number
 
       /// Enables additional replication options
       ///
@@ -468,11 +468,11 @@ variable "replication_config" {
         /// With replication metrics, you can monitor the total number and size of objects that are pending replication, and the maximum replication time to the destination Region. You can also view and diagnose replication failures.
         ///
         /// @since 1.0.0
-        replication_metrics_enabled       = optional(bool, false)
+        replication_metrics_enabled = optional(bool, false)
         /// Replication Time Control replicates 99.99% of new objects within 15 minutes and includes replication metrics.
         ///
         /// @since 1.0.0
-        replication_time_control_enabled  = optional(bool, false)
+        replication_time_control_enabled = optional(bool, false)
       }))
 
       /// Specifies the overrides to use for object owners on replication. Specify this only in a cross-account scenario (where source and destination bucket owners are not the same), and you want to change replica ownership to the AWS account that owns the destination bucket. If this is not specified in the replication configuration, the replicas are owned by same AWS account that owns the source object.
@@ -501,7 +501,7 @@ variable "replication_config" {
         /// Object key name prefix that identifies the subset of objects to which the configuration applies
         ///
         /// @since 1.0.0
-        prefix      = optional(string, null)
+        prefix = optional(string, null)
       }))
 
       /// Specifies whether encrypted objects will be replicated
@@ -523,7 +523,7 @@ variable "replication_config" {
     ///
     /// @link "Object lock overview" https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-overview.html#object-lock-bucket-config
     /// @since 1.0.0
-    token        = optional(string)
+    token = optional(string)
   })
 
   description = <<EOT
@@ -562,7 +562,7 @@ variable "static_website_hosting_config" {
       ///
       /// @enum http|https
       /// @since 1.0.0
-      protocol  = optional(string)
+      protocol = optional(string)
     }))
 
     /// Manages documents S3 returns when a request is made to its web endpoint. Mutually exclusive to `redirect_requests_for_an_object`

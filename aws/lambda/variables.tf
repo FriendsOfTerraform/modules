@@ -8,7 +8,7 @@ variable "code_source" {
     /// Path to the function's deployment package within the local filesystem
     ///
     /// @since 1.0.0
-    filename            = optional(string)
+    filename = optional(string)
 
     /// S3 bucket location containing the function's deployment package. This bucket must reside in the same AWS region where you are creating the Lambda function
     ///
@@ -18,7 +18,7 @@ variable "code_source" {
       ///
       /// @example "Basic Usage" #basic-usage
       /// @since 1.0.0
-      uri     = string # s3://bucket/prefix
+      uri = string # s3://bucket/prefix
       /// Object version containing the function's deployment package
       ///
       /// @since 1.0.0
@@ -80,7 +80,7 @@ variable "aliases" {
     /// Description of the alias
     ///
     /// @since 1.0.0
-    description      = optional(string)
+    description = optional(string)
 
     /// Configures this alias to send a portion of traffic to a second function version. Used for canary deployment scenarios. Please refer to [this documentation][lambda-alias-routing] for a list of requirements for this feature.
     ///
@@ -94,7 +94,7 @@ variable "aliases" {
       /// The weight, in percentage, of the total traffic routed to the second function version
       ///
       /// @since 1.0.0
-      weight           = number
+      weight = number
     }))
   }))
   description = <<EOT
@@ -141,7 +141,7 @@ variable "asynchronous_invocation" {
       /// The number of times Lambda retries when the function returns an error, between 0 and 2
       ///
       /// @since 1.0.0
-      maximum_retry_attempts       = optional(number, 2)
+      maximum_retry_attempts = optional(number, 2)
     }))
   })
   description = <<EOT
@@ -159,7 +159,7 @@ variable "container_image_overrides" {
     /// Specifies parameters that you want to pass in with ENTRYPOINT
     ///
     /// @since 1.0.0
-    cmd        = optional(string)
+    cmd = optional(string)
     /// Specifies the absolute path to the entry point of the application
     ///
     /// @since 1.0.0
@@ -167,7 +167,7 @@ variable "container_image_overrides" {
     /// Specifies the absolute path to the working directory
     ///
     /// @since 1.0.0
-    workdir    = optional(string)
+    workdir = optional(string)
   })
   description = <<EOT
     Container image configuration values that override the values in the container image Dockerfile. Only applicable if `code_source.container_image_uri` is specified
@@ -182,7 +182,7 @@ variable "concurrency" {
     /// Specify the maximum number of concurrent instances allocated to the function. A value of `0` disables lambda from being triggered and `-1` removes any concurrency limitations
     ///
     /// @since 1.0.0
-    reserved_concurrency      = optional(number, -1)
+    reserved_concurrency = optional(number, -1)
     /// Map of provisioned concurrences assigned to Lambda qualifiers.
     ///
     /// @example "Provisioned Concurrency" #provisioned-concurrency
@@ -231,7 +231,7 @@ variable "enable_function_url" {
     ///
     /// @enum AWS_IAM|NONE|AWS_IAM
     /// @since 1.0.0
-    auth_type   = optional(string, "AWS_IAM")
+    auth_type = optional(string, "AWS_IAM")
     /// Determines how the Lambda function responds to an invocation.
     ///
     /// @enum BUFFERED|RESPONSE_STREAM
@@ -249,23 +249,23 @@ variable "enable_function_url" {
       /// The HTTP headers that origins can include in requests to the function URL. For example: `["date", "keep-alive", "x-custom-header"]`
       ///
       /// @since 1.0.0
-      allow_headers     = optional(list(string))
+      allow_headers = optional(list(string))
       /// The HTTP methods that are allowed when calling the function URL. For example: `["GET", "POST", "DELETE"]`
       ///
       /// @since 1.0.0
-      allow_methods     = optional(list(string), ["*"])
+      allow_methods = optional(list(string), ["*"])
       /// The origins that can access the function URL. For example: `["https://www.example.com", "http://localhost:60905"]`
       ///
       /// @since 1.0.0
-      allow_origins     = optional(list(string), ["*"])
+      allow_origins = optional(list(string), ["*"])
       /// The HTTP headers in your function response that you want to expose to origins that call the function URL
       ///
       /// @since 1.0.0
-      expose_headers    = optional(list(string))
+      expose_headers = optional(list(string))
       /// The maximum amount of time, in seconds, that web browsers can cache results of a preflight request. Valid values: `0 - 86400`
       ///
       /// @since 1.0.0
-      max_age_seconds   = optional(number, 0)
+      max_age_seconds = optional(number, 0)
     }))
   })
   description = <<EOT
@@ -282,7 +282,7 @@ variable "environment_variables" {
     /// A map of environment variables to pass to the function
     ///
     /// @since 1.0.0
-    variables   = map(string)
+    variables = map(string)
     /// Specify the ARN of the KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key
     ///
     /// @since 1.0.0
@@ -351,24 +351,24 @@ variable "lambda_permissions" {
     ///
     /// @enum aws_account|aws_service|function_url
     /// @since 1.0.0
-    policy_type               = string
+    policy_type = string
     /// Specify the principal who is getting this permission. If `policy_type = "aws_service"`, you must specify an AWS service URL such as `"s3.amazonaws.com"`. Otherwise, you can specify an AWS account ID such as `"111122223333"` or an IAM user ARN.
     ///
     /// @since 1.0.0
-    principal                 = string
+    principal = string
     /// The AWS Lambda action you want to allow in this statement. Defaults to `"lambda:InvokeFunctionUrl"` if `policy_type = "function_url"`, and `"lambda:InvokeFunction"` otherwise.
     ///
     /// @since 1.0.0
-    action                    = optional(string)
+    action = optional(string)
     /// The Event Source Token to validate. Valid only with an Alexa Skill principal.
     ///
     /// @since 1.0.0
-    event_source_token        = optional(string)
+    event_source_token = optional(string)
     /// Lambda Function URLs authentication type. Only supported for `policy_type = "function_url"` and `action = "lambda:InvokeFunctionUrl"`
     ///
     /// @enum AWS_IAM|NONE
     /// @since 1.0.0
-    function_url_auth_type    = optional(string)
+    function_url_auth_type = optional(string)
     /// The ID of an organization in AWS Organizations. Use this to grant permissions to only the AWS accounts under this organization.
     ///
     /// @since 1.0.0
@@ -376,11 +376,11 @@ variable "lambda_permissions" {
     /// The AWS account ID of the source owner. Used to grant permissions to an AWS service outside of this function's account, such as an S3 bucket. Only valid if `policy_type = "aws_service"`
     ///
     /// @since 1.0.0
-    source_account_id         = optional(string)
+    source_account_id = optional(string)
     /// The ARN of the specific resource within that service to grant permission to, such as an S3 bucket ARN. Only valid if `policy_type = "aws_service"`
     ///
     /// @since 1.0.0
-    source_arn                = optional(string)
+    source_arn = optional(string)
   }))
   description = <<EOT
     Grants external sources such as AWS accounts and services permission to invoke the Lambda function.
@@ -462,11 +462,11 @@ variable "vpc_config" {
     /// List of subnet IDs associated with the ENIs of the Lambda function
     ///
     /// @since 1.0.0
-    subnet_ids         = list(string)
+    subnet_ids = list(string)
     /// Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets
     ///
     /// @since 1.0.0
-    enable_dual_stack  = optional(bool, false)
+    enable_dual_stack = optional(bool, false)
   })
   description = <<EOT
     Configure this function to [connect to private subnets in a VPC][lambda-vpc-config], allowing it access to private resources. The required IAM policy will be automatically attached to the managed role if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided has the IAM policy `AWSLambdaENIManagementAccess` attached.

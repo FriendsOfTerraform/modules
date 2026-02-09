@@ -18,5 +18,5 @@ output "ecs_cluster_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_ecs_cluster.ecs_cluster.arn
+  value       = aws_ecs_cluster.ecs_cluster.arn
 }

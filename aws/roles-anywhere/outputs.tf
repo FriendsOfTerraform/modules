@@ -5,7 +5,7 @@ output "profile_arns" {
     @type map(string)
     @since 1.0.0
   EOT
-  value = { for k, v in aws_rolesanywhere_profile.profiles : k => v.arn }
+  value       = { for k, v in aws_rolesanywhere_profile.profiles : k => v.arn }
 }
 
 output "profile_ids" {
@@ -15,7 +15,7 @@ output "profile_ids" {
     @type map(string)
     @since 1.0.0
   EOT
-  value = { for k, v in aws_rolesanywhere_profile.profiles : k => v.id }
+  value       = { for k, v in aws_rolesanywhere_profile.profiles : k => v.id }
 }
 
 output "trust_anchor_arns" {
@@ -25,7 +25,7 @@ output "trust_anchor_arns" {
     @type map(string)
     @since 1.0.0
   EOT
-  value = { for k, v in aws_rolesanywhere_trust_anchor.trust_anchors : k => v.arn }
+  value       = { for k, v in aws_rolesanywhere_trust_anchor.trust_anchors : k => v.arn }
 }
 
 output "trust_anchor_ids" {
@@ -35,5 +35,5 @@ output "trust_anchor_ids" {
     @type map(string)
     @since 1.0.0
   EOT
-  value = { for k, v in aws_rolesanywhere_trust_anchor.trust_anchors : k => v.id }
+  value       = { for k, v in aws_rolesanywhere_trust_anchor.trust_anchors : k => v.id }
 }

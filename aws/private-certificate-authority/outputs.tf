@@ -5,7 +5,7 @@ output "certificate_authority_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_acmpca_certificate_authority.certificate_authority.arn
+  value       = aws_acmpca_certificate_authority.certificate_authority.arn
 }
 
 output "certificate_authority_certificate" {
@@ -15,7 +15,7 @@ output "certificate_authority_certificate" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_acmpca_certificate_authority.certificate_authority.certificate
+  value       = aws_acmpca_certificate_authority.certificate_authority.certificate
 }
 
 output "certificate_authority_csr" {
@@ -25,7 +25,7 @@ output "certificate_authority_csr" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_acmpca_certificate_authority.certificate_authority.certificate_signing_request
+  value       = aws_acmpca_certificate_authority.certificate_authority.certificate_signing_request
 }
 
 output "certificate_authority_certificate_chain" {
@@ -35,7 +35,7 @@ output "certificate_authority_certificate_chain" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_acmpca_certificate_authority.certificate_authority.certificate_chain
+  value       = aws_acmpca_certificate_authority.certificate_authority.certificate_chain
 }
 
 output "certificate_authority_id" {
@@ -45,5 +45,5 @@ output "certificate_authority_id" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_acmpca_certificate_authority.certificate_authority.id
+  value       = aws_acmpca_certificate_authority.certificate_authority.id
 }

@@ -20,11 +20,11 @@ variable "network_mapping" {
       /// The front-end IPv6 address of the load balancer in the selected Availability Zone. It can be any available IP address within the subnet’s CIDR. Only applicable to `network_load_balancer`
       ///
       /// @since 1.0.0
-      ipv6_address             = optional(string, null)
+      ipv6_address = optional(string, null)
       /// Private IPv4 address for an internal load balancer. It can be any available IP address within the subnet’s CIDR. Only applicable to `network_load_balancer` and `internet_facing = false`
       ///
       /// @since 1.0.0
-      private_ipv4_address     = optional(string, null)
+      private_ipv4_address = optional(string, null)
     }))
 
     # This option is not yet available in the latest provider 6.10.0
@@ -65,19 +65,19 @@ variable "application_load_balancer" {
           /// A map of extra parameters to pass to the identity provider (IdP) during authentication
           ///
           /// @since 1.0.0
-          extra_request_parameters          = optional(map(string), {})
+          extra_request_parameters = optional(map(string), {})
           /// The attributes to be requested by the identity provider (IdP).
           ///
           /// @since 1.0.0
-          scope                             = optional(string, "openid")
+          scope = optional(string, "openid")
           /// The name of the cookie used to maintain session information.
           ///
           /// @since 1.0.0
-          session_cookie_name               = optional(string, "AWSELBAuthSessionCookie")
+          session_cookie_name = optional(string, "AWSELBAuthSessionCookie")
           /// The maximum time allowed for an authenticated session after which re-authentication will be required. Valid values: `"1 second" - "7 days"`
           ///
           /// @since 1.0.0
-          session_timeout                   = optional(string, "7 days")
+          session_timeout = optional(string, "7 days")
 
           /// Configures an Amazon Cognito IdP for authentication
           ///
@@ -86,11 +86,11 @@ variable "application_load_balancer" {
             /// ID of the Cognito user pool client.
             ///
             /// @since 1.0.0
-            app_client       = string
+            app_client = string
             /// The ARN of the Cognito user pool
             ///
             /// @since 1.0.0
-            user_pool        = string
+            user_pool = string
             /// Domain prefix or fully-qualified domain name of the Cognito user pool.
             ///
             /// @since 1.0.0
@@ -108,23 +108,23 @@ variable "application_load_balancer" {
             /// The ID of an app client in your user pool.
             ///
             /// @since 1.0.0
-            client_id              = string
+            client_id = string
             /// Provide a client secret associated with this client ID.
             ///
             /// @since 1.0.0
-            client_secret          = string
+            client_secret = string
             /// OpenID provider.
             ///
             /// @since 1.0.0
-            issuer                 = string
+            issuer = string
             /// URL of your token endpoint.
             ///
             /// @since 1.0.0
-            token_endpoint         = string
+            token_endpoint = string
             /// URL of your user info endpoint.
             ///
             /// @since 1.0.0
-            user_info_endpoint     = string
+            user_info_endpoint = string
           }), null)
         }), null)
 
@@ -136,7 +136,7 @@ variable "application_load_balancer" {
           ///
           /// @enum text/plain|text/css|text/html|application/javascript|application/json
           /// @since 1.0.0
-          content_type  = optional(string, "text/plain")
+          content_type = optional(string, "text/plain")
           /// The message body of the response
           ///
           /// @since 1.0.0
@@ -189,7 +189,7 @@ variable "application_load_balancer" {
           /// To avoid a redirect loop, you must modify at least one of the following components: protocol, port, hostname or path.
           ///
           /// @since 1.0.0
-          url         = string
+          url = string
           /// HTTP response code.
           ///
           /// @enum 301|302
@@ -218,39 +218,39 @@ variable "application_load_balancer" {
           /// Specifies which custom or non-simple headers can be included in a cross-origin request. This header gives targets control over which headers can be sent by clients from different origins.
           ///
           /// @since 1.0.0
-          access_control_allow_headers     = optional(string, null)
+          access_control_allow_headers = optional(string, null)
           /// Specifies the HTTP methods that are allowed when making cross-origin requests to the target. It provides control over which actions can be performed from different origins.
           ///
           /// @since 1.0.0
-          access_control_allow_methods     = optional(string, null)
+          access_control_allow_methods = optional(string, null)
           /// Controls whether resources on a target can be accessed from different origins. This allows secure cross-origin interactions while preventing unauthorized access.
           ///
           /// @since 1.0.0
-          access_control_allow_origin      = optional(string, null)
+          access_control_allow_origin = optional(string, null)
           /// Allows the target to specify which additional response headers can be access by the client in cross-origin requests.
           ///
           /// @since 1.0.0
-          access_control_expose_headers    = optional(string, null)
+          access_control_expose_headers = optional(string, null)
           /// Defines how long the browser can cache the result of a preflight request, reducing the need for repeated preflight checks. This helps to optimize performance by reducing the number of OPTIONS requests required for certain cross-origin requests.
           ///
           /// @since 1.0.0
-          access_control_max_age           = optional(string, null)
+          access_control_max_age = optional(string, null)
           /// Security feature that prevents code injection attacks like XSS by controlling which resources such as scripts, styles, images, etc. can be loaded and executed by a website.
           ///
           /// @since 1.0.0
-          content_security_policy          = optional(string, null)
+          content_security_policy = optional(string, null)
           /// Enforces HTTPS-only connections by the browser for a specified duration
           ///
           /// @since 1.0.0
-          http_strict_transport_security   = optional(string, null)
+          http_strict_transport_security = optional(string, null)
           /// With the no-sniff directive, enhances web security by preventing browsers from guessing the MIME type of a resource. It ensures that browsers only interpret content according to the declared Content-Type
           ///
           /// @since 1.0.0
-          x_content_type_options           = optional(string, null)
+          x_content_type_options = optional(string, null)
           /// Header security mechanism that helps prevent click-jacking attacks by controlling whether a web page can be embedded in frames. Values such as DENY and SAMEORIGIN can ensure that content is not embedded on malicious or untrusted websites.
           ///
           /// @since 1.0.0
-          x_frame_options                  = optional(string, null)
+          x_frame_options = optional(string, null)
         }), {})
 
         /// Configure the HTTP headers added by the load balancer when using TLS or mTLS
@@ -260,15 +260,15 @@ variable "application_load_balancer" {
           /// Carries the full client certificate. Allowing the target to verify the certificate’s authenticity, validate the certificate chain, and authenticate the client during the mTLS handshake process.
           ///
           /// @since 1.0.0
-          x_amzn_mtls_clientcert               = optional(string, null)
+          x_amzn_mtls_clientcert = optional(string, null)
           /// Helps the target validate and authenticate the client certificate by identifying the certificate authority that issued the certificate.
           ///
           /// @since 1.0.0
-          x_amzn_mtls_clientcert_issuer        = optional(string, null)
+          x_amzn_mtls_clientcert_issuer = optional(string, null)
           /// Provides the client certificate used in the mTLS handshake, allowing the server to authenticate the client and validate the certificate chain. This ensures the connection is secure and authorized.
           ///
           /// @since 1.0.0
-          x_amzn_mtls_clientcert_leaf          = optional(string, null)
+          x_amzn_mtls_clientcert_leaf = optional(string, null)
           /// Ensures that the target can identify and verify the specific certificate presented by the client during the TLS handshake.
           ///
           /// @since 1.0.0
@@ -276,19 +276,19 @@ variable "application_load_balancer" {
           /// Provides the target with detailed information about the entity the client certificate was issued to, which helps in identification, authentication, authorization, and logging during mTLS authentication.
           ///
           /// @since 1.0.0
-          x_amzn_mtls_clientcert_subject       = optional(string, null)
+          x_amzn_mtls_clientcert_subject = optional(string, null)
           /// Allows the target to verify that the client certificate being used is within its defined validity period, ensuring the certificate is not expired or prematurely used.
           ///
           /// @since 1.0.0
-          x_amzn_mtls_clientcert_validity      = optional(string, null)
+          x_amzn_mtls_clientcert_validity = optional(string, null)
           /// Indicates the combination of cryptographic algorithms used to secure a connection in TLS. This allows the server to assess the security of the connection, helping with compatibility troubleshooting, and ensuring compliance with security policies.
           ///
           /// @since 1.0.0
-          x_amzn_tls_cipher_suite              = optional(string, null)
+          x_amzn_tls_cipher_suite = optional(string, null)
           /// Indicates the version of the TLS protocol used for a connection. It facilitates determining the security level of the communication, troubleshoot connection issues and ensuring compliance.
           ///
           /// @since 1.0.0
-          x_amzn_tls_version                   = optional(string, null)
+          x_amzn_tls_version = optional(string, null)
         }), {})
       }), {})
 
@@ -307,11 +307,11 @@ variable "application_load_balancer" {
           /// Whether incoming connection requests with an expired client certificates should be allowed
           ///
           /// @since 1.0.0
-          allow_expired_client_certificates     = optional(bool, false)
+          allow_expired_client_certificates = optional(bool, false)
           /// An existing trust store that contain the certificate authority (CA) bundle that you trust to identify clients. Mutually exclusive to `new_trust_store`
           ///
           /// @since 1.0.0
-          trust_store_arn                       = optional(string, null)
+          trust_store_arn = optional(string, null)
 
           /// Create a new trust store using an existing CA bundle and optionally certificate revocation lists. Mutually exclusive to `trust_store_arn`
           ///
@@ -324,7 +324,7 @@ variable "application_load_balancer" {
               /// The S3 URI where the CA bundle resides. For example: `"s3://demo-bucket/ca-bundles/ca.pem"`
               ///
               /// @since 1.0.0
-              s3_uri  = string
+              s3_uri = string
               /// The S3 version ID of the CA bundle
               ///
               /// @since 1.0.0
@@ -356,7 +356,7 @@ variable "application_load_balancer" {
         /// The rule priority. Rules are evaluated in priority order from the lowest value to the highest value.
         ///
         /// @since 1.0.0
-        priority        = number
+        priority = number
         /// Additional tags for the listener rule
         ///
         /// @since 1.0.0
@@ -379,19 +379,19 @@ variable "application_load_balancer" {
             /// A map of extra parameters to pass to the identity provider (IdP) during authentication
             ///
             /// @since 1.0.0
-            extra_request_parameters          = optional(map(string), {})
+            extra_request_parameters = optional(map(string), {})
             /// The attributes to be requested by the identity provider (IdP).
             ///
             /// @since 1.0.0
-            scope                             = optional(string, "openid")
+            scope = optional(string, "openid")
             /// The name of the cookie used to maintain session information.
             ///
             /// @since 1.0.0
-            session_cookie_name               = optional(string, "AWSELBAuthSessionCookie")
+            session_cookie_name = optional(string, "AWSELBAuthSessionCookie")
             /// The maximum time allowed for an authenticated session after which re-authentication will be required. Valid values: `"1 second" - "7 days"`
             ///
             /// @since 1.0.0
-            session_timeout                   = optional(string, "7 days")
+            session_timeout = optional(string, "7 days")
 
             /// Configures an Amazon Cognito IdP for authentication
             ///
@@ -400,11 +400,11 @@ variable "application_load_balancer" {
               /// ID of the Cognito user pool client.
               ///
               /// @since 1.0.0
-              app_client       = string
+              app_client = string
               /// The ARN of the Cognito user pool
               ///
               /// @since 1.0.0
-              user_pool        = string
+              user_pool = string
               /// Domain prefix or fully-qualified domain name of the Cognito user pool.
               ///
               /// @since 1.0.0
@@ -422,23 +422,23 @@ variable "application_load_balancer" {
               /// The ID of an app client in your user pool.
               ///
               /// @since 1.0.0
-              client_id              = string
+              client_id = string
               /// Provide a client secret associated with this client ID.
               ///
               /// @since 1.0.0
-              client_secret          = string
+              client_secret = string
               /// OpenID provider.
               ///
               /// @since 1.0.0
-              issuer                 = string
+              issuer = string
               /// URL of your token endpoint.
               ///
               /// @since 1.0.0
-              token_endpoint         = string
+              token_endpoint = string
               /// URL of your user info endpoint.
               ///
               /// @since 1.0.0
-              user_info_endpoint     = string
+              user_info_endpoint = string
             }), null)
           }), null)
 
@@ -450,7 +450,7 @@ variable "application_load_balancer" {
             ///
             /// @enum text/plain|text/css|text/html|application/javascript|application/json
             /// @since 1.0.0
-            content_type  = optional(string, "text/plain")
+            content_type = optional(string, "text/plain")
             /// The message body of the response
             ///
             /// @since 1.0.0
@@ -503,7 +503,7 @@ variable "application_load_balancer" {
             /// To avoid a redirect loop, you must modify at least one of the following components: protocol, port, hostname or path.
             ///
             /// @since 1.0.0
-            url         = string
+            url = string
             /// HTTP response code.
             ///
             /// @enum 301|302
@@ -520,15 +520,15 @@ variable "application_load_balancer" {
           /// A list of host header patterns to match. The maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: `*` (matches 0 or more characters) and `?` (matches exactly 1 character).
           ///
           /// @since 1.0.0
-          host_headers         = optional(list(string), null)
+          host_headers = optional(list(string), null)
           /// A list of path patterns to match against the request URL. Maximum size of each pattern is 128 characters. Comparison is case sensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character).
           ///
           /// @since 1.0.0
-          paths                = optional(list(string), null)
+          paths = optional(list(string), null)
           /// Query strings to match. This condition can be specified multiple times.
           ///
           /// @since 1.0.0
-          query_strings        = optional(map(string), {})
+          query_strings = optional(map(string), {})
           /// A list of HTTP request methods or verbs to match. Maximum size is 40 characters. Only allowed characters are A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards are not supported.
           ///
           /// @since 1.0.0
@@ -536,22 +536,22 @@ variable "application_load_balancer" {
           /// HTTP headers to match. This condition can be specified multiple times.
           ///
           /// @since 1.0.0
-          http_headers         = optional(map(list(string)), {})
+          http_headers = optional(map(list(string)), {})
           /// A list of source IP CIDR notations to match. You can use both IPv4 and IPv6 addresses. Wildcards are not supported.
           ///
           /// @since 1.0.0
-          source_ips           = optional(list(string), null)
+          source_ips = optional(list(string), null)
         }))
       })), {})
 
       /// Additional tags for the listener
       ///
       /// @since 1.0.0
-      additional_tags             = optional(map(string), {})
+      additional_tags = optional(map(string), {})
       /// Additional certificates for Server Name Indication (SNI). This enables the load balancer to support multiple domains on the same port and provide a different certificate for each domain.
       ///
       /// @since 1.0.0
-      certificates_for_sni        = optional(list(string), [])
+      certificates_for_sni = optional(list(string), [])
       /// The certificate to use if a client connects without SNI protocol, or if there are no matching certificates. This is required if a `HTTPS` listener is specified.
       ///
       /// @since 1.0.0
@@ -559,7 +559,7 @@ variable "application_load_balancer" {
       /// Name of the SSL Policy for the listener. This is required if a `HTTPS` listener is specified.
       ///
       /// @since 1.0.0
-      security_policy             = optional(string, "ELBSecurityPolicy-TLS13-1-2-Res-2021-06")
+      security_policy = optional(string, "ELBSecurityPolicy-TLS13-1-2-Res-2021-06")
     }))
 
     /// Configure listener attributes
@@ -569,28 +569,28 @@ variable "application_load_balancer" {
       /// The amount of time a client or target connection can be idle before the load balancer closes it. Valid range is `"1 second" - "4000 seconds"`.
       ///
       /// @since 1.0.0
-      connection_idle_timeout                         = optional(string, "1 minute")
+      connection_idle_timeout = optional(string, "1 minute")
       /// Determines how the load balancer handles requests that might pose a security risk to your application.
       ///
       /// @enum defensive|monitor|strictest
       /// @since 1.0.0
-      desync_mitigation_mode                          = optional(string, "defensive")
+      desync_mitigation_mode = optional(string, "defensive")
       /// Indicates whether HTTP headers with header fields that are not valid are removed by the load balancer
       ///
       /// @since 1.0.0
-      drop_invalid_header_fields                      = optional(bool, false)
+      drop_invalid_header_fields = optional(bool, false)
       /// Controls whether Amazon Application Recovery Controller (ARC) zonal shift is available to the load balancer.
       ///
       /// @since 1.0.0
-      enable_arc_zonal_shift_integration              = optional(bool, false)
+      enable_arc_zonal_shift_integration = optional(bool, false)
       /// Enable requests using the HTTP/2 protocol
       ///
       /// @since 1.0.0
-      enable_http2                                    = optional(bool, true)
+      enable_http2 = optional(bool, true)
       /// If enabled, the load balancer adds two TLS headers (`x-amzn-tls-version` and `x-amzn-tls-cipher-suite`) to the client request before sending it to the target.
       ///
       /// @since 1.0.0
-      enable_tls_version_and_cipher_headers           = optional(bool, false)
+      enable_tls_version_and_cipher_headers = optional(bool, false)
       /// Whether the X-Forwarded-For header should preserve the source port that the client used to connect to the load balancer.
       ///
       /// @since 1.0.0
@@ -598,20 +598,20 @@ variable "application_load_balancer" {
       /// Allows requests through to backend target(s) when the application load balancer is unable to contact AWS Web Application Firewall (WAF).
       ///
       /// @since 1.0.0
-      enable_waf_fail_open                            = optional(bool, false)
+      enable_waf_fail_open = optional(bool, false)
       /// The amount of time a client connection is kept open before the load balancer closes it. Valid range is `"1 minute" - "7 days"`
       ///
       /// @since 1.0.0
-      http_client_keepalive_duration                  = optional(string, "1 hour")
+      http_client_keepalive_duration = optional(string, "1 hour")
       /// Whether the Application Load Balancer should preserve the Host header in the HTTP request and send it to targets without any change.
       ///
       /// @since 1.0.0
-      preserve_host_header                            = optional(bool, false)
+      preserve_host_header = optional(bool, false)
       /// Rather to append, preserve, or remove the X-Forwarded-For header in the HTTP request before the Application Load Balancer sends the request to the target.
       ///
       /// @enum append|preserve|remove
       /// @since 1.0.0
-      x_forwarded_for_header_processing_mode          = optional(string, "append")
+      x_forwarded_for_header_processing_mode = optional(string, "append")
     }), {})
   })
   description = <<EOT
@@ -703,16 +703,16 @@ variable "network_load_balancer" {
       /// Additional tags for the listener
       ///
       /// @since 1.0.0
-      additional_tags             = optional(map(string), {})
+      additional_tags = optional(map(string), {})
       /// Specify the Application-Layer Protocol Negotiation (ALPN) policy. Only applicable if protocol is `TLS`.
       ///
       /// @enum HTTP1Only|HTTP2Only|HTTP2Optional|HTTP2Preferred|None
       /// @since 1.0.0
-      alpn_policy                 = optional(string, null)
+      alpn_policy = optional(string, null)
       /// Additional certificates for Server Name Indication (SNI). This enables the load balancer to support multiple domains on the same port and provide a different certificate for each domain.
       ///
       /// @since 1.0.0
-      certificates_for_sni        = optional(list(string), [])
+      certificates_for_sni = optional(list(string), [])
       /// The certificate to use if a client connects without SNI protocol, or if there are no matching certificates. This is required if a `TLS` listener is specified.
       ///
       /// @since 1.0.0
@@ -720,7 +720,7 @@ variable "network_load_balancer" {
       /// Name of the SSL Policy for the listener. This is required if a `TLS` listener is specified.
       ///
       /// @since 1.0.0
-      security_policy             = optional(string, "ELBSecurityPolicy-TLS13-1-2-Res-2021-06")
+      security_policy = optional(string, "ELBSecurityPolicy-TLS13-1-2-Res-2021-06")
     }))
 
     /// Configure the load balancer attributes
@@ -731,7 +731,7 @@ variable "network_load_balancer" {
       ///
       /// @enum any_availability_zone|availability_zone_affinity|partial_availability_zone_affinity
       /// @since 1.0.0
-      client_routing_policy              = optional(string, "any_availability_zone")
+      client_routing_policy = optional(string, "any_availability_zone")
       /// Controls whether Amazon Application Recovery Controller (ARC) zonal shift is available to the load balancer.
       ///
       /// @since 1.0.0
@@ -739,7 +739,7 @@ variable "network_load_balancer" {
       /// If enabled. Each load balancer node load balances traffic among healthy targets in all its enabled Availability Zones
       ///
       /// @since 1.0.0
-      enable_cross_zone_load_balancing   = optional(bool, false)
+      enable_cross_zone_load_balancing = optional(bool, false)
     }), {})
   })
   description = <<EOT

@@ -5,7 +5,7 @@ output "sqs_queue_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_sqs_queue.sqs_queue.arn
+  value       = aws_sqs_queue.sqs_queue.arn
 }
 
 output "sqs_queue_id" {
@@ -15,7 +15,7 @@ output "sqs_queue_id" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_sqs_queue.sqs_queue.id
+  value       = aws_sqs_queue.sqs_queue.id
 }
 
 output "sqs_queue_url" {
@@ -25,5 +25,5 @@ output "sqs_queue_url" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_sqs_queue.sqs_queue.url
+  value       = aws_sqs_queue.sqs_queue.url
 }

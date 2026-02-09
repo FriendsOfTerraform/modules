@@ -185,7 +185,7 @@ output "vpc_arn" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_vpc.vpc.arn
+  value       = aws_vpc.vpc.arn
 }
 
 output "vpc_id" {
@@ -195,5 +195,5 @@ output "vpc_id" {
     @type string
     @since 1.0.0
   EOT
-  value = aws_vpc.vpc.id
+  value       = aws_vpc.vpc.id
 }
