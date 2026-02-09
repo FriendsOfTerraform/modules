@@ -8,10 +8,11 @@ This module will create and configure an [Azure Automation Account][azure-automa
 
 - [Example Usage](#example-usage)
     - [Runbooks](#runbooks)
-- [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -29,7 +30,7 @@ module "automation" {
   runbooks = {
     "one_time" = {
       content = <<-EOT
-        Write-Host "Hello World"  
+        Write-Host "Hello World"
       EOT
 
       # Run only once at 2300 PST
@@ -41,7 +42,7 @@ module "automation" {
 
     "hourly" = {
       content = <<-EOT
-        Write-Host "Hello World"  
+        Write-Host "Hello World"
       EOT
 
       # Run once every hour at 2300 PST
@@ -54,7 +55,7 @@ module "automation" {
 
     "daily" = {
       content = <<-EOT
-        Write-Host "Hello World"  
+        Write-Host "Hello World"
       EOT
 
       # Run once a day at 2300 PST
@@ -67,7 +68,7 @@ module "automation" {
 
     "weekly" = {
       content = <<-EOT
-        Write-Host "Hello World"  
+        Write-Host "Hello World"
       EOT
 
       # Run every one week every Saturday and Sunday at 2300 PST
@@ -83,7 +84,7 @@ module "automation" {
 
     "montly_week" = {
       content = <<-EOT
-        Write-Host "Hello World"  
+        Write-Host "Hello World"
       EOT
 
       # Run every one month at the Second Tuesday at 2300 PST
@@ -99,7 +100,7 @@ module "automation" {
 
     "montly_days" = {
       content = <<-EOT
-        Write-Host "Hello World"  
+        Write-Host "Hello World"
       EOT
 
       # Run every one month at the 1st, 10th, and last day at 2300 PST
@@ -116,174 +117,1009 @@ module "automation" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
 
-- (object) **`azure`** _[since v0.0.1]_
 
-    The resource group name and the location where the resources will be deployed to
 
-    ```terraform
-    azure = {
-      resource_group_name = "sandbox"
-      location = "westus"
-    }
-    ```
 
-    - (string) **`resource_group_name`** _[since v0.0.1]_
 
-        The name of an Azure resource group where the automation account will be deployed
+## Inputs
 
-    - (string) **`location = null`** _[since v0.0.1]_
+### Required
 
-        The name of an Azure location where the automation account will be deployed. If unspecified, the resource group's location will be used.
 
-- (string) **`name`** _[since v0.0.1]_
 
-    The name of the automation account
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td width="100%">azure</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The resource group name and the location where the resources will be deployed to
+
+```terraform
+azure = {
+resource_group_name = "sandbox"
+location = "westus"
+}
+```
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the automation account
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
 
 ### Optional
 
-- (map(string)) **`additional_tags = {}`** _[since v0.0.1]_
 
-    Additional tags for the automation account
 
-- (map(string)) **`additional_tags_all = {}`** _[since v0.0.1]_
+    
 
-    Additional tags for all resources deployed with this module
+    
 
-- (map(object)) **`runbooks = {}`** _[since v0.0.1]_
+    
 
-    Defines and manages multiple runbooks and their schedules
+    
 
-    ```terraform
-    runbooks = {
-      "hourly" = {
-        content = <<-EOT
-          Write-Host "Hello World"  
-        EOT
-  
-        # Run once every hour at 2300 PST
-        schedule = {
-          timezone   = "America/Los_Angeles"
-          start_time = "2022-09-04T23:00:00.000-07:00"
-          hourly     = { interval = 1 }
-        }
-      }
-    }
-    ```
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`content`** _[since v0.0.1]_
+Additional tags for the automation account
 
-        The content of the runbook. This can either be the actual script itself, or a `uri` referencing the content remotely.
+    
 
-    - (map(string)) **`additional_tags`** _[since v0.0.1]_
+    
 
-        Additional tags for the runbook
+    
 
-    - (string) **`description = null`** _[since v0.0.1]_
+    
 
-        Description of the runbook
+    
+**Since:** 0.0.1
+        
 
-    - (bool) **`log_progress = true`** _[since v0.0.1]_
 
-        Enables logging the progress of the runbook
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (bool) **`log_verbose = false`** _[since v0.0.1]_
+Additional tags for all resources deployed with this module
 
-        Enables verbose logging
+    
 
-    - (string) **`runbook_type = "PowerShell"`** _[since v0.0.1]_
+    
 
-        Defines the type of the runbook. Valid values are: `"Graph", "GraphPowerShell", "GraphPowerShellWorkflow", "PowerShellWorkflow", "PowerShell", or "Script"`
+    
 
-    - (object) **`schedule = null`** _[since v0.0.1]_
+    
 
-        Defines schedule to automatically trigger this runbook
+    
+**Since:** 0.0.1
+        
 
-        - (string) **`description = null`** _[since v0.0.1]_
 
-            Description of the schedule
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#runbooks">Runbooks</a>))</code></td>
+    <td width="100%">runbooks</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-        - (string) **`timezone = "UTC"`** _[since v0.0.1]_
+Defines and manages multiple runbooks and their schedules
 
-            Defines the timezone this runbook schedules on. Refer to [this list][azure-timezones] for valid timezones.
+```terraform
+runbooks = {
+"hourly" = {
+content = "Write-Host 'Hello World'"
 
-        - (string) **`start_time = null`** _[since v0.0.1]_
+# Run once every hour at 2300 PST
+schedule = {
+timezone   = "America/Los_Angeles"
+start_time = "2022-09-04T23:00:00.000-07:00"
+hourly     = { interval = 1 }
+}
+}
+}
+```
 
-            Defines the start time of the schedule, in [RFC3339 DateTime format][rfc3339]. Defaults to `current time + 7 minutes`.
+    
 
-        - (string) **`expiry_time = null`** _[since v0.0.1]_
+    
 
-            Defines the expiry time of the schedule, in [RFC3339 DateTime format][rfc3339].
+    
 
-        - (map(string)) **`parameters = null`** _[since v0.0.1]_
+    
 
-            Defines a map of parameters to be passed into the runbook when this schedule runs
+    
+**Since:** 0.0.1
+        
 
-        - (object) **`hourly = null`** _[since v0.0.1]_
 
-            Defines a hourly schedule
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">user_assigned_managed_identity_ids</td>
+    <td><code>[]</code></td>
+</tr>
+<tr><td colspan="3">
 
-            - (number) **`interval = 1`** _[since v0.0.1]_
+List of managed identity IDs used by the automation account to manage azure resources
 
-                Defines how many hours per schedule trigger
+    
 
-        - (object) **`daily = null`** _[since v0.0.1]_
+    
 
-            Defines a daily schedule
+    
 
-            - (number) **`interval = 1`** _[since v0.0.1]_
+    
 
-                Defines how many days per schedule trigger
+    
+**Since:** 0.0.1
+        
 
-        - (object) **`weekly = null`** _[since v0.0.1]_
 
-            Defines a weekly schedule
-
-            - (list(string)) **`every`** _[since v0.0.1]_
-
-                Defines the days of the week this schedule should run on. Valid values are: `"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"`
-                
-            - (number) **`interval = 1`** _[since v0.0.1]_
-
-                Defines how many weeks per schedule trigger
-
-        - (object) **`monthly = null`** _[since v0.0.1]_
-
-            Defines a monthly schedule
-
-            - (list(string)) **`every`** _[since v0.0.1]_
-
-                Defines one of the following: 
-                
-                - A list of days in the month this schedule should run. Valid values are `numbers between "1" and "31", and "-1" (representing last day of the month)`. Example: `["1", "5", "20", "-1"]` means 1st, 5th, 20th, and the last day of the month.
-
-                - The `[{week}, {day_of_week}]` this schedule should run. Valid values are: {week}: `"First", "Second", "Third", "Fourth", "Last"`. {day_of_week}: `"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"`. Example: `["First", "Thursday"]`
-                
-            - (number) **`interval = 1`** _[since v0.0.1]_
-
-                Defines how many months per schedule trigger
-
-    - (list(string)) **`user_assigned_managed_identity_ids = []`** _[since v0.0.1]_
-
-        List of managed identity IDs used by the automation account to manage azure resources
+</td></tr>
+</tbody></table>
 
 ## Outputs
 
-- (list(object)) **`automation_account_identity`** _[since v0.0.1]_
 
-    List of identities attached to the automation account
 
-- (map(string)) **`runbook_ids`** _[since v0.0.1]_
-
-    List of runbook IDs
     
-- (map(string)) **`schedule_ids`** _[since v0.0.1]_
 
-    List of schedule IDs
-                
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(object)</code></td>
+    <td width="100%">automation_account_identity</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+List of identities attached to the automation account
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">runbook_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+List of runbook IDs
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">schedule_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+List of schedule IDs
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
+## Objects
+
+
+
+#### Azure
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">resource_group_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of an Azure resource group where the automation account will be deployed
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">location</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of an Azure location where the automation account will be deployed. If unspecified, the resource group's location will be used.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Daily
+
+Defines a daily schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">interval</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines how many days per schedule trigger
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Hourly
+
+Defines a hourly schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">interval</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines how many hours per schedule trigger
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Monthly
+
+Defines a monthly schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">interval</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines how many months per schedule trigger
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">every</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines one of the following:
+
+- A list of days in the month this schedule should run. Valid values are `numbers between "1" and "31", and "-1" (representing last day of the month)`. Example: `["1", "5", "20", "-1"]` means 1st, 5th, 20th, and the last day of the month.
+- The `[{week}, {day_of_week}]` this schedule should run. Valid values are: {week}: `"First", "Second", "Third", "Fourth", "Last"`. {day_of_week}: `"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"`. Example: `["First", "Thursday"]`
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Runbooks
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">content</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The content of the runbook. This can either be the actual script itself, or a `uri` referencing the content remotely.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for the runbook
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Description of the runbook
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">log_progress</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Enables logging the progress of the runbook
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">log_verbose</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Enables verbose logging
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">runbook_type</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the type of the runbook.
+
+    
+**Allowed Values:**
+- `Graph`
+- `GraphPowerShell`
+- `GraphPowerShellWorkflow`
+- `PowerShellWorkflow`
+- `PowerShell`
+- `Script`
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#schedule">Schedule</a>)</code></td>
+    <td width="100%">schedule</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines schedule to automatically trigger this runbook
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Schedule
+
+Defines schedule to automatically trigger this runbook
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Description of the schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">timezone</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the timezone this runbook schedules on. Refer to [this list][azure-timezones] for valid timezones.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">start_time</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the start time of the schedule, in [RFC3339 DateTime format][rfc3339]. Defaults to `current time + 7 minutes`.
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">expiry_time</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the expiry time of the schedule, in [RFC3339 DateTime format][rfc3339].
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">parameters</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines a map of parameters to be passed into the runbook when this schedule runs
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#hourly">Hourly</a>)</code></td>
+    <td width="100%">hourly</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines a hourly schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#daily">Daily</a>)</code></td>
+    <td width="100%">daily</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines a daily schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#weekly">Weekly</a>)</code></td>
+    <td width="100%">weekly</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines a weekly schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#monthly">Monthly</a>)</code></td>
+    <td width="100%">monthly</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines a monthly schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+#### Weekly
+
+Defines a weekly schedule
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">interval</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines how many weeks per schedule trigger
+
+    
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">every</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the days of the week this schedule should run on.
+
+    
+**Allowed Values:**
+- `Monday`
+- `Tuesday`
+- `Wednesday`
+- `Thursday`
+- `Friday`
+- `Saturday`
+- `Sunday`
+
+    
+
+    
+
+    
+
+    
+**Since:** 0.0.1
+        
+
+
+</td></tr>
+</tbody></table>
+
+
+
+
+[azure-timezones]: https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/timezone
+
+[rfc3339]: https://medium.com/easyread/understanding-about-rfc-3339-for-datetime-formatting-in-software-engineering-940aa5d5f68a
+
+
+<!-- TFDOCS_EXTRAS_END -->
+
 [azure-automation-account]:https://docs.microsoft.com/en-us/azure/automation/overview
-[azure-timezones]:https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/timezone
-[rfc3339]:https://medium.com/easyread/understanding-about-rfc-3339-for-datetime-formatting-in-software-engineering-940aa5d5f68a
