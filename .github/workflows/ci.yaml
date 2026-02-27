@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       - name: Terraform format
         uses: dflook/terraform-fmt-check@v1
 
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       - name: Check markdown links
         uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
@@ -28,3 +28,32 @@ jobs:
           config-file: .github/mlc_config.json
           use-quiet-mode: 'no'
           use-verbose-mode: 'yes'
+
+  tfdocs-extras-check:
+    name: Check tfdocs extras
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Run tfdocs extras check
+        uses: FriendsOfTerraform/tfdocs-extras@feat/gh-action
+        with:
+          directories: |
+            ./aws/*
+            ./azure/*
+            ./vault/*
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.6
+        with:
+          prettier_options: --write {aws,azure,vault}/**/README.md
+          no_commit: true
+
+      - name: Exit with error if there are changes
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "Code is not formatted. Please run 'prettier' to format the code."
+            git diff
+            exit 1
+          fi
