@@ -219,7 +219,12 @@ Configures ECS monitoring options
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        </tbody></table>
+
+## Objects
 
 #### DefaultCapacityProviderStrategy
 
