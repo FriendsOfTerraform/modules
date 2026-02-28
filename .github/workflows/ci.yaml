@@ -36,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Run tfdocs extras check
+      - name: Run tfdocs-extras
         uses: FriendsOfTerraform/tfdocs-extras@feat/gh-action
         with:
           directories: |
@@ -44,7 +44,7 @@ jobs:
             ./azure/*
             ./vault/*
 
-      - name: Prettify code
+      - name: Prettify READMEs
         uses: creyD/prettier_action@v4.6
         with:
           prettier_options: --write {aws,azure,vault}/**/README.md
@@ -53,7 +53,7 @@ jobs:
       - name: Exit with error if there are changes
         run: |
           if [[ -n $(git status --porcelain) ]]; then
-            echo "Code is not formatted. Please run 'prettier' to format the code."
+            echo "Documentation is not formatted. Please run 'prettier' to format the documentation."
             git diff
             exit 1
           fi

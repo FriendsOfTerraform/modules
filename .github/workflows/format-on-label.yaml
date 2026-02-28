@@ -1,0 +1,53 @@
+name: Auto-format on Label
+
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  auto-format:
+    name: Auto-format documentation
+    if: github.event.label.name == 'needs formatting'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run tfdocs-extras
+        uses: FriendsOfTerraform/tfdocs-extras@feat/gh-action
+        with:
+          directories: |
+            ./aws/*
+            ./azure/*
+            ./vault/*
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.6
+        with:
+          prettier_options: --write {aws,azure,vault}/**/README.md
+          no_commit: true
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if [[ -n $(git status --porcelain) ]]; then
+            git commit -m "chore: auto-format documentation"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+
+      - name: Remove label
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr edit ${{ github.event.pull_request.number }} --remove-label "needs formatting"
