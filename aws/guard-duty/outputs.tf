@@ -71,5 +71,5 @@ output "member_account_ids" {
 
 output "publishing_destination_id" {
   description = "The ID of the GuardDuty publishing destination (if configured)"
-  value       = try(aws_guardduty_publishing_destination.export_findings_configuration[0].id, null)
+  value       = try(aws_guardduty_publishing_destination.findings_export_options[0].id, null)
 }

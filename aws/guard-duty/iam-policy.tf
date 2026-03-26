@@ -5,7 +5,7 @@ data "aws_iam_policy_document" "malware_protection_s3" {
     sid       = "AllowManagedRuleToSendS3EventsToGuardDuty"
     effect    = "Allow"
     actions   = ["events:PutRule"]
-    resources = "arn:aws:events:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:rule/DO-NOT-DELETE-AmazonGuardDutyMalwareProtectionS3*"
+    resources = ["arn:aws:events:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:rule/DO-NOT-DELETE-AmazonGuardDutyMalwareProtectionS3*"]
     condition {
       test     = "StringEquals"
       variable = "events:ManagedBy"
@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "malware_protection_s3" {
     sid       = "AllowUpdateTargetAndDeleteManagedRule"
     effect    = "Allow"
     actions   = ["events:DeleteRule", "events:PutTargets", "events:RemoveTargets"]
-    resources = "arn:aws:events:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:rule/DO-NOT-DELETE-AmazonGuardDutyMalwareProtectionS3*"
+    resources = ["arn:aws:events:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:rule/DO-NOT-DELETE-AmazonGuardDutyMalwareProtectionS3*"]
     condition {
       test     = "StringEquals"
       variable = "events:ManagedBy"
@@ -49,14 +49,14 @@ data "aws_iam_policy_document" "malware_protection_s3" {
     sid       = "AllowGuardDutyToMonitorEventBridgeManagedRule"
     effect    = "Allow"
     actions   = ["events:DescribeRule", "events:ListTargetsByRule"]
-    resources = "arn:aws:events:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:rule/DO-NOT-DELETE-AmazonGuardDutyMalwareProtectionS3*"
+    resources = ["arn:aws:events:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:rule/DO-NOT-DELETE-AmazonGuardDutyMalwareProtectionS3*"]
   }
 
   statement {
     sid       = "AllowEnableS3EventBridgeEvents"
     effect    = "Allow"
     actions   = ["s3:PutBucketNotification", "s3:GetBucketNotification"]
-    resources = "arn:aws:s3:::${each.key}"
+    resources = ["arn:aws:s3:::${each.key}"]
     condition {
       test     = "StringEquals"
       variable = "aws:ResourceAccount"
@@ -68,7 +68,7 @@ data "aws_iam_policy_document" "malware_protection_s3" {
     sid       = "AllowPostScanTag"
     effect    = "Allow"
     actions   = ["s3:GetObjectTagging", "s3:GetObjectVersionTagging", "s3:PutObjectTagging", "s3:PutObjectVersionTagging"]
-    resources = "arn:aws:s3:::${each.key}/*"
+    resources = ["arn:aws:s3:::${each.key}/*"]
     condition {
       test     = "StringEquals"
       variable = "aws:ResourceAccount"
@@ -80,7 +80,7 @@ data "aws_iam_policy_document" "malware_protection_s3" {
     sid       = "AllowPutValidationObject"
     effect    = "Allow"
     actions   = ["s3:PutObject"]
-    resources = "arn:aws:s3:::${each.key}/malware-protection-resource-validation-object"
+    resources = ["arn:aws:s3:::${each.key}/malware-protection-resource-validation-object"]
     condition {
       test     = "StringEquals"
       variable = "aws:ResourceAccount"
@@ -92,7 +92,7 @@ data "aws_iam_policy_document" "malware_protection_s3" {
     sid       = "AllowCheckBucketOwnership"
     effect    = "Allow"
     actions   = ["s3:ListBucket"]
-    resources = "arn:aws:s3:::${each.key}"
+    resources = ["arn:aws:s3:::${each.key}"]
     condition {
       test     = "StringEquals"
       variable = "aws:ResourceAccount"
@@ -104,7 +104,7 @@ data "aws_iam_policy_document" "malware_protection_s3" {
     sid       = "AllowMalwareScan"
     effect    = "Allow"
     actions   = ["s3:GetObject", "s3:GetObjectVersion"]
-    resources = "arn:aws:s3:::${each.key}/*"
+    resources = ["arn:aws:s3:::${each.key}/*"]
     condition {
       test     = "StringEquals"
       variable = "aws:ResourceAccount"
@@ -118,7 +118,7 @@ data "aws_iam_policy_document" "malware_protection_s3" {
       sid       = "AllowDecryptForMalwareScan"
       effect    = "Allow"
       actions   = ["kms:GenerateDataKey", "kms:Decrypt"]
-      resources = each.value.kms_key_arn
+      resources = [each.value.kms_key_arn]
       condition {
         test     = "StringLike"
         variable = "kms:ViaService"
