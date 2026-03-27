@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Run tfdocs-extras
-        uses: FriendsOfTerraform/tfdocs-extras@feat/gh-action
+        uses: FriendsOfTerraform/tfdocs-extras@main
         with:
           directories: |
             ./aws/*
