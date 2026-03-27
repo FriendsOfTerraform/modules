@@ -20,8 +20,8 @@ This module configures an Amazon [Route 53](https://aws.amazon.com/route53/) hos
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 - [Known Limitations](#known-limitations)
   - [Managing Cross-Account VPC Associations](#managing-cross-account-vpc-associations)
 
@@ -71,13 +71,13 @@ module "psin_lab_local" {
   source = "github.com/FriendsOfTerraform/aws-route53.git?ref=v3.0.0"
 
   domain_name = "psin-lab.local"
-  
+
   # This association will be managed by the VPC block in the aws_route53_zone resource
   # The VPC block will then be ignored for any changes going forward
   # The VPC block is required in order to create a private hosted zone
   # Use private_zone_vpc_associations for all additional zone associations
   # Please read the Managing Cross-Account VPC Associations under Known Limitations for more details
-  primary_private_zone_vpc_association = { vpc_id = "vpc-abcdef012345" } 
+  primary_private_zone_vpc_association = { vpc_id = "vpc-abcdef012345" }
 
   # Resolve DNS queries for these associated VPCs
   private_zone_vpc_associations = {
@@ -494,26 +494,10 @@ module "psin_lab_com" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -524,36 +508,13 @@ module "psin_lab_com" {
 
 The domain name of the hosted zone
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -564,18 +525,7 @@ The domain name of the hosted zone
 
 Additional tags for the hosted zone
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -587,18 +537,7 @@ Additional tags for the hosted zone
 
 Additional tags for all resources in deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -610,18 +549,7 @@ Additional tags for all resources in deployed with this module
 
 The description of the hosted zone
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -633,20 +561,11 @@ The description of the hosted zone
 
 Enables [Route 53 DNSSEC][route53-dnssec] signing.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [DNSSEC Example](#dnssec)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -658,18 +577,7 @@ Enables [Route 53 DNSSEC][route53-dnssec] signing.
 
 Enables Route 53 query log
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -684,20 +592,11 @@ Do not specify if you want to create a public hosted zone. Please read the Manag
 Cross-Account VPC Associations in the Known Limitation for more information and recommended
 usage. This will be removed when AWS updated a fix.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Hosted Zone Example](#private-hosted-zone)
 
-    
-
-    
 **Since:** 3.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -710,20 +609,11 @@ usage. This will be removed when AWS updated a fix.
 One of more VPC IDs this private hosted zone is used to resolve DNS queries
 for. Do not specify if you want to create a public hosted zone.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Hosted Zone Example](#private-hosted-zone)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -735,20 +625,11 @@ for. Do not specify if you want to create a public hosted zone.
 
 Manages multiple records.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 2.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -763,43 +644,76 @@ associated with this zone. Only applicable to private hosted zone. Please
 refer to [this documentation][route53-private-vps-diff-accts] for more
 infomation.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Hosted Zone Example](#private-hosted-zone)
 
-    
-
-    
 **Since:** 2.1.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
 
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">route53_hosted_zone_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
+The ARN of the Route 53 hosted zone
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">route53_hosted_zone_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ID of the Route 53 hosted zone
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">route53_hosted_zone_name_servers</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A list of name servers in associated (or default) delegation set
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">route53_hosted_zone_primary_name_server</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The Route 53 name server that created the SOA record
+
+**Since:** 1.1.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 #### Alias
 
 Create an alias record. Mutually exclusive with `values` and `ttl`
 
-    
+**Since:** 2.0.0
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -810,20 +724,11 @@ Create an alias record. Mutually exclusive with `values` and `ttl`
 
 Specify the endpoint where this alias record routes traffic to.
 
-    
-
-    
-
-    
-
-    
 **Links:**
+
 - [Supported services you can create an Alias record for](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-aws-resources.html)
 
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -835,20 +740,11 @@ Specify the endpoint where this alias record routes traffic to.
 
 Specify the hosted zone ID of the target endpoint.
 
-    
-
-    
-
-    
-
-    
 **Links:**
+
 - [Supported AWS service endpoints](https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
 
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -860,23 +756,10 @@ Specify the hosted zone ID of the target endpoint.
 
 Whether the alias records evaluate the health of the target endpoint
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CalculatedCheck
 
@@ -884,17 +767,8 @@ Configures the [calculated health check][route53-health-check-types],
 where the health of this health check depends on the status of the other
 health checks
 
-    
+**Since:** 2.0.0
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -906,18 +780,7 @@ health checks
 List of health checks that must be healthy for this check to be
 considered healthy
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -931,23 +794,10 @@ Specify the number of monitoring health checks that must be healthy
 for this check to be considered healthy. If not specified, all health
 checks must be healthy for this check to be considered healthy
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CloudwatchAlarmCheck
 
@@ -955,17 +805,8 @@ Configures the [Cloudwatch Alarm Checks][route53-health-check-types].
 The status of this health check is based on the state of a specified
 CloudWatch alarm
 
-    
+**Since:** 2.0.0
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -976,18 +817,7 @@ CloudWatch alarm
 
 The name of the alarm that determines the status of this health check
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1001,18 +831,7 @@ The Cloudwatch region that contains the alarm that you want Route 53
 to use for this health check. If not specified, the current region
 will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1025,46 +844,28 @@ will be used.
 The status of this health check when Cloudwatch doesn't have enough
 data to determine whether the alarm is in the OK or the ALARM state.
 
-    
 **Allowed Values:**
+
 - `Healthy`
 - `Unhealthy`
 - `LastKnownStatus`
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CloudwatchAlarms
 
 Create [Cloudwatch alarms][route53-health-check-cloudwatch-alarm] to
 notify you health check status changes.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Health Check Example](#health-check)
 
-    
+**Since:** 2.0.0
 
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1075,22 +876,13 @@ notify you health check status changes.
 
 The metric to monitor.
 
-    
 **Allowed Values:**
+
 - `ChildHealthCheckHealthyCount`
 - `HealthCheckPercentageHealthy`
 - `HealthCheckStatus`
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1103,34 +895,22 @@ The metric to monitor.
 The expression in `<statistic> <operator> <unit>` format. For example: `Average < 50`
 
 - **ChildHealthCheckHealthyCount**: The number of child health checks that are healthy
-Statistics: Average (recommended), Minimum, Maximum
-Valid For Healthcheck Types: Calculated
+  Statistics: Average (recommended), Minimum, Maximum
+  Valid For Healthcheck Types: Calculated
 - **HealthCheckPercentageHealthy**: The percentage of Route 53 health checkers that consider the selected endpoint to be healthy.
-Statistics: Average, Minimum, Maximum
-Valid For Healthcheck Types: Endpoint, Cloudwatch Alarm
+  Statistics: Average, Minimum, Maximum
+  Valid For Healthcheck Types: Endpoint, Cloudwatch Alarm
 - **HealthCheckStatus**: The status of the health check endpoint that CloudWatch is checking. 1 indicates healthy, and 0 indicates unhealthy.
-Statistics: Average, Minimum, Maximum
-Valid For Healthcheck Types: All
+  Statistics: Average, Minimum, Maximum
+  Valid For Healthcheck Types: All
 
-    
-
-    
 **Regex Pattern:**
+
 ```
 (Average|Minimum|Maximum) (<=|<|>=|>) (\d+)
 ```
 
-
-        
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1142,18 +922,7 @@ Valid For Healthcheck Types: All
 
 The number of periods over which data is compared to the specified threshold.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1167,18 +936,7 @@ The period in seconds over which the specified statistic is applied.
 
 Valid values are 10, 30, and any multiple of 60.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1190,39 +948,17 @@ Valid values are 10, 30, and any multiple of 60.
 
 The SNS topic where notification will be sent
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Coordinates
 
 Specify the coordinates where your resources are deployed in.
 
-    
+**Since:** 2.0.0
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1233,18 +969,7 @@ Specify the coordinates where your resources are deployed in.
 
 The latitude of the coordinates
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1256,37 +981,13 @@ The latitude of the coordinates
 
 The longitude of the coordinates
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnableDnssec
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#keysigningkeys">KeySigningKeys</a>))</code></td>
@@ -1298,18 +999,7 @@ The longitude of the coordinates
 Manages the KSKs route 53 used to sign records. You can define up to two
 KSK for key rotation purposes.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 1.0.0
-        
-
+**Since:** 1.0.0
 
 </td></tr>
 <tr>
@@ -1321,40 +1011,18 @@ KSK for key rotation purposes.
 
 Specify whether to sign the zone with DNSSEC.
 
-    
 **Allowed Values:**
+
 - `SIGNING`
 - `NOT_SIGNING`
 
-    
-
-    
-
-    
-
-    
-**Since:** 1.0.0
-        
-
+**Since:** 1.0.0
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EnableQueryLogging
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1365,18 +1033,7 @@ Specify whether to sign the zone with DNSSEC.
 
 An existing Cloudwatch log group to send query logging to
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 1.0.0
-        
-
+**Since:** 1.0.0
 
 </td></tr>
 <tr>
@@ -1390,18 +1047,7 @@ Creates a Cloudwatch log resource policy named AWSServiceRoleForRoute53
 to grant route 53 permissions to send logs to Cloudwatch. You do not need
 to create this if one is already created.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 1.0.0
-        
-
+**Since:** 1.0.0
 
 </td></tr>
 <tr>
@@ -1414,19 +1060,10 @@ to create this if one is already created.
 Specified the log class of the log group. Mutually exclusive with
 `cloudwatch_log_group_arn`.
 
-    
 **Allowed Values:**
+
 - `STANDARD`
 - `INFREQUENT_ACCESS`
-
-    
-
-    
-
-    
-
-    
-
 
 </td></tr>
 <tr>
@@ -1442,8 +1079,8 @@ specified log group.
 If you select `0`, the events in the log group are always retained and
 never expire. Mutually exclusive with `cloudwatch_log_group_arn`
 
-    
 **Allowed Values:**
+
 - `0`
 - `1`
 - `3`
@@ -1468,21 +1105,10 @@ never expire. Mutually exclusive with `cloudwatch_log_group_arn`
 - `3288`
 - `3653`
 
-    
-
-    
-
-    
-
-    
-**Since:** 1.0.0
-        
-
+**Since:** 1.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EndpointCheck
 
@@ -1490,17 +1116,8 @@ Configures the [Endpoint check][route53-health-check-types]. Multiple
 Route 53 health checkers will try to establish a TCP connection with
 the specified endpoint to determine whether it is healthy.
 
-    
+**Since:** 2.0.0
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1511,18 +1128,7 @@ the specified endpoint to determine whether it is healthy.
 
 The full URL
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1535,18 +1141,7 @@ The full URL
 Whether you want Route 53 to display the latency graph on the health
 check page in the Route 53 console
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1560,18 +1155,7 @@ The number of consecutive health checks that an endpoint must pass or
 fail for Route 53 to change the current status of the endpoint from
 healthy to unhealthy or vice versa
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1584,18 +1168,7 @@ healthy to unhealthy or vice versa
 Route 53 passes this value in a HOST header when establishing the
 connection.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1608,18 +1181,7 @@ connection.
 A list of AWS regions that you want Amazon Route 53 health checkers
 to check the specified endpoint from
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1633,21 +1195,12 @@ The number of seconds between the time that Amazon Route 53 gets a
 response from your endpoint and the time that it sends the next
 health-check request.
 
-    
 **Allowed Values:**
+
 - `10`
 - `30`
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1660,42 +1213,22 @@ health-check request.
 The string that you want Route 53 to search for in the body of the
 response from the specified endpoint.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### FailoverRoutingPolicy
 
 Configures the [Failover Routing Policy][route53-routing-policy-failover].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Failover Routing Policy Example](#failover-routing-policy)
 
-    
+**Since:** 2.0.0
 
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1706,45 +1239,27 @@ You may only define one routing policy for a single record.
 
 Specify the failover routing policy type.
 
-    
 **Allowed Values:**
+
 - `PRIMARY`
 - `SECONDARY`
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### GeolocationRoutingPolicy
 
 Configures the [Geolocation Routing Policy][route53-routing-policy-geolocation].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Geolocation Routing Policy Example](#geolocation-routing-policy)
 
-    
+**Since:** 2.0.0
 
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1756,42 +1271,22 @@ You may only define one routing policy for a single record.
 Specify the location where your resources are deployed in. Please refer
 to [this file](./_common.tf) for a list of supported values.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### GeoproximityRoutingPolicy
 
 Configures the [Geoproximity Routing Policy][route53-routing-policy-geoproximity].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Geoproximity Routing Policy Example](#geoproximity-routing-policy)
 
-    
+**Since:** 2.0.0
 
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1803,18 +1298,7 @@ You may only define one routing policy for a single record.
 Expand or shrink the size of the geographic region from which Route 53
 routes traffic to a resource. Valid value is between `-99` to `99`
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1827,18 +1311,7 @@ routes traffic to a resource. Valid value is between `-99` to `99`
 Specify the AWS local zone where your resources are deployed in. To use
 AWS Local Zones, you have to first [enable them][aws-local-zones].
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1850,18 +1323,7 @@ AWS Local Zones, you have to first [enable them][aws-local-zones].
 
 Specify the AWS region where your resources are deployed in.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1873,23 +1335,10 @@ Specify the AWS region where your resources are deployed in.
 
 Specify the coordinates where your resources are deployed in.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### HealthCheck
 
@@ -1897,19 +1346,12 @@ Creates a [Route 53 health check][route53-health-check] and attach it to
 this record. Only available when a routing policy is specified. Mutually
 exclusive with `health_check_id`.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Health Check Example](#health-check)
 
-    
+**Since:** 2.0.0
 
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1920,18 +1362,7 @@ exclusive with `health_check_id`.
 
 Whether this health check is enabled
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1945,18 +1376,7 @@ Whether you want Route 53 to invert the status of the health check. For
 example, to consider a health check as healthy when it is otherwise
 would be considered unhealthy
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1970,18 +1390,7 @@ Configures the [calculated health check][route53-health-check-types],
 where the health of this health check depends on the status of the other
 health checks
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -1995,18 +1404,7 @@ Configures the [Cloudwatch Alarm Checks][route53-health-check-types].
 The status of this health check is based on the state of a specified
 CloudWatch alarm
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2019,20 +1417,11 @@ CloudWatch alarm
 Create [Cloudwatch alarms][route53-health-check-cloudwatch-alarm] to
 notify you health check status changes.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Health Check Example](#health-check)
 
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2046,40 +1435,18 @@ Configures the [Endpoint check][route53-health-check-types]. Multiple
 Route 53 health checkers will try to establish a TCP connection with
 the specified endpoint to determine whether it is healthy.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### KeySigningKeys
 
 Manages the KSKs route 53 used to sign records. You can define up to two
 KSK for key rotation purposes.
 
-    
+**Since:** 1.0.0
 
-    
-
-    
-
-    
-
-    
-**Since:** 1.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2092,18 +1459,7 @@ Specify an existing customer managed KMS key for KSK. If this is not
 specified, a default one will be created. The customer managed KMS key
 must meet all requirements described in [this documentation][route53-ksk-kms-requirements].
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 1.0.0
-        
-
+**Since:** 1.0.0
 
 </td></tr>
 <tr>
@@ -2115,45 +1471,27 @@ must meet all requirements described in [this documentation][route53-ksk-kms-req
 
 The status of the KSK
 
-    
 **Allowed Values:**
+
 - `ACTIVE`
 - `INACTIVE`
 
-    
-
-    
-
-    
-
-    
-**Since:** 1.0.0
-        
-
+**Since:** 1.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### LatencyRoutingPolicy
 
 Configures the [Latency-based Routing Policy][route53-routing-policy-latency].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Latency-based Routing Policy Example](#latency-based-routing-policy)
 
-    
+**Since:** 2.0.0
 
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2165,42 +1503,22 @@ You may only define one routing policy for a single record.
 The AWS region where the resource that you specified in this record
 resides. You can only create one latency record for each region.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### MultivalueAnswerRoutingPolicy
 
 Configures the [Multivalue Answer Routing Policy][route53-routing-policy-multivalue-answer].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Multivalue Answer Routing Policy Example](#multivalue-answer-routing-policy)
 
-    
+**Since:** 2.0.0
 
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -2211,37 +1529,13 @@ You may only define one routing policy for a single record.
 
 Whether this routing policy is enabled
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
 
-
-
 #### PrimaryPrivateZoneVpcAssociation
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2249,19 +1543,6 @@ Whether this routing policy is enabled
     <td></td>
 </tr>
 <tr><td colspan="3">
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
 
 </td></tr>
 <tr>
@@ -2271,37 +1552,11 @@ Whether this routing policy is enabled
 </tr>
 <tr><td colspan="3">
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
 </td></tr>
 </tbody></table>
 
-
-
 #### Records
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -2312,18 +1567,7 @@ Whether this routing policy is enabled
 
 The name of the record
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2335,8 +1579,8 @@ The name of the record
 
 Specify the record type.
 
-    
 **Allowed Values:**
+
 - `A`
 - `AAAA`
 - `CAA`
@@ -2351,16 +1595,7 @@ Specify the record type.
 - `SRV`
 - `TXT`
 
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2373,18 +1608,7 @@ Specify the record type.
 A list of values this record routes traffic to. This is required for
 non-alias records. Mutually exclusive with `alias`
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2396,18 +1620,7 @@ non-alias records. Mutually exclusive with `alias`
 
 Specify an existing health check this reocrd is associated to
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2422,18 +1635,7 @@ records.
 
 Mutually exclusive with `alias`
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2447,18 +1649,7 @@ Specify a value that uniquely identifies each record that has the same
 name and type. Required with routing policy other than simple (no
 routing policy)
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2470,18 +1661,7 @@ routing policy)
 
 Create an alias record. Mutually exclusive with `values` and `ttl`
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2494,20 +1674,11 @@ Create an alias record. Mutually exclusive with `values` and `ttl`
 Configures the [Failover Routing Policy][route53-routing-policy-failover].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Failover Routing Policy Example](#failover-routing-policy)
 
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2520,20 +1691,11 @@ You may only define one routing policy for a single record.
 Configures the [Geolocation Routing Policy][route53-routing-policy-geolocation].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Geolocation Routing Policy Example](#geolocation-routing-policy)
 
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2546,20 +1708,11 @@ You may only define one routing policy for a single record.
 Configures the [Geoproximity Routing Policy][route53-routing-policy-geoproximity].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Geoproximity Routing Policy Example](#geoproximity-routing-policy)
 
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2572,20 +1725,11 @@ You may only define one routing policy for a single record.
 Configures the [Latency-based Routing Policy][route53-routing-policy-latency].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Latency-based Routing Policy Example](#latency-based-routing-policy)
 
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2598,20 +1742,11 @@ You may only define one routing policy for a single record.
 Configures the [Multivalue Answer Routing Policy][route53-routing-policy-multivalue-answer].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Multivalue Answer Routing Policy Example](#multivalue-answer-routing-policy)
 
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2624,20 +1759,11 @@ You may only define one routing policy for a single record.
 Configures the [Weighted Routing Policy][route53-routing-policy-weighted].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Weighted Routing Policy Example](#weighted-routing-policy)
 
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 <tr>
@@ -2651,44 +1777,26 @@ Creates a [Route 53 health check][route53-health-check] and attach it to
 this record. Only available when a routing policy is specified. Mutually
 exclusive with `health_check_id`.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Health Check Example](#health-check)
 
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
-
-
 
 #### WeightedRoutingPolicy
 
 Configures the [Weighted Routing Policy][route53-routing-policy-weighted].
 You may only define one routing policy for a single record.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Weighted Routing Policy Example](#weighted-routing-policy)
 
-    
+**Since:** 2.0.0
 
-    
-**Since:** 2.0.0
-        
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -2700,71 +1808,26 @@ You may only define one routing policy for a single record.
 The weight that determines the proportion of DNS queries that Route 53
 will respond to.
 
-    
-
-    
-
-    
-
-    
-
-    
-**Since:** 2.0.0
-        
-
+**Since:** 2.0.0
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [aws-local-zones]: https://docs.aws.amazon.com/local-zones/latest/ug/getting-started.html
-
 [route53-dnssec]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-configure-dnssec.html
-
 [route53-health-check]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html
-
 [route53-health-check-cloudwatch-alarm]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-monitor-view-status.html
-
 [route53-health-check-types]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-types.html
-
 [route53-ksk-kms-requirements]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-cmk-requirements.html
-
 [route53-private-vps-diff-accts]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-associate-vpcs-different-accounts.html
-
 [route53-routing-policy-failover]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-failover.html
-
 [route53-routing-policy-geolocation]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geo.html
-
 [route53-routing-policy-geoproximity]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html
-
 [route53-routing-policy-latency]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-latency.html
-
 [route53-routing-policy-multivalue-answer]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html
-
 [route53-routing-policy-weighted]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html
 
-
 <!-- TFDOCS_EXTRAS_END -->
-
-## Outputs
-
-- (string) **`route53_hosted_zone_arn`** _[since v1.0.0]_
-
-    The ARN of the Route 53 hosted zone
-
-- (string) **`route53_hosted_zone_id`** _[since v1.0.0]_
-
-    The ID of the Route 53 hosted zone
-
-- (list(string)) **`route53_hosted_zone_name_servers`** _[since v1.0.0]_
-
-    A list of name servers in associated (or default) delegation set
-
-- (string) **`route53_hosted_zone_primary_name_server`** _[since v1.1.0]_
-
-    The Route 53 name server that created the SOA record
 
 ## Known Limitations
 
@@ -2772,21 +1835,4 @@ will respond to.
 
 Terraform provides both exclusive VPC associations defined in-line in the `aws_route53_zone` resource via the `vpc` configuration blocks and a separate `aws_route53_zone_association` resource. At this time, you cannot use in-line VPC associations in conjunction with any `aws_route53_zone_association` resources with the same zone ID otherwise Terraform will attempt to destroy any VPC associations declared outside of the `aws_route53_zone.vpc` configuration blocks in future applies. This problem surfaces when one must setup cross-account zone associations. However, in order to create a private hosted zone, at least one VPC association must be declared in the `aws_route53_zone.vpc` configuration block. As a workaround to this problem, v3.0.0 introduces a new variable `primary_private_zone_vpc_association` for the first association using the `aws_route53_zone.vpc` configuration block so that the private hosted zone can be created properly, afterward, any changes to the `aws_route53_zone.vpc` configuration block will be ignored, and any additional VPC associations should be declared with the `private_zone_vpc_associations` variable. Since the association declared with the `primary_private_zone_vpc_association` variable will be ignored, **WE RECOMMEND CREATING A DUMMY VPC FOR THIS FIRST ASSOCIATION**
 
-[aws-local-zones]:https://docs.aws.amazon.com/local-zones/latest/ug/getting-started.html
-[aws-service-endpoints]:https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html
-[route53-alias-record]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html
-[route53-dnssec]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-configure-dnssec.html
-[route53-dnssec-chain-of-trust]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-enable-signing.html#dns-configuring-dnssec-chain-of-trust
-[route53-health-check]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover.html
-[route53-health-check-cloudwatch-alarm]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-monitor-view-status.html
-[route53-health-check-types]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-types.html
-[route53-hosted-zone-private-associate-vpcs-different-accounts]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-associate-vpcs-different-accounts.html
-[route53-ksk]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-ksk.html
-[route53-ksk-kms-requirements]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-cmk-requirements.html
-[route53-query-logging]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html
-[route53-routing-policy-failover]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-failover.html
-[route53-routing-policy-geolocation]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geo.html
-[route53-routing-policy-geoproximity]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geoproximity.html
-[route53-routing-policy-latency]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-latency.html
-[route53-routing-policy-multivalue-answer]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html
-[route53-routing-policy-weighted]:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-weighted.html
+[route53-dnssec-chain-of-trust]: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec-enable-signing.html#dns-configuring-dnssec-chain-of-trust

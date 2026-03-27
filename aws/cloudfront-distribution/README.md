@@ -7,12 +7,12 @@ This module will build and configure a [CloudFront Distribution](https://aws.ama
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -79,26 +79,10 @@ module "basic_usage" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#behaviors">Behaviors</a>))</code></td>
@@ -111,20 +95,11 @@ Map of cache behaviors resource for this distribution. List from top to
 bottom in order of precedence. The topmost cache behavior will have
 precedence 0. The default behavior (`"*"`) must be specified.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -136,38 +111,17 @@ precedence 0. The default behavior (`"*"`) must be specified.
 
 Map of origins for this distribution.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -178,18 +132,7 @@ Map of origins for this distribution.
 
 Additional tags for the distribution
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -201,18 +144,7 @@ Additional tags for the distribution
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -225,18 +157,7 @@ Additional tags for all resources deployed with this module
 A list of custom domain names (CNAME) that you use in URLs for the files
 served by this distribution
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -249,22 +170,15 @@ served by this distribution
 Configure CloudFront to return a custom error page for a matching HTTP status
 code.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
 **Links:**
+
 - [Custom Error Response Documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GeneratingCustomErrorResponses.html?icmpid=docs_cf_help_panel)
 
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -277,18 +191,7 @@ code.
 The object (file name) to return when a viewer requests the root URL (/)
 instead of a specific object
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -300,18 +203,7 @@ instead of a specific object
 
 The description of the distribution
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -323,18 +215,7 @@ The description of the distribution
 
 Whether IPv6 is enabled for the distribution.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -348,18 +229,7 @@ Configures the CloudFront [geographic restriction][cloudfront-geographic-restric
 You can only specify one of `allow_list` or `block_list`. If none are
 specified, the distribution is unrestricted.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -371,23 +241,14 @@ specified, the distribution is unrestricted.
 
 Specify the max HTTP version this distribution supports.
 
-    
 **Allowed Values:**
+
 - `http1.1`
 - `http2`
 - `http2and3`
 - `http3`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -400,20 +261,11 @@ Specify the max HTTP version this distribution supports.
 Manages multiple [origin groups][cloudfront-origin-failover] for this
 distribution.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -429,22 +281,13 @@ Specify the price class for this distribution.
 - `PriceClass_200` - PriceClass_100 + South Africa, Kenya, Middle East, Japan, Singapore, South Korea, Taiwan, Hong Kong, & Philippines
 - `PriceClass_All` - All locations
 
-    
 **Allowed Values:**
+
 - `PriceClass_100`
 - `PriceClass_200`
 - `PriceClass_All`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -457,39 +300,68 @@ Specify the price class for this distribution.
 Configure a custom SSL certificate for this distribution. If not specified,
 the CloudFront default certificate will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
 
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">distribution_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
+ARN for the distribution
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">distribution_domain_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Domain name corresponding to the distribution.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">distribution_hosted_zone_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+CloudFront Route 53 zone ID that can be used to route an Alias Resource Record Set to.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">distribution_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Identifier for the distribution
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 #### Behaviors
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -501,18 +373,7 @@ the CloudFront default certificate will be used.
 Name of the origin or origin group that you want CloudFront to route
 requests to when a request matches the path pattern
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -525,18 +386,7 @@ requests to when a request matches the path pattern
 The name of the [cache policy][cloudfront-cache-policy] that is attached
 to the cache behavior.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -549,8 +399,8 @@ to the cache behavior.
 Controls which HTTP methods CloudFront processes and forwards to your
 origin.
 
-    
 **Allowed Values:**
+
 - `GET`
 - `HEAD`
 - `OPTIONS`
@@ -559,16 +409,7 @@ origin.
 - `PATCH`
 - `DELETE`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -581,18 +422,7 @@ origin.
 Whether you want CloudFront to automatically compress content for web
 requests that include `Accept-Encoding: gzip` in the request header.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -605,18 +435,7 @@ requests that include `Accept-Encoding: gzip` in the request header.
 Associate a [field-level encryption configuration][cloudfront-field-level-encryption-configuration]
 with the cache behavior
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -629,18 +448,7 @@ with the cache behavior
 Associate an [origin request policy][cloudfront-origin-request-policy]
 with the cache behavior
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -653,18 +461,7 @@ with the cache behavior
 Associate a [real-time logs configuration][cloudfront-real-time-logs-configuration]
 with the cache behavior
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -677,18 +474,7 @@ with the cache behavior
 Associate a [response headers policy][cloudfront-response-headers-policy]
 with the cache behavior
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -701,18 +487,7 @@ with the cache behavior
 Whether you want to distribute media files in Microsoft Smooth Streaming
 format using the origin that is associated with this cache behavior
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -725,20 +500,11 @@ format using the origin that is associated with this cache behavior
 List of key group IDs that CloudFront can use to validate signed URLs or
 signed cookies.
 
-    
-
-    
-
-    
-
-    
 **Links:**
+
 - [Trusted Key Groups Documentation](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html)
 
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -751,22 +517,13 @@ signed cookies.
 Specify the protocol that users can use to access the files in the origin
 when a request matches.
 
-    
 **Allowed Values:**
+
 - `allow-all`
 - `https-only`
 - `redirect-to-https`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -784,39 +541,17 @@ for each event type: `"viewer-request"`, `"viewer-response"`,
 `"origin-request"`, and `"origin-response"`. CloudFront Functions are only
 available for `"viewer-request"` and `"viewer-response"` event types.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### CustomErrorResponses
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -827,18 +562,7 @@ available for `"viewer-request"` and `"viewer-response"` event types.
 
 Specify the error caching minimum time to live (TTL), in seconds.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -852,18 +576,7 @@ Specify the HTTP status code to return to the viewer. CloudFront can
 return a different status code to the viewer than what it received from
 the origin
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -875,39 +588,17 @@ the origin
 
 Specify the path to the custom error response page.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### CustomOriginConfig
 
 Configurations for [CloudFront custom origins][cloudfront-origins]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -918,18 +609,7 @@ Configurations for [CloudFront custom origins][cloudfront-origins]
 
 Specify the origin's HTTP port
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -941,18 +621,7 @@ Specify the origin's HTTP port
 
 Specify the origin's HTTPS port
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -965,18 +634,7 @@ Specify the origin's HTTPS port
 The number of seconds that CloudFront maintains an idle connection with
 the origin, from `1 - 60`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -988,23 +646,14 @@ the origin, from `1 - 60`
 
 The minimum SSL protocol that CloudFront uses with the origin.
 
-    
 **Allowed Values:**
+
 - `TLSv1.2`
 - `TLSv1.1`
 - `TLSv1`
 - `SSLv3`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1017,22 +666,13 @@ The minimum SSL protocol that CloudFront uses with the origin.
 The origin protocol policy determines the protocol (HTTP or HTTPS) that
 you want CloudFront to use when connecting to the origin.
 
-    
 **Allowed Values:**
+
 - `http-only`
 - `https-only`
 - `match-viewer`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1045,23 +685,10 @@ you want CloudFront to use when connecting to the origin.
 The number of seconds that CloudFront waits for a response from the
 origin, from `1 - 60`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EnableOriginShield
 
@@ -1069,17 +696,8 @@ origin, from `1 - 60`
 that can help reduce the load on your origin and help protect its
 availability
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1090,23 +708,10 @@ availability
 
 Specify the origin shield region
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### FunctionAssociations
 
@@ -1118,19 +723,12 @@ for each event type: `"viewer-request"`, `"viewer-response"`,
 `"origin-request"`, and `"origin-response"`. CloudFront Functions are only
 available for `"viewer-request"` and `"viewer-response"` event types.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1141,18 +739,7 @@ available for `"viewer-request"` and `"viewer-response"` event types.
 
 The ARN of a CloudFront function or Lambda@Edge function
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1165,37 +752,13 @@ The ARN of a CloudFront function or Lambda@Edge function
 When using Lambda@Edge, your function code can access the body of the
 HTTP request.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### GeographicRestrictions
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1207,18 +770,7 @@ HTTP request.
 Whitelist a list of locations in this distribution. Please refer to
 [this file](./_common.tf) for a list of supported values.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1231,23 +783,10 @@ Whitelist a list of locations in this distribution. Please refer to
 Blacklist a list of locations in this distribution. Please refer to
 [this file](./_common.tf) for a list of supported values.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### OriginAccess
 
@@ -1256,17 +795,8 @@ from CloudFront. We recommend using origin access control (OAC) in favor
 of origin access identity (OAI) for its wider range of features,
 including support of S3 buckets in all AWS Regions.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1278,18 +808,7 @@ including support of S3 buckets in all AWS Regions.
 The ID of the origin access control to be associated to this origin.
 Mutually exclusive to `origin_access_identity`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1302,37 +821,13 @@ Mutually exclusive to `origin_access_identity`
 The ID of the origin access identity to be associated to this origin.
 Mutually exclusive to `origin_access_control_id`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### OriginGroups
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1343,18 +838,7 @@ Mutually exclusive to `origin_access_control_id`
 
 Specify a list of members for this origin group
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1367,37 +851,13 @@ Specify a list of members for this origin group
 Specify the criteria for failover when CloudFront returns specific HTTP
 response status codes that indicate a failure
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Origins
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1408,22 +868,13 @@ response status codes that indicate a failure
 
 The number of times that CloudFront attempts to connect to the origin.
 
-    
 **Allowed Values:**
+
 - `1`
 - `2`
 - `3`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1436,18 +887,7 @@ The number of times that CloudFront attempts to connect to the origin.
 The number of seconds that CloudFront waits for a response from the
 origin, from `1 - 10`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1460,18 +900,7 @@ origin, from `1 - 10`
 Map of headers that CloudFront includes in all requests that it sends to
 your origin
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1483,18 +912,7 @@ your origin
 
 Specify a URL path to append to the origin domain name for origin requests
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1506,18 +924,7 @@ Specify a URL path to append to the origin domain name for origin requests
 
 Configurations for [CloudFront custom origins][cloudfront-origins]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1531,18 +938,7 @@ Configurations for [CloudFront custom origins][cloudfront-origins]
 that can help reduce the load on your origin and help protect its
 availability
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1554,39 +950,17 @@ availability
 
 Configurations for [S3 origins][cloudfront-origins]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### S3OriginConfig
 
 Configurations for [S3 origins][cloudfront-origins]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#originaccess">OriginAccess</a>)</code></td>
@@ -1600,37 +974,13 @@ from CloudFront. We recommend using origin access control (OAC) in favor
 of origin access identity (OAI) for its wider range of features,
 including support of S3 buckets in all AWS Regions.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### ViewerCertificate
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1643,18 +993,7 @@ Associate a certificate from AWS Certificate Manager. The certificate must
 be in the US East (N. Virginia) Region (us-east-1). If not specified, the
 CloudFront default certificate will be used
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1667,8 +1006,8 @@ CloudFront default certificate will be used
 The security policy determines the SSL or TLS protocol and the specific
 ciphers that CloudFront uses for HTTPS connections with viewers (clients).
 
-    
 **Allowed Values:**
+
 - `TLSv1.2_2021`
 - `TLSv1.2_2019`
 - `TLSv1.2_2018`
@@ -1676,16 +1015,7 @@ ciphers that CloudFront uses for HTTPS connections with viewers (clients).
 - `TLSv1_2016`
 - `TLSv1`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1697,76 +1027,25 @@ ciphers that CloudFront uses for HTTPS connections with viewers (clients).
 
 Specify how you want CloudFront to serve HTTPS requests.
 
-    
 **Allowed Values:**
+
 - `vip`
 - `sni-only`
 - `static-ip`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [cloudfront-cache-policy]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html
-
 [cloudfront-field-level-encryption-configuration]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html
-
 [cloudfront-geographic-restriction]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html
-
 [cloudfront-origin-failover]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html
-
 [cloudfront-origin-request-policy]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html
-
 [cloudfront-origin-shield]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html
-
 [cloudfront-origins]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html
-
 [cloudfront-real-time-logs-configuration]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html
-
 [cloudfront-response-headers-policy]: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html
 
-
 <!-- TFDOCS_EXTRAS_END -->
-
-## Outputs
-
-- (string) **`distribution_arn`** _[since v1.0.0]_
-
-    ARN for the distribution
-
-- (string) **`distribution_domain_name`** _[since v1.0.0]_
-
-    Domain name corresponding to the distribution.
-
-- (string) **`distribution_hosted_zone_id`** _[since v1.0.0]_
-
-    CloudFront Route 53 zone ID that can be used to route an Alias Resource Record Set to.
-
-- (string) **`distribution_id`** _[since v1.0.0]_
-
-    Identifier for the distribution
-
-[cloudfront-cache-policy]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html
-[cloudfront-custom-error-response]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GeneratingCustomErrorResponses.html?icmpid=docs_cf_help_panel
-[cloudfront-field-level-encryption-configuration]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html
-[cloudfront-geographic-restriction]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html
-[cloudfront-origin-failover]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/high_availability_origin_failover.html
-[cloudfront-origin-request-policy]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html
-[cloudfront-origin-shield]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html
-[cloudfront-origins]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html
-[cloudfront-real-time-logs-configuration]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html
-[cloudfront-response-headers-policy]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-response-headers-policies.html
-[cloudfront-trusted-key-groups]:https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html

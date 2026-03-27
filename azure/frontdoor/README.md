@@ -7,11 +7,12 @@ This module will create and configure an Azure Front Door and allow you to manag
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-- [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Basic Usage](#basic-usage)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
 - [Outputs](#outputs)
+- [Objects](#objects)
 - [Notes](#notes)
 
 ## Example Usage
@@ -59,178 +60,592 @@ module "Front Door" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
+## Inputs
 
-- (object) **`azure`** _[since v0.0.1]_
+### Required
 
-    The resource group name and the location where the resources will be deployed to
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td width="100%">azure</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    ```terraform
-    azure = {
-      resource_group_name = "sandbox"
-      location = "westus"
-    }
-    ```
+The resource group name and the location where the resources will be deployed to
 
-    - (string) **`resource_group_name`** _[since v0.0.1]_
+```terraform
+azure = {
+resource_group_name = "sandbox"
+location = "westus"
+}
+```
 
-        The name of an Azure resource group where the Front Door will be deployed
+**Since:** 0.0.1
 
-    - (string) **`location = null`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        The name of an Azure location where the Front Door will be deployed. If unspecified, the resource group's location will be used.
+The name of the Azure Front Door profile. This will also be used as a prefix to all associated resources' names.
 
-- (string) **`name`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-    The name of the Azure Front Door profile. This will also be used as a prefix to all associated resources' names.
+</td></tr>
+</tbody></table>
 
 ### Optional
 
-- (map(string)) **`additional_tags = {}`** _[since v0.0.1]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Additional tags for the Azure Front Door
+Additional tags for the Azure Front Door
 
-- (map(string)) **`additional_tags_all = {}`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-    Additional tags for all resources deployed with this module
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (map(object)) **`endpoints = {}`** _[since v0.0.1]_
+Additional tags for all resources deployed with this module
 
-    Defines Front Door endpoints with associating routes
+**Since:** 0.0.1
 
-    - (map(string)) **`additional_tags = null`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#endpoints">Endpoints</a>))</code></td>
+    <td width="100%">endpoints</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-        Additional tags for the endpoint
+Defines Front Door endpoints with associating routes
 
-    - (bool) **`enabled = true`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-        Enables the endpoint
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#origingroups">OriginGroups</a>))</code></td>
+    <td width="100%">origin_groups</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (map(object)) **`routes = null`** _[since v0.0.1]_
+Defines Front Door origin groups with associating origins, in `origin_group_name = {config}` format
 
-        Defines a map of routes, in `route_name = {configuration}` format
+**Since:** 0.0.1
 
-      - (string) **`origin_group_name`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">response_timeout_seconds</td>
+    <td><code>120</code></td>
+</tr>
+<tr><td colspan="3">
 
-          The name of the Front Door Origin Group where this Front Door Route should be created. YOU MUST DEFINE AN ORIGIN GROUP CREATED BY THE SAME MODULE.
+Number of seconds before the send/received request times out. Valid values `16 - 240`
 
-      - (list(string)) **`accepted_protocols = ["Http", "Https"]`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-          One or more Protocols supported by this Front Door Route. Possible values are `Http` or `Https`
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">tier</td>
+    <td><code>"Standard"</code></td>
+</tr>
+<tr><td colspan="3">
 
-      - (bool) **`enabled = true`** _[since v0.0.1]_
+Define the tier of the Front Door service.
 
-          Enables the route
+**Allowed Values:**
 
-      - (string) **`forwarding_protocol = "MatchRequest"`** _[since v0.0.1]_
+- `Standard`
+- `Premium`
 
-          The Protocol that will be use when forwarding traffic to backends. Possible values are `HttpOnly`, `HttpsOnly` or `MatchRequest`
+**Since:** 0.0.1
 
-      - (bool) **`https_redirect_enabled = true`** _[since v0.0.1]_
+</td></tr>
+</tbody></table>
 
-          Automatically redirect HTTP traffic to HTTPS traffic
+## Outputs
 
-      - (bool) **`link_to_default_domain = true`** _[since v0.0.1]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        </tbody></table>
 
-          Defines if this Front Door Route should be linked to the default endpoint
+## Objects
 
-      - (string) **`origin_path = null`** _[since v0.0.1]_
+#### Azure
 
-          A directory path on the Front Door Origin that can be used to retrieve content
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">resource_group_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-      - (list(string)) **`patterns_to_match = ["/*"]`** _[since v0.0.1]_
+The name of an Azure resource group where the Front Door will be deployed
 
-          The route patterns of the rule
+**Since:** 0.0.1
 
-- (map(object)) **`origin_groups = {}`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">location</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    Defines Front Door origin groups with associating origins, in `origin_group_name = {config}` format
+The name of an Azure location where the Front Door will be deployed. If unspecified, the resource group's location will be used.
 
-    - (object) **`health_probe = null`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-        Configures the health probe of this origin group
+</td></tr>
+</tbody></table>
 
-      - (number) **`interval_seconds = 100`** _[since v0.0.1]_
+#### Endpoints
 
-          Specifies the number of seconds between health probes. Possible values are between `5` and `31536000` seconds
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#routes">Routes</a>))</code></td>
+    <td width="100%">routes</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-      - (string) **`path = "/"`** _[since v0.0.1]_
+Defines a map of routes, in `route_name = {configuration}` format
 
-          Specifies the path relative to the origin that is used to determine the health of the origin.
+**Since:** 0.0.1
 
-      - (string) **`probe_method = "HEAD"`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enabled</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-          Specifies the type of health probe request that is made. Possible values are `GET` and `HEAD`
+Enables the endpoint
 
-      - (string) **`protocol = "Http"`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-          Specifies the protocol to use for health probe. Possible values are `Http` and `Https`
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    - (object) **`load_balancing = null`** _[since v0.0.1]_
+Additional tags for the endpoint
 
-        Configure the load balancing settings to define what sample set we need to use to call the backend as healthy or unhealthy
+**Since:** 0.0.1
 
-      - (number) **`latency_sensitivity_milliseconds = 50`** _[since v0.0.1]_
+</td></tr>
+</tbody></table>
 
-          Latency sensitivity for identifying backends with least latency. Possible values are between `0` and `1000`
+#### HealthProbe
 
-      - (number) **`sample_size = 4`** _[since v0.0.1]_
+Configures the health probe of this origin group
 
-          Sample size to assess backend availability. Possible values are between `0` and `255`
+**Since:** 0.0.1
 
-      - (number) **`successful_samples_required = 3`** _[since v0.0.1]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">protocol</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-          Successful samples required to declare the backend healthy. Possible values are between `0` and `255`
+Specifies the protocol to use for health probe.
 
-    - (map(object)) **`origins = null`** _[since v0.0.1]_
+**Allowed Values:**
 
-        Defines a map of origins, in `origin_name = {configuration}` format
+- `Http`
+- `Https`
 
-      - (string) **`hostname`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-          The IPv4 address, IPv6 address or Domain name of the Origin
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">interval_seconds</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-      - (bool) **`certificate_subject_name_validation = true`** _[since v0.0.1]_
+Specifies the number of seconds between health probes. Possible values are between `5` and `31536000` seconds
 
-          Specifies whether certificate name checks are enabled for this origin
+**Since:** 0.0.1
 
-      - (bool) **`enabled = true`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">probe_method</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-          Enables the origin
+Specifies the type of health probe request that is made.
 
-      - (number) **`http_port = 80`** _[since v0.0.1]_
+**Allowed Values:**
 
-          The value of the HTTP port. Must be between `1` and `65535`
+- `GET`
+- `HEAD`
 
-      - (number) **`https_port = 443`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-          The value of the HTTPS port. Must be between `1` and `65535`
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">path</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-      - (string) **`origin_host_header = null`** _[since v0.0.1]_
+Specifies the path relative to the origin that is used to determine the health of the origin.
 
-          The host header value (an IPv4 address, IPv6 address or Domain name), which is sent to the origin with each request. If unspecified the hostname from the request will be used.
+**Since:** 0.0.1
 
-      - (number) **`priority = 1`** _[since v0.0.1]_
+</td></tr>
+</tbody></table>
 
-          Priority of origin in given origin group for load balancing. Higher priorities will not be used for load balancing if any lower priority origin is healthy. Must be between `1` and `5`
+#### LoadBalancing
 
-      - (number) **`weight = 500`** _[since v0.0.1]_
+Configure the load balancing settings to define what sample set we need to use to call the backend as healthy or unhealthy
 
-          The weight of the origin in a given origin group for load balancing. Must be between `1` and `1000`
+**Since:** 0.0.1
 
-    - (bool) **`session_affinity_enabled = true`** _[since v0.0.1]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">latency_sensitivity_milliseconds</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        Specifies whether session affinity should be enabled on this host
+Latency sensitivity for identifying backends with least latency. Possible values are between `0` and `1000`
 
-- (number) **`response_timeout_seconds = 120`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-    Number of seconds before the send/received request times out. Valid values `16 - 240`
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">sample_size</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-- (string) **`tier = "Standard"`** _[since v0.0.1]_
+Sample size to assess backend availability. Possible values are between `0` and `255`
 
-    Define the tier of the Front Door service. Valid values are `"Standard"` or `"Premium"`
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">successful_samples_required</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Successful samples required to declare the backend healthy. Possible values are between `0` and `255`
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+#### OriginGroups
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#origins">Origins</a>))</code></td>
+    <td width="100%">origins</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines a map of origins, in `origin_name = {configuration}` format
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">session_affinity_enabled</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies whether session affinity should be enabled on this host
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#healthprobe">HealthProbe</a>)</code></td>
+    <td width="100%">health_probe</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Configures the health probe of this origin group
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#loadbalancing">LoadBalancing</a>)</code></td>
+    <td width="100%">load_balancing</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Configure the load balancing settings to define what sample set we need to use to call the backend as healthy or unhealthy
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+#### Origins
+
+Defines a map of origins, in `origin_name = {configuration}` format
+
+**Since:** 0.0.1
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">hostname</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The IPv4 address, IPv6 address or Domain name of the Origin
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">certificate_subject_name_validation</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies whether certificate name checks are enabled for this origin
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">http_port</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The value of the HTTP port. Must be between `1` and `65535`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">https_port</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The value of the HTTPS port. Must be between `1` and `65535`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">origin_host_header</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The host header value (an IPv4 address, IPv6 address or Domain name), which is sent to the origin with each request. If unspecified the hostname from the request will be used.
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">priority</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Priority of origin in given origin group for load balancing. Higher priorities will not be used for load balancing if any lower priority origin is healthy. Must be between `1` and `5`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">weight</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The weight of the origin in a given origin group for load balancing. Must be between `1` and `1000`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enabled</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Enables the origin
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+#### Routes
+
+Defines a map of routes, in `route_name = {configuration}` format
+
+**Since:** 0.0.1
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">origin_group_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the Front Door Origin Group where this Front Door Route should be created. YOU MUST DEFINE AN ORIGIN GROUP CREATED BY THE SAME MODULE.
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enabled</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Enables the route
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">forwarding_protocol</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The Protocol that will be use when forwarding traffic to backends.
+
+**Allowed Values:**
+
+- `HttpOnly`
+- `HttpsOnly`
+- `MatchRequest`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">patterns_to_match</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The route patterns of the rule
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">accepted_protocols</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+One or more Protocols supported by this Front Door Route.
+
+**Allowed Values:**
+
+- `Http`
+- `Https`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">origin_path</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A directory path on the Front Door Origin that can be used to retrieve content
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">https_redirect_enabled</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Automatically redirect HTTP traffic to HTTPS traffic
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">link_to_default_domain</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines if this Front Door Route should be linked to the default endpoint
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+<!-- TFDOCS_EXTRAS_END -->
 
 ## Notes
 

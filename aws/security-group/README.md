@@ -7,11 +7,12 @@ This module will build and configure a [Security Group](https://docs.aws.amazon.
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-- [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Basic Usage](#basic-usage)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -71,68 +72,221 @@ module "security_group_basic_usage" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
+## Inputs
 
-- (string) **`name`** _[since v1.0.0]_
+### Required
 
-    The name of the security group. All associated resources will also have their name prefixed with this value
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the security group. All associated resources will also have their name prefixed with this value
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">vpc_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+</td></tr>
+</tbody></table>
 
 ### Optional
 
-- (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Additional tags for the security group
+Additional tags for the security group
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    Additional tags for all resources deployed with this module
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (string) **`description = null`** _[since v1.0.0]_
+Additional tags for all resources deployed with this module
 
-    Description of the security group
+**Since:** 1.0.0
 
-- (map(object)) **`egress_rules = {}`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Configures multiple [egress rules][security-group-rules]. [See example](#basic-usage)
+Description of the security group
 
-    - (list(string)) **`destinations`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-        A list of destinations this rule applies to. Destinations can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#egressrules">EgressRules</a>))</code></td>
+    <td width="100%">egress_rules</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+Configures multiple [egress rules][security-group-rules].
 
-        Additional tags for the egress rule
+**Examples:**
 
-    - (string) **`description = null`** _[since v1.0.0]_
+- [Basic Usage](#basic-usage)
 
-        Description for the egress rule
+**Since:** 1.0.0
 
-- (map(object)) **`ingress_rules = {}`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#ingressrules">IngressRules</a>))</code></td>
+    <td width="100%">ingress_rules</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Configures multiple [ingress rules][security-group-rules]. [See example](#basic-usage)
+Configures multiple [ingress rules][security-group-rules].
 
-    - (list(string)) **`sources`** _[since v1.0.0]_
+**Examples:**
 
-        A list of sources this rule applies to. Sources can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
+- [Basic Usage](#basic-usage)
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-        Additional tags for the ingress rule
-
-    - (string) **`description = null`** _[since v1.0.0]_
-
-        Description for the ingress rule
+</td></tr>
+</tbody></table>
 
 ## Outputs
 
-- (string) **`security_group_arn`** _[since v1.0.0]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">security_group_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    ARN of the security group
+ARN of the security group
 
-- (string) **`security_group_id`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    ID of the security group
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">security_group_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-[security-group-rules]:https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
+ID of the security group
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
+
+#### EgressRules
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">destinations</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A list of destinations this rule applies to. Destinations can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for the egress rule
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Description for the egress rule
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### IngressRules
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">sources</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A list of sources this rule applies to. Sources can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for the ingress rule
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Description for the ingress rule
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+[security-group-rules]: https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html
+
+<!-- TFDOCS_EXTRAS_END -->

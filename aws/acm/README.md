@@ -11,8 +11,8 @@ This module manages multiple certificates in [Certificate Manager](https://aws.a
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -33,30 +33,13 @@ module "basic_usage" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
 _No required inputs._
 
-
 ### Optional
-
-
-
-
-
-
-
-
-
-
-
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -68,18 +51,7 @@ _No required inputs._
 
 Additional tags for all resources deployed with this module
 
-
-
-
-
-
-
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
@@ -92,217 +64,147 @@ Additional tags for all resources deployed with this module
 Manage multiple public SSL/TLS certificates from Amazon. By default, public
 certificates are trusted by browsers and operating systems.
 
-
-
-
-
-
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-
-
-
 **Since:** 1.0.0
-
-
 
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
 
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#publiccertificates">PublicCertificates</a>))</code></td>
+    <td width="100%">public_certificates</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
+Information of all the public certificates managed by this module
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 #### PublicCertificates
 
-
-
-
-
-
-
-
-
-
-
-
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td><code>string</code></td>
+    <td width="100%">arn</td>
+    <td></td>
 </tr>
 <tr><td colspan="3">
 
-Additional tags associated with the certificate
-
-
-
-
-
-
-
-
-
+ARN of the certificate
 
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
-    <td><code>bool</code></td>
-    <td width="100%">allow_export</td>
-    <td><code>false</code></td>
+    <td><code>list(object)</code></td>
+    <td width="100%">domain_validation_options</td>
+    <td></td>
 </tr>
 <tr><td colspan="3">
 
-If enabled, you can export your ACM public certificate's private key.
-You can use the certificate for different workloads like in the AWS Cloud,
-on-premises, and hybrid.
-
-
-
-
-
-
-
-
-
+Set of domain validation objects which can be used to complete certificate validation.
 
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">key_algorithm</td>
-    <td><code>"RSA_2048"</code></td>
+    <td width="100%">id</td>
+    <td></td>
 </tr>
 <tr><td colspan="3">
 
-The encryption algorithm. Some algorithms may not be supported by all
-AWS services.
-
-
-**Allowed Values:**
-- `RSA_2048`
-- `EC_prime256v1`
-- `EC_secp384r1`
-
-
-
-
-
-
-
+ARN of the certificate
 
 **Since:** 1.0.0
 
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">not_after</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
+Expiration date and time of the certificate
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">not_before</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Start of the validity period of the certificate.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">renewal_eligibility</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Whether the certificate is eligible for managed renewal.
+
+**Since:** 1.0.0
 
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">subject_alternative_names</td>
-    <td><code>null</code></td>
+    <td width="100%">renewal_summary</td>
+    <td></td>
 </tr>
 <tr><td colspan="3">
 
-List of additional names for this certificate
-
-
-
-
-
-
-
-
-
+Contains information about the status of ACM's managed renewal for the certificate.
 
 **Since:** 1.0.0
-
-
 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">validation_method</td>
-    <td><code>"DNS"</code></td>
+    <td width="100%">status</td>
+    <td></td>
 </tr>
 <tr><td colspan="3">
 
-Method for validating domain ownership.
-
-
-**Allowed Values:**
-- `DNS`
-- `EMAIL`
-
-
-
-
-
-
-**Links:**
-- [Domain Ownership Validation](https://docs.aws.amazon.com/acm/latest/userguide/domain-ownership-validation.html)
-
+Status of the certificate.
 
 **Since:** 1.0.0
 
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">validation_emails</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
+List of addresses that received a validation email. Only set if EMAIL validation was used.
+
+**Since:** 1.0.0
 
 </td></tr>
 </tbody></table>
 
-
-
-
-
 <!-- TFDOCS_EXTRAS_END -->
 
-## Outputs
-
-- (map(object)) **`public_certificates`** _[since v1.0.0]_
-
-    Information of all the public certificates managed by this module
-
-    - (string) **`arn`** _[since v1.0.0]_
-
-        ARN of the certificate
-
-    - (list(object)) **`domain_validation_options`** _[since v1.0.0]_
-
-        Set of domain validation objects which can be used to complete certificate validation.
-
-    - (string) **`id`** _[since v1.0.0]_
-
-        ARN of the certificate
-
-    - (string) **`not_after`** _[since v1.0.0]_
-
-        Expiration date and time of the certificate.
-
-    - (string) **`not_before`** _[since v1.0.0]_
-
-        Start of the validity period of the certificate.
-
-    - (string) **`renewal_eligibility`** _[since v1.0.0]_
-
-        Whether the certificate is eligible for managed renewal.
-
-    - (list(string)) **`renewal_summary`** _[since v1.0.0]_
-
-        Contains information about the status of ACM's managed renewal for the certificate.
-
-    - (string) **`status`** _[since v1.0.0]_
-
-        Status of the certificate.
-
-    - (list(string)) **`validation_emails`** _[since v1.0.0]_
-
-        List of addresses that received a validation email. Only set if EMAIL validation was used.
-
-[acm-domain-ownership-validation]:https://docs.aws.amazon.com/acm/latest/userguide/domain-ownership-validation.html
+[acm-domain-ownership-validation]: https://docs.aws.amazon.com/acm/latest/userguide/domain-ownership-validation.html

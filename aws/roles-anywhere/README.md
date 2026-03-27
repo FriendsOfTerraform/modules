@@ -7,11 +7,12 @@ This module will build and configure [AWS IAM Roles Anywhere][iam-roles-anywhere
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-- [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Basic Usage](#basic-usage)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -68,122 +69,363 @@ module "rolesanywhere" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
+## Inputs
 
-- (map(object)) **`trust_anchors`** _[since v1.0.0]_
+### Required
 
-    Manages multiple [trust anchors][iam-roles-anywhere-trust-anchor]. A trust anchor refers to the trust relationship between Roles Anywhere and your Certificate Authority (CA). Certificates are used to authenticate against the trust anchor to obtain credentials for an IAM role.
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#trustanchors">TrustAnchors</a>))</code></td>
+    <td width="100%">trust_anchors</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    - (object) **`certificate_authority_source`** _[since v1.0.0]_
+Manages multiple [trust anchors][iam-roles-anywhere-trust-anchor]. A trust anchor refers to the trust relationship between Roles Anywhere and your Certificate Authority (CA). Certificates are used to authenticate against the trust anchor to obtain credentials for an IAM role.
 
-        Specify the source of trust (Certificate authority source)
+**Since:** 1.0.0
 
-        - (string) **`aws_private_certificate_authority_arn = null`** _[since v1.0.0]_
-
-            The ARN of the Certificate authorities (CA) from AWS Certificate Manager in your account for this region. Mutually exclusive to `external_certificate_bundle`
-
-        - (string) **`external_certificate_bundle = null`** _[since v1.0.0]_
-
-            Specify the PEM-encoded private CA certificate bundle. Mutually exclusive to `aws_private_certificate_authority_arn`. The certificate must meet the following constrains:
-
-            - The certificates MUST be `X.509v3`
-            - The key usage MUST include `critical, keyCertSign, digitalSignature`, and OPTIONALLY `cRLSign`
-            - Basic constraints MUST include `critical, CA:TRUE`
-            - The signing algorithm MUST include `SHA256` or stronger. MD5 and SHA1 signing algorithms are rejected.
-
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
-
-        Additional tags for the trust anchor
+</td></tr>
+</tbody></table>
 
 ### Optional
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Additional tags for all resources deployed with this module
+Additional tags for all resources deployed with this module
 
-- (map(object)) **`profiles = {}`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    Manages multiple [profiles][iam-roles-anywhere-profile]. Profiles are predefined sets of permissions that you can apply to roles that are used by workloads that authenticate with Roles Anywhere.
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#profiles">Profiles</a>))</code></td>
+    <td width="100%">profiles</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (map(object)) **`roles`** _[since v1.0.0]_
+Manages multiple [profiles][iam-roles-anywhere-profile]. Profiles are predefined sets of permissions that you can apply to roles that are used by workloads that authenticate with Roles Anywhere.
 
-        Manages multiple IAM roles that are attached to this profile
+**Since:** 1.0.0
 
-        - (list(string)) **`attached_policy_arns`** _[since v1.0.0]_
-
-            A list of IAM policy ARNs to be attached to the individual role
-
-        - (string) **`trust_anchor_name`** _[since v1.0.0]_
-
-            Specify the name of the trust anchor this role constraints to. Valid values include only the trust anchors created by this module.
-
-        - (map(string)) **`conditions = null`** _[since v1.0.0]_
-
-            Specify conditions that further restrict which workloads may assume this role. Please see below for valid values:
-
-            | Value           | Equates To                             | Example
-            |-----------------|----------------------------------------|-----------------------------------
-            | x509Subject/CN  | Subject's Common Name                  | "instance1"
-            | x509Issuer/C    | Issuer's Country                       | "US"
-            | x509Issuer/O    | Issuer's Organization                  | "MyCompany"
-            | x509Issuer/OU   | Issuer's Organization Unit             | "Sales"
-            | x509Issuer/ST   | Issuer's State                         | "California"
-            | x509Issuer/L    | Issuer's Location                      | "Los Angeles"
-            | x509Issuer/CN   | Issuer's Common Name                   | "sales-intermediate-ca"
-            | x509SAN/DNS     | Subject Alternative Name's DNS         | "instance1.mycompany.com"
-            | x509SAN/URI     | Subject Alternative Name's URI         | "spiffe://mycompany.com/instance1"
-            | x509SAN/Name/CN | Subject Alternative Name's Common Name | "instance1"
-
-        - (string) **`permissions_boundary = null`** _[since v1.0.1]_
-
-            Specify the ARN of the policy that is used to set the permissions boundary for the role.
-
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
-
-        Additional tags for the profile
-
-    - (bool) **`require_instance_properties = null`** _[since v1.0.0]_
-
-        Specifies whether instance properties are required in CreateSession requests with this profile.
-
-    - (number) **`session_duration_seconds = null`** _[since v1.0.0]_
-
-        The number of seconds the vended session credentials are valid for. Defaults to `3600`.
-
-    - (object) **`session_policy = null`** _[since v1.0.0]_
-
-        Specify [IAM session policies][iam-session-policy] that apply to the vended session credentials
-
-      - (string) **`inline_policy = null`** _[since v1.0.0]_
-
-          An inline JSON session policy document
-
-      - (list(string)) **`managed_policy_arns = null`** _[since v1.0.0]_
-
-          A list of `up to 10` managed policy ARNs that apply to the vended session credentials.
+</td></tr>
+</tbody></table>
 
 ## Outputs
 
-- (map(string)) **`profile_arns`** _[since v1.0.0]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">profile_arns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    Map of ARNs of all profiles
+Map of ARNs of all profiles
 
-- (map(string)) **`profile_ids`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    Map of IDs of all profiles
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">profile_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-- (map(string)) **`trust_anchor_arns`** _[since v1.0.0]_
+Map of IDs of all profiles
 
-    Map of ARNs of all trust anchors
+**Since:** 1.0.0
 
-- (map(string)) **`trust_anchor_ids`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">trust_anchor_arns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    Map of IDs of all trust anchors
+Map of ARNs of all trust anchors
 
+**Since:** 1.0.0
 
-[iam-roles-anywhere]:https://docs.aws.amazon.com/rolesanywhere/latest/userguide/introduction.html
-[iam-roles-anywhere-trust-anchor]:https://docs.aws.amazon.com/rolesanywhere/latest/userguide/getting-started.html#getting-started-step1
-[iam-roles-anywhere-profile]:https://docs.aws.amazon.com/rolesanywhere/latest/userguide/getting-started.html#getting-started-step2
-[iam-session-policy]:https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">trust_anchor_ids</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Map of IDs of all trust anchors
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
+
+#### CertificateAuthoritySource
+
+Specify the source of trust (Certificate authority source)
+
+**Since:** 1.0.0
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">aws_private_certificate_authority_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of the Certificate authorities (CA) from AWS Certificate Manager in your account for this region. Mutually exclusive to `external_certificate_bundle`
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">external_certificate_bundle</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the PEM-encoded private CA certificate bundle. Mutually exclusive to `aws_private_certificate_authority_arn`. The certificate must meet the following constrains:
+
+- The certificates MUST be `X.509v3`
+- The key usage MUST include `critical, keyCertSign, digitalSignature`, and OPTIONALLY `cRLSign`
+- Basic constraints MUST include `critical, CA:TRUE`
+- The signing algorithm MUST include `SHA256` or stronger. MD5 and SHA1 signing algorithms are rejected.
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### Profiles
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#roles">Roles</a>))</code></td>
+    <td width="100%">roles</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Manages multiple IAM roles that are attached to this profile
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for the profile
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">require_instance_properties</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies whether instance properties are required in CreateSession requests with this profile.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">session_duration_seconds</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The number of seconds the vended session credentials are valid for. Defaults to `3600`.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#sessionpolicy">SessionPolicy</a>)</code></td>
+    <td width="100%">session_policy</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify [IAM session policies][iam-session-policy] that apply to the vended session credentials
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### Roles
+
+Manages multiple IAM roles that are attached to this profile
+
+**Since:** 1.0.0
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">attached_policy_arns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A list of IAM policy ARNs to be attached to the individual role
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">trust_anchor_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the name of the trust anchor this role constraints to. Valid values include only the trust anchors created by this module.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">conditions</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify conditions that further restrict which workloads may assume this role. Please see below for valid values:
+
+| Value           | Equates To                             | Example                            |
+| --------------- | -------------------------------------- | ---------------------------------- |
+| x509Subject/CN  | Subject's Common Name                  | "instance1"                        |
+| x509Issuer/C    | Issuer's Country                       | "US"                               |
+| x509Issuer/O    | Issuer's Organization                  | "MyCompany"                        |
+| x509Issuer/OU   | Issuer's Organization Unit             | "Sales"                            |
+| x509Issuer/ST   | Issuer's State                         | "California"                       |
+| x509Issuer/L    | Issuer's Location                      | "Los Angeles"                      |
+| x509Issuer/CN   | Issuer's Common Name                   | "sales-intermediate-ca"            |
+| x509SAN/DNS     | Subject Alternative Name's DNS         | "instance1.mycompany.com"          |
+| x509SAN/URI     | Subject Alternative Name's URI         | "spiffe://mycompany.com/instance1" |
+| x509SAN/Name/CN | Subject Alternative Name's Common Name | "instance1"                        |
+
+**Allowed Values:**
+
+- `x509Subject/CN`
+- `x509Issuer/C`
+- `x509Issuer/O`
+- `x509Issuer/OU`
+- `x509Issuer/ST`
+- `x509Issuer/L`
+- `x509Issuer/CN`
+- `x509SAN/DNS`
+- `x509SAN/URI`
+- `x509SAN/Name/CN`
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">permissions_boundary</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the ARN of the policy that is used to set the permissions boundary for the role.
+
+**Since:** 1.0.1
+
+</td></tr>
+</tbody></table>
+
+#### SessionPolicy
+
+Specify [IAM session policies][iam-session-policy] that apply to the vended session credentials
+
+**Since:** 1.0.0
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">inline_policy</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+An inline JSON session policy document
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">managed_policy_arns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A list of `up to 10` managed policy ARNs that apply to the vended session credentials.
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### TrustAnchors
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#certificateauthoritysource">CertificateAuthoritySource</a>)</code></td>
+    <td width="100%">certificate_authority_source</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the source of trust (Certificate authority source)
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for the trust anchor
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+[iam-roles-anywhere-profile]: https://docs.aws.amazon.com/rolesanywhere/latest/userguide/getting-started.html#getting-started-step2
+[iam-roles-anywhere-trust-anchor]: https://docs.aws.amazon.com/rolesanywhere/latest/userguide/getting-started.html#getting-started-step1
+[iam-session-policy]: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session
+
+<!-- TFDOCS_EXTRAS_END -->
+
+[iam-roles-anywhere]: https://docs.aws.amazon.com/rolesanywhere/latest/userguide/introduction.html

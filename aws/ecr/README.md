@@ -12,8 +12,8 @@ This module builds and configures private and public [ECR](https://aws.amazon.co
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -122,31 +122,14 @@ module "private_registry_features" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
 _No required inputs._
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -157,18 +140,7 @@ _No required inputs._
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -180,18 +152,7 @@ Additional tags for all resources deployed with this module
 
 Manages the private registry
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -203,41 +164,36 @@ Manages the private registry
 
 Manages the public registry
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
 
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(object(<a href="#privaterepositories">PrivateRepositories</a>))</code></td>
+    <td width="100%">private_repositories</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
+Map of all private repositories
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 #### ContinuousScanning
 
 Enables continuous scanning, which will continually scan images after it is pushed into a matching repository. This setting is only available if scan_type = "ENHANCED"
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -248,43 +204,21 @@ Enables continuous scanning, which will continually scan images after it is push
 
 Specifies which repositories will continuously have images scanned
 for vulnerabilities. Filters with no wildcard will match all repository
-names that contain the filter. Filters with wildcards (*) will match
+names that contain the filter. Filters with wildcards (\*) will match
 on a repository name where the wildcard replaces zero or more
 characters in the repository name.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### EncryptWithKms
 
 Encrypts the repository with KMS. If unspecified, ECR will be encrypted with AES-256 by default
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -295,39 +229,17 @@ Encrypts the repository with KMS. If unspecified, ECR will be encrypted with AES
 
 Specify the customer managed KMS key ID to be used for encryption. If unspecified, the default AWS managed key will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### LifecyclePolicyRules
 
 Configures [lifecycle policy rules][ecr-private-registry-lifecycle-policy-rule] to automatically clean up images
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#matchcriteria">MatchCriteria</a>)</code></td>
@@ -338,18 +250,7 @@ Configures [lifecycle policy rules][ecr-private-registry-lifecycle-policy-rule] 
 
 Specify the count type to apply to the images. Must specify one of the below.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -362,18 +263,7 @@ Specify the count type to apply to the images. Must specify one of the below.
 Specify a rule priority, which must be unique. Values do not need to
 be sequential across rules in a policy. Lower number has higher priority.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -385,18 +275,7 @@ be sequential across rules in a policy. Lower number has higher priority.
 
 Describes the purpose of a rule within a lifecycle policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -412,41 +291,21 @@ all images, including untagged images, willl be matched. Wildcard match
 will be used if wildcards are used in the filter, otherwise, prefix
 match will be used.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### MatchCriteria
 
 Specify the count type to apply to the images. Must specify one of the below.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -457,18 +316,7 @@ Specify the count type to apply to the images. Must specify one of the below.
 
 Specifies how many days should pass since pushed before an image expires
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -480,37 +328,13 @@ Specifies how many days should pass since pushed before an image expires
 
 Sets a limit on the number of images that exist in the repository
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### PrivateRegistry
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -521,18 +345,7 @@ Sets a limit on the number of images that exist in the repository
 
 Specifies the JSON policy document defining the registry policy
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -544,20 +357,11 @@ Specifies the JSON policy document defining the registry policy
 
 Configures pull through cache rules. Please see example for usage
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Registry Features](#private-registry-features)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -569,20 +373,11 @@ Configures pull through cache rules. Please see example for usage
 
 Configures ECR replication rules
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Registry Features](#private-registry-features)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -594,20 +389,11 @@ Configures ECR replication rules
 
 Manages multiple private repositories
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Example](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -619,39 +405,58 @@ Manages multiple private repositories
 
 Configure [image scanning][ecr-private-registry-image-scanning]
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Registry Features](#private-registry-features)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
+#### PrivateRepositories
 
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ARN of the repository.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">registry_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The account ID where the repository is created
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">repository_url</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The URL of the repository. In the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
 
 #### PublicRegistry
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#repositories">Repositories</a>))</code></td>
@@ -662,41 +467,21 @@ Configure [image scanning][ecr-private-registry-image-scanning]
 
 Manages multiple public repositories
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### PullThroughCacheRules
 
 Configures pull through cache rules. Please see example for usage
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Registry Features](#private-registry-features)
 
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -707,28 +492,17 @@ Configures pull through cache rules. Please see example for usage
 
 The registry URL of the upstream public registry to use as the source
 
-| upstream registry         | URL
-|---------------------------|------------------------
-| ECR Public                | public.ecr.aws
-| Docker Hub                | registry-1.docker.io
-| Kubernetes                | registry.k8s.io
-| Quay                      | quay.io
-| Github Container Registry | ghcr.io
-| Azure Container Registry  | {custom}.azurecr.io
-| Gitlab Container Registry | registry.gitlab.com
+| upstream registry         | URL                  |
+| ------------------------- | -------------------- |
+| ECR Public                | public.ecr.aws       |
+| Docker Hub                | registry-1.docker.io |
+| Kubernetes                | registry.k8s.io      |
+| Quay                      | quay.io              |
+| Github Container Registry | ghcr.io              |
+| Azure Container Registry  | {custom}.azurecr.io  |
+| Gitlab Container Registry | registry.gitlab.com  |
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -742,41 +516,21 @@ ARN of the Secret which will be used to authenticate against the registry.
 Required when using the following upstream registry: Docker Hub, Github
 Container Registry, Azure Container Registry, Gitlab Container Registry
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ReplicationRules
 
 Configures ECR replication rules
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Registry Features](#private-registry-features)
 
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -790,18 +544,7 @@ format. If `account_id` is omitted, the current account will be used.
 For cross account replication, please make sure you grant proper
 [registry permissions][ecr-private-registry-image-replication-permissions]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -815,39 +558,17 @@ Add filters for this rule to specify the repositories to replicate.
 Supported filters are repository name prefixes. If no filter is added,
 all images in the repository are replicated.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Repositories
 
 Manages multiple public repositories
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -860,18 +581,7 @@ Provide a detailed description of the repository. Identify what is
 included in the repository, any licensing details, or other relevant
 information.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -883,18 +593,7 @@ information.
 
 Additional tags to be added to the public repository
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -906,23 +605,14 @@ Additional tags to be added to the public repository
 
 The system architecture that the images in the repository are compatible with
 
-    
 **Allowed Values:**
+
 - `ARM`
 - `ARM 64`
 - `x86`
 - `x86-64`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -934,18 +624,7 @@ The system architecture that the images in the repository are compatible with
 
 The short description is displayed in search results and on the repository detail page
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -957,18 +636,7 @@ The short description is displayed in search results and on the repository detai
 
 The base64-encoded repository logo payload. (Only visible for verified accounts) Note that drift detection is disabled for this attribute.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -980,21 +648,12 @@ The base64-encoded repository logo payload. (Only visible for verified accounts)
 
 The operating systems that the images in the repository are compatible with
 
-    
 **Allowed Values:**
+
 - `Linux`
 - `Windows`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1006,39 +665,17 @@ The operating systems that the images in the repository are compatible with
 
 Provide detailed information about how to use the images in the repository. This provides context, support information, and additional usage details for users of the repository.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ScanOnPush
 
 Enables scan on push, which scans images when it is pushed into a matching repository
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1049,45 +686,25 @@ Enables scan on push, which scans images when it is pushed into a matching repos
 
 Specifies which repositories to scan for vulnerabilities on image
 push. Filters with no wildcard will match all repository names that
-contain the filter. Filters with wildcards (*) will match on a
+contain the filter. Filters with wildcards (\*) will match on a
 repository name where the wildcard replaces zero or more characters
 in the repository name.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### ScanningConfiguration
 
 Configure [image scanning][ecr-private-registry-image-scanning]
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Private Registry Features](#private-registry-features)
 
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1098,21 +715,12 @@ Configure [image scanning][ecr-private-registry-image-scanning]
 
 Specifies the scanning type that will be used for this registry
 
-    
 **Allowed Values:**
+
 - `BASIC`
 - `ENHANCED`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1124,18 +732,7 @@ Specifies the scanning type that will be used for this registry
 
 Enables continuous scanning, which will continually scan images after it is pushed into a matching repository. This setting is only available if scan_type = "ENHANCED"
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1147,67 +744,18 @@ Enables continuous scanning, which will continually scan images after it is push
 
 Enables scan on push, which scans images when it is pushed into a matching repository
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [ecr-private-registry-image-replication]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/replication.html
-
 [ecr-private-registry-image-replication-permissions]: https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/registry-permissions-create-replication.html
-
 [ecr-private-registry-image-scanning]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html
-
 [ecr-private-registry-lifecycle-policy-rule]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html
-
 [ecr-private-registry-policy]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html
-
 [ecr-private-registry-pull-through-cache-rules]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html
-
 [ecr-private-registry-repository]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html
-
 [ecr-private-registry-repository-policy]: https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html
 
-
 <!-- TFDOCS_EXTRAS_END -->
-
-## Outputs
-
-- (map(object)) **`private_repositories`** _[since v1.0.0]_
-
-    Map of all private repositories
-
-    - (string) **`arn`** _[since v1.0.0]_
-
-        The ARN of the repository
-
-    - (string) **`registry_id`** _[since v1.0.0]_
-
-        The account ID where the repository is created
-
-    - (string) **`repository_url`** _[since v1.0.0]_
-
-        The URL of the repository. In the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`
-
-[ecr-private-registry-image-replication]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/replication.html
-[ecr-private-registry-image-replication-permissions]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/registry-permissions-create-replication.html
-[ecr-private-registry-image-scanning]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/image-scanning.html
-[ecr-private-registry-lifecycle-police-rule]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/LifecyclePolicies.html
-[ecr-private-registry-pull-through-cache-rules]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/pull-through-cache.html
-[ecr-private-registry-policy]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/registry-permissions.html
-[ecr-private-registry-repository]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/Repositories.html
-[ecr-private-registry-repository-policy]:https://docs.amazonaws.cn/en_us/AmazonECR/latest/userguide/repository-policies.html

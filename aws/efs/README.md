@@ -13,8 +13,8 @@ This module will build and configure an [EFS](https://aws.amazon.com/efs/) file 
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 - [Known Limitations](#known-limitations)
   - [Lifecycle Policy Transition To Archive](#lifecycle-policy-transition-to-archive)
 
@@ -119,26 +119,10 @@ module "demo_efs" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -149,36 +133,13 @@ module "demo_efs" {
 
 The name of the EFS file system. All associated resources will also have their names prefixed by this value
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#accesspoints">AccessPoints</a>))</code></td>
@@ -189,20 +150,11 @@ The name of the EFS file system. All associated resources will also have their n
 
 Configures [access points][efs-access-point].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Access Points](#access-points)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -214,18 +166,7 @@ Configures [access points][efs-access-point].
 
 Additional tags for the EFS file system
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -237,18 +178,7 @@ Additional tags for the EFS file system
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -260,18 +190,7 @@ Additional tags for all resources deployed with this module
 
 The AWS Availability Zone in which to create the file system. Specifying this value will result in an EFS using [One Zone storage class][efs-one-zone-storage-class].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -283,18 +202,7 @@ The AWS Availability Zone in which to create the file system. Specifying this va
 
 Enables [EFS automatic backup][efs-automatic-backup].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -308,18 +216,7 @@ Enables [EFS automatic backup][efs-automatic-backup].
 
 Configures [encryption at rest][efs-encryption-at-rest].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -331,18 +228,7 @@ Configures [encryption at rest][efs-encryption-at-rest].
 
 Specify the JSON formatted [file system policy][efs-policy] for the EFS file system.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -354,18 +240,7 @@ Specify the JSON formatted [file system policy][efs-policy] for the EFS file sys
 
 Configures lifecycle policy.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -377,20 +252,11 @@ Configures lifecycle policy.
 
 Configures [mount targets][efs-mount-target].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Basic Usage](#basic-usage)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -402,21 +268,12 @@ Configures [mount targets][efs-mount-target].
 
 Specify the [performance mode][efs-performance-mode] for the file system. `maxIO` is only applicable to `throughput_mode` with `"provisioned"` or `"bursting"`.
 
-    
 **Allowed Values:**
+
 - `generalPurpose`
 - `maxIO`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -428,18 +285,7 @@ Specify the [performance mode][efs-performance-mode] for the file system. `maxIO
 
 Specify the throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with `throughput_mode = "provisioned"`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -451,20 +297,11 @@ Specify the throughput, measured in MiB/s, that you want to provision for the fi
 
 Configures [replications][efs-replication].
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Replications](#replications)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -476,43 +313,110 @@ Configures [replications][efs-replication].
 
 Specify the [throughput mode][efs-throughput-mode] for the file system.
 
-    
 **Allowed Values:**
+
 - `bursting`
 - `provisioned`
 - `elastic`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
 
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">efs_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
+The ARN of the EFS file system
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">efs_availability_zone_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The identifier of the Availability Zone in which the file system's One Zone storage classes exist
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">efs_dns_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The DNS name for the filesystem
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">efs_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ID that identifies the file system
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#efsmounttargets">EfsMountTargets</a>)</code></td>
+    <td width="100%">efs_mount_targets</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Attributes of all mount targets for the file system
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#efsreplications">EfsReplications</a>)</code></td>
+    <td width="100%">efs_replications</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Attributes of all replications for the file system
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">efs_size_in_bytes</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The latest known metered size (in bytes) of data stored in the file system, the value is not the exact size that the file system was at any point in time
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 #### AccessPoints
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
@@ -523,18 +427,7 @@ Specify the [throughput mode][efs-throughput-mode] for the file system.
 
 Additional tags for the access point
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -546,18 +439,7 @@ Additional tags for the access point
 
 Configures the full POSIX identity on the access point that is used for all file operations by NFS clients
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -569,18 +451,7 @@ Configures the full POSIX identity on the access point that is used for all file
 
 Configures the permissions EFS use to create the specified root directory if the directory does not already exist
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -593,37 +464,107 @@ Configures the permissions EFS use to create the specified root directory if the
 Path on the EFS file system to expose as the root directory to NFS clients using the access point. A path can have up to four subdirectories.
 `root_directory_creation_permissions` must be specified if the root path does not exist.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
+#### EfsMountTargets
 
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">availability_zone_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The unique and consistent identifier of the Availability Zone (AZ) that the mount target resides in
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">availability_zone_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the Availability Zone (AZ) that the mount target resides in
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ID of the mount target
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">mount_target_dns_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The DNS name for the given subnet/AZ
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">network_interface_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ID of the network interface that Amazon EFS created when it created the mount target
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### EfsReplications
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">destination_file_system_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The file system ID of the replica
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">replication_status</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The status of the replication
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
 
 #### Encryption
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -634,18 +575,7 @@ Path on the EFS file system to expose as the root directory to NFS clients using
 
 Whether encryption at rest is enabled
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -657,37 +587,13 @@ Whether encryption at rest is enabled
 
 The Key ID or ARN of the KMS key that should be used to encrypt the file system. If omitted, the default KMS key for EFS `/aws/elasticfilesystem` will be used
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### LifecyclePolicy
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -698,8 +604,8 @@ The Key ID or ARN of the KMS key that should be used to encrypt the file system.
 
 Indicates how long it takes to transition files to the IA storage class.
 
-    
 **Allowed Values:**
+
 - `AFTER_1_DAY`
 - `AFTER_7_DAYS`
 - `AFTER_14_DAYS`
@@ -710,16 +616,7 @@ Indicates how long it takes to transition files to the IA storage class.
 - `AFTER_270_DAYS`
 - `AFTER_365_DAYS`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -731,39 +628,17 @@ Indicates how long it takes to transition files to the IA storage class.
 
 Transitions a file from infrequent access storage back to primary storage.
 
-    
 **Allowed Values:**
+
 - `AFTER_1_ACCESS`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### MountTargets
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -774,18 +649,7 @@ Transitions a file from infrequent access storage back to primary storage.
 
 A list of up to 5 VPC security group IDs in effect for the mount target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -797,39 +661,17 @@ A list of up to 5 VPC security group IDs in effect for the mount target
 
 The address (within the address range of the specified subnet) at which the file system may be mounted via the mount target
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### PosixUser
 
 Configures the full POSIX identity on the access point that is used for all file operations by NFS clients
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -840,18 +682,7 @@ Configures the full POSIX identity on the access point that is used for all file
 
 POSIX group ID used for all file system operations using this access point. Valid value: `0 - 4294967295`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -863,18 +694,7 @@ POSIX group ID used for all file system operations using this access point. Vali
 
 POSIX user ID used for all file system operations using this access point. Valid value: `0 - 4294967295`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -886,37 +706,13 @@ POSIX user ID used for all file system operations using this access point. Valid
 
 Secondary POSIX group IDs used for all file system operations using this access point
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### Replications
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -927,18 +723,7 @@ Secondary POSIX group IDs used for all file system operations using this access 
 
 The availability zone in which the replica should be created. If specified, the replica will be created with One Zone storage. If omitted, regional storage will be used.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -950,39 +735,17 @@ The availability zone in which the replica should be created. If specified, the 
 
 The Key ID or ARN of the KMS key that should be used to encrypt the replica file system. If omitted, the default KMS key for EFS `/aws/elasticfilesystem` will be used
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### RootDirectoryCreationPermissions
 
 Configures the permissions EFS use to create the specified root directory if the directory does not already exist
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -993,18 +756,7 @@ Configures the permissions EFS use to create the specified root directory if the
 
 POSIX permissions to apply to the root directory path
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1016,18 +768,7 @@ POSIX permissions to apply to the root directory path
 
 Owner group ID for the access point's root directory, if the directory does not already exist. Valid value: `0 - 4294967295`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1039,119 +780,26 @@ Owner group ID for the access point's root directory, if the directory does not 
 
 Owner user ID for the access point's root directory, if the directory does not already exist. Valid value: `0 - 4294967295`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [efs-access-point]: https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html
-
 [efs-automatic-backup]: https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups
-
 [efs-encryption-at-rest]: https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html
-
 [efs-lifecycle-policy]: https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html
-
 [efs-mount-target]: https://docs.aws.amazon.com/efs/latest/ug/manage-fs-access.html
-
 [efs-one-zone-storage-class]: https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html
-
 [efs-performance-mode]: https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
-
 [efs-policy]: https://docs.aws.amazon.com/efs/latest/ug/security_iam_resource-based-policy-examples.html
-
 [efs-replication]: https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html
-
 [efs-throughput-mode]: https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes
 
-
 <!-- TFDOCS_EXTRAS_END -->
-
-## Outputs
-
-- (string) **`efs_arn`** _[since v1.0.0]_
-
-    The ARN of the EFS file system
-
-- (string) **`efs_availability_zone_id`** _[since v1.0.0]_
-
-    The identifier of the Availability Zone in which the file system's One Zone storage classes exist
-
-- (string) **`efs_id`** _[since v1.0.0]_
-
-    The ID that identifies the file system
-
-- (string) **`efs_dns_name`** _[since v1.0.0]_
-
-    The DNS name for the filesystem
-
-- (number) **`efs_size_in_bytes`** _[since v1.0.0]_
-
-    The latest known metered size (in bytes) of data stored in the file system, the value is not the exact size that the file system was at any point in time
-
-- (object) **`efs_mount_targets`** _[since v1.0.0]_
-
-    Attributes of all mount targets for the file system
-
-    - (string) **`availability_zone_id`** _[since v1.0.0]_
-
-        The unique and consistent identifier of the Availability Zone (AZ) that the mount target resides in
-
-    - (string) **`availability_zone_name`** _[since v1.0.0]_
-
-        The name of the Availability Zone (AZ) that the mount target resides in
-
-    - (string) **`id`** _[since v1.0.0]_
-
-        The ID of the mount target
-
-    - (string) **`mount_target_dns_name`** _[since v1.0.0]_
-
-        The DNS name for the given subnet/AZ
-
-    - (string) **`network_interface_id`** _[since v1.0.0]_
-
-        The ID of the network interface that Amazon EFS created when it created the mount target
-
-- (object) **`efs_replications`** _[since v1.0.0]_
-
-    Attributes of all replications for the file system
-
-    - (string) **`destination_file_system_id`** _[since v1.0.0]_
-
-        The file system ID of the replica
-
-    - (string) **`replication_status`** _[since v1.0.0]_
-
-        The status of the replication
 
 ## Known Limitations
 
 ### Lifecycle Policy Transition To Archive
 
 Transition to archive is not available as of provider Version 5.29.0.
-
-[efs-access-point]:https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html
-[efs-automatic-backup]:https://docs.aws.amazon.com/efs/latest/ug/awsbackup.html#automatic-backups
-[efs-encryption-at-rest]:https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html
-[efs-lifecycle-policy]:https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html
-[efs-mount-target]:https://docs.aws.amazon.com/efs/latest/ug/manage-fs-access.html
-[efs-one-zone-storage-class]:https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html
-[efs-performance-mode]:https://docs.aws.amazon.com/efs/latest/ug/performance.html#performancemodes
-[efs-policy]:https://docs.aws.amazon.com/efs/latest/ug/security_iam_resource-based-policy-examples.html
-[efs-replication]:https://docs.aws.amazon.com/efs/latest/ug/efs-replication.html
-[efs-throughput-mode]:https://docs.aws.amazon.com/efs/latest/ug/performance.html#throughput-modes

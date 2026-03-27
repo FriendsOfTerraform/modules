@@ -12,8 +12,8 @@ This module will build and configure an [EC2](https://aws.amazon.com/ec2/) insta
 - [Inputs](#inputs)
   - [Required](#required)
   - [Optional](#optional)
-  - [Objects](#objects)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -91,26 +91,10 @@ module "demo_ec2" {
 
 <!-- TFDOCS_EXTRAS_START -->
 
-
-
-
-
-
 ## Inputs
 
 ### Required
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -121,18 +105,7 @@ module "demo_ec2" {
 
 Specify the ID of the AMI used to launch the instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -144,18 +117,7 @@ Specify the ID of the AMI used to launch the instance
 
 Configures the root EBS volume
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -167,18 +129,7 @@ Configures the root EBS volume
 
 Specify the name of the [Key Pair][ec2-key-pair] to use for the instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -191,18 +142,7 @@ Specify the name of the [Key Pair][ec2-key-pair] to use for the instance
 The name of the EC2 instance. All associated resources will also have their
 name prefixed with this value
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -214,36 +154,13 @@ name prefixed with this value
 
 Configures the primary network interface
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
 ### Optional
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#additionalebsvolumes">AdditionalEbsVolumes</a>))</code></td>
@@ -254,20 +171,11 @@ Configures the primary network interface
 
 Configures additional EBS volumes attached to this instance.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Additional Storage And Network Interfaces](#additional-storage-and-network-interfaces)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -279,20 +187,11 @@ Configures additional EBS volumes attached to this instance.
 
 Configures additional ENIs attached to this instance.
 
-    
-
-    
-
-    
 **Examples:**
+
 - [Additional Storage And Network Interfaces](#additional-storage-and-network-interfaces)
 
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -304,18 +203,7 @@ Configures additional ENIs attached to this instance.
 
 Additional tags for the EC2 instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -327,18 +215,7 @@ Additional tags for the EC2 instance
 
 Additional tags for all resources deployed with this module
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -350,24 +227,17 @@ Additional tags for all resources deployed with this module
 
 Credit option for CPU usage. Only applicable to the T family.
 
-    
 **Allowed Values:**
+
 - `standard`
 - `unlimited`
 
-    
-
-    
-
-    
 **Links:**
+
 - [Standard Credit Mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-standard-mode.html)
 - [Unlimited Credit Mode](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode.html)
 
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -379,18 +249,7 @@ Credit option for CPU usage. Only applicable to the T family.
 
 Enables [EC2 auto recovery][ec2-auto-recovery]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -402,18 +261,7 @@ Enables [EC2 auto recovery][ec2-auto-recovery]
 
 Enables [detailed monitoring][ec2-detailed-monitoring]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -426,18 +274,7 @@ Enables [detailed monitoring][ec2-detailed-monitoring]
 Enables [instance hibernation][instance-hibernation]. Changing this option
 after the instance launched will result in replacement.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -449,18 +286,7 @@ after the instance launched will result in replacement.
 
 Enables [instance stop protection][instance-stop-protection]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -472,18 +298,7 @@ Enables [instance stop protection][instance-stop-protection]
 
 Enables [instance termination protection][instance-termination-protection]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -496,18 +311,7 @@ Enables [instance termination protection][instance-termination-protection]
 Retrieves the encrypted administrator password for a running Windows
 instance. The values will be exported to the `password_data` output
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -519,20 +323,11 @@ instance. The values will be exported to the `password_data` output
 
 The name of the IAM role to attach to the instance.
 
-    
-
-    
-
-    
-
-    
 **Links:**
+
 - [EC2 IAM Roles](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)
 
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -544,18 +339,7 @@ The name of the IAM role to attach to the instance.
 
 Configures the [metadata options][instance-metadata-service] of the instance.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -567,18 +351,7 @@ Configures the [metadata options][instance-metadata-service] of the instance.
 
 Specify the [instance type][ec2-instance-type] of instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -591,18 +364,7 @@ Specify the [instance type][ec2-instance-type] of instance
 Configures the [resource based naming options][resource-based-naming-options]
 of the instance.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -614,39 +376,80 @@ of the instance.
 
 Configures the [user data][ec2-user-data] of the instance.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-### Objects
+## Outputs
 
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
+The ARN of the EC2 instance
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_password_data</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Base-64 encoded encrypted password data for the instance. Useful for getting the administrator password for instances running Microsoft Windows. This attribute is only exported if `get_windows_password = true`
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_primary_network_interface_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+ID of the instance's primary network interface
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_private_dns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Private DNS name assigned to the instance. Can only be used inside the Amazon EC2, and only available if you've enabled DNS hostnames for your VPC
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">instance_public_dns</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Public DNS name assigned to the instance. For EC2-VPC, this is only available if you've enabled DNS hostnames for your VPC.
+
+**Since:** 1.1.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
 
 #### AdditionalEbsVolumes
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -659,18 +462,7 @@ Specify the name of the device this EBS volume is mounted to. Please
 refer to the following documentations for valid values.
 [Windows][device-name-windows], [Linux][device-name-linux]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -682,18 +474,7 @@ refer to the following documentations for valid values.
 
 The size of the EBS volume, in GiB
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -705,8 +486,8 @@ The size of the EBS volume, in GiB
 
 Specify the [volume type][volume-type].
 
-    
 **Allowed Values:**
+
 - `standard`
 - `gp2`
 - `gp3`
@@ -715,16 +496,7 @@ Specify the [volume type][volume-type].
 - `sc1`
 - `st1`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -736,18 +508,7 @@ Specify the [volume type][volume-type].
 
 Additional tags for the EBS volume
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -759,18 +520,7 @@ Additional tags for the EBS volume
 
 Whether the volume should be destroyed on instance termination
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -783,18 +533,7 @@ Whether the volume should be destroyed on instance termination
 Whether a final snapshot should be taken when the volume is being
 destroyed
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -806,18 +545,7 @@ destroyed
 
 ARN of the KMS Key to use to encrypt the volume
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -830,18 +558,7 @@ ARN of the KMS Key to use to encrypt the volume
 Specify the amount of provisioned IOPS. Only valid for volume_type of
 `"io1"`, `"io2"` or `"gp3"`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -853,18 +570,7 @@ Specify the amount of provisioned IOPS. Only valid for volume_type of
 
 Specify the snapshot ID this volume is created from
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -877,37 +583,13 @@ Specify the snapshot ID this volume is created from
 Throughput to provision for a volume in mebibytes per second (MiB/s).
 This is only valid for volume_type of `"gp3"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### AdditionalNetworkInterfaces
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -918,18 +600,7 @@ This is only valid for volume_type of `"gp3"`
 
 Specify the device index this ENI mounted on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -941,18 +612,7 @@ Specify the device index this ENI mounted on
 
 List of security group IDs attached to this ENI
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -964,18 +624,7 @@ List of security group IDs attached to this ENI
 
 Specify the subnet ID this ENI is created on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -987,18 +636,7 @@ Specify the subnet ID this ENI is created on
 
 Additional tags for the ENI
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1010,18 +648,7 @@ Additional tags for the ENI
 
 Specify the description of the ENI
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1033,18 +660,7 @@ Specify the description of the ENI
 
 Enables [elastic fabric adapter][elastic-fabric-adapter]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1057,18 +673,7 @@ Enables [elastic fabric adapter][elastic-fabric-adapter]
 Controls if traffic is routed to the instance when the destination
 address does not match the instance. Used for NAT or VPNs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1080,18 +685,7 @@ address does not match the instance. Used for NAT or VPNs
 
 Configures custom private IP addresses for the ENI.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1108,37 +702,13 @@ applications that require multiple IP addresses on an instance. Network
 interfaces with prefixes are supported with [instances built on the
 Nitro System][nitro-system-type].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### EbsVolume
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1149,18 +719,7 @@ Nitro System][nitro-system-type].
 
 The size of the EBS volume, in GiB
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1172,8 +731,8 @@ The size of the EBS volume, in GiB
 
 Specify the [volume type][volume-type]
 
-    
 **Allowed Values:**
+
 - `standard`
 - `gp2`
 - `gp3`
@@ -1182,16 +741,7 @@ Specify the [volume type][volume-type]
 - `sc1`
 - `st1`
 
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1203,18 +753,7 @@ Specify the [volume type][volume-type]
 
 Additional tags for the EBS volume
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1226,18 +765,7 @@ Additional tags for the EBS volume
 
 Whether the volume should be destroyed on instance termination
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1249,18 +777,7 @@ Whether the volume should be destroyed on instance termination
 
 ARN of the KMS Key to use to encrypt the volume
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1273,18 +790,7 @@ ARN of the KMS Key to use to encrypt the volume
 Specify the amount of provisioned IOPS. Only valid for volume_type of
 `"io1"`, `"io2"` or `"gp3"`.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1297,37 +803,13 @@ Specify the amount of provisioned IOPS. Only valid for volume_type of
 Throughput to provision for a volume in mebibytes per second (MiB/s).
 This is only valid for volume_type of `"gp3"`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### InstanceMetadataOptions
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1338,18 +820,7 @@ This is only valid for volume_type of `"gp3"`
 
 Whether the instance metadata service is turned on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1361,18 +832,7 @@ Whether the instance metadata service is turned on
 
 Requires the use of IMDSv2 when requesting instance metadata
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1384,39 +844,17 @@ Requires the use of IMDSv2 when requesting instance metadata
 
 Whether instance tags are retrievable from instance metadata
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### Ipv4
 
 Configures prefix delegation for IPv4
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
@@ -1429,18 +867,7 @@ Specify the number of prefixes AWS chooses from your VPC subnet's
 IPv4 CIDR block and assigns it to your network interface. Mutually
 exclusive to `custom_prefixes`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1453,37 +880,13 @@ exclusive to `custom_prefixes`
 Specify the prefixes from your VPC subnet's CIDR block to assign it
 to your network interface. Mutually exclusive to `auto_assign_count`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### NetworkInterface
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1494,18 +897,7 @@ to your network interface. Mutually exclusive to `auto_assign_count`
 
 List of security group IDs attached to this ENI
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1517,18 +909,7 @@ List of security group IDs attached to this ENI
 
 Specify the subnet ID this ENI is created on
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1540,18 +921,7 @@ Specify the subnet ID this ENI is created on
 
 Additional tags for the ENI
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1563,18 +933,7 @@ Additional tags for the ENI
 
 Specify the description of the ENI
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1586,18 +945,7 @@ Specify the description of the ENI
 
 Enables [elastic fabric adapter][elastic-fabric-adapter]
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1610,18 +958,7 @@ Enables [elastic fabric adapter][elastic-fabric-adapter]
 Controls if traffic is routed to the instance when the destination
 address does not match the instance. Used for NAT or VPNs
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1633,18 +970,7 @@ address does not match the instance. Used for NAT or VPNs
 
 Configures custom private IP addresses for the ENI.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1661,23 +987,10 @@ applications that require multiple IP addresses on an instance. Network
 interfaces with prefixes are supported with [instances built on the
 Nitro System][nitro-system-type].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### PrefixDelegation
 
@@ -1688,17 +1001,8 @@ applications that require multiple IP addresses on an instance. Network
 interfaces with prefixes are supported with [instances built on the
 Nitro System][nitro-system-type].
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#ipv4">Ipv4</a>)</code></td>
@@ -1709,39 +1013,17 @@ Nitro System][nitro-system-type].
 
 Configures prefix delegation for IPv4
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
-
-
 
 #### PrivateIpAddresses
 
 Configures custom private IP addresses for the ENI.
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
+
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
@@ -1753,37 +1035,13 @@ Configures custom private IP addresses for the ENI.
 List of private IPv4 addresses to assign to the ENI, the first address
 will be used as the primary IP address
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### ResourceBasedNamingOptions
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
@@ -1797,18 +1055,7 @@ instance. For example: `i-0123456789abcdef.ec2.internal` If false, the
 `"private IPv4 address"` of the instance is included in the hostname
 instead. For example: `ip-10-24-34-0.ec2.internal`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1821,37 +1068,13 @@ instead. For example: `ip-10-24-34-0.ec2.internal`
 Whether requests to your resource name resolve to the private IPv4
 address (A record) of this EC2 instance
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
 #### UserDataConfig
 
-
-
-    
-
-    
-
-    
-
-    
-
-    
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
@@ -1862,18 +1085,7 @@ address (A record) of this EC2 instance
 
 User data document in clear text. Mutually exclusive to `user_data_base64`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 <tr>
@@ -1885,98 +1097,26 @@ User data document in clear text. Mutually exclusive to `user_data_base64`
 
 User data document in base64. Mutually exclusive to `user_data`
 
-    
-
-    
-
-    
-
-    
-
-    
 **Since:** 1.0.0
-        
-
 
 </td></tr>
 </tbody></table>
 
-
-
-
 [device-name-linux]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html
-
 [device-name-windows]: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/device_naming.html?icmpid=docs_ec2_console#available-ec2-device-names
-
 [ec2-auto-recovery]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html
-
 [ec2-detailed-monitoring]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html
-
 [ec2-instance-type]: https://aws.amazon.com/ec2/instance-types/
-
 [ec2-key-pair]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
-
 [ec2-prefixes]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html
-
 [ec2-user-data]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
-
 [elastic-fabric-adapter]: https://aws.amazon.com/hpc/efa/
-
 [instance-hibernation]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enabling-hibernation.html
-
 [instance-metadata-service]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html
-
 [instance-stop-protection]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection
-
 [instance-termination-protection]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminate-instances-considerations.html#Using_ChangingDisableAPITermination
-
 [nitro-system-type]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances
-
 [resource-based-naming-options]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html
-
 [volume-type]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html
 
-
 <!-- TFDOCS_EXTRAS_END -->
-
-## Outputs
-
-- (string) **`instance_arn`** _[since v1.0.0]_
-
-    The ARN of the EC2 instance
-
-- (string) **`instance_password_data`** _[since v1.0.0]_
-
-    Base-64 encoded encrypted password data for the instance. Useful for getting the administrator password for instances running Microsoft Windows. This attribute is only exported if `get_windows_password = true`
-
-- (string) **`instance_primary_network_interface_id`** _[since v1.0.0]_
-
-    ID of the instance's primary network interface
-
-- (string) **`instance_private_dns`** _[since v1.1.0]_
-
-    Private DNS name assigned to the instance. Can only be used inside the Amazon EC2, and only available if you've enabled DNS hostnames for your VPC
-
-- (string) **`instance_public_dns`** _[since v1.1.0]_
-
-    Public DNS name assigned to the instance. For EC2-VPC, this is only available if you've enabled DNS hostnames for your VPC.
-
-[cpu-credit-standard]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-standard-mode.html
-[cpu-credit-unlimited]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode.html
-[device-name-linux]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html
-[device-name-windows]:https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/device_naming.html?icmpid=docs_ec2_console#available-ec2-device-names
-[ec2-auto-recovery]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html
-[ec2-detailed-monitoring]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html
-[ec2-iam-role]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html
-[ec2-instance-type]:https://aws.amazon.com/ec2/instance-types/
-[ec2-key-pair]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
-[ec2-prefixes]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html
-[ec2-user-data]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
-[elastic-fabric-adapter]:https://aws.amazon.com/hpc/efa/
-[instance-hibernation]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enabling-hibernation.html
-[instance-metadata-service]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html
-[instance-termination-protection]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminate-instances-considerations.html#Using_ChangingDisableAPITermination
-[instance-stop-protection]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection
-[nitro-system-type]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances
-[resource-based-naming-options]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-naming.html
-[volume-type]:https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html

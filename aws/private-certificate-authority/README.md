@@ -7,14 +7,15 @@ This module will build and configure an [AWS Private CA][private-ca] and its rev
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [Deploy Subordinate CA Signed By External Parent CA](#deploy-subordinate-ca-signed-by-external-parent-ca)
-- [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Basic Usage](#basic-usage)
+  - [Deploy Subordinate CA Signed By External Parent CA](#deploy-subordinate-ca-signed-by-external-parent-ca)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
 - [Outputs](#outputs)
+- [Objects](#objects)
 - [Known Limitations](#known-limitations)
-    - [Create New S3 Bucket For CRL](#create-new-s3-bucket-for-crl)
+  - [Create New S3 Bucket For CRL](#create-new-s3-bucket-for-crl)
 
 ## Example Usage
 
@@ -131,174 +132,582 @@ module "external_intermediate_ca" {
 }
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
+## Inputs
 
-- (object) **`subject`** _[since v1.0.0]_
+### Required
 
-    The X509 subject of the CA certificate
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#subject">Subject</a>)</code></td>
+    <td width="100%">subject</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`common_name`** _[since v1.0.0]_
+The X509 subject of the CA certificate
 
-        Specify the common name of the CA. For CA and end-entity certificates in a private PKI, the common name (CN) can be any string within the length limit
+**Since:** 1.0.0
 
-    - (optional(string)) **`country = null`** _[since v1.0.0]_
-
-        Two-digit code that specifies the country in which the certificate subject located. For example: `"US"`
-
-    - (optional(string)) **`locality = null`** _[since v1.0.0]_
-
-        The locality (such as a city or town) in which the certificate subject is located. For example: `"Los Angeles"`
-
-    - (optional(string)) **`organization = null`** _[since v1.0.0]_
-
-        Legal name of the organization with which the certificate subject is affiliated.
-
-    - (optional(string)) **`organization_unit = null`** _[since v1.0.0]_
-
-        A subdivision or unit of the organization (such as `"sales"` or `"finance"`) with which the certificate subject is affiliated.
-
-    - (optional(string)) **`state`** _[since v1.0.0]_
-
-        State in which the subject of the certificate is located. For example: `"California"`
+</td></tr>
+</tbody></table>
 
 ### Optional
 
-- (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Additional tags for the private CA
+Additional tags for the private CA
 
-- (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    Additional tags for all resources deployed with this module
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (bool) **`authorize_acm_access_to_renew_certificates = true`** _[since v1.0.0]_
+Additional tags for all resources deployed with this module
 
-    Grant AWS Certificate Manager (ACM) permissions for automated renewal for this CA at any time. The change will take effect for all future renewal cycles for ACM certificates generated within this account for this CA.
+**Since:** 1.0.0
 
-- (string) **`ca_type = "ROOT"`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">authorize_acm_access_to_renew_certificates</td>
+    <td><code>true</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Specify the type of the CA. Valid values are: `"ROOT"`, `"SUBORDINATE"`
+Grant AWS Certificate Manager (ACM) permissions for automated renewal for this CA at any time. The change will take effect for all future renewal cycles for ACM certificates generated within this account for this CA.
 
-- (object) **`crl_configuration = null`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    Configuration of the [certificate revocation list (CRL)][certificate-revocation-list] maintained by your private CA. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason a CRL update fails, AWS Private CA makes further attempts every 15 minutes. CRL is distributed to a S3 bucket.
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">ca_type</td>
+    <td><code>"ROOT"</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (object) **`create_s3_bucket = null`** _[since v1.0.0]_
+Specify the type of the CA.
 
-        Create a new S3 bucket to use as the CRL Distribution Point (CDP). This bucket is publicly accessible with S3 Block Public Access disabled, as required by AWS Private CA. Alternatively, to leave BPA enabled (S3 best practice) do not use this setting to create the bucket but use [CloudFront with a private S3 bucket][crl-cloudfront]. Mutually exclusive to `s3_bucket_name`
+**Allowed Values:**
 
-        - (string) **`bucket_name`** _[since v1.0.0]_
+- `ROOT`
+- `SUBORDINATE`
 
-            The name of the S3 bucket. Must be globally unique.
+**Since:** 1.0.0
 
-        - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>object(<a href="#crlconfiguration">CrlConfiguration</a>)</code></td>
+    <td width="100%">crl_configuration</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-            Additional tags attached to the S3 bucket
+Configuration of the [certificate revocation list (CRL)][certificate-revocation-list] maintained by your private CA. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason a CRL update fails, AWS Private CA makes further attempts every 15 minutes. CRL is distributed to a S3 bucket.
 
-        - (bool) **`enable_versioning = false`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-            Whether S3 bucket versioning is enabled
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">key_algorithm</td>
+    <td><code>"RSA_2048"</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`custom_crl_name = null`** _[since v1.0.0]_
+Type of the public key algorithm and size, in bits, of the key pair that your CA creates when it issues a certificate. When you create a subordinate CA, you must use a key algorithm supported by the parent CA.
 
-        Name inserted into the certificate CRL Distribution Points extension that enables the use of an alias for the CRL distribution point.
+**Allowed Values:**
 
-    - (bool) **`enabled = true`** _[since v1.0.0]_
+- `RSA_2048`
+- `RSA_4096`
+- `EC_prime256v1`
+- `EC_secp384r1`
 
-        Specifies whether CRL is enabled
+**Since:** 1.0.0
 
-    - (string) **`s3_bucket_name = null`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>object(<a href="#ocspconfiguration">OcspConfiguration</a>)</code></td>
+    <td width="100%">ocsp_configuration</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-        The S3 bucket where the CRLs are distributed to. Mutually exclusive to `create_s3_bucket`
+Configuration of [Online Certificate Status Protocol (OCSP)][online-certificate-status-protocol] support maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.
 
-    - (number) **`validity_in_days = 7`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-        Validity period of the distributed CRLs in days
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">policy</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (string) **`key_algorithm = "RSA_2048"`** _[since v1.0.0]_
+Attaches a JSON-formatted resource-based IAM policy to this private CA
 
-    Type of the public key algorithm and size, in bits, of the key pair that your CA creates when it issues a certificate. When you create a subordinate CA, you must use a key algorithm supported by the parent CA. Valid values: `"RSA_2048"`, `"RSA_4096"`, `"EC_prime256v1"`, `"EC_secp384r1"`
+**Since:** 1.0.0
 
-- (object) **`ocsp_configuration = null`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">signing_algorithm</td>
+    <td><code>"SHA256WITHRSA"</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Configuration of [Online Certificate Status Protocol (OCSP)][online-certificate-status-protocol] support maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.
+Name of the algorithm your private CA uses to sign certificate requests.
 
-    - (string) **`custom_ocsp_endpoint = null`** _[since v1.0.0]_
+| Key Algorithm               | Valid Signing Algorithm                           |
+| --------------------------- | ------------------------------------------------- |
+| RSA_2048, RSA_4096          | SHA256WITHRSA, SHA384WITHRSA, SHA512WITHRSA       |
+| EC_prime256v1, EC_secp384r1 | SHA256WITHECDSA, SHA384WITHECDSA, SHA512WITHECDSA |
 
-        CNAME specifying a customized OCSP domain. Note: The value of the CNAME must not include a protocol prefix such as "http://" or "https://". Please review [the documentation][online-certificate-status-protocol] for additional requirements to use the custom endpoint.
+**Allowed Values:**
 
-    - (bool) **`enabled = true`** _[since v1.0.0]_
+- `SHA256WITHECDSA`
+- `SHA384WITHECDSA`
+- `SHA512WITHECDSA`
+- `SHA256WITHRSA`
+- `SHA384WITHRSA`
+- `SHA512WITHRSA`
 
-        Specifies whether OCSP is enabled
+**Since:** 1.0.0
 
-- (string) **`policy = null`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>object(<a href="#subordinatecaconfiguration">SubordinateCaConfiguration</a>)</code></td>
+    <td width="100%">subordinate_ca_configuration</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Attaches a JSON-formatted resource-based IAM policy to this private CA
+Specify options to setup a subordinate CA. Required if `ca_type = "SUBORDINATE"`.
 
-- (string) **`signing_algorithm = "SHA256WITHRSA"`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    Name of the algorithm your private CA uses to sign certificate requests. Valid values: `"SHA256WITHECDSA"`, `"SHA384WITHECDSA"`, `"SHA512WITHECDSA"`, `"SHA256WITHRSA"`, `"SHA384WITHRSA"`, `"SHA512WITHRSA"`
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">usage_mode</td>
+    <td><code>"GENERAL_PURPOSE"</code></td>
+</tr>
+<tr><td colspan="3">
 
-    | Key Algorithm               | Valid Signing Algorithm
-    |-----------------------------|--------------------------------------------------
-    | RSA_2048, RSA_4096          | SHA256WITHRSA, SHA384WITHRSA, SHA512WITHRSA
-    | EC_prime256v1, EC_secp384r1 | SHA256WITHECDSA, SHA384WITHECDSA, SHA512WITHECDSA
+Specifies whether the CA issues general-purpose certificates that typically require a revocation mechanism, or short-lived certificates that may optionally omit revocation because they expire quickly. Short-lived certificate validity is limited to seven days. Please refer to [this documentation][ca-mode] for more detail.
 
-- (object) **`subordinate_ca_configuration = null`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    Specify options to setup a subordinate CA. Required if `ca_type = "SUBORDINATE"`.
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">validity</td>
+    <td><code>"10 years"</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (object) **`import_certificate = null`** _[since v1.0.0]_
+Specify the validity period of the CA certificate.
 
-        Import a subordinate CA certificate signed by an external CA. [See example](#deploy-subordinate-ca-signed-by-external-parent-ca). Mutually exclusive to `parent_ca_arn`
+**Examples:**
 
-      - (string) **`certificate`** _[since v1.0.0]_
+- [Basic Usage](#basic-usage)
 
-          Specify the PEM-encoded subordinate CA certificate
+**Since:** 1.0.0
 
-      - (string) **`certificate_chain`** _[since v1.0.0]_
-
-          Specify the PEM-encoded subordinate CA certificate chain
-
-    - (string) **`parent_ca_arn = null`** _[since v1.0.0]_
-
-        Signs the subordinate CA certificate with an AWS private CA. [See example](#basic-usage). Mutually exclusive to `import_certificate`
-
-    - (number) **`path_length = 0`** _[since v1.0.0]_
-
-        Specify the [path length constraint][path-length-contraint] of the subordinate CA, which determines the maximum number of lower-level subordinate CAs that can exist in a valid chain of trust. AWS Private CA supports a maximum chain of up to 5 levels deep, therefore this values must be `<= 3`
-
-- (string) **`usage_mode = "GENERAL_PURPOSE"`** _[since v1.0.0]_
-
-    Specifies whether the CA issues general-purpose certificates that typically require a revocation mechanism, or short-lived certificates that may optionally omit revocation because they expire quickly. Short-lived certificate validity is limited to seven days. Please refer to [this documentation][ca-mode] for more detail.
-
-- (string) **`validity = "10 years"`** _[since v1.0.0]_
-
-    Specify the validity period of the CA certificate. [See example](#basic-usage)
+</td></tr>
+</tbody></table>
 
 ## Outputs
 
-- (string) **`certificate_authority_arn`** _[since v1.0.0]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">certificate_authority_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    The ARN of the certificate authority
+The ARN of the certificate authority
 
-- (string) **`certificate_authority_certificate`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    Base64-encoded certificate authority (CA) certificate. Only available after the certificate authority certificate has been imported.
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">certificate_authority_certificate</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-- (string) **`certificate_authority_csr`** _[since v1.0.0]_
+Base64-encoded certificate authority (CA) certificate. Only available after the certificate authority certificate has been imported.
 
-    The base64 PEM-encoded certificate signing request (CSR) for the private CA certificate.
+**Since:** 1.0.0
 
-- (string) **`certificate_authority_certificate_chain`** _[since v1.0.0]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">certificate_authority_certificate_chain</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    Base64-encoded certificate chain that includes any intermediate certificates and chains up to root on-premises certificate that you used to sign your private CA certificate. The chain does not include your private CA certificate. Only available after the certificate authority certificate has been imported.
+Base64-encoded certificate chain that includes any intermediate certificates and chains up to root on-premises certificate that you used to sign your private CA certificate. The chain does not include your private CA certificate. Only available after the certificate authority certificate has been imported.
 
-- (string) **`certificate_authority_id`** _[since v1.0.0]_
+**Since:** 1.0.0
 
-    The ID of the certificate authority
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">certificate_authority_csr</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The base64 PEM-encoded certificate signing request (CSR) for the private CA certificate.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">certificate_authority_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The ID of the certificate authority
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+## Objects
+
+#### CreateS3Bucket
+
+Create a new S3 bucket to use as the CRL Distribution Point (CDP). This bucket is publicly accessible with S3 Block Public Access disabled, as required by AWS Private CA. Alternatively, to leave BPA enabled (S3 best practice) do not use this setting to create the bucket but use [CloudFront with a private S3 bucket][crl-cloudfront]. Mutually exclusive to `s3_bucket_name`
+
+**Since:** 1.0.0
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">bucket_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the S3 bucket. Must be globally unique.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags attached to the S3 bucket
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_versioning</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Whether S3 bucket versioning is enabled
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### CrlConfiguration
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#creates3bucket">CreateS3Bucket</a>)</code></td>
+    <td width="100%">create_s3_bucket</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Create a new S3 bucket to use as the CRL Distribution Point (CDP). This bucket is publicly accessible with S3 Block Public Access disabled, as required by AWS Private CA. Alternatively, to leave BPA enabled (S3 best practice) do not use this setting to create the bucket but use [CloudFront with a private S3 bucket][crl-cloudfront]. Mutually exclusive to `s3_bucket_name`
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">custom_crl_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Name inserted into the certificate CRL Distribution Points extension that enables the use of an alias for the CRL distribution point.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enabled</td>
+    <td><code>true</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies whether CRL is enabled
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">s3_bucket_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The S3 bucket where the CRLs are distributed to. Mutually exclusive to `create_s3_bucket`
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">validity_in_days</td>
+    <td><code>7</code></td>
+</tr>
+<tr><td colspan="3">
+
+Validity period of the distributed CRLs in days
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### ImportCertificate
+
+Import a subordinate CA certificate signed by an external CA. Mutually exclusive to `parent_ca_arn`
+
+**Examples:**
+
+- [Deploy Subordinate Ca Signed By External Parent Ca](#deploy-subordinate-ca-signed-by-external-parent-ca)
+
+**Since:** 1.0.0
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">certificate</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the PEM-encoded subordinate CA certificate
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">certificate_chain</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the PEM-encoded subordinate CA certificate chain
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### OcspConfiguration
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">custom_ocsp_endpoint</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+CNAME specifying a customized OCSP domain. Note: The value of the CNAME must not include a protocol prefix such as "http://" or "https://". Please review [the documentation][online-certificate-status-protocol] for additional requirements to use the custom endpoint.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enabled</td>
+    <td><code>true</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies whether OCSP is enabled
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### Subject
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">common_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the common name of the CA. For CA and end-entity certificates in a private PKI, the common name (CN) can be any string within the length limit
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">country</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Two-digit code that specifies the country in which the certificate subject located. For example: `"US"`
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">locality</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The locality (such as a city or town) in which the certificate subject is located. For example: `"Los Angeles"`
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">organization</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Legal name of the organization with which the certificate subject is affiliated.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">organization_unit</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A subdivision or unit of the organization (such as `"sales"` or `"finance"`) with which the certificate subject is affiliated.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">state</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+State in which the subject of the certificate is located. For example: `"California"`
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### SubordinateCaConfiguration
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#importcertificate">ImportCertificate</a>)</code></td>
+    <td width="100%">import_certificate</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Import a subordinate CA certificate signed by an external CA. Mutually exclusive to `parent_ca_arn`
+
+**Examples:**
+
+- [Deploy Subordinate Ca Signed By External Parent Ca](#deploy-subordinate-ca-signed-by-external-parent-ca)
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">parent_ca_arn</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Signs the subordinate CA certificate with an AWS private CA. Mutually exclusive to `import_certificate`
+
+**Examples:**
+
+- [Basic Usage](#basic-usage)
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">path_length</td>
+    <td><code>0</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify the [path length constraint][path-length-constraint] of the subordinate CA, which determines the maximum number of lower-level subordinate CAs that can exist in a valid chain of trust. AWS Private CA supports a maximum chain of up to 5 levels deep, therefore this values must be `<= 3`
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+[ca-mode]: https://docs.aws.amazon.com/privateca/latest/userguide/short-lived-certificates.html
+[certificate-revocation-list]: https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html
+[crl-cloudfront]: https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html#s3-bpa
+[online-certificate-status-protocol]: https://docs.aws.amazon.com/privateca/latest/userguide/ocsp-customize.html
+[path-length-constraint]: https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html#length-constraints
+
+<!-- TFDOCS_EXTRAS_END -->
 
 ## Known Limitations
 
@@ -306,9 +715,4 @@ module "external_intermediate_ca" {
 
 If you enable `crl_configuration` with the `create_s3_bucket` option, the creation could failed due to S3 not having the correct bucket policy created. This is because there is currently no way to configure the correct Terraform dependency to ensure the bucket policy gets created first. As a workaround, create the `crl_configuration` with `enabled = false`, this will allow the S3 bucket to be properly created, then update to `enabled = true`
 
-[ca-mode]:https://docs.aws.amazon.com/privateca/latest/userguide/short-lived-certificates.html
-[certificate-revocation-list]:https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html
-[crl-cloudfront]:https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html#s3-bpa
-[online-certificate-status-protocol]:https://docs.aws.amazon.com/privateca/latest/userguide/ocsp-customize.html
-[path-length-contraint]:https://docs.aws.amazon.com/privateca/latest/userguide/ca-hierarchy.html#length-constraints
-[private-ca]:https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html
+[private-ca]: https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html

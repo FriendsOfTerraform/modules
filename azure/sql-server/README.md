@@ -8,10 +8,10 @@ This module will create and configure an Azure SQL Server and databases.
 
 - [Requirements](#requirements)
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
+  - [Basic Usage](#basic-usage)
 - [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Mandatory](#mandatory)
+  - [Optional](#optional)
 - [Outputs](#outputs)
 
 ## Requirements
@@ -77,210 +77,721 @@ module "mssql" {
 
     allow_access_to_azure_services = true
   }
-}  
+}
 ```
 
-## Argument Reference
+<!-- TFDOCS_EXTRAS_START -->
 
-### Mandatory
+## Inputs
 
-- (object) **`azure`** _[since v0.0.1]_
+### Required
 
-    The resource group name and the location where the resources will be deployed to
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td width="100%">azure</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-    ```terraform
-    azure = {
-      resource_group_name = "sandbox"
-      location = "westus"
-    }
-    ```
+The resource group name and the location where the resources will be deployed to
 
-    - (string) **`resource_group_name`** _[since v0.0.1]_
+```terraform
+azure = {
+resource_group_name = "sandbox"
+location = "westus"
+}
+```
 
-        The name of an Azure resource group where the server will be deployed
+**Since:** 0.0.1
 
-    - (string) **`location = null`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        The name of an Azure location where the server will be deployed. If unspecified, the resource group's location will be used.
+The name of the SQL server. This value must be globally unique.
 
-- (string) **`name`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-    The name of the SQL server. This value must be globally unique.
+</td></tr>
+</tbody></table>
 
 ### Optional
 
-- (map(string)) **`additional_tags = {}`** _[since v0.0.1]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Additional tags for the SQL server
+Additional tags for the SQL server
 
-- (map(string)) **`additional_tags_all = {}`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-    Additional tags for all resources deployed with this module
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags_all</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (object) **`azure_ad_authentication = null`** _[since v0.0.1]_
+Additional tags for all resources deployed with this module
 
-    Defines an Azure AD identity as administrator for this server, can be used with `sql_authentication`
+**Since:** 0.0.1
 
-    - (string) **`object_id`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>object(<a href="#azureadauthentication">AzureAdAuthentication</a>)</code></td>
+    <td width="100%">azure_ad_authentication</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-        The object ID of an Azure AD identity (user, group)
+Defines an Azure AD identity as administrator for this server, can be used with `sql_authentication`
 
-    - (string) **`tenant_id = null`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-        The tenant ID for the domain where the identity lives
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">connection_policy</td>
+    <td><code>"Default"</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (string) **`connection_policy = "Default"`** _[since v0.0.1]_
+The connection policy the server will use.
+
+**Allowed Values:**
 
-    The connection policy the server will use. Possible values are `Default`, `Proxy`, and `Redirect`
+- `Default`
+- `Proxy`
+- `Redirect`
 
-- (map(object)) **`databases = {}`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-    Configures and manages multiple databases that are attached to this server
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#databases">Databases</a>))</code></td>
+    <td width="100%">databases</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (map(string)) **`additional_tags = {}`** _[since v0.0.1]_
+Configures and manages multiple databases that are attached to this server
 
-        Additional tags for the database
+**Since:** 0.0.1
 
-    - (string) **`backup_storage_redundancy = "Geo"`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>map(object(<a href="#failovergroups">FailoverGroups</a>))</code></td>
+    <td width="100%">failover_groups</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-        Specifies the storage account type used to store backups for this database. Possible values are `Geo`, `Local` and `Zone`
+Manages failover groups for databases failover. In `{failover_group_name = {configurations}}` format. The failover group name must be globally unique.
 
-    - (bool) **`bring_your_own_license = false`** _[since v0.0.1]_
+**Since:** 1.0.0
 
-        Use your license you already own with Azure Hybrid Benefit
+</td></tr>
+<tr>
+    <td><code>object(<a href="#firewall">Firewall</a>)</code></td>
+    <td width="100%">firewall</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`collation = "SQL_Latin1_General_CP1_CI_AS"`** _[since v0.0.1]_
+Manages firewall rules to allow incoming traffic
 
-        Database collation defines the rules that sort and compare data, and cannot be changed after database creation
+**Since:** 0.0.1
 
-    - (string) **`create_mode = "Default"`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">minimum_tls_version</td>
+    <td><code>"1.2"</code></td>
+</tr>
+<tr><td colspan="3">
 
-        Defines the create action of the database. Possible values are `Copy`, `Default`, `OnlineSecondary`, `PointInTimeRestore`, `Recovery`, `Restore`, `RestoreExternalBackup`, `RestoreExternalBackupSecondary`, `RestoreLongTermRetentionBackup` and `Secondary`
+The minimum TLS version for all SQL Database and SQL Data Warehouse databases associated with the server.
 
-    - (number) **`data_max_size = 2`** _[since v0.0.1]_
+**Allowed Values:**
 
-        The max size of the database in gigabytes.        
+- `1.0`
+- `1.1`
+- `1.2`
+- `Disabled`
 
-    - (object) **`dtu_model = null`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-        Configures the database using the DTU pricing model
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">outbound_network_restriction_enabled</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
 
-        - (string) **`tier`** _[since v0.0.1]_
+Whether outbound network traffic is restricted for this server
 
-            Defines the tier of this database. Possible values are `Basic`, `Standard`, and `Premium`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
+**Since:** 0.0.1
 
-        - (number) **`dtu = null`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">public_network_access_enabled</td>
+    <td><code>true</code></td>
+</tr>
+<tr><td colspan="3">
 
-            Defines the number of DTU for the database. Please run the above command to get a list of DTU applicable to your region.
+Whether public network access is allowed for this server
 
-    - (object) **`vcore_model = null`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-        Configures the database using the VCore pricing model
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">server_version</td>
+    <td><code>"12.0"</code></td>
+</tr>
+<tr><td colspan="3">
 
-        - (string) **`tier`** _[since v0.0.1]_
+The version for the SQL server.
 
-            Defines the tier of this database. Possible values are `GeneralPurpose`, `Hyperscale`, `BusinessCritical`, and `Serverless`. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
+- `2.0` for v11 server
+- `12.0` for v12 server
 
-        - (number) **`vcores`** _[since v0.0.1]_
+**Allowed Values:**
 
-            Defines the number of VCores for the database. Please run the above command to get a list of VCores options applicable to your region.
+- `2.0`
+- `12.0`
 
-        - (number) **`auto_pause_delay_in_minutes = -1`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-            Time in minutes after which database is automatically paused. A value of `-1` means that automatic pause is disabled. This property is only applicable to the `Serverless` tier
+</td></tr>
+<tr>
+    <td><code>object(<a href="#sqlauthentication">SqlAuthentication</a>)</code></td>
+    <td width="100%">sql_authentication</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-        - (string) **`compute = "Gen5"`** _[since v0.0.1]_
+Defines the administrator login credential for this SQL server, can be used with `azure_ad_authentication`
 
-            Defines the compute for the database. Note that certain compute options are only available to certain tiers, and may not be available in some regions. Run this CLI command to get a list of options applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
+**Since:** 0.0.1
 
-        - (number) **`min_vcores = 1`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">user_assigned_managed_identity_ids</td>
+    <td><code>[]</code></td>
+</tr>
+<tr><td colspan="3">
 
-            Minimum capacity that database will always have allocated, if not paused. This property is only applicable to the `Serverless` tier.
+List of managed identity IDs used by the SQL server to manage Azure resources
 
-    - (bool) **`ledger_enabled = false`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-        Specifies if this is a ledger database; cannot be changed after database creation
+</td></tr>
+</tbody></table>
 
-    - (bool) **`read_scale_out_enabled = null`** _[since v0.0.1]_
+## Outputs
 
-        If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property can only be set in `Premium` and `BusinessCritical` tiers.
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
+        </tbody></table>
 
-    - (string) **`restore_point_in_time = null`** _[since v0.0.1]_
+## Objects
 
-        Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. This property can only be set in `create_mode = "PointInTimeRestore"` databases.
+#### Azure
 
-    - (string) **`source_database_id = null`** _[since v0.0.1]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">resource_group_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        The ID of the source database from which to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created.
+The name of an Azure resource group where the server will be deployed
 
-    - (bool) **`zone_redundant = false`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-        Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property can only be set in `Premium` and `BusinessCritical` tiers.
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">location</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (map(object)) **`failover_groups = {}`** _[since v1.0.0]_
+The name of an Azure location where the server will be deployed. If unspecified, the resource group's location will be used.
 
-    Manages failover groups for databases failover. In `{failover_group_name = {configurations}}` format. The failover group name must be globally unique.
+**Since:** 0.0.1
 
-    - (list(string)) **`databases`** _[since v1.0.0]_
+</td></tr>
+</tbody></table>
 
-        A list of database names to be included in this failover group. The names supplied here must be databases deployed using the same module. Please see [Basic Usage](#basic-usage) for an example.
+#### AzureAdAuthentication
 
-    - (string) **`secondary_server_id`** _[since v1.0.0]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">object_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
 
-        Defines the ID of the MS SQL server to failover to. This server **must** exist in a different region.
+The object ID of an Azure AD identity (user, group)
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+**Since:** 0.0.1
 
-        Additional tags for this failover group
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">tenant_id</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (string) **`read_write_failover_policy = "Automatic"`** _[since v1.0.0]_
+The tenant ID for the domain where the identity lives
 
-        Defines the failover policy of the read-write endpoint for the failover group. Possible values are `"Automatic"` or `"Manual"`
+**Since:** 0.0.1
 
-    - (number) **`read_write_grace_period_minutes = 60`** _[since v1.0.0]_
+</td></tr>
+</tbody></table>
 
-        The grace period in minutes, before failover with data loss is attempted for the read-write endpoint. Required when `read_write_failover_policy = "Automatic"`
+#### Databases
 
-- (object) **`firewall = null`** _[since v0.0.1]_
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Manages firewall rules to allow incoming traffic
+Additional tags for the database
 
-    - (map(string)) **`rules`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-        A map of firewall rules in the following format: `{"rule_name" = "start_ip - end_ip"}`. For example. `{"Office's Network" = "1.2.3.4 - 5.6.7.8"}`. If `start_ip` and `end_ip` are identical, you can omit `end_ip`. For example. `{"Peter's home network" = "1.2.3.4"}`
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">backup_storage_redundancy</td>
+    <td><code>"Geo"</code></td>
+</tr>
+<tr><td colspan="3">
 
-    - (bool) **`allow_access_to_azure_services = false`** _[since v0.0.1]_
+Specifies the storage account type used to store backups for this database.
 
-        Allows Azure services to access the database
+**Allowed Values:**
 
-- (string) **`minimum_tls_version = "1.2"`** _[since v0.0.1]_
+- `Geo`
+- `Local`
+- `Zone`
 
-    The minimum TLS version for all SQL Database and SQL Data Warehouse databases associated with the server. Valid values are: `1.0`, `1.1`, `1.2` and `Disabled`
+**Since:** 0.0.1
 
-- (bool) **`public_network_access_enabled = true`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">bring_your_own_license</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
 
-    Whether public network access is allowed for this server
+Use your license you already own with Azure Hybrid Benefit
 
-- (bool) **`outbound_network_restriction_enabled = false`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-    Whether outbound network traffic is restricted for this server
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">collation</td>
+    <td><code>"SQL_Latin1_General_CP1_CI_AS"</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (object) **`sql_authentication = null`** _[since v0.0.1]_
+Database collation defines the rules that sort and compare data, and cannot be changed after database creation
 
-    Defines the administrator login credential for this SQL server, can be used with `azure_ad_authentication`
+**Since:** 0.0.1
 
-    - (string) **`admin_username`** _[since v0.0.1]_
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">create_mode</td>
+    <td><code>"Default"</code></td>
+</tr>
+<tr><td colspan="3">
 
-        Username of the admin account
+Defines the create action of the database.
 
-    - (string) **`admin_password`** _[since v0.0.1]_
+**Allowed Values:**
 
-        Password of the admin account in plain text
+- `Copy`
+- `Default`
+- `OnlineSecondary`
+- `PointInTimeRestore`
+- `Recovery`
+- `Restore`
+- `RestoreExternalBackup`
+- `RestoreExternalBackupSecondary`
+- `RestoreLongTermRetentionBackup`
+- `Secondary`
 
-- (list(string)) **`user_assigned_managed_identity_ids = []`** _[since v0.0.1]_
+**Since:** 0.0.1
 
-    List of managed identity IDs used by the SQL server to manage Azure resources
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">data_max_size</td>
+    <td><code>2</code></td>
+</tr>
+<tr><td colspan="3">
 
-- (string) **`server_version = "12.0"`** _[since v0.0.1]_
+The max size of the database in gigabytes.
 
-    The version for the SQL server. Valid values are: `2.0` (for v11 server) and `12.0` (for v12 server)
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#dtumodel">DtuModel</a>)</code></td>
+    <td width="100%">dtu_model</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Configures the database using the DTU pricing model
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>object(<a href="#vcoremodel">VcoreModel</a>)</code></td>
+    <td width="100%">vcore_model</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Configures the database using the VCore pricing model
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">ledger_enabled</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies if this is a ledger database; cannot be changed after database creation
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">read_scale_out_enabled</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property can only be set in `Premium` and `BusinessCritical` tiers.
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">restore_point_in_time</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. This property can only be set in `create_mode = "PointInTimeRestore"` databases.
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">source_database_id</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+The ID of the source database from which to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created.
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">zone_redundant</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property can only be set in `Premium` and `BusinessCritical` tiers.
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+#### DtuModel
+
+Configures the database using the DTU pricing model
+
+**Since:** 0.0.1
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">tier</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the tier of this database. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
+
+**Allowed Values:**
+
+- `Basic`
+- `Standard`
+- `Premium`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">dtu</td>
+    <td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the number of DTU for the database. Please run the above command to get a list of DTU applicable to your region.
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+#### FailoverGroups
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>list(string)</code></td>
+    <td width="100%">databases</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A list of database names to be included in this failover group. The names supplied here must be databases deployed using the same module.
+
+**Examples:**
+
+- [Basic Usage](#basic-usage)
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">secondary_server_id</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the ID of the MS SQL server to failover to. This server **must** exist in a different region.
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">additional_tags</td>
+    <td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Additional tags for this failover group
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">read_write_failover_policy</td>
+    <td><code>"Automatic"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the failover policy of the read-write endpoint for the failover group.
+
+**Allowed Values:**
+
+- `Automatic`
+- `Manual`
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">read_write_grace_period_minutes</td>
+    <td><code>60</code></td>
+</tr>
+<tr><td colspan="3">
+
+The grace period in minutes, before failover with data loss is attempted for the read-write endpoint. Required when `read_write_failover_policy = "Automatic"`
+
+**Since:** 1.0.0
+
+</td></tr>
+</tbody></table>
+
+#### Firewall
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>map(string)</code></td>
+    <td width="100%">rules</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+A map of firewall rules in the following format: `{"rule_name" = "start_ip - end_ip"}`. For example. `{"Office's Network" = "1.2.3.4 - 5.6.7.8"}`. If `start_ip` and `end_ip` are identical, you can omit `end_ip`. For example. `{"Peter's home network" = "1.2.3.4"}`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">allow_access_to_azure_services</td>
+    <td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+Allows Azure services to access the database
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+#### SqlAuthentication
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">admin_username</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Username of the admin account
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">admin_password</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Password of the admin account in plain text
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+#### VcoreModel
+
+Configures the database using the VCore pricing model
+
+**Since:** 0.0.1
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">tier</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the tier of this database. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
+
+**Allowed Values:**
+
+- `GeneralPurpose`
+- `Hyperscale`
+- `BusinessCritical`
+- `Serverless`
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">vcores</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the number of VCores for the database. Please run the above command to get a list of VCores options applicable to your region.
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">auto_pause_delay_in_minutes</td>
+    <td><code>-1</code></td>
+</tr>
+<tr><td colspan="3">
+
+Time in minutes after which database is automatically paused. A value of `-1` means that automatic pause is disabled. This property is only applicable to the `Serverless` tier
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">compute</td>
+    <td><code>"Gen5"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Defines the compute for the database. Note that certain compute options are only available to certain tiers, and may not be available in some regions. Run this CLI command to get a list of options applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
+
+**Since:** 0.0.1
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">min_vcores</td>
+    <td><code>1</code></td>
+</tr>
+<tr><td colspan="3">
+
+Minimum capacity that database will always have allocated, if not paused. This property is only applicable to the `Serverless` tier.
+
+**Since:** 0.0.1
+
+</td></tr>
+</tbody></table>
+
+<!-- TFDOCS_EXTRAS_END -->
