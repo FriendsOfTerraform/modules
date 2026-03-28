@@ -26,9 +26,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           directories: |
-            ./aws/*
-            ./azure/*
-            ./vault/*
+            ./{aws,azure,vault}/*
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.6

@@ -169,7 +169,7 @@ module "blob" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td><code>object(<a href="#azure">azure</a>)</code></td>
     <td width="100%">azure</td>
     <td></td>
 </tr>
@@ -229,7 +229,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#blobserviceconfig">BlobServiceConfig</a>)</code></td>
+    <td><code>object(<a href="#blob_service_config">blob_service_config</a>)</code></td>
     <td width="100%">blob_service_config</td>
     <td><code>null</code></td>
 </tr>
@@ -253,7 +253,7 @@ retention_period = 6
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#containers">Containers</a>))</code></td>
+    <td><code>map(object(<a href="#containers">containers</a>))</code></td>
     <td width="100%">containers</td>
     <td><code>{}</code></td>
 </tr>
@@ -271,7 +271,7 @@ test = { public_access_level = "private" }
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#fileserviceconfig">FileServiceConfig</a>)</code></td>
+    <td><code>object(<a href="#file_service_config">file_service_config</a>)</code></td>
     <td width="100%">file_service_config</td>
     <td><code>null</code></td>
 </tr>
@@ -292,7 +292,7 @@ retention_period = 30
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#fileshares">FileShares</a>))</code></td>
+    <td><code>map(object(<a href="#file_shares">file_shares</a>))</code></td>
     <td width="100%">file_shares</td>
     <td><code>{}</code></td>
 </tr>
@@ -314,7 +314,7 @@ protocol    = "SMB"
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#firewall">Firewall</a>)</code></td>
+    <td><code>object(<a href="#firewall">firewall</a>)</code></td>
     <td width="100%">firewall</td>
     <td><code>null</code></td>
 </tr>
@@ -337,7 +337,7 @@ exceptions = ["AzureServices"]
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#lifecyclepolicies">LifecyclePolicies</a>))</code></td>
+    <td><code>map(object(<a href="#lifecycle_policies">lifecycle_policies</a>))</code></td>
     <td width="100%">lifecycle_policies</td>
     <td><code>{}</code></td>
 </tr>
@@ -395,7 +395,7 @@ Defines the type of replication to use for this storage account. Valid values ar
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#securityconfig">SecurityConfig</a>)</code></td>
+    <td><code>object(<a href="#security_config">security_config</a>)</code></td>
     <td width="100%">security_config</td>
     <td><code>null</code></td>
 </tr>
@@ -475,7 +475,7 @@ The ID of the storage account
 
 ## Objects
 
-#### Azure
+#### azure
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -504,7 +504,7 @@ The name of an Azure location where the cluster will be deployed. If unspecified
 </td></tr>
 </tbody></table>
 
-#### BaseBlob
+#### base_blob
 
 Set lifecycle rules for base blob objects
 
@@ -585,7 +585,7 @@ The age in days after last modification to move the blob to cool storage. Mutual
 </td></tr>
 </tbody></table>
 
-#### BlobServiceConfig
+#### blob_service_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -666,7 +666,7 @@ Enables versioning to automatically maintain previous versions of your blobs for
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#softdeleteforblobs">SoftDeleteForBlobs</a>)</code></td>
+    <td><code>object(<a href="#soft_delete_for_blobs">soft_delete_for_blobs</a>)</code></td>
     <td width="100%">soft_delete_for_blobs</td>
     <td></td>
 </tr>
@@ -678,7 +678,7 @@ Enables you to recover blobs that were previously marked for deletion, including
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#softdeleteforcontainers">SoftDeleteForContainers</a>)</code></td>
+    <td><code>object(<a href="#soft_delete_for_containers">soft_delete_for_containers</a>)</code></td>
     <td width="100%">soft_delete_for_containers</td>
     <td></td>
 </tr>
@@ -691,7 +691,7 @@ Enables you to recover containers that were previously marked for deletion
 </td></tr>
 </tbody></table>
 
-#### Containers
+#### containers
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -726,7 +726,7 @@ A mapping of metadata for this container
 </td></tr>
 </tbody></table>
 
-#### FileServiceConfig
+#### file_service_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -742,7 +742,7 @@ Provides file share support up to a maximum of 100 TiB. Large file share storage
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#softdelete">SoftDelete</a>)</code></td>
+    <td><code>object(<a href="#soft_delete">soft_delete</a>)</code></td>
     <td width="100%">soft_delete</td>
     <td></td>
 </tr>
@@ -755,7 +755,7 @@ Enables you to recover a freshly deleted share
 </td></tr>
 </tbody></table>
 
-#### FileShares
+#### file_shares
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -819,7 +819,7 @@ The protocol for this file share. `"NFS"` is only available if `storage_account_
 </td></tr>
 </tbody></table>
 
-#### Firewall
+#### firewall
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -866,7 +866,7 @@ Defines exceptions to traffic for Logging/Metrics/AzureServices. Valid options a
 </td></tr>
 </tbody></table>
 
-#### LifecyclePolicies
+#### lifecycle_policies
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -911,7 +911,7 @@ A map of index tags on the blobs to be matched for this rule to take effect
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#baseblob">BaseBlob</a>)</code></td>
+    <td><code>object(<a href="#base_blob">base_blob</a>)</code></td>
     <td width="100%">base_blob</td>
     <td></td>
 </tr>
@@ -923,7 +923,7 @@ Set lifecycle rules for base blob objects
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#snapshot">Snapshot</a>)</code></td>
+    <td><code>object(<a href="#snapshot">snapshot</a>)</code></td>
     <td width="100%">snapshot</td>
     <td></td>
 </tr>
@@ -935,7 +935,7 @@ Set lifecycle rules for snapshot blob objects
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#version">Version</a>)</code></td>
+    <td><code>object(<a href="#version">version</a>)</code></td>
     <td width="100%">version</td>
     <td></td>
 </tr>
@@ -948,7 +948,7 @@ Set lifecycle rules for versioned blob objects
 </td></tr>
 </tbody></table>
 
-#### SecurityConfig
+#### security_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -965,7 +965,7 @@ Whether storage account key is used in this storage account
 </td></tr>
 </tbody></table>
 
-#### Snapshot
+#### snapshot
 
 Set lifecycle rules for snapshot blob objects
 
@@ -1010,7 +1010,7 @@ The age in days after creation to move the snapshot to cool storage.
 </td></tr>
 </tbody></table>
 
-#### SoftDelete
+#### soft_delete
 
 Enables you to recover a freshly deleted share
 
@@ -1043,7 +1043,7 @@ Defines the number of days that soft deleted data is available for recovery. You
 </td></tr>
 </tbody></table>
 
-#### SoftDeleteForBlobs
+#### soft_delete_for_blobs
 
 Enables you to recover blobs that were previously marked for deletion, including blobs that were overwritten
 
@@ -1076,7 +1076,7 @@ Set the number of days that a blob marked for deletion persists until it's perma
 </td></tr>
 </tbody></table>
 
-#### SoftDeleteForContainers
+#### soft_delete_for_containers
 
 Enables you to recover containers that were previously marked for deletion
 
@@ -1109,7 +1109,7 @@ Set the number of days that a container marked for deletion persists until it's 
 </td></tr>
 </tbody></table>
 
-#### Version
+#### version
 
 Set lifecycle rules for versioned blob objects
 

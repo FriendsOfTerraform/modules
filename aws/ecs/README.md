@@ -150,7 +150,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#defaultcapacityproviderstrategy">DefaultCapacityProviderStrategy</a>))</code></td>
+    <td><code>map(object(<a href="#default_capacity_provider_strategy">default_capacity_provider_strategy</a>))</code></td>
     <td width="100%">default_capacity_provider_strategy</td>
     <td><code>{}</code></td>
 </tr>
@@ -179,7 +179,7 @@ service and don't specify a Service Connect configuration
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#ec2capacityproviders">Ec2CapacityProviders</a>))</code></td>
+    <td><code>map(object(<a href="#ec2_capacity_providers">ec2_capacity_providers</a>))</code></td>
     <td width="100%">ec2_capacity_providers</td>
     <td><code>{}</code></td>
 </tr>
@@ -207,7 +207,7 @@ Enables the [FARGATE and the FARGATE_SPOT][ecs-fargate] capacity providers
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#monitoring">Monitoring</a>)</code></td>
+    <td><code>object(<a href="#monitoring">monitoring</a>)</code></td>
     <td width="100%">monitoring</td>
     <td><code>null</code></td>
 </tr>
@@ -251,7 +251,7 @@ The ARN of the ECS cluster
 
 ## Objects
 
-#### DefaultCapacityProviderStrategy
+#### default_capacity_provider_strategy
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -282,7 +282,7 @@ in a capacity provider strategy can have `base` defined. Defaults to `0`.
 </td></tr>
 </tbody></table>
 
-#### Ec2CapacityProviders
+#### ec2_capacity_providers
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -445,7 +445,7 @@ The instance key pair to be used to SSH into the instance
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enablemanagedscaling">EnableManagedScaling</a>)</code></td>
+    <td><code>object(<a href="#enable_managed_scaling">enable_managed_scaling</a>)</code></td>
     <td width="100%">enable_managed_scaling</td>
     <td><code>{}</code></td>
 </tr>
@@ -458,7 +458,7 @@ Enables managed scaling to have Amazon ECS manage the scale-in and scale-out act
 </td></tr>
 </tbody></table>
 
-#### EnableManagedScaling
+#### enable_managed_scaling
 
 Enables managed scaling to have Amazon ECS manage the scale-in and scale-out actions of the Auto Scaling group
 
@@ -504,7 +504,7 @@ target tracking scaling policy. For example, a value of 100 will result in the A
 </td></tr>
 </tbody></table>
 
-#### Monitoring
+#### monitoring
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

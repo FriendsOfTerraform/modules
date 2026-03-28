@@ -183,7 +183,7 @@ The name of the Kubernetes cluster. All associated resources will also have thei
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#nodegroups">NodeGroups</a>))</code></td>
+    <td><code>map(object(<a href="#node_groups">node_groups</a>))</code></td>
     <td width="100%">node_groups</td>
     <td></td>
 </tr>
@@ -199,7 +199,7 @@ Map of worker node groups
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#vpcconfig">VpcConfig</a>)</code></td>
+    <td><code>object(<a href="#vpc_config">vpc_config</a>)</code></td>
     <td width="100%">vpc_config</td>
     <td></td>
 </tr>
@@ -216,7 +216,7 @@ VPC configuration for the EKS cluster
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#addons">AddOns</a>))</code></td>
+    <td><code>map(object(<a href="#add_ons">add_ons</a>))</code></td>
     <td width="100%">add_ons</td>
     <td><code>{}</code></td>
 </tr>
@@ -310,7 +310,7 @@ List of the desired control plane logging types to enable
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#envelopeencryption">EnvelopeEncryption</a>)</code></td>
+    <td><code>object(<a href="#envelope_encryption">envelope_encryption</a>)</code></td>
     <td width="100%">envelope_encryption</td>
     <td><code>null</code></td>
 </tr>
@@ -322,7 +322,7 @@ Configures envelope encryption for Kubernetes secrets
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#kubernetesnetworkingconfig">KubernetesNetworkingConfig</a>)</code></td>
+    <td><code>object(<a href="#kubernetes_networking_config">kubernetes_networking_config</a>)</code></td>
     <td width="100%">kubernetes_networking_config</td>
     <td><code>null</code></td>
 </tr>
@@ -350,7 +350,7 @@ Desired Kubernetes master version. Defaults to latest version if null
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#oidcidentityprovider">OidcIdentityProvider</a>)</code></td>
+    <td><code>object(<a href="#oidc_identity_provider">oidc_identity_provider</a>)</code></td>
     <td width="100%">oidc_identity_provider</td>
     <td><code>null</code></td>
 </tr>
@@ -489,7 +489,7 @@ The ARN of the node IAM role
 
 ## Objects
 
-#### AddOns
+#### add_ons
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -604,7 +604,7 @@ aws eks describe-addon-versions --kubernetes-version 1.27 | jq -r ".addons[] | .
 </td></tr>
 </tbody></table>
 
-#### EnvelopeEncryption
+#### envelope_encryption
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -623,7 +623,7 @@ the user must have access to the CMK
 </td></tr>
 </tbody></table>
 
-#### KubernetesNetworkingConfig
+#### kubernetes_networking_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -664,7 +664,7 @@ The IP family used to assign Kubernetes pod and service addresses
 </td></tr>
 </tbody></table>
 
-#### NodeGroups
+#### node_groups
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -903,7 +903,7 @@ Number of minimum worker nodes this group can scale to. Defaults to `desired_ins
 </td></tr>
 </tbody></table>
 
-#### OidcIdentityProvider
+#### oidc_identity_provider
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -972,7 +972,7 @@ You can optionally prepend a prefix to this claim by separating the prefix with 
 </td></tr>
 </tbody></table>
 
-#### VpcConfig
+#### vpc_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

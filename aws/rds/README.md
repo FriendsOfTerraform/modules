@@ -416,7 +416,7 @@ module "cloudwatch_alarms" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#authenticationconfig">AuthenticationConfig</a>)</code></td>
+    <td><code>object(<a href="#authentication_config">authentication_config</a>)</code></td>
     <td width="100%">authentication_config</td>
     <td></td>
 </tr>
@@ -428,7 +428,7 @@ Configures RDS authentication methods
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#engine">Engine</a>)</code></td>
+    <td><code>object(<a href="#engine">engine</a>)</code></td>
     <td width="100%">engine</td>
     <td></td>
 </tr>
@@ -452,7 +452,7 @@ Specify the name of the RDS instance or the RDS cluster
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#networkingconfig">NetworkingConfig</a>)</code></td>
+    <td><code>object(<a href="#networking_config">networking_config</a>)</code></td>
     <td width="100%">networking_config</td>
     <td></td>
 </tr>
@@ -505,7 +505,7 @@ Specifies whether any database modifications are applied immediately, or during 
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#auroraglobalcluster">AuroraGlobalCluster</a>)</code></td>
+    <td><code>object(<a href="#aurora_global_cluster">aurora_global_cluster</a>)</code></td>
     <td width="100%">aurora_global_cluster</td>
     <td><code>null</code></td>
 </tr>
@@ -517,7 +517,7 @@ Creates new or join existing Aurora Global cluster. Must be used with an `"auror
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#autoscalingpolicies">AutoScalingPolicies</a>))</code></td>
+    <td><code>map(object(<a href="#auto_scaling_policies">auto_scaling_policies</a>))</code></td>
     <td width="100%">auto_scaling_policies</td>
     <td><code>{}</code></td>
 </tr>
@@ -548,7 +548,7 @@ Set of log types to enable for exporting to CloudWatch logs. If omitted, no logs
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#clusterinstances">ClusterInstances</a>))</code></td>
+    <td><code>map(object(<a href="#cluster_instances">cluster_instances</a>))</code></td>
     <td width="100%">cluster_instances</td>
     <td><code>{}</code></td>
 </tr>
@@ -635,7 +635,7 @@ Specify the option for non-aurora deployment. `MultiAZInstance` and `MultiAZClus
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enableautomatedbackup">EnableAutomatedBackup</a>)</code></td>
+    <td><code>object(<a href="#enable_automated_backup">enable_automated_backup</a>)</code></td>
     <td width="100%">enable_automated_backup</td>
     <td><code>null</code></td>
 </tr>
@@ -647,7 +647,7 @@ Configures RDS automated backup
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enableencryption">EnableEncryption</a>)</code></td>
+    <td><code>object(<a href="#enable_encryption">enable_encryption</a>)</code></td>
     <td width="100%">enable_encryption</td>
     <td><code>null</code></td>
 </tr>
@@ -671,7 +671,7 @@ The compute and memory capacity of the DB instance, for example `"db.m5.large"`.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#maintenanceconfig">MaintenanceConfig</a>)</code></td>
+    <td><code>object(<a href="#maintenance_config">maintenance_config</a>)</code></td>
     <td width="100%">maintenance_config</td>
     <td><code>null</code></td>
 </tr>
@@ -683,7 +683,7 @@ Configures RDS maintenance options
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#monitoringconfig">MonitoringConfig</a>)</code></td>
+    <td><code>object(<a href="#monitoring_config">monitoring_config</a>)</code></td>
     <td width="100%">monitoring_config</td>
     <td><code>{}</code></td>
 </tr>
@@ -707,7 +707,7 @@ Specify the name of the [option group][rds-option-group] to be attached to the i
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#proxies">Proxies</a>))</code></td>
+    <td><code>map(object(<a href="#proxies">proxies</a>))</code></td>
     <td width="100%">proxies</td>
     <td><code>{}</code></td>
 </tr>
@@ -723,7 +723,7 @@ Manages multiple RDS proxies that are associated to the DB cluster or instance.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#restore">Restore</a>)</code></td>
+    <td><code>object(<a href="#restore">restore</a>)</code></td>
     <td width="100%">restore</td>
     <td><code>{}</code></td>
 </tr>
@@ -735,7 +735,7 @@ Restore RDS cluster or instance from a particular source.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#serverlesscapacity">ServerlessCapacity</a>)</code></td>
+    <td><code>object(<a href="#serverless_capacity">serverless_capacity</a>)</code></td>
     <td width="100%">serverless_capacity</td>
     <td><code>null</code></td>
 </tr>
@@ -763,7 +763,7 @@ Determines whether a final DB snapshot is created before the DB cluster is delet
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#storageconfig">StorageConfig</a>)</code></td>
+    <td><code>object(<a href="#storage_config">storage_config</a>)</code></td>
     <td width="100%">storage_config</td>
     <td><code>null</code></td>
 </tr>
@@ -864,7 +864,7 @@ The name of the RDS cluster. Only applicable if deploying an `Aurora cluster` or
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#masterusersecret">MasterUserSecret</a>))</code></td>
+    <td><code>map(object(<a href="#master_user_secret">master_user_secret</a>))</code></td>
     <td width="100%">master_user_secret</td>
     <td></td>
 </tr>
@@ -891,7 +891,7 @@ The map of IAM policy ARNs for RDS connect. Only available when `authentication_
 
 ## Objects
 
-#### AdditionalEndpoints
+#### additional_endpoints
 
 Manages additional endpoints beside the default
 
@@ -941,7 +941,7 @@ Defines how the workload for this proxy endpoint will be used.
 </td></tr>
 </tbody></table>
 
-#### AuroraGlobalCluster
+#### aurora_global_cluster
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -970,11 +970,11 @@ Specify the name of the global cluster to be created. Cannot be used with `join_
 </td></tr>
 </tbody></table>
 
-#### AuthenticationConfig
+#### authentication_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#dbmasteraccount">DbMasterAccount</a>)</code></td>
+    <td><code>object(<a href="#db_master_account">db_master_account</a>)</code></td>
     <td width="100%">db_master_account</td>
     <td></td>
 </tr>
@@ -986,7 +986,7 @@ Manages the DB master account
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#iamdatabaseauthentication">IamDatabaseAuthentication</a>)</code></td>
+    <td><code>object(<a href="#iam_database_authentication">iam_database_authentication</a>)</code></td>
     <td width="100%">iam_database_authentication</td>
     <td></td>
 </tr>
@@ -1002,7 +1002,7 @@ Configures [AWS Identity and Access Management (IAM) accounts to database accoun
 </td></tr>
 </tbody></table>
 
-#### Authentications
+#### authentications
 
 Managers multiple authentication configurations. The key of the map will be the Secrets Manager secrets representing the credentials for database user accounts that the proxy can use.
 
@@ -1042,11 +1042,11 @@ Whether to require or disallow Amazon Web Services Identity and Access Managemen
 </td></tr>
 </tbody></table>
 
-#### AutoScalingPolicies
+#### auto_scaling_policies
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#targetmetric">TargetMetric</a>)</code></td>
+    <td><code>object(<a href="#target_metric">target_metric</a>)</code></td>
     <td width="100%">target_metric</td>
     <td></td>
 </tr>
@@ -1119,7 +1119,7 @@ Specify the number of seconds to wait between scale-out actions.
 </td></tr>
 </tbody></table>
 
-#### CloudwatchAlarms
+#### cloudwatch_alarms
 
 Configures multiple Cloudwatch alarms.
 
@@ -1204,7 +1204,7 @@ The period in seconds over which the specified statistic is applied. Valid value
 </td></tr>
 </tbody></table>
 
-#### ClusterInstances
+#### cluster_instances
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1260,7 +1260,7 @@ Specify the DB instance class for the individual instance. Do not use for server
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#maintenanceconfig">MaintenanceConfig</a>)</code></td>
+    <td><code>object(<a href="#maintenance_config">maintenance_config</a>)</code></td>
     <td width="100%">maintenance_config</td>
     <td><code>{}</code></td>
 </tr>
@@ -1272,7 +1272,7 @@ Configures RDS maintenance options. If not specified, the cluster level options 
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#monitoringconfig">MonitoringConfig</a>)</code></td>
+    <td><code>object(<a href="#monitoring_config">monitoring_config</a>)</code></td>
     <td width="100%">monitoring_config</td>
     <td><code>{}</code></td>
 </tr>
@@ -1284,7 +1284,7 @@ Configures RDS monitoring options for individual cluster instances
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#networkingconfig">NetworkingConfig</a>)</code></td>
+    <td><code>object(<a href="#networking_config">networking_config</a>)</code></td>
     <td width="100%">networking_config</td>
     <td></td>
 </tr>
@@ -1297,7 +1297,7 @@ Configures connectivity options for the individual instance
 </td></tr>
 </tbody></table>
 
-#### DbMasterAccount
+#### db_master_account
 
 Manages the DB master account
 
@@ -1354,7 +1354,7 @@ Password for the master DB user. Mutually exclusive with `manage_password_in_sec
 </td></tr>
 </tbody></table>
 
-#### EnableAutomatedBackup
+#### enable_automated_backup
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1395,7 +1395,7 @@ Daily time range (in UTC) during which automated backups are created. In the `"h
 </td></tr>
 </tbody></table>
 
-#### EnableEncryption
+#### enable_encryption
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1412,7 +1412,7 @@ The KMS CMK used to encrypt the DB and storage
 </td></tr>
 </tbody></table>
 
-#### EnableEnhancedMonitoring
+#### enable_enhanced_monitoring
 
 Enables [RDS enhanced monitoring][rds-enhanced-monitoring]. If this is enabled when using a cluster setup, you can no longer enable enhanced monitoring in each individual cluster instances.
 
@@ -1455,7 +1455,7 @@ ARN for the IAM role that permits RDS to send enhanced monitoring metrics to Clo
 </td></tr>
 </tbody></table>
 
-#### EnablePerformanceInsight
+#### enable_performance_insight
 
 Enables [RDS performance insight][rds-performance-insight]
 
@@ -1488,7 +1488,7 @@ ARN for the KMS key to encrypt Performance Insights data.
 </td></tr>
 </tbody></table>
 
-#### Engine
+#### engine
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1525,7 +1525,7 @@ Specify the engine version. You can get a list of engine version with `aws rds d
 </td></tr>
 </tbody></table>
 
-#### IamDatabaseAuthentication
+#### iam_database_authentication
 
 Configures [AWS Identity and Access Management (IAM) accounts to database accounts][rds-iam-db-authentication]. Cannot be used when `deployment_option = "MultiAZCluster"`. Refer to the following documentations for instruction to each DB engine.
 
@@ -1565,7 +1565,7 @@ Specify a list of DB user names to create IAM policies for RDS IAM Authenticatio
 </td></tr>
 </tbody></table>
 
-#### MaintenanceConfig
+#### maintenance_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1594,7 +1594,7 @@ Indicates that minor engine upgrades will be applied automatically to the DB ins
 </td></tr>
 </tbody></table>
 
-#### MasterUserSecret
+#### master_user_secret
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1642,11 +1642,11 @@ Status of the secret
 </td></tr>
 </tbody></table>
 
-#### MonitoringConfig
+#### monitoring_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#cloudwatchalarms">CloudwatchAlarms</a>))</code></td>
+    <td><code>map(object(<a href="#cloudwatch_alarms">cloudwatch_alarms</a>))</code></td>
     <td width="100%">cloudwatch_alarms</td>
     <td><code>{}</code></td>
 </tr>
@@ -1679,7 +1679,7 @@ The mode of Database Insights that is enabled for the cluster or the instance.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enableenhancedmonitoring">EnableEnhancedMonitoring</a>)</code></td>
+    <td><code>object(<a href="#enable_enhanced_monitoring">enable_enhanced_monitoring</a>)</code></td>
     <td width="100%">enable_enhanced_monitoring</td>
     <td></td>
 </tr>
@@ -1691,7 +1691,7 @@ Enables [RDS enhanced monitoring][rds-enhanced-monitoring]. If this is enabled w
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enableperformanceinsight">EnablePerformanceInsight</a>)</code></td>
+    <td><code>object(<a href="#enable_performance_insight">enable_performance_insight</a>)</code></td>
     <td width="100%">enable_performance_insight</td>
     <td></td>
 </tr>
@@ -1704,7 +1704,7 @@ Enables [RDS performance insight][rds-performance-insight]
 </td></tr>
 </tbody></table>
 
-#### NetworkingConfig
+#### networking_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1797,11 +1797,11 @@ Specify the port on which the DB accepts connections.
 </td></tr>
 </tbody></table>
 
-#### Proxies
+#### proxies
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#authentications">Authentications</a>))</code></td>
+    <td><code>map(object(<a href="#authentications">authentications</a>))</code></td>
     <td width="100%">authentications</td>
     <td></td>
 </tr>
@@ -1837,7 +1837,7 @@ List of subnets the database can use in the VPC that you selected. A minimum of 
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#additionalendpoints">AdditionalEndpoints</a>))</code></td>
+    <td><code>map(object(<a href="#additional_endpoints">additional_endpoints</a>))</code></td>
     <td width="100%">additional_endpoints</td>
     <td><code>null</code></td>
 </tr>
@@ -1909,7 +1909,7 @@ whether Transport Layer Security (TLS) encryption is required for connections to
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#targetgroupconfig">TargetGroupConfig</a>)</code></td>
+    <td><code>object(<a href="#target_group_config">target_group_config</a>)</code></td>
     <td width="100%">target_group_config</td>
     <td><code>{}</code></td>
 </tr>
@@ -1922,7 +1922,7 @@ Manages the default target group's configuration
 </td></tr>
 </tbody></table>
 
-#### Restore
+#### restore
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1939,7 +1939,7 @@ The snapshot ARN from which RDS restored
 </td></tr>
 </tbody></table>
 
-#### ServerlessCapacity
+#### serverless_capacity
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1968,7 +1968,7 @@ Specify the maximum Aurora capacity unit. Each ACU corresponds to approximately 
 </td></tr>
 </tbody></table>
 
-#### StorageConfig
+#### storage_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -2038,7 +2038,7 @@ The storage throughput value for the DB instance. Can only be set when `type = "
 </td></tr>
 </tbody></table>
 
-#### TargetGroupConfig
+#### target_group_config
 
 Manages the default target group's configuration
 
@@ -2111,7 +2111,7 @@ Each item in the list represents a class of SQL operations that normally cause a
 </td></tr>
 </tbody></table>
 
-#### TargetMetric
+#### target_metric
 
 The cloudwatch metric to monitor for scaling. Must specify one of the following.
 

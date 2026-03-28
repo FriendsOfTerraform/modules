@@ -109,7 +109,7 @@ Specify the ID of the AMI used to launch the instance
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#ebsvolume">EbsVolume</a>)</code></td>
+    <td><code>object(<a href="#ebs_volume">ebs_volume</a>)</code></td>
     <td width="100%">ebs_volume</td>
     <td></td>
 </tr>
@@ -146,7 +146,7 @@ name prefixed with this value
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#networkinterface">NetworkInterface</a>)</code></td>
+    <td><code>object(<a href="#network_interface">network_interface</a>)</code></td>
     <td width="100%">network_interface</td>
     <td></td>
 </tr>
@@ -163,7 +163,7 @@ Configures the primary network interface
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#additionalebsvolumes">AdditionalEbsVolumes</a>))</code></td>
+    <td><code>map(object(<a href="#additional_ebs_volumes">additional_ebs_volumes</a>))</code></td>
     <td width="100%">additional_ebs_volumes</td>
     <td><code>{}</code></td>
 </tr>
@@ -179,7 +179,7 @@ Configures additional EBS volumes attached to this instance.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#additionalnetworkinterfaces">AdditionalNetworkInterfaces</a>))</code></td>
+    <td><code>map(object(<a href="#additional_network_interfaces">additional_network_interfaces</a>))</code></td>
     <td width="100%">additional_network_interfaces</td>
     <td><code>{}</code></td>
 </tr>
@@ -331,7 +331,7 @@ The name of the IAM role to attach to the instance.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#instancemetadataoptions">InstanceMetadataOptions</a>)</code></td>
+    <td><code>object(<a href="#instance_metadata_options">instance_metadata_options</a>)</code></td>
     <td width="100%">instance_metadata_options</td>
     <td><code>null</code></td>
 </tr>
@@ -355,7 +355,7 @@ Specify the [instance type][ec2-instance-type] of instance
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#resourcebasednamingoptions">ResourceBasedNamingOptions</a>)</code></td>
+    <td><code>object(<a href="#resource_based_naming_options">resource_based_naming_options</a>)</code></td>
     <td width="100%">resource_based_naming_options</td>
     <td><code>null</code></td>
 </tr>
@@ -368,7 +368,7 @@ of the instance.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#userdataconfig">UserDataConfig</a>)</code></td>
+    <td><code>object(<a href="#user_data_config">user_data_config</a>)</code></td>
     <td width="100%">user_data_config</td>
     <td><code>null</code></td>
 </tr>
@@ -448,7 +448,7 @@ Public DNS name assigned to the instance. For EC2-VPC, this is only available if
 
 ## Objects
 
-#### AdditionalEbsVolumes
+#### additional_ebs_volumes
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -588,7 +588,7 @@ This is only valid for volume_type of `"gp3"`
 </td></tr>
 </tbody></table>
 
-#### AdditionalNetworkInterfaces
+#### additional_network_interfaces
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -677,7 +677,7 @@ address does not match the instance. Used for NAT or VPNs
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#privateipaddresses">PrivateIpAddresses</a>)</code></td>
+    <td><code>object(<a href="#private_ip_addresses">private_ip_addresses</a>)</code></td>
     <td width="100%">private_ip_addresses</td>
     <td></td>
 </tr>
@@ -689,7 +689,7 @@ Configures custom private IP addresses for the ENI.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#prefixdelegation">PrefixDelegation</a>)</code></td>
+    <td><code>object(<a href="#prefix_delegation">prefix_delegation</a>)</code></td>
     <td width="100%">prefix_delegation</td>
     <td></td>
 </tr>
@@ -707,7 +707,7 @@ Nitro System][nitro-system-type].
 </td></tr>
 </tbody></table>
 
-#### EbsVolume
+#### ebs_volume
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -808,7 +808,7 @@ This is only valid for volume_type of `"gp3"`
 </td></tr>
 </tbody></table>
 
-#### InstanceMetadataOptions
+#### instance_metadata_options
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -849,7 +849,7 @@ Whether instance tags are retrievable from instance metadata
 </td></tr>
 </tbody></table>
 
-#### Ipv4
+#### ipv4
 
 Configures prefix delegation for IPv4
 
@@ -885,7 +885,7 @@ to your network interface. Mutually exclusive to `auto_assign_count`
 </td></tr>
 </tbody></table>
 
-#### NetworkInterface
+#### network_interface
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -962,7 +962,7 @@ address does not match the instance. Used for NAT or VPNs
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#privateipaddresses">PrivateIpAddresses</a>)</code></td>
+    <td><code>object(<a href="#private_ip_addresses">private_ip_addresses</a>)</code></td>
     <td width="100%">private_ip_addresses</td>
     <td></td>
 </tr>
@@ -974,7 +974,7 @@ Configures custom private IP addresses for the ENI.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#prefixdelegation">PrefixDelegation</a>)</code></td>
+    <td><code>object(<a href="#prefix_delegation">prefix_delegation</a>)</code></td>
     <td width="100%">prefix_delegation</td>
     <td></td>
 </tr>
@@ -992,7 +992,7 @@ Nitro System][nitro-system-type].
 </td></tr>
 </tbody></table>
 
-#### PrefixDelegation
+#### prefix_delegation
 
 Assigns a private CIDR range, either automatically or manually, to the
 ENI. By assigning [prefixes][ec2-prefixes], you scale and simplify the
@@ -1005,7 +1005,7 @@ Nitro System][nitro-system-type].
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#ipv4">Ipv4</a>)</code></td>
+    <td><code>object(<a href="#ipv4">ipv4</a>)</code></td>
     <td width="100%">ipv4</td>
     <td></td>
 </tr>
@@ -1018,7 +1018,7 @@ Configures prefix delegation for IPv4
 </td></tr>
 </tbody></table>
 
-#### PrivateIpAddresses
+#### private_ip_addresses
 
 Configures custom private IP addresses for the ENI.
 
@@ -1040,7 +1040,7 @@ will be used as the primary IP address
 </td></tr>
 </tbody></table>
 
-#### ResourceBasedNamingOptions
+#### resource_based_naming_options
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1073,7 +1073,7 @@ address (A record) of this EC2 instance
 </td></tr>
 </tbody></table>
 
-#### UserDataConfig
+#### user_data_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

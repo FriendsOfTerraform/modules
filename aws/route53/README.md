@@ -553,7 +553,7 @@ The description of the hosted zone
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enablednssec">EnableDnssec</a>)</code></td>
+    <td><code>object(<a href="#enable_dnssec">enable_dnssec</a>)</code></td>
     <td width="100%">enable_dnssec</td>
     <td><code>null</code></td>
 </tr>
@@ -569,7 +569,7 @@ Enables [Route 53 DNSSEC][route53-dnssec] signing.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enablequerylogging">EnableQueryLogging</a>)</code></td>
+    <td><code>object(<a href="#enable_query_logging">enable_query_logging</a>)</code></td>
     <td width="100%">enable_query_logging</td>
     <td><code>null</code></td>
 </tr>
@@ -581,7 +581,7 @@ Enables Route 53 query log
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#primaryprivatezonevpcassociation">PrimaryPrivateZoneVpcAssociation</a>)</code></td>
+    <td><code>object(<a href="#primary_private_zone_vpc_association">primary_private_zone_vpc_association</a>)</code></td>
     <td width="100%">primary_private_zone_vpc_association</td>
     <td><code>null</code></td>
 </tr>
@@ -617,7 +617,7 @@ for. Do not specify if you want to create a public hosted zone.
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#records">Records</a>))</code></td>
+    <td><code>list(object(<a href="#records">records</a>))</code></td>
     <td width="100%">records</td>
     <td><code>[]</code></td>
 </tr>
@@ -708,7 +708,7 @@ The Route 53 name server that created the SOA record
 
 ## Objects
 
-#### Alias
+#### alias
 
 Create an alias record. Mutually exclusive with `values` and `ttl`
 
@@ -761,7 +761,7 @@ Whether the alias records evaluate the health of the target endpoint
 </td></tr>
 </tbody></table>
 
-#### CalculatedCheck
+#### calculated_check
 
 Configures the [calculated health check][route53-health-check-types],
 where the health of this health check depends on the status of the other
@@ -799,7 +799,7 @@ checks must be healthy for this check to be considered healthy
 </td></tr>
 </tbody></table>
 
-#### CloudwatchAlarmCheck
+#### cloudwatch_alarm_check
 
 Configures the [Cloudwatch Alarm Checks][route53-health-check-types].
 The status of this health check is based on the state of a specified
@@ -855,7 +855,7 @@ data to determine whether the alarm is in the OK or the ALARM state.
 </td></tr>
 </tbody></table>
 
-#### CloudwatchAlarms
+#### cloudwatch_alarms
 
 Create [Cloudwatch alarms][route53-health-check-cloudwatch-alarm] to
 notify you health check status changes.
@@ -953,7 +953,7 @@ The SNS topic where notification will be sent
 </td></tr>
 </tbody></table>
 
-#### Coordinates
+#### coordinates
 
 Specify the coordinates where your resources are deployed in.
 
@@ -986,11 +986,11 @@ The longitude of the coordinates
 </td></tr>
 </tbody></table>
 
-#### EnableDnssec
+#### enable_dnssec
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#keysigningkeys">KeySigningKeys</a>))</code></td>
+    <td><code>map(object(<a href="#key_signing_keys">key_signing_keys</a>))</code></td>
     <td width="100%">key_signing_keys</td>
     <td></td>
 </tr>
@@ -1021,7 +1021,7 @@ Specify whether to sign the zone with DNSSEC.
 </td></tr>
 </tbody></table>
 
-#### EnableQueryLogging
+#### enable_query_logging
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1110,7 +1110,7 @@ never expire. Mutually exclusive with `cloudwatch_log_group_arn`
 </td></tr>
 </tbody></table>
 
-#### EndpointCheck
+#### endpoint_check
 
 Configures the [Endpoint check][route53-health-check-types]. Multiple
 Route 53 health checkers will try to establish a TCP connection with
@@ -1218,7 +1218,7 @@ response from the specified endpoint.
 </td></tr>
 </tbody></table>
 
-#### FailoverRoutingPolicy
+#### failover_routing_policy
 
 Configures the [Failover Routing Policy][route53-routing-policy-failover].
 You may only define one routing policy for a single record.
@@ -1249,7 +1249,7 @@ Specify the failover routing policy type.
 </td></tr>
 </tbody></table>
 
-#### GeolocationRoutingPolicy
+#### geolocation_routing_policy
 
 Configures the [Geolocation Routing Policy][route53-routing-policy-geolocation].
 You may only define one routing policy for a single record.
@@ -1276,7 +1276,7 @@ to [this file](./_common.tf) for a list of supported values.
 </td></tr>
 </tbody></table>
 
-#### GeoproximityRoutingPolicy
+#### geoproximity_routing_policy
 
 Configures the [Geoproximity Routing Policy][route53-routing-policy-geoproximity].
 You may only define one routing policy for a single record.
@@ -1327,7 +1327,7 @@ Specify the AWS region where your resources are deployed in.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#coordinates">Coordinates</a>)</code></td>
+    <td><code>object(<a href="#coordinates">coordinates</a>)</code></td>
     <td width="100%">coordinates</td>
     <td><code>null</code></td>
 </tr>
@@ -1340,7 +1340,7 @@ Specify the coordinates where your resources are deployed in.
 </td></tr>
 </tbody></table>
 
-#### HealthCheck
+#### health_check
 
 Creates a [Route 53 health check][route53-health-check] and attach it to
 this record. Only available when a routing policy is specified. Mutually
@@ -1380,7 +1380,7 @@ would be considered unhealthy
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#calculatedcheck">CalculatedCheck</a>)</code></td>
+    <td><code>object(<a href="#calculated_check">calculated_check</a>)</code></td>
     <td width="100%">calculated_check</td>
     <td><code>null</code></td>
 </tr>
@@ -1394,7 +1394,7 @@ health checks
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#cloudwatchalarmcheck">CloudwatchAlarmCheck</a>)</code></td>
+    <td><code>object(<a href="#cloudwatch_alarm_check">cloudwatch_alarm_check</a>)</code></td>
     <td width="100%">cloudwatch_alarm_check</td>
     <td><code>null</code></td>
 </tr>
@@ -1408,7 +1408,7 @@ CloudWatch alarm
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#cloudwatchalarms">CloudwatchAlarms</a>))</code></td>
+    <td><code>map(object(<a href="#cloudwatch_alarms">cloudwatch_alarms</a>))</code></td>
     <td width="100%">cloudwatch_alarms</td>
     <td><code>{}</code></td>
 </tr>
@@ -1425,7 +1425,7 @@ notify you health check status changes.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#endpointcheck">EndpointCheck</a>)</code></td>
+    <td><code>object(<a href="#endpoint_check">endpoint_check</a>)</code></td>
     <td width="100%">endpoint_check</td>
     <td><code>null</code></td>
 </tr>
@@ -1440,7 +1440,7 @@ the specified endpoint to determine whether it is healthy.
 </td></tr>
 </tbody></table>
 
-#### KeySigningKeys
+#### key_signing_keys
 
 Manages the KSKs route 53 used to sign records. You can define up to two
 KSK for key rotation purposes.
@@ -1481,7 +1481,7 @@ The status of the KSK
 </td></tr>
 </tbody></table>
 
-#### LatencyRoutingPolicy
+#### latency_routing_policy
 
 Configures the [Latency-based Routing Policy][route53-routing-policy-latency].
 You may only define one routing policy for a single record.
@@ -1508,7 +1508,7 @@ resides. You can only create one latency record for each region.
 </td></tr>
 </tbody></table>
 
-#### MultivalueAnswerRoutingPolicy
+#### multivalue_answer_routing_policy
 
 Configures the [Multivalue Answer Routing Policy][route53-routing-policy-multivalue-answer].
 You may only define one routing policy for a single record.
@@ -1534,7 +1534,7 @@ Whether this routing policy is enabled
 </td></tr>
 </tbody></table>
 
-#### PrimaryPrivateZoneVpcAssociation
+#### primary_private_zone_vpc_association
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1555,7 +1555,7 @@ Whether this routing policy is enabled
 </td></tr>
 </tbody></table>
 
-#### Records
+#### records
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1653,7 +1653,7 @@ routing policy)
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#alias">Alias</a>)</code></td>
+    <td><code>object(<a href="#alias">alias</a>)</code></td>
     <td width="100%">alias</td>
     <td><code>null</code></td>
 </tr>
@@ -1665,7 +1665,7 @@ Create an alias record. Mutually exclusive with `values` and `ttl`
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#failoverroutingpolicy">FailoverRoutingPolicy</a>)</code></td>
+    <td><code>object(<a href="#failover_routing_policy">failover_routing_policy</a>)</code></td>
     <td width="100%">failover_routing_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -1682,7 +1682,7 @@ You may only define one routing policy for a single record.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#geolocationroutingpolicy">GeolocationRoutingPolicy</a>)</code></td>
+    <td><code>object(<a href="#geolocation_routing_policy">geolocation_routing_policy</a>)</code></td>
     <td width="100%">geolocation_routing_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -1699,7 +1699,7 @@ You may only define one routing policy for a single record.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#geoproximityroutingpolicy">GeoproximityRoutingPolicy</a>)</code></td>
+    <td><code>object(<a href="#geoproximity_routing_policy">geoproximity_routing_policy</a>)</code></td>
     <td width="100%">geoproximity_routing_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -1716,7 +1716,7 @@ You may only define one routing policy for a single record.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#latencyroutingpolicy">LatencyRoutingPolicy</a>)</code></td>
+    <td><code>object(<a href="#latency_routing_policy">latency_routing_policy</a>)</code></td>
     <td width="100%">latency_routing_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -1733,7 +1733,7 @@ You may only define one routing policy for a single record.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#multivalueanswerroutingpolicy">MultivalueAnswerRoutingPolicy</a>)</code></td>
+    <td><code>object(<a href="#multivalue_answer_routing_policy">multivalue_answer_routing_policy</a>)</code></td>
     <td width="100%">multivalue_answer_routing_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -1750,7 +1750,7 @@ You may only define one routing policy for a single record.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#weightedroutingpolicy">WeightedRoutingPolicy</a>)</code></td>
+    <td><code>object(<a href="#weighted_routing_policy">weighted_routing_policy</a>)</code></td>
     <td width="100%">weighted_routing_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -1767,7 +1767,7 @@ You may only define one routing policy for a single record.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#healthcheck">HealthCheck</a>)</code></td>
+    <td><code>object(<a href="#health_check">health_check</a>)</code></td>
     <td width="100%">health_check</td>
     <td><code>null</code></td>
 </tr>
@@ -1786,7 +1786,7 @@ exclusive with `health_check_id`.
 </td></tr>
 </tbody></table>
 
-#### WeightedRoutingPolicy
+#### weighted_routing_policy
 
 Configures the [Weighted Routing Policy][route53-routing-policy-weighted].
 You may only define one routing policy for a single record.

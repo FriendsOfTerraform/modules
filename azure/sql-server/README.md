@@ -88,7 +88,7 @@ module "mssql" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td><code>object(<a href="#azure">azure</a>)</code></td>
     <td width="100%">azure</td>
     <td></td>
 </tr>
@@ -148,7 +148,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#azureadauthentication">AzureAdAuthentication</a>)</code></td>
+    <td><code>object(<a href="#azure_ad_authentication">azure_ad_authentication</a>)</code></td>
     <td width="100%">azure_ad_authentication</td>
     <td><code>null</code></td>
 </tr>
@@ -178,7 +178,7 @@ The connection policy the server will use.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#databases">Databases</a>))</code></td>
+    <td><code>map(object(<a href="#databases">databases</a>))</code></td>
     <td width="100%">databases</td>
     <td><code>{}</code></td>
 </tr>
@@ -190,7 +190,7 @@ Configures and manages multiple databases that are attached to this server
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#failovergroups">FailoverGroups</a>))</code></td>
+    <td><code>map(object(<a href="#failover_groups">failover_groups</a>))</code></td>
     <td width="100%">failover_groups</td>
     <td><code>{}</code></td>
 </tr>
@@ -202,7 +202,7 @@ Manages failover groups for databases failover. In `{failover_group_name = {conf
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#firewall">Firewall</a>)</code></td>
+    <td><code>object(<a href="#firewall">firewall</a>)</code></td>
     <td width="100%">firewall</td>
     <td><code>null</code></td>
 </tr>
@@ -277,7 +277,7 @@ The version for the SQL server.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#sqlauthentication">SqlAuthentication</a>)</code></td>
+    <td><code>object(<a href="#sql_authentication">sql_authentication</a>)</code></td>
     <td width="100%">sql_authentication</td>
     <td><code>null</code></td>
 </tr>
@@ -302,14 +302,9 @@ List of managed identity IDs used by the SQL server to manage Azure resources
 </td></tr>
 </tbody></table>
 
-## Outputs
-
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
-        </tbody></table>
-
 ## Objects
 
-#### Azure
+#### azure
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -338,7 +333,7 @@ The name of an Azure location where the server will be deployed. If unspecified,
 </td></tr>
 </tbody></table>
 
-#### AzureAdAuthentication
+#### azure_ad_authentication
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -367,7 +362,7 @@ The tenant ID for the domain where the identity lives
 </td></tr>
 </tbody></table>
 
-#### Databases
+#### databases
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -462,7 +457,7 @@ The max size of the database in gigabytes.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#dtumodel">DtuModel</a>)</code></td>
+    <td><code>object(<a href="#dtu_model">dtu_model</a>)</code></td>
     <td width="100%">dtu_model</td>
     <td></td>
 </tr>
@@ -474,7 +469,7 @@ Configures the database using the DTU pricing model
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#vcoremodel">VcoreModel</a>)</code></td>
+    <td><code>object(<a href="#vcore_model">vcore_model</a>)</code></td>
     <td width="100%">vcore_model</td>
     <td></td>
 </tr>
@@ -547,7 +542,7 @@ Whether or not this database is zone redundant, which means the replicas of this
 </td></tr>
 </tbody></table>
 
-#### DtuModel
+#### dtu_model
 
 Configures the database using the DTU pricing model
 
@@ -586,7 +581,7 @@ Defines the number of DTU for the database. Please run the above command to get 
 </td></tr>
 </tbody></table>
 
-#### FailoverGroups
+#### failover_groups
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -660,7 +655,7 @@ The grace period in minutes, before failover with data loss is attempted for the
 </td></tr>
 </tbody></table>
 
-#### Firewall
+#### firewall
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -689,7 +684,7 @@ Allows Azure services to access the database
 </td></tr>
 </tbody></table>
 
-#### SqlAuthentication
+#### sql_authentication
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -718,7 +713,7 @@ Password of the admin account in plain text
 </td></tr>
 </tbody></table>
 
-#### VcoreModel
+#### vcore_model
 
 Configures the database using the VCore pricing model
 

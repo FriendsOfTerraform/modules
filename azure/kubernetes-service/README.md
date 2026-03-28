@@ -101,7 +101,7 @@ module "aks_cluster" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td><code>object(<a href="#azure">azure</a>)</code></td>
     <td width="100%">azure</td>
     <td></td>
 </tr>
@@ -144,7 +144,7 @@ The name of the Kubernetes cluster. This will also be used as a prefix to all as
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#nodepools">NodePools</a>))</code></td>
+    <td><code>map(object(<a href="#node_pools">node_pools</a>))</code></td>
     <td width="100%">node_pools</td>
     <td></td>
 </tr>
@@ -170,7 +170,7 @@ kubernetes_version = local.kubernetes_version
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#addons">AddOns</a>)</code></td>
+    <td><code>object(<a href="#add_ons">add_ons</a>)</code></td>
     <td width="100%">add_ons</td>
     <td><code>null</code></td>
 </tr>
@@ -278,7 +278,7 @@ The Kubernetes version for the control plane. The `latest` version is used if un
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#networkingconfig">NetworkingConfig</a>)</code></td>
+    <td><code>object(<a href="#networking_config">networking_config</a>)</code></td>
     <td width="100%">networking_config</td>
     <td><code>null</code></td>
 </tr>
@@ -309,18 +309,13 @@ List of managed identity IDs used by the cluster to manage azure resources
 </td></tr>
 </tbody></table>
 
-## Outputs
-
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
-        </tbody></table>
-
 ## Objects
 
-#### AddOns
+#### add_ons
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#azurekeyvaultsecretsprovider">AzureKeyVaultSecretsProvider</a>)</code></td>
+    <td><code>object(<a href="#azure_key_vault_secrets_provider">azure_key_vault_secrets_provider</a>)</code></td>
     <td width="100%">azure_key_vault_secrets_provider</td>
     <td></td>
 </tr>
@@ -332,7 +327,7 @@ Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#azurepolicy">AzurePolicy</a>)</code></td>
+    <td><code>object(<a href="#azure_policy">azure_policy</a>)</code></td>
     <td width="100%">azure_policy</td>
     <td></td>
 </tr>
@@ -344,7 +339,7 @@ Configures the [Azure Policy][azure-policy] add-on
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#monitoring">Monitoring</a>)</code></td>
+    <td><code>object(<a href="#monitoring">monitoring</a>)</code></td>
     <td width="100%">monitoring</td>
     <td></td>
 </tr>
@@ -357,7 +352,7 @@ Configures the [Container Insights][container-insights] add-on
 </td></tr>
 </tbody></table>
 
-#### Azure
+#### azure
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -386,7 +381,7 @@ The name of an Azure location where the cluster will be deployed. If unspecified
 </td></tr>
 </tbody></table>
 
-#### AzureKeyVaultSecretsProvider
+#### azure_key_vault_secrets_provider
 
 Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 
@@ -431,7 +426,7 @@ The interval in minutes that the secrets in the cluster will be refreshed
 </td></tr>
 </tbody></table>
 
-#### AzurePolicy
+#### azure_policy
 
 Configures the [Azure Policy][azure-policy] add-on
 
@@ -452,7 +447,7 @@ Enables this add-on
 </td></tr>
 </tbody></table>
 
-#### Monitoring
+#### monitoring
 
 Configures the [Container Insights][container-insights] add-on
 
@@ -485,7 +480,7 @@ How long in days the logs will be retained
 </td></tr>
 </tbody></table>
 
-#### NetworkingConfig
+#### networking_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -555,7 +550,7 @@ The CIDR to use for pod IP addresses. This field can only be set when `plugin = 
 </td></tr>
 </tbody></table>
 
-#### NodePools
+#### node_pools
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

@@ -151,7 +151,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#deadletterqueue">DeadLetterQueue</a>)</code></td>
+    <td><code>object(<a href="#dead_letter_queue">dead_letter_queue</a>)</code></td>
     <td width="100%">dead_letter_queue</td>
     <td><code>null</code></td>
 </tr>
@@ -179,7 +179,7 @@ Specify the amount of time to delay the first delivery of each message added to 
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enableserversideencryptionkms">EnableServerSideEncryptionKms</a>)</code></td>
+    <td><code>object(<a href="#enable_server_side_encryption_kms">enable_server_side_encryption_kms</a>)</code></td>
     <td width="100%">enable_server_side_encryption_kms</td>
     <td><code>null</code></td>
 </tr>
@@ -191,7 +191,7 @@ Enable SSE KMS encryption. If not specified, SSE SQS is enabled by default
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#fifoqueuesettings">FifoQueueSettings</a>)</code></td>
+    <td><code>object(<a href="#fifo_queue_settings">fifo_queue_settings</a>)</code></td>
     <td width="100%">fifo_queue_settings</td>
     <td><code>{}</code></td>
 </tr>
@@ -203,7 +203,7 @@ Configuration options that apply to FIFO SQS queue
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#lambdatriggers">LambdaTriggers</a>))</code></td>
+    <td><code>map(object(<a href="#lambda_triggers">lambda_triggers</a>))</code></td>
     <td width="100%">lambda_triggers</td>
     <td><code>{}</code></td>
 </tr>
@@ -327,7 +327,7 @@ The URL of the SQS queue. Same as `sqs_queue_id`
 
 ## Objects
 
-#### DeadLetterQueue
+#### dead_letter_queue
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -356,7 +356,7 @@ The number of times a consumer can receive a message from a source queue before 
 </td></tr>
 </tbody></table>
 
-#### EnableServerSideEncryptionKms
+#### enable_server_side_encryption_kms
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -385,7 +385,7 @@ The KMS key to be used for encryption
 </td></tr>
 </tbody></table>
 
-#### FifoQueueSettings
+#### fifo_queue_settings
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -436,7 +436,7 @@ Specify how to apply the throughput limit on FIFO queue.
 </td></tr>
 </tbody></table>
 
-#### FilterCriteria
+#### filter_criteria
 
 Define the filtering criteria to determine whether or not to process an event
 
@@ -469,7 +469,7 @@ The KMS key to encrypt and decrypt the filter criteria
 </td></tr>
 </tbody></table>
 
-#### LambdaTriggers
+#### lambda_triggers
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -533,7 +533,7 @@ Whether this lambda trigger is enabled
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#filtercriteria">FilterCriteria</a>)</code></td>
+    <td><code>object(<a href="#filter_criteria">filter_criteria</a>)</code></td>
     <td width="100%">filter_criteria</td>
     <td><code>null</code></td>
 </tr>

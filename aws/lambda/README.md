@@ -226,7 +226,7 @@ module "lambda_versioning" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#codesource">CodeSource</a>)</code></td>
+    <td><code>object(<a href="#code_source">code_source</a>)</code></td>
     <td width="100%">code_source</td>
     <td></td>
 </tr>
@@ -291,7 +291,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#aliases">Aliases</a>))</code></td>
+    <td><code>map(object(<a href="#aliases">aliases</a>))</code></td>
     <td width="100%">aliases</td>
     <td><code>{}</code></td>
 </tr>
@@ -324,7 +324,7 @@ Specify the instruction set architecture for this Lambda function.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#asynchronousinvocation">AsynchronousInvocation</a>)</code></td>
+    <td><code>object(<a href="#asynchronous_invocation">asynchronous_invocation</a>)</code></td>
     <td width="100%">asynchronous_invocation</td>
     <td><code>null</code></td>
 </tr>
@@ -340,7 +340,7 @@ Configures error handling and destinations for [asynchronous invocation][lambda-
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#concurrency">Concurrency</a>)</code></td>
+    <td><code>object(<a href="#concurrency">concurrency</a>)</code></td>
     <td width="100%">concurrency</td>
     <td><code>null</code></td>
 </tr>
@@ -352,7 +352,7 @@ Configures [Lambda concurrency][lambda-concurrency]
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#containerimageoverrides">ContainerImageOverrides</a>)</code></td>
+    <td><code>object(<a href="#container_image_overrides">container_image_overrides</a>)</code></td>
     <td width="100%">container_image_overrides</td>
     <td><code>null</code></td>
 </tr>
@@ -376,7 +376,7 @@ The description for this Lambda function
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enableactivetracing">EnableActiveTracing</a>)</code></td>
+    <td><code>object(<a href="#enable_active_tracing">enable_active_tracing</a>)</code></td>
     <td width="100%">enable_active_tracing</td>
     <td><code>null</code></td>
 </tr>
@@ -388,7 +388,7 @@ Enables Lambda [active tracing with AWS X-Ray][lambda-active-tracing]
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enablefunctionurl">EnableFunctionUrl</a>)</code></td>
+    <td><code>object(<a href="#enable_function_url">enable_function_url</a>)</code></td>
     <td width="100%">enable_function_url</td>
     <td><code>null</code></td>
 </tr>
@@ -400,7 +400,7 @@ Enables [Lambda function URL][lambda-function-url], a dedicated HTTP(S) endpoint
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#environmentvariables">EnvironmentVariables</a>)</code></td>
+    <td><code>object(<a href="#environment_variables">environment_variables</a>)</code></td>
     <td width="100%">environment_variables</td>
     <td><code>null</code></td>
 </tr>
@@ -436,7 +436,7 @@ Specify the ARN of the function's execution role. The role provides the function
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#filesystemconfig">FileSystemConfig</a>)</code></td>
+    <td><code>object(<a href="#file_system_config">file_system_config</a>)</code></td>
     <td width="100%">file_system_config</td>
     <td><code>null</code></td>
 </tr>
@@ -460,7 +460,7 @@ Specify the function entrypoint in your code
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#lambdapermissions">LambdaPermissions</a>))</code></td>
+    <td><code>map(object(<a href="#lambda_permissions">lambda_permissions</a>))</code></td>
     <td width="100%">lambda_permissions</td>
     <td><code>{}</code></td>
 </tr>
@@ -548,7 +548,7 @@ Specify timeout in seconds for the function, up to `900`
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#vpcconfig">VpcConfig</a>)</code></td>
+    <td><code>object(<a href="#vpc_config">vpc_config</a>)</code></td>
     <td width="100%">vpc_config</td>
     <td><code>null</code></td>
 </tr>
@@ -652,7 +652,7 @@ Latest published version of the Lambda Function
 
 ## Objects
 
-#### Aliases
+#### aliases
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -680,7 +680,7 @@ Description of the alias
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#weightedalias">WeightedAlias</a>)</code></td>
+    <td><code>object(<a href="#weighted_alias">weighted_alias</a>)</code></td>
     <td width="100%">weighted_alias</td>
     <td></td>
 </tr>
@@ -693,7 +693,7 @@ Configures this alias to send a portion of traffic to a second function version.
 </td></tr>
 </tbody></table>
 
-#### AsynchronousInvocation
+#### asynchronous_invocation
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -721,7 +721,7 @@ Specify the ARN of the destination for successful asynchronous invocations. This
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#retries">Retries</a>)</code></td>
+    <td><code>object(<a href="#retries">retries</a>)</code></td>
     <td width="100%">retries</td>
     <td></td>
 </tr>
@@ -734,7 +734,7 @@ Configures error handling
 </td></tr>
 </tbody></table>
 
-#### CodeSource
+#### code_source
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -762,7 +762,7 @@ Path to the function's deployment package within the local filesystem
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#s3">S3</a>)</code></td>
+    <td><code>object(<a href="#s3">s3</a>)</code></td>
     <td width="100%">s3</td>
     <td></td>
 </tr>
@@ -775,7 +775,7 @@ S3 bucket location containing the function's deployment package. This bucket mus
 </td></tr>
 </tbody></table>
 
-#### Concurrency
+#### concurrency
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -808,7 +808,7 @@ Map of provisioned concurrences assigned to Lambda qualifiers.
 </td></tr>
 </tbody></table>
 
-#### ContainerImageOverrides
+#### container_image_overrides
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -849,7 +849,7 @@ Specifies the absolute path to the working directory
 </td></tr>
 </tbody></table>
 
-#### CorsConfig
+#### cors_config
 
 Configures the cross-origin resource sharing (CORS) settings for the function URL
 
@@ -930,7 +930,7 @@ The maximum amount of time, in seconds, that web browsers can cache results of a
 </td></tr>
 </tbody></table>
 
-#### EnableActiveTracing
+#### enable_active_tracing
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -952,7 +952,7 @@ Specifies the tracing mode. If `"PassThrough"`, Lambda will only trace the reque
 </td></tr>
 </tbody></table>
 
-#### EnableFunctionUrl
+#### enable_function_url
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -991,7 +991,7 @@ Determines how the Lambda function responds to an invocation.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#corsconfig">CorsConfig</a>)</code></td>
+    <td><code>object(<a href="#cors_config">cors_config</a>)</code></td>
     <td width="100%">cors_config</td>
     <td></td>
 </tr>
@@ -1004,7 +1004,7 @@ Configures the cross-origin resource sharing (CORS) settings for the function UR
 </td></tr>
 </tbody></table>
 
-#### EnvironmentVariables
+#### environment_variables
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1033,7 +1033,7 @@ Specify the ARN of the KMS key that is used to encrypt environment variables. If
 </td></tr>
 </tbody></table>
 
-#### FileSystemConfig
+#### file_system_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1062,7 +1062,7 @@ Path where the function can access the file system; must start with `/mnt/`
 </td></tr>
 </tbody></table>
 
-#### LambdaPermissions
+#### lambda_permissions
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1174,7 +1174,7 @@ The ARN of the specific resource within that service to grant permission to, suc
 </td></tr>
 </tbody></table>
 
-#### Retries
+#### retries
 
 Configures error handling
 
@@ -1207,7 +1207,7 @@ The number of times Lambda retries when the function returns an error, between 0
 </td></tr>
 </tbody></table>
 
-#### S3
+#### s3
 
 S3 bucket location containing the function's deployment package. This bucket must reside in the same AWS region where you are creating the Lambda function
 
@@ -1244,7 +1244,7 @@ Object version containing the function's deployment package
 </td></tr>
 </tbody></table>
 
-#### VpcConfig
+#### vpc_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1285,7 +1285,7 @@ Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack s
 </td></tr>
 </tbody></table>
 
-#### WeightedAlias
+#### weighted_alias
 
 Configures this alias to send a portion of traffic to a second function version. Used for canary deployment scenarios. Please refer to [this documentation][lambda-alias-routing] for a list of requirements for this feature.
 

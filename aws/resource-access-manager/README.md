@@ -158,8 +158,6 @@ The ID of the resource share
 </td></tr>
 </tbody></table>
 
-## Objects
-
 [ram-shareable-resources]: https://docs.aws.amazon.com/ram/latest/userguide/shareable.html
 
 <!-- TFDOCS_EXTRAS_END -->

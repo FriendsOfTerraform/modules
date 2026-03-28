@@ -144,7 +144,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#privateregistry">PrivateRegistry</a>)</code></td>
+    <td><code>object(<a href="#private_registry">private_registry</a>)</code></td>
     <td width="100%">private_registry</td>
     <td><code>null</code></td>
 </tr>
@@ -156,7 +156,7 @@ Manages the private registry
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#publicregistry">PublicRegistry</a>)</code></td>
+    <td><code>object(<a href="#public_registry">public_registry</a>)</code></td>
     <td width="100%">public_registry</td>
     <td><code>null</code></td>
 </tr>
@@ -173,7 +173,7 @@ Manages the public registry
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#privaterepositories">PrivateRepositories</a>))</code></td>
+    <td><code>map(object(<a href="#private_repositories">private_repositories</a>))</code></td>
     <td width="100%">private_repositories</td>
     <td></td>
 </tr>
@@ -188,7 +188,7 @@ Map of all private repositories
 
 ## Objects
 
-#### ContinuousScanning
+#### continuous_scanning
 
 Enables continuous scanning, which will continually scan images after it is pushed into a matching repository. This setting is only available if scan_type = "ENHANCED"
 
@@ -213,7 +213,7 @@ characters in the repository name.
 </td></tr>
 </tbody></table>
 
-#### EncryptWithKms
+#### encrypt_with_kms
 
 Encrypts the repository with KMS. If unspecified, ECR will be encrypted with AES-256 by default
 
@@ -234,7 +234,7 @@ Specify the customer managed KMS key ID to be used for encryption. If unspecifie
 </td></tr>
 </tbody></table>
 
-#### LifecyclePolicyRules
+#### lifecycle_policy_rules
 
 Configures [lifecycle policy rules][ecr-private-registry-lifecycle-policy-rule] to automatically clean up images
 
@@ -242,7 +242,7 @@ Configures [lifecycle policy rules][ecr-private-registry-lifecycle-policy-rule] 
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#matchcriteria">MatchCriteria</a>)</code></td>
+    <td><code>object(<a href="#match_criteria">match_criteria</a>)</code></td>
     <td width="100%">match_criteria</td>
     <td></td>
 </tr>
@@ -300,7 +300,7 @@ match will be used.
 </td></tr>
 </tbody></table>
 
-#### MatchCriteria
+#### match_criteria
 
 Specify the count type to apply to the images. Must specify one of the below.
 
@@ -333,7 +333,7 @@ Sets a limit on the number of images that exist in the repository
 </td></tr>
 </tbody></table>
 
-#### PrivateRegistry
+#### private_registry
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -349,7 +349,7 @@ Specifies the JSON policy document defining the registry policy
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#pullthroughcacherules">PullThroughCacheRules</a>))</code></td>
+    <td><code>map(object(<a href="#pull_through_cache_rules">pull_through_cache_rules</a>))</code></td>
     <td width="100%">pull_through_cache_rules</td>
     <td><code>{}</code></td>
 </tr>
@@ -365,7 +365,7 @@ Configures pull through cache rules. Please see example for usage
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#replicationrules">ReplicationRules</a>))</code></td>
+    <td><code>list(object(<a href="#replication_rules">replication_rules</a>))</code></td>
     <td width="100%">replication_rules</td>
     <td></td>
 </tr>
@@ -381,7 +381,7 @@ Configures ECR replication rules
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#repositories">Repositories</a>))</code></td>
+    <td><code>map(object(<a href="#repositories">repositories</a>))</code></td>
     <td width="100%">repositories</td>
     <td><code>{}</code></td>
 </tr>
@@ -397,7 +397,7 @@ Manages multiple private repositories
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#scanningconfiguration">ScanningConfiguration</a>)</code></td>
+    <td><code>object(<a href="#scanning_configuration">scanning_configuration</a>)</code></td>
     <td width="100%">scanning_configuration</td>
     <td><code>null</code></td>
 </tr>
@@ -414,7 +414,7 @@ Configure [image scanning][ecr-private-registry-image-scanning]
 </td></tr>
 </tbody></table>
 
-#### PrivateRepositories
+#### private_repositories
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -455,11 +455,11 @@ The URL of the repository. In the form `aws_account_id.dkr.ecr.region.amazonaws.
 </td></tr>
 </tbody></table>
 
-#### PublicRegistry
+#### public_registry
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#repositories">Repositories</a>))</code></td>
+    <td><code>map(object(<a href="#repositories">repositories</a>))</code></td>
     <td width="100%">repositories</td>
     <td><code>{}</code></td>
 </tr>
@@ -472,7 +472,7 @@ Manages multiple public repositories
 </td></tr>
 </tbody></table>
 
-#### PullThroughCacheRules
+#### pull_through_cache_rules
 
 Configures pull through cache rules. Please see example for usage
 
@@ -521,7 +521,7 @@ Container Registry, Azure Container Registry, Gitlab Container Registry
 </td></tr>
 </tbody></table>
 
-#### ReplicationRules
+#### replication_rules
 
 Configures ECR replication rules
 
@@ -563,7 +563,7 @@ all images in the repository are replicated.
 </td></tr>
 </tbody></table>
 
-#### Repositories
+#### repositories
 
 Manages multiple public repositories
 
@@ -670,7 +670,7 @@ Provide detailed information about how to use the images in the repository. This
 </td></tr>
 </tbody></table>
 
-#### ScanOnPush
+#### scan_on_push
 
 Enables scan on push, which scans images when it is pushed into a matching repository
 
@@ -695,7 +695,7 @@ in the repository name.
 </td></tr>
 </tbody></table>
 
-#### ScanningConfiguration
+#### scanning_configuration
 
 Configure [image scanning][ecr-private-registry-image-scanning]
 
@@ -724,7 +724,7 @@ Specifies the scanning type that will be used for this registry
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#continuousscanning">ContinuousScanning</a>)</code></td>
+    <td><code>object(<a href="#continuous_scanning">continuous_scanning</a>)</code></td>
     <td width="100%">continuous_scanning</td>
     <td><code>null</code></td>
 </tr>
@@ -736,7 +736,7 @@ Enables continuous scanning, which will continually scan images after it is push
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#scanonpush">ScanOnPush</a>)</code></td>
+    <td><code>object(<a href="#scan_on_push">scan_on_push</a>)</code></td>
     <td width="100%">scan_on_push</td>
     <td><code>null</code></td>
 </tr>

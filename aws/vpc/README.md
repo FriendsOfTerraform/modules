@@ -196,7 +196,7 @@ module "peering_connection_requests" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#cidrblock">CidrBlock</a>)</code></td>
+    <td><code>object(<a href="#cidr_block">cidr_block</a>)</code></td>
     <td width="100%">cidr_block</td>
     <td></td>
 </tr>
@@ -265,7 +265,7 @@ If enabled, one NAT gateway will be created on the first public subnets in each 
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#dhcpoptions">DhcpOptions</a>)</code></td>
+    <td><code>object(<a href="#dhcp_options">dhcp_options</a>)</code></td>
     <td width="100%">dhcp_options</td>
     <td><code>null</code></td>
 </tr>
@@ -277,7 +277,7 @@ DHCP option sets give you control over various aspects of routing in your virtua
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#dnssettings">DnsSettings</a>)</code></td>
+    <td><code>object(<a href="#dns_settings">dns_settings</a>)</code></td>
     <td width="100%">dns_settings</td>
     <td><code>{}</code></td>
 </tr>
@@ -301,7 +301,7 @@ Configures DNS settings for the VPC
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#flowlogs">FlowLogs</a>))</code></td>
+    <td><code>map(object(<a href="#flow_logs">flow_logs</a>))</code></td>
     <td width="100%">flow_logs</td>
     <td><code>{}</code></td>
 </tr>
@@ -317,7 +317,7 @@ Configures multiple VPC level flow logs.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#peeringconnectionrequests">PeeringConnectionRequests</a>))</code></td>
+    <td><code>map(object(<a href="#peering_connection_requests">peering_connection_requests</a>))</code></td>
     <td width="100%">peering_connection_requests</td>
     <td><code>{}</code></td>
 </tr>
@@ -333,7 +333,7 @@ Manages multiple VPC peering connection requests.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#routetables">RouteTables</a>))</code></td>
+    <td><code>map(object(<a href="#route_tables">route_tables</a>))</code></td>
     <td width="100%">route_tables</td>
     <td><code>{}</code></td>
 </tr>
@@ -349,7 +349,7 @@ Manages multiple route tables.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#subnets">Subnets</a>))</code></td>
+    <td><code>map(object(<a href="#subnets">subnets</a>))</code></td>
     <td width="100%">subnets</td>
     <td><code>{}</code></td>
 </tr>
@@ -387,7 +387,7 @@ Specify the VPC's tenancy.
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#dhcpoptions">DhcpOptions</a>))</code></td>
+    <td><code>map(object(<a href="#dhcp_options">dhcp_options</a>))</code></td>
     <td width="100%">dhcp_options</td>
     <td></td>
 </tr>
@@ -399,7 +399,7 @@ DHCP option
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#internetgateway">InternetGateway</a>))</code></td>
+    <td><code>map(object(<a href="#internet_gateway">internet_gateway</a>))</code></td>
     <td width="100%">internet_gateway</td>
     <td></td>
 </tr>
@@ -411,7 +411,7 @@ The default internet gateway
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#natgateways">NatGateways</a>))</code></td>
+    <td><code>map(object(<a href="#nat_gateways">nat_gateways</a>))</code></td>
     <td width="100%">nat_gateways</td>
     <td></td>
 </tr>
@@ -423,7 +423,7 @@ Map of default NAT gateways. The key of the map is the NAT gateway's name
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#peeringconnectionrequests">PeeringConnectionRequests</a>))</code></td>
+    <td><code>map(object(<a href="#peering_connection_requests">peering_connection_requests</a>))</code></td>
     <td width="100%">peering_connection_requests</td>
     <td></td>
 </tr>
@@ -435,7 +435,7 @@ Map of peering connection requests. The key of the map is the peering connection
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#routetables">RouteTables</a>))</code></td>
+    <td><code>map(object(<a href="#route_tables">route_tables</a>))</code></td>
     <td width="100%">route_tables</td>
     <td></td>
 </tr>
@@ -447,7 +447,7 @@ Map of route tables. The key of the map is the route table's name
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#subnets">Subnets</a>))</code></td>
+    <td><code>map(object(<a href="#subnets">subnets</a>))</code></td>
     <td width="100%">subnets</td>
     <td></td>
 </tr>
@@ -486,11 +486,11 @@ The ID of the VPC
 
 ## Objects
 
-#### CidrBlock
+#### cidr_block
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#ipv4">Ipv4</a>)</code></td>
+    <td><code>object(<a href="#ipv4">ipv4</a>)</code></td>
     <td width="100%">ipv4</td>
     <td></td>
 </tr>
@@ -503,7 +503,7 @@ Configures the IPv4 CIDR block
 </td></tr>
 </tbody></table>
 
-#### CloudwatchLogs
+#### cloudwatch_logs
 
 Configures CloudWatch Logs as destination
 
@@ -536,7 +536,7 @@ Arn of an IAM role that [gives permission to flow logs to send logs to CloudWatc
 </td></tr>
 </tbody></table>
 
-#### Destination
+#### destination
 
 Where the flow log will be sent to. Must specify only one of the following: `cloudwatch_logs`, `s3`
 
@@ -544,7 +544,7 @@ Where the flow log will be sent to. Must specify only one of the following: `clo
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#cloudwatchlogs">CloudwatchLogs</a>)</code></td>
+    <td><code>object(<a href="#cloudwatch_logs">cloudwatch_logs</a>)</code></td>
     <td width="100%">cloudwatch_logs</td>
     <td><code>null</code></td>
 </tr>
@@ -556,7 +556,7 @@ Configures CloudWatch Logs as destination
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#s3">S3</a>)</code></td>
+    <td><code>object(<a href="#s3">s3</a>)</code></td>
     <td width="100%">s3</td>
     <td><code>null</code></td>
 </tr>
@@ -569,7 +569,7 @@ Configures S3 as destination
 </td></tr>
 </tbody></table>
 
-#### DhcpOptions
+#### dhcp_options
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -598,7 +598,7 @@ The ID of the DHCP option
 </td></tr>
 </tbody></table>
 
-#### DnsSettings
+#### dns_settings
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -627,7 +627,7 @@ Whether instances launched in the VPC receive public DNS hostnames that correspo
 </td></tr>
 </tbody></table>
 
-#### FlowLogs
+#### flow_logs
 
 Configures multiple subnet level flow logs.
 
@@ -639,7 +639,7 @@ Configures multiple subnet level flow logs.
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#destination">Destination</a>)</code></td>
+    <td><code>object(<a href="#destination">destination</a>)</code></td>
     <td width="100%">destination</td>
     <td></td>
 </tr>
@@ -711,7 +711,7 @@ The maximum interval of time during which a flow of packets is captured and aggr
 </td></tr>
 </tbody></table>
 
-#### InternetGateway
+#### internet_gateway
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -752,7 +752,7 @@ The ID of the AWS account that owns the internet gateway
 </td></tr>
 </tbody></table>
 
-#### Ipam
+#### ipam
 
 Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IPv4 CIDR automatically. If you select an IPAM pool, the size of the CIDR is limited by the allocation rules on the IPAM pool (allowed minimum, allowed maximum, and default). Mutually exclusive to `cidr`
 
@@ -785,7 +785,7 @@ The netmask length of the IPv4 CIDR you want to allocate to this VPC
 </td></tr>
 </tbody></table>
 
-#### Ipv4
+#### ipv4
 
 Configures the IPv4 CIDR block
 
@@ -805,7 +805,7 @@ Manually input an IPv4 CIDR. The CIDR block size must have a size between /16 an
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#ipam">Ipam</a>)</code></td>
+    <td><code>object(<a href="#ipam">ipam</a>)</code></td>
     <td width="100%">ipam</td>
     <td><code>null</code></td>
 </tr>
@@ -818,7 +818,7 @@ Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IP
 </td></tr>
 </tbody></table>
 
-#### NatGateways
+#### nat_gateways
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -883,7 +883,7 @@ The Elastic IP address associated with the NAT Gateway
 </td></tr>
 </tbody></table>
 
-#### PeeringConnectionRequests
+#### peering_connection_requests
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -912,7 +912,7 @@ The status of the VPC Peering Connection request
 </td></tr>
 </tbody></table>
 
-#### ResourceBasedNameSettings
+#### resource_based_name_settings
 
 Specify the hostname type for EC2 instances in this subnet and optional RBN DNS query settings
 
@@ -953,7 +953,7 @@ Determines if the guest OS hostname of EC2 instances in this subnet should be ba
 </td></tr>
 </tbody></table>
 
-#### RouteTables
+#### route_tables
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -982,7 +982,7 @@ The ID of the route tables
 </td></tr>
 </tbody></table>
 
-#### S3
+#### s3
 
 Configures S3 as destination
 
@@ -1044,7 +1044,7 @@ Indicates whether to partition the flow log per hour. This reduces the cost and 
 </td></tr>
 </tbody></table>
 
-#### Subnets
+#### subnets
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

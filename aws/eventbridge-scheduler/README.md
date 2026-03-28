@@ -114,7 +114,7 @@ The name of the schedule group
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#schedules">Schedules</a>))</code></td>
+    <td><code>map(object(<a href="#schedules">schedules</a>))</code></td>
     <td width="100%">schedules</td>
     <td></td>
 </tr>
@@ -160,14 +160,9 @@ Additional tags for all resources deployed with this module
 </td></tr>
 </tbody></table>
 
-## Outputs
-
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
-        </tbody></table>
-
 ## Objects
 
-#### CronBasedSchedule
+#### cron_based_schedule
 
 A schedule set using a cron expression that runs at a specific time, such as every day 1 of the month, at 12:00AM.
 
@@ -188,7 +183,7 @@ Specify the cron expression for the schedule, for example: `"0 0 1 * *"`
 </td></tr>
 </tbody></table>
 
-#### OneTimeSchedule
+#### one_time_schedule
 
 A one-time schedule invokes it's target only once at the date, time, and in the time zone that you provide
 
@@ -209,7 +204,7 @@ The date and time this schedule run, in `yyyy-mm-ddThh:mm:ss` format. For exampl
 </td></tr>
 </tbody></table>
 
-#### RateBasedSchedule
+#### rate_based_schedule
 
 A rate-based schedule runs at a regular rate, such as every 10 minutes
 
@@ -230,7 +225,7 @@ The rate to invoke this trigger, in `value unit` format. For example: `"1 hour"`
 </td></tr>
 </tbody></table>
 
-#### RetryPolicy
+#### retry_policy
 
 Configures retry policy and dead-letter queue
 
@@ -275,7 +270,7 @@ The ARN of the SQS queue specified as the target for the dead-letter queue.
 </td></tr>
 </tbody></table>
 
-#### SchedulePattern
+#### schedule_pattern
 
 Define a one-time, or recurring invocation for the schedule. Must define one of: `one_time_schedule`, `rate_based_schedule`, `cron_based_schedule`
 
@@ -331,7 +326,7 @@ The date, in UTC, before which the schedule can invoke its target. Depending on 
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#onetimeschedule">OneTimeSchedule</a>)</code></td>
+    <td><code>object(<a href="#one_time_schedule">one_time_schedule</a>)</code></td>
     <td width="100%">one_time_schedule</td>
     <td><code>null</code></td>
 </tr>
@@ -343,7 +338,7 @@ A one-time schedule invokes it's target only once at the date, time, and in the 
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#ratebasedschedule">RateBasedSchedule</a>)</code></td>
+    <td><code>object(<a href="#rate_based_schedule">rate_based_schedule</a>)</code></td>
     <td width="100%">rate_based_schedule</td>
     <td><code>null</code></td>
 </tr>
@@ -355,7 +350,7 @@ A rate-based schedule runs at a regular rate, such as every 10 minutes
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#cronbasedschedule">CronBasedSchedule</a>)</code></td>
+    <td><code>object(<a href="#cron_based_schedule">cron_based_schedule</a>)</code></td>
     <td width="100%">cron_based_schedule</td>
     <td><code>null</code></td>
 </tr>
@@ -368,7 +363,7 @@ A schedule set using a cron expression that runs at a specific time, such as eve
 </td></tr>
 </tbody></table>
 
-#### Schedules
+#### schedules
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -413,7 +408,7 @@ Specifies whether the schedule is enabled or disabled.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#schedulepattern">SchedulePattern</a>)</code></td>
+    <td><code>object(<a href="#schedule_pattern">schedule_pattern</a>)</code></td>
     <td width="100%">schedule_pattern</td>
     <td></td>
 </tr>
@@ -425,7 +420,7 @@ Define a one-time, or recurring invocation for the schedule. Must define one of:
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#target">Target</a>)</code></td>
+    <td><code>object(<a href="#target">target</a>)</code></td>
     <td width="100%">target</td>
     <td></td>
 </tr>
@@ -438,7 +433,7 @@ A target is an AWS API operation that EventBridge Scheduler invokes at the time 
 </td></tr>
 </tbody></table>
 
-#### Target
+#### target
 
 A target is an AWS API operation that EventBridge Scheduler invokes at the time and using the pattern that you specify when you configure your schedule
 
@@ -482,7 +477,7 @@ The ARN of an IAM role EventBridge Scheduler assumes to send events to the targe
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#retrypolicy">RetryPolicy</a>)</code></td>
+    <td><code>object(<a href="#retry_policy">retry_policy</a>)</code></td>
     <td width="100%">retry_policy</td>
     <td><code>{}</code></td>
 </tr>
