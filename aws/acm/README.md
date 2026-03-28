@@ -55,7 +55,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#publiccertificates">PublicCertificates</a>))</code></td>
+    <td><code>map(object(<a href="#public_certificates">public_certificates</a>))</code></td>
     <td width="100%">public_certificates</td>
     <td><code>{}</code></td>
 </tr>
@@ -77,7 +77,7 @@ certificates are trusted by browsers and operating systems.
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#publiccertificates">PublicCertificates</a>))</code></td>
+    <td><code>map(object(<a href="#public_certificates">public_certificates</a>))</code></td>
     <td width="100%">public_certificates</td>
     <td></td>
 </tr>
@@ -92,7 +92,7 @@ Information of all the public certificates managed by this module
 
 ## Objects
 
-#### PublicCertificates
+#### public_certificates
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

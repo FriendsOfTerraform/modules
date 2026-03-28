@@ -125,7 +125,7 @@ module "automation" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td><code>object(<a href="#azure">azure</a>)</code></td>
     <td width="100%">azure</td>
     <td></td>
 </tr>
@@ -185,7 +185,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#runbooks">Runbooks</a>))</code></td>
+    <td><code>map(object(<a href="#runbooks">runbooks</a>))</code></td>
     <td width="100%">runbooks</td>
     <td><code>{}</code></td>
 </tr>
@@ -268,7 +268,7 @@ List of schedule IDs
 
 ## Objects
 
-#### Azure
+#### azure
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -297,7 +297,7 @@ The name of an Azure location where the automation account will be deployed. If 
 </td></tr>
 </tbody></table>
 
-#### Daily
+#### daily
 
 Defines a daily schedule
 
@@ -318,7 +318,7 @@ Defines how many days per schedule trigger
 </td></tr>
 </tbody></table>
 
-#### Hourly
+#### hourly
 
 Defines a hourly schedule
 
@@ -339,7 +339,7 @@ Defines how many hours per schedule trigger
 </td></tr>
 </tbody></table>
 
-#### Monthly
+#### monthly
 
 Defines a monthly schedule
 
@@ -375,7 +375,7 @@ Defines one of the following:
 </td></tr>
 </tbody></table>
 
-#### Runbooks
+#### runbooks
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -460,7 +460,7 @@ Defines the type of the runbook.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#schedule">Schedule</a>)</code></td>
+    <td><code>object(<a href="#schedule">schedule</a>)</code></td>
     <td width="100%">schedule</td>
     <td></td>
 </tr>
@@ -473,7 +473,7 @@ Defines schedule to automatically trigger this runbook
 </td></tr>
 </tbody></table>
 
-#### Schedule
+#### schedule
 
 Defines schedule to automatically trigger this runbook
 
@@ -541,7 +541,7 @@ Defines a map of parameters to be passed into the runbook when this schedule run
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#hourly">Hourly</a>)</code></td>
+    <td><code>object(<a href="#hourly">hourly</a>)</code></td>
     <td width="100%">hourly</td>
     <td></td>
 </tr>
@@ -553,7 +553,7 @@ Defines a hourly schedule
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#daily">Daily</a>)</code></td>
+    <td><code>object(<a href="#daily">daily</a>)</code></td>
     <td width="100%">daily</td>
     <td></td>
 </tr>
@@ -565,7 +565,7 @@ Defines a daily schedule
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#weekly">Weekly</a>)</code></td>
+    <td><code>object(<a href="#weekly">weekly</a>)</code></td>
     <td width="100%">weekly</td>
     <td></td>
 </tr>
@@ -577,7 +577,7 @@ Defines a weekly schedule
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#monthly">Monthly</a>)</code></td>
+    <td><code>object(<a href="#monthly">monthly</a>)</code></td>
     <td width="100%">monthly</td>
     <td></td>
 </tr>
@@ -590,7 +590,7 @@ Defines a monthly schedule
 </td></tr>
 </tbody></table>
 
-#### Weekly
+#### weekly
 
 Defines a weekly schedule
 

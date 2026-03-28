@@ -198,7 +198,7 @@ The name of the load balancer. All associated resources will also have their nam
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#networkmapping">NetworkMapping</a>)</code></td>
+    <td><code>object(<a href="#network_mapping">network_mapping</a>)</code></td>
     <td width="100%">network_mapping</td>
     <td></td>
 </tr>
@@ -239,7 +239,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#applicationloadbalancer">ApplicationLoadBalancer</a>)</code></td>
+    <td><code>object(<a href="#application_load_balancer">application_load_balancer</a>)</code></td>
     <td width="100%">application_load_balancer</td>
     <td><code>null</code></td>
 </tr>
@@ -279,7 +279,7 @@ If enabled, you must turn it off before you can delete the load balancer.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#gatewayloadbalancer">GatewayLoadBalancer</a>)</code></td>
+    <td><code>object(<a href="#gateway_load_balancer">gateway_load_balancer</a>)</code></td>
     <td width="100%">gateway_load_balancer</td>
     <td><code>null</code></td>
 </tr>
@@ -331,7 +331,7 @@ The front-end IP address type to assign to the load balancer. The subnets mapped
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#networkloadbalancer">NetworkLoadBalancer</a>)</code></td>
+    <td><code>object(<a href="#network_load_balancer">network_load_balancer</a>)</code></td>
     <td width="100%">network_load_balancer</td>
     <td><code>null</code></td>
 </tr>
@@ -364,7 +364,7 @@ List of security group IDs to assign to the load balancer. Only valid for Load B
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#applicationloadbalancerlisteners">ApplicationLoadBalancerListeners</a>))</code></td>
+    <td><code>map(object(<a href="#application_load_balancer_listeners">application_load_balancer_listeners</a>))</code></td>
     <td width="100%">application_load_balancer_listeners</td>
     <td></td>
 </tr>
@@ -376,7 +376,7 @@ Info for the listeners if `application_load_balancer` is specified
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#gatewayloadbalancerlisteners">GatewayLoadBalancerListeners</a>))</code></td>
+    <td><code>map(object(<a href="#gateway_load_balancer_listeners">gateway_load_balancer_listeners</a>))</code></td>
     <td width="100%">gateway_load_balancer_listeners</td>
     <td></td>
 </tr>
@@ -388,7 +388,7 @@ Info for the listeners if `gateway_load_balancer` is specified
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#loadbalancer">LoadBalancer</a>)</code></td>
+    <td><code>object(<a href="#load_balancer">load_balancer</a>)</code></td>
     <td width="100%">load_balancer</td>
     <td></td>
 </tr>
@@ -400,7 +400,7 @@ Info for this load balancer
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#networkloadbalancerlisteners">NetworkLoadBalancerListeners</a>))</code></td>
+    <td><code>map(object(<a href="#network_load_balancer_listeners">network_load_balancer_listeners</a>))</code></td>
     <td width="100%">network_load_balancer_listeners</td>
     <td></td>
 </tr>
@@ -415,7 +415,7 @@ Info for the listeners if `network_load_balancer` is specified
 
 ## Objects
 
-#### Action
+#### action
 
 The action to trigger when an incoming request matches all conditions.
 
@@ -423,7 +423,7 @@ The action to trigger when an incoming request matches all conditions.
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#authenticateusers">AuthenticateUsers</a>)</code></td>
+    <td><code>object(<a href="#authenticate_users">authenticate_users</a>)</code></td>
     <td width="100%">authenticate_users</td>
     <td><code>null</code></td>
 </tr>
@@ -435,7 +435,7 @@ Configure user authentication through either OpenID Connect (OIDC) or Amazon Cog
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#fixedresponse">FixedResponse</a>)</code></td>
+    <td><code>object(<a href="#fixed_response">fixed_response</a>)</code></td>
     <td width="100%">fixed_response</td>
     <td><code>null</code></td>
 </tr>
@@ -447,7 +447,7 @@ Configurate fixed-response action to drop client requests and return a custom HT
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#forward">Forward</a>)</code></td>
+    <td><code>object(<a href="#forward">forward</a>)</code></td>
     <td width="100%">forward</td>
     <td><code>null</code></td>
 </tr>
@@ -459,7 +459,7 @@ Configure forward action to route requests to one or more target groups.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#redirect">Redirect</a>)</code></td>
+    <td><code>object(<a href="#redirect">redirect</a>)</code></td>
     <td width="100%">redirect</td>
     <td><code>null</code></td>
 </tr>
@@ -472,7 +472,7 @@ Redirect client requests from one URL to another. You cannot redirect HTTPS to H
 </td></tr>
 </tbody></table>
 
-#### AddResponseHeaders
+#### add_response_headers
 
 Control whether your Application Load Balancer adds certain headers to HTTP responses. If the HTTP response from your load balancer's target already includes a header, the load balancer will overwrite it with the configured value.
 
@@ -601,7 +601,7 @@ Header security mechanism that helps prevent click-jacking attacks by controllin
 </td></tr>
 </tbody></table>
 
-#### AmazonCognito
+#### amazon_cognito
 
 Configures an Amazon Cognito IdP for authentication
 
@@ -646,11 +646,11 @@ Domain prefix or fully-qualified domain name of the Cognito user pool.
 </td></tr>
 </tbody></table>
 
-#### ApplicationLoadBalancer
+#### application_load_balancer
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#listeners">Listeners</a>))</code></td>
+    <td><code>map(object(<a href="#listeners">listeners</a>))</code></td>
     <td width="100%">listeners</td>
     <td></td>
 </tr>
@@ -662,7 +662,7 @@ Map of listeners in the `<protocol>:<port>` format
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#attributes">Attributes</a>)</code></td>
+    <td><code>object(<a href="#attributes">attributes</a>)</code></td>
     <td width="100%">attributes</td>
     <td><code>{}</code></td>
 </tr>
@@ -675,7 +675,7 @@ Configure listener attributes
 </td></tr>
 </tbody></table>
 
-#### ApplicationLoadBalancerListeners
+#### application_load_balancer_listeners
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -692,7 +692,7 @@ The ARN of the listener
 </td></tr>
 </tbody></table>
 
-#### Attributes
+#### attributes
 
 Configure the load balancer attributes
 
@@ -743,7 +743,7 @@ If enabled. Each load balancer node load balances traffic among healthy targets 
 </td></tr>
 </tbody></table>
 
-#### AuthenticateUsers
+#### authenticate_users
 
 Configure user authentication through either OpenID Connect (OIDC) or Amazon Cognito. Please refer to [this documentation][alb-user-authentication] for prerequisites for both methods.
 
@@ -817,7 +817,7 @@ The maximum time allowed for an authenticated session after which re-authenticat
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#amazoncognito">AmazonCognito</a>)</code></td>
+    <td><code>object(<a href="#amazon_cognito">amazon_cognito</a>)</code></td>
     <td width="100%">amazon_cognito</td>
     <td><code>null</code></td>
 </tr>
@@ -829,7 +829,7 @@ Configures an Amazon Cognito IdP for authentication
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#oidc">Oidc</a>)</code></td>
+    <td><code>object(<a href="#oidc">oidc</a>)</code></td>
     <td width="100%">oidc</td>
     <td><code>null</code></td>
 </tr>
@@ -842,7 +842,7 @@ Configures an Open ID Connect (OIDC) IdP for authentication
 </td></tr>
 </tbody></table>
 
-#### CertificateAuthorityBundle
+#### certificate_authority_bundle
 
 The CA bundle
 
@@ -875,7 +875,7 @@ The S3 version ID of the CA bundle
 </td></tr>
 </tbody></table>
 
-#### CertificateRevocationLists
+#### certificate_revocation_lists
 
 Map of CRLs to be imported into the trust store. The keys of the map are the S3 URI where the CRL resides.
 
@@ -896,7 +896,7 @@ The S3 version ID of the CRL
 </td></tr>
 </tbody></table>
 
-#### Conditions
+#### conditions
 
 Specify specific conditions a request must match for the rules actions to be performed. You can specify up to 5 condition values per rule.
 
@@ -981,7 +981,7 @@ A list of source IP CIDR notations to match. You can use both IPv4 and IPv6 addr
 </td></tr>
 </tbody></table>
 
-#### DefaultAction
+#### default_action
 
 Specify the default action that triggers for the incoming requests.
 
@@ -989,7 +989,7 @@ Specify the default action that triggers for the incoming requests.
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#forward">Forward</a>)</code></td>
+    <td><code>object(<a href="#forward">forward</a>)</code></td>
     <td width="100%">forward</td>
     <td></td>
 </tr>
@@ -1002,7 +1002,7 @@ Configure forward action to route requests to a target group.
 </td></tr>
 </tbody></table>
 
-#### EnableMutualAuthentication
+#### enable_mutual_authentication
 
 Enable mTLS. Configure how the listener handles requests that present client certificates. This includes how the load balancer authenticates certificates and the amount of certificate metadata that is sent to the backend targets.
 
@@ -1010,7 +1010,7 @@ Enable mTLS. Configure how the listener handles requests that present client cer
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#verifywithtruststore">VerifyWithTrustStore</a>)</code></td>
+    <td><code>object(<a href="#verify_with_trust_store">verify_with_trust_store</a>)</code></td>
     <td width="100%">verify_with_trust_store</td>
     <td><code>null</code></td>
 </tr>
@@ -1023,7 +1023,7 @@ The load balancer and client verify each other's identity and establish a TLS co
 </td></tr>
 </tbody></table>
 
-#### FixedResponse
+#### fixed_response
 
 Configurate fixed-response action to drop client requests and return a custom HTTP response. When a fixed-response action is taken, the action and the URL of the redirect target are recorded in the access logs.
 
@@ -1076,7 +1076,7 @@ HTTP response code. Valid values are 2xx, 4xx, and 5xx HTTP codes.
 </td></tr>
 </tbody></table>
 
-#### Forward
+#### forward
 
 Configure forward action to route requests to a target group.
 
@@ -1097,11 +1097,11 @@ The ARN of the target group to route traffic to
 </td></tr>
 </tbody></table>
 
-#### GatewayLoadBalancer
+#### gateway_load_balancer
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#listener">Listener</a>)</code></td>
+    <td><code>object(<a href="#listener">listener</a>)</code></td>
     <td width="100%">listener</td>
     <td></td>
 </tr>
@@ -1113,7 +1113,7 @@ Configure the listener
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#attributes">Attributes</a>)</code></td>
+    <td><code>object(<a href="#attributes">attributes</a>)</code></td>
     <td width="100%">attributes</td>
     <td><code>{}</code></td>
 </tr>
@@ -1126,7 +1126,7 @@ Configure the load balancer attributes
 </td></tr>
 </tbody></table>
 
-#### GatewayLoadBalancerListeners
+#### gateway_load_balancer_listeners
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1143,7 +1143,7 @@ The ARN of the listener
 </td></tr>
 </tbody></table>
 
-#### Listener
+#### listener
 
 Configure the listener
 
@@ -1151,7 +1151,7 @@ Configure the listener
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#defaultaction">DefaultAction</a>)</code></td>
+    <td><code>object(<a href="#default_action">default_action</a>)</code></td>
     <td width="100%">default_action</td>
     <td></td>
 </tr>
@@ -1176,7 +1176,7 @@ Additional tags for the listener
 </td></tr>
 </tbody></table>
 
-#### Listeners
+#### listeners
 
 Map of listeners in the `<protocol>:<port>` format
 
@@ -1184,7 +1184,7 @@ Map of listeners in the `<protocol>:<port>` format
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#defaultaction">DefaultAction</a>)</code></td>
+    <td><code>object(<a href="#default_action">default_action</a>)</code></td>
     <td width="100%">default_action</td>
     <td></td>
 </tr>
@@ -1196,7 +1196,7 @@ Specify the default action that triggers for the incoming requests.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#attributes">Attributes</a>)</code></td>
+    <td><code>object(<a href="#attributes">attributes</a>)</code></td>
     <td width="100%">attributes</td>
     <td><code>{}</code></td>
 </tr>
@@ -1277,7 +1277,7 @@ Name of the SSL Policy for the listener. This is required if a `TLS` listener is
 </td></tr>
 </tbody></table>
 
-#### LoadBalancer
+#### load_balancer
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1318,7 +1318,7 @@ Canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias re
 </td></tr>
 </tbody></table>
 
-#### ModifyMtlsHeaderNames
+#### modify_mtls_header_names
 
 Configure the HTTP headers added by the load balancer when using TLS or mTLS
 
@@ -1423,11 +1423,11 @@ Indicates the version of the TLS protocol used for a connection. It facilitates 
 </td></tr>
 </tbody></table>
 
-#### NetworkLoadBalancer
+#### network_load_balancer
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#listeners">Listeners</a>))</code></td>
+    <td><code>map(object(<a href="#listeners">listeners</a>))</code></td>
     <td width="100%">listeners</td>
     <td></td>
 </tr>
@@ -1439,7 +1439,7 @@ Map of listeners in the `<protocol>:<port>` format
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#attributes">Attributes</a>)</code></td>
+    <td><code>object(<a href="#attributes">attributes</a>)</code></td>
     <td width="100%">attributes</td>
     <td><code>{}</code></td>
 </tr>
@@ -1452,7 +1452,7 @@ Configure the load balancer attributes
 </td></tr>
 </tbody></table>
 
-#### NetworkLoadBalancerListeners
+#### network_load_balancer_listeners
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1469,11 +1469,11 @@ The ARN of the listener
 </td></tr>
 </tbody></table>
 
-#### NetworkMapping
+#### network_mapping
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#subnets">Subnets</a>))</code></td>
+    <td><code>map(object(<a href="#subnets">subnets</a>))</code></td>
     <td width="100%">subnets</td>
     <td></td>
 </tr>
@@ -1498,7 +1498,7 @@ The ID of the IPAM pool to use with this load balancer. IPAM pools allow your Ap
 </td></tr>
 </tbody></table>
 
-#### NewTrustStore
+#### new_trust_store
 
 Create a new trust store using an existing CA bundle and optionally certificate revocation lists. Mutually exclusive to `trust_store_arn`
 
@@ -1506,7 +1506,7 @@ Create a new trust store using an existing CA bundle and optionally certificate 
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#certificateauthoritybundle">CertificateAuthorityBundle</a>)</code></td>
+    <td><code>object(<a href="#certificate_authority_bundle">certificate_authority_bundle</a>)</code></td>
     <td width="100%">certificate_authority_bundle</td>
     <td></td>
 </tr>
@@ -1530,7 +1530,7 @@ Additional tags for the trust store
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#certificaterevocationlists">CertificateRevocationLists</a>))</code></td>
+    <td><code>map(object(<a href="#certificate_revocation_lists">certificate_revocation_lists</a>))</code></td>
     <td width="100%">certificate_revocation_lists</td>
     <td><code>{}</code></td>
 </tr>
@@ -1543,7 +1543,7 @@ Map of CRLs to be imported into the trust store. The keys of the map are the S3 
 </td></tr>
 </tbody></table>
 
-#### Oidc
+#### oidc
 
 Configures an Open ID Connect (OIDC) IdP for authentication
 
@@ -1624,7 +1624,7 @@ URL of your user info endpoint.
 </td></tr>
 </tbody></table>
 
-#### Redirect
+#### redirect
 
 Redirect client requests from one URL to another. You cannot redirect HTTPS to HTTP.
 
@@ -1672,7 +1672,7 @@ HTTP response code.
 </td></tr>
 </tbody></table>
 
-#### Rules
+#### rules
 
 Configure multiple listener rules
 
@@ -1704,7 +1704,7 @@ Additional tags for the listener rule
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#action">Action</a>)</code></td>
+    <td><code>object(<a href="#action">action</a>)</code></td>
     <td width="100%">action</td>
     <td></td>
 </tr>
@@ -1716,7 +1716,7 @@ The action to trigger when an incoming request matches all conditions.
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#conditions">Conditions</a>))</code></td>
+    <td><code>list(object(<a href="#conditions">conditions</a>))</code></td>
     <td width="100%">conditions</td>
     <td></td>
 </tr>
@@ -1733,7 +1733,7 @@ Specify specific conditions a request must match for the rules actions to be per
 </td></tr>
 </tbody></table>
 
-#### Subnets
+#### subnets
 
 Map of subnet ARNs where the load balancer routes traffic to. You can only specify one subnet per availability zone. If you enabled dual-stack mode for the load balancer, select subnets with associated IPv6 CIDR blocks. You must specify at least two subnets
 
@@ -1778,7 +1778,7 @@ Private IPv4 address for an internal load balancer. It can be any available IP a
 </td></tr>
 </tbody></table>
 
-#### TargetGroups
+#### target_groups
 
 Map of destination target groups in `<target_group_arn> = {<config>}` format. You can only specify up to 5 target groups.
 
@@ -1803,7 +1803,7 @@ Specify a weight that controls the prioritization and selection of each target g
 </td></tr>
 </tbody></table>
 
-#### TurnOnTargetGroupStickiness
+#### turn_on_target_group_stickiness
 
 Enables the load balancer to bind a user's session to a specific target group. To use stickiness the client must support cookies. If you want to bind a user's session to a specific target, turn on the Target Group attribute Stickiness.
 
@@ -1824,7 +1824,7 @@ The stickiness duration. Valid values: `"1 second" - "7 days"`
 </td></tr>
 </tbody></table>
 
-#### VerifyWithTrustStore
+#### verify_with_trust_store
 
 The load balancer and client verify each other's identity and establish a TLS connection to encrypt communication between them. If this is not specified, the incoming certificate will be sent to the backend target as-is (`Passthrough`)
 
@@ -1868,7 +1868,7 @@ An existing trust store that contain the certificate authority (CA) bundle that 
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#newtruststore">NewTrustStore</a>)</code></td>
+    <td><code>object(<a href="#new_trust_store">new_trust_store</a>)</code></td>
     <td width="100%">new_trust_store</td>
     <td><code>null</code></td>
 </tr>

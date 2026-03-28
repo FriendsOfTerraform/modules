@@ -271,7 +271,7 @@ The Vault secret engine to configure, currently the following values are support
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#awsconfig">AwsConfig</a>)</code></td>
+    <td><code>object(<a href="#aws_config">aws_config</a>)</code></td>
     <td width="100%">aws_config</td>
     <td><code>null</code></td>
 </tr>
@@ -293,7 +293,7 @@ default_ttl_seconds = 300
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#awssecretbackendroles">AwsSecretBackendRoles</a>))</code></td>
+    <td><code>map(object(<a href="#aws_secret_backend_roles">aws_secret_backend_roles</a>))</code></td>
     <td width="100%">aws_secret_backend_roles</td>
     <td><code>{}</code></td>
 </tr>
@@ -313,7 +313,7 @@ aws_managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#azureconfig">AzureConfig</a>)</code></td>
+    <td><code>object(<a href="#azure_config">azure_config</a>)</code></td>
     <td width="100%">azure_config</td>
     <td><code>null</code></td>
 </tr>
@@ -336,7 +336,7 @@ max_ttl_seconds     = 300
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#azuresecretbackendroles">AzureSecretBackendRoles</a>))</code></td>
+    <td><code>map(object(<a href="#azure_secret_backend_roles">azure_secret_backend_roles</a>))</code></td>
     <td width="100%">azure_secret_backend_roles</td>
     <td><code>{}</code></td>
 </tr>
@@ -361,7 +361,7 @@ scope     = "/subscriptions/5390980b-4d73-483f-bf52-xxxxxxx"
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#databaseconfig">DatabaseConfig</a>)</code></td>
+    <td><code>object(<a href="#database_config">database_config</a>)</code></td>
     <td width="100%">database_config</td>
     <td><code>null</code></td>
 </tr>
@@ -384,7 +384,7 @@ connection_url = "postgresql://postgres:password@postgresql.friendsofterraform.c
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#databasestaticbackendroles">DatabaseStaticBackendRoles</a>))</code></td>
+    <td><code>map(object(<a href="#database_static_backend_roles">database_static_backend_roles</a>))</code></td>
     <td width="100%">database_static_backend_roles</td>
     <td><code>{}</code></td>
 </tr>
@@ -438,7 +438,7 @@ Global max TTL (time-to-live) in seconds for all secrets within this secret moun
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#pkiconfig">PkiConfig</a>)</code></td>
+    <td><code>object(<a href="#pki_config">pki_config</a>)</code></td>
     <td width="100%">pki_config</td>
     <td><code>null</code></td>
 </tr>
@@ -456,7 +456,7 @@ cert_type = "root"
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#pkiintermediateca">PkiIntermediateCa</a>)</code></td>
+    <td><code>object(<a href="#pki_intermediate_ca">pki_intermediate_ca</a>)</code></td>
     <td width="100%">pki_intermediate_ca</td>
     <td><code>null</code></td>
 </tr>
@@ -476,7 +476,7 @@ ttl_seconds           = 157680000 # 5 years
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#pkirootcert">PkiRootCert</a>)</code></td>
+    <td><code>object(<a href="#pki_root_cert">pki_root_cert</a>)</code></td>
     <td width="100%">pki_root_cert</td>
     <td><code>null</code></td>
 </tr>
@@ -496,7 +496,7 @@ vault_address     = "https://vault.friendsofterraform.sh"
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#pkisecretbackendroles">PkiSecretBackendRoles</a>))</code></td>
+    <td><code>map(object(<a href="#pki_secret_backend_roles">pki_secret_backend_roles</a>))</code></td>
     <td width="100%">pki_secret_backend_roles</td>
     <td><code>{}</code></td>
 </tr>
@@ -518,7 +518,7 @@ allowed_domains  = ["friendsofterraform.sh"]
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#terraformconfig">TerraformConfig</a>)</code></td>
+    <td><code>object(<a href="#terraform_config">terraform_config</a>)</code></td>
     <td width="100%">terraform_config</td>
     <td><code>null</code></td>
 </tr>
@@ -536,7 +536,7 @@ token = "Q3JtWYZK5Zx81w........"
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#terraformsecretbackendroles">TerraformSecretBackendRoles</a>))</code></td>
+    <td><code>map(object(<a href="#terraform_secret_backend_roles">terraform_secret_backend_roles</a>))</code></td>
     <td width="100%">terraform_secret_backend_roles</td>
     <td><code>{}</code></td>
 </tr>
@@ -578,7 +578,7 @@ The mount path of the secret engine
 
 ## Objects
 
-#### AwsConfig
+#### aws_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -643,7 +643,7 @@ Max TTL (time-to-live) for new IAM credential created by this this secret engine
 </td></tr>
 </tbody></table>
 
-#### AwsSecretBackendRoles
+#### aws_secret_backend_roles
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -696,7 +696,7 @@ An AWS IAM policy document that will be attached to the IAM user generated as an
 </td></tr>
 </tbody></table>
 
-#### AzureConfig
+#### azure_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -773,7 +773,7 @@ Max TTL (time-to-live) for new Azure credential created by this this secret engi
 </td></tr>
 </tbody></table>
 
-#### AzureGroups
+#### azure_groups
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -794,7 +794,7 @@ Max TTL (time-to-live) for new Azure credential created by this this secret engi
 </td></tr>
 </tbody></table>
 
-#### AzureRoles
+#### azure_roles
 
 List of Azure roles to be assigned to the generated service principal. Please refer to [this documentation][azure-role] for examples. If dynamic service principals are used, Azure roles must be configured on the Vault role.
 
@@ -839,7 +839,7 @@ The scope this role is applied to
 </td></tr>
 </tbody></table>
 
-#### AzureSecretBackendRoles
+#### azure_secret_backend_roles
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -855,7 +855,7 @@ Application Object ID for an existing service principal that will be used instea
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#azureroles">AzureRoles</a>))</code></td>
+    <td><code>list(object(<a href="#azure_roles">azure_roles</a>))</code></td>
     <td width="100%">azure_roles</td>
     <td></td>
 </tr>
@@ -867,7 +867,7 @@ List of Azure roles to be assigned to the generated service principal. Please re
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#azuregroups">AzureGroups</a>))</code></td>
+    <td><code>list(object(<a href="#azure_groups">azure_groups</a>))</code></td>
     <td width="100%">azure_groups</td>
     <td></td>
 </tr>
@@ -892,11 +892,11 @@ List of Azure roles to be assigned to the generated service principal. Please re
 </td></tr>
 </tbody></table>
 
-#### DatabaseConfig
+#### database_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#postgres">Postgres</a>))</code></td>
+    <td><code>map(object(<a href="#postgres">postgres</a>))</code></td>
     <td width="100%">postgres</td>
     <td></td>
 </tr>
@@ -909,7 +909,7 @@ Establish a connection to a Postgres database
 </td></tr>
 </tbody></table>
 
-#### DatabaseStaticBackendRoles
+#### database_static_backend_roles
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -938,7 +938,7 @@ The rotation period for the password of the managed user
 </td></tr>
 </tbody></table>
 
-#### PkiConfig
+#### pki_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -960,7 +960,7 @@ The type of certificate to configure,
 </td></tr>
 </tbody></table>
 
-#### PkiIntermediateCa
+#### pki_intermediate_ca
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1013,7 +1013,7 @@ Specifies the TTL (time-to-live) for this intermediate CA certificate
 </td></tr>
 </tbody></table>
 
-#### PkiRootCert
+#### pki_root_cert
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1066,7 +1066,7 @@ Specifies the address of the Hashicorp Vault server. issuing certificate endpoin
 </td></tr>
 </tbody></table>
 
-#### PkiSecretBackendRoles
+#### pki_secret_backend_roles
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1119,7 +1119,7 @@ A list of URI SANs (Subject alternative names) this role is allowed to sign the 
 </td></tr>
 </tbody></table>
 
-#### Postgres
+#### postgres
 
 Establish a connection to a Postgres database
 
@@ -1184,7 +1184,7 @@ The maximum number of seconds to keep a connection alive for
 </td></tr>
 </tbody></table>
 
-#### TerraformConfig
+#### terraform_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1201,7 +1201,7 @@ The Terraform Cloud management token this backend should use to issue new tokens
 </td></tr>
 </tbody></table>
 
-#### TerraformSecretBackendRoles
+#### terraform_secret_backend_roles
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

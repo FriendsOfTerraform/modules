@@ -64,7 +64,7 @@ module "demo_nsg" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td><code>object(<a href="#azure">azure</a>)</code></td>
     <td width="100%">azure</td>
     <td></td>
 </tr>
@@ -124,7 +124,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#inboundsecurityrules">InboundSecurityRules</a>))</code></td>
+    <td><code>map(object(<a href="#inbound_security_rules">inbound_security_rules</a>))</code></td>
     <td width="100%">inbound_security_rules</td>
     <td><code>{}</code></td>
 </tr>
@@ -147,7 +147,7 @@ port_ranges         = ["3389"]
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#outboundsecurityrules">OutboundSecurityRules</a>))</code></td>
+    <td><code>map(object(<a href="#outbound_security_rules">outbound_security_rules</a>))</code></td>
     <td width="100%">outbound_security_rules</td>
     <td><code>{}</code></td>
 </tr>
@@ -190,7 +190,7 @@ The ID of the network security group
 
 ## Objects
 
-#### Azure
+#### azure
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -219,7 +219,7 @@ The name of an Azure location where the virtual network will be deployed. If uns
 </td></tr>
 </tbody></table>
 
-#### InboundSecurityRules
+#### inbound_security_rules
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -370,7 +370,7 @@ Defines a source [Service Tag][service-tag] that matches this rule. This option 
 </td></tr>
 </tbody></table>
 
-#### OutboundSecurityRules
+#### outbound_security_rules
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

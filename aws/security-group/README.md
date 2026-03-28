@@ -141,7 +141,7 @@ Description of the security group
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#egressrules">EgressRules</a>))</code></td>
+    <td><code>map(object(<a href="#egress_rules">egress_rules</a>))</code></td>
     <td width="100%">egress_rules</td>
     <td><code>{}</code></td>
 </tr>
@@ -157,7 +157,7 @@ Configures multiple [egress rules][security-group-rules].
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#ingressrules">IngressRules</a>))</code></td>
+    <td><code>map(object(<a href="#ingress_rules">ingress_rules</a>))</code></td>
     <td width="100%">ingress_rules</td>
     <td><code>{}</code></td>
 </tr>
@@ -205,7 +205,7 @@ ID of the security group
 
 ## Objects
 
-#### EgressRules
+#### egress_rules
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -246,7 +246,7 @@ Description for the egress rule
 </td></tr>
 </tbody></table>
 
-#### IngressRules
+#### ingress_rules
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
