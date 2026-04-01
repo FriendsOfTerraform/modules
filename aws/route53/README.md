@@ -897,7 +897,6 @@ The expression in `<statistic> <operator> <unit>` format. For example: `Average 
 - **ChildHealthCheckHealthyCount**: The number of child health checks that are healthy
   Statistics: Average (recommended), Minimum, Maximum
   Valid For Healthcheck Types: Calculated
-- **HealthCheckPercentageHealthy**: The percentage of Route 53 health checkers that consider the selected endpoint to be healthy.
   Statistics: Average, Minimum, Maximum
   Valid For Healthcheck Types: Endpoint, Cloudwatch Alarm
 - **HealthCheckStatus**: The status of the health check endpoint that CloudWatch is checking. 1 indicates healthy, and 0 indicates unhealthy.
@@ -909,6 +908,10 @@ The expression in `<statistic> <operator> <unit>` format. For example: `Average 
 ```
 (Average|Minimum|Maximum) (<=|<|>=|>) (\d+)
 ```
+
+Example Matches:
+
+- `"Average < 50"`
 
 **Since:** 2.0.0
 
