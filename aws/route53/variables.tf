@@ -119,7 +119,7 @@ variable "primary_private_zone_vpc_association" {
     region = optional(string, null)
   })
   description = <<EOT
-    The primary VPC ID this private hosted zone is used to resolve DNS queries for. 
+    The primary VPC ID this private hosted zone is used to resolve DNS queries for.
     Do not specify if you want to create a public hosted zone. Please read the Managing
     Cross-Account VPC Associations in the Known Limitation for more information and recommended
     usage. This will be removed when AWS updated a fix.
@@ -399,7 +399,6 @@ variable "records" {
         /// - **ChildHealthCheckHealthyCount**: The number of child health checks that are healthy
         ///   Statistics: Average (recommended), Minimum, Maximum
         ///   Valid For Healthcheck Types: Calculated
-        /// - **HealthCheckPercentageHealthy**: The percentage of Route 53 health checkers that consider the selected endpoint to be healthy.
         ///   Statistics: Average, Minimum, Maximum
         ///   Valid For Healthcheck Types: Endpoint, Cloudwatch Alarm
         /// - **HealthCheckStatus**: The status of the health check endpoint that CloudWatch is checking. 1 indicates healthy, and 0 indicates unhealthy.
@@ -407,7 +406,7 @@ variable "records" {
         ///   Valid For Healthcheck Types: All
         ///
         /// @since 2.0.0
-        /// @regex /(Average|Minimum|Maximum) (<=|<|>=|>) (\d+)/
+        /// @regex /(Average|Minimum|Maximum) (<=|<|>=|>) (\d+)/ "Average < 50"
         expression = string # statistic comparison_operator threshold
 
         /// The number of periods over which data is compared to the specified threshold.
