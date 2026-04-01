@@ -13,10 +13,11 @@ This Terraform module provides comprehensive management of [AWS GuardDuty](https
   - [With Suppression Rules](#with-suppression-rules)
   - [With Threat and Trusted IP Lists](#with-threat-and-trusted-ip-lists)
   - [With S3 Malware Protection](#with-s3-malware-protection)
-- [Argument Reference](#argument-reference)
-  - [Mandatory](#mandatory)
+- [Inputs](#inputs)
+  - [Required](#required)
   - [Optional](#optional)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Example Usage
 
@@ -183,6 +184,8 @@ module "guardduty_with_malware_protection" {
   }
 }
 ```
+
+<!-- TFDOCS_EXTRAS_START -->
 
 ## Argument Reference
 
@@ -470,3 +473,5 @@ None - all variables have sensible defaults.
 - (string) **`publishing_destination_id`** _[since v1.0.0]_
 
   The ID of the GuardDuty findings publishing destination (if configured)
+
+<!-- TFDOCS_EXTRAS_END -->

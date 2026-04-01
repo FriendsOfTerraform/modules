@@ -9,8 +9,11 @@ This module will create and configure an [Azure virtual network][azure-virtual-n
 - [Requirements](#requirements)
 - [Example Usage](#example-usage)
   - [Basic Usage](#basic-usage)
-- [Argument Reference](#argument-reference)
+- [Inputs](#inputs)
+  - [Required](#required)
+  - [Optional](#optional)
 - [Outputs](#outputs)
+- [Objects](#objects)
 
 ## Requirements
 
@@ -48,6 +51,8 @@ module "demo_vnet" {
   }
 }
 ```
+
+<!-- TFDOCS_EXTRAS_START -->
 
 ## Argument Reference
 
@@ -158,6 +163,8 @@ module "demo_vnet" {
 
   The ID of the virtual network
 
-[azure-virtual-network]: https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
-[azure-nat-gateway]: https://docs.microsoft.com/en-us/azure/virtual-network/nat-gateway/nat-overview
 [service-endpoints]: https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview
+
+<!-- TFDOCS_EXTRAS_END -->
+
+[azure-virtual-network]: https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
