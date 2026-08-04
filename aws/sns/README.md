@@ -167,7 +167,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#dataprotectionpolicy">DataProtectionPolicy</a>)</code></td>
+    <td><code>object(<a href="#data_protection_policy">data_protection_policy</a>)</code></td>
     <td width="100%">data_protection_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -183,7 +183,7 @@ Manages the [data protection policy][sns-data-protection-policy] for this topic.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#deliverypolicy">DeliveryPolicy</a>)</code></td>
+    <td><code>object(<a href="#delivery_policy">delivery_policy</a>)</code></td>
     <td width="100%">delivery_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -195,7 +195,7 @@ Topic wide delivery policy that tells SNS how to retry failed message deliveries
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#deliverystatuslogging">DeliveryStatusLogging</a>)</code></td>
+    <td><code>object(<a href="#delivery_status_logging">delivery_status_logging</a>)</code></td>
     <td width="100%">delivery_status_logging</td>
     <td><code>null</code></td>
 </tr>
@@ -243,7 +243,7 @@ Enable default message deduplication based on message content. If false, a dedup
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enableencryption">EnableEncryption</a>)</code></td>
+    <td><code>object(<a href="#enable_encryption">enable_encryption</a>)</code></td>
     <td width="100%">enable_encryption</td>
     <td><code>null</code></td>
 </tr>
@@ -255,7 +255,7 @@ Enables SNS encryption at-rest
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#subscriptions">Subscriptions</a>))</code></td>
+    <td><code>list(object(<a href="#subscriptions">subscriptions</a>))</code></td>
     <td width="100%">subscriptions</td>
     <td><code>[]</code></td>
 </tr>
@@ -303,7 +303,7 @@ The ARNs of the subscribers for this SNS topic
 
 ## Objects
 
-#### Audit
+#### audit
 
 Audit matching sensitive data and send audit result to a destination
 
@@ -323,7 +323,7 @@ The percentage of messages to audit for sensitive information. Valid value: betw
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#destinations">Destinations</a>)</code></td>
+    <td><code>object(<a href="#destinations">destinations</a>)</code></td>
     <td width="100%">destinations</td>
     <td></td>
 </tr>
@@ -336,7 +336,7 @@ The AWS services to send the audit finding results. Must specify at least one of
 </td></tr>
 </tbody></table>
 
-#### Configuration
+#### configuration
 
 Define Custom Data identifiers that can be used in data protection policy
 
@@ -357,11 +357,11 @@ Map of custom data identifiers in `{Name = Regex}` format
 </td></tr>
 </tbody></table>
 
-#### DataProtectionPolicy
+#### data_protection_policy
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#statements">Statements</a>))</code></td>
+    <td><code>map(object(<a href="#statements">statements</a>))</code></td>
     <td width="100%">statements</td>
     <td></td>
 </tr>
@@ -373,7 +373,7 @@ Manages multiple statements in this policy
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#configuration">Configuration</a>)</code></td>
+    <td><code>object(<a href="#configuration">configuration</a>)</code></td>
     <td width="100%">configuration</td>
     <td><code>null</code></td>
 </tr>
@@ -386,7 +386,7 @@ Define Custom Data identifiers that can be used in data protection policy
 </td></tr>
 </tbody></table>
 
-#### Deidentify
+#### deidentify
 
 De-identify matching sensitive data by either redacting them or masking them with a specific character. Must specify one and only one of the following: `mask_with_character`, `redact`
 
@@ -419,7 +419,7 @@ Completely removes the data
 </td></tr>
 </tbody></table>
 
-#### DeliveryPolicy
+#### delivery_policy
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -431,7 +431,7 @@ Completely removes the data
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#healthyretrypolicy">HealthyRetryPolicy</a>)</code></td>
+    <td><code>object(<a href="#healthy_retry_policy">healthy_retry_policy</a>)</code></td>
     <td width="100%">healthy_retry_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -443,7 +443,7 @@ Define the retry policy
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#throttlepolicy">ThrottlePolicy</a>)</code></td>
+    <td><code>object(<a href="#throttle_policy">throttle_policy</a>)</code></td>
     <td width="100%">throttle_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -455,7 +455,7 @@ Define the throttle policy
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#requestpolicy">RequestPolicy</a>)</code></td>
+    <td><code>object(<a href="#request_policy">request_policy</a>)</code></td>
     <td width="100%">request_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -468,7 +468,7 @@ Define the request policy
 </td></tr>
 </tbody></table>
 
-#### DeliveryStatusLogging
+#### delivery_status_logging
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -529,7 +529,7 @@ Arn of an IAM role that gives permission to SNS to write failed delivery logs to
 </td></tr>
 </tbody></table>
 
-#### Destinations
+#### destinations
 
 The AWS services to send the audit finding results. Must specify at least one of the following: `cloudwatch_log_group`, `s3_bucket_name`, `firehose_delivery_stream`
 
@@ -574,7 +574,7 @@ The name of a Kinese Firehose Delivery Stream to send audit results to
 </td></tr>
 </tbody></table>
 
-#### EnableEncryption
+#### enable_encryption
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -591,7 +591,7 @@ The ID of a KMS key used for encryption
 </td></tr>
 </tbody></table>
 
-#### HealthyRetryPolicy
+#### healthy_retry_policy
 
 Define the retry policy
 
@@ -691,7 +691,7 @@ The model for backoff between retries.
 </td></tr>
 </tbody></table>
 
-#### Operation
+#### operation
 
 The [operation to trigger][sns-data-protection-policy-operations] upon finding sensitive data as specified by this statement. You must specify one and only one of the following: `audit`, `deidentify`, `deny`
 
@@ -699,7 +699,7 @@ The [operation to trigger][sns-data-protection-policy-operations] upon finding s
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#audit">Audit</a>)</code></td>
+    <td><code>object(<a href="#audit">audit</a>)</code></td>
     <td width="100%">audit</td>
     <td><code>null</code></td>
 </tr>
@@ -711,7 +711,7 @@ Audit matching sensitive data and send audit result to a destination
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#deidentify">Deidentify</a>)</code></td>
+    <td><code>object(<a href="#deidentify">deidentify</a>)</code></td>
     <td width="100%">deidentify</td>
     <td><code>null</code></td>
 </tr>
@@ -723,7 +723,7 @@ De-identify matching sensitive data by either redacting them or masking them wit
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#deny">Deny</a>)</code></td>
+    <td><code>object(<a href="#deny">deny</a>)</code></td>
     <td width="100%">deny</td>
     <td><code>null</code></td>
 </tr>
@@ -736,7 +736,7 @@ Denies the delivery of the message if the message contains sensitive data
 </td></tr>
 </tbody></table>
 
-#### RequestPolicy
+#### request_policy
 
 Define the request policy
 
@@ -762,7 +762,7 @@ The content type of the notification being sent to HTTP/S endpoints.
 </td></tr>
 </tbody></table>
 
-#### Statements
+#### statements
 
 Manages multiple statements in this policy
 
@@ -811,7 +811,7 @@ A list of IAM principals this statement applies to
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#operation">Operation</a>)</code></td>
+    <td><code>object(<a href="#operation">operation</a>)</code></td>
     <td width="100%">operation</td>
     <td></td>
 </tr>
@@ -824,7 +824,7 @@ The [operation to trigger][sns-data-protection-policy-operations] upon finding s
 </td></tr>
 </tbody></table>
 
-#### Subscriptions
+#### subscriptions
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -941,7 +941,7 @@ ARN of the IAM role to publish to Kinesis Data Firehose delivery stream. Require
 </td></tr>
 </tbody></table>
 
-#### ThrottlePolicy
+#### throttle_policy
 
 Define the throttle policy
 

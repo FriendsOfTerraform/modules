@@ -77,7 +77,7 @@ module "rolesanywhere" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#trustanchors">TrustAnchors</a>))</code></td>
+    <td><code>map(object(<a href="#trust_anchors">trust_anchors</a>))</code></td>
     <td width="100%">trust_anchors</td>
     <td></td>
 </tr>
@@ -106,7 +106,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#profiles">Profiles</a>))</code></td>
+    <td><code>map(object(<a href="#profiles">profiles</a>))</code></td>
     <td width="100%">profiles</td>
     <td><code>{}</code></td>
 </tr>
@@ -174,7 +174,7 @@ Map of IDs of all trust anchors
 
 ## Objects
 
-#### CertificateAuthoritySource
+#### certificate_authority_source
 
 Specify the source of trust (Certificate authority source)
 
@@ -212,11 +212,11 @@ Specify the PEM-encoded private CA certificate bundle. Mutually exclusive to `aw
 </td></tr>
 </tbody></table>
 
-#### Profiles
+#### profiles
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#roles">Roles</a>))</code></td>
+    <td><code>map(object(<a href="#roles">roles</a>))</code></td>
     <td width="100%">roles</td>
     <td></td>
 </tr>
@@ -264,7 +264,7 @@ The number of seconds the vended session credentials are valid for. Defaults to 
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#sessionpolicy">SessionPolicy</a>)</code></td>
+    <td><code>object(<a href="#session_policy">session_policy</a>)</code></td>
     <td width="100%">session_policy</td>
     <td></td>
 </tr>
@@ -277,7 +277,7 @@ Specify [IAM session policies][iam-session-policy] that apply to the vended sess
 </td></tr>
 </tbody></table>
 
-#### Roles
+#### roles
 
 Manages multiple IAM roles that are attached to this profile
 
@@ -360,7 +360,7 @@ Specify the ARN of the policy that is used to set the permissions boundary for t
 </td></tr>
 </tbody></table>
 
-#### SessionPolicy
+#### session_policy
 
 Specify [IAM session policies][iam-session-policy] that apply to the vended session credentials
 
@@ -393,11 +393,11 @@ A list of `up to 10` managed policy ARNs that apply to the vended session creden
 </td></tr>
 </tbody></table>
 
-#### TrustAnchors
+#### trust_anchors
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#certificateauthoritysource">CertificateAuthoritySource</a>)</code></td>
+    <td><code>object(<a href="#certificate_authority_source">certificate_authority_source</a>)</code></td>
     <td width="100%">certificate_authority_source</td>
     <td></td>
 </tr>

@@ -127,7 +127,7 @@ The Autonomous System Number (ASN) for the AWS side of a Border Gateway Protocol
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#attachments">Attachments</a>))</code></td>
+    <td><code>map(object(<a href="#attachments">attachments</a>))</code></td>
     <td width="100%">attachments</td>
     <td><code>{}</code></td>
 </tr>
@@ -251,7 +251,7 @@ Enable equal cost multipath (ECMP) routing for VPN Connections that are attached
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#flowlogs">FlowLogs</a>))</code></td>
+    <td><code>map(object(<a href="#flow_logs">flow_logs</a>))</code></td>
     <td width="100%">flow_logs</td>
     <td><code>{}</code></td>
 </tr>
@@ -263,7 +263,7 @@ Configures multiple Transit gateway level flow logs.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#routetables">RouteTables</a>))</code></td>
+    <td><code>map(object(<a href="#route_tables">route_tables</a>))</code></td>
     <td width="100%">route_tables</td>
     <td><code>{}</code></td>
 </tr>
@@ -284,7 +284,7 @@ Manages multiple route tables.
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#transitgateway">TransitGateway</a>)</code></td>
+    <td><code>object(<a href="#transit_gateway">transit_gateway</a>)</code></td>
     <td width="100%">transit_gateway</td>
     <td></td>
 </tr>
@@ -299,7 +299,7 @@ Transit gateway
 
 ## Objects
 
-#### Attachments
+#### attachments
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -315,7 +315,7 @@ Additional tags for the attachment
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#flowlogs">FlowLogs</a>))</code></td>
+    <td><code>map(object(<a href="#flow_logs">flow_logs</a>))</code></td>
     <td width="100%">flow_logs</td>
     <td><code>{}</code></td>
 </tr>
@@ -327,7 +327,7 @@ Configures multiple attachment level flow logs.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#peeringconnection">PeeringConnection</a>)</code></td>
+    <td><code>object(<a href="#peering_connection">peering_connection</a>)</code></td>
     <td width="100%">peering_connection</td>
     <td><code>null</code></td>
 </tr>
@@ -339,7 +339,7 @@ Creates a new peering connection or accepting an incoming peering connection.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#vpc">Vpc</a>)</code></td>
+    <td><code>object(<a href="#vpc">vpc</a>)</code></td>
     <td width="100%">vpc</td>
     <td><code>null</code></td>
 </tr>
@@ -351,7 +351,7 @@ Creates a VPC attachment
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#vpn">Vpn</a>)</code></td>
+    <td><code>object(<a href="#vpn">vpn</a>)</code></td>
     <td width="100%">vpn</td>
     <td><code>null</code></td>
 </tr>
@@ -364,7 +364,7 @@ Creates a VPN attachment
 </td></tr>
 </tbody></table>
 
-#### CloudwatchLogs
+#### cloudwatch_logs
 
 Configures CloudWatch Logs as destination
 
@@ -397,7 +397,7 @@ Arn of an IAM role that [gives permission to flow logs to send logs to CloudWatc
 </td></tr>
 </tbody></table>
 
-#### Destination
+#### destination
 
 Where the flow log will be sent to. Must specify only one of the following: `cloudwatch_logs`, `s3`
 
@@ -405,7 +405,7 @@ Where the flow log will be sent to. Must specify only one of the following: `clo
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#cloudwatchlogs">CloudwatchLogs</a>)</code></td>
+    <td><code>object(<a href="#cloudwatch_logs">cloudwatch_logs</a>)</code></td>
     <td width="100%">cloudwatch_logs</td>
     <td><code>null</code></td>
 </tr>
@@ -417,7 +417,7 @@ Configures CloudWatch Logs as destination
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#s3">S3</a>)</code></td>
+    <td><code>object(<a href="#s3">s3</a>)</code></td>
     <td width="100%">s3</td>
     <td><code>null</code></td>
 </tr>
@@ -430,7 +430,7 @@ Configures S3 as destination
 </td></tr>
 </tbody></table>
 
-#### EnableTunnelActivityLog
+#### enable_tunnel_activity_log
 
 Tunnel activity log captures log messages for IPsec activity and DPD protocol messages.
 
@@ -468,11 +468,11 @@ The output log's format.
 </td></tr>
 </tbody></table>
 
-#### FlowLogs
+#### flow_logs
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#destination">Destination</a>)</code></td>
+    <td><code>object(<a href="#destination">destination</a>)</code></td>
     <td width="100%">destination</td>
     <td></td>
 </tr>
@@ -527,7 +527,7 @@ The type of traffic to capture.
 </td></tr>
 </tbody></table>
 
-#### PeeringConnection
+#### peering_connection
 
 Creates a new peering connection or accepting an incoming peering connection.
 
@@ -584,7 +584,7 @@ The region of the peer. If unspecified, the region of the current provider will 
 </td></tr>
 </tbody></table>
 
-#### RouteTables
+#### route_tables
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -637,7 +637,7 @@ List of attachment names to propagate routes to this route table
 </td></tr>
 </tbody></table>
 
-#### S3
+#### s3
 
 Configures S3 as destination
 
@@ -699,7 +699,7 @@ Indicates whether to partition the flow log per hour. This reduces the cost and 
 </td></tr>
 </tbody></table>
 
-#### TransitGateway
+#### transit_gateway
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -764,7 +764,7 @@ Identifier of the default propagation route table
 </td></tr>
 </tbody></table>
 
-#### Tunnel1Options
+#### tunnel1_options
 
 Configures advanced options for the first VPN tunnel
 
@@ -1070,7 +1070,7 @@ The action to take when establishing the VPN tunnel for a new or modified VPN co
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enabletunnelactivitylog">EnableTunnelActivityLog</a>)</code></td>
+    <td><code>object(<a href="#enable_tunnel_activity_log">enable_tunnel_activity_log</a>)</code></td>
     <td width="100%">enable_tunnel_activity_log</td>
     <td><code>null</code></td>
 </tr>
@@ -1083,7 +1083,7 @@ Tunnel activity log captures log messages for IPsec activity and DPD protocol me
 </td></tr>
 </tbody></table>
 
-#### Tunnel2Options
+#### tunnel2_options
 
 Configures advanced options for the second VPN tunnel
 
@@ -1389,7 +1389,7 @@ The action to take when establishing the VPN tunnel for a new or modified VPN co
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enabletunnelactivitylog">EnableTunnelActivityLog</a>)</code></td>
+    <td><code>object(<a href="#enable_tunnel_activity_log">enable_tunnel_activity_log</a>)</code></td>
     <td width="100%">enable_tunnel_activity_log</td>
     <td><code>null</code></td>
 </tr>
@@ -1402,7 +1402,7 @@ Tunnel activity log captures log messages for IPsec activity and DPD protocol me
 </td></tr>
 </tbody></table>
 
-#### Vpc
+#### vpc
 
 Creates a VPC attachment
 
@@ -1483,7 +1483,7 @@ When appliance mode is enabled, traffic flow between a source and destination us
 </td></tr>
 </tbody></table>
 
-#### Vpn
+#### vpn
 
 Creates a VPN attachment
 
@@ -1605,7 +1605,7 @@ The transport transit gateway attachment ID for the AWS Direct Connect gateway t
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#tunnel1options">Tunnel1Options</a>)</code></td>
+    <td><code>object(<a href="#tunnel1_options">tunnel1_options</a>)</code></td>
     <td width="100%">tunnel1_options</td>
     <td><code>null</code></td>
 </tr>
@@ -1617,7 +1617,7 @@ Configures advanced options for the first VPN tunnel
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#tunnel2options">Tunnel2Options</a>)</code></td>
+    <td><code>object(<a href="#tunnel2_options">tunnel2_options</a>)</code></td>
     <td width="100%">tunnel2_options</td>
     <td><code>null</code></td>
 </tr>

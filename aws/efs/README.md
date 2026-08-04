@@ -142,7 +142,7 @@ The name of the EFS file system. All associated resources will also have their n
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#accesspoints">AccessPoints</a>))</code></td>
+    <td><code>map(object(<a href="#access_points">access_points</a>))</code></td>
     <td width="100%">access_points</td>
     <td><code>{}</code></td>
 </tr>
@@ -206,7 +206,7 @@ Enables [EFS automatic backup][efs-automatic-backup].
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#encryption">Encryption</a>)</code></td>
+    <td><code>object(<a href="#encryption">encryption</a>)</code></td>
     <td width="100%">encryption</td>
     <td><code>{
   "enabled": true
@@ -232,7 +232,7 @@ Specify the JSON formatted [file system policy][efs-policy] for the EFS file sys
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#lifecyclepolicy">LifecyclePolicy</a>)</code></td>
+    <td><code>object(<a href="#lifecycle_policy">lifecycle_policy</a>)</code></td>
     <td width="100%">lifecycle_policy</td>
     <td><code>null</code></td>
 </tr>
@@ -244,7 +244,7 @@ Configures lifecycle policy.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#mounttargets">MountTargets</a>))</code></td>
+    <td><code>map(object(<a href="#mount_targets">mount_targets</a>))</code></td>
     <td width="100%">mount_targets</td>
     <td><code>{}</code></td>
 </tr>
@@ -289,7 +289,7 @@ Specify the throughput, measured in MiB/s, that you want to provision for the fi
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#replications">Replications</a>))</code></td>
+    <td><code>map(object(<a href="#replications">replications</a>))</code></td>
     <td width="100%">replications</td>
     <td><code>{}</code></td>
 </tr>
@@ -376,7 +376,7 @@ The ID that identifies the file system
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#efsmounttargets">EfsMountTargets</a>)</code></td>
+    <td><code>object(<a href="#efs_mount_targets">efs_mount_targets</a>)</code></td>
     <td width="100%">efs_mount_targets</td>
     <td></td>
 </tr>
@@ -388,7 +388,7 @@ Attributes of all mount targets for the file system
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#efsreplications">EfsReplications</a>)</code></td>
+    <td><code>object(<a href="#efs_replications">efs_replications</a>)</code></td>
     <td width="100%">efs_replications</td>
     <td></td>
 </tr>
@@ -415,7 +415,7 @@ The latest known metered size (in bytes) of data stored in the file system, the 
 
 ## Objects
 
-#### AccessPoints
+#### access_points
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -431,7 +431,7 @@ Additional tags for the access point
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#posixuser">PosixUser</a>)</code></td>
+    <td><code>object(<a href="#posix_user">posix_user</a>)</code></td>
     <td width="100%">posix_user</td>
     <td></td>
 </tr>
@@ -443,7 +443,7 @@ Configures the full POSIX identity on the access point that is used for all file
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#rootdirectorycreationpermissions">RootDirectoryCreationPermissions</a>)</code></td>
+    <td><code>object(<a href="#root_directory_creation_permissions">root_directory_creation_permissions</a>)</code></td>
     <td width="100%">root_directory_creation_permissions</td>
     <td></td>
 </tr>
@@ -469,7 +469,7 @@ Path on the EFS file system to expose as the root directory to NFS clients using
 </td></tr>
 </tbody></table>
 
-#### EfsMountTargets
+#### efs_mount_targets
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -534,7 +534,7 @@ The ID of the network interface that Amazon EFS created when it created the moun
 </td></tr>
 </tbody></table>
 
-#### EfsReplications
+#### efs_replications
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -563,7 +563,7 @@ The status of the replication
 </td></tr>
 </tbody></table>
 
-#### Encryption
+#### encryption
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -592,7 +592,7 @@ The Key ID or ARN of the KMS key that should be used to encrypt the file system.
 </td></tr>
 </tbody></table>
 
-#### LifecyclePolicy
+#### lifecycle_policy
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -637,7 +637,7 @@ Transitions a file from infrequent access storage back to primary storage.
 </td></tr>
 </tbody></table>
 
-#### MountTargets
+#### mount_targets
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -666,7 +666,7 @@ The address (within the address range of the specified subnet) at which the file
 </td></tr>
 </tbody></table>
 
-#### PosixUser
+#### posix_user
 
 Configures the full POSIX identity on the access point that is used for all file operations by NFS clients
 
@@ -711,7 +711,7 @@ Secondary POSIX group IDs used for all file system operations using this access 
 </td></tr>
 </tbody></table>
 
-#### Replications
+#### replications
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -740,7 +740,7 @@ The Key ID or ARN of the KMS key that should be used to encrypt the replica file
 </td></tr>
 </tbody></table>
 
-#### RootDirectoryCreationPermissions
+#### root_directory_creation_permissions
 
 Configures the permissions EFS use to create the specified root directory if the directory does not already exist
 

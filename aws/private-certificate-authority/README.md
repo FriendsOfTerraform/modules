@@ -140,7 +140,7 @@ module "external_intermediate_ca" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#subject">Subject</a>)</code></td>
+    <td><code>object(<a href="#subject">subject</a>)</code></td>
     <td width="100%">subject</td>
     <td></td>
 </tr>
@@ -210,7 +210,7 @@ Specify the type of the CA.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#crlconfiguration">CrlConfiguration</a>)</code></td>
+    <td><code>object(<a href="#crl_configuration">crl_configuration</a>)</code></td>
     <td width="100%">crl_configuration</td>
     <td><code>null</code></td>
 </tr>
@@ -241,7 +241,7 @@ Type of the public key algorithm and size, in bits, of the key pair that your CA
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#ocspconfiguration">OcspConfiguration</a>)</code></td>
+    <td><code>object(<a href="#ocsp_configuration">ocsp_configuration</a>)</code></td>
     <td width="100%">ocsp_configuration</td>
     <td><code>null</code></td>
 </tr>
@@ -291,7 +291,7 @@ Name of the algorithm your private CA uses to sign certificate requests.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#subordinatecaconfiguration">SubordinateCaConfiguration</a>)</code></td>
+    <td><code>object(<a href="#subordinate_ca_configuration">subordinate_ca_configuration</a>)</code></td>
     <td width="100%">subordinate_ca_configuration</td>
     <td><code>null</code></td>
 </tr>
@@ -399,7 +399,7 @@ The ID of the certificate authority
 
 ## Objects
 
-#### CreateS3Bucket
+#### create_s3_bucket
 
 Create a new S3 bucket to use as the CRL Distribution Point (CDP). This bucket is publicly accessible with S3 Block Public Access disabled, as required by AWS Private CA. Alternatively, to leave BPA enabled (S3 best practice) do not use this setting to create the bucket but use [CloudFront with a private S3 bucket][crl-cloudfront]. Mutually exclusive to `s3_bucket_name`
 
@@ -444,11 +444,11 @@ Whether S3 bucket versioning is enabled
 </td></tr>
 </tbody></table>
 
-#### CrlConfiguration
+#### crl_configuration
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#creates3bucket">CreateS3Bucket</a>)</code></td>
+    <td><code>object(<a href="#create_s3_bucket">create_s3_bucket</a>)</code></td>
     <td width="100%">create_s3_bucket</td>
     <td></td>
 </tr>
@@ -509,7 +509,7 @@ Validity period of the distributed CRLs in days
 </td></tr>
 </tbody></table>
 
-#### ImportCertificate
+#### import_certificate
 
 Import a subordinate CA certificate signed by an external CA. Mutually exclusive to `parent_ca_arn`
 
@@ -546,7 +546,7 @@ Specify the PEM-encoded subordinate CA certificate chain
 </td></tr>
 </tbody></table>
 
-#### OcspConfiguration
+#### ocsp_configuration
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -575,7 +575,7 @@ Specifies whether OCSP is enabled
 </td></tr>
 </tbody></table>
 
-#### Subject
+#### subject
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -652,11 +652,11 @@ State in which the subject of the certificate is located. For example: `"Califor
 </td></tr>
 </tbody></table>
 
-#### SubordinateCaConfiguration
+#### subordinate_ca_configuration
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#importcertificate">ImportCertificate</a>)</code></td>
+    <td><code>object(<a href="#import_certificate">import_certificate</a>)</code></td>
     <td width="100%">import_certificate</td>
     <td></td>
 </tr>

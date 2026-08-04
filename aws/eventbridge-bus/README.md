@@ -78,7 +78,7 @@ The name of the event bus
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#rules">Rules</a>))</code></td>
+    <td><code>map(object(<a href="#rules">rules</a>))</code></td>
     <td width="100%">rules</td>
     <td></td>
 </tr>
@@ -191,7 +191,7 @@ Name of the event bus
 
 ## Objects
 
-#### CapacityProviderStrategy
+#### capacity_provider_strategy
 
 The capacity provider strategy to use for the task. Mutually exclusive to `launch_type`
 
@@ -224,7 +224,7 @@ The base value designates how many tasks, at a minimum, to run on the specified 
 </td></tr>
 </tbody></table>
 
-#### ConfigureTargetInput
+#### configure_target_input
 
 Customize the text from an event before EventBridge passes the event to the target of a rule. Can only define only one of the following: `constant`, `input_transformer`. If this is not specified, the original event will be sent to the target
 
@@ -244,7 +244,7 @@ The JSON document to be sent to the target instead of the original event
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#inputtransformer">InputTransformer</a>)</code></td>
+    <td><code>object(<a href="#input_transformer">input_transformer</a>)</code></td>
     <td width="100%">input_transformer</td>
     <td><code>null</code></td>
 </tr>
@@ -257,7 +257,7 @@ Specify how to change some of the event text before passing it to the target. On
 </td></tr>
 </tbody></table>
 
-#### EcsTargetConfig
+#### ecs_target_config
 
 Configuration options for ECS target
 
@@ -277,7 +277,7 @@ The ARN of the task definition to use to create new ECS task
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#networkconfig">NetworkConfig</a>)</code></td>
+    <td><code>object(<a href="#network_config">network_config</a>)</code></td>
     <td width="100%">network_config</td>
     <td></td>
 </tr>
@@ -379,7 +379,7 @@ Specifies whether to propagate the tags from the task definition to the task.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#capacityproviderstrategy">CapacityProviderStrategy</a>))</code></td>
+    <td><code>map(object(<a href="#capacity_provider_strategy">capacity_provider_strategy</a>))</code></td>
     <td width="100%">capacity_provider_strategy</td>
     <td><code>{}</code></td>
 </tr>
@@ -392,7 +392,7 @@ The capacity provider strategy to use for the task. Mutually exclusive to `launc
 </td></tr>
 </tbody></table>
 
-#### HttpTargetConfig
+#### http_target_config
 
 Configuration options for HTTP and api gateway target
 
@@ -425,7 +425,7 @@ A map of query string parameters that are appended to the invoked endpoint.
 </td></tr>
 </tbody></table>
 
-#### InputTransformer
+#### input_transformer
 
 Specify how to change some of the event text before passing it to the target. One or more JSON paths are extracted from the event text and used in a template that you provide. Refer to [this documentation][eventbridge-input-transformer] for more information
 
@@ -458,7 +458,7 @@ The Input Template is a template for the information you want to pass to your ta
 </td></tr>
 </tbody></table>
 
-#### NetworkConfig
+#### network_config
 
 Configures networking options for the ECS task
 
@@ -503,7 +503,7 @@ Assign a public IP address to the ENI (Fargate launch type only).
 </td></tr>
 </tbody></table>
 
-#### RedshiftTargetConfig
+#### redshift_target_config
 
 Configuration options for Redshift target
 
@@ -572,7 +572,7 @@ Indicates whether to send an event back to EventBridge after the SQL statement r
 </td></tr>
 </tbody></table>
 
-#### RetryPolicy
+#### retry_policy
 
 Configures retry policy and dead-letter queue
 
@@ -617,7 +617,7 @@ The ARN of the SQS queue specified as the target for the dead-letter queue.
 </td></tr>
 </tbody></table>
 
-#### Rules
+#### rules
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -657,7 +657,7 @@ Specify the [event pattern][eventbridge-event-pattern] that this rule will be tr
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#targets">Targets</a>))</code></td>
+    <td><code>list(object(<a href="#targets">targets</a>))</code></td>
     <td width="100%">targets</td>
     <td></td>
 </tr>
@@ -670,7 +670,7 @@ Specify up to 5 targets to send the event to when the rule is triggered
 </td></tr>
 </tbody></table>
 
-#### Targets
+#### targets
 
 Specify up to 5 targets to send the event to when the rule is triggered
 
@@ -702,7 +702,7 @@ An execution role that EventBridge uses to send events to the target
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#configuretargetinput">ConfigureTargetInput</a>)</code></td>
+    <td><code>object(<a href="#configure_target_input">configure_target_input</a>)</code></td>
     <td width="100%">configure_target_input</td>
     <td></td>
 </tr>
@@ -714,7 +714,7 @@ Customize the text from an event before EventBridge passes the event to the targ
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#ecstargetconfig">EcsTargetConfig</a>)</code></td>
+    <td><code>object(<a href="#ecs_target_config">ecs_target_config</a>)</code></td>
     <td width="100%">ecs_target_config</td>
     <td><code>null</code></td>
 </tr>
@@ -726,7 +726,7 @@ Configuration options for ECS target
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#httptargetconfig">HttpTargetConfig</a>)</code></td>
+    <td><code>object(<a href="#http_target_config">http_target_config</a>)</code></td>
     <td width="100%">http_target_config</td>
     <td><code>null</code></td>
 </tr>
@@ -738,7 +738,7 @@ Configuration options for HTTP and api gateway target
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#redshifttargetconfig">RedshiftTargetConfig</a>)</code></td>
+    <td><code>object(<a href="#redshift_target_config">redshift_target_config</a>)</code></td>
     <td width="100%">redshift_target_config</td>
     <td><code>null</code></td>
 </tr>
@@ -750,7 +750,7 @@ Configuration options for Redshift target
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#retrypolicy">RetryPolicy</a>)</code></td>
+    <td><code>object(<a href="#retry_policy">retry_policy</a>)</code></td>
     <td width="100%">retry_policy</td>
     <td><code>{}</code></td>
 </tr>

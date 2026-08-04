@@ -382,7 +382,7 @@ The account ID of the expected bucket owner
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#corsconfigurations">CorsConfigurations</a>))</code></td>
+    <td><code>list(object(<a href="#cors_configurations">cors_configurations</a>))</code></td>
     <td width="100%">cors_configurations</td>
     <td><code>null</code></td>
 </tr>
@@ -394,7 +394,7 @@ Configures [cross-origin resource sharing (CORS)][s3-cors]
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enablesobjectlock">EnablesObjectLock</a>)</code></td>
+    <td><code>object(<a href="#enables_object_lock">enables_object_lock</a>)</code></td>
     <td width="100%">enables_object_lock</td>
     <td><code>null</code></td>
 </tr>
@@ -410,7 +410,7 @@ Configures [S3 Object Lock][s3-object-lock]. You must also set `versioning_enabl
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#encryptionconfig">EncryptionConfig</a>)</code></td>
+    <td><code>object(<a href="#encryption_config">encryption_config</a>)</code></td>
     <td width="100%">encryption_config</td>
     <td><code>null</code></td>
 </tr>
@@ -434,7 +434,7 @@ Force destroy of the bucket even if it is not empty
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#intelligenttieringarchiveconfigurations">IntelligentTieringArchiveConfigurations</a>))</code></td>
+    <td><code>map(object(<a href="#intelligent_tiering_archive_configurations">intelligent_tiering_archive_configurations</a>))</code></td>
     <td width="100%">intelligent_tiering_archive_configurations</td>
     <td><code>{}</code></td>
 </tr>
@@ -450,7 +450,7 @@ Configures [S3 intelligent tiering][s3-intelligent-tiering].
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#inventoryconfig">InventoryConfig</a>))</code></td>
+    <td><code>map(object(<a href="#inventory_config">inventory_config</a>))</code></td>
     <td width="100%">inventory_config</td>
     <td><code>{}</code></td>
 </tr>
@@ -466,7 +466,7 @@ Configures [S3 inventory][s3-inventory].
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#lifecyclerules">LifecycleRules</a>))</code></td>
+    <td><code>map(object(<a href="#lifecycle_rules">lifecycle_rules</a>))</code></td>
     <td width="100%">lifecycle_rules</td>
     <td><code>null</code></td>
 </tr>
@@ -482,7 +482,7 @@ Configures [S3 lifecycle rules][s3-lifecycle].
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#notificationconfig">NotificationConfig</a>)</code></td>
+    <td><code>object(<a href="#notification_config">notification_config</a>)</code></td>
     <td width="100%">notification_config</td>
     <td><code>null</code></td>
 </tr>
@@ -528,7 +528,7 @@ Text of the S3 policy document to attach
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#publicaccessblock">PublicAccessBlock</a>)</code></td>
+    <td><code>object(<a href="#public_access_block">public_access_block</a>)</code></td>
     <td width="100%">public_access_block</td>
     <td><code>null</code></td>
 </tr>
@@ -540,7 +540,7 @@ Configures bucket to [block public access][public-access]
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#replicationconfig">ReplicationConfig</a>)</code></td>
+    <td><code>object(<a href="#replication_config">replication_config</a>)</code></td>
     <td width="100%">replication_config</td>
     <td><code>null</code></td>
 </tr>
@@ -568,7 +568,7 @@ Enables [Requester Pays bucket][s3-requester-pays] so that the requester pays th
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#staticwebsitehostingconfig">StaticWebsiteHostingConfig</a>)</code></td>
+    <td><code>object(<a href="#static_website_hosting_config">static_website_hosting_config</a>)</code></td>
     <td width="100%">static_website_hosting_config</td>
     <td><code>null</code></td>
 </tr>
@@ -684,7 +684,7 @@ Website endpoint.
 
 ## Objects
 
-#### AdditionalReplicationOptions
+#### additional_replication_options
 
 Enables additional replication options
 
@@ -741,7 +741,7 @@ Replication Time Control replicates 99.99% of new objects within 15 minutes and 
 </td></tr>
 </tbody></table>
 
-#### ChangeObjectOwnershipToDestinationBucketOwner
+#### change_object_ownership_to_destination_bucket_owner
 
 Specifies the overrides to use for object owners on replication. Specify this only in a cross-account scenario (where source and destination bucket owners are not the same), and you want to change replica ownership to the AWS account that owns the destination bucket. If this is not specified in the replication configuration, the replicas are owned by same AWS account that owns the source object.
 
@@ -762,7 +762,7 @@ Account ID to specify the replica ownership
 </td></tr>
 </tbody></table>
 
-#### CorsConfigurations
+#### cors_configurations
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -847,7 +847,7 @@ Specify the time in seconds that your browser can cache the response for a prefl
 </td></tr>
 </tbody></table>
 
-#### DefaultRetention
+#### default_retention
 
 Configures default retention rule
 
@@ -885,7 +885,7 @@ Default Object Lock retention mode you want to apply to new objects placed in th
 </td></tr>
 </tbody></table>
 
-#### Destination
+#### destination
 
 Configures the destination where the report will be sent
 
@@ -918,11 +918,11 @@ Destination bucket arn. The current bucket will be used if set to `null`
 </td></tr>
 </tbody></table>
 
-#### EnablesObjectLock
+#### enables_object_lock
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#defaultretention">DefaultRetention</a>)</code></td>
+    <td><code>object(<a href="#default_retention">default_retention</a>)</code></td>
     <td width="100%">default_retention</td>
     <td></td>
 </tr>
@@ -951,7 +951,7 @@ Token to allow Object Lock to be enabled for an existing bucket. You must contac
 </td></tr>
 </tbody></table>
 
-#### EncryptInventoryReport
+#### encrypt_inventory_report
 
 Configures the type of server-side encryption to use to encrypt the inventory report
 
@@ -972,7 +972,7 @@ ARN of the KMS customer master key (CMK) used to encrypt the inventory file. If 
 </td></tr>
 </tbody></table>
 
-#### EncryptionConfig
+#### encryption_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1001,7 +1001,7 @@ CMK arn, encrypts bucket using `sse:kms`. If this is set to `null`, `sse:s3` wil
 </td></tr>
 </tbody></table>
 
-#### Expiration
+#### expiration
 
 Expiration configuration to expires current objects
 
@@ -1034,7 +1034,7 @@ Expires objects after x days
 </td></tr>
 </tbody></table>
 
-#### Filter
+#### filter
 
 Limit the scope of this configuration using one or more filters
 
@@ -1067,7 +1067,7 @@ Object key name prefix that identifies the subset of objects to which the config
 </td></tr>
 </tbody></table>
 
-#### IntelligentTieringArchiveConfigurations
+#### intelligent_tiering_archive_configurations
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1107,7 +1107,7 @@ Number of consecutive days of no access after which an object will be eligible t
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#filter">Filter</a>)</code></td>
+    <td><code>object(<a href="#filter">filter</a>)</code></td>
     <td width="100%">filter</td>
     <td></td>
 </tr>
@@ -1120,7 +1120,7 @@ Limit the scope of this configuration using one or more filters
 </td></tr>
 </tbody></table>
 
-#### InventoryConfig
+#### inventory_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1176,7 +1176,7 @@ List of optional metadata to be included in the inventory results.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#destination">Destination</a>)</code></td>
+    <td><code>object(<a href="#destination">destination</a>)</code></td>
     <td width="100%">destination</td>
     <td></td>
 </tr>
@@ -1188,7 +1188,7 @@ Configures the destination where the report will be sent
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#encryptinventoryreport">EncryptInventoryReport</a>)</code></td>
+    <td><code>object(<a href="#encrypt_inventory_report">encrypt_inventory_report</a>)</code></td>
     <td width="100%">encrypt_inventory_report</td>
     <td></td>
 </tr>
@@ -1200,7 +1200,7 @@ Configures the type of server-side encryption to use to encrypt the inventory re
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#filter">Filter</a>)</code></td>
+    <td><code>object(<a href="#filter">filter</a>)</code></td>
     <td width="100%">filter</td>
     <td></td>
 </tr>
@@ -1243,7 +1243,7 @@ Specifies the output format of the inventory results.
 </td></tr>
 </tbody></table>
 
-#### LifecycleRules
+#### lifecycle_rules
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1259,7 +1259,7 @@ Delete failed multipart uploads after x days
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#expiration">Expiration</a>)</code></td>
+    <td><code>object(<a href="#expiration">expiration</a>)</code></td>
     <td width="100%">expiration</td>
     <td></td>
 </tr>
@@ -1271,7 +1271,7 @@ Expiration configuration to expires current objects
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#filter">Filter</a>)</code></td>
+    <td><code>object(<a href="#filter">filter</a>)</code></td>
     <td width="100%">filter</td>
     <td></td>
 </tr>
@@ -1283,7 +1283,7 @@ Limit the scope of this configuration using one or more filters
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#noncurrentversionexpiration">NoncurrentVersionExpiration</a>)</code></td>
+    <td><code>object(<a href="#noncurrent_version_expiration">noncurrent_version_expiration</a>)</code></td>
     <td width="100%">noncurrent_version_expiration</td>
     <td></td>
 </tr>
@@ -1295,7 +1295,7 @@ Expiration configuration to expires noncurrent s3 objects
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#noncurrentversiontransitions">NoncurrentVersionTransitions</a>))</code></td>
+    <td><code>list(object(<a href="#noncurrent_version_transitions">noncurrent_version_transitions</a>))</code></td>
     <td width="100%">noncurrent_version_transitions</td>
     <td></td>
 </tr>
@@ -1307,7 +1307,7 @@ Transitions noncurrent s3 objects to other storage class.
 
 </td></tr>
 <tr>
-    <td><code>list(object(<a href="#transitions">Transitions</a>))</code></td>
+    <td><code>list(object(<a href="#transitions">transitions</a>))</code></td>
     <td width="100%">transitions</td>
     <td></td>
 </tr>
@@ -1320,7 +1320,7 @@ Transitions s3 objects to other storage class.
 </td></tr>
 </tbody></table>
 
-#### NoncurrentVersionExpiration
+#### noncurrent_version_expiration
 
 Expiration configuration to expires noncurrent s3 objects
 
@@ -1353,7 +1353,7 @@ Number of noncurrent versions Amazon S3 will retain
 </td></tr>
 </tbody></table>
 
-#### NoncurrentVersionTransitions
+#### noncurrent_version_transitions
 
 Transitions noncurrent s3 objects to other storage class.
 
@@ -1407,7 +1407,7 @@ Number of noncurrent versions Amazon S3 will retain
 </td></tr>
 </tbody></table>
 
-#### NotificationConfig
+#### notification_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1424,7 +1424,7 @@ Map of event notification in {destinationARN = [events]}. Supported AWS services
 </td></tr>
 </tbody></table>
 
-#### PublicAccessBlock
+#### public_access_block
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -1477,7 +1477,7 @@ Whether Amazon S3 should restrict public bucket policies for this bucket
 </td></tr>
 </tbody></table>
 
-#### RedirectRequestsForAnObject
+#### redirect_requests_for_an_object
 
 Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `static_website`
 
@@ -1515,7 +1515,7 @@ Protocol to use when redirecting requests. The default is the protocol that is u
 </td></tr>
 </tbody></table>
 
-#### ReplicateEncryptedObjects
+#### replicate_encrypted_objects
 
 Specifies whether encrypted objects will be replicated
 
@@ -1536,11 +1536,11 @@ ARN of the customer managed AWS KMS key stored in AWS Key Management Service (KM
 </td></tr>
 </tbody></table>
 
-#### ReplicationConfig
+#### replication_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#rules">Rules</a>))</code></td>
+    <td><code>map(object(<a href="#rules">rules</a>))</code></td>
     <td width="100%">rules</td>
     <td></td>
 </tr>
@@ -1581,7 +1581,7 @@ Token to allow replication to be enabled on an Object Lock-enabled bucket. You m
 </td></tr>
 </tbody></table>
 
-#### Rules
+#### rules
 
 Configures bucket replication rules. In {rule_name = replication_config} format
 
@@ -1613,7 +1613,7 @@ Priority associated with the rule. Priority must be unique between multiple rule
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#additionalreplicationoptions">AdditionalReplicationOptions</a>)</code></td>
+    <td><code>object(<a href="#additional_replication_options">additional_replication_options</a>)</code></td>
     <td width="100%">additional_replication_options</td>
     <td></td>
 </tr>
@@ -1625,7 +1625,7 @@ Enables additional replication options
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#changeobjectownershiptodestinationbucketowner">ChangeObjectOwnershipToDestinationBucketOwner</a>)</code></td>
+    <td><code>object(<a href="#change_object_ownership_to_destination_bucket_owner">change_object_ownership_to_destination_bucket_owner</a>)</code></td>
     <td width="100%">change_object_ownership_to_destination_bucket_owner</td>
     <td></td>
 </tr>
@@ -1649,7 +1649,7 @@ Specify the destination storage class. Defaults to the same storage class of the
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#filter">Filter</a>)</code></td>
+    <td><code>object(<a href="#filter">filter</a>)</code></td>
     <td width="100%">filter</td>
     <td></td>
 </tr>
@@ -1661,7 +1661,7 @@ Limit the scope of this configuration using one or more filters
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#replicateencryptedobjects">ReplicateEncryptedObjects</a>)</code></td>
+    <td><code>object(<a href="#replicate_encrypted_objects">replicate_encrypted_objects</a>)</code></td>
     <td width="100%">replicate_encrypted_objects</td>
     <td></td>
 </tr>
@@ -1674,7 +1674,7 @@ Specifies whether encrypted objects will be replicated
 </td></tr>
 </tbody></table>
 
-#### StaticWebsite
+#### static_website
 
 Manages documents S3 returns when a request is made to its web endpoint. Mutually exclusive to `redirect_requests_for_an_object`
 
@@ -1707,11 +1707,11 @@ Document to return in case of a 4XX error
 </td></tr>
 </tbody></table>
 
-#### StaticWebsiteHostingConfig
+#### static_website_hosting_config
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#redirectrequestsforanobject">RedirectRequestsForAnObject</a>)</code></td>
+    <td><code>object(<a href="#redirect_requests_for_an_object">redirect_requests_for_an_object</a>)</code></td>
     <td width="100%">redirect_requests_for_an_object</td>
     <td></td>
 </tr>
@@ -1723,7 +1723,7 @@ Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `sta
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#staticwebsite">StaticWebsite</a>)</code></td>
+    <td><code>object(<a href="#static_website">static_website</a>)</code></td>
     <td width="100%">static_website</td>
     <td></td>
 </tr>
@@ -1736,7 +1736,7 @@ Manages documents S3 returns when a request is made to its web endpoint. Mutuall
 </td></tr>
 </tbody></table>
 
-#### Transitions
+#### transitions
 
 Transitions s3 objects to other storage class.
 

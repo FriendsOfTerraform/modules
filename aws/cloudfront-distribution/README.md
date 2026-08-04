@@ -85,7 +85,7 @@ module "basic_usage" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#behaviors">Behaviors</a>))</code></td>
+    <td><code>map(object(<a href="#behaviors">behaviors</a>))</code></td>
     <td width="100%">behaviors</td>
     <td></td>
 </tr>
@@ -103,7 +103,7 @@ precedence 0. The default behavior (`"*"`) must be specified.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#origins">Origins</a>))</code></td>
+    <td><code>map(object(<a href="#origins">origins</a>))</code></td>
     <td width="100%">origins</td>
     <td></td>
 </tr>
@@ -161,7 +161,7 @@ served by this distribution
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#customerrorresponses">CustomErrorResponses</a>))</code></td>
+    <td><code>map(object(<a href="#custom_error_responses">custom_error_responses</a>))</code></td>
     <td width="100%">custom_error_responses</td>
     <td><code>{}</code></td>
 </tr>
@@ -219,7 +219,7 @@ Whether IPv6 is enabled for the distribution.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#geographicrestrictions">GeographicRestrictions</a>)</code></td>
+    <td><code>object(<a href="#geographic_restrictions">geographic_restrictions</a>)</code></td>
     <td width="100%">geographic_restrictions</td>
     <td><code>null</code></td>
 </tr>
@@ -252,7 +252,7 @@ Specify the max HTTP version this distribution supports.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#origingroups">OriginGroups</a>))</code></td>
+    <td><code>map(object(<a href="#origin_groups">origin_groups</a>))</code></td>
     <td width="100%">origin_groups</td>
     <td><code>{}</code></td>
 </tr>
@@ -291,7 +291,7 @@ Specify the price class for this distribution.
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#viewercertificate">ViewerCertificate</a>)</code></td>
+    <td><code>object(<a href="#viewer_certificate">viewer_certificate</a>)</code></td>
     <td width="100%">viewer_certificate</td>
     <td><code>{}</code></td>
 </tr>
@@ -360,7 +360,7 @@ Identifier for the distribution
 
 ## Objects
 
-#### Behaviors
+#### behaviors
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -527,7 +527,7 @@ when a request matches.
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#functionassociations">FunctionAssociations</a>))</code></td>
+    <td><code>map(object(<a href="#function_associations">function_associations</a>))</code></td>
     <td width="100%">function_associations</td>
     <td><code>{}</code></td>
 </tr>
@@ -550,7 +550,7 @@ available for `"viewer-request"` and `"viewer-response"` event types.
 </td></tr>
 </tbody></table>
 
-#### CustomErrorResponses
+#### custom_error_responses
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -593,7 +593,7 @@ Specify the path to the custom error response page.
 </td></tr>
 </tbody></table>
 
-#### CustomOriginConfig
+#### custom_origin_config
 
 Configurations for [CloudFront custom origins][cloudfront-origins]
 
@@ -690,7 +690,7 @@ origin, from `1 - 60`
 </td></tr>
 </tbody></table>
 
-#### EnableOriginShield
+#### enable_origin_shield
 
 [Origin shield][cloudfront-origin-shield] is an additional caching layer
 that can help reduce the load on your origin and help protect its
@@ -713,7 +713,7 @@ Specify the origin shield region
 </td></tr>
 </tbody></table>
 
-#### FunctionAssociations
+#### function_associations
 
 Associate multiple edge functions (CloudFront Function or Lambda@Edge) to
 various CloudFront events. With edge functions you can write your own code
@@ -757,7 +757,7 @@ HTTP request.
 </td></tr>
 </tbody></table>
 
-#### GeographicRestrictions
+#### geographic_restrictions
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -788,7 +788,7 @@ Blacklist a list of locations in this distribution. Please refer to
 </td></tr>
 </tbody></table>
 
-#### OriginAccess
+#### origin_access
 
 You can limit the access to your origin to only authenticated requests
 from CloudFront. We recommend using origin access control (OAC) in favor
@@ -826,7 +826,7 @@ Mutually exclusive to `origin_access_control_id`
 </td></tr>
 </tbody></table>
 
-#### OriginGroups
+#### origin_groups
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -856,7 +856,7 @@ response status codes that indicate a failure
 </td></tr>
 </tbody></table>
 
-#### Origins
+#### origins
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -916,7 +916,7 @@ Specify a URL path to append to the origin domain name for origin requests
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#customoriginconfig">CustomOriginConfig</a>)</code></td>
+    <td><code>object(<a href="#custom_origin_config">custom_origin_config</a>)</code></td>
     <td width="100%">custom_origin_config</td>
     <td><code>null</code></td>
 </tr>
@@ -928,7 +928,7 @@ Configurations for [CloudFront custom origins][cloudfront-origins]
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#enableoriginshield">EnableOriginShield</a>)</code></td>
+    <td><code>object(<a href="#enable_origin_shield">enable_origin_shield</a>)</code></td>
     <td width="100%">enable_origin_shield</td>
     <td><code>null</code></td>
 </tr>
@@ -942,7 +942,7 @@ availability
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#s3originconfig">S3OriginConfig</a>)</code></td>
+    <td><code>object(<a href="#s3_origin_config">s3_origin_config</a>)</code></td>
     <td width="100%">s3_origin_config</td>
     <td><code>null</code></td>
 </tr>
@@ -955,7 +955,7 @@ Configurations for [S3 origins][cloudfront-origins]
 </td></tr>
 </tbody></table>
 
-#### S3OriginConfig
+#### s3_origin_config
 
 Configurations for [S3 origins][cloudfront-origins]
 
@@ -963,7 +963,7 @@ Configurations for [S3 origins][cloudfront-origins]
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#originaccess">OriginAccess</a>)</code></td>
+    <td><code>object(<a href="#origin_access">origin_access</a>)</code></td>
     <td width="100%">origin_access</td>
     <td></td>
 </tr>
@@ -979,7 +979,7 @@ including support of S3 buckets in all AWS Regions.
 </td></tr>
 </tbody></table>
 
-#### ViewerCertificate
+#### viewer_certificate
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>

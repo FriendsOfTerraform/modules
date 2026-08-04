@@ -68,7 +68,7 @@ module "Front Door" {
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>object(<a href="#azure">Azure</a>)</code></td>
+    <td><code>object(<a href="#azure">azure</a>)</code></td>
     <td width="100%">azure</td>
     <td></td>
 </tr>
@@ -128,7 +128,7 @@ Additional tags for all resources deployed with this module
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#endpoints">Endpoints</a>))</code></td>
+    <td><code>map(object(<a href="#endpoints">endpoints</a>))</code></td>
     <td width="100%">endpoints</td>
     <td><code>{}</code></td>
 </tr>
@@ -140,7 +140,7 @@ Defines Front Door endpoints with associating routes
 
 </td></tr>
 <tr>
-    <td><code>map(object(<a href="#origingroups">OriginGroups</a>))</code></td>
+    <td><code>map(object(<a href="#origin_groups">origin_groups</a>))</code></td>
     <td width="100%">origin_groups</td>
     <td><code>{}</code></td>
 </tr>
@@ -182,14 +182,9 @@ Define the tier of the Front Door service.
 </td></tr>
 </tbody></table>
 
-## Outputs
-
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
-        </tbody></table>
-
 ## Objects
 
-#### Azure
+#### azure
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
@@ -218,11 +213,11 @@ The name of an Azure location where the Front Door will be deployed. If unspecif
 </td></tr>
 </tbody></table>
 
-#### Endpoints
+#### endpoints
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#routes">Routes</a>))</code></td>
+    <td><code>map(object(<a href="#routes">routes</a>))</code></td>
     <td width="100%">routes</td>
     <td></td>
 </tr>
@@ -259,7 +254,7 @@ Additional tags for the endpoint
 </td></tr>
 </tbody></table>
 
-#### HealthProbe
+#### health_probe
 
 Configures the health probe of this origin group
 
@@ -326,7 +321,7 @@ Specifies the path relative to the origin that is used to determine the health o
 </td></tr>
 </tbody></table>
 
-#### LoadBalancing
+#### load_balancing
 
 Configure the load balancing settings to define what sample set we need to use to call the backend as healthy or unhealthy
 
@@ -371,11 +366,11 @@ Successful samples required to declare the backend healthy. Possible values are 
 </td></tr>
 </tbody></table>
 
-#### OriginGroups
+#### origin_groups
 
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
-    <td><code>map(object(<a href="#origins">Origins</a>))</code></td>
+    <td><code>map(object(<a href="#origins">origins</a>))</code></td>
     <td width="100%">origins</td>
     <td></td>
 </tr>
@@ -399,7 +394,7 @@ Specifies whether session affinity should be enabled on this host
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#healthprobe">HealthProbe</a>)</code></td>
+    <td><code>object(<a href="#health_probe">health_probe</a>)</code></td>
     <td width="100%">health_probe</td>
     <td></td>
 </tr>
@@ -411,7 +406,7 @@ Configures the health probe of this origin group
 
 </td></tr>
 <tr>
-    <td><code>object(<a href="#loadbalancing">LoadBalancing</a>)</code></td>
+    <td><code>object(<a href="#load_balancing">load_balancing</a>)</code></td>
     <td width="100%">load_balancing</td>
     <td></td>
 </tr>
@@ -424,7 +419,7 @@ Configure the load balancing settings to define what sample set we need to use t
 </td></tr>
 </tbody></table>
 
-#### Origins
+#### origins
 
 Defines a map of origins, in `origin_name = {configuration}` format
 
@@ -529,7 +524,7 @@ Enables the origin
 </td></tr>
 </tbody></table>
 
-#### Routes
+#### routes
 
 Defines a map of routes, in `route_name = {configuration}` format
 
