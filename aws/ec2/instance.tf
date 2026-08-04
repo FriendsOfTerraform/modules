@@ -1,6 +1,17 @@
 resource "aws_instance" "ec2_instance" {
   ami = var.ami_id
 
+  dynamic "cpu_options" {
+    for_each = var.cpu_options != null ? [1] : []
+
+    content {
+      amd_sev_snp           = var.cpu_options.enable_amd_sev_snp ? "enabled" : "disabled"
+      core_count            = var.cpu_options.core_count
+      threads_per_core      = var.cpu_options.threads_per_core
+      nested_virtualization = var.cpu_options.enable_nested_virtualization ? "enabled" : "disabled"
+    }
+  }
+
   dynamic "credit_specification" {
     for_each = startswith(var.instance_type, "t") ? [1] : []
 
@@ -9,13 +20,14 @@ resource "aws_instance" "ec2_instance" {
     }
   }
 
-  disable_api_stop        = var.enable_instance_stop_protection
-  disable_api_termination = var.enable_instance_termination_protection
-  get_password_data       = var.get_windows_password
-  hibernation             = var.enable_instance_hibernation
-  iam_instance_profile    = var.iam_role_name != null ? aws_iam_instance_profile.iam_instance_profile[0].id : null
-  instance_type           = var.instance_type
-  key_name                = var.key_pair_name
+  associate_public_ip_address = var.network_interface.auto_assign_public_ip
+  disable_api_stop            = var.enable_instance_stop_protection
+  disable_api_termination     = var.enable_instance_termination_protection
+  get_password_data           = var.get_windows_password
+  hibernation                 = var.enable_instance_hibernation
+  iam_instance_profile        = var.iam_role_name != null ? aws_iam_instance_profile.iam_instance_profile[0].id : null
+  instance_type               = var.instance_type
+  key_name                    = var.key_pair_name
 
   maintenance_options {
     auto_recovery = var.enable_auto_recovery ? "default" : "disabled"
@@ -33,8 +45,11 @@ resource "aws_instance" "ec2_instance" {
 
   monitoring = var.enable_detailed_monitoring
 
-  network_interface {
-    device_index         = 0
+  enclave_options {
+    enabled = var.enable_nitro_enclaves
+  }
+
+  primary_network_interface {
     network_interface_id = aws_network_interface.primary_network_interface.id
   }
 
@@ -63,6 +78,25 @@ resource "aws_instance" "ec2_instance" {
     throughput  = var.ebs_volume.throughput
     volume_size = var.ebs_volume.size
     volume_type = var.ebs_volume.volume_type
+  }
+
+  dynamic "instance_market_options" {
+    for_each = var.purchasing_option != null ? [1] : []
+
+    content {
+      market_type = var.purchasing_option.spot_instance != null ? "spot" : "spot" // Default to spot if not specified
+
+      dynamic "spot_options" {
+        for_each = var.purchasing_option.spot_instance != null ? [1] : []
+
+        content {
+          instance_interruption_behavior = var.purchasing_option.spot_instance.interruption_behavior
+          max_price                      = var.purchasing_option.spot_instance.maximum_price
+          spot_instance_type             = var.purchasing_option.spot_instance.request_type
+          valid_until                    = var.purchasing_option.spot_instance.request_expiry_date
+        }
+      }
+    }
   }
 
   tags = merge(

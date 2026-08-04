@@ -92,6 +92,11 @@ variable "network_interface" {
     /// @since 1.0.0
     additional_tags = optional(map(string), {})
 
+    /// Assign a public IPv4 address to a network interface. This option can be enabled for any network interface but will only apply to the primary network interface
+    ///
+    /// @since 1.0.0
+    auto_assign_public_ip = optional(bool, false)
+
     /// Specify the description of the ENI
     ///
     /// @since 1.0.0
@@ -349,6 +354,39 @@ variable "cpu_credit_specification" {
   default     = "standard"
 }
 
+variable "cpu_options" {
+  type = object({
+    /// Sets the number of CPU cores for an instance. This option is only supported on creation of instance type that support CPU Options.
+    ///
+    /// @link {cpu-options} https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html#cpu-options-supported-instances-values
+    /// @since 1.1.0
+    core_count = optional(number, null)
+
+    /// Indicates whether to enable the instance for AMD SEV-SNP. AMD SEV-SNP is supported with M6a, R6a, and C6a instance types only
+    ///
+    /// @since 1.1.0
+    enable_amd_sev_snp = optional(bool, null)
+
+    /// Indicates whether to enable the instance for nested virtualization. Nested virtualization is supported on 8th generation Intel-based instance types (C8i, M8i, R8i, and their flex variants) only.  
+    /// When nested virtualization is enabled, Virtual Secure Mode (VSM) is automatically disabled for the instance.
+    ///
+    /// @since 1.1.0
+    enable_nested_virtualization = optional(bool, null)
+
+    /// If set to 1, hyperthreading is disabled on the launched instance. Defaults to 2 if not set. has no effect unless `core_count` is also set
+    ///
+    /// @link {cpu-options} https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html#cpu-options-supported-instances-values
+    /// @since 1.1.0
+    threads_per_core = optional(number, null)
+  })
+  description = <<EOT
+    Configures CPU options for this instance.
+
+    @since 1.1.0
+  EOT
+  default     = {}
+}
+
 variable "enable_auto_recovery" {
   type        = bool
   description = <<EOT
@@ -401,6 +439,17 @@ variable "enable_instance_stop_protection" {
 
     @link {instance-stop-protection} https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection
     @since 1.0.0
+  EOT
+  default     = false
+}
+
+variable "enable_nitro_enclaves" {
+  type        = bool
+  description = <<EOT
+    A Nitro Enclave is a trusted execution environment (TEE) in which you can securely process sensitive data. 
+    It extends the security and isolation characteristics of the AWS Nitro System and allows you to create isolated compute environments within Amazon EC2 instances.
+
+    @since 1.1.0
   EOT
   default     = false
 }
@@ -462,6 +511,45 @@ variable "instance_type" {
     @since 1.0.0
   EOT
   default     = "t2.micro"
+}
+
+variable "purchasing_option" {
+  type = object({
+    /// Request Spot Instances at the Spot price, capped at the On-Demand price`
+    ///
+    /// @since 1.1.0
+    spot_instances = optional(object({
+      /// The behavior when a Spot Instance is interrupted. Valid values: 
+      /// `request_type = "persistent"`: `"hibernate"`, `"stop"`
+      /// `request_type = "one-time"`: `"terminate"`
+      ///
+      /// @since 1.1.0
+      interruption_behavior = optional(string, "terminate")
+      /// The maximum price per instance hour that you’re willing to pay. If you do not specify a value, 
+      /// your maximum price is the value specified in the launch template. If the launch template does not specify a maximum price, 
+      /// you are charged the Spot price, capped at the On-Demand price.
+      ///
+      /// @since 1.1.0      
+      maximum_price = optional(string, null)
+      /// The expiration date for a persistent Spot request. Valid only for persistent requests. 
+      /// If you do not specify a date, EC2 uses the date specified in the launch template. 
+      /// If the launch template does not specify an expiration date, a persistent request remains active until you cancel it.
+      /// Valid value in UTC format `"YYYY-MM-DDTHH:MM:SSZ"`
+      ///
+      /// @since 1.1.0
+      request_expiry_date = optional(string, null)
+      /// Specify a persistent request so that interrupted Spot Instances are requested again. one-time requests are not re-requested after interruption. Valid values: `"persistent"`, `"one-time"`
+      ///
+      /// @since 1.1.0      
+      request_type = optional(string, "one-time")
+    }), null)
+  })
+  description = <<EOT
+    Launch instances into Spot Instances, Capacity Blocks, or Interruptible Capacity Reservations
+
+    @since 1.1.0
+  EOT
+  default     = null
 }
 
 variable "resource_based_naming_options" {
