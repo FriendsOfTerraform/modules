@@ -12,6 +12,9 @@ This module configures Amazon [Simple Email Service (SES)](https://aws.amazon.co
     - [Configuration Sets](#configuration-sets)
     - [Dedicated IP Pools](#dedicated-ip-pools)
     - [Custom Mail From Domain](#custom-mail-from-domain)
+    - [Authorization Policies](#authorization-policies)
+    - [Tenants](#tenants)
+    - [Virtual Deliverability Manager](#virtual-deliverability-manager)
 - [Argument Reference](#argument-reference)
     - [Mandatory](#mandatory)
     - [Optional](#optional)
@@ -21,37 +24,32 @@ This module configures Amazon [Simple Email Service (SES)](https://aws.amazon.co
 
 ### Basic Usage
 
-This example creates a simple email identity and configuration set
+This example creates domain and email address identities
 
 ```terraform
 module "ses_basic" {
   source = "github.com/FriendsOfTerraform/aws-ses.git?ref=v1.0.0"
 
-  domains = {
-    # Manages multiple domain
-    # Keys of the map are the domain names
-    "example.com" = {
-      email_addresses = {
-        # Manages multiple email addresses
-        # Keys of the map are the email addresses
-        # Email addresses can either include or omit the domain name
-        peter = {}
-        "stewie@example.com" = {}
-      }
-    }
+  identities = {
+    # Domain identities (entries without @)
+    "example.com" = {}
+
+    # Email address identities (entries with @)
+    "peter@example.com"  = {}
+    "stewie@example.com" = {}
   }
 }
 ```
 
 ### Email Identities with DKIM
 
-This example creates email identities with DKIM configuration and email addresses
+This example creates email identities with DKIM configuration
 
 ```terraform
 module "ses_with_dkim" {
   source = "github.com/FriendsOfTerraform/aws-ses.git?ref=v1.0.0"
 
-  domains = {
+  identities = {
     "example.com" = {
       additional_tags = {
         Environment = "production"
@@ -66,18 +64,17 @@ module "ses_with_dkim" {
           signing_key_length = "RSA_2048_BIT"
         }
       }
+    }
 
-      email_addresses = {
-        "noreply@example.com" = {
-          additional_tags = {
-            Type = "noreply"
-          }
-        }
-        "support@example.com" = {
-          additional_tags = {
-            Type = "support"
-          }
-        }
+    "noreply@example.com" = {
+      additional_tags = {
+        Type = "noreply"
+      }
+    }
+
+    "support@example.com" = {
+      additional_tags = {
+        Type = "support"
       }
     }
   }
@@ -102,7 +99,7 @@ This example demonstrates configuration sets with delivery options and suppressi
 module "ses_configuration_sets" {
   source = "github.com/FriendsOfTerraform/aws-ses.git?ref=v1.0.0"
 
-  domains = {
+  identities = {
     "example.com" = {}
   }
 
@@ -144,7 +141,7 @@ This example demonstrates creating dedicated IP pools for better email deliverab
 module "ses_dedicated_ips" {
   source = "github.com/FriendsOfTerraform/aws-ses.git?ref=v1.0.0"
 
-  domains = {
+  identities = {
     "example.com" = {
       default_configuration_set = "dedicated"
     }
@@ -182,7 +179,7 @@ This example demonstrates setting up a custom MAIL FROM domain
 module "ses_custom_mail_from" {
   source = "github.com/FriendsOfTerraform/aws-ses.git?ref=v1.0.0"
 
-  domains = {
+  identities = {
     "example.com" = {
       additional_tags = {
         Environment = "production"
@@ -194,13 +191,79 @@ module "ses_custom_mail_from" {
       }
     }
   }
+}
+```
 
-  configuration_sets = {
-    "default" = {
-      additional_tags = {
-        Environment = "production"
+### Authorization Policies
+
+This example demonstrates attaching authorization policies to an identity
+
+```terraform
+module "ses_authorization" {
+  source = "github.com/FriendsOfTerraform/aws-ses.git?ref=v1.0.0"
+
+  identities = {
+    "example.com" = {
+      authorization_policies = {
+        "cross-account-sending" = jsonencode({
+          Version = "2012-10-17"
+          Statement = [{
+            Sid       = "AllowCrossAccountSending"
+            Effect    = "Allow"
+            Principal = { AWS = "arn:aws:iam::123456789012:root" }
+            Action    = ["ses:SendEmail", "ses:SendRawEmail"]
+            Resource  = "*"
+          }]
+        })
       }
     }
+  }
+}
+```
+
+### Tenants
+
+This example demonstrates creating SES tenants
+
+```terraform
+module "ses_tenants" {
+  source = "github.com/FriendsOfTerraform/aws-ses.git?ref=v1.0.0"
+
+  identities = {
+    "example.com" = {}
+  }
+
+  tenants = {
+    "tenant-a" = {
+      additional_tags = {
+        Team = "platform"
+      }
+
+      configuration_sets = ["default"]
+    }
+  }
+
+  configuration_sets = {
+    "default" = {}
+  }
+}
+```
+
+### Virtual Deliverability Manager
+
+This example enables the account-level Virtual Deliverability Manager
+
+```terraform
+module "ses_vdm" {
+  source = "github.com/FriendsOfTerraform/aws-ses.git?ref=v1.0.0"
+
+  identities = {
+    "example.com" = {}
+  }
+
+  virtual_deliverability_manager = {
+    engagement_tracking_enabled       = true
+    optimized_shared_delivery_enabled = true
   }
 }
 ```
@@ -209,7 +272,7 @@ module "ses_custom_mail_from" {
 
 ### Mandatory
 
-None. All arguments are optional, but you typically need to define at least one `domains` entry.
+None. All arguments are optional, but you typically need to define at least one `identities` entry.
 
 ### Optional
 
@@ -217,21 +280,33 @@ None. All arguments are optional, but you typically need to define at least one 
 
     Additional tags for all resources deployed with this module
 
-- (map(object)) **`domains = {}`** _[since v1.0.0]_
+- (map(object)) **`identities = {}`** _[since v1.0.0]_
 
-    Manages SES email domains and identities. Please [see example](#email-identities-with-dkim).
+    Manages SES email identities. Keys without `@` are treated as domain identities; keys with `@` are treated as email address identities. Please [see example](#email-identities-with-dkim).
 
     - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-        Additional tags for the domain identity
+        Additional tags for the identity
+
+    - (map(string)) **`authorization_policies = {}`** _[since v1.0.0]_
+
+        Authorization policies to attach to the identity. Keys are policy names, values are JSON policy documents. Please [see example](#authorization-policies)
 
     - (string) **`default_configuration_set = null`** _[since v1.0.0]_
 
-        The default configuration set to use for this domain. Must reference a key from `configuration_sets`
+        The default configuration set to use for this identity. Must reference a key from `configuration_sets`
+
+    - (bool) **`enable_feedback_forwarding = true`** _[since v1.0.0]_
+
+        Whether to enable email feedback forwarding (bounce and complaint notifications via email)
+
+    - (string) **`tenant = null`** _[since v1.0.0]_
+
+        The tenant to associate with this identity
 
     - (object) **`dkim_settings = null`** _[since v1.0.0]_
 
-        Configures DKIM signing for the domain. Please [see example](#email-identities-with-dkim)
+        Configures DKIM signing for the identity. Please [see example](#email-identities-with-dkim)
 
         - (bool) **`dkim_signatures_enabled = true`** _[since v1.0.0]_
 
@@ -256,18 +331,6 @@ None. All arguments are optional, but you typically need to define at least one 
             - (string) **`selector_name`** _[since v1.0.0]_
 
                 The DKIM selector name
-
-    - (map(object)) **`email_addresses = {}`** _[since v1.0.0]_
-
-        Manages email address identities for the domain. Please [see example](#email-identities-with-dkim)
-
-        - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
-
-            Additional tags for the email address identity
-
-        - (string) **`default_configuration_set = null`** _[since v1.0.0]_
-
-            The default configuration set to use for this email address. Must reference a key from `configuration_sets`
 
     - (object) **`use_custom_mail_from_domain = null`** _[since v1.0.0]_
 
@@ -327,7 +390,7 @@ None. All arguments are optional, but you typically need to define at least one 
 
                 - (map(string)) **`dimensions`** _[since v1.0.0]_
 
-                    CloudWatch Logs dimensions. Format: `{ "ValueSource/DimensionName" = "DimensionValue" }`. `ValueSource` valid values: `"MESSAGE_TAG"`, `EMAIL_HEADER""`,`"LINK_TAG"`
+                    CloudWatch Logs dimensions. Format: `{ "ValueSource/DimensionName" = "DimensionValue" }`. `ValueSource` valid values: `"MESSAGE_TAG"`, `"EMAIL_HEADER"`, `"LINK_TAG"`
 
             - (object) **`kinesis_firehose = null`** _[since v1.0.0]_
 
@@ -411,11 +474,27 @@ None. All arguments are optional, but you typically need to define at least one 
 
 - (map(object)) **`tenants = {}`** _[since v1.0.0]_
 
-    Manages SES tenants (multi-tenant support)
+    Manages SES tenants (multi-tenant support). Please [see example](#tenants).
 
     - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
         Additional tags for the tenant
+
+    - (list(string)) **`configuration_sets = []`** _[since v1.0.0]_
+
+        List of configuration set names to associate with this tenant
+
+- (object) **`virtual_deliverability_manager = null`** _[since v1.0.0]_
+
+    Enables and configures the account-level Virtual Deliverability Manager (VDM). Please [see example](#virtual-deliverability-manager).
+
+    - (bool) **`engagement_tracking_enabled = false`** _[since v1.0.0]_
+
+        Enable engagement tracking metrics in the VDM dashboard
+
+    - (bool) **`optimized_shared_delivery_enabled = false`** _[since v1.0.0]_
+
+        Enable optimized shared delivery via VDM Guardian
 
 ## Outputs
 

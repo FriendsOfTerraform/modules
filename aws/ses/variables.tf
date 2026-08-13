@@ -1,10 +1,12 @@
 # Tenant is commented out for now until tenant support is added to all resources
 # auto_validation_settings is commented out for now until SES provider supports it
-variable "domains" {
+variable "identities" {
   type = map(object({
-    additional_tags           = optional(map(string), {})
-    default_configuration_set = optional(string, null)
-    # tenant                    = optional(string, null)
+    additional_tags            = optional(map(string), {})
+    authorization_policies     = optional(map(string), {})
+    default_configuration_set  = optional(string, null)
+    enable_feedback_forwarding = optional(bool, true)
+    tenant                     = optional(string, null)
 
     dkim_settings = optional(object({
       dkim_signatures_enabled = optional(bool, true)
@@ -17,20 +19,14 @@ variable "domains" {
         private_key   = string
         selector_name = string
       }), null)
-    }), null)
-
-    email_addresses = optional(map(object({
-      additional_tags           = optional(map(string), {})
-      default_configuration_set = optional(string, null)
-      # tenant                    = optional(string, null)
-    })), {})
+    }), {})
 
     use_custom_mail_from_domain = optional(object({
       behavior_on_mx_failure = optional(string, "USE_DEFAULT_VALUE")
       subdomain_name         = optional(string, null)
     }), null)
   }))
-  description = "Manages SES Domains and Email Addresses"
+  description = "Manages SES Identities (Domains and Email Addresses)"
   default     = {}
 }
 
@@ -109,8 +105,18 @@ variable "dedicated_ip_pools" {
 
 variable "tenants" {
   type = map(object({
-    additional_tags = optional(map(string), {})
+    additional_tags    = optional(map(string), {})
+    configuration_sets = optional(list(string), [])
   }))
   description = "Manages SES Tenants"
   default     = {}
+}
+
+variable "virtual_deliverability_manager" {
+  type = object({
+    engagement_tracking_enabled       = optional(bool, false)
+    optimized_shared_delivery_enabled = optional(bool, false)
+  })
+  description = "Manages SES Virtual Deliverability Manager settings"
+  default     = null
 }
