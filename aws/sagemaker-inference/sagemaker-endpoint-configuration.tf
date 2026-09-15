@@ -13,8 +13,8 @@ resource "aws_sagemaker_endpoint_configuration" "provisioned_endpoint_configurat
       instance_type                                     = production_variants.value.instance_type
       initial_variant_weight                            = production_variants.value.initial_weight
       model_data_download_timeout_in_seconds            = production_variants.value.model_data_download_timeout != null ? split(" ", production_variants.value.model_data_download_timeout)[0] * local.time_table[trimsuffix(split(" ", production_variants.value.model_data_download_timeout)[1], "s")] : null
-      model_name                                        = aws_sagemaker_model.models[production_variants.key].name
-      variant_name                                      = aws_sagemaker_model.models[production_variants.key].name
+      model_name                                        = aws_sagemaker_model.models[production_variants.value.model_name].name
+      variant_name                                      = production_variants.key
       volume_size_in_gb                                 = production_variants.value.volume_size
     }
   }
@@ -91,8 +91,8 @@ resource "aws_sagemaker_endpoint_configuration" "provisioned_endpoint_configurat
       instance_type                                     = shadow_production_variants.value.instance_type
       initial_variant_weight                            = shadow_production_variants.value.initial_weight
       model_data_download_timeout_in_seconds            = shadow_production_variants.value.model_data_download_timeout != null ? split(" ", shadow_production_variants.value.model_data_download_timeout)[0] * local.time_table[trimsuffix(split(" ", shadow_production_variants.value.model_data_download_timeout)[1], "s")] : null
-      model_name                                        = aws_sagemaker_model.models[shadow_production_variants.key].name
-      variant_name                                      = aws_sagemaker_model.models[shadow_production_variants.key].name
+      model_name                                        = aws_sagemaker_model.models[shadow_production_variants.value.model_name].name
+      variant_name                                      = shadow_production_variants.key
       volume_size_in_gb                                 = shadow_production_variants.value.volume_size
     }
   }
