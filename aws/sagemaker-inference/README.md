@@ -20,7 +20,7 @@ This module builds and configures SageMaker inference models and endpoints
 
 ```terraform
 module "basic_usage" {
-  source = "github.com/FriendsOfTerraform/aws-sagemaker-inference.git?ref=v1.0.0"
+  source = "github.com/FriendsOfTerraform/aws-sagemaker-inference.git?ref=v1.2.0"
 
   # manages multiple models
   models = {
@@ -45,9 +45,12 @@ module "basic_usage" {
     realtime-endpoint = {
       provisioned = {
         production_variants = {
-          # must refer to models created by this module
-          demo-model = {
-            instance_type  = "ml.m5.large"
+          # the keys of the map are variant names
+          demo-variant = {
+            instance_type = "ml.m5.large"
+
+            # must refer to models created by this module
+            model_name = "demo-model"
 
             auto_scaling = {
               policies = {
@@ -759,7 +762,7 @@ Specify the number of seconds to wait between scale-out actions.
 
 #### production_variants
 
-Configure multiple production variants, one for each model that you want to host at this endpoint.
+Configure multiple production variants, one for each model that you want to host at this endpoint. The keys of the map are the variant names.
 
 **Since:** 1.0.0
 
@@ -774,6 +777,18 @@ Configure multiple production variants, one for each model that you want to host
 The EC2 instance type
 
 **Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">model_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the model to be hosted on this variant. The model specified must be managed by the same module
+
+**Since:** 1.2.0
 
 </td></tr>
 <tr>
@@ -895,7 +910,7 @@ Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify
 </tr>
 <tr><td colspan="3">
 
-Configure multiple production variants, one for each model that you want to host at this endpoint.
+Configure multiple production variants, one for each model that you want to host at this endpoint. The keys of the map are the variant names.
 
 **Since:** 1.0.0
 
@@ -931,7 +946,7 @@ Enables data capture, where SageMaker can save prediction request and prediction
 </tr>
 <tr><td colspan="3">
 
-Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
+Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. The keys of the map are the variant names. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
 
 **Since:** 1.0.0
 
@@ -961,7 +976,7 @@ Configures variant for this endpoint
 
 #### shadow_variants
 
-Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
+Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. The keys of the map are the variant names. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
 
 **Since:** 1.0.0
 
@@ -976,6 +991,18 @@ Specify shadow variants to receive production traffic replicated from the model 
 The EC2 instance type
 
 **Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">model_name</td>
+    <td></td>
+</tr>
+<tr><td colspan="3">
+
+The name of the model to be hosted on this variant. The model specified must be managed by the same module
+
+**Since:** 1.2.0
 
 </td></tr>
 <tr>

@@ -108,7 +108,7 @@ variable "endpoints" {
     ///
     /// @since 1.0.0
     provisioned = optional(object({
-      /// Configure multiple production variants, one for each model that you want to host at this endpoint.
+      /// Configure multiple production variants, one for each model that you want to host at this endpoint. The keys of the map are the variant names.
       ///
       /// @since 1.0.0
       production_variants = map(object({
@@ -116,6 +116,10 @@ variable "endpoints" {
         ///
         /// @since 1.0.0
         instance_type = string
+        /// The name of the model to be hosted on this variant. The model specified must be managed by the same module
+        ///
+        /// @since 1.2.0
+        model_name = string
         /// The timeout value for the inference container to pass health check by SageMaker AI Hosting.
         ///
         /// @enum 1 minute|1 hour
@@ -281,7 +285,7 @@ variable "endpoints" {
         }), {})
       }), null)
 
-      /// Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
+      /// Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. The keys of the map are the variant names. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
       ///
       /// @since 1.0.0
       shadow_variants = optional(map(object({
@@ -289,6 +293,10 @@ variable "endpoints" {
         ///
         /// @since 1.0.0
         instance_type = string
+        /// The name of the model to be hosted on this variant. The model specified must be managed by the same module
+        ///
+        /// @since 1.2.0
+        model_name = string
         /// The timeout value for the inference container to pass health check by SageMaker AI Hosting. Valid values: `"1 minute"` - `"1 hour"`
         ///
         /// @since 1.0.0
