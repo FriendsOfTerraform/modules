@@ -201,6 +201,11 @@ variable "endpoints" {
           ///
           /// @since 1.0.0
           period = optional(string, "1 minute")
+          /// Specify how the alarm handles missing data points.
+          ///
+          /// @enum missing|ignore|breaching|notBreaching
+          /// @since 1.0.1
+          treat_missing_data = optional(string, "missing")
         })), {})
       }))
 

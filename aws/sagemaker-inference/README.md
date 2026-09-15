@@ -356,6 +356,25 @@ The period over which the specified statistic is applied. Valid values: `"1 minu
 **Since:** 1.0.0
 
 </td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">treat_missing_data</td>
+    <td><code>"missing"</code></td>
+</tr>
+<tr><td colspan="3">
+
+Specify how the alarm handles missing data points.
+
+**Allowed Values:**
+
+- `missing`
+- `ignore`
+- `breaching`
+- `notBreaching`
+
+**Since:** 1.0.1
+
+</td></tr>
 </tbody></table>
 
 #### container_definitions
