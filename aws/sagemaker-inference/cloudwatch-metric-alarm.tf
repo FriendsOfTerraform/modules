@@ -22,11 +22,12 @@ resource "aws_cloudwatch_metric_alarm" "provisioned_variants_cloudwatch_alarms" 
   metric_name         = split(" ", each.value.cloudwatch_alarm.expression)[0]
   namespace           = "AWS/SageMaker"
   period              = split(" ", each.value.cloudwatch_alarm.period)[0] * local.time_table[trimsuffix(split(" ", each.value.cloudwatch_alarm.period)[1], "s")]
-  statistic           = title(lower(split(" ", each.value.cloudwatch_alarm.expression)[1]))
+  statistic           = lower(split(" ", each.value.cloudwatch_alarm.expression)[1]) == "samplecount" ? "SampleCount" : title(lower(split(" ", each.value.cloudwatch_alarm.expression)[1]))
   threshold           = split(" ", each.value.cloudwatch_alarm.expression)[3]
   alarm_actions       = each.value.cloudwatch_alarm.notification_sns_topic != null ? [each.value.cloudwatch_alarm.notification_sns_topic] : null
   alarm_description   = each.value.cloudwatch_alarm.description
   ok_actions          = each.value.cloudwatch_alarm.notification_sns_topic != null ? [each.value.cloudwatch_alarm.notification_sns_topic] : null
+  treat_missing_data  = each.value.cloudwatch_alarm.treat_missing_data
 
   dimensions = {
     EndpointName = each.value.endpoint_name
