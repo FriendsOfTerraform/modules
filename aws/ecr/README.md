@@ -133,8 +133,7 @@ _No required inputs._
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -145,8 +144,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>object(<a href="#private_registry">private_registry</a>)</code></td>
-    <td width="100%">private_registry</td>
-    <td><code>null</code></td>
+    <td width="100%">private_registry</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -157,8 +155,7 @@ Manages the private registry
 </td></tr>
 <tr>
     <td><code>object(<a href="#public_registry">public_registry</a>)</code></td>
-    <td width="100%">public_registry</td>
-    <td><code>null</code></td>
+    <td width="100%">public_registry</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -174,8 +171,7 @@ Manages the public registry
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#private_repositories">private_repositories</a>))</code></td>
-    <td width="100%">private_repositories</td>
-    <td></td>
+    <td width="100%">private_repositories</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -194,17 +190,16 @@ Enables continuous scanning, which will continually scan images after it is push
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">filters</td>
-    <td></td>
+    <td width="100%">filters</td><td></td><td><code>["*"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies which repositories will continuously have images scanned
 for vulnerabilities. Filters with no wildcard will match all repository
-names that contain the filter. Filters with wildcards (\*) will match
+names that contain the filter. Filters with wildcards (*) will match
 on a repository name where the wildcard replaces zero or more
 characters in the repository name.
 
@@ -219,13 +214,12 @@ Encrypts the repository with KMS. If unspecified, ECR will be encrypted with AES
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_id</td>
-    <td><code>null</code></td>
+    <td width="100%">kms_key_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the customer managed KMS key ID to be used for encryption. If unspecified, the default AWS managed key will be used.
 
@@ -240,13 +234,12 @@ Configures [lifecycle policy rules][ecr-private-registry-lifecycle-policy-rule] 
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#match_criteria">match_criteria</a>)</code></td>
-    <td width="100%">match_criteria</td>
-    <td></td>
+    <td width="100%">match_criteria</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the count type to apply to the images. Must specify one of the below.
 
@@ -255,10 +248,9 @@ Specify the count type to apply to the images. Must specify one of the below.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">priority</td>
-    <td></td>
+    <td width="100%">priority</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify a rule priority, which must be unique. Values do not need to
 be sequential across rules in a policy. Lower number has higher priority.
@@ -268,10 +260,9 @@ be sequential across rules in a policy. Lower number has higher priority.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Describes the purpose of a rule within a lifecycle policy
 
@@ -280,10 +271,9 @@ Describes the purpose of a rule within a lifecycle policy
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">tag_filters</td>
-    <td><code>null</code></td>
+    <td width="100%">tag_filters</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify a list of image tags to match images to apply lifecycle rule
 towards. If not specified, untagged images will be matched. If `["*"]`,
@@ -306,13 +296,12 @@ Specify the count type to apply to the images. Must specify one of the below.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">days_since_image_pushed</td>
-    <td><code>null</code></td>
+    <td width="100%">days_since_image_pushed</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies how many days should pass since pushed before an image expires
 
@@ -321,10 +310,9 @@ Specifies how many days should pass since pushed before an image expires
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">image_count_more_than</td>
-    <td><code>null</code></td>
+    <td width="100%">image_count_more_than</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Sets a limit on the number of images that exist in the repository
 
@@ -335,13 +323,12 @@ Sets a limit on the number of images that exist in the repository
 
 #### private_registry
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">permissions</td>
-    <td><code>null</code></td>
+    <td width="100%">permissions</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the JSON policy document defining the registry policy
 
@@ -350,10 +337,9 @@ Specifies the JSON policy document defining the registry policy
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#pull_through_cache_rules">pull_through_cache_rules</a>))</code></td>
-    <td width="100%">pull_through_cache_rules</td>
-    <td><code>{}</code></td>
+    <td width="100%">pull_through_cache_rules</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures pull through cache rules. Please see example for usage
 
@@ -366,10 +352,9 @@ Configures pull through cache rules. Please see example for usage
 </td></tr>
 <tr>
     <td><code>list(object(<a href="#replication_rules">replication_rules</a>))</code></td>
-    <td width="100%">replication_rules</td>
-    <td></td>
+    <td width="100%">replication_rules</td><td></td><td><code>[]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures ECR replication rules
 
@@ -382,10 +367,9 @@ Configures ECR replication rules
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#repositories">repositories</a>))</code></td>
-    <td width="100%">repositories</td>
-    <td><code>{}</code></td>
+    <td width="100%">repositories</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Manages multiple private repositories
 
@@ -398,10 +382,9 @@ Manages multiple private repositories
 </td></tr>
 <tr>
     <td><code>object(<a href="#scanning_configuration">scanning_configuration</a>)</code></td>
-    <td width="100%">scanning_configuration</td>
-    <td><code>null</code></td>
+    <td width="100%">scanning_configuration</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure [image scanning][ecr-private-registry-image-scanning]
 
@@ -416,13 +399,12 @@ Configure [image scanning][ecr-private-registry-image-scanning]
 
 #### private_repositories
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the repository.
 
@@ -431,10 +413,9 @@ The ARN of the repository.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">registry_id</td>
-    <td></td>
+    <td width="100%">registry_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The account ID where the repository is created
 
@@ -443,10 +424,9 @@ The account ID where the repository is created
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">repository_url</td>
-    <td></td>
+    <td width="100%">repository_url</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The URL of the repository. In the form `aws_account_id.dkr.ecr.region.amazonaws.com/repositoryName`
 
@@ -457,13 +437,12 @@ The URL of the repository. In the form `aws_account_id.dkr.ecr.region.amazonaws.
 
 #### public_registry
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#repositories">repositories</a>))</code></td>
-    <td width="100%">repositories</td>
-    <td><code>{}</code></td>
+    <td width="100%">repositories</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Manages multiple public repositories
 
@@ -482,13 +461,12 @@ Configures pull through cache rules. Please see example for usage
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">upstream_registry_url</td>
-    <td></td>
+    <td width="100%">upstream_registry_url</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The registry URL of the upstream public registry to use as the source
 
@@ -507,10 +485,9 @@ The registry URL of the upstream public registry to use as the source
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">credential_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">credential_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the Secret which will be used to authenticate against the registry.
 Required when using the following upstream registry: Docker Hub, Github
@@ -531,13 +508,12 @@ Configures ECR replication rules
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">destinations</td>
-    <td></td>
+    <td width="100%">destinations</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The destinations images are replicated into. in `"account_id/region"`
 format. If `account_id` is omitted, the current account will be used.
@@ -549,10 +525,9 @@ For cross account replication, please make sure you grant proper
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">filters</td>
-    <td></td>
+    <td width="100%">filters</td><td></td><td><code>[]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Add filters for this rule to specify the repositories to replicate.
 Supported filters are repository name prefixes. If no filter is added,
@@ -569,13 +544,12 @@ Manages multiple public repositories
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">about_text</td>
-    <td><code>null</code></td>
+    <td width="100%">about_text</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Provide a detailed description of the repository. Identify what is
 included in the repository, any licensing details, or other relevant
@@ -586,10 +560,9 @@ information.
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags to be added to the public repository
 
@@ -598,10 +571,9 @@ Additional tags to be added to the public repository
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">architectures</td>
-    <td><code>null</code></td>
+    <td width="100%">architectures</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The system architecture that the images in the repository are compatible with
 
@@ -617,10 +589,9 @@ The system architecture that the images in the repository are compatible with
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The short description is displayed in search results and on the repository detail page
 
@@ -629,10 +600,9 @@ The short description is displayed in search results and on the repository detai
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">logo_image_blob</td>
-    <td><code>null</code></td>
+    <td width="100%">logo_image_blob</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The base64-encoded repository logo payload. (Only visible for verified accounts) Note that drift detection is disabled for this attribute.
 
@@ -641,10 +611,9 @@ The base64-encoded repository logo payload. (Only visible for verified accounts)
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">operating_systems</td>
-    <td><code>null</code></td>
+    <td width="100%">operating_systems</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The operating systems that the images in the repository are compatible with
 
@@ -658,10 +627,9 @@ The operating systems that the images in the repository are compatible with
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">usage_text</td>
-    <td><code>null</code></td>
+    <td width="100%">usage_text</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Provide detailed information about how to use the images in the repository. This provides context, support information, and additional usage details for users of the repository.
 
@@ -676,17 +644,16 @@ Enables scan on push, which scans images when it is pushed into a matching repos
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">filters</td>
-    <td></td>
+    <td width="100%">filters</td><td></td><td><code>["*"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies which repositories to scan for vulnerabilities on image
 push. Filters with no wildcard will match all repository names that
-contain the filter. Filters with wildcards (\*) will match on a
+contain the filter. Filters with wildcards (*) will match on a
 repository name where the wildcard replaces zero or more characters
 in the repository name.
 
@@ -705,13 +672,12 @@ Configure [image scanning][ecr-private-registry-image-scanning]
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">scan_type</td>
-    <td><code>"BASIC"</code></td>
+    <td width="100%">scan_type</td><td></td><td><code>"BASIC"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the scanning type that will be used for this registry
 
@@ -725,10 +691,9 @@ Specifies the scanning type that will be used for this registry
 </td></tr>
 <tr>
     <td><code>object(<a href="#continuous_scanning">continuous_scanning</a>)</code></td>
-    <td width="100%">continuous_scanning</td>
-    <td><code>null</code></td>
+    <td width="100%">continuous_scanning</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables continuous scanning, which will continually scan images after it is pushed into a matching repository. This setting is only available if scan_type = "ENHANCED"
 
@@ -737,10 +702,9 @@ Enables continuous scanning, which will continually scan images after it is push
 </td></tr>
 <tr>
     <td><code>object(<a href="#scan_on_push">scan_on_push</a>)</code></td>
-    <td width="100%">scan_on_push</td>
-    <td><code>null</code></td>
+    <td width="100%">scan_on_push</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables scan on push, which scans images when it is pushed into a matching repository
 

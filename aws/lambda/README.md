@@ -227,8 +227,7 @@ module "lambda_versioning" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#code_source">code_source</a>)</code></td>
-    <td width="100%">code_source</td>
-    <td></td>
+    <td width="100%">code_source</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -239,8 +238,7 @@ Specify the code source. Exactly one of `container_image_uri`, `filename`, or `s
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -256,8 +254,7 @@ The name of the Lambda function. All associated resources' names will also be pr
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">additional_execution_role_policies</td>
-    <td><code>[]</code></td>
+    <td width="100%">additional_execution_role_policies</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -268,8 +265,7 @@ Additional IAM policies to be attached to the managed execution IAM role. This i
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -280,8 +276,7 @@ Additional tags for the Lambda function
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -292,8 +287,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#aliases">aliases</a>))</code></td>
-    <td width="100%">aliases</td>
-    <td><code>{}</code></td>
+    <td width="100%">aliases</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -308,8 +302,7 @@ Manages multiple Lambda aliases.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">architecture</td>
-    <td><code>"x86_64"</code></td>
+    <td width="100%">architecture</td><td><code>"x86_64"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -325,8 +318,7 @@ Specify the instruction set architecture for this Lambda function.
 </td></tr>
 <tr>
     <td><code>object(<a href="#asynchronous_invocation">asynchronous_invocation</a>)</code></td>
-    <td width="100%">asynchronous_invocation</td>
-    <td><code>null</code></td>
+    <td width="100%">asynchronous_invocation</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -341,8 +333,7 @@ Configures error handling and destinations for [asynchronous invocation][lambda-
 </td></tr>
 <tr>
     <td><code>object(<a href="#concurrency">concurrency</a>)</code></td>
-    <td width="100%">concurrency</td>
-    <td><code>null</code></td>
+    <td width="100%">concurrency</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -353,8 +344,7 @@ Configures [Lambda concurrency][lambda-concurrency]
 </td></tr>
 <tr>
     <td><code>object(<a href="#container_image_overrides">container_image_overrides</a>)</code></td>
-    <td width="100%">container_image_overrides</td>
-    <td><code>null</code></td>
+    <td width="100%">container_image_overrides</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -365,8 +355,7 @@ Container image configuration values that override the values in the container i
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -377,8 +366,7 @@ The description for this Lambda function
 </td></tr>
 <tr>
     <td><code>object(<a href="#enable_active_tracing">enable_active_tracing</a>)</code></td>
-    <td width="100%">enable_active_tracing</td>
-    <td><code>null</code></td>
+    <td width="100%">enable_active_tracing</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -389,8 +377,7 @@ Enables Lambda [active tracing with AWS X-Ray][lambda-active-tracing]
 </td></tr>
 <tr>
     <td><code>object(<a href="#enable_function_url">enable_function_url</a>)</code></td>
-    <td width="100%">enable_function_url</td>
-    <td><code>null</code></td>
+    <td width="100%">enable_function_url</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -401,8 +388,7 @@ Enables [Lambda function URL][lambda-function-url], a dedicated HTTP(S) endpoint
 </td></tr>
 <tr>
     <td><code>object(<a href="#environment_variables">environment_variables</a>)</code></td>
-    <td width="100%">environment_variables</td>
-    <td><code>null</code></td>
+    <td width="100%">environment_variables</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -413,8 +399,7 @@ Configures environment variables for the function
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">ephemeral_storage</td>
-    <td><code>512</code></td>
+    <td width="100%">ephemeral_storage</td><td><code>512</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -425,8 +410,7 @@ The size of the Lambda function Ephemeral storage(/tmp) in MB. Valid values: `51
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">execution_role_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">execution_role_arn</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -437,8 +421,7 @@ Specify the ARN of the function's execution role. The role provides the function
 </td></tr>
 <tr>
     <td><code>object(<a href="#file_system_config">file_system_config</a>)</code></td>
-    <td width="100%">file_system_config</td>
-    <td><code>null</code></td>
+    <td width="100%">file_system_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -449,8 +432,7 @@ Connects the function to an EFS file system
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">handler</td>
-    <td><code>null</code></td>
+    <td width="100%">handler</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -461,8 +443,7 @@ Specify the function entrypoint in your code
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#lambda_permissions">lambda_permissions</a>))</code></td>
-    <td width="100%">lambda_permissions</td>
-    <td><code>{}</code></td>
+    <td width="100%">lambda_permissions</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -477,8 +458,7 @@ Grants external sources such as AWS accounts and services permission to invoke t
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">layer_arns</td>
-    <td><code>[]</code></td>
+    <td width="100%">layer_arns</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -489,8 +469,7 @@ List of [Lambda Layer][lambda-layer] Version ARNs (maximum of 5) to attach to yo
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">memory</td>
-    <td><code>128</code></td>
+    <td width="100%">memory</td><td><code>128</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -501,8 +480,7 @@ Amount of memory in MB your Lambda Function can use at runtime. Valid values: `1
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">publish_as_new_version</td>
-    <td><code>false</code></td>
+    <td width="100%">publish_as_new_version</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -513,8 +491,7 @@ Whether to publish creation/change as new Lambda Function Version
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">runtime</td>
-    <td><code>null</code></td>
+    <td width="100%">runtime</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -525,8 +502,7 @@ Specify the language runtime. Please refer to [this documentation][lambda-runtim
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">source_code_hash</td>
-    <td><code>null</code></td>
+    <td width="100%">source_code_hash</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -537,8 +513,7 @@ Used to trigger updates. Must be set to a base64-encoded SHA256 hash of the depl
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">timeout</td>
-    <td><code>3</code></td>
+    <td width="100%">timeout</td><td><code>3</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -549,8 +524,7 @@ Specify timeout in seconds for the function, up to `900`
 </td></tr>
 <tr>
     <td><code>object(<a href="#vpc_config">vpc_config</a>)</code></td>
-    <td width="100%">vpc_config</td>
-    <td><code>null</code></td>
+    <td width="100%">vpc_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -566,8 +540,7 @@ Configure this function to [connect to private subnets in a VPC][lambda-vpc-conf
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">function_arn</td>
-    <td></td>
+    <td width="100%">function_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -578,8 +551,7 @@ The ARN of the Lambda function
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">function_invoke_arn</td>
-    <td></td>
+    <td width="100%">function_invoke_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -590,8 +562,7 @@ ARN to be used for invoking Lambda Function from API Gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">function_qualified_arn</td>
-    <td></td>
+    <td width="100%">function_qualified_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -602,8 +573,7 @@ ARN identifying the Lambda Function Version
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">function_qualified_invoke_arn</td>
-    <td></td>
+    <td width="100%">function_qualified_invoke_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -614,8 +584,7 @@ Qualified ARN (ARN with lambda version number) to be used for invoking Lambda Fu
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">function_source_code_size</td>
-    <td></td>
+    <td width="100%">function_source_code_size</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -626,8 +595,7 @@ Size in bytes of the function's deployment package (.zip file)
 </td></tr>
 <tr>
     <td><code>object</code></td>
-    <td width="100%">function_url_endpoint</td>
-    <td></td>
+    <td width="100%">function_url_endpoint</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -638,8 +606,7 @@ The HTTP URL endpoint for the function
 </td></tr>
 <tr>
     <td><code>object</code></td>
-    <td width="100%">function_version</td>
-    <td></td>
+    <td width="100%">function_version</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -654,13 +621,12 @@ Latest published version of the Lambda Function
 
 #### aliases
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">function_version</td>
-    <td></td>
+    <td width="100%">function_version</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Lambda function version for which you are creating the alias
 
@@ -669,10 +635,9 @@ Lambda function version for which you are creating the alias
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td></td>
+    <td width="100%">description</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Description of the alias
 
@@ -681,10 +646,9 @@ Description of the alias
 </td></tr>
 <tr>
     <td><code>object(<a href="#weighted_alias">weighted_alias</a>)</code></td>
-    <td width="100%">weighted_alias</td>
-    <td></td>
+    <td width="100%">weighted_alias</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures this alias to send a portion of traffic to a second function version. Used for canary deployment scenarios. Please refer to [this documentation][lambda-alias-routing] for a list of requirements for this feature.
 
@@ -695,13 +659,12 @@ Configures this alias to send a portion of traffic to a second function version.
 
 #### asynchronous_invocation
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">on_failure_destination_arn</td>
-    <td></td>
+    <td width="100%">on_failure_destination_arn</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the ARN of the destination for failed asynchronous invocations. This ARN must be one of the following resources: SNS, SQS, Lambda, or an EventBus. The required IAM policies will be automatically generated if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided [has the proper permissions][asynchronous-invocation-destination-permission].
 
@@ -710,10 +673,9 @@ Specify the ARN of the destination for failed asynchronous invocations. This ARN
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">on_success_destination_arn</td>
-    <td></td>
+    <td width="100%">on_success_destination_arn</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the ARN of the destination for successful asynchronous invocations. This ARN must be one of the following resources: SNS, SQS, Lambda, or an EventBus. The required IAM policies will be automatically generated if `execution_role_arn` is not specified, otherwise, please make sure the execution role you provided [has the proper permissions][asynchronous-invocation-destination-permission].
 
@@ -722,10 +684,9 @@ Specify the ARN of the destination for successful asynchronous invocations. This
 </td></tr>
 <tr>
     <td><code>object(<a href="#retries">retries</a>)</code></td>
-    <td width="100%">retries</td>
-    <td></td>
+    <td width="100%">retries</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures error handling
 
@@ -736,13 +697,12 @@ Configures error handling
 
 #### code_source
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">container_image_uri</td>
-    <td></td>
+    <td width="100%">container_image_uri</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the Amazon ECR image URI of the container image to use for this function
 
@@ -751,10 +711,9 @@ Specify the Amazon ECR image URI of the container image to use for this function
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">filename</td>
-    <td></td>
+    <td width="100%">filename</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Path to the function's deployment package within the local filesystem
 
@@ -763,10 +722,9 @@ Path to the function's deployment package within the local filesystem
 </td></tr>
 <tr>
     <td><code>object(<a href="#s3">s3</a>)</code></td>
-    <td width="100%">s3</td>
-    <td></td>
+    <td width="100%">s3</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 S3 bucket location containing the function's deployment package. This bucket must reside in the same AWS region where you are creating the Lambda function
 
@@ -777,13 +735,12 @@ S3 bucket location containing the function's deployment package. This bucket mus
 
 #### concurrency
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">reserved_concurrency</td>
-    <td><code>-1</code></td>
+    <td width="100%">reserved_concurrency</td><td></td><td><code>-1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the maximum number of concurrent instances allocated to the function. A value of `0` disables lambda from being triggered and `-1` removes any concurrency limitations
 
@@ -792,10 +749,9 @@ Specify the maximum number of concurrent instances allocated to the function. A 
 </td></tr>
 <tr>
     <td><code>map(number)</code></td>
-    <td width="100%">provisioned_concurrencies</td>
-    <td><code>{}</code></td>
+    <td width="100%">provisioned_concurrencies</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Map of provisioned concurrences assigned to Lambda qualifiers.
 
@@ -810,13 +766,12 @@ Map of provisioned concurrences assigned to Lambda qualifiers.
 
 #### container_image_overrides
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">cmd</td>
-    <td></td>
+    <td width="100%">cmd</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies parameters that you want to pass in with ENTRYPOINT
 
@@ -825,10 +780,9 @@ Specifies parameters that you want to pass in with ENTRYPOINT
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">entrypoint</td>
-    <td></td>
+    <td width="100%">entrypoint</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the absolute path to the entry point of the application
 
@@ -837,10 +791,9 @@ Specifies the absolute path to the entry point of the application
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">workdir</td>
-    <td></td>
+    <td width="100%">workdir</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the absolute path to the working directory
 
@@ -855,13 +808,12 @@ Configures the cross-origin resource sharing (CORS) settings for the function UR
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">allow_credentials</td>
-    <td><code>false</code></td>
+    <td width="100%">allow_credentials</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether to allow cookies or other credentials in requests to the function URL
 
@@ -870,10 +822,9 @@ Whether to allow cookies or other credentials in requests to the function URL
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allow_headers</td>
-    <td></td>
+    <td width="100%">allow_headers</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The HTTP headers that origins can include in requests to the function URL. For example: `["date", "keep-alive", "x-custom-header"]`
 
@@ -882,10 +833,9 @@ The HTTP headers that origins can include in requests to the function URL. For e
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allow_methods</td>
-    <td></td>
+    <td width="100%">allow_methods</td><td></td><td><code>["*"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The HTTP methods that are allowed when calling the function URL. For example: `["GET", "POST", "DELETE"]`
 
@@ -894,10 +844,9 @@ The HTTP methods that are allowed when calling the function URL. For example: `[
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allow_origins</td>
-    <td></td>
+    <td width="100%">allow_origins</td><td></td><td><code>["*"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The origins that can access the function URL. For example: `["https://www.example.com", "http://localhost:60905"]`
 
@@ -906,10 +855,9 @@ The origins that can access the function URL. For example: `["https://www.exampl
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">expose_headers</td>
-    <td></td>
+    <td width="100%">expose_headers</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The HTTP headers in your function response that you want to expose to origins that call the function URL
 
@@ -918,10 +866,9 @@ The HTTP headers in your function response that you want to expose to origins th
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_age_seconds</td>
-    <td><code>0</code></td>
+    <td width="100%">max_age_seconds</td><td></td><td><code>0</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum amount of time, in seconds, that web browsers can cache results of a preflight request. Valid values: `0 - 86400`
 
@@ -932,13 +879,12 @@ The maximum amount of time, in seconds, that web browsers can cache results of a
 
 #### enable_active_tracing
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">mode</td>
-    <td><code>"Active"</code></td>
+    <td width="100%">mode</td><td></td><td><code>"Active"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the tracing mode. If `"PassThrough"`, Lambda will only trace the request from an upstream service if it contains a tracing header with `"sampled=1"`. If `"Active"`, Lambda will respect any tracing header it receives from an upstream service. If no tracing header is received, Lambda will call X-Ray for a tracing decision
 
@@ -954,13 +900,12 @@ Specifies the tracing mode. If `"PassThrough"`, Lambda will only trace the reque
 
 #### enable_function_url
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">auth_type</td>
-    <td><code>"AWS_IAM"</code></td>
+    <td width="100%">auth_type</td><td></td><td><code>"AWS_IAM"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The type of authentication that the function URL uses. Set to `"NONE"` to bypass IAM authentication and create a public endpoint.
 
@@ -975,10 +920,9 @@ The type of authentication that the function URL uses. Set to `"NONE"` to bypass
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">invoke_mode</td>
-    <td><code>"BUFFERED"</code></td>
+    <td width="100%">invoke_mode</td><td></td><td><code>"BUFFERED"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Determines how the Lambda function responds to an invocation.
 
@@ -992,10 +936,9 @@ Determines how the Lambda function responds to an invocation.
 </td></tr>
 <tr>
     <td><code>object(<a href="#cors_config">cors_config</a>)</code></td>
-    <td width="100%">cors_config</td>
-    <td></td>
+    <td width="100%">cors_config</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the cross-origin resource sharing (CORS) settings for the function URL
 
@@ -1006,13 +949,12 @@ Configures the cross-origin resource sharing (CORS) settings for the function UR
 
 #### environment_variables
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">variables</td>
-    <td></td>
+    <td width="100%">variables</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A map of environment variables to pass to the function
 
@@ -1021,10 +963,9 @@ A map of environment variables to pass to the function
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_arn</td>
-    <td></td>
+    <td width="100%">kms_key_arn</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the ARN of the KMS key that is used to encrypt environment variables. If this configuration is not provided when environment variables are in use, AWS Lambda uses a default service key
 
@@ -1035,13 +976,12 @@ Specify the ARN of the KMS key that is used to encrypt environment variables. If
 
 #### file_system_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">access_point_arn</td>
-    <td></td>
+    <td width="100%">access_point_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the Amazon EFS Access Point that provides access to the file system
 
@@ -1050,10 +990,9 @@ ARN of the Amazon EFS Access Point that provides access to the file system
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">local_mount_path</td>
-    <td></td>
+    <td width="100%">local_mount_path</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Path where the function can access the file system; must start with `/mnt/`
 
@@ -1064,13 +1003,12 @@ Path where the function can access the file system; must start with `/mnt/`
 
 #### lambda_permissions
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">policy_type</td>
-    <td></td>
+    <td width="100%">policy_type</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The external source this policy is configured for.
 
@@ -1085,10 +1023,9 @@ The external source this policy is configured for.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">principal</td>
-    <td></td>
+    <td width="100%">principal</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the principal who is getting this permission. If `policy_type = "aws_service"`, you must specify an AWS service URL such as `"s3.amazonaws.com"`. Otherwise, you can specify an AWS account ID such as `"111122223333"` or an IAM user ARN.
 
@@ -1097,10 +1034,9 @@ Specify the principal who is getting this permission. If `policy_type = "aws_ser
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">action</td>
-    <td></td>
+    <td width="100%">action</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The AWS Lambda action you want to allow in this statement. Defaults to `"lambda:InvokeFunctionUrl"` if `policy_type = "function_url"`, and `"lambda:InvokeFunction"` otherwise.
 
@@ -1109,10 +1045,9 @@ The AWS Lambda action you want to allow in this statement. Defaults to `"lambda:
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">event_source_token</td>
-    <td></td>
+    <td width="100%">event_source_token</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Event Source Token to validate. Valid only with an Alexa Skill principal.
 
@@ -1121,10 +1056,9 @@ The Event Source Token to validate. Valid only with an Alexa Skill principal.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">function_url_auth_type</td>
-    <td></td>
+    <td width="100%">function_url_auth_type</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Lambda Function URLs authentication type. Only supported for `policy_type = "function_url"` and `action = "lambda:InvokeFunctionUrl"`
 
@@ -1138,10 +1072,9 @@ Lambda Function URLs authentication type. Only supported for `policy_type = "fun
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">principal_organization_id</td>
-    <td></td>
+    <td width="100%">principal_organization_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of an organization in AWS Organizations. Use this to grant permissions to only the AWS accounts under this organization.
 
@@ -1150,10 +1083,9 @@ The ID of an organization in AWS Organizations. Use this to grant permissions to
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">source_account_id</td>
-    <td></td>
+    <td width="100%">source_account_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The AWS account ID of the source owner. Used to grant permissions to an AWS service outside of this function's account, such as an S3 bucket. Only valid if `policy_type = "aws_service"`
 
@@ -1162,10 +1094,9 @@ The AWS account ID of the source owner. Used to grant permissions to an AWS serv
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">source_arn</td>
-    <td></td>
+    <td width="100%">source_arn</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the specific resource within that service to grant permission to, such as an S3 bucket ARN. Only valid if `policy_type = "aws_service"`
 
@@ -1180,13 +1111,12 @@ Configures error handling
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">maximum_event_age_in_seconds</td>
-    <td><code>21600</code></td>
+    <td width="100%">maximum_event_age_in_seconds</td><td></td><td><code>21600</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum amount of time Lambda retains an event in the asynchronous event queue, up to 6 hours
 
@@ -1195,10 +1125,9 @@ The maximum amount of time Lambda retains an event in the asynchronous event que
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">maximum_retry_attempts</td>
-    <td><code>2</code></td>
+    <td width="100%">maximum_retry_attempts</td><td></td><td><code>2</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of times Lambda retries when the function returns an error, between 0 and 2
 
@@ -1213,13 +1142,12 @@ S3 bucket location containing the function's deployment package. This bucket mus
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">uri</td>
-    <td></td>
+    <td width="100%">uri</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the S3 URI of the deployment package to use for this function.
 
@@ -1232,10 +1160,9 @@ Specify the S3 URI of the deployment package to use for this function.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">version</td>
-    <td></td>
+    <td width="100%">version</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Object version containing the function's deployment package
 
@@ -1246,13 +1173,12 @@ Object version containing the function's deployment package
 
 #### vpc_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">security_group_ids</td>
-    <td></td>
+    <td width="100%">security_group_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of security group IDs associated with the ENIs of the Lambda function
 
@@ -1261,10 +1187,9 @@ List of security group IDs associated with the ENIs of the Lambda function
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">subnet_ids</td>
-    <td></td>
+    <td width="100%">subnet_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of subnet IDs associated with the ENIs of the Lambda function
 
@@ -1273,10 +1198,9 @@ List of subnet IDs associated with the ENIs of the Lambda function
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_dual_stack</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_dual_stack</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Allows outbound IPv6 traffic on VPC functions that are connected to dual-stack subnets
 
@@ -1291,13 +1215,12 @@ Configures this alias to send a portion of traffic to a second function version.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">function_version</td>
-    <td></td>
+    <td width="100%">function_version</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The second function version to route portion of the traffic to
 
@@ -1306,10 +1229,9 @@ The second function version to route portion of the traffic to
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">weight</td>
-    <td></td>
+    <td width="100%">weight</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The weight, in percentage, of the total traffic routed to the second function version
 

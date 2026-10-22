@@ -197,8 +197,7 @@ module "peering_connection_requests" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#cidr_block">cidr_block</a>)</code></td>
-    <td width="100%">cidr_block</td>
-    <td></td>
+    <td width="100%">cidr_block</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -209,8 +208,7 @@ Configures the VPC CIDR block
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -226,8 +224,7 @@ The name of the VPC. All associated resources will also have their name prefixed
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -238,8 +235,7 @@ Additional tags for the VPC
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -250,8 +246,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">create_nat_gateways</td>
-    <td><code>false</code></td>
+    <td width="100%">create_nat_gateways</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -266,8 +261,7 @@ If enabled, one NAT gateway will be created on the first public subnets in each 
 </td></tr>
 <tr>
     <td><code>object(<a href="#dhcp_options">dhcp_options</a>)</code></td>
-    <td width="100%">dhcp_options</td>
-    <td><code>null</code></td>
+    <td width="100%">dhcp_options</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -278,8 +272,7 @@ DHCP option sets give you control over various aspects of routing in your virtua
 </td></tr>
 <tr>
     <td><code>object(<a href="#dns_settings">dns_settings</a>)</code></td>
-    <td width="100%">dns_settings</td>
-    <td><code>{}</code></td>
+    <td width="100%">dns_settings</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -290,8 +283,7 @@ Configures DNS settings for the VPC
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_network_address_usage_metrics</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_network_address_usage_metrics</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -302,8 +294,7 @@ Configures DNS settings for the VPC
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#flow_logs">flow_logs</a>))</code></td>
-    <td width="100%">flow_logs</td>
-    <td><code>{}</code></td>
+    <td width="100%">flow_logs</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -318,8 +309,7 @@ Configures multiple VPC level flow logs.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#peering_connection_requests">peering_connection_requests</a>))</code></td>
-    <td width="100%">peering_connection_requests</td>
-    <td><code>{}</code></td>
+    <td width="100%">peering_connection_requests</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -334,8 +324,7 @@ Manages multiple VPC peering connection requests.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#route_tables">route_tables</a>))</code></td>
-    <td width="100%">route_tables</td>
-    <td><code>{}</code></td>
+    <td width="100%">route_tables</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -350,8 +339,7 @@ Manages multiple route tables.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#subnets">subnets</a>))</code></td>
-    <td width="100%">subnets</td>
-    <td><code>{}</code></td>
+    <td width="100%">subnets</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -366,8 +354,7 @@ Manages multiple subnets.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">tenancy</td>
-    <td><code>"default"</code></td>
+    <td width="100%">tenancy</td><td><code>"default"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -388,8 +375,7 @@ Specify the VPC's tenancy.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#dhcp_options">dhcp_options</a>))</code></td>
-    <td width="100%">dhcp_options</td>
-    <td></td>
+    <td width="100%">dhcp_options</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -400,8 +386,7 @@ DHCP option
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#internet_gateway">internet_gateway</a>))</code></td>
-    <td width="100%">internet_gateway</td>
-    <td></td>
+    <td width="100%">internet_gateway</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -412,8 +397,7 @@ The default internet gateway
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#nat_gateways">nat_gateways</a>))</code></td>
-    <td width="100%">nat_gateways</td>
-    <td></td>
+    <td width="100%">nat_gateways</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -424,8 +408,7 @@ Map of default NAT gateways. The key of the map is the NAT gateway's name
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#peering_connection_requests">peering_connection_requests</a>))</code></td>
-    <td width="100%">peering_connection_requests</td>
-    <td></td>
+    <td width="100%">peering_connection_requests</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -436,8 +419,7 @@ Map of peering connection requests. The key of the map is the peering connection
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#route_tables">route_tables</a>))</code></td>
-    <td width="100%">route_tables</td>
-    <td></td>
+    <td width="100%">route_tables</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -448,8 +430,7 @@ Map of route tables. The key of the map is the route table's name
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#subnets">subnets</a>))</code></td>
-    <td width="100%">subnets</td>
-    <td></td>
+    <td width="100%">subnets</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -460,8 +441,7 @@ Map of subnets. The key of the map is the subnet's name
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">vpc_arn</td>
-    <td></td>
+    <td width="100%">vpc_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -472,8 +452,7 @@ The ARN of the VPC
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">vpc_id</td>
-    <td></td>
+    <td width="100%">vpc_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -488,13 +467,12 @@ The ID of the VPC
 
 #### cidr_block
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#ipv4">ipv4</a>)</code></td>
-    <td width="100%">ipv4</td>
-    <td></td>
+    <td width="100%">ipv4</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the IPv4 CIDR block
 
@@ -509,13 +487,12 @@ Configures CloudWatch Logs as destination
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">log_group_arn</td>
-    <td></td>
+    <td width="100%">log_group_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the CloudWatch log group to send logs to
 
@@ -524,10 +501,9 @@ The ARN of the CloudWatch log group to send logs to
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">service_role_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">service_role_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Arn of an IAM role that [gives permission to flow logs to send logs to CloudWatch][vpc-flow-logs-cloudwatch-service-role]. A default service role will be created if not specified
 
@@ -542,13 +518,12 @@ Where the flow log will be sent to. Must specify only one of the following: `clo
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#cloudwatch_logs">cloudwatch_logs</a>)</code></td>
-    <td width="100%">cloudwatch_logs</td>
-    <td><code>null</code></td>
+    <td width="100%">cloudwatch_logs</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures CloudWatch Logs as destination
 
@@ -557,10 +532,9 @@ Configures CloudWatch Logs as destination
 </td></tr>
 <tr>
     <td><code>object(<a href="#s3">s3</a>)</code></td>
-    <td width="100%">s3</td>
-    <td><code>null</code></td>
+    <td width="100%">s3</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures S3 as destination
 
@@ -571,13 +545,12 @@ Configures S3 as destination
 
 #### dhcp_options
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the DHCP option
 
@@ -586,10 +559,9 @@ The ARN of the DHCP option
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the DHCP option
 
@@ -600,13 +572,12 @@ The ID of the DHCP option
 
 #### dns_settings
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_dns_resolution</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_dns_resolution</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether DNS resolution through the Amazon DNS server is supported for the VPC
 
@@ -615,10 +586,9 @@ Whether DNS resolution through the Amazon DNS server is supported for the VPC
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_dns_hostnames</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_dns_hostnames</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether instances launched in the VPC receive public DNS hostnames that correspond to their public IP addresses
 
@@ -637,13 +607,12 @@ Configures multiple subnet level flow logs.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#destination">destination</a>)</code></td>
-    <td width="100%">destination</td>
-    <td></td>
+    <td width="100%">destination</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Where the flow log will be sent to. Must specify only one of the following: `cloudwatch_logs`, `s3`
 
@@ -652,10 +621,9 @@ Where the flow log will be sent to. Must specify only one of the following: `clo
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the flow log
 
@@ -664,10 +632,9 @@ Additional tags for the flow log
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">custom_log_record_format</td>
-    <td><code>null</code></td>
+    <td width="100%">custom_log_record_format</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The fields to include in the flow log record. Accepted format example: `"$${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport}"`. Please refer to [this documentation][vpc-flow-logs-log-record-available-fields] for a list of available fields
 
@@ -676,10 +643,9 @@ The fields to include in the flow log record. Accepted format example: `"$${inte
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">filter</td>
-    <td><code>"ALL"</code></td>
+    <td width="100%">filter</td><td></td><td><code>"ALL"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The type of traffic to capture.
 
@@ -694,10 +660,9 @@ The type of traffic to capture.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">maximum_aggregation_interval</td>
-    <td><code>600</code></td>
+    <td width="100%">maximum_aggregation_interval</td><td></td><td><code>600</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record.
 
@@ -713,13 +678,12 @@ The maximum interval of time during which a flow of packets is captured and aggr
 
 #### internet_gateway
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the internet gateway
 
@@ -728,10 +692,9 @@ The ARN of the internet gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the internet gateway
 
@@ -740,10 +703,9 @@ The ID of the internet gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">owner_id</td>
-    <td></td>
+    <td width="100%">owner_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the AWS account that owns the internet gateway
 
@@ -758,13 +720,12 @@ Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IP
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">pool_id</td>
-    <td></td>
+    <td width="100%">pool_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR
 
@@ -773,10 +734,9 @@ The ID of an IPv4 IPAM pool you want to use for allocating this VPC's CIDR
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">netmask</td>
-    <td></td>
+    <td width="100%">netmask</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The netmask length of the IPv4 CIDR you want to allocate to this VPC
 
@@ -791,13 +751,12 @@ Configures the IPv4 CIDR block
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">cidr</td>
-    <td><code>null</code></td>
+    <td width="100%">cidr</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Manually input an IPv4 CIDR. The CIDR block size must have a size between /16 and /28. Mutually exclusive to `ipam`
 
@@ -806,10 +765,9 @@ Manually input an IPv4 CIDR. The CIDR block size must have a size between /16 an
 </td></tr>
 <tr>
     <td><code>object(<a href="#ipam">ipam</a>)</code></td>
-    <td width="100%">ipam</td>
-    <td><code>null</code></td>
+    <td width="100%">ipam</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IPv4 CIDR automatically. If you select an IPAM pool, the size of the CIDR is limited by the allocation rules on the IPAM pool (allowed minimum, allowed maximum, and default). Mutually exclusive to `cidr`
 
@@ -820,13 +778,12 @@ Specify an [Amazon VPC IP Address Manager (IPAM)][vpc-ipam] pool to obtain an IP
 
 #### nat_gateways
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">availability_zone</td>
-    <td></td>
+    <td width="100%">availability_zone</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The availability of the NAT gateway
 
@@ -835,10 +792,9 @@ The availability of the NAT gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">association_id</td>
-    <td></td>
+    <td width="100%">association_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The association ID of the Elastic IP address that's associated with the NAT Gateway
 
@@ -847,10 +803,9 @@ The association ID of the Elastic IP address that's associated with the NAT Gate
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the NAT gateway
 
@@ -859,10 +814,9 @@ The ID of the NAT gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">network_interface_id</td>
-    <td></td>
+    <td width="100%">network_interface_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the network interface associated with the NAT Gateway
 
@@ -871,10 +825,9 @@ The ID of the network interface associated with the NAT Gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">public_ip</td>
-    <td></td>
+    <td width="100%">public_ip</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Elastic IP address associated with the NAT Gateway
 
@@ -885,13 +838,12 @@ The Elastic IP address associated with the NAT Gateway
 
 #### peering_connection_requests
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The peering connection ID
 
@@ -900,10 +852,9 @@ The peering connection ID
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">accept_status</td>
-    <td></td>
+    <td width="100%">accept_status</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The status of the VPC Peering Connection request
 
@@ -918,13 +869,12 @@ Specify the hostname type for EC2 instances in this subnet and optional RBN DNS 
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_resource_name_dns_a_record_on_launch</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_resource_name_dns_a_record_on_launch</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Choose if DNS A record queries for the resource-based name should return the IPv4 address or not
 
@@ -933,10 +883,9 @@ Choose if DNS A record queries for the resource-based name should return the IPv
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">hostname_type</td>
-    <td><code>"ip-name"</code></td>
+    <td width="100%">hostname_type</td><td></td><td><code>"ip-name"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Determines if the guest OS hostname of EC2 instances in this subnet should be based on the resource name (RBN) or the IP name (IPBN).
 
@@ -955,13 +904,12 @@ Determines if the guest OS hostname of EC2 instances in this subnet should be ba
 
 #### route_tables
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the route tables
 
@@ -970,10 +918,9 @@ The ARN of the route tables
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the route tables
 
@@ -988,13 +935,12 @@ Configures S3 as destination
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_arn</td>
-    <td></td>
+    <td width="100%">bucket_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the S3 bucket to send logs to
 
@@ -1003,10 +949,9 @@ The ARN of the S3 bucket to send logs to
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">log_file_format</td>
-    <td><code>"plain-text"</code></td>
+    <td width="100%">log_file_format</td><td></td><td><code>"plain-text"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The format for the flow log.
 
@@ -1020,10 +965,9 @@ The format for the flow log.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_hive_compatible_s3_prefix</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_hive_compatible_s3_prefix</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3
 
@@ -1032,10 +976,9 @@ Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">partition_logs_every_hour</td>
-    <td><code>false</code></td>
+    <td width="100%">partition_logs_every_hour</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Indicates whether to partition the flow log per hour. This reduces the cost and response time for queries.
 
@@ -1046,13 +989,12 @@ Indicates whether to partition the flow log per hour. This reduces the cost and 
 
 #### subnets
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the subnets
 
@@ -1061,10 +1003,9 @@ The ARN of the subnets
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the subnets
 
@@ -1073,10 +1014,9 @@ The ID of the subnets
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">owner_id</td>
-    <td></td>
+    <td width="100%">owner_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the AWS account that owns the subnet
 

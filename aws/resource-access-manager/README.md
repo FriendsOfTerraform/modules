@@ -52,8 +52,7 @@ module "basic_usage" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -69,8 +68,7 @@ The name of the resource share. All associated resources will also have their na
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">accept_sharings</td>
-    <td><code>[]</code></td>
+    <td width="100%">accept_sharings</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -81,8 +79,7 @@ List of share ARNs to accept sharing from
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -93,8 +90,7 @@ Additional tags for the resource share
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -105,8 +101,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">allow_external_principals</td>
-    <td><code>false</code></td>
+    <td width="100%">allow_external_principals</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -117,8 +112,7 @@ If enabled, you can share resources with any AWS accounts, roles, and users. If 
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">principals</td>
-    <td><code>[]</code></td>
+    <td width="100%">principals</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -129,8 +123,7 @@ List of principals to grant access of the resources to. Valid values include: `t
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">resources</td>
-    <td><code>[]</code></td>
+    <td width="100%">resources</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -146,8 +139,7 @@ List of ARNs of supported resources to share. Please refer to [this documentatio
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">resource_share_id</td>
-    <td></td>
+    <td width="100%">resource_share_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 

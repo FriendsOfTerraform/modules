@@ -67,8 +67,7 @@ module "basic_usage" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -79,8 +78,7 @@ The name of the event bus
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#rules">rules</a>))</code></td>
-    <td width="100%">rules</td>
-    <td></td>
+    <td width="100%">rules</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -100,8 +98,7 @@ Manage multiple rules for the bus.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -112,8 +109,7 @@ Additional tags for the event bus
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -124,8 +120,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -136,8 +131,7 @@ The description of the event bus
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">kms_key_arn</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -148,8 +142,7 @@ The AWS KMS customer managed key for EventBridge to use for encryption. If not s
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">policy</td>
-    <td><code>null</code></td>
+    <td width="100%">policy</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -165,8 +158,7 @@ Specify the JSON document for the event bus' resource-based policy
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">event_bus_arn</td>
-    <td></td>
+    <td width="100%">event_bus_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -177,8 +169,7 @@ ARN of the event bus
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">event_bus_id</td>
-    <td></td>
+    <td width="100%">event_bus_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -197,13 +188,12 @@ The capacity provider strategy to use for the task. Mutually exclusive to `launc
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">weight</td>
-    <td></td>
+    <td width="100%">weight</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The weight value designates the relative percentage of the total number of tasks launched that should use the specified capacity provider. The weight value is taken into consideration after the base value, if defined, is satisfied.
 
@@ -212,10 +202,9 @@ The weight value designates the relative percentage of the total number of tasks
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">base</td>
-    <td><code>null</code></td>
+    <td width="100%">base</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The base value designates how many tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider in a capacity provider strategy can have a base defined.
 
@@ -230,13 +219,12 @@ Customize the text from an event before EventBridge passes the event to the targ
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">constant</td>
-    <td><code>null</code></td>
+    <td width="100%">constant</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The JSON document to be sent to the target instead of the original event
 
@@ -245,10 +233,9 @@ The JSON document to be sent to the target instead of the original event
 </td></tr>
 <tr>
     <td><code>object(<a href="#input_transformer">input_transformer</a>)</code></td>
-    <td width="100%">input_transformer</td>
-    <td><code>null</code></td>
+    <td width="100%">input_transformer</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify how to change some of the event text before passing it to the target. One or more JSON paths are extracted from the event text and used in a template that you provide. Refer to [this documentation][eventbridge-input-transformer] for more information
 
@@ -263,13 +250,12 @@ Configuration options for ECS target
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">task_definition_arn</td>
-    <td></td>
+    <td width="100%">task_definition_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the task definition to use to create new ECS task
 
@@ -278,10 +264,9 @@ The ARN of the task definition to use to create new ECS task
 </td></tr>
 <tr>
     <td><code>object(<a href="#network_config">network_config</a>)</code></td>
-    <td width="100%">network_config</td>
-    <td></td>
+    <td width="100%">network_config</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures networking options for the ECS task
 
@@ -290,10 +275,9 @@ Configures networking options for the ECS task
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the ECS task
 
@@ -302,10 +286,9 @@ Additional tags for the ECS task
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">count</td>
-    <td><code>1</code></td>
+    <td width="100%">count</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of tasks to be created
 
@@ -314,10 +297,9 @@ The number of tasks to be created
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_execute_command</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_execute_command</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether or not to enable the execute command functionality for the containers in this task. If true, this enables execute command functionality on all containers in the task.
 
@@ -326,10 +308,9 @@ Whether or not to enable the execute command functionality for the containers in
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_managed_tags</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_managed_tags</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether to enable Amazon ECS managed tags for the task.
 
@@ -338,10 +319,9 @@ Specifies whether to enable Amazon ECS managed tags for the task.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">launch_type</td>
-    <td><code>null</code></td>
+    <td width="100%">launch_type</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the launch type on which your task is running. Mutually exclusive to `capacity_provider_strategy`
 
@@ -356,10 +336,9 @@ Specifies the launch type on which your task is running. Mutually exclusive to `
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">platform_version</td>
-    <td><code>"LATEST"</code></td>
+    <td width="100%">platform_version</td><td></td><td><code>"LATEST"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the platform version for the task. This is used only if `launch_type = "FARGATE"`. For more information about valid platform versions, see [AWS Fargate Platform Versions][fargate-platform-version].
 
@@ -368,10 +347,9 @@ Specifies the platform version for the task. This is used only if `launch_type =
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">propagate_tags_from_task_definition</td>
-    <td><code>false</code></td>
+    <td width="100%">propagate_tags_from_task_definition</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether to propagate the tags from the task definition to the task.
 
@@ -380,10 +358,9 @@ Specifies whether to propagate the tags from the task definition to the task.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#capacity_provider_strategy">capacity_provider_strategy</a>))</code></td>
-    <td width="100%">capacity_provider_strategy</td>
-    <td><code>{}</code></td>
+    <td width="100%">capacity_provider_strategy</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The capacity provider strategy to use for the task. Mutually exclusive to `launch_type`
 
@@ -398,13 +375,12 @@ Configuration options for HTTP and api gateway target
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">header_parameters</td>
-    <td><code>null</code></td>
+    <td width="100%">header_parameters</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A map of HTTP headers to add to the request.
 
@@ -413,10 +389,9 @@ A map of HTTP headers to add to the request.
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">query_string_parameters</td>
-    <td><code>null</code></td>
+    <td width="100%">query_string_parameters</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A map of query string parameters that are appended to the invoked endpoint.
 
@@ -431,13 +406,12 @@ Specify how to change some of the event text before passing it to the target. On
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">input_paths</td>
-    <td></td>
+    <td width="100%">input_paths</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Key-value pairs that is used to define variables. You use JSON path to reference items in your event and store those values in variables. For instance, you could create an Input Path to reference values in the event.
 
@@ -446,10 +420,9 @@ Key-value pairs that is used to define variables. You use JSON path to reference
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">template</td>
-    <td></td>
+    <td width="100%">template</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Input Template is a template for the information you want to pass to your target. You can create a template that passes either a string or JSON to the target.
 
@@ -464,13 +437,12 @@ Configures networking options for the ECS task
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">subnet_ids</td>
-    <td></td>
+    <td width="100%">subnet_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of subnets the ECS task may be created on
 
@@ -479,10 +451,9 @@ A list of subnets the ECS task may be created on
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">security_group_ids</td>
-    <td></td>
+    <td width="100%">security_group_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of security groups associated with the task
 
@@ -491,10 +462,9 @@ A list of security groups associated with the task
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">auto_assign_public_ip</td>
-    <td><code>false</code></td>
+    <td width="100%">auto_assign_public_ip</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Assign a public IP address to the ENI (Fargate launch type only).
 
@@ -509,13 +479,12 @@ Configuration options for Redshift target
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">database_name</td>
-    <td></td>
+    <td width="100%">database_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the database
 
@@ -524,10 +493,9 @@ The name of the database
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">database_user</td>
-    <td><code>null</code></td>
+    <td width="100%">database_user</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The database user name
 
@@ -536,10 +504,9 @@ The database user name
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">secret_manager_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">secret_manager_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the secret that enables access to the database.
 
@@ -548,10 +515,9 @@ The ARN of the secret that enables access to the database.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">sql_statement</td>
-    <td><code>null</code></td>
+    <td width="100%">sql_statement</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The SQL statement text to run.
 
@@ -560,10 +526,9 @@ The SQL statement text to run.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">with_event</td>
-    <td><code>false</code></td>
+    <td width="100%">with_event</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Indicates whether to send an event back to EventBridge after the SQL statement runs.
 
@@ -578,13 +543,12 @@ Configures retry policy and dead-letter queue
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">maximum_age_of_event</td>
-    <td><code>86400</code></td>
+    <td width="100%">maximum_age_of_event</td><td></td><td><code>86400</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The age in seconds to continue to make retry attempts.
 
@@ -593,10 +557,9 @@ The age in seconds to continue to make retry attempts.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">retry_attempts</td>
-    <td><code>185</code></td>
+    <td width="100%">retry_attempts</td><td></td><td><code>185</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum number of retry attempts to make before the request fails
 
@@ -605,10 +568,9 @@ The maximum number of retry attempts to make before the request fails
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">dead_letter_queue</td>
-    <td><code>null</code></td>
+    <td width="100%">dead_letter_queue</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the SQS queue specified as the target for the dead-letter queue.
 
@@ -619,13 +581,12 @@ The ARN of the SQS queue specified as the target for the dead-letter queue.
 
 #### rules
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">event_pattern</td>
-    <td></td>
+    <td width="100%">event_pattern</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the [event pattern][eventbridge-event-pattern] that this rule will be triggered when an event matching the pattern occurs
 
@@ -634,34 +595,30 @@ Specify the [event pattern][eventbridge-event-pattern] that this rule will be tr
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">state</td>
-    <td><code>"ENABLED"</code></td>
+    <td width="100%">state</td><td></td><td><code>"ENABLED"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 <tr>
     <td><code>list(object(<a href="#targets">targets</a>))</code></td>
-    <td width="100%">targets</td>
-    <td></td>
+    <td width="100%">targets</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify up to 5 targets to send the event to when the rule is triggered
 
@@ -676,13 +633,12 @@ Specify up to 5 targets to send the event to when the rule is triggered
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Amazon Resource Name (ARN) of the target
 
@@ -691,10 +647,9 @@ The Amazon Resource Name (ARN) of the target
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">iam_role_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">iam_role_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 An execution role that EventBridge uses to send events to the target
 
@@ -703,10 +658,9 @@ An execution role that EventBridge uses to send events to the target
 </td></tr>
 <tr>
     <td><code>object(<a href="#configure_target_input">configure_target_input</a>)</code></td>
-    <td width="100%">configure_target_input</td>
-    <td></td>
+    <td width="100%">configure_target_input</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Customize the text from an event before EventBridge passes the event to the target of a rule. Can only define only one of the following: `constant`, `input_transformer`. If this is not specified, the original event will be sent to the target
 
@@ -715,10 +669,9 @@ Customize the text from an event before EventBridge passes the event to the targ
 </td></tr>
 <tr>
     <td><code>object(<a href="#ecs_target_config">ecs_target_config</a>)</code></td>
-    <td width="100%">ecs_target_config</td>
-    <td><code>null</code></td>
+    <td width="100%">ecs_target_config</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configuration options for ECS target
 
@@ -727,10 +680,9 @@ Configuration options for ECS target
 </td></tr>
 <tr>
     <td><code>object(<a href="#http_target_config">http_target_config</a>)</code></td>
-    <td width="100%">http_target_config</td>
-    <td><code>null</code></td>
+    <td width="100%">http_target_config</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configuration options for HTTP and api gateway target
 
@@ -739,10 +691,9 @@ Configuration options for HTTP and api gateway target
 </td></tr>
 <tr>
     <td><code>object(<a href="#redshift_target_config">redshift_target_config</a>)</code></td>
-    <td width="100%">redshift_target_config</td>
-    <td><code>null</code></td>
+    <td width="100%">redshift_target_config</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configuration options for Redshift target
 
@@ -751,10 +702,9 @@ Configuration options for Redshift target
 </td></tr>
 <tr>
     <td><code>object(<a href="#retry_policy">retry_policy</a>)</code></td>
-    <td width="100%">retry_policy</td>
-    <td><code>{}</code></td>
+    <td width="100%">retry_policy</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures retry policy and dead-letter queue
 

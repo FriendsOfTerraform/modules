@@ -188,8 +188,7 @@ module "oidc_auth_method" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">authentication_method</td>
-    <td></td>
+    <td width="100%">authentication_method</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -206,8 +205,7 @@ The Vault authentication method to configure, currently the following values are
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">mount_path</td>
-    <td></td>
+    <td width="100%">mount_path</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -223,8 +221,7 @@ The mount path of the authentication method
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#approle_auth_roles">approle_auth_roles</a>))</code></td>
-    <td width="100%">approle_auth_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">approle_auth_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -232,12 +229,12 @@ Configures multiple AppRole auth roles for this authentication method. Input sho
 
 ```terraform
 approle_auth_roles = {
-"awx" = {
-secret_id_num_uses    = 3
-token_max_ttl_seconds = 3600
-token_policies        = ["awx"]
-token_ttl_seconds     = 600
-}
+  "awx" = {
+    secret_id_num_uses    = 3
+    token_max_ttl_seconds = 3600
+    token_policies        = ["awx"]
+    token_ttl_seconds     = 600
+  }
 }
 ```
 
@@ -246,8 +243,7 @@ token_ttl_seconds     = 600
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#aws_auth_roles">aws_auth_roles</a>))</code></td>
-    <td width="100%">aws_auth_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">aws_auth_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -255,11 +251,11 @@ Configures an AWS authentication role in `RoleName = {RoleConfig}` format
 
 ```terraform
 aws_auth_roles = {
-"admin" = {
-sts_role_arn             = "arn:aws:iam::111122223333:role/vault-authentication-role"
-bound_iam_principal_arns = ["arn:aws:iam::111122223333:role/demo-role"]
-token_policies           = ["admin"]
-}
+  "admin" = {
+    sts_role_arn             = "arn:aws:iam::111122223333:role/vault-authentication-role"
+    bound_iam_principal_arns = ["arn:aws:iam::111122223333:role/demo-role"]
+    token_policies           = ["admin"]
+  }
 }
 ```
 
@@ -268,8 +264,7 @@ token_policies           = ["admin"]
 </td></tr>
 <tr>
     <td><code>object(<a href="#aws_backend_credential">aws_backend_credential</a>)</code></td>
-    <td width="100%">aws_backend_credential</td>
-    <td><code>null</code></td>
+    <td width="100%">aws_backend_credential</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -277,8 +272,8 @@ Configuration of an AWS credential that Vault will use to validate authenticatio
 
 ```terraform
 aws_backend_credential = {
-access_key_id = "AKIA6XXXXXXXXXX"
-secret_access_key = "P+N4XXXXXXXXXXXXXXXXXXXXXX"
+  access_key_id = "AKIA6XXXXXXXXXX"
+  secret_access_key = "P+N4XXXXXXXXXXXXXXXXXXXXXX"
 }
 ```
 
@@ -287,8 +282,7 @@ secret_access_key = "P+N4XXXXXXXXXXXXXXXXXXXXXX"
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>"Managed by Terraform"</code></td>
+    <td width="100%">description</td><td><code>"Managed by Terraform"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -299,8 +293,7 @@ Description of the authentication method
 </td></tr>
 <tr>
     <td><code>object(<a href="#github_config">github_config</a>)</code></td>
-    <td width="100%">github_config</td>
-    <td><code>null</code></td>
+    <td width="100%">github_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -308,8 +301,8 @@ Configuration of a GitHub authentication method. This is required if `authentica
 
 ```terraform
 github_config = {
-organization = "FriendsOfTerraform"
-users = {"petersin0422" = ["octopus-api-policy"]}
+  organization = "FriendsOfTerraform"
+  users = {"petersin0422" = ["octopus-api-policy"]}
 }
 ```
 
@@ -318,8 +311,7 @@ users = {"petersin0422" = ["octopus-api-policy"]}
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#kubernetes_auth_roles">kubernetes_auth_roles</a>))</code></td>
-    <td width="100%">kubernetes_auth_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">kubernetes_auth_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -327,11 +319,11 @@ Configures multiple [Kubernetes auth roles][kubernetes-auth-role] for this authe
 
 ```terraform
 kubernetes_auth_roles = {
-frontend = {
-bound_service_account_names      = ["frontend"]
-bound_service_account_namespaces = ["webapp"]
-token_policies                   = ["webapp-frontend"]
-}
+  frontend = {
+    bound_service_account_names      = ["frontend"]
+    bound_service_account_namespaces = ["webapp"]
+    token_policies                   = ["webapp-frontend"]
+  }
 }
 ```
 
@@ -340,8 +332,7 @@ token_policies                   = ["webapp-frontend"]
 </td></tr>
 <tr>
     <td><code>object(<a href="#kubernetes_config">kubernetes_config</a>)</code></td>
-    <td width="100%">kubernetes_config</td>
-    <td><code>null</code></td>
+    <td width="100%">kubernetes_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -349,9 +340,9 @@ Configuration of a Kubernetes authentication method. This is required if `authen
 
 ```terraform
 kubernetes_config = {
-host = "https://1D8D9CE84F575xxxxxxx.gr7.us-east-1.eks.amazonaws.com"
-ca_certificate = base64decode("LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tL...")
-token_reviewer_jwt = "eyJhbGciOiJSUzI1NiIsImtpZCI6IkJOMmw3eFUtVVZYOXRyQmZ1bmVUdW..."
+  host = "https://1D8D9CE84F575xxxxxxx.gr7.us-east-1.eks.amazonaws.com"
+  ca_certificate = base64decode("LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tL...")
+  token_reviewer_jwt = "eyJhbGciOiJSUzI1NiIsImtpZCI6IkJOMmw3eFUtVVZYOXRyQmZ1bmVUdW..."
 }
 ```
 
@@ -360,8 +351,7 @@ token_reviewer_jwt = "eyJhbGciOiJSUzI1NiIsImtpZCI6IkJOMmw3eFUtVVZYOXRyQmZ1bmVUdW
 </td></tr>
 <tr>
     <td><code>object(<a href="#method_options">method_options</a>)</code></td>
-    <td width="100%">method_options</td>
-    <td><code>null</code></td>
+    <td width="100%">method_options</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -369,9 +359,9 @@ Configures common authentication method options
 
 ```terraform
 method_options = {
-default_lease_ttl = "1h"
-max_lease_ttl = "12h"
-listing_visibility = "unauth"
+  default_lease_ttl = "1h"
+  max_lease_ttl = "12h"
+  listing_visibility = "unauth"
 }
 ```
 
@@ -380,8 +370,7 @@ listing_visibility = "unauth"
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#oidc_auth_roles">oidc_auth_roles</a>))</code></td>
-    <td width="100%">oidc_auth_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">oidc_auth_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -389,23 +378,23 @@ Configures multiple OIDC auth roles for this authentication method. Input should
 
 ```terraform
 oidc_auth_roles = {
-tech-infra-cloudops = {
-user_claim = "email"
+  tech-infra-cloudops = {
+    user_claim = "email"
 
-bound_claims = {
-groups = "f427664f-4c51-xxxx-xxxx-xxxx" # Tech-Infra-CloudOps
-}
+    bound_claims = {
+      groups = "f427664f-4c51-xxxx-xxxx-xxxx" # Tech-Infra-CloudOps
+    }
 
-oidc_scopes       = ["https://graph.microsoft.com/.default"]
-groups_claim      = "groups"
+    oidc_scopes       = ["https://graph.microsoft.com/.default"]
+    groups_claim      = "groups"
 
-allowed_redirect_uris = [
-"https://vault.friendsofterraform.com/ui/vault/auth/${vault_jwt_auth_backend.azure_ad.path}/oidc/callback",
-"http://localhost:8250/oidc/callback"
-]
+    allowed_redirect_uris = [
+      "https://vault.friendsofterraform.com/ui/vault/auth/${vault_jwt_auth_backend.azure_ad.path}/oidc/callback",
+      "http://localhost:8250/oidc/callback"
+    ]
 
-token_policies = ["cloudops-users"]
-}
+    token_policies = ["cloudops-users"]
+  }
 }
 ```
 
@@ -414,8 +403,7 @@ token_policies = ["cloudops-users"]
 </td></tr>
 <tr>
     <td><code>object(<a href="#oidc_config">oidc_config</a>)</code></td>
-    <td width="100%">oidc_config</td>
-    <td><code>null</code></td>
+    <td width="100%">oidc_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -423,10 +411,10 @@ Configuration of an OIDC authentication method. This is required if `authenticat
 
 ```terraform
 oidc_config = {
-default_role = "tech-infra-cloudops"
-discovery_url = "https://login.microsoftonline.com/abcdef-1111-2222-abcd-11112222aaaa/v2.0"
-client_id = "8ad6e653-f37e-4a33-80fe-xxxxxxxxxxxx"
-client_secret = "some-secret...."
+  default_role = "tech-infra-cloudops"
+  discovery_url = "https://login.microsoftonline.com/abcdef-1111-2222-abcd-11112222aaaa/v2.0"
+  client_id = "8ad6e653-f37e-4a33-80fe-xxxxxxxxxxxx"
+  client_secret = "some-secret...."
 }
 ```
 
@@ -440,8 +428,7 @@ client_secret = "some-secret...."
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">mount_path</td>
-    <td></td>
+    <td width="100%">mount_path</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -456,13 +443,12 @@ The mount path of the authentication method
 
 #### approle_auth_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">secret_id_bound_cidrs</td>
-    <td></td>
+    <td width="100%">secret_id_bound_cidrs</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies blocks of IP addresses which can perform the login operation using this role
 
@@ -471,10 +457,9 @@ Specifies blocks of IP addresses which can perform the login operation using thi
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">secret_id_num_uses</td>
-    <td></td>
+    <td width="100%">secret_id_num_uses</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of times any particular SecretID can be used to fetch a token from this AppRole, after which the SecretID will expire. A value of `0` or `null` will allow unlimited uses.
 
@@ -483,10 +468,9 @@ The number of times any particular SecretID can be used to fetch a token from th
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">token_ttl_seconds</td>
-    <td></td>
+    <td width="100%">token_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the token's TTL (time-to-live) in seconds
 
@@ -495,10 +479,9 @@ Specify the token's TTL (time-to-live) in seconds
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">token_max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">token_max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the token's max TTL (time-to-live) in seconds
 
@@ -507,10 +490,9 @@ Specify the token's max TTL (time-to-live) in seconds
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">token_policies</td>
-    <td></td>
+    <td width="100%">token_policies</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of Vault policies to be attached to tokens generated by this role
 
@@ -521,13 +503,12 @@ A list of Vault policies to be attached to tokens generated by this role
 
 #### aws_auth_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">sts_role_arn</td>
-    <td></td>
+    <td width="100%">sts_role_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The IAM role Vault assume to validate authentication requests to IAM roles in this role
 
@@ -536,10 +517,9 @@ The IAM role Vault assume to validate authentication requests to IAM roles in th
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">bound_iam_principal_arns</td>
-    <td></td>
+    <td width="100%">bound_iam_principal_arns</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of IAM arns that is allowed to authenticate using this role
 
@@ -548,10 +528,9 @@ List of IAM arns that is allowed to authenticate using this role
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">token_ttl_seconds</td>
-    <td></td>
+    <td width="100%">token_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the token's TTL (time-to-live) in seconds
 
@@ -560,10 +539,9 @@ Specify the token's TTL (time-to-live) in seconds
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">token_max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">token_max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the token's max TTL (time-to-live) in seconds
 
@@ -572,10 +550,9 @@ Specify the token's max TTL (time-to-live) in seconds
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">token_policies</td>
-    <td></td>
+    <td width="100%">token_policies</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of Vault policies to be attached to tokens generated by this role
 
@@ -586,13 +563,12 @@ A list of Vault policies to be attached to tokens generated by this role
 
 #### aws_backend_credential
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">access_key_id</td>
-    <td></td>
+    <td width="100%">access_key_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Access key ID of an IAM user
 
@@ -601,10 +577,9 @@ Access key ID of an IAM user
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">secret_access_key</td>
-    <td></td>
+    <td width="100%">secret_access_key</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Secret access key of an IAM user
 
@@ -615,13 +590,12 @@ Secret access key of an IAM user
 
 #### github_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">organization</td>
-    <td></td>
+    <td width="100%">organization</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The GitHub organization
 
@@ -630,10 +604,9 @@ The GitHub organization
 </td></tr>
 <tr>
     <td><code>map(list(string))</code></td>
-    <td width="100%">teams</td>
-    <td></td>
+    <td width="100%">teams</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A map of GitHub teams (**team name must be slugified**) to be allowed to authenticate using this authentication endpoint and a list of policies associated to the team, in the `team_name = [policies]` format. ex: `{my-team = ["policy-1", "policy-2"]}`
 
@@ -642,10 +615,9 @@ A map of GitHub teams (**team name must be slugified**) to be allowed to authent
 </td></tr>
 <tr>
     <td><code>map(list(string))</code></td>
-    <td width="100%">users</td>
-    <td></td>
+    <td width="100%">users</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A map of GitHub users to be allowed to authenticate using this authentication endpoint and a list of policies associated to the users, in the `username = [policies]` format. ex: `{petersin = ["policy-1", "policy-2"]}`
 
@@ -656,13 +628,12 @@ A map of GitHub users to be allowed to authenticate using this authentication en
 
 #### kubernetes_auth_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">bound_service_account_names</td>
-    <td></td>
+    <td width="100%">bound_service_account_names</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of Kubernetes service account names that is permitted to authenticate using this role
 
@@ -671,10 +642,9 @@ A list of Kubernetes service account names that is permitted to authenticate usi
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">bound_service_account_namespaces</td>
-    <td></td>
+    <td width="100%">bound_service_account_namespaces</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of Kubernetes namespaces that is permitted to authenticate using this role
 
@@ -683,10 +653,9 @@ A list of Kubernetes namespaces that is permitted to authenticate using this rol
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">token_ttl_seconds</td>
-    <td></td>
+    <td width="100%">token_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the token's TTL (time-to-live) in seconds
 
@@ -695,10 +664,9 @@ Specify the token's TTL (time-to-live) in seconds
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">token_max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">token_max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the token's max TTL (time-to-live) in seconds
 
@@ -707,10 +675,9 @@ Specify the token's max TTL (time-to-live) in seconds
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">token_policies</td>
-    <td></td>
+    <td width="100%">token_policies</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of Vault policies to be attached to tokens generated by this role
 
@@ -721,13 +688,12 @@ A list of Vault policies to be attached to tokens generated by this role
 
 #### kubernetes_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">host</td>
-    <td></td>
+    <td width="100%">host</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The URL of the Kubernetes API server. Must be `https://`
 
@@ -736,10 +702,9 @@ The URL of the Kubernetes API server. Must be `https://`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ca_certificate</td>
-    <td></td>
+    <td width="100%">ca_certificate</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The CA certificate Vault will use to connect to the Kubernetes API server. Most providers (like AWS) returns this value in base64 encoded string, make sure the decoded value is passed in.
 
@@ -752,10 +717,9 @@ The CA certificate Vault will use to connect to the Kubernetes API server. Most 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">token_reviewer_jwt</td>
-    <td></td>
+    <td width="100%">token_reviewer_jwt</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A Kubernetes service account JWT token that allow Vault to validate incoming authentication request with Kubernetes. Please refer to [this doc][kube-reviewer-jwt] for more information.
 
@@ -764,10 +728,9 @@ A Kubernetes service account JWT token that allow Vault to validate incoming aut
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">issuer</td>
-    <td></td>
+    <td width="100%">issuer</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The issuer of the `token_reviewer_jwt` token. Please refer to [this doc][kube-issuer] for more information.
 
@@ -778,13 +741,12 @@ The issuer of the `token_reviewer_jwt` token. Please refer to [this doc][kube-is
 
 #### method_options
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">default_lease_ttl</td>
-    <td></td>
+    <td width="100%">default_lease_ttl</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the default token time-to-live. If set, this overrides the global default. Must be a [valid duration string][duration-string]
 
@@ -793,10 +755,9 @@ Specifies the default token time-to-live. If set, this overrides the global defa
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">max_lease_ttl</td>
-    <td></td>
+    <td width="100%">max_lease_ttl</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the maximum token time-to-live. If set, this overrides the global default. Must be a [valid duration string][duration-string]
 
@@ -805,10 +766,9 @@ Specifies the maximum token time-to-live. If set, this overrides the global defa
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">listing_visibility</td>
-    <td></td>
+    <td width="100%">listing_visibility</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether to show this mount in the UI-specific listing endpoint.
 
@@ -827,13 +787,12 @@ Specifies whether to show this mount in the UI-specific listing endpoint.
 
 #### oidc_auth_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">user_claim</td>
-    <td></td>
+    <td width="100%">user_claim</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The claim to use to uniquely identify the user
 
@@ -842,10 +801,9 @@ The claim to use to uniquely identify the user
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">bound_claims</td>
-    <td></td>
+    <td width="100%">bound_claims</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A map of claims that restrict only the identity that has matching claims in its token. For example, `this identity must be in groups = <group_id>`
 
@@ -854,10 +812,9 @@ A map of claims that restrict only the identity that has matching claims in its 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">groups_claim</td>
-    <td></td>
+    <td width="100%">groups_claim</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The claim to use to uniquely identify the set of groups to which the user belongs
 
@@ -866,10 +823,9 @@ The claim to use to uniquely identify the set of groups to which the user belong
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">oidc_scopes</td>
-    <td></td>
+    <td width="100%">oidc_scopes</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of OIDC scopes to be used with an OIDC role
 
@@ -878,10 +834,9 @@ A list of OIDC scopes to be used with an OIDC role
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allowed_redirect_uris</td>
-    <td></td>
+    <td width="100%">allowed_redirect_uris</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of redirect URIs where authentication responses can be redirected back to the caller
 
@@ -890,10 +845,9 @@ A list of redirect URIs where authentication responses can be redirected back to
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">token_ttl_seconds</td>
-    <td></td>
+    <td width="100%">token_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the token's TTL (time-to-live) in seconds
 
@@ -902,10 +856,9 @@ Specify the token's TTL (time-to-live) in seconds
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">token_max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">token_max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the token's max TTL (time-to-live) in seconds
 
@@ -914,10 +867,9 @@ Specify the token's max TTL (time-to-live) in seconds
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">token_policies</td>
-    <td></td>
+    <td width="100%">token_policies</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of Vault policies to be attached to tokens generated by this role
 
@@ -928,13 +880,12 @@ A list of Vault policies to be attached to tokens generated by this role
 
 #### oidc_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">default_role</td>
-    <td></td>
+    <td width="100%">default_role</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The default role to use if none is provided during login
 
@@ -943,10 +894,9 @@ The default role to use if none is provided during login
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">discovery_url</td>
-    <td></td>
+    <td width="100%">discovery_url</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The OIDC Discovery URL, without any .well-known component (base path).
 
@@ -959,10 +909,9 @@ The OIDC Discovery URL, without any .well-known component (base path).
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">client_id</td>
-    <td></td>
+    <td width="100%">client_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Client ID used for OIDC backends
 
@@ -971,10 +920,9 @@ Client ID used for OIDC backends
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">client_secret</td>
-    <td></td>
+    <td width="100%">client_secret</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Client Secret used for OIDC backends
 

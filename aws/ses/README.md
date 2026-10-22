@@ -7,17 +7,17 @@ This module configures Amazon [Simple Email Service (SES)](https://aws.amazon.co
 ## Table of Contents
 
 - [Example Usage](#example-usage)
-    - [Basic Usage](#basic-usage)
-    - [Email Identities with DKIM](#email-identities-with-dkim)
-    - [Configuration Sets](#configuration-sets)
-    - [Dedicated IP Pools](#dedicated-ip-pools)
-    - [Custom Mail From Domain](#custom-mail-from-domain)
-    - [Authorization Policies](#authorization-policies)
-    - [Tenants](#tenants)
-    - [Virtual Deliverability Manager](#virtual-deliverability-manager)
+  - [Basic Usage](#basic-usage)
+  - [Email Identities with DKIM](#email-identities-with-dkim)
+  - [Configuration Sets](#configuration-sets)
+  - [Dedicated IP Pools](#dedicated-ip-pools)
+  - [Custom Mail From Domain](#custom-mail-from-domain)
+  - [Authorization Policies](#authorization-policies)
+  - [Tenants](#tenants)
+  - [Virtual Deliverability Manager](#virtual-deliverability-manager)
 - [Argument Reference](#argument-reference)
-    - [Mandatory](#mandatory)
-    - [Optional](#optional)
+  - [Mandatory](#mandatory)
+  - [Optional](#optional)
 - [Outputs](#outputs)
 
 ## Example Usage
@@ -278,223 +278,223 @@ None. All arguments are optional, but you typically need to define at least one 
 
 - (map(string)) **`additional_tags_all = {}`** _[since v1.0.0]_
 
-    Additional tags for all resources deployed with this module
+  Additional tags for all resources deployed with this module
 
 - (map(object)) **`identities = {}`** _[since v1.0.0]_
 
-    Manages SES email identities. Keys without `@` are treated as domain identities; keys with `@` are treated as email address identities. Please [see example](#email-identities-with-dkim).
+  Manages SES email identities. Keys without `@` are treated as domain identities; keys with `@` are treated as email address identities. Please [see example](#email-identities-with-dkim).
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+  - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-        Additional tags for the identity
+    Additional tags for the identity
 
-    - (map(string)) **`authorization_policies = {}`** _[since v1.0.0]_
+  - (map(string)) **`authorization_policies = {}`** _[since v1.0.0]_
 
-        Authorization policies to attach to the identity. Keys are policy names, values are JSON policy documents. Please [see example](#authorization-policies)
+    Authorization policies to attach to the identity. Keys are policy names, values are JSON policy documents. Please [see example](#authorization-policies)
 
-    - (string) **`default_configuration_set = null`** _[since v1.0.0]_
+  - (string) **`default_configuration_set = null`** _[since v1.0.0]_
 
-        The default configuration set to use for this identity. Must reference a key from `configuration_sets`
+    The default configuration set to use for this identity. Must reference a key from `configuration_sets`
 
-    - (bool) **`enable_feedback_forwarding = true`** _[since v1.0.0]_
+  - (bool) **`enable_feedback_forwarding = true`** _[since v1.0.0]_
 
-        Whether to enable email feedback forwarding (bounce and complaint notifications via email)
+    Whether to enable email feedback forwarding (bounce and complaint notifications via email)
 
-    - (string) **`tenant = null`** _[since v1.0.0]_
+  - (string) **`tenant = null`** _[since v1.0.0]_
 
-        The tenant to associate with this identity
+    The tenant to associate with this identity
 
-    - (object) **`dkim_settings = null`** _[since v1.0.0]_
+  - (object) **`dkim_settings = null`** _[since v1.0.0]_
 
-        Configures DKIM signing for the identity. Please [see example](#email-identities-with-dkim)
+    Configures DKIM signing for the identity. Please [see example](#email-identities-with-dkim)
 
-        - (bool) **`dkim_signatures_enabled = true`** _[since v1.0.0]_
+    - (bool) **`dkim_signatures_enabled = true`** _[since v1.0.0]_
 
-            Whether to enable DKIM signatures
+      Whether to enable DKIM signatures
 
-        - (object) **`easy_dkim = null`** _[since v1.0.0]_
+    - (object) **`easy_dkim = null`** _[since v1.0.0]_
 
-            Configures easy DKIM. Mutually exclusive with `provide_dkim_authentication_token`
+      Configures easy DKIM. Mutually exclusive with `provide_dkim_authentication_token`
 
-            - (string) **`signing_key_length = "RSA_2048_BIT"`** _[since v1.0.0]_
+      - (string) **`signing_key_length = "RSA_2048_BIT"`** _[since v1.0.0]_
 
-                The DKIM signing key length. Valid values: `"RSA_1024_BIT"`, `"RSA_2048_BIT"`
+        The DKIM signing key length. Valid values: `"RSA_1024_BIT"`, `"RSA_2048_BIT"`
 
-        - (object) **`provide_dkim_authentication_token = null`** _[since v1.0.0]_
+    - (object) **`provide_dkim_authentication_token = null`** _[since v1.0.0]_
 
-            Provides your own DKIM authentication tokens. Mutually exclusive with `easy_dkim`
+      Provides your own DKIM authentication tokens. Mutually exclusive with `easy_dkim`
 
-            - (string) **`private_key`** _[since v1.0.0]_
+      - (string) **`private_key`** _[since v1.0.0]_
 
-                The DKIM signing private key
+        The DKIM signing private key
 
-            - (string) **`selector_name`** _[since v1.0.0]_
+      - (string) **`selector_name`** _[since v1.0.0]_
 
-                The DKIM selector name
+        The DKIM selector name
 
-    - (object) **`use_custom_mail_from_domain = null`** _[since v1.0.0]_
+  - (object) **`use_custom_mail_from_domain = null`** _[since v1.0.0]_
 
-        Configures a custom MAIL FROM domain. Please [see example](#custom-mail-from-domain)
+    Configures a custom MAIL FROM domain. Please [see example](#custom-mail-from-domain)
 
-        - (string) **`subdomain_name = null`** _[since v1.0.0]_
+    - (string) **`subdomain_name = null`** _[since v1.0.0]_
 
-            The subdomain to use as the MAIL FROM domain (e.g., "bounce" for bounce.example.com)
+      The subdomain to use as the MAIL FROM domain (e.g., "bounce" for bounce.example.com)
 
-        - (string) **`behavior_on_mx_failure = "USE_DEFAULT_VALUE"`** _[since v1.0.0]_
+    - (string) **`behavior_on_mx_failure = "USE_DEFAULT_VALUE"`** _[since v1.0.0]_
 
-            Behavior when MX record lookup fails. Valid values: `"USE_DEFAULT_VALUE"`, `"REJECT_MESSAGE"`
+      Behavior when MX record lookup fails. Valid values: `"USE_DEFAULT_VALUE"`, `"REJECT_MESSAGE"`
 
 - (map(object)) **`configuration_sets = {}`** _[since v1.0.0]_
 
-    Manages SES configuration sets. Please [see example](#configuration-sets).
+  Manages SES configuration sets. Please [see example](#configuration-sets).
 
-    - (string) **`sending_ip_pool = null`** _[since v1.0.0]_
+  - (string) **`sending_ip_pool = null`** _[since v1.0.0]_
 
-        The name of the dedicated IP pool to associate with this configuration set. Must reference a key from `dedicated_ip_pools`
+    The name of the dedicated IP pool to associate with this configuration set. Must reference a key from `dedicated_ip_pools`
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+  - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-        Additional tags for the configuration set
+    Additional tags for the configuration set
 
-    - (bool) **`require_tls = false`** _[since v1.0.0]_
+  - (bool) **`require_tls = false`** _[since v1.0.0]_
 
-        Require TLS for all outgoing emails
+    Require TLS for all outgoing emails
 
-    - (string) **`maximum_delivery_duration = null`** _[since v1.0.0]_
+  - (string) **`maximum_delivery_duration = null`** _[since v1.0.0]_
 
-        The maximum delivery duration for emails. Format: `"<number> <unit>s"`. Example: `"300 seconds"`
+    The maximum delivery duration for emails. Format: `"<number> <unit>s"`. Example: `"300 seconds"`
 
-    - (bool) **`reputation_metrics_enabled = false`** _[since v1.0.0]_
+  - (bool) **`reputation_metrics_enabled = false`** _[since v1.0.0]_
 
-        Enable reputation metrics for the configuration set
+    Enable reputation metrics for the configuration set
 
-    - (map(object)) **`event_destinations = {}`** _[since v1.0.0]_
+  - (map(object)) **`event_destinations = {}`** _[since v1.0.0]_
 
-        Manages event destinations for the configuration set to route email events to external services
+    Manages event destinations for the configuration set to route email events to external services
 
-        - (list(string)) **`event_types`** _[since v1.0.0]_
+    - (list(string)) **`event_types`** _[since v1.0.0]_
 
-            The list of event types to route. Valid values: `"SEND"`, `"BOUNCE"`, `"COMPLAINT"`, `"DELIVERY"`, `"OPEN"`, `"CLICK"`, `"RENDERING_FAILURE"`, `"DELIVERY_DELAY"`, `"SUBSCRIBE"`, `"UNSUBSCRIBE"`
+      The list of event types to route. Valid values: `"SEND"`, `"BOUNCE"`, `"COMPLAINT"`, `"DELIVERY"`, `"OPEN"`, `"CLICK"`, `"RENDERING_FAILURE"`, `"DELIVERY_DELAY"`, `"SUBSCRIBE"`, `"UNSUBSCRIBE"`
 
-        - (bool) **`enabled = true`** _[since v1.0.0]_
+    - (bool) **`enabled = true`** _[since v1.0.0]_
 
-            Whether this event destination is enabled
+      Whether this event destination is enabled
 
-        - (object) **`destination`** _[since v1.0.0]_
+    - (object) **`destination`** _[since v1.0.0]_
 
-            The destination where events will be sent to. Only one destination type can be specified.
+      The destination where events will be sent to. Only one destination type can be specified.
 
-            - (object) **`cloudwatch = null`** _[since v1.0.0]_
+      - (object) **`cloudwatch = null`** _[since v1.0.0]_
 
-                Send events to CloudWatch Logs
+        Send events to CloudWatch Logs
 
-                - (map(string)) **`dimensions`** _[since v1.0.0]_
+        - (map(string)) **`dimensions`** _[since v1.0.0]_
 
-                    CloudWatch Logs dimensions. Format: `{ "ValueSource/DimensionName" = "DimensionValue" }`. `ValueSource` valid values: `"MESSAGE_TAG"`, `"EMAIL_HEADER"`, `"LINK_TAG"`
+          CloudWatch Logs dimensions. Format: `{ "ValueSource/DimensionName" = "DimensionValue" }`. `ValueSource` valid values: `"MESSAGE_TAG"`, `"EMAIL_HEADER"`, `"LINK_TAG"`
 
-            - (object) **`kinesis_firehose = null`** _[since v1.0.0]_
+      - (object) **`kinesis_firehose = null`** _[since v1.0.0]_
 
-                Send events to Kinesis Firehose
+        Send events to Kinesis Firehose
 
-                - (string) **`delivery_stream_arn`** _[since v1.0.0]_
+        - (string) **`delivery_stream_arn`** _[since v1.0.0]_
 
-                    The ARN of the Kinesis Firehose delivery stream
+          The ARN of the Kinesis Firehose delivery stream
 
-                - (string) **`iam_role_arn`** _[since v1.0.0]_
+        - (string) **`iam_role_arn`** _[since v1.0.0]_
 
-                    The ARN of the IAM role with permissions to write to the Firehose stream
+          The ARN of the IAM role with permissions to write to the Firehose stream
 
-            - (object) **`pinpoint = null`** _[since v1.0.0]_
+      - (object) **`pinpoint = null`** _[since v1.0.0]_
 
-                Send events to Amazon Pinpoint
+        Send events to Amazon Pinpoint
 
-                - (string) **`application_arn`** _[since v1.0.0]_
+        - (string) **`application_arn`** _[since v1.0.0]_
 
-                    The ARN of the Amazon Pinpoint application
+          The ARN of the Amazon Pinpoint application
 
-            - (object) **`sns = null`** _[since v1.0.0]_
+      - (object) **`sns = null`** _[since v1.0.0]_
 
-                Send events to SNS
+        Send events to SNS
 
-                - (string) **`topic_arn`** _[since v1.0.0]_
+        - (string) **`topic_arn`** _[since v1.0.0]_
 
-                    The ARN of the SNS topic
+          The ARN of the SNS topic
 
-    - (object) **`override_account_level_settings = null`** _[since v1.0.0]_
+  - (object) **`override_account_level_settings = null`** _[since v1.0.0]_
 
-        Override account-level settings for this configuration set. Please [see example](#configuration-sets)
+    Override account-level settings for this configuration set. Please [see example](#configuration-sets)
 
-        - (object) **`suppression_list_settings = null`** _[since v1.0.0]_
+    - (object) **`suppression_list_settings = null`** _[since v1.0.0]_
 
-            Configure suppression list settings
+      Configure suppression list settings
 
-            - (list(string)) **`suppression_reason = ["BOUNCE", "COMPLAINT"]`** _[since v1.0.0]_
+      - (list(string)) **`suppression_reason = ["BOUNCE", "COMPLAINT"]`** _[since v1.0.0]_
 
-                The suppression reasons. Valid values: `"BOUNCE"`, `"COMPLAINT"`
+        The suppression reasons. Valid values: `"BOUNCE"`, `"COMPLAINT"`
 
-        - (object) **`virtual_deliverability_manager_options = null`** _[since v1.0.0]_
+    - (object) **`virtual_deliverability_manager_options = null`** _[since v1.0.0]_
 
-            Configure Virtual Deliverability Manager options
+      Configure Virtual Deliverability Manager options
 
-            - (bool) **`engagement_tracking_enabled = false`** _[since v1.0.0]_
+      - (bool) **`engagement_tracking_enabled = false`** _[since v1.0.0]_
 
-                Enable engagement tracking
+        Enable engagement tracking
 
-            - (bool) **`optimized_shared_delivery_enabled = false`** _[since v1.0.0]_
+      - (bool) **`optimized_shared_delivery_enabled = false`** _[since v1.0.0]_
 
-                Enable optimized shared delivery
+        Enable optimized shared delivery
 
-    - (object) **`use_a_custom_redirect_domain = null`** _[since v1.0.0]_
+  - (object) **`use_a_custom_redirect_domain = null`** _[since v1.0.0]_
 
-        Configure a custom redirect domain for tracking links. Please [see example](#configuration-sets)
+    Configure a custom redirect domain for tracking links. Please [see example](#configuration-sets)
 
-        - (string) **`domain_name`** _[since v1.0.0]_
+    - (string) **`domain_name`** _[since v1.0.0]_
 
-            The domain name to use for tracking redirects
+      The domain name to use for tracking redirects
 
-        - (string) **`https_policy = "OPTIONAL"`** _[since v1.0.0]_
+    - (string) **`https_policy = "OPTIONAL"`** _[since v1.0.0]_
 
-            HTTPS policy for the redirect domain. Valid values: `"OPTIONAL"`, `"REQUIRE"`
+      HTTPS policy for the redirect domain. Valid values: `"OPTIONAL"`, `"REQUIRE"`
 
 - (map(object)) **`dedicated_ip_pools = {}`** _[since v1.0.0]_
 
-    Manages dedicated IP pools. Please [see example](#dedicated-ip-pools).
+  Manages dedicated IP pools. Please [see example](#dedicated-ip-pools).
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+  - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-        Additional tags for the dedicated IP pool
+    Additional tags for the dedicated IP pool
 
-    - (list(string)) **`ip_addresses = []`** _[since v1.0.0]_
+  - (list(string)) **`ip_addresses = []`** _[since v1.0.0]_
 
-        List of dedicated IP addresses to add to the pool
+    List of dedicated IP addresses to add to the pool
 
-    - (string) **`scaling_mode = "MANAGED"`** _[since v1.0.0]_
+  - (string) **`scaling_mode = "MANAGED"`** _[since v1.0.0]_
 
-        The scaling mode for the pool. Valid values: `"MANAGED"`, `"STANDARD"`
+    The scaling mode for the pool. Valid values: `"MANAGED"`, `"STANDARD"`
 
 - (map(object)) **`tenants = {}`** _[since v1.0.0]_
 
-    Manages SES tenants (multi-tenant support). Please [see example](#tenants).
+  Manages SES tenants (multi-tenant support). Please [see example](#tenants).
 
-    - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
+  - (map(string)) **`additional_tags = {}`** _[since v1.0.0]_
 
-        Additional tags for the tenant
+    Additional tags for the tenant
 
-    - (list(string)) **`configuration_sets = []`** _[since v1.0.0]_
+  - (list(string)) **`configuration_sets = []`** _[since v1.0.0]_
 
-        List of configuration set names to associate with this tenant
+    List of configuration set names to associate with this tenant
 
 - (object) **`virtual_deliverability_manager = null`** _[since v1.0.0]_
 
-    Enables and configures the account-level Virtual Deliverability Manager (VDM). Please [see example](#virtual-deliverability-manager).
+  Enables and configures the account-level Virtual Deliverability Manager (VDM). Please [see example](#virtual-deliverability-manager).
 
-    - (bool) **`engagement_tracking_enabled = false`** _[since v1.0.0]_
+  - (bool) **`engagement_tracking_enabled = false`** _[since v1.0.0]_
 
-        Enable engagement tracking metrics in the VDM dashboard
+    Enable engagement tracking metrics in the VDM dashboard
 
-    - (bool) **`optimized_shared_delivery_enabled = false`** _[since v1.0.0]_
+  - (bool) **`optimized_shared_delivery_enabled = false`** _[since v1.0.0]_
 
-        Enable optimized shared delivery via VDM Guardian
+    Enable optimized shared delivery via VDM Guardian
 
 ## Outputs
 

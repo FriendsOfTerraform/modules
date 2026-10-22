@@ -89,8 +89,7 @@ module "mssql" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">azure</a>)</code></td>
-    <td width="100%">azure</td>
-    <td></td>
+    <td width="100%">azure</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -98,8 +97,8 @@ The resource group name and the location where the resources will be deployed to
 
 ```terraform
 azure = {
-resource_group_name = "sandbox"
-location = "westus"
+  resource_group_name = "sandbox"
+  location = "westus"
 }
 ```
 
@@ -108,8 +107,7 @@ location = "westus"
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -125,8 +123,7 @@ The name of the SQL server. This value must be globally unique.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -137,8 +134,7 @@ Additional tags for the SQL server
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -149,8 +145,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>object(<a href="#azure_ad_authentication">azure_ad_authentication</a>)</code></td>
-    <td width="100%">azure_ad_authentication</td>
-    <td><code>null</code></td>
+    <td width="100%">azure_ad_authentication</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -161,8 +156,7 @@ Defines an Azure AD identity as administrator for this server, can be used with 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">connection_policy</td>
-    <td><code>"Default"</code></td>
+    <td width="100%">connection_policy</td><td><code>"Default"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -179,8 +173,7 @@ The connection policy the server will use.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#databases">databases</a>))</code></td>
-    <td width="100%">databases</td>
-    <td><code>{}</code></td>
+    <td width="100%">databases</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -191,8 +184,7 @@ Configures and manages multiple databases that are attached to this server
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#failover_groups">failover_groups</a>))</code></td>
-    <td width="100%">failover_groups</td>
-    <td><code>{}</code></td>
+    <td width="100%">failover_groups</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -203,8 +195,7 @@ Manages failover groups for databases failover. In `{failover_group_name = {conf
 </td></tr>
 <tr>
     <td><code>object(<a href="#firewall">firewall</a>)</code></td>
-    <td width="100%">firewall</td>
-    <td><code>null</code></td>
+    <td width="100%">firewall</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -215,8 +206,7 @@ Manages firewall rules to allow incoming traffic
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">minimum_tls_version</td>
-    <td><code>"1.2"</code></td>
+    <td width="100%">minimum_tls_version</td><td><code>"1.2"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -234,8 +224,7 @@ The minimum TLS version for all SQL Database and SQL Data Warehouse databases as
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">outbound_network_restriction_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">outbound_network_restriction_enabled</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -246,8 +235,7 @@ Whether outbound network traffic is restricted for this server
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">public_network_access_enabled</td>
-    <td><code>true</code></td>
+    <td width="100%">public_network_access_enabled</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -258,8 +246,7 @@ Whether public network access is allowed for this server
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">server_version</td>
-    <td><code>"12.0"</code></td>
+    <td width="100%">server_version</td><td><code>"12.0"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -278,8 +265,7 @@ The version for the SQL server.
 </td></tr>
 <tr>
     <td><code>object(<a href="#sql_authentication">sql_authentication</a>)</code></td>
-    <td width="100%">sql_authentication</td>
-    <td><code>null</code></td>
+    <td width="100%">sql_authentication</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -290,8 +276,7 @@ Defines the administrator login credential for this SQL server, can be used with
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">user_assigned_managed_identity_ids</td>
-    <td><code>[]</code></td>
+    <td width="100%">user_assigned_managed_identity_ids</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -306,13 +291,12 @@ List of managed identity IDs used by the SQL server to manage Azure resources
 
 #### azure
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">resource_group_name</td>
-    <td></td>
+    <td width="100%">resource_group_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure resource group where the server will be deployed
 
@@ -321,10 +305,9 @@ The name of an Azure resource group where the server will be deployed
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">location</td>
-    <td><code>null</code></td>
+    <td width="100%">location</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure location where the server will be deployed. If unspecified, the resource group's location will be used.
 
@@ -335,13 +318,12 @@ The name of an Azure location where the server will be deployed. If unspecified,
 
 #### azure_ad_authentication
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">object_id</td>
-    <td></td>
+    <td width="100%">object_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The object ID of an Azure AD identity (user, group)
 
@@ -350,10 +332,9 @@ The object ID of an Azure AD identity (user, group)
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">tenant_id</td>
-    <td><code>null</code></td>
+    <td width="100%">tenant_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The tenant ID for the domain where the identity lives
 
@@ -364,13 +345,12 @@ The tenant ID for the domain where the identity lives
 
 #### databases
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the database
 
@@ -379,10 +359,9 @@ Additional tags for the database
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">backup_storage_redundancy</td>
-    <td><code>"Geo"</code></td>
+    <td width="100%">backup_storage_redundancy</td><td></td><td><code>"Geo"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the storage account type used to store backups for this database.
 
@@ -397,10 +376,9 @@ Specifies the storage account type used to store backups for this database.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">bring_your_own_license</td>
-    <td><code>false</code></td>
+    <td width="100%">bring_your_own_license</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Use your license you already own with Azure Hybrid Benefit
 
@@ -409,10 +387,9 @@ Use your license you already own with Azure Hybrid Benefit
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">collation</td>
-    <td><code>"SQL_Latin1_General_CP1_CI_AS"</code></td>
+    <td width="100%">collation</td><td></td><td><code>"SQL_Latin1_General_CP1_CI_AS"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Database collation defines the rules that sort and compare data, and cannot be changed after database creation
 
@@ -421,10 +398,9 @@ Database collation defines the rules that sort and compare data, and cannot be c
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">create_mode</td>
-    <td><code>"Default"</code></td>
+    <td width="100%">create_mode</td><td></td><td><code>"Default"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the create action of the database.
 
@@ -446,10 +422,9 @@ Defines the create action of the database.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">data_max_size</td>
-    <td><code>2</code></td>
+    <td width="100%">data_max_size</td><td></td><td><code>2</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The max size of the database in gigabytes.
 
@@ -458,10 +433,9 @@ The max size of the database in gigabytes.
 </td></tr>
 <tr>
     <td><code>object(<a href="#dtu_model">dtu_model</a>)</code></td>
-    <td width="100%">dtu_model</td>
-    <td></td>
+    <td width="100%">dtu_model</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the database using the DTU pricing model
 
@@ -470,10 +444,9 @@ Configures the database using the DTU pricing model
 </td></tr>
 <tr>
     <td><code>object(<a href="#vcore_model">vcore_model</a>)</code></td>
-    <td width="100%">vcore_model</td>
-    <td></td>
+    <td width="100%">vcore_model</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the database using the VCore pricing model
 
@@ -482,10 +455,9 @@ Configures the database using the VCore pricing model
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">ledger_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">ledger_enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies if this is a ledger database; cannot be changed after database creation
 
@@ -494,10 +466,9 @@ Specifies if this is a ledger database; cannot be changed after database creatio
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">read_scale_out_enabled</td>
-    <td><code>null</code></td>
+    <td width="100%">read_scale_out_enabled</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 If enabled, connections that have application intent set to readonly in their connection string may be routed to a readonly secondary replica. This property can only be set in `Premium` and `BusinessCritical` tiers.
 
@@ -506,10 +477,9 @@ If enabled, connections that have application intent set to readonly in their co
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">restore_point_in_time</td>
-    <td><code>null</code></td>
+    <td width="100%">restore_point_in_time</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the point in time (ISO8601 format) of the source database that will be restored to create the new database. This property can only be set in `create_mode = "PointInTimeRestore"` databases.
 
@@ -518,10 +488,9 @@ Specifies the point in time (ISO8601 format) of the source database that will be
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">source_database_id</td>
-    <td><code>null</code></td>
+    <td width="100%">source_database_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the source database from which to create the new database. This should only be used for databases with create_mode values that use another database as reference. Changing this forces a new resource to be created.
 
@@ -530,10 +499,9 @@ The ID of the source database from which to create the new database. This should
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">zone_redundant</td>
-    <td><code>false</code></td>
+    <td width="100%">zone_redundant</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether or not this database is zone redundant, which means the replicas of this database will be spread across multiple availability zones. This property can only be set in `Premium` and `BusinessCritical` tiers.
 
@@ -548,13 +516,12 @@ Configures the database using the DTU pricing model
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">tier</td>
-    <td></td>
+    <td width="100%">tier</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the tier of this database. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
@@ -569,10 +536,9 @@ Defines the tier of this database. Note that some tiers are not available for so
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">dtu</td>
-    <td><code>null</code></td>
+    <td width="100%">dtu</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the number of DTU for the database. Please run the above command to get a list of DTU applicable to your region.
 
@@ -583,13 +549,12 @@ Defines the number of DTU for the database. Please run the above command to get 
 
 #### failover_groups
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">databases</td>
-    <td></td>
+    <td width="100%">databases</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of database names to be included in this failover group. The names supplied here must be databases deployed using the same module.
 
@@ -602,10 +567,9 @@ A list of database names to be included in this failover group. The names suppli
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">secondary_server_id</td>
-    <td></td>
+    <td width="100%">secondary_server_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the ID of the MS SQL server to failover to. This server **must** exist in a different region.
 
@@ -614,10 +578,9 @@ Defines the ID of the MS SQL server to failover to. This server **must** exist i
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for this failover group
 
@@ -626,10 +589,9 @@ Additional tags for this failover group
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">read_write_failover_policy</td>
-    <td><code>"Automatic"</code></td>
+    <td width="100%">read_write_failover_policy</td><td></td><td><code>"Automatic"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the failover policy of the read-write endpoint for the failover group.
 
@@ -643,10 +605,9 @@ Defines the failover policy of the read-write endpoint for the failover group.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">read_write_grace_period_minutes</td>
-    <td><code>60</code></td>
+    <td width="100%">read_write_grace_period_minutes</td><td></td><td><code>60</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The grace period in minutes, before failover with data loss is attempted for the read-write endpoint. Required when `read_write_failover_policy = "Automatic"`
 
@@ -657,13 +618,12 @@ The grace period in minutes, before failover with data loss is attempted for the
 
 #### firewall
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">rules</td>
-    <td></td>
+    <td width="100%">rules</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A map of firewall rules in the following format: `{"rule_name" = "start_ip - end_ip"}`. For example. `{"Office's Network" = "1.2.3.4 - 5.6.7.8"}`. If `start_ip` and `end_ip` are identical, you can omit `end_ip`. For example. `{"Peter's home network" = "1.2.3.4"}`
 
@@ -672,10 +632,9 @@ A map of firewall rules in the following format: `{"rule_name" = "start_ip - end
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">allow_access_to_azure_services</td>
-    <td><code>false</code></td>
+    <td width="100%">allow_access_to_azure_services</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Allows Azure services to access the database
 
@@ -686,13 +645,12 @@ Allows Azure services to access the database
 
 #### sql_authentication
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">admin_username</td>
-    <td></td>
+    <td width="100%">admin_username</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Username of the admin account
 
@@ -701,10 +659,9 @@ Username of the admin account
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">admin_password</td>
-    <td></td>
+    <td width="100%">admin_password</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Password of the admin account in plain text
 
@@ -719,13 +676,12 @@ Configures the database using the VCore pricing model
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">tier</td>
-    <td></td>
+    <td width="100%">tier</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the tier of this database. Note that some tiers are not available for some regions. Run this CLI command to get a list of tiers applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
@@ -741,10 +697,9 @@ Defines the tier of this database. Note that some tiers are not available for so
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">vcores</td>
-    <td></td>
+    <td width="100%">vcores</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the number of VCores for the database. Please run the above command to get a list of VCores options applicable to your region.
 
@@ -753,10 +708,9 @@ Defines the number of VCores for the database. Please run the above command to g
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">auto_pause_delay_in_minutes</td>
-    <td><code>-1</code></td>
+    <td width="100%">auto_pause_delay_in_minutes</td><td></td><td><code>-1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Time in minutes after which database is automatically paused. A value of `-1` means that automatic pause is disabled. This property is only applicable to the `Serverless` tier
 
@@ -765,10 +719,9 @@ Time in minutes after which database is automatically paused. A value of `-1` me
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">compute</td>
-    <td><code>"Gen5"</code></td>
+    <td width="100%">compute</td><td></td><td><code>"Gen5"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the compute for the database. Note that certain compute options are only available to certain tiers, and may not be available in some regions. Run this CLI command to get a list of options applicable to your region. `az sql db list-editions --location westus --output table`. Where `--location` should be set to your region.
 
@@ -777,10 +730,9 @@ Defines the compute for the database. Note that certain compute options are only
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">min_vcores</td>
-    <td><code>1</code></td>
+    <td width="100%">min_vcores</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Minimum capacity that database will always have allocated, if not paused. This property is only applicable to the `Serverless` tier.
 

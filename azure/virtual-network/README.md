@@ -61,8 +61,7 @@ module "demo_vnet" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">azure</a>)</code></td>
-    <td width="100%">azure</td>
-    <td></td>
+    <td width="100%">azure</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -70,8 +69,8 @@ The resource group name and the location where the resources will be deployed to
 
 ```terraform
 azure = {
-resource_group_name = "sandbox"
-location = "westus"
+  resource_group_name = "sandbox"
+  location = "westus"
 }
 ```
 
@@ -80,8 +79,7 @@ location = "westus"
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">cidr_blocks</td>
-    <td></td>
+    <td width="100%">cidr_blocks</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -92,8 +90,7 @@ List of CIDR blocks for the virtual network
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -109,8 +106,7 @@ The name of the virtual network and all of its associated resources
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">additional_dns_server_addresses</td>
-    <td><code>[]</code></td>
+    <td width="100%">additional_dns_server_addresses</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -121,8 +117,7 @@ Additional DNS server addresses on top of Azure's default DNS server
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -133,8 +128,7 @@ Additional tags for the virtual network
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -145,8 +139,7 @@ Additional tags for all resources in deployed with this module
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ddos_protection_plan_id</td>
-    <td><code>null</code></td>
+    <td width="100%">ddos_protection_plan_id</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -157,10 +150,7 @@ Enables DDOS protection
 </td></tr>
 <tr>
     <td><code>object(<a href="#nat_gateway">nat_gateway</a>)</code></td>
-    <td width="100%">nat_gateway</td>
-    <td><code>{
-  "enabled": false
-}</code></td>
+    <td width="100%">nat_gateway</td><td><em><a href="#nat_gateway">see below</a></em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -168,8 +158,8 @@ Enables and configures [NAT gateways][azure-nat-gateway] for the virtual network
 
 ```terraform
 nat_gateway = {
-enabled = true
-public_ip_prefix_length = "28" # 16 IP addresses
+  enabled = true
+  public_ip_prefix_length = "28" # 16 IP addresses
 }
 ```
 
@@ -182,8 +172,7 @@ public_ip_prefix_length = "28" # 16 IP addresses
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">service_endpoints</td>
-    <td><code>[]</code></td>
+    <td width="100%">service_endpoints</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -198,8 +187,7 @@ A list of service endpoints to be enabled in all subnets.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#subnets">subnets</a>))</code></td>
-    <td width="100%">subnets</td>
-    <td><code>{}</code></td>
+    <td width="100%">subnets</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -207,8 +195,8 @@ Creates and configures subnets. Expected input in the `{subnetName = {configurat
 
 ```terraform
 subnets = {
-subnet-1 = { cidr_block = "10.0.0.0/26" }  # Creates a subnet named subnet-1 with the cidr 10.0.0.0/26
-subnet-2 = { cidr_block = "10.0.0.64/26" } # Creates a subnet named subnet-2 with the cidr 10.0.0.64/26
+  subnet-1 = { cidr_block = "10.0.0.0/26" }  # Creates a subnet named subnet-1 with the cidr 10.0.0.0/26
+  subnet-2 = { cidr_block = "10.0.0.64/26" } # Creates a subnet named subnet-2 with the cidr 10.0.0.64/26
 }
 ```
 
@@ -226,8 +214,7 @@ subnet-2 = { cidr_block = "10.0.0.64/26" } # Creates a subnet named subnet-2 wit
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">subnet_ids</td>
-    <td></td>
+    <td width="100%">subnet_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -238,8 +225,7 @@ Map of subnet names to their IDs
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">virtual_network_id</td>
-    <td></td>
+    <td width="100%">virtual_network_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -254,13 +240,12 @@ The ID of the virtual network
 
 #### azure
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">resource_group_name</td>
-    <td></td>
+    <td width="100%">resource_group_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure resource group where the virtual network will be deployed
 
@@ -269,10 +254,9 @@ The name of an Azure resource group where the virtual network will be deployed
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">location</td>
-    <td><code>null</code></td>
+    <td width="100%">location</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure location where the virtual network will be deployed. If unspecified, the resource group's location will be used.
 
@@ -283,13 +267,12 @@ The name of an Azure location where the virtual network will be deployed. If uns
 
 #### nat_gateway
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td></td>
+    <td width="100%">enabled</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables the NAT gateway if `true`
 
@@ -298,10 +281,9 @@ Enables the NAT gateway if `true`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">public_ip_prefix_length</td>
-    <td><code>null</code></td>
+    <td width="100%">public_ip_prefix_length</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The CIDR length of the public IP prefix to be used by the NAT gateway. If this value is unspecified, a public IP address will be used instead.
 
@@ -310,10 +292,9 @@ The CIDR length of the public IP prefix to be used by the NAT gateway. If this v
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the NAT gateways
 
@@ -324,13 +305,12 @@ Additional tags for the NAT gateways
 
 #### subnets
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">cidr_block</td>
-    <td></td>
+    <td width="100%">cidr_block</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The CIDR for the subnet
 
@@ -339,10 +319,9 @@ The CIDR for the subnet
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">network_security_group_id</td>
-    <td><code>null</code></td>
+    <td width="100%">network_security_group_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of an Azure network security group to be attached to this subnet
 
@@ -351,10 +330,9 @@ The ID of an Azure network security group to be attached to this subnet
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">route_table_name</td>
-    <td><code>null</code></td>
+    <td width="100%">route_table_name</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of a route table to be attached to this subnet
 
@@ -363,10 +341,9 @@ The name of a route table to be attached to this subnet
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">service_endpoints</td>
-    <td></td>
+    <td width="100%">service_endpoints</td><td></td><td><code>[]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of service endpoints to be enabled in this subnet
 

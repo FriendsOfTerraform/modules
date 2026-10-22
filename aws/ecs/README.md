@@ -110,8 +110,7 @@ module "ec2_providers" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -127,8 +126,7 @@ The name of the ECS cluster. Associated resources will also have their name pref
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -139,8 +137,7 @@ Additional tags for the ECS cluster
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -151,8 +148,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#default_capacity_provider_strategy">default_capacity_provider_strategy</a>))</code></td>
-    <td width="100%">default_capacity_provider_strategy</td>
-    <td><code>{}</code></td>
+    <td width="100%">default_capacity_provider_strategy</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -167,8 +163,7 @@ Specify the default capacity provider strategy that is used when creating servic
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">default_service_connect_namespace</td>
-    <td><code>null</code></td>
+    <td width="100%">default_service_connect_namespace</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -180,8 +175,7 @@ service and don't specify a Service Connect configuration
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#ec2_capacity_providers">ec2_capacity_providers</a>))</code></td>
-    <td width="100%">ec2_capacity_providers</td>
-    <td><code>{}</code></td>
+    <td width="100%">ec2_capacity_providers</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -196,8 +190,7 @@ Configures multiple EC2 capacity providers for the cluster.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_fargate_capacity_provider</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_fargate_capacity_provider</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -208,8 +201,7 @@ Enables the [FARGATE and the FARGATE_SPOT][ecs-fargate] capacity providers
 </td></tr>
 <tr>
     <td><code>object(<a href="#monitoring">monitoring</a>)</code></td>
-    <td width="100%">monitoring</td>
-    <td><code>null</code></td>
+    <td width="100%">monitoring</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -225,8 +217,7 @@ Configures ECS monitoring options
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">ec2_capacity_provider_arns</td>
-    <td></td>
+    <td width="100%">ec2_capacity_provider_arns</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -237,8 +228,7 @@ Map of ARNs of all EC2 capacity providers
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ecs_cluster_arn</td>
-    <td></td>
+    <td width="100%">ecs_cluster_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -253,13 +243,12 @@ The ARN of the ECS cluster
 
 #### default_capacity_provider_strategy
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">weight</td>
-    <td></td>
+    <td width="100%">weight</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The relative percentage of the total number of launched tasks that should use the specified capacity provider.
 `weight` is taken into consideration only after the `base` count of tasks has been satisfied.
@@ -269,10 +258,9 @@ The relative percentage of the total number of launched tasks that should use th
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">base</td>
-    <td><code>0</code></td>
+    <td width="100%">base</td><td></td><td><code>0</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider
 in a capacity provider strategy can have `base` defined. Defaults to `0`.
@@ -284,13 +272,12 @@ in a capacity provider strategy can have `base` defined. Defaults to `0`.
 
 #### ec2_capacity_providers
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">desired_instances</td>
-    <td></td>
+    <td width="100%">desired_instances</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the number of EC2 instances that should be running in the group
 
@@ -299,10 +286,9 @@ Specify the number of EC2 instances that should be running in the group
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">image_id</td>
-    <td></td>
+    <td width="100%">image_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The AMI from which to launch the instance. Please refer to the links below for instruction on how to get the image IDs for ECS optimized images:
 
@@ -315,10 +301,9 @@ The AMI from which to launch the instance. Please refer to the links below for i
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_type</td>
-    <td></td>
+    <td width="100%">instance_type</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the [EC2 instance type][ec2-instance-type]
 
@@ -327,10 +312,9 @@ Specify the [EC2 instance type][ec2-instance-type]
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">security_group_ids</td>
-    <td></td>
+    <td width="100%">security_group_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of security group IDs to associate with the instances
 
@@ -339,10 +323,9 @@ A list of security group IDs to associate with the instances
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">subnet_ids</td>
-    <td></td>
+    <td width="100%">subnet_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of subnet IDs to launch resources in. It is recommended to spread the resources in subnets located in multiple availability zones.
 
@@ -351,10 +334,9 @@ List of subnet IDs to launch resources in. It is recommended to spread the resou
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags to be attached to the instances at launch
 
@@ -363,10 +345,9 @@ Additional tags to be attached to the instances at launch
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_iam_role</td>
-    <td><code>null</code></td>
+    <td width="100%">instance_iam_role</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an IAM role to be attached to the instance. If not specified, a default one will be created and attached.
 
@@ -379,10 +360,9 @@ The name of an IAM role to be attached to the instance. If not specified, a defa
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_desired_instances</td>
-    <td><code>null</code></td>
+    <td width="100%">max_desired_instances</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Maximum instances to scale to
 
@@ -391,10 +371,9 @@ Maximum instances to scale to
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">min_desired_instances</td>
-    <td><code>null</code></td>
+    <td width="100%">min_desired_instances</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Minimum instances to scale to
 
@@ -403,10 +382,9 @@ Minimum instances to scale to
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">root_ebs_volume_size</td>
-    <td><code>30</code></td>
+    <td width="100%">root_ebs_volume_size</td><td></td><td><code>30</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The size of the root volume in GB
 
@@ -415,10 +393,9 @@ The size of the root volume in GB
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">spot_instance_allocation_strategy</td>
-    <td><code>null</code></td>
+    <td width="100%">spot_instance_allocation_strategy</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the [spot instance allocation strategy][spot-allocation-strategy]
 
@@ -434,10 +411,9 @@ Specify the [spot instance allocation strategy][spot-allocation-strategy]
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ssh_keypair_name</td>
-    <td><code>null</code></td>
+    <td width="100%">ssh_keypair_name</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The instance key pair to be used to SSH into the instance
 
@@ -446,10 +422,9 @@ The instance key pair to be used to SSH into the instance
 </td></tr>
 <tr>
     <td><code>object(<a href="#enable_managed_scaling">enable_managed_scaling</a>)</code></td>
-    <td width="100%">enable_managed_scaling</td>
-    <td><code>{}</code></td>
+    <td width="100%">enable_managed_scaling</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables managed scaling to have Amazon ECS manage the scale-in and scale-out actions of the Auto Scaling group
 
@@ -464,13 +439,12 @@ Enables managed scaling to have Amazon ECS manage the scale-in and scale-out act
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_managed_scaling_draining</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_managed_scaling_draining</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables managed instance draining to have Amazon ECS gracefully drain EC2 instances in an Auto Scaling group
 
@@ -479,10 +453,9 @@ Enables managed instance draining to have Amazon ECS gracefully drain EC2 instan
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_scale_in_protection</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_scale_in_protection</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables scale-in protection to prevent the Amazon EC2 instances in the Auto Scaling group from being terminated during a scale-in action
 
@@ -491,10 +464,9 @@ Enables scale-in protection to prevent the Amazon EC2 instances in the Auto Scal
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">target_capacity_percent</td>
-    <td><code>100</code></td>
+    <td width="100%">target_capacity_percent</td><td></td><td><code>100</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 When managed scaling is turned on, the target capacity value is used as the target value for the CloudWatch metric used in the Amazon ECS-managed
 target tracking scaling policy. For example, a value of 100 will result in the Amazon EC2 instances in your Auto Scaling group being completely utilized.
@@ -506,13 +478,12 @@ target tracking scaling policy. For example, a value of 100 will result in the A
 
 #### monitoring
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_container_insights</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_container_insights</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables [ECS container insights][ecs-container-insights]
 

@@ -75,8 +75,7 @@ module "basic_usage" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -92,8 +91,7 @@ The name of the VPC transit gateway. All associated resources' names will also b
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -104,8 +102,7 @@ Additional tags for the VPC transit gateway
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -116,8 +113,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">amazon_side_autonomous_system_numnber</td>
-    <td><code>64512</code></td>
+    <td width="100%">amazon_side_autonomous_system_numnber</td><td><code>64512</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -128,8 +124,7 @@ The Autonomous System Number (ASN) for the AWS side of a Border Gateway Protocol
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#attachments">attachments</a>))</code></td>
-    <td width="100%">attachments</td>
-    <td><code>{}</code></td>
+    <td width="100%">attachments</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -144,8 +139,7 @@ Manages multiple attachments. For each attachment, must specify one and only one
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">auto_accept_shared_attachments</td>
-    <td><code>false</code></td>
+    <td width="100%">auto_accept_shared_attachments</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -156,8 +150,7 @@ Automatically accept cross-account attachments that are attached to this transit
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">cidr_blocks</td>
-    <td><code>null</code></td>
+    <td width="100%">cidr_blocks</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -168,8 +161,7 @@ You can associate any public or private IP address range, except for addresses i
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -180,8 +172,7 @@ The description of the transit gateway
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_default_route_table_association</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_default_route_table_association</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -192,8 +183,7 @@ Automatically associate transit gateway attachments with this transit gateway's 
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_default_route_table_propagation</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_default_route_table_propagation</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -204,8 +194,7 @@ Automatically propagate transit gateway attachments with this transit gateway's 
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_dns_support</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_dns_support</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -216,8 +205,7 @@ Enable Domain Name System resolution for VPCs attached to this transit gateway.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_multicast_support</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_multicast_support</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -228,8 +216,7 @@ Enables the ability to create multicast domains in this transit gateway.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_security_group_referencing_support</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_security_group_referencing_support</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -240,8 +227,7 @@ Enable Security Group referencing for VPCs attached to this transit gateway.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_vpn_ecmp_support</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_vpn_ecmp_support</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -252,8 +238,7 @@ Enable equal cost multipath (ECMP) routing for VPN Connections that are attached
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#flow_logs">flow_logs</a>))</code></td>
-    <td width="100%">flow_logs</td>
-    <td><code>{}</code></td>
+    <td width="100%">flow_logs</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -264,8 +249,7 @@ Configures multiple Transit gateway level flow logs.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#route_tables">route_tables</a>))</code></td>
-    <td width="100%">route_tables</td>
-    <td><code>{}</code></td>
+    <td width="100%">route_tables</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -285,8 +269,7 @@ Manages multiple route tables.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#transit_gateway">transit_gateway</a>)</code></td>
-    <td width="100%">transit_gateway</td>
-    <td></td>
+    <td width="100%">transit_gateway</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -301,13 +284,12 @@ Transit gateway
 
 #### attachments
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the attachment
 
@@ -316,10 +298,9 @@ Additional tags for the attachment
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#flow_logs">flow_logs</a>))</code></td>
-    <td width="100%">flow_logs</td>
-    <td><code>{}</code></td>
+    <td width="100%">flow_logs</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures multiple attachment level flow logs.
 
@@ -328,10 +309,9 @@ Configures multiple attachment level flow logs.
 </td></tr>
 <tr>
     <td><code>object(<a href="#peering_connection">peering_connection</a>)</code></td>
-    <td width="100%">peering_connection</td>
-    <td><code>null</code></td>
+    <td width="100%">peering_connection</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Creates a new peering connection or accepting an incoming peering connection.
 
@@ -340,10 +320,9 @@ Creates a new peering connection or accepting an incoming peering connection.
 </td></tr>
 <tr>
     <td><code>object(<a href="#vpc">vpc</a>)</code></td>
-    <td width="100%">vpc</td>
-    <td><code>null</code></td>
+    <td width="100%">vpc</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Creates a VPC attachment
 
@@ -352,10 +331,9 @@ Creates a VPC attachment
 </td></tr>
 <tr>
     <td><code>object(<a href="#vpn">vpn</a>)</code></td>
-    <td width="100%">vpn</td>
-    <td><code>null</code></td>
+    <td width="100%">vpn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Creates a VPN attachment
 
@@ -370,13 +348,12 @@ Configures CloudWatch Logs as destination
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">log_group_arn</td>
-    <td></td>
+    <td width="100%">log_group_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the CloudWatch log group to send logs to
 
@@ -385,10 +362,9 @@ The ARN of the CloudWatch log group to send logs to
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">service_role_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">service_role_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Arn of an IAM role that [gives permission to flow logs to send logs to CloudWatch][vpc-flow-logs-cloudwatch-service-role]. A default service role will be created if not specified
 
@@ -403,13 +379,12 @@ Where the flow log will be sent to. Must specify only one of the following: `clo
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#cloudwatch_logs">cloudwatch_logs</a>)</code></td>
-    <td width="100%">cloudwatch_logs</td>
-    <td><code>null</code></td>
+    <td width="100%">cloudwatch_logs</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures CloudWatch Logs as destination
 
@@ -418,10 +393,9 @@ Configures CloudWatch Logs as destination
 </td></tr>
 <tr>
     <td><code>object(<a href="#s3">s3</a>)</code></td>
-    <td width="100%">s3</td>
-    <td><code>null</code></td>
+    <td width="100%">s3</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures S3 as destination
 
@@ -436,13 +410,12 @@ Tunnel activity log captures log messages for IPsec activity and DPD protocol me
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">cloudwatch_log_group_arn</td>
-    <td></td>
+    <td width="100%">cloudwatch_log_group_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the Cloudwatch log group to publish the logs to
 
@@ -451,10 +424,9 @@ The ARN of the Cloudwatch log group to publish the logs to
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">output_format</td>
-    <td><code>"json"</code></td>
+    <td width="100%">output_format</td><td></td><td><code>"json"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The output log's format.
 
@@ -470,13 +442,12 @@ The output log's format.
 
 #### flow_logs
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#destination">destination</a>)</code></td>
-    <td width="100%">destination</td>
-    <td></td>
+    <td width="100%">destination</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Where the flow log will be sent to. Must specify only one of the following: `cloudwatch_logs`, `s3`
 
@@ -485,10 +456,9 @@ Where the flow log will be sent to. Must specify only one of the following: `clo
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the flow log
 
@@ -497,10 +467,9 @@ Additional tags for the flow log
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">custom_log_record_format</td>
-    <td><code>null</code></td>
+    <td width="100%">custom_log_record_format</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The fields to include in the flow log record. Accepted format example: `"$${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport}"`. Please refer to [this documentation][vpc-flow-logs-log-record-available-fields] for a list of available fields
 
@@ -509,10 +478,9 @@ The fields to include in the flow log record. Accepted format example: `"$${inte
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">filter</td>
-    <td><code>"ALL"</code></td>
+    <td width="100%">filter</td><td></td><td><code>"ALL"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The type of traffic to capture.
 
@@ -533,13 +501,12 @@ Creates a new peering connection or accepting an incoming peering connection.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">accept_connection_from</td>
-    <td><code>null</code></td>
+    <td width="100%">accept_connection_from</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The attachment ID of an incoming peering connection request. Mutually exclusive to `peer_transit_gateway_id`
 
@@ -548,10 +515,9 @@ The attachment ID of an incoming peering connection request. Mutually exclusive 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">peer_transit_gateway_id</td>
-    <td><code>null</code></td>
+    <td width="100%">peer_transit_gateway_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of a remote transit gateway to request a new peering connection. Mutually exclusive to `accept_connection_from`
 
@@ -560,10 +526,9 @@ The ID of a remote transit gateway to request a new peering connection. Mutually
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">peer_account_id</td>
-    <td><code>null</code></td>
+    <td width="100%">peer_account_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The account ID of the peer. If unspecified, the account ID of the current provider will be used
 
@@ -572,10 +537,9 @@ The account ID of the peer. If unspecified, the account ID of the current provid
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">peer_region</td>
-    <td><code>null</code></td>
+    <td width="100%">peer_region</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The region of the peer. If unspecified, the region of the current provider will be used
 
@@ -586,13 +550,12 @@ The region of the peer. If unspecified, the region of the current provider will 
 
 #### route_tables
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the route table
 
@@ -601,10 +564,9 @@ Additional tags for the route table
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">routes</td>
-    <td><code>{}</code></td>
+    <td width="100%">routes</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Map of routes in the `{ <route_destination> = <attachment_name> }` format
 
@@ -613,10 +575,9 @@ Map of routes in the `{ <route_destination> = <attachment_name> }` format
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">attachment_associations</td>
-    <td></td>
+    <td width="100%">attachment_associations</td><td></td><td><code>[]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of attachment names this route table is associated to
 
@@ -625,10 +586,9 @@ List of attachment names this route table is associated to
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">propagations</td>
-    <td></td>
+    <td width="100%">propagations</td><td></td><td><code>[]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of attachment names to propagate routes to this route table
 
@@ -643,13 +603,12 @@ Configures S3 as destination
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_arn</td>
-    <td></td>
+    <td width="100%">bucket_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the S3 bucket to send logs to
 
@@ -658,10 +617,9 @@ The ARN of the S3 bucket to send logs to
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">log_file_format</td>
-    <td><code>"plain-text"</code></td>
+    <td width="100%">log_file_format</td><td></td><td><code>"plain-text"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The format for the flow log.
 
@@ -675,10 +633,9 @@ The format for the flow log.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_hive_compatible_s3_prefix</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_hive_compatible_s3_prefix</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3
 
@@ -687,10 +644,9 @@ Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">partition_logs_every_hour</td>
-    <td><code>false</code></td>
+    <td width="100%">partition_logs_every_hour</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Indicates whether to partition the flow log per hour. This reduces the cost and response time for queries.
 
@@ -701,13 +657,12 @@ Indicates whether to partition the flow log per hour. This reduces the cost and 
 
 #### transit_gateway
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the transit gateway
 
@@ -716,10 +671,9 @@ The ARN of the transit gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">association_default_route_table_id</td>
-    <td></td>
+    <td width="100%">association_default_route_table_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Identifier of the default association route table
 
@@ -728,10 +682,9 @@ Identifier of the default association route table
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the transit gateway
 
@@ -740,10 +693,9 @@ The ID of the transit gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">owner_id</td>
-    <td></td>
+    <td width="100%">owner_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Identifier of the AWS account that owns the EC2 Transit Gateway
 
@@ -752,10 +704,9 @@ Identifier of the AWS account that owns the EC2 Transit Gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">propagation_default_route_table_id</td>
-    <td></td>
+    <td width="100%">propagation_default_route_table_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Identifier of the default propagation route table
 
@@ -770,13 +721,12 @@ Configures advanced options for the first VPN tunnel
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">dpd_timeout</td>
-    <td><code>"30 seconds"</code></td>
+    <td width="100%">dpd_timeout</td><td></td><td><code>"30 seconds"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The time after which a DPD timeout occurs. Must be `"30 seconds"` or higher
 
@@ -785,10 +735,9 @@ The time after which a DPD timeout occurs. Must be `"30 seconds"` or higher
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">dpd_timeout_action</td>
-    <td><code>"clear"</code></td>
+    <td width="100%">dpd_timeout_action</td><td></td><td><code>"clear"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The action to take after dead peer detection (DPD) timeout occurs.
 
@@ -806,10 +755,9 @@ The action to take after dead peer detection (DPD) timeout occurs.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_tunnel_endpoint_lifecycle_control</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_tunnel_endpoint_lifecycle_control</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Tunnel endpoint lifecycle control provides control over the schedule of endpoint replacements. With this feature, you can choose to accept AWS managed updates to tunnel endpoints at a time that works best for your business.
 
@@ -818,10 +766,9 @@ Tunnel endpoint lifecycle control provides control over the schedule of endpoint
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">ike_version</td>
-    <td></td>
+    <td width="100%">ike_version</td><td></td><td><code>["ikev1", "ikev2"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of internet key exchange (IKE) versions permitted for the VPN tunnel.
 
@@ -835,10 +782,9 @@ List of internet key exchange (IKE) versions permitted for the VPN tunnel.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">inside_ipv4_cidr</td>
-    <td><code>null</code></td>
+    <td width="100%">inside_ipv4_cidr</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The CIDR block of the inside IP addresses for the VPN tunnel. Valid value is a size /30 CIDR block from the 169.254.0.0/16 range. One will be generated by AWS if not specified
 
@@ -847,10 +793,9 @@ The CIDR block of the inside IP addresses for the VPN tunnel. Valid value is a s
 </td></tr>
 <tr>
     <td><code>list(number)</code></td>
-    <td width="100%">phase1_dh_group_numbers</td>
-    <td></td>
+    <td width="100%">phase1_dh_group_numbers</td><td></td><td><code>[2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1 IKE negotiations.
 
@@ -875,10 +820,9 @@ List of permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1 IK
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">phase1_encryption_algorithms</td>
-    <td></td>
+    <td width="100%">phase1_encryption_algorithms</td><td></td><td><code>["AES128", "AES256", "AES128-GCM-16", "AES256-GCM-16"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted encryption algorithms for the VPN tunnel for phase 1 IKE negotiations.
 
@@ -894,10 +838,9 @@ List of permitted encryption algorithms for the VPN tunnel for phase 1 IKE negot
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">phase1_integrity_algorithms</td>
-    <td></td>
+    <td width="100%">phase1_integrity_algorithms</td><td></td><td><code>["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted integrity algorithms for the VPN tunnel for phase 1 IKE negotiations.
 
@@ -913,10 +856,9 @@ List of permitted integrity algorithms for the VPN tunnel for phase 1 IKE negoti
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">phase1_lifetime</td>
-    <td><code>"8 hours"</code></td>
+    <td width="100%">phase1_lifetime</td><td></td><td><code>"8 hours"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The lifetime for phase 1 of the IKE negotiation. Valid values: `"15 minutes" - "8 hours"`
 
@@ -925,10 +867,9 @@ The lifetime for phase 1 of the IKE negotiation. Valid values: `"15 minutes" - "
 </td></tr>
 <tr>
     <td><code>list(number)</code></td>
-    <td width="100%">phase2_dh_group_numbers</td>
-    <td></td>
+    <td width="100%">phase2_dh_group_numbers</td><td></td><td><code>[2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IKE negotiations.
 
@@ -953,10 +894,9 @@ List of permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IK
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">phase2_encryption_algorithms</td>
-    <td></td>
+    <td width="100%">phase2_encryption_algorithms</td><td></td><td><code>["AES128", "AES256", "AES128-GCM-16", "AES256-GCM-16"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted encryption algorithms for the VPN tunnel for phase 2 IKE negotiations.
 
@@ -972,10 +912,9 @@ List of permitted encryption algorithms for the VPN tunnel for phase 2 IKE negot
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">phase2_integrity_algorithms</td>
-    <td></td>
+    <td width="100%">phase2_integrity_algorithms</td><td></td><td><code>["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted integrity algorithms for the VPN tunnel for phase 2 IKE negotiations.
 
@@ -991,10 +930,9 @@ List of permitted integrity algorithms for the VPN tunnel for phase 2 IKE negoti
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">phase2_lifetime</td>
-    <td><code>"1 hour"</code></td>
+    <td width="100%">phase2_lifetime</td><td></td><td><code>"1 hour"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The lifetime for phase 2 of the IKE negotiation. Valid values: `"15 minutes"` - `"1 hour"` and must be less than `phase1_lifetime`
 
@@ -1003,10 +941,9 @@ The lifetime for phase 2 of the IKE negotiation. Valid values: `"15 minutes"` - 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">preshared_key</td>
-    <td><code>null</code></td>
+    <td width="100%">preshared_key</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway. One will be generated by AWS if unspecified
 
@@ -1015,10 +952,9 @@ The pre-shared key (PSK) to establish initial authentication between the virtual
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">rekey_fuzz_percentage</td>
-    <td><code>100</code></td>
+    <td width="100%">rekey_fuzz_percentage</td><td></td><td><code>100</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The percentage of the rekey window during which the rekey time is randomly selected. Valid values: `0 - 100`
 
@@ -1027,10 +963,9 @@ The percentage of the rekey window during which the rekey time is randomly selec
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">rekey_margin_time</td>
-    <td><code>"270 seconds"</code></td>
+    <td width="100%">rekey_margin_time</td><td></td><td><code>"270 seconds"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The period of time before phase 1 and 2 lifetimes expire, during which AWS initiates an IKE rekey. `"60 seconds" - phase2_lifetime/2`
 
@@ -1039,10 +974,9 @@ The period of time before phase 1 and 2 lifetimes expire, during which AWS initi
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">replay_window_size</td>
-    <td><code>1024</code></td>
+    <td width="100%">replay_window_size</td><td></td><td><code>1024</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of packets in an IKE replay window. Valid values: `64 - 2048`
 
@@ -1051,10 +985,9 @@ The number of packets in an IKE replay window. Valid values: `64 - 2048`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">startup_action</td>
-    <td><code>"add"</code></td>
+    <td width="100%">startup_action</td><td></td><td><code>"add"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The action to take when establishing the VPN tunnel for a new or modified VPN connection. `start` is only supported for customer gateways with IP addresses.
 
@@ -1071,10 +1004,9 @@ The action to take when establishing the VPN tunnel for a new or modified VPN co
 </td></tr>
 <tr>
     <td><code>object(<a href="#enable_tunnel_activity_log">enable_tunnel_activity_log</a>)</code></td>
-    <td width="100%">enable_tunnel_activity_log</td>
-    <td><code>null</code></td>
+    <td width="100%">enable_tunnel_activity_log</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Tunnel activity log captures log messages for IPsec activity and DPD protocol messages.
 
@@ -1089,13 +1021,12 @@ Configures advanced options for the second VPN tunnel
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">dpd_timeout</td>
-    <td><code>"30 seconds"</code></td>
+    <td width="100%">dpd_timeout</td><td></td><td><code>"30 seconds"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The time after which a DPD timeout occurs. Must be `"30 seconds"` or higher
 
@@ -1104,10 +1035,9 @@ The time after which a DPD timeout occurs. Must be `"30 seconds"` or higher
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">dpd_timeout_action</td>
-    <td><code>"clear"</code></td>
+    <td width="100%">dpd_timeout_action</td><td></td><td><code>"clear"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The action to take after dead peer detection (DPD) timeout occurs.
 
@@ -1125,10 +1055,9 @@ The action to take after dead peer detection (DPD) timeout occurs.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_tunnel_endpoint_lifecycle_control</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_tunnel_endpoint_lifecycle_control</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Tunnel endpoint lifecycle control provides control over the schedule of endpoint replacements. With this feature, you can choose to accept AWS managed updates to tunnel endpoints at a time that works best for your business.
 
@@ -1137,10 +1066,9 @@ Tunnel endpoint lifecycle control provides control over the schedule of endpoint
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">ike_version</td>
-    <td></td>
+    <td width="100%">ike_version</td><td></td><td><code>["ikev1", "ikev2"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of internet key exchange (IKE) versions permitted for the VPN tunnel.
 
@@ -1154,10 +1082,9 @@ List of internet key exchange (IKE) versions permitted for the VPN tunnel.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">inside_ipv4_cidr</td>
-    <td><code>null</code></td>
+    <td width="100%">inside_ipv4_cidr</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The CIDR block of the inside IP addresses for the VPN tunnel. Valid value is a size /30 CIDR block from the 169.254.0.0/16 range. One will be generated by AWS if not specified
 
@@ -1166,10 +1093,9 @@ The CIDR block of the inside IP addresses for the VPN tunnel. Valid value is a s
 </td></tr>
 <tr>
     <td><code>list(number)</code></td>
-    <td width="100%">phase1_dh_group_numbers</td>
-    <td></td>
+    <td width="100%">phase1_dh_group_numbers</td><td></td><td><code>[2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1 IKE negotiations.
 
@@ -1194,10 +1120,9 @@ List of permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1 IK
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">phase1_encryption_algorithms</td>
-    <td></td>
+    <td width="100%">phase1_encryption_algorithms</td><td></td><td><code>["AES128", "AES256", "AES128-GCM-16", "AES256-GCM-16"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted encryption algorithms for the VPN tunnel for phase 1 IKE negotiations.
 
@@ -1213,10 +1138,9 @@ List of permitted encryption algorithms for the VPN tunnel for phase 1 IKE negot
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">phase1_integrity_algorithms</td>
-    <td></td>
+    <td width="100%">phase1_integrity_algorithms</td><td></td><td><code>["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted integrity algorithms for the VPN tunnel for phase 1 IKE negotiations.
 
@@ -1232,10 +1156,9 @@ List of permitted integrity algorithms for the VPN tunnel for phase 1 IKE negoti
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">phase1_lifetime</td>
-    <td><code>"8 hours"</code></td>
+    <td width="100%">phase1_lifetime</td><td></td><td><code>"8 hours"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The lifetime for phase 1 of the IKE negotiation. Valid values: `"15 minutes" - "8 hours"`
 
@@ -1244,10 +1167,9 @@ The lifetime for phase 1 of the IKE negotiation. Valid values: `"15 minutes" - "
 </td></tr>
 <tr>
     <td><code>list(number)</code></td>
-    <td width="100%">phase2_dh_group_numbers</td>
-    <td></td>
+    <td width="100%">phase2_dh_group_numbers</td><td></td><td><code>[2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IKE negotiations.
 
@@ -1272,10 +1194,9 @@ List of permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IK
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">phase2_encryption_algorithms</td>
-    <td></td>
+    <td width="100%">phase2_encryption_algorithms</td><td></td><td><code>["AES128", "AES256", "AES128-GCM-16", "AES256-GCM-16"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted encryption algorithms for the VPN tunnel for phase 2 IKE negotiations.
 
@@ -1291,10 +1212,9 @@ List of permitted encryption algorithms for the VPN tunnel for phase 2 IKE negot
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">phase2_integrity_algorithms</td>
-    <td></td>
+    <td width="100%">phase2_integrity_algorithms</td><td></td><td><code>["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of permitted integrity algorithms for the VPN tunnel for phase 2 IKE negotiations.
 
@@ -1310,10 +1230,9 @@ List of permitted integrity algorithms for the VPN tunnel for phase 2 IKE negoti
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">phase2_lifetime</td>
-    <td><code>"1 hour"</code></td>
+    <td width="100%">phase2_lifetime</td><td></td><td><code>"1 hour"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The lifetime for phase 2 of the IKE negotiation. Valid values: `"15 minutes"` - `"1 hour"` and must be less than `phase1_lifetime`
 
@@ -1322,10 +1241,9 @@ The lifetime for phase 2 of the IKE negotiation. Valid values: `"15 minutes"` - 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">preshared_key</td>
-    <td><code>null</code></td>
+    <td width="100%">preshared_key</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The pre-shared key (PSK) to establish initial authentication between the virtual private gateway and customer gateway. One will be generated by AWS if unspecified
 
@@ -1334,10 +1252,9 @@ The pre-shared key (PSK) to establish initial authentication between the virtual
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">rekey_fuzz_percentage</td>
-    <td><code>100</code></td>
+    <td width="100%">rekey_fuzz_percentage</td><td></td><td><code>100</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The percentage of the rekey window during which the rekey time is randomly selected. Valid values: `0 - 100`
 
@@ -1346,10 +1263,9 @@ The percentage of the rekey window during which the rekey time is randomly selec
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">rekey_margin_time</td>
-    <td><code>"270 seconds"</code></td>
+    <td width="100%">rekey_margin_time</td><td></td><td><code>"270 seconds"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The period of time before phase 1 and 2 lifetimes expire, during which AWS initiates an IKE rekey. `"60 seconds" - phase2_lifetime/2`
 
@@ -1358,10 +1274,9 @@ The period of time before phase 1 and 2 lifetimes expire, during which AWS initi
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">replay_window_size</td>
-    <td><code>1024</code></td>
+    <td width="100%">replay_window_size</td><td></td><td><code>1024</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of packets in an IKE replay window. Valid values: `64` - `2048`
 
@@ -1370,10 +1285,9 @@ The number of packets in an IKE replay window. Valid values: `64` - `2048`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">startup_action</td>
-    <td><code>"add"</code></td>
+    <td width="100%">startup_action</td><td></td><td><code>"add"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The action to take when establishing the VPN tunnel for a new or modified VPN connection. `"start"` is only supported for customer gateways with IP addresses.
 
@@ -1390,10 +1304,9 @@ The action to take when establishing the VPN tunnel for a new or modified VPN co
 </td></tr>
 <tr>
     <td><code>object(<a href="#enable_tunnel_activity_log">enable_tunnel_activity_log</a>)</code></td>
-    <td width="100%">enable_tunnel_activity_log</td>
-    <td><code>null</code></td>
+    <td width="100%">enable_tunnel_activity_log</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Tunnel activity log captures log messages for IPsec activity and DPD protocol messages.
 
@@ -1408,13 +1321,12 @@ Creates a VPC attachment
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">vpc_id</td>
-    <td></td>
+    <td width="100%">vpc_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the VPC to attach to the transit gateway
 
@@ -1423,10 +1335,9 @@ Specify the VPC to attach to the transit gateway
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">subnet_ids</td>
-    <td></td>
+    <td width="100%">subnet_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The subnets in which to create the transit gateway VPC attachment. You can only specify one subnet in each availability zone
 
@@ -1435,10 +1346,9 @@ The subnets in which to create the transit gateway VPC attachment. You can only 
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_dns_support</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_dns_support</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enable Domain Name System resolution for this VPC attachment.
 
@@ -1447,10 +1357,9 @@ Enable Domain Name System resolution for this VPC attachment.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_security_group_referencing_support</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_security_group_referencing_support</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enable Security Group Referencing for this VPC attachment.
 
@@ -1459,10 +1368,9 @@ Enable Security Group Referencing for this VPC attachment.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_ipv6_support</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_ipv6_support</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enable IPv6 for this attachment.
 
@@ -1471,10 +1379,9 @@ Enable IPv6 for this attachment.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_appliance_mode_support</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_appliance_mode_support</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 When appliance mode is enabled, traffic flow between a source and destination uses the same Availability Zone for the VPC attachment for the lifetime of that flow.
 
@@ -1489,13 +1396,12 @@ Creates a VPN attachment
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">customer_gateway_id</td>
-    <td></td>
+    <td width="100%">customer_gateway_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the VPN customer gateway
 
@@ -1504,10 +1410,9 @@ Specify the VPN customer gateway
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">routing_options</td>
-    <td><code>"dynamic"</code></td>
+    <td width="100%">routing_options</td><td></td><td><code>"dynamic"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the routing option. Note: `dynamic` requires BGP.
 
@@ -1521,10 +1426,9 @@ Specify the routing option. Note: `dynamic` requires BGP.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">preshared_key_storage</td>
-    <td><code>"Standard"</code></td>
+    <td width="100%">preshared_key_storage</td><td></td><td><code>"Standard"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Choose how the pre-shared key (PSK) is stored and managed.
 
@@ -1541,10 +1445,9 @@ Choose how the pre-shared key (PSK) is stored and managed.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_acceleration</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_acceleration</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enable Acceleration improves performance of VPN tunnels via AWS Global Accelerator and the AWS global network
 
@@ -1553,10 +1456,9 @@ Enable Acceleration improves performance of VPN tunnels via AWS Global Accelerat
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">local_ipv4_network_cidr</td>
-    <td><code>"0.0.0.0/0"</code></td>
+    <td width="100%">local_ipv4_network_cidr</td><td></td><td><code>"0.0.0.0/0"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The IPv4 CIDR on the customer gateway (on-premises) side of the VPN connection.
 
@@ -1565,10 +1467,9 @@ The IPv4 CIDR on the customer gateway (on-premises) side of the VPN connection.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">remote_ipv4_network_cidr</td>
-    <td><code>"0.0.0.0/0"</code></td>
+    <td width="100%">remote_ipv4_network_cidr</td><td></td><td><code>"0.0.0.0/0"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The IPv4 CIDR on the AWS side of the VPN connection.
 
@@ -1577,10 +1478,9 @@ The IPv4 CIDR on the AWS side of the VPN connection.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">outside_ip_address_type</td>
-    <td><code>"PublicIpv4"</code></td>
+    <td width="100%">outside_ip_address_type</td><td></td><td><code>"PublicIpv4"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether the customer gateway device is using a public or private IPv4 address.
 
@@ -1594,10 +1494,9 @@ Specifies whether the customer gateway device is using a public or private IPv4 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">transport_transit_gateway_attachment_id</td>
-    <td><code>null</code></td>
+    <td width="100%">transport_transit_gateway_attachment_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The transport transit gateway attachment ID for the AWS Direct Connect gateway to be used for the private IP VPN connection. Only applicable if `outside_ip_address_type = "PrivateIpv4"`
 
@@ -1606,10 +1505,9 @@ The transport transit gateway attachment ID for the AWS Direct Connect gateway t
 </td></tr>
 <tr>
     <td><code>object(<a href="#tunnel1_options">tunnel1_options</a>)</code></td>
-    <td width="100%">tunnel1_options</td>
-    <td><code>null</code></td>
+    <td width="100%">tunnel1_options</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures advanced options for the first VPN tunnel
 
@@ -1618,10 +1516,9 @@ Configures advanced options for the first VPN tunnel
 </td></tr>
 <tr>
     <td><code>object(<a href="#tunnel2_options">tunnel2_options</a>)</code></td>
-    <td width="100%">tunnel2_options</td>
-    <td><code>null</code></td>
+    <td width="100%">tunnel2_options</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures advanced options for the second VPN tunnel
 

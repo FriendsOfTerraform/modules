@@ -126,8 +126,7 @@ module "demo_efs" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -143,8 +142,7 @@ The name of the EFS file system. All associated resources will also have their n
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#access_points">access_points</a>))</code></td>
-    <td width="100%">access_points</td>
-    <td><code>{}</code></td>
+    <td width="100%">access_points</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -159,8 +157,7 @@ Configures [access points][efs-access-point].
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -171,8 +168,7 @@ Additional tags for the EFS file system
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -183,8 +179,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">availability_zone</td>
-    <td><code>null</code></td>
+    <td width="100%">availability_zone</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -195,8 +190,7 @@ The AWS Availability Zone in which to create the file system. Specifying this va
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_automatic_backup</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_automatic_backup</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -207,10 +201,7 @@ Enables [EFS automatic backup][efs-automatic-backup].
 </td></tr>
 <tr>
     <td><code>object(<a href="#encryption">encryption</a>)</code></td>
-    <td width="100%">encryption</td>
-    <td><code>{
-  "enabled": true
-}</code></td>
+    <td width="100%">encryption</td><td><em><a href="#encryption">see below</a></em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -221,8 +212,7 @@ Configures [encryption at rest][efs-encryption-at-rest].
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">file_system_policy</td>
-    <td><code>null</code></td>
+    <td width="100%">file_system_policy</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -233,8 +223,7 @@ Specify the JSON formatted [file system policy][efs-policy] for the EFS file sys
 </td></tr>
 <tr>
     <td><code>object(<a href="#lifecycle_policy">lifecycle_policy</a>)</code></td>
-    <td width="100%">lifecycle_policy</td>
-    <td><code>null</code></td>
+    <td width="100%">lifecycle_policy</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -245,8 +234,7 @@ Configures lifecycle policy.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#mount_targets">mount_targets</a>))</code></td>
-    <td width="100%">mount_targets</td>
-    <td><code>{}</code></td>
+    <td width="100%">mount_targets</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -261,8 +249,7 @@ Configures [mount targets][efs-mount-target].
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">performance_mode</td>
-    <td><code>"generalPurpose"</code></td>
+    <td width="100%">performance_mode</td><td><code>"generalPurpose"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -278,8 +265,7 @@ Specify the [performance mode][efs-performance-mode] for the file system. `maxIO
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">provisioned_throughput</td>
-    <td><code>null</code></td>
+    <td width="100%">provisioned_throughput</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -290,8 +276,7 @@ Specify the throughput, measured in MiB/s, that you want to provision for the fi
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#replications">replications</a>))</code></td>
-    <td width="100%">replications</td>
-    <td><code>{}</code></td>
+    <td width="100%">replications</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -306,8 +291,7 @@ Configures [replications][efs-replication].
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">throughput_mode</td>
-    <td><code>"elastic"</code></td>
+    <td width="100%">throughput_mode</td><td><code>"elastic"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -329,8 +313,7 @@ Specify the [throughput mode][efs-throughput-mode] for the file system.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">efs_arn</td>
-    <td></td>
+    <td width="100%">efs_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -341,8 +324,7 @@ The ARN of the EFS file system
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">efs_availability_zone_id</td>
-    <td></td>
+    <td width="100%">efs_availability_zone_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -353,8 +335,7 @@ The identifier of the Availability Zone in which the file system's One Zone stor
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">efs_dns_name</td>
-    <td></td>
+    <td width="100%">efs_dns_name</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -365,8 +346,7 @@ The DNS name for the filesystem
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">efs_id</td>
-    <td></td>
+    <td width="100%">efs_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -377,8 +357,7 @@ The ID that identifies the file system
 </td></tr>
 <tr>
     <td><code>object(<a href="#efs_mount_targets">efs_mount_targets</a>)</code></td>
-    <td width="100%">efs_mount_targets</td>
-    <td></td>
+    <td width="100%">efs_mount_targets</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -389,8 +368,7 @@ Attributes of all mount targets for the file system
 </td></tr>
 <tr>
     <td><code>object(<a href="#efs_replications">efs_replications</a>)</code></td>
-    <td width="100%">efs_replications</td>
-    <td></td>
+    <td width="100%">efs_replications</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -401,8 +379,7 @@ Attributes of all replications for the file system
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">efs_size_in_bytes</td>
-    <td></td>
+    <td width="100%">efs_size_in_bytes</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -417,13 +394,12 @@ The latest known metered size (in bytes) of data stored in the file system, the 
 
 #### access_points
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the access point
 
@@ -432,10 +408,9 @@ Additional tags for the access point
 </td></tr>
 <tr>
     <td><code>object(<a href="#posix_user">posix_user</a>)</code></td>
-    <td width="100%">posix_user</td>
-    <td></td>
+    <td width="100%">posix_user</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the full POSIX identity on the access point that is used for all file operations by NFS clients
 
@@ -444,10 +419,9 @@ Configures the full POSIX identity on the access point that is used for all file
 </td></tr>
 <tr>
     <td><code>object(<a href="#root_directory_creation_permissions">root_directory_creation_permissions</a>)</code></td>
-    <td width="100%">root_directory_creation_permissions</td>
-    <td></td>
+    <td width="100%">root_directory_creation_permissions</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the permissions EFS use to create the specified root directory if the directory does not already exist
 
@@ -456,10 +430,9 @@ Configures the permissions EFS use to create the specified root directory if the
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">root_directory_path</td>
-    <td><code>"/"</code></td>
+    <td width="100%">root_directory_path</td><td></td><td><code>"/"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Path on the EFS file system to expose as the root directory to NFS clients using the access point. A path can have up to four subdirectories.
 `root_directory_creation_permissions` must be specified if the root path does not exist.
@@ -471,13 +444,12 @@ Path on the EFS file system to expose as the root directory to NFS clients using
 
 #### efs_mount_targets
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">availability_zone_id</td>
-    <td></td>
+    <td width="100%">availability_zone_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The unique and consistent identifier of the Availability Zone (AZ) that the mount target resides in
 
@@ -486,10 +458,9 @@ The unique and consistent identifier of the Availability Zone (AZ) that the moun
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">availability_zone_name</td>
-    <td></td>
+    <td width="100%">availability_zone_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the Availability Zone (AZ) that the mount target resides in
 
@@ -498,10 +469,9 @@ The name of the Availability Zone (AZ) that the mount target resides in
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the mount target
 
@@ -510,10 +480,9 @@ The ID of the mount target
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">mount_target_dns_name</td>
-    <td></td>
+    <td width="100%">mount_target_dns_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The DNS name for the given subnet/AZ
 
@@ -522,10 +491,9 @@ The DNS name for the given subnet/AZ
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">network_interface_id</td>
-    <td></td>
+    <td width="100%">network_interface_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the network interface that Amazon EFS created when it created the mount target
 
@@ -536,13 +504,12 @@ The ID of the network interface that Amazon EFS created when it created the moun
 
 #### efs_replications
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">destination_file_system_id</td>
-    <td></td>
+    <td width="100%">destination_file_system_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The file system ID of the replica
 
@@ -551,10 +518,9 @@ The file system ID of the replica
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">replication_status</td>
-    <td></td>
+    <td width="100%">replication_status</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The status of the replication
 
@@ -565,13 +531,12 @@ The status of the replication
 
 #### encryption
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td></td>
+    <td width="100%">enabled</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether encryption at rest is enabled
 
@@ -580,10 +545,9 @@ Whether encryption at rest is enabled
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_id</td>
-    <td></td>
+    <td width="100%">kms_key_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Key ID or ARN of the KMS key that should be used to encrypt the file system. If omitted, the default KMS key for EFS `/aws/elasticfilesystem` will be used
 
@@ -594,13 +558,12 @@ The Key ID or ARN of the KMS key that should be used to encrypt the file system.
 
 #### lifecycle_policy
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">transition_to_infrequent_access</td>
-    <td></td>
+    <td width="100%">transition_to_infrequent_access</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Indicates how long it takes to transition files to the IA storage class.
 
@@ -621,10 +584,9 @@ Indicates how long it takes to transition files to the IA storage class.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">transition_to_primary_storage_class</td>
-    <td></td>
+    <td width="100%">transition_to_primary_storage_class</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Transitions a file from infrequent access storage back to primary storage.
 
@@ -639,13 +601,12 @@ Transitions a file from infrequent access storage back to primary storage.
 
 #### mount_targets
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">security_group_ids</td>
-    <td></td>
+    <td width="100%">security_group_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of up to 5 VPC security group IDs in effect for the mount target
 
@@ -654,10 +615,9 @@ A list of up to 5 VPC security group IDs in effect for the mount target
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ip_address</td>
-    <td></td>
+    <td width="100%">ip_address</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The address (within the address range of the specified subnet) at which the file system may be mounted via the mount target
 
@@ -672,13 +632,12 @@ Configures the full POSIX identity on the access point that is used for all file
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">group_id</td>
-    <td></td>
+    <td width="100%">group_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 POSIX group ID used for all file system operations using this access point. Valid value: `0 - 4294967295`
 
@@ -687,10 +646,9 @@ POSIX group ID used for all file system operations using this access point. Vali
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">user_id</td>
-    <td></td>
+    <td width="100%">user_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 POSIX user ID used for all file system operations using this access point. Valid value: `0 - 4294967295`
 
@@ -699,10 +657,9 @@ POSIX user ID used for all file system operations using this access point. Valid
 </td></tr>
 <tr>
     <td><code>list(number)</code></td>
-    <td width="100%">secondary_group_ids</td>
-    <td></td>
+    <td width="100%">secondary_group_ids</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Secondary POSIX group IDs used for all file system operations using this access point
 
@@ -713,13 +670,12 @@ Secondary POSIX group IDs used for all file system operations using this access 
 
 #### replications
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">availability_zone</td>
-    <td></td>
+    <td width="100%">availability_zone</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The availability zone in which the replica should be created. If specified, the replica will be created with One Zone storage. If omitted, regional storage will be used.
 
@@ -728,10 +684,9 @@ The availability zone in which the replica should be created. If specified, the 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_id</td>
-    <td></td>
+    <td width="100%">kms_key_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Key ID or ARN of the KMS key that should be used to encrypt the replica file system. If omitted, the default KMS key for EFS `/aws/elasticfilesystem` will be used
 
@@ -746,13 +701,12 @@ Configures the permissions EFS use to create the specified root directory if the
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">access_point_permissions</td>
-    <td></td>
+    <td width="100%">access_point_permissions</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 POSIX permissions to apply to the root directory path
 
@@ -761,10 +715,9 @@ POSIX permissions to apply to the root directory path
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">owner_group_id</td>
-    <td></td>
+    <td width="100%">owner_group_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Owner group ID for the access point's root directory, if the directory does not already exist. Valid value: `0 - 4294967295`
 
@@ -773,10 +726,9 @@ Owner group ID for the access point's root directory, if the directory does not 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">owner_user_id</td>
-    <td></td>
+    <td width="100%">owner_user_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Owner user ID for the access point's root directory, if the directory does not already exist. Valid value: `0 - 4294967295`
 
