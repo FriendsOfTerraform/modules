@@ -126,8 +126,7 @@ module "automation" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">azure</a>)</code></td>
-    <td width="100%">azure</td>
-    <td></td>
+    <td width="100%">azure</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -135,8 +134,8 @@ The resource group name and the location where the resources will be deployed to
 
 ```terraform
 azure = {
-resource_group_name = "sandbox"
-location = "westus"
+  resource_group_name = "sandbox"
+  location = "westus"
 }
 ```
 
@@ -145,8 +144,7 @@ location = "westus"
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -162,8 +160,7 @@ The name of the automation account
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -174,8 +171,7 @@ Additional tags for the automation account
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -186,8 +182,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#runbooks">runbooks</a>))</code></td>
-    <td width="100%">runbooks</td>
-    <td><code>{}</code></td>
+    <td width="100%">runbooks</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -195,16 +190,16 @@ Defines and manages multiple runbooks and their schedules
 
 ```terraform
 runbooks = {
-"hourly" = {
-content = "Write-Host 'Hello World'"
+  "hourly" = {
+    content = "Write-Host 'Hello World'"
 
-# Run once every hour at 2300 PST
-schedule = {
-timezone   = "America/Los_Angeles"
-start_time = "2022-09-04T23:00:00.000-07:00"
-hourly     = { interval = 1 }
-}
-}
+    # Run once every hour at 2300 PST
+    schedule = {
+      timezone   = "America/Los_Angeles"
+      start_time = "2022-09-04T23:00:00.000-07:00"
+      hourly     = { interval = 1 }
+    }
+  }
 }
 ```
 
@@ -213,8 +208,7 @@ hourly     = { interval = 1 }
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">user_assigned_managed_identity_ids</td>
-    <td><code>[]</code></td>
+    <td width="100%">user_assigned_managed_identity_ids</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -230,8 +224,7 @@ List of managed identity IDs used by the automation account to manage azure reso
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>list(object)</code></td>
-    <td width="100%">automation_account_identity</td>
-    <td></td>
+    <td width="100%">automation_account_identity</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -242,8 +235,7 @@ List of identities attached to the automation account
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">runbook_ids</td>
-    <td></td>
+    <td width="100%">runbook_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -254,8 +246,7 @@ List of runbook IDs
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">schedule_ids</td>
-    <td></td>
+    <td width="100%">schedule_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -270,13 +261,12 @@ List of schedule IDs
 
 #### azure
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">resource_group_name</td>
-    <td></td>
+    <td width="100%">resource_group_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure resource group where the automation account will be deployed
 
@@ -285,10 +275,9 @@ The name of an Azure resource group where the automation account will be deploye
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">location</td>
-    <td></td>
+    <td width="100%">location</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure location where the automation account will be deployed. If unspecified, the resource group's location will be used.
 
@@ -303,13 +292,12 @@ Defines a daily schedule
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">interval</td>
-    <td></td>
+    <td width="100%">interval</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines how many days per schedule trigger
 
@@ -324,13 +312,12 @@ Defines a hourly schedule
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">interval</td>
-    <td></td>
+    <td width="100%">interval</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines how many hours per schedule trigger
 
@@ -345,13 +332,12 @@ Defines a monthly schedule
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">interval</td>
-    <td></td>
+    <td width="100%">interval</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines how many months per schedule trigger
 
@@ -360,10 +346,9 @@ Defines how many months per schedule trigger
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">every</td>
-    <td></td>
+    <td width="100%">every</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines one of the following:
 
@@ -377,13 +362,12 @@ Defines one of the following:
 
 #### runbooks
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">content</td>
-    <td></td>
+    <td width="100%">content</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The content of the runbook. This can either be the actual script itself, or a `uri` referencing the content remotely.
 
@@ -392,10 +376,9 @@ The content of the runbook. This can either be the actual script itself, or a `u
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td></td>
+    <td width="100%">additional_tags</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the runbook
 
@@ -404,10 +387,9 @@ Additional tags for the runbook
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td></td>
+    <td width="100%">description</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Description of the runbook
 
@@ -416,10 +398,9 @@ Description of the runbook
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">log_progress</td>
-    <td></td>
+    <td width="100%">log_progress</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables logging the progress of the runbook
 
@@ -428,10 +409,9 @@ Enables logging the progress of the runbook
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">log_verbose</td>
-    <td></td>
+    <td width="100%">log_verbose</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables verbose logging
 
@@ -440,10 +420,9 @@ Enables verbose logging
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">runbook_type</td>
-    <td></td>
+    <td width="100%">runbook_type</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the type of the runbook.
 
@@ -461,10 +440,9 @@ Defines the type of the runbook.
 </td></tr>
 <tr>
     <td><code>object(<a href="#schedule">schedule</a>)</code></td>
-    <td width="100%">schedule</td>
-    <td></td>
+    <td width="100%">schedule</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines schedule to automatically trigger this runbook
 
@@ -479,13 +457,12 @@ Defines schedule to automatically trigger this runbook
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td></td>
+    <td width="100%">description</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Description of the schedule
 
@@ -494,10 +471,9 @@ Description of the schedule
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">timezone</td>
-    <td></td>
+    <td width="100%">timezone</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the timezone this runbook schedules on. Refer to [this list][azure-timezones] for valid timezones.
 
@@ -506,10 +482,9 @@ Defines the timezone this runbook schedules on. Refer to [this list][azure-timez
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">start_time</td>
-    <td></td>
+    <td width="100%">start_time</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the start time of the schedule, in [RFC3339 DateTime format][rfc3339]. Defaults to `current time + 7 minutes`.
 
@@ -518,10 +493,9 @@ Defines the start time of the schedule, in [RFC3339 DateTime format][rfc3339]. D
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">expiry_time</td>
-    <td></td>
+    <td width="100%">expiry_time</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the expiry time of the schedule, in [RFC3339 DateTime format][rfc3339].
 
@@ -530,10 +504,9 @@ Defines the expiry time of the schedule, in [RFC3339 DateTime format][rfc3339].
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">parameters</td>
-    <td></td>
+    <td width="100%">parameters</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a map of parameters to be passed into the runbook when this schedule runs
 
@@ -542,10 +515,9 @@ Defines a map of parameters to be passed into the runbook when this schedule run
 </td></tr>
 <tr>
     <td><code>object(<a href="#hourly">hourly</a>)</code></td>
-    <td width="100%">hourly</td>
-    <td></td>
+    <td width="100%">hourly</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a hourly schedule
 
@@ -554,10 +526,9 @@ Defines a hourly schedule
 </td></tr>
 <tr>
     <td><code>object(<a href="#daily">daily</a>)</code></td>
-    <td width="100%">daily</td>
-    <td></td>
+    <td width="100%">daily</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a daily schedule
 
@@ -566,10 +537,9 @@ Defines a daily schedule
 </td></tr>
 <tr>
     <td><code>object(<a href="#weekly">weekly</a>)</code></td>
-    <td width="100%">weekly</td>
-    <td></td>
+    <td width="100%">weekly</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a weekly schedule
 
@@ -578,10 +548,9 @@ Defines a weekly schedule
 </td></tr>
 <tr>
     <td><code>object(<a href="#monthly">monthly</a>)</code></td>
-    <td width="100%">monthly</td>
-    <td></td>
+    <td width="100%">monthly</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a monthly schedule
 
@@ -596,13 +565,12 @@ Defines a weekly schedule
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">interval</td>
-    <td></td>
+    <td width="100%">interval</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines how many weeks per schedule trigger
 
@@ -611,10 +579,9 @@ Defines how many weeks per schedule trigger
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">every</td>
-    <td></td>
+    <td width="100%">every</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines the days of the week this schedule should run on.
 

@@ -44,8 +44,7 @@ _No required inputs._
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -56,8 +55,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#public_certificates">public_certificates</a>))</code></td>
-    <td width="100%">public_certificates</td>
-    <td><code>{}</code></td>
+    <td width="100%">public_certificates</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -78,8 +76,7 @@ certificates are trusted by browsers and operating systems.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#public_certificates">public_certificates</a>))</code></td>
-    <td width="100%">public_certificates</td>
-    <td></td>
+    <td width="100%">public_certificates</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -94,13 +91,12 @@ Information of all the public certificates managed by this module
 
 #### public_certificates
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the certificate
 
@@ -109,10 +105,9 @@ ARN of the certificate
 </td></tr>
 <tr>
     <td><code>list(object)</code></td>
-    <td width="100%">domain_validation_options</td>
-    <td></td>
+    <td width="100%">domain_validation_options</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Set of domain validation objects which can be used to complete certificate validation.
 
@@ -121,10 +116,9 @@ Set of domain validation objects which can be used to complete certificate valid
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the certificate
 
@@ -133,10 +127,9 @@ ARN of the certificate
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">not_after</td>
-    <td></td>
+    <td width="100%">not_after</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Expiration date and time of the certificate
 
@@ -145,10 +138,9 @@ Expiration date and time of the certificate
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">not_before</td>
-    <td></td>
+    <td width="100%">not_before</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Start of the validity period of the certificate.
 
@@ -157,10 +149,9 @@ Start of the validity period of the certificate.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">renewal_eligibility</td>
-    <td></td>
+    <td width="100%">renewal_eligibility</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether the certificate is eligible for managed renewal.
 
@@ -169,10 +160,9 @@ Whether the certificate is eligible for managed renewal.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">renewal_summary</td>
-    <td></td>
+    <td width="100%">renewal_summary</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Contains information about the status of ACM's managed renewal for the certificate.
 
@@ -181,10 +171,9 @@ Contains information about the status of ACM's managed renewal for the certifica
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">status</td>
-    <td></td>
+    <td width="100%">status</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Status of the certificate.
 
@@ -193,10 +182,9 @@ Status of the certificate.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">validation_emails</td>
-    <td></td>
+    <td width="100%">validation_emails</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of addresses that received a validation email. Only set if EMAIL validation was used.
 

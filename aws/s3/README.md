@@ -330,8 +330,7 @@ module "s3_bucket_object_lock_demo" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -347,8 +346,7 @@ Name of the S3 bucket. Must be globally unique
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -359,8 +357,7 @@ Additional tags for the S3 bucket
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -371,8 +368,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_owner_account_id</td>
-    <td><code>null</code></td>
+    <td width="100%">bucket_owner_account_id</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -383,8 +379,7 @@ The account ID of the expected bucket owner
 </td></tr>
 <tr>
     <td><code>list(object(<a href="#cors_configurations">cors_configurations</a>))</code></td>
-    <td width="100%">cors_configurations</td>
-    <td><code>null</code></td>
+    <td width="100%">cors_configurations</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -395,8 +390,7 @@ Configures [cross-origin resource sharing (CORS)][s3-cors]
 </td></tr>
 <tr>
     <td><code>object(<a href="#enables_object_lock">enables_object_lock</a>)</code></td>
-    <td width="100%">enables_object_lock</td>
-    <td><code>null</code></td>
+    <td width="100%">enables_object_lock</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -411,8 +405,7 @@ Configures [S3 Object Lock][s3-object-lock]. You must also set `versioning_enabl
 </td></tr>
 <tr>
     <td><code>object(<a href="#encryption_config">encryption_config</a>)</code></td>
-    <td width="100%">encryption_config</td>
-    <td><code>null</code></td>
+    <td width="100%">encryption_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -423,8 +416,7 @@ Configures [bucket level encryption][s3-encryption]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">force_destroy</td>
-    <td><code>false</code></td>
+    <td width="100%">force_destroy</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -435,8 +427,7 @@ Force destroy of the bucket even if it is not empty
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#intelligent_tiering_archive_configurations">intelligent_tiering_archive_configurations</a>))</code></td>
-    <td width="100%">intelligent_tiering_archive_configurations</td>
-    <td><code>{}</code></td>
+    <td width="100%">intelligent_tiering_archive_configurations</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -451,8 +442,7 @@ Configures [S3 intelligent tiering][s3-intelligent-tiering].
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#inventory_config">inventory_config</a>))</code></td>
-    <td width="100%">inventory_config</td>
-    <td><code>{}</code></td>
+    <td width="100%">inventory_config</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -467,8 +457,7 @@ Configures [S3 inventory][s3-inventory].
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#lifecycle_rules">lifecycle_rules</a>))</code></td>
-    <td width="100%">lifecycle_rules</td>
-    <td><code>null</code></td>
+    <td width="100%">lifecycle_rules</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -483,8 +472,7 @@ Configures [S3 lifecycle rules][s3-lifecycle].
 </td></tr>
 <tr>
     <td><code>object(<a href="#notification_config">notification_config</a>)</code></td>
-    <td width="100%">notification_config</td>
-    <td><code>null</code></td>
+    <td width="100%">notification_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -499,8 +487,7 @@ Configures S3 event notifications.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">object_ownership</td>
-    <td><code>"BucketOwnerEnforced"</code></td>
+    <td width="100%">object_ownership</td><td><code>"BucketOwnerEnforced"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -517,8 +504,7 @@ Control [ownership of objects][s3-object-ownership] written to this bucket from 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">policy</td>
-    <td><code>null</code></td>
+    <td width="100%">policy</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -529,8 +515,7 @@ Text of the S3 policy document to attach
 </td></tr>
 <tr>
     <td><code>object(<a href="#public_access_block">public_access_block</a>)</code></td>
-    <td width="100%">public_access_block</td>
-    <td><code>null</code></td>
+    <td width="100%">public_access_block</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -541,8 +526,7 @@ Configures bucket to [block public access][public-access]
 </td></tr>
 <tr>
     <td><code>object(<a href="#replication_config">replication_config</a>)</code></td>
-    <td width="100%">replication_config</td>
-    <td><code>null</code></td>
+    <td width="100%">replication_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -557,8 +541,7 @@ Manage [bucket replication][s3-bucket-replication].
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">requester_pays_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">requester_pays_enabled</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -569,8 +552,7 @@ Enables [Requester Pays bucket][s3-requester-pays] so that the requester pays th
 </td></tr>
 <tr>
     <td><code>object(<a href="#static_website_hosting_config">static_website_hosting_config</a>)</code></td>
-    <td width="100%">static_website_hosting_config</td>
-    <td><code>null</code></td>
+    <td width="100%">static_website_hosting_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -581,8 +563,7 @@ Configures [static website hosting][s3-static-website-hosting]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">transfer_acceleration_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">transfer_acceleration_enabled</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -593,8 +574,7 @@ Enables [transfer acceleration][s3-transfer-acceleration]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">versioning_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">versioning_enabled</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -610,8 +590,7 @@ Enables [bucket versioning][s3-versioning]
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_arn</td>
-    <td></td>
+    <td width="100%">bucket_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -622,8 +601,7 @@ ARN of the S3 bucket
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_domain_name</td>
-    <td></td>
+    <td width="100%">bucket_domain_name</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -634,8 +612,7 @@ Bucket domain name. Will be of format `bucketname.s3.amazonaws.com`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_name</td>
-    <td></td>
+    <td width="100%">bucket_name</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -646,8 +623,7 @@ Name of the S3 bucket
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_region</td>
-    <td></td>
+    <td width="100%">bucket_region</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -658,8 +634,7 @@ AWS region this bucket resides in
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">website_domain</td>
-    <td></td>
+    <td width="100%">website_domain</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -670,8 +645,7 @@ Domain of the website endpoint. This is used to create Route 53 alias records.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">website_endpoint</td>
-    <td></td>
+    <td width="100%">website_endpoint</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -690,13 +664,12 @@ Enables additional replication options
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">delete_marker_replication_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">delete_marker_replication_enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Delete markers created by S3 delete operations will be replicated. Delete markers created by lifecycle rules are not replicated.
 
@@ -705,10 +678,9 @@ Delete markers created by S3 delete operations will be replicated. Delete marker
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">replica_modification_sync_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">replica_modification_sync_enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Replicate metadata changes made to replicas in this bucket to the destination bucket.
 
@@ -717,10 +689,9 @@ Replicate metadata changes made to replicas in this bucket to the destination bu
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">replication_metrics_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">replication_metrics_enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 With replication metrics, you can monitor the total number and size of objects that are pending replication, and the maximum replication time to the destination Region. You can also view and diagnose replication failures.
 
@@ -729,10 +700,9 @@ With replication metrics, you can monitor the total number and size of objects t
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">replication_time_control_enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">replication_time_control_enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Replication Time Control replicates 99.99% of new objects within 15 minutes and includes replication metrics.
 
@@ -747,13 +717,12 @@ Specifies the overrides to use for object owners on replication. Specify this on
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">destination_account_id</td>
-    <td></td>
+    <td width="100%">destination_account_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Account ID to specify the replica ownership
 
@@ -764,13 +733,12 @@ Account ID to specify the replica ownership
 
 #### cors_configurations
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allowed_methods</td>
-    <td></td>
+    <td width="100%">allowed_methods</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of HTTP methods that you allow the origin to execute.
 
@@ -787,10 +755,9 @@ List of HTTP methods that you allow the origin to execute.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allowed_origins</td>
-    <td></td>
+    <td width="100%">allowed_origins</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the origins that you want to allow cross-domain requests from. The origin string can contain only one `*` wildcard character, such as `"http://*.example.com"`. You can optionally specify `"*"` as the origin to enable all the origins to send cross-origin requests. You can also specify `https` to enable only secure origins.
 
@@ -799,10 +766,9 @@ Specify the origins that you want to allow cross-domain requests from. The origi
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allowed_headers</td>
-    <td><code>null</code></td>
+    <td width="100%">allowed_headers</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify which headers are allowed in a preflight request through the Access-Control-Request-Headers header. Each header name in the Access-Control-Request-Headers header must match a corresponding entry in the element. Amazon S3 will send only the allowed headers in a response that were requested. Each header string can contain at most one `*` wildcard character. For example, `"x-amz-*"` will enable all Amazon-specific headers.
 
@@ -811,10 +777,9 @@ Specify which headers are allowed in a preflight request through the Access-Cont
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">expose_headers</td>
-    <td><code>null</code></td>
+    <td width="100%">expose_headers</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify a list of headers in the response that you want customers to be able to access from their applications
 
@@ -823,10 +788,9 @@ Specify a list of headers in the response that you want customers to be able to 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td><code>null</code></td>
+    <td width="100%">id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Unique identifier for the cors rule. The value cannot be longer than 255 characters.
 
@@ -835,10 +799,9 @@ Unique identifier for the cors rule. The value cannot be longer than 255 charact
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_age_seconds</td>
-    <td><code>null</code></td>
+    <td width="100%">max_age_seconds</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the time in seconds that your browser can cache the response for a preflight request as identified by the resource, the HTTP method, and the origin.
 
@@ -853,13 +816,12 @@ Configures default retention rule
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">retention_days</td>
-    <td></td>
+    <td width="100%">retention_days</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Number of days the objects should be retained
 
@@ -868,10 +830,9 @@ Number of days the objects should be retained
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">retention_mode</td>
-    <td></td>
+    <td width="100%">retention_mode</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Default Object Lock retention mode you want to apply to new objects placed in the specified bucket.
 
@@ -891,13 +852,12 @@ Configures the destination where the report will be sent
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">account_id</td>
-    <td></td>
+    <td width="100%">account_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The account ID that owns the destination bucket. Must be set to ensure correct ownership of the report.
 
@@ -906,10 +866,9 @@ The account ID that owns the destination bucket. Must be set to ensure correct o
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_arn</td>
-    <td></td>
+    <td width="100%">bucket_arn</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Destination bucket arn. The current bucket will be used if set to `null`
 
@@ -920,13 +879,12 @@ Destination bucket arn. The current bucket will be used if set to `null`
 
 #### enables_object_lock
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#default_retention">default_retention</a>)</code></td>
-    <td width="100%">default_retention</td>
-    <td></td>
+    <td width="100%">default_retention</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures default retention rule
 
@@ -935,10 +893,9 @@ Configures default retention rule
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">token</td>
-    <td></td>
+    <td width="100%">token</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Token to allow Object Lock to be enabled for an existing bucket. You must contact AWS support for the bucket's "Object Lock token." The token is generated in the back-end when versioning is enabled on a bucket.
 
@@ -957,13 +914,12 @@ Configures the type of server-side encryption to use to encrypt the inventory re
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_id</td>
-    <td></td>
+    <td width="100%">kms_key_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the KMS customer master key (CMK) used to encrypt the inventory file. If left empty (`null`), `sse_s3` will be used for encryption
 
@@ -974,13 +930,12 @@ ARN of the KMS customer master key (CMK) used to encrypt the inventory file. If 
 
 #### encryption_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">bucket_key_enabled</td>
-    <td></td>
+    <td width="100%">bucket_key_enabled</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables [S3 bucket key][s3-bucket-key] for encryption
 
@@ -989,10 +944,9 @@ Enables [S3 bucket key][s3-bucket-key] for encryption
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">use_kms_master_key</td>
-    <td></td>
+    <td width="100%">use_kms_master_key</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 CMK arn, encrypts bucket using `sse:kms`. If this is set to `null`, `sse:s3` will be used. e.g. `arn:aws:kms:us-west-2:111122223333:key/6bfabcde-0d12-48ad-927f-48a805b2c62d`
 
@@ -1007,13 +961,12 @@ Expiration configuration to expires current objects
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">clean_up_expired_object_delete_markers</td>
-    <td></td>
+    <td width="100%">clean_up_expired_object_delete_markers</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Permanently delete an object even if versioning is enabled
 
@@ -1022,10 +975,9 @@ Permanently delete an object even if versioning is enabled
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">days_after_object_creation</td>
-    <td></td>
+    <td width="100%">days_after_object_creation</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Expires objects after x days
 
@@ -1040,13 +992,12 @@ Limit the scope of this configuration using one or more filters
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">object_tags</td>
-    <td><code>null</code></td>
+    <td width="100%">object_tags</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 All of these tags must exist in the object's tag set in order for the configuration to apply
 
@@ -1055,10 +1006,9 @@ All of these tags must exist in the object's tag set in order for the configurat
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">prefix</td>
-    <td><code>null</code></td>
+    <td width="100%">prefix</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Object key name prefix that identifies the subset of objects to which the configuration applies
 
@@ -1069,13 +1019,12 @@ Object key name prefix that identifies the subset of objects to which the config
 
 #### intelligent_tiering_archive_configurations
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">access_tier</td>
-    <td></td>
+    <td width="100%">access_tier</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 S3 Intelligent-Tiering access tier.
 
@@ -1096,10 +1045,9 @@ Restore time:
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">days_until_transition</td>
-    <td></td>
+    <td width="100%">days_until_transition</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Number of consecutive days of no access after which an object will be eligible to be transitioned to the corresponding tier
 
@@ -1108,10 +1056,9 @@ Number of consecutive days of no access after which an object will be eligible t
 </td></tr>
 <tr>
     <td><code>object(<a href="#filter">filter</a>)</code></td>
-    <td width="100%">filter</td>
-    <td></td>
+    <td width="100%">filter</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Limit the scope of this configuration using one or more filters
 
@@ -1122,13 +1069,12 @@ Limit the scope of this configuration using one or more filters
 
 #### inventory_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">frequency</td>
-    <td></td>
+    <td width="100%">frequency</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies how frequently inventory results are produced.
 
@@ -1142,10 +1088,9 @@ Specifies how frequently inventory results are produced.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">additional_metadata_fields</td>
-    <td></td>
+    <td width="100%">additional_metadata_fields</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of optional metadata to be included in the inventory results.
 
@@ -1177,10 +1122,9 @@ List of optional metadata to be included in the inventory results.
 </td></tr>
 <tr>
     <td><code>object(<a href="#destination">destination</a>)</code></td>
-    <td width="100%">destination</td>
-    <td></td>
+    <td width="100%">destination</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the destination where the report will be sent
 
@@ -1189,10 +1133,9 @@ Configures the destination where the report will be sent
 </td></tr>
 <tr>
     <td><code>object(<a href="#encrypt_inventory_report">encrypt_inventory_report</a>)</code></td>
-    <td width="100%">encrypt_inventory_report</td>
-    <td></td>
+    <td width="100%">encrypt_inventory_report</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the type of server-side encryption to use to encrypt the inventory report
 
@@ -1201,10 +1144,9 @@ Configures the type of server-side encryption to use to encrypt the inventory re
 </td></tr>
 <tr>
     <td><code>object(<a href="#filter">filter</a>)</code></td>
-    <td width="100%">filter</td>
-    <td></td>
+    <td width="100%">filter</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Limit the scope of this configuration using one or more filters
 
@@ -1213,10 +1155,9 @@ Limit the scope of this configuration using one or more filters
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">include_noncurrent_objects</td>
-    <td><code>true</code></td>
+    <td width="100%">include_noncurrent_objects</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify if the report should include non current object versions
 
@@ -1225,10 +1166,9 @@ Specify if the report should include non current object versions
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">output_format</td>
-    <td><code>"CSV"</code></td>
+    <td width="100%">output_format</td><td></td><td><code>"CSV"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the output format of the inventory results.
 
@@ -1245,13 +1185,12 @@ Specifies the output format of the inventory results.
 
 #### lifecycle_rules
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">clean_up_incomplete_multipart_uploads_after</td>
-    <td></td>
+    <td width="100%">clean_up_incomplete_multipart_uploads_after</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Delete failed multipart uploads after x days
 
@@ -1260,10 +1199,9 @@ Delete failed multipart uploads after x days
 </td></tr>
 <tr>
     <td><code>object(<a href="#expiration">expiration</a>)</code></td>
-    <td width="100%">expiration</td>
-    <td></td>
+    <td width="100%">expiration</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Expiration configuration to expires current objects
 
@@ -1272,10 +1210,9 @@ Expiration configuration to expires current objects
 </td></tr>
 <tr>
     <td><code>object(<a href="#filter">filter</a>)</code></td>
-    <td width="100%">filter</td>
-    <td></td>
+    <td width="100%">filter</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Limit the scope of this configuration using one or more filters
 
@@ -1284,10 +1221,9 @@ Limit the scope of this configuration using one or more filters
 </td></tr>
 <tr>
     <td><code>object(<a href="#noncurrent_version_expiration">noncurrent_version_expiration</a>)</code></td>
-    <td width="100%">noncurrent_version_expiration</td>
-    <td></td>
+    <td width="100%">noncurrent_version_expiration</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Expiration configuration to expires noncurrent s3 objects
 
@@ -1296,10 +1232,9 @@ Expiration configuration to expires noncurrent s3 objects
 </td></tr>
 <tr>
     <td><code>list(object(<a href="#noncurrent_version_transitions">noncurrent_version_transitions</a>))</code></td>
-    <td width="100%">noncurrent_version_transitions</td>
-    <td></td>
+    <td width="100%">noncurrent_version_transitions</td><td></td><td><code>[]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Transitions noncurrent s3 objects to other storage class.
 
@@ -1308,10 +1243,9 @@ Transitions noncurrent s3 objects to other storage class.
 </td></tr>
 <tr>
     <td><code>list(object(<a href="#transitions">transitions</a>))</code></td>
-    <td width="100%">transitions</td>
-    <td></td>
+    <td width="100%">transitions</td><td></td><td><code>[]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Transitions s3 objects to other storage class.
 
@@ -1326,13 +1260,12 @@ Expiration configuration to expires noncurrent s3 objects
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">days_after_objects_become_noncurrent</td>
-    <td></td>
+    <td width="100%">days_after_objects_become_noncurrent</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Expires noncurrent objects after x days
 
@@ -1341,10 +1274,9 @@ Expires noncurrent objects after x days
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">number_of_newer_versions_to_retain</td>
-    <td></td>
+    <td width="100%">number_of_newer_versions_to_retain</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Number of noncurrent versions Amazon S3 will retain
 
@@ -1359,13 +1291,12 @@ Transitions noncurrent s3 objects to other storage class.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">days_after_objects_become_noncurrent</td>
-    <td></td>
+    <td width="100%">days_after_objects_become_noncurrent</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Transition noncurrent objects after x days
 
@@ -1374,10 +1305,9 @@ Transition noncurrent objects after x days
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">storage_class</td>
-    <td></td>
+    <td width="100%">storage_class</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the destination storage class.
 
@@ -1395,10 +1325,9 @@ Specify the destination storage class.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">number_of_newer_versions_to_retain</td>
-    <td></td>
+    <td width="100%">number_of_newer_versions_to_retain</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Number of noncurrent versions Amazon S3 will retain
 
@@ -1409,13 +1338,12 @@ Number of noncurrent versions Amazon S3 will retain
 
 #### notification_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(list(object()))</code></td>
-    <td width="100%">destinations</td>
-    <td></td>
+    <td width="100%">destinations</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Map of event notification in {destinationARN = [events]}. Supported AWS services include **Lambda**, **SQS**, and **SNS**. You can include up to one each **SQS** and **SNS** destination, but you can include multiple **Lambda** destinations.
 
@@ -1426,13 +1354,12 @@ Map of event notification in {destinationARN = [events]}. Supported AWS services
 
 #### public_access_block
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">block_public_acls</td>
-    <td></td>
+    <td width="100%">block_public_acls</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether Amazon S3 should block public ACLs for this bucket
 
@@ -1441,10 +1368,9 @@ Whether Amazon S3 should block public ACLs for this bucket
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">block_public_policy</td>
-    <td></td>
+    <td width="100%">block_public_policy</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether Amazon S3 should block public bucket policies for this bucket
 
@@ -1453,10 +1379,9 @@ Whether Amazon S3 should block public bucket policies for this bucket
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">ignore_public_acls</td>
-    <td></td>
+    <td width="100%">ignore_public_acls</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether Amazon S3 should ignore public ACLs for this bucket
 
@@ -1465,10 +1390,9 @@ Whether Amazon S3 should ignore public ACLs for this bucket
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">restrict_public_buckets</td>
-    <td></td>
+    <td width="100%">restrict_public_buckets</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether Amazon S3 should restrict public bucket policies for this bucket
 
@@ -1483,13 +1407,12 @@ Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `sta
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">host_name</td>
-    <td></td>
+    <td width="100%">host_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Name of the host where requests are redirected
 
@@ -1498,10 +1421,9 @@ Name of the host where requests are redirected
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">protocol</td>
-    <td></td>
+    <td width="100%">protocol</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Protocol to use when redirecting requests. The default is the protocol that is used in the original request.
 
@@ -1521,13 +1443,12 @@ Specifies whether encrypted objects will be replicated
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_for_encrypting_destination_objects</td>
-    <td></td>
+    <td width="100%">kms_key_for_encrypting_destination_objects</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the customer managed AWS KMS key stored in AWS Key Management Service (KMS) used to encrypt replicated objects
 
@@ -1538,13 +1459,12 @@ ARN of the customer managed AWS KMS key stored in AWS Key Management Service (KM
 
 #### replication_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#rules">rules</a>))</code></td>
-    <td width="100%">rules</td>
-    <td></td>
+    <td width="100%">rules</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures bucket replication rules. In {rule_name = replication_config} format
 
@@ -1553,10 +1473,9 @@ Configures bucket replication rules. In {rule_name = replication_config} format
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">iam_role_arn</td>
-    <td></td>
+    <td width="100%">iam_role_arn</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the IAM role for Amazon S3 to assume when replicating the objects. One will be automatically generated by the module if this is left empty (`null`).
 
@@ -1565,10 +1484,9 @@ ARN of the IAM role for Amazon S3 to assume when replicating the objects. One wi
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">token</td>
-    <td></td>
+    <td width="100%">token</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Token to allow replication to be enabled on an Object Lock-enabled bucket. You must contact AWS support for the bucket's "Object Lock token."
 
@@ -1587,13 +1505,12 @@ Configures bucket replication rules. In {rule_name = replication_config} format
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">destination_bucket_arn</td>
-    <td></td>
+    <td width="100%">destination_bucket_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the bucket where you want Amazon S3 to store the results
 
@@ -1602,10 +1519,9 @@ ARN of the bucket where you want Amazon S3 to store the results
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">priority</td>
-    <td></td>
+    <td width="100%">priority</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Priority associated with the rule. Priority must be unique between multiple rules.
 
@@ -1614,10 +1530,9 @@ Priority associated with the rule. Priority must be unique between multiple rule
 </td></tr>
 <tr>
     <td><code>object(<a href="#additional_replication_options">additional_replication_options</a>)</code></td>
-    <td width="100%">additional_replication_options</td>
-    <td></td>
+    <td width="100%">additional_replication_options</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables additional replication options
 
@@ -1626,10 +1541,9 @@ Enables additional replication options
 </td></tr>
 <tr>
     <td><code>object(<a href="#change_object_ownership_to_destination_bucket_owner">change_object_ownership_to_destination_bucket_owner</a>)</code></td>
-    <td width="100%">change_object_ownership_to_destination_bucket_owner</td>
-    <td></td>
+    <td width="100%">change_object_ownership_to_destination_bucket_owner</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the overrides to use for object owners on replication. Specify this only in a cross-account scenario (where source and destination bucket owners are not the same), and you want to change replica ownership to the AWS account that owns the destination bucket. If this is not specified in the replication configuration, the replicas are owned by same AWS account that owns the source object.
 
@@ -1638,10 +1552,9 @@ Specifies the overrides to use for object owners on replication. Specify this on
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">destination_storage_class</td>
-    <td></td>
+    <td width="100%">destination_storage_class</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the destination storage class. Defaults to the same storage class of the source object
 
@@ -1650,10 +1563,9 @@ Specify the destination storage class. Defaults to the same storage class of the
 </td></tr>
 <tr>
     <td><code>object(<a href="#filter">filter</a>)</code></td>
-    <td width="100%">filter</td>
-    <td></td>
+    <td width="100%">filter</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Limit the scope of this configuration using one or more filters
 
@@ -1662,10 +1574,9 @@ Limit the scope of this configuration using one or more filters
 </td></tr>
 <tr>
     <td><code>object(<a href="#replicate_encrypted_objects">replicate_encrypted_objects</a>)</code></td>
-    <td width="100%">replicate_encrypted_objects</td>
-    <td></td>
+    <td width="100%">replicate_encrypted_objects</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether encrypted objects will be replicated
 
@@ -1680,13 +1591,12 @@ Manages documents S3 returns when a request is made to its web endpoint. Mutuall
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">index_document</td>
-    <td></td>
+    <td width="100%">index_document</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Index document when requests are made to the root domain
 
@@ -1695,10 +1605,9 @@ Index document when requests are made to the root domain
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">error_document</td>
-    <td></td>
+    <td width="100%">error_document</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Document to return in case of a 4XX error
 
@@ -1709,13 +1618,12 @@ Document to return in case of a 4XX error
 
 #### static_website_hosting_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#redirect_requests_for_an_object">redirect_requests_for_an_object</a>)</code></td>
-    <td width="100%">redirect_requests_for_an_object</td>
-    <td></td>
+    <td width="100%">redirect_requests_for_an_object</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `static_website`
 
@@ -1724,10 +1632,9 @@ Configures a [webpage redirect][s3-webpage-redirect]. Mutually exclusive to `sta
 </td></tr>
 <tr>
     <td><code>object(<a href="#static_website">static_website</a>)</code></td>
-    <td width="100%">static_website</td>
-    <td></td>
+    <td width="100%">static_website</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Manages documents S3 returns when a request is made to its web endpoint. Mutually exclusive to `redirect_requests_for_an_object`
 
@@ -1742,13 +1649,12 @@ Transitions s3 objects to other storage class.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">days_after_object_creation</td>
-    <td></td>
+    <td width="100%">days_after_object_creation</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Transition objects after x days
 
@@ -1757,10 +1663,9 @@ Transition objects after x days
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">storage_class</td>
-    <td></td>
+    <td width="100%">storage_class</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the destination storage class.
 

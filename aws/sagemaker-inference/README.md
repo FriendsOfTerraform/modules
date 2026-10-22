@@ -82,8 +82,7 @@ module "basic_usage" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#models">models</a>))</code></td>
-    <td width="100%">models</td>
-    <td></td>
+    <td width="100%">models</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -103,8 +102,7 @@ Deploy multiple models.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -115,8 +113,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#endpoints">endpoints</a>))</code></td>
-    <td width="100%">endpoints</td>
-    <td><code>{}</code></td>
+    <td width="100%">endpoints</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -135,13 +132,12 @@ Specifies configuration for how an endpoint performs asynchronous inference
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">s3_output_path</td>
-    <td></td>
+    <td width="100%">s3_output_path</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Location to upload response output on success. Must be an S3 url(s3 path)
 
@@ -150,10 +146,9 @@ Location to upload response output on success. Must be an S3 url(s3 path)
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">encryption_key</td>
-    <td><code>null</code></td>
+    <td width="100%">encryption_key</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify an existing KMS key's ARN to encrypt your response output in S3.
 
@@ -162,10 +157,9 @@ Specify an existing KMS key's ARN to encrypt your response output in S3.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">error_notification_location</td>
-    <td><code>null</code></td>
+    <td width="100%">error_notification_location</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 SNS topic to post a notification when inference fails. If no topic is provided, no notification is sent
 
@@ -174,10 +168,9 @@ SNS topic to post a notification when inference fails. If no topic is provided, 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_concurrent_invocations_per_instance</td>
-    <td><code>null</code></td>
+    <td width="100%">max_concurrent_invocations_per_instance</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum number concurrent requests sent to model container. If no value is provided, SageMaker chooses an optimal value.
 
@@ -186,10 +179,9 @@ The maximum number concurrent requests sent to model container. If no value is p
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">s3_failure_path</td>
-    <td><code>null</code></td>
+    <td width="100%">s3_failure_path</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Location to upload response output on failure. Must be an S3 url (s3 path).
 
@@ -198,10 +190,9 @@ Location to upload response output on failure. Must be an S3 url (s3 path).
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">success_notification_location</td>
-    <td><code>null</code></td>
+    <td width="100%">success_notification_location</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 SNS topic to post a notification when inference completes successfully. If no topic is provided, no notification is sent
 
@@ -216,13 +207,12 @@ Enables auto scaling
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#policies">policies</a>))</code></td>
-    <td width="100%">policies</td>
-    <td></td>
+    <td width="100%">policies</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Manages multiple auto scaling policies
 
@@ -231,10 +221,9 @@ Manages multiple auto scaling policies
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">maximum_capacity</td>
-    <td><code>1</code></td>
+    <td width="100%">maximum_capacity</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the maximum number of EC2 instances to maintain.
 
@@ -243,10 +232,9 @@ Specify the maximum number of EC2 instances to maintain.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">minimum_capacity</td>
-    <td><code>1</code></td>
+    <td width="100%">minimum_capacity</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the minimum number of EC2 instances to maintain.
 
@@ -261,13 +249,12 @@ The content type headers to capture. Must specify one of `csv_text` or `json`
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">csv_text</td>
-    <td><code>null</code></td>
+    <td width="100%">csv_text</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The CSV content type headers to capture.
 
@@ -276,10 +263,9 @@ The CSV content type headers to capture.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">json</td>
-    <td><code>null</code></td>
+    <td width="100%">json</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The JSON content type headers to capture.
 
@@ -298,13 +284,12 @@ Configures multiple Cloudwatch alarms.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">expression</td>
-    <td></td>
+    <td width="100%">expression</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The expression in `<metric_name> <statistic> <comparison_operator> <threshold>` format. For example: `"Invocations average >= 100"`
 
@@ -313,10 +298,9 @@ The expression in `<metric_name> <statistic> <comparison_operator> <threshold>` 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The description of the alarm
 
@@ -325,10 +309,9 @@ The description of the alarm
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">evaluation_periods</td>
-    <td><code>1</code></td>
+    <td width="100%">evaluation_periods</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of periods over which data is compared to the specified threshold.
 
@@ -337,10 +320,9 @@ The number of periods over which data is compared to the specified threshold.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">notification_sns_topic</td>
-    <td><code>null</code></td>
+    <td width="100%">notification_sns_topic</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The SNS topic where notification will be sent
 
@@ -349,10 +331,9 @@ The SNS topic where notification will be sent
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">period</td>
-    <td><code>"1 minute"</code></td>
+    <td width="100%">period</td><td></td><td><code>"1 minute"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The period over which the specified statistic is applied. Valid values: `"1 minute"` - `"6 hours"`
 
@@ -361,10 +342,9 @@ The period over which the specified statistic is applied. Valid values: `"1 minu
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">treat_missing_data</td>
-    <td><code>"missing"</code></td>
+    <td width="100%">treat_missing_data</td><td></td><td><code>"missing"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify how the alarm handles missing data points.
 
@@ -386,13 +366,12 @@ Container images containing inference code that are used when the model is deplo
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">image</td>
-    <td></td>
+    <td width="100%">image</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The registry path where the inference code image is stored in Amazon ECR
 
@@ -401,10 +380,9 @@ The registry path where the inference code image is stored in Amazon ECR
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">compression_type</td>
-    <td><code>"CompressedModel"</code></td>
+    <td width="100%">compression_type</td><td></td><td><code>"CompressedModel"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the model compression type.
 
@@ -418,10 +396,9 @@ Specify the model compression type.
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">environment_variables</td>
-    <td><code>{}</code></td>
+    <td width="100%">environment_variables</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Environment variables for the container
 
@@ -430,10 +407,9 @@ Environment variables for the container
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">model_data_location</td>
-    <td><code>null</code></td>
+    <td width="100%">model_data_location</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The URL where model artifacts are stored in S3
 
@@ -442,10 +418,9 @@ The URL where model artifacts are stored in S3
 </td></tr>
 <tr>
     <td><code>object(<a href="#use_multiple_models">use_multiple_models</a>)</code></td>
-    <td width="100%">use_multiple_models</td>
-    <td><code>null</code></td>
+    <td width="100%">use_multiple_models</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure this container to host multiple models
 
@@ -460,13 +435,12 @@ Specifies what data to capture.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">prediction_request</td>
-    <td><code>true</code></td>
+    <td width="100%">prediction_request</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Capture prediction requests (Input)
 
@@ -475,10 +449,9 @@ Capture prediction requests (Input)
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">prediction_response</td>
-    <td><code>true</code></td>
+    <td width="100%">prediction_response</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Capture prediction responses (Output)
 
@@ -493,13 +466,12 @@ Enables data capture, where SageMaker can save prediction request and prediction
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">s3_location_to_store_data_collected</td>
-    <td></td>
+    <td width="100%">s3_location_to_store_data_collected</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Amazon SageMaker will save the prediction requests and responses along with metadata for your endpoint at this location.
 
@@ -508,10 +480,9 @@ Amazon SageMaker will save the prediction requests and responses along with meta
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">sampling_percentage</td>
-    <td><code>30</code></td>
+    <td width="100%">sampling_percentage</td><td></td><td><code>30</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Amazon SageMaker will randomly sample and save the specified percentage of traffic to your endpoint.
 
@@ -520,10 +491,9 @@ Amazon SageMaker will randomly sample and save the specified percentage of traff
 </td></tr>
 <tr>
     <td><code>object(<a href="#capture_content_type">capture_content_type</a>)</code></td>
-    <td width="100%">capture_content_type</td>
-    <td><code>null</code></td>
+    <td width="100%">capture_content_type</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The content type headers to capture. Must specify one of `csv_text` or `json`
 
@@ -532,10 +502,9 @@ The content type headers to capture. Must specify one of `csv_text` or `json`
 </td></tr>
 <tr>
     <td><code>object(<a href="#data_capture_options">data_capture_options</a>)</code></td>
-    <td width="100%">data_capture_options</td>
-    <td><code>{}</code></td>
+    <td width="100%">data_capture_options</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies what data to capture.
 
@@ -546,13 +515,12 @@ Specifies what data to capture.
 
 #### endpoints
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the endpoint
 
@@ -561,10 +529,9 @@ Additional tags for the endpoint
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">encryption_key</td>
-    <td><code>null</code></td>
+    <td width="100%">encryption_key</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify an existing KMS key's ARN to encrypt your response output in S3.
 
@@ -573,10 +540,9 @@ Specify an existing KMS key's ARN to encrypt your response output in S3.
 </td></tr>
 <tr>
     <td><code>object(<a href="#provisioned">provisioned</a>)</code></td>
-    <td width="100%">provisioned</td>
-    <td><code>null</code></td>
+    <td width="100%">provisioned</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify one of `provisioned` or `serverless`
 
@@ -585,10 +551,9 @@ Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify
 </td></tr>
 <tr>
     <td><code>object(<a href="#serverless">serverless</a>)</code></td>
-    <td width="100%">serverless</td>
-    <td><code>null</code></td>
+    <td width="100%">serverless</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Creates a serverless endpoint, mutually exclusive to `provisioned`. Must specify one of `provisioned` or `serverless`
 
@@ -603,13 +568,12 @@ Specifies details of how containers in a multi-container endpoint are called.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">mode</td>
-    <td><code>"Serial"</code></td>
+    <td width="100%">mode</td><td></td><td><code>"Serial"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 How containers in a multi-container are run.
 
@@ -628,13 +592,12 @@ How containers in a multi-container are run.
 
 #### models
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">iam_role_arn</td>
-    <td></td>
+    <td width="100%">iam_role_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A role that SageMaker AI can assume to access model artifacts and docker images for deployment
 
@@ -643,10 +606,9 @@ A role that SageMaker AI can assume to access model artifacts and docker images 
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#container_definitions">container_definitions</a>))</code></td>
-    <td width="100%">container_definitions</td>
-    <td></td>
+    <td width="100%">container_definitions</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Container images containing inference code that are used when the model is deployed for predictions.
 
@@ -655,10 +617,9 @@ Container images containing inference code that are used when the model is deplo
 </td></tr>
 <tr>
     <td><code>object(<a href="#inference_execution_config">inference_execution_config</a>)</code></td>
-    <td width="100%">inference_execution_config</td>
-    <td><code>{}</code></td>
+    <td width="100%">inference_execution_config</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies details of how containers in a multi-container endpoint are called.
 
@@ -667,10 +628,9 @@ Specifies details of how containers in a multi-container endpoint are called.
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the model
 
@@ -679,10 +639,9 @@ Additional tags for the model
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_network_isolation</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_network_isolation</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 If enabled, containers cannot make any outbound network calls.
 
@@ -691,10 +650,9 @@ If enabled, containers cannot make any outbound network calls.
 </td></tr>
 <tr>
     <td><code>object(<a href="#vpc_config">vpc_config</a>)</code></td>
-    <td width="100%">vpc_config</td>
-    <td><code>null</code></td>
+    <td width="100%">vpc_config</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the VPC that you want your model to connect to. This is used in hosting services and in batch transform.
 
@@ -709,13 +667,12 @@ Manages multiple auto scaling policies
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">expression</td>
-    <td></td>
+    <td width="100%">expression</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The expression in `<metric_name> <statistic> = <TargetValue>` format. For example: `"Invocations average = 100"`. If using a predefined metric such as `SageMakerVariantInvocationsPerInstance`, you can omit `<statistic>` from the expression. For example: `"SageMakerVariantInvocationsPerInstance = 100"`
 
@@ -724,10 +681,9 @@ The expression in `<metric_name> <statistic> = <TargetValue>` format. For exampl
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_scale_in</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_scale_in</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Allow this Auto Scaling policy to scale-in (removing EC2 instances).
 
@@ -736,10 +692,9 @@ Allow this Auto Scaling policy to scale-in (removing EC2 instances).
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">scale_in_cooldown_period</td>
-    <td><code>"5 minutes"</code></td>
+    <td width="100%">scale_in_cooldown_period</td><td></td><td><code>"5 minutes"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the number of seconds to wait between scale-in actions.
 
@@ -748,10 +703,9 @@ Specify the number of seconds to wait between scale-in actions.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">scale_out_cooldown_period</td>
-    <td><code>"5 minutes"</code></td>
+    <td width="100%">scale_out_cooldown_period</td><td></td><td><code>"5 minutes"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the number of seconds to wait between scale-out actions.
 
@@ -766,13 +720,12 @@ Configure multiple production variants, one for each model that you want to host
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_type</td>
-    <td></td>
+    <td width="100%">instance_type</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The EC2 instance type
 
@@ -781,10 +734,9 @@ The EC2 instance type
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">model_name</td>
-    <td></td>
+    <td width="100%">model_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the model to be hosted on this variant. The model specified must be managed by the same module
 
@@ -793,10 +745,9 @@ The name of the model to be hosted on this variant. The model specified must be 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">container_startup_timeout</td>
-    <td><code>null</code></td>
+    <td width="100%">container_startup_timeout</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The timeout value for the inference container to pass health check by SageMaker AI Hosting.
 
@@ -810,10 +761,9 @@ The timeout value for the inference container to pass health check by SageMaker 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">initial_instance_count</td>
-    <td><code>1</code></td>
+    <td width="100%">initial_instance_count</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the initial number of instances used for auto-scaling.
 
@@ -822,10 +772,9 @@ Specify the initial number of instances used for auto-scaling.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">initial_weight</td>
-    <td><code>1</code></td>
+    <td width="100%">initial_weight</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.
 
@@ -834,10 +783,9 @@ Determines initial traffic distribution among all of the models that you specify
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">model_data_download_timeout</td>
-    <td><code>null</code></td>
+    <td width="100%">model_data_download_timeout</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The timeout value to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant.
 
@@ -851,10 +799,9 @@ The timeout value to download and extract the model that you want to host from A
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">volume_size</td>
-    <td><code>null</code></td>
+    <td width="100%">volume_size</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant.
 
@@ -868,10 +815,9 @@ The size, in GB, of the ML storage volume attached to individual inference insta
 </td></tr>
 <tr>
     <td><code>object(<a href="#auto_scaling">auto_scaling</a>)</code></td>
-    <td width="100%">auto_scaling</td>
-    <td><code>null</code></td>
+    <td width="100%">auto_scaling</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables auto scaling
 
@@ -880,10 +826,9 @@ Enables auto scaling
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#cloudwatch_alarms">cloudwatch_alarms</a>))</code></td>
-    <td width="100%">cloudwatch_alarms</td>
-    <td><code>{}</code></td>
+    <td width="100%">cloudwatch_alarms</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures multiple Cloudwatch alarms.
 
@@ -902,13 +847,12 @@ Creates a provisioned endpoint, mutually exclusive to `serverless`. Must specify
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#production_variants">production_variants</a>))</code></td>
-    <td width="100%">production_variants</td>
-    <td></td>
+    <td width="100%">production_variants</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure multiple production variants, one for each model that you want to host at this endpoint. The keys of the map are the variant names.
 
@@ -917,10 +861,9 @@ Configure multiple production variants, one for each model that you want to host
 </td></tr>
 <tr>
     <td><code>object(<a href="#async_invocation_config">async_invocation_config</a>)</code></td>
-    <td width="100%">async_invocation_config</td>
-    <td><code>null</code></td>
+    <td width="100%">async_invocation_config</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies configuration for how an endpoint performs asynchronous inference
 
@@ -929,10 +872,9 @@ Specifies configuration for how an endpoint performs asynchronous inference
 </td></tr>
 <tr>
     <td><code>object(<a href="#enable_data_capture">enable_data_capture</a>)</code></td>
-    <td width="100%">enable_data_capture</td>
-    <td><code>null</code></td>
+    <td width="100%">enable_data_capture</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables data capture, where SageMaker can save prediction request and prediction response information from your endpoint to a specified location
 
@@ -941,10 +883,9 @@ Enables data capture, where SageMaker can save prediction request and prediction
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#shadow_variants">shadow_variants</a>))</code></td>
-    <td width="100%">shadow_variants</td>
-    <td><code>{}</code></td>
+    <td width="100%">shadow_variants</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify shadow variants to receive production traffic replicated from the model specified on `production_variants`. The keys of the map are the variant names. If you use this field, you can only specify one variant for `production_variants` and one variant for `shadow_variants`.
 
@@ -959,13 +900,12 @@ Creates a serverless endpoint, mutually exclusive to `provisioned`. Must specify
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#variant">variant</a>)</code></td>
-    <td width="100%">variant</td>
-    <td></td>
+    <td width="100%">variant</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures variant for this endpoint
 
@@ -980,13 +920,12 @@ Specify shadow variants to receive production traffic replicated from the model 
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_type</td>
-    <td></td>
+    <td width="100%">instance_type</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The EC2 instance type
 
@@ -995,10 +934,9 @@ The EC2 instance type
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">model_name</td>
-    <td></td>
+    <td width="100%">model_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the model to be hosted on this variant. The model specified must be managed by the same module
 
@@ -1007,10 +945,9 @@ The name of the model to be hosted on this variant. The model specified must be 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">container_startup_timeout</td>
-    <td><code>null</code></td>
+    <td width="100%">container_startup_timeout</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The timeout value for the inference container to pass health check by SageMaker AI Hosting. Valid values: `"1 minute"` - `"1 hour"`
 
@@ -1019,10 +956,9 @@ The timeout value for the inference container to pass health check by SageMaker 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">initial_instance_count</td>
-    <td><code>1</code></td>
+    <td width="100%">initial_instance_count</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the initial number of instances used for auto-scaling.
 
@@ -1031,10 +967,9 @@ Specify the initial number of instances used for auto-scaling.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">initial_weight</td>
-    <td><code>1</code></td>
+    <td width="100%">initial_weight</td><td></td><td><code>1</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Determines initial traffic distribution among all of the models that you specify in the endpoint configuration.
 
@@ -1043,10 +978,9 @@ Determines initial traffic distribution among all of the models that you specify
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">model_data_download_timeout</td>
-    <td><code>null</code></td>
+    <td width="100%">model_data_download_timeout</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The timeout value to download and extract the model that you want to host from Amazon S3 to the individual inference instance associated with this production variant. Valid values: `"1 minute"` - `"1 hour"`.
 
@@ -1055,10 +989,9 @@ The timeout value to download and extract the model that you want to host from A
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">volume_size</td>
-    <td><code>null</code></td>
+    <td width="100%">volume_size</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The size, in GB, of the ML storage volume attached to individual inference instance associated with the production variant. Valid values: `1` - `512`.
 
@@ -1073,13 +1006,12 @@ Configure this container to host multiple models
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_model_caching</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_model_caching</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether to cache models for a multi-model endpoint. By default, multi-model endpoints cache models so that a model does not have to be loaded into memory each time it is invoked. Some use cases do not benefit from model caching. For example, if an endpoint hosts a large number of models that are each invoked infrequently, the endpoint might perform better if you disable model caching.
 
@@ -1094,13 +1026,12 @@ Configures variant for this endpoint
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">model_name</td>
-    <td></td>
+    <td width="100%">model_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the model to be used for this endpoint. The model specified must be managed by the same module
 
@@ -1109,10 +1040,9 @@ The name of the model to be used for this endpoint. The model specified must be 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_concurrency</td>
-    <td><code>20</code></td>
+    <td width="100%">max_concurrency</td><td></td><td><code>20</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum number of concurrent invocations your serverless endpoint can process. Valid values: `1` - `200`
 
@@ -1121,10 +1051,9 @@ The maximum number of concurrent invocations your serverless endpoint can proces
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">memory_size</td>
-    <td><code>1024</code></td>
+    <td width="100%">memory_size</td><td></td><td><code>1024</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The memory size of your serverless endpoint.
 
@@ -1142,10 +1071,9 @@ The memory size of your serverless endpoint.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">provisioned_concurrency</td>
-    <td><code>null</code></td>
+    <td width="100%">provisioned_concurrency</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Provisioned concurrency enables you to deploy models on serverless endpoints with predictable performance and high scalability. For the set number of concurrent invocations, SageMaker will keep underlying compute warm and ready to respond instantaneously without cold starts. Must be `<= max_concurrency`
 
@@ -1160,13 +1088,12 @@ Specifies the VPC that you want your model to connect to. This is used in hostin
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">security_group_ids</td>
-    <td></td>
+    <td width="100%">security_group_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of security group IDs the models use to access private resources
 
@@ -1175,10 +1102,9 @@ List of security group IDs the models use to access private resources
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">subnet_ids</td>
-    <td></td>
+    <td width="100%">subnet_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of subnet IDs to be used for this VPC connection
 

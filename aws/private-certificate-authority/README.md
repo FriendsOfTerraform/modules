@@ -141,8 +141,7 @@ module "external_intermediate_ca" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#subject">subject</a>)</code></td>
-    <td width="100%">subject</td>
-    <td></td>
+    <td width="100%">subject</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -158,8 +157,7 @@ The X509 subject of the CA certificate
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -170,8 +168,7 @@ Additional tags for the private CA
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -182,8 +179,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">authorize_acm_access_to_renew_certificates</td>
-    <td><code>true</code></td>
+    <td width="100%">authorize_acm_access_to_renew_certificates</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -194,8 +190,7 @@ Grant AWS Certificate Manager (ACM) permissions for automated renewal for this C
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ca_type</td>
-    <td><code>"ROOT"</code></td>
+    <td width="100%">ca_type</td><td><code>"ROOT"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -211,8 +206,7 @@ Specify the type of the CA.
 </td></tr>
 <tr>
     <td><code>object(<a href="#crl_configuration">crl_configuration</a>)</code></td>
-    <td width="100%">crl_configuration</td>
-    <td><code>null</code></td>
+    <td width="100%">crl_configuration</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -223,8 +217,7 @@ Configuration of the [certificate revocation list (CRL)][certificate-revocation-
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">key_algorithm</td>
-    <td><code>"RSA_2048"</code></td>
+    <td width="100%">key_algorithm</td><td><code>"RSA_2048"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -242,8 +235,7 @@ Type of the public key algorithm and size, in bits, of the key pair that your CA
 </td></tr>
 <tr>
     <td><code>object(<a href="#ocsp_configuration">ocsp_configuration</a>)</code></td>
-    <td width="100%">ocsp_configuration</td>
-    <td><code>null</code></td>
+    <td width="100%">ocsp_configuration</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -254,8 +246,7 @@ Configuration of [Online Certificate Status Protocol (OCSP)][online-certificate-
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">policy</td>
-    <td><code>null</code></td>
+    <td width="100%">policy</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -266,8 +257,7 @@ Attaches a JSON-formatted resource-based IAM policy to this private CA
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">signing_algorithm</td>
-    <td><code>"SHA256WITHRSA"</code></td>
+    <td width="100%">signing_algorithm</td><td><code>"SHA256WITHRSA"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -292,8 +282,7 @@ Name of the algorithm your private CA uses to sign certificate requests.
 </td></tr>
 <tr>
     <td><code>object(<a href="#subordinate_ca_configuration">subordinate_ca_configuration</a>)</code></td>
-    <td width="100%">subordinate_ca_configuration</td>
-    <td><code>null</code></td>
+    <td width="100%">subordinate_ca_configuration</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -304,8 +293,7 @@ Specify options to setup a subordinate CA. Required if `ca_type = "SUBORDINATE"`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">usage_mode</td>
-    <td><code>"GENERAL_PURPOSE"</code></td>
+    <td width="100%">usage_mode</td><td><code>"GENERAL_PURPOSE"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -316,8 +304,7 @@ Specifies whether the CA issues general-purpose certificates that typically requ
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">validity</td>
-    <td><code>"10 years"</code></td>
+    <td width="100%">validity</td><td><code>"10 years"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -337,8 +324,7 @@ Specify the validity period of the CA certificate.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">certificate_authority_arn</td>
-    <td></td>
+    <td width="100%">certificate_authority_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -349,8 +335,7 @@ The ARN of the certificate authority
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">certificate_authority_certificate</td>
-    <td></td>
+    <td width="100%">certificate_authority_certificate</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -361,8 +346,7 @@ Base64-encoded certificate authority (CA) certificate. Only available after the 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">certificate_authority_certificate_chain</td>
-    <td></td>
+    <td width="100%">certificate_authority_certificate_chain</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -373,8 +357,7 @@ Base64-encoded certificate chain that includes any intermediate certificates and
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">certificate_authority_csr</td>
-    <td></td>
+    <td width="100%">certificate_authority_csr</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -385,8 +368,7 @@ The base64 PEM-encoded certificate signing request (CSR) for the private CA cert
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">certificate_authority_id</td>
-    <td></td>
+    <td width="100%">certificate_authority_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -405,13 +387,12 @@ Create a new S3 bucket to use as the CRL Distribution Point (CDP). This bucket i
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_name</td>
-    <td></td>
+    <td width="100%">bucket_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the S3 bucket. Must be globally unique.
 
@@ -420,10 +401,9 @@ The name of the S3 bucket. Must be globally unique.
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags attached to the S3 bucket
 
@@ -432,10 +412,9 @@ Additional tags attached to the S3 bucket
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_versioning</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_versioning</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether S3 bucket versioning is enabled
 
@@ -446,13 +425,12 @@ Whether S3 bucket versioning is enabled
 
 #### crl_configuration
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#create_s3_bucket">create_s3_bucket</a>)</code></td>
-    <td width="100%">create_s3_bucket</td>
-    <td></td>
+    <td width="100%">create_s3_bucket</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Create a new S3 bucket to use as the CRL Distribution Point (CDP). This bucket is publicly accessible with S3 Block Public Access disabled, as required by AWS Private CA. Alternatively, to leave BPA enabled (S3 best practice) do not use this setting to create the bucket but use [CloudFront with a private S3 bucket][crl-cloudfront]. Mutually exclusive to `s3_bucket_name`
 
@@ -461,10 +439,9 @@ Create a new S3 bucket to use as the CRL Distribution Point (CDP). This bucket i
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">custom_crl_name</td>
-    <td></td>
+    <td width="100%">custom_crl_name</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Name inserted into the certificate CRL Distribution Points extension that enables the use of an alias for the CRL distribution point.
 
@@ -473,10 +450,9 @@ Name inserted into the certificate CRL Distribution Points extension that enable
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>true</code></td>
+    <td width="100%">enabled</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether CRL is enabled
 
@@ -485,10 +461,9 @@ Specifies whether CRL is enabled
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">s3_bucket_name</td>
-    <td></td>
+    <td width="100%">s3_bucket_name</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The S3 bucket where the CRLs are distributed to. Mutually exclusive to `create_s3_bucket`
 
@@ -497,10 +472,9 @@ The S3 bucket where the CRLs are distributed to. Mutually exclusive to `create_s
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">validity_in_days</td>
-    <td><code>7</code></td>
+    <td width="100%">validity_in_days</td><td></td><td><code>7</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Validity period of the distributed CRLs in days
 
@@ -519,13 +493,12 @@ Import a subordinate CA certificate signed by an external CA. Mutually exclusive
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">certificate</td>
-    <td></td>
+    <td width="100%">certificate</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the PEM-encoded subordinate CA certificate
 
@@ -534,10 +507,9 @@ Specify the PEM-encoded subordinate CA certificate
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">certificate_chain</td>
-    <td></td>
+    <td width="100%">certificate_chain</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the PEM-encoded subordinate CA certificate chain
 
@@ -548,13 +520,12 @@ Specify the PEM-encoded subordinate CA certificate chain
 
 #### ocsp_configuration
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">custom_ocsp_endpoint</td>
-    <td></td>
+    <td width="100%">custom_ocsp_endpoint</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 CNAME specifying a customized OCSP domain. Note: The value of the CNAME must not include a protocol prefix such as "http://" or "https://". Please review [the documentation][online-certificate-status-protocol] for additional requirements to use the custom endpoint.
 
@@ -563,10 +534,9 @@ CNAME specifying a customized OCSP domain. Note: The value of the CNAME must not
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>true</code></td>
+    <td width="100%">enabled</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether OCSP is enabled
 
@@ -577,13 +547,12 @@ Specifies whether OCSP is enabled
 
 #### subject
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">common_name</td>
-    <td></td>
+    <td width="100%">common_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the common name of the CA. For CA and end-entity certificates in a private PKI, the common name (CN) can be any string within the length limit
 
@@ -592,10 +561,9 @@ Specify the common name of the CA. For CA and end-entity certificates in a priva
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">country</td>
-    <td></td>
+    <td width="100%">country</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Two-digit code that specifies the country in which the certificate subject located. For example: `"US"`
 
@@ -604,10 +572,9 @@ Two-digit code that specifies the country in which the certificate subject locat
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">locality</td>
-    <td></td>
+    <td width="100%">locality</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The locality (such as a city or town) in which the certificate subject is located. For example: `"Los Angeles"`
 
@@ -616,10 +583,9 @@ The locality (such as a city or town) in which the certificate subject is locate
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">organization</td>
-    <td></td>
+    <td width="100%">organization</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Legal name of the organization with which the certificate subject is affiliated.
 
@@ -628,10 +594,9 @@ Legal name of the organization with which the certificate subject is affiliated.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">organization_unit</td>
-    <td></td>
+    <td width="100%">organization_unit</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A subdivision or unit of the organization (such as `"sales"` or `"finance"`) with which the certificate subject is affiliated.
 
@@ -640,10 +605,9 @@ A subdivision or unit of the organization (such as `"sales"` or `"finance"`) wit
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">state</td>
-    <td></td>
+    <td width="100%">state</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 State in which the subject of the certificate is located. For example: `"California"`
 
@@ -654,13 +618,12 @@ State in which the subject of the certificate is located. For example: `"Califor
 
 #### subordinate_ca_configuration
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#import_certificate">import_certificate</a>)</code></td>
-    <td width="100%">import_certificate</td>
-    <td></td>
+    <td width="100%">import_certificate</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Import a subordinate CA certificate signed by an external CA. Mutually exclusive to `parent_ca_arn`
 
@@ -673,10 +636,9 @@ Import a subordinate CA certificate signed by an external CA. Mutually exclusive
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">parent_ca_arn</td>
-    <td></td>
+    <td width="100%">parent_ca_arn</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Signs the subordinate CA certificate with an AWS private CA. Mutually exclusive to `import_certificate`
 
@@ -689,10 +651,9 @@ Signs the subordinate CA certificate with an AWS private CA. Mutually exclusive 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">path_length</td>
-    <td><code>0</code></td>
+    <td width="100%">path_length</td><td></td><td><code>0</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the [path length constraint][path-length-constraint] of the subordinate CA, which determines the maximum number of lower-level subordinate CAs that can exist in a valid chain of trust. AWS Private CA supports a maximum chain of up to 5 levels deep, therefore this values must be `<= 3`
 

@@ -187,8 +187,7 @@ module "network_load_balancer" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -199,8 +198,7 @@ The name of the load balancer. All associated resources will also have their nam
 </td></tr>
 <tr>
     <td><code>object(<a href="#network_mapping">network_mapping</a>)</code></td>
-    <td width="100%">network_mapping</td>
-    <td></td>
+    <td width="100%">network_mapping</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -216,8 +214,7 @@ The networking configuration of the load balancer
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -228,8 +225,7 @@ Additional tags for the load balancer
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -240,8 +236,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>object(<a href="#application_load_balancer">application_load_balancer</a>)</code></td>
-    <td width="100%">application_load_balancer</td>
-    <td><code>null</code></td>
+    <td width="100%">application_load_balancer</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -256,8 +251,7 @@ Setup an Application load balancer. Mutually exclusive to `gateway_load_balancer
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">capacity_unit_reservation</td>
-    <td><code>null</code></td>
+    <td width="100%">capacity_unit_reservation</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -268,8 +262,7 @@ Minimum capacity for the load balancer.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_deletion_protection</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_deletion_protection</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -280,8 +273,7 @@ If enabled, you must turn it off before you can delete the load balancer.
 </td></tr>
 <tr>
     <td><code>object(<a href="#gateway_load_balancer">gateway_load_balancer</a>)</code></td>
-    <td width="100%">gateway_load_balancer</td>
-    <td><code>null</code></td>
+    <td width="100%">gateway_load_balancer</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -296,8 +288,7 @@ Setup a Gateway load balancer. Mutually exclusive to `application_load_balancer`
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">internet_facing</td>
-    <td><code>true</code></td>
+    <td width="100%">internet_facing</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -308,8 +299,7 @@ Whether the load balancer is publicly accessible
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ip_address_type</td>
-    <td><code>"ipv4"</code></td>
+    <td width="100%">ip_address_type</td><td><code>"ipv4"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -332,8 +322,7 @@ The front-end IP address type to assign to the load balancer. The subnets mapped
 </td></tr>
 <tr>
     <td><code>object(<a href="#network_load_balancer">network_load_balancer</a>)</code></td>
-    <td width="100%">network_load_balancer</td>
-    <td><code>null</code></td>
+    <td width="100%">network_load_balancer</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -348,8 +337,7 @@ Setup a Network load balancer. Mutually exclusive to `application_load_balancer`
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">security_group_ids</td>
-    <td><code>null</code></td>
+    <td width="100%">security_group_ids</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -365,8 +353,7 @@ List of security group IDs to assign to the load balancer. Only valid for Load B
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#application_load_balancer_listeners">application_load_balancer_listeners</a>))</code></td>
-    <td width="100%">application_load_balancer_listeners</td>
-    <td></td>
+    <td width="100%">application_load_balancer_listeners</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -377,8 +364,7 @@ Info for the listeners if `application_load_balancer` is specified
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#gateway_load_balancer_listeners">gateway_load_balancer_listeners</a>))</code></td>
-    <td width="100%">gateway_load_balancer_listeners</td>
-    <td></td>
+    <td width="100%">gateway_load_balancer_listeners</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -389,8 +375,7 @@ Info for the listeners if `gateway_load_balancer` is specified
 </td></tr>
 <tr>
     <td><code>object(<a href="#load_balancer">load_balancer</a>)</code></td>
-    <td width="100%">load_balancer</td>
-    <td></td>
+    <td width="100%">load_balancer</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -401,8 +386,7 @@ Info for this load balancer
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#network_load_balancer_listeners">network_load_balancer_listeners</a>))</code></td>
-    <td width="100%">network_load_balancer_listeners</td>
-    <td></td>
+    <td width="100%">network_load_balancer_listeners</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -421,13 +405,12 @@ The action to trigger when an incoming request matches all conditions.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#authenticate_users">authenticate_users</a>)</code></td>
-    <td width="100%">authenticate_users</td>
-    <td><code>null</code></td>
+    <td width="100%">authenticate_users</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure user authentication through either OpenID Connect (OIDC) or Amazon Cognito. Please refer to [this documentation][alb-user-authentication] for prerequisites for both methods.
 
@@ -436,10 +419,9 @@ Configure user authentication through either OpenID Connect (OIDC) or Amazon Cog
 </td></tr>
 <tr>
     <td><code>object(<a href="#fixed_response">fixed_response</a>)</code></td>
-    <td width="100%">fixed_response</td>
-    <td><code>null</code></td>
+    <td width="100%">fixed_response</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configurate fixed-response action to drop client requests and return a custom HTTP response. When a fixed-response action is taken, the action and the URL of the redirect target are recorded in the access logs.
 
@@ -448,10 +430,9 @@ Configurate fixed-response action to drop client requests and return a custom HT
 </td></tr>
 <tr>
     <td><code>object(<a href="#forward">forward</a>)</code></td>
-    <td width="100%">forward</td>
-    <td><code>null</code></td>
+    <td width="100%">forward</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure forward action to route requests to one or more target groups.
 
@@ -460,10 +441,9 @@ Configure forward action to route requests to one or more target groups.
 </td></tr>
 <tr>
     <td><code>object(<a href="#redirect">redirect</a>)</code></td>
-    <td width="100%">redirect</td>
-    <td><code>null</code></td>
+    <td width="100%">redirect</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Redirect client requests from one URL to another. You cannot redirect HTTPS to HTTP.
 
@@ -478,13 +458,12 @@ Control whether your Application Load Balancer adds certain headers to HTTP resp
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">access_control_allow_credentials</td>
-    <td><code>null</code></td>
+    <td width="100%">access_control_allow_credentials</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether the client should include credentials such as cookies, HTTP authentication or client certificates in cross-origin requests.
 
@@ -493,10 +472,9 @@ Specifies whether the client should include credentials such as cookies, HTTP au
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">access_control_allow_headers</td>
-    <td><code>null</code></td>
+    <td width="100%">access_control_allow_headers</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies which custom or non-simple headers can be included in a cross-origin request. This header gives targets control over which headers can be sent by clients from different origins.
 
@@ -505,10 +483,9 @@ Specifies which custom or non-simple headers can be included in a cross-origin r
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">access_control_allow_methods</td>
-    <td><code>null</code></td>
+    <td width="100%">access_control_allow_methods</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the HTTP methods that are allowed when making cross-origin requests to the target. It provides control over which actions can be performed from different origins.
 
@@ -517,10 +494,9 @@ Specifies the HTTP methods that are allowed when making cross-origin requests to
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">access_control_allow_origin</td>
-    <td><code>null</code></td>
+    <td width="100%">access_control_allow_origin</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Controls whether resources on a target can be accessed from different origins. This allows secure cross-origin interactions while preventing unauthorized access.
 
@@ -529,10 +505,9 @@ Controls whether resources on a target can be accessed from different origins. T
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">access_control_expose_headers</td>
-    <td><code>null</code></td>
+    <td width="100%">access_control_expose_headers</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Allows the target to specify which additional response headers can be access by the client in cross-origin requests.
 
@@ -541,10 +516,9 @@ Allows the target to specify which additional response headers can be access by 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">access_control_max_age</td>
-    <td><code>null</code></td>
+    <td width="100%">access_control_max_age</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines how long the browser can cache the result of a preflight request, reducing the need for repeated preflight checks. This helps to optimize performance by reducing the number of OPTIONS requests required for certain cross-origin requests.
 
@@ -553,10 +527,9 @@ Defines how long the browser can cache the result of a preflight request, reduci
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">content_security_policy</td>
-    <td><code>null</code></td>
+    <td width="100%">content_security_policy</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Security feature that prevents code injection attacks like XSS by controlling which resources such as scripts, styles, images, etc. can be loaded and executed by a website.
 
@@ -565,10 +538,9 @@ Security feature that prevents code injection attacks like XSS by controlling wh
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">http_strict_transport_security</td>
-    <td><code>null</code></td>
+    <td width="100%">http_strict_transport_security</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enforces HTTPS-only connections by the browser for a specified duration
 
@@ -577,10 +549,9 @@ Enforces HTTPS-only connections by the browser for a specified duration
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_content_type_options</td>
-    <td><code>null</code></td>
+    <td width="100%">x_content_type_options</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 With the no-sniff directive, enhances web security by preventing browsers from guessing the MIME type of a resource. It ensures that browsers only interpret content according to the declared Content-Type
 
@@ -589,10 +560,9 @@ With the no-sniff directive, enhances web security by preventing browsers from g
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_frame_options</td>
-    <td><code>null</code></td>
+    <td width="100%">x_frame_options</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Header security mechanism that helps prevent click-jacking attacks by controlling whether a web page can be embedded in frames. Values such as DENY and SAMEORIGIN can ensure that content is not embedded on malicious or untrusted websites.
 
@@ -607,13 +577,12 @@ Configures an Amazon Cognito IdP for authentication
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">app_client</td>
-    <td></td>
+    <td width="100%">app_client</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ID of the Cognito user pool client.
 
@@ -622,10 +591,9 @@ ID of the Cognito user pool client.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">user_pool</td>
-    <td></td>
+    <td width="100%">user_pool</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the Cognito user pool
 
@@ -634,10 +602,9 @@ The ARN of the Cognito user pool
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">user_pool_domain</td>
-    <td></td>
+    <td width="100%">user_pool_domain</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Domain prefix or fully-qualified domain name of the Cognito user pool.
 
@@ -648,13 +615,12 @@ Domain prefix or fully-qualified domain name of the Cognito user pool.
 
 #### application_load_balancer
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#listeners">listeners</a>))</code></td>
-    <td width="100%">listeners</td>
-    <td></td>
+    <td width="100%">listeners</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Map of listeners in the `<protocol>:<port>` format
 
@@ -663,10 +629,9 @@ Map of listeners in the `<protocol>:<port>` format
 </td></tr>
 <tr>
     <td><code>object(<a href="#attributes">attributes</a>)</code></td>
-    <td width="100%">attributes</td>
-    <td><code>{}</code></td>
+    <td width="100%">attributes</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure listener attributes
 
@@ -677,13 +642,12 @@ Configure listener attributes
 
 #### application_load_balancer_listeners
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the listener
 
@@ -698,13 +662,12 @@ Configure the load balancer attributes
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">client_routing_policy</td>
-    <td><code>"any_availability_zone"</code></td>
+    <td width="100%">client_routing_policy</td><td></td><td><code>"any_availability_zone"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 How traffic is distributed among the load balancer Availability Zones. Applies only to internal requests for clients resolving the load balancer DNS name using Route 53 Resolver.
 
@@ -719,10 +682,9 @@ How traffic is distributed among the load balancer Availability Zones. Applies o
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_arc_zonal_shift_integration</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_arc_zonal_shift_integration</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Controls whether Amazon Application Recovery Controller (ARC) zonal shift is available to the load balancer.
 
@@ -731,10 +693,9 @@ Controls whether Amazon Application Recovery Controller (ARC) zonal shift is ava
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_cross_zone_load_balancing</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_cross_zone_load_balancing</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 If enabled. Each load balancer node load balances traffic among healthy targets in all its enabled Availability Zones
 
@@ -749,13 +710,12 @@ Configure user authentication through either OpenID Connect (OIDC) or Amazon Cog
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">action_on_unauthenticated_request</td>
-    <td><code>"authenticate"</code></td>
+    <td width="100%">action_on_unauthenticated_request</td><td></td><td><code>"authenticate"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The response to a request from a user that is not authenticated.
 
@@ -770,10 +730,9 @@ The response to a request from a user that is not authenticated.
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">extra_request_parameters</td>
-    <td><code>{}</code></td>
+    <td width="100%">extra_request_parameters</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A map of extra parameters to pass to the identity provider (IdP) during authentication
 
@@ -782,10 +741,9 @@ A map of extra parameters to pass to the identity provider (IdP) during authenti
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">scope</td>
-    <td><code>"openid"</code></td>
+    <td width="100%">scope</td><td></td><td><code>"openid"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The attributes to be requested by the identity provider (IdP).
 
@@ -794,10 +752,9 @@ The attributes to be requested by the identity provider (IdP).
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">session_cookie_name</td>
-    <td><code>"AWSELBAuthSessionCookie"</code></td>
+    <td width="100%">session_cookie_name</td><td></td><td><code>"AWSELBAuthSessionCookie"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the cookie used to maintain session information.
 
@@ -806,10 +763,9 @@ The name of the cookie used to maintain session information.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">session_timeout</td>
-    <td><code>"7 days"</code></td>
+    <td width="100%">session_timeout</td><td></td><td><code>"7 days"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum time allowed for an authenticated session after which re-authentication will be required. Valid values: `"1 second" - "7 days"`
 
@@ -818,10 +774,9 @@ The maximum time allowed for an authenticated session after which re-authenticat
 </td></tr>
 <tr>
     <td><code>object(<a href="#amazon_cognito">amazon_cognito</a>)</code></td>
-    <td width="100%">amazon_cognito</td>
-    <td><code>null</code></td>
+    <td width="100%">amazon_cognito</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures an Amazon Cognito IdP for authentication
 
@@ -830,10 +785,9 @@ Configures an Amazon Cognito IdP for authentication
 </td></tr>
 <tr>
     <td><code>object(<a href="#oidc">oidc</a>)</code></td>
-    <td width="100%">oidc</td>
-    <td><code>null</code></td>
+    <td width="100%">oidc</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures an Open ID Connect (OIDC) IdP for authentication
 
@@ -848,13 +802,12 @@ The CA bundle
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">s3_uri</td>
-    <td></td>
+    <td width="100%">s3_uri</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The S3 URI where the CA bundle resides. For example: `"s3://demo-bucket/ca-bundles/ca.pem"`
 
@@ -863,10 +816,9 @@ The S3 URI where the CA bundle resides. For example: `"s3://demo-bucket/ca-bundl
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">version</td>
-    <td><code>null</code></td>
+    <td width="100%">version</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The S3 version ID of the CA bundle
 
@@ -881,13 +833,12 @@ Map of CRLs to be imported into the trust store. The keys of the map are the S3 
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">version</td>
-    <td><code>null</code></td>
+    <td width="100%">version</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The S3 version ID of the CRL
 
@@ -906,13 +857,12 @@ Specify specific conditions a request must match for the rules actions to be per
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">host_headers</td>
-    <td><code>null</code></td>
+    <td width="100%">host_headers</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of host header patterns to match. The maximum size of each pattern is 128 characters. Comparison is case insensitive. Wildcard characters supported: `*` (matches 0 or more characters) and `?` (matches exactly 1 character).
 
@@ -921,22 +871,20 @@ A list of host header patterns to match. The maximum size of each pattern is 128
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">paths</td>
-    <td><code>null</code></td>
+    <td width="100%">paths</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
-A list of path patterns to match against the request URL. Maximum size of each pattern is 128 characters. Comparison is case sensitive. Wildcard characters supported: \* (matches 0 or more characters) and ? (matches exactly 1 character).
+A list of path patterns to match against the request URL. Maximum size of each pattern is 128 characters. Comparison is case sensitive. Wildcard characters supported: * (matches 0 or more characters) and ? (matches exactly 1 character).
 
 **Since:** 1.0.0
 
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">query_strings</td>
-    <td><code>{}</code></td>
+    <td width="100%">query_strings</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Query strings to match. This condition can be specified multiple times.
 
@@ -945,22 +893,20 @@ Query strings to match. This condition can be specified multiple times.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">http_request_methods</td>
-    <td><code>null</code></td>
+    <td width="100%">http_request_methods</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
-A list of HTTP request methods or verbs to match. Maximum size is 40 characters. Only allowed characters are A-Z, hyphen (-) and underscore (\_). Comparison is case sensitive. Wildcards are not supported.
+A list of HTTP request methods or verbs to match. Maximum size is 40 characters. Only allowed characters are A-Z, hyphen (-) and underscore (_). Comparison is case sensitive. Wildcards are not supported.
 
 **Since:** 1.0.0
 
 </td></tr>
 <tr>
     <td><code>map(list(string))</code></td>
-    <td width="100%">http_headers</td>
-    <td><code>{}</code></td>
+    <td width="100%">http_headers</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 HTTP headers to match. This condition can be specified multiple times.
 
@@ -969,10 +915,9 @@ HTTP headers to match. This condition can be specified multiple times.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">source_ips</td>
-    <td><code>null</code></td>
+    <td width="100%">source_ips</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of source IP CIDR notations to match. You can use both IPv4 and IPv6 addresses. Wildcards are not supported.
 
@@ -987,13 +932,12 @@ Specify the default action that triggers for the incoming requests.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#forward">forward</a>)</code></td>
-    <td width="100%">forward</td>
-    <td></td>
+    <td width="100%">forward</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure forward action to route requests to a target group.
 
@@ -1008,13 +952,12 @@ Enable mTLS. Configure how the listener handles requests that present client cer
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#verify_with_trust_store">verify_with_trust_store</a>)</code></td>
-    <td width="100%">verify_with_trust_store</td>
-    <td><code>null</code></td>
+    <td width="100%">verify_with_trust_store</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The load balancer and client verify each other's identity and establish a TLS connection to encrypt communication between them. If this is not specified, the incoming certificate will be sent to the backend target as-is (`Passthrough`)
 
@@ -1029,13 +972,12 @@ Configurate fixed-response action to drop client requests and return a custom HT
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">content_type</td>
-    <td><code>"text/plain"</code></td>
+    <td width="100%">content_type</td><td></td><td><code>"text/plain"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The format of your message.
 
@@ -1052,10 +994,9 @@ The format of your message.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">response_body</td>
-    <td><code>null</code></td>
+    <td width="100%">response_body</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The message body of the response
 
@@ -1064,10 +1005,9 @@ The message body of the response
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">response_code</td>
-    <td><code>503</code></td>
+    <td width="100%">response_code</td><td></td><td><code>503</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 HTTP response code. Valid values are 2xx, 4xx, and 5xx HTTP codes.
 
@@ -1082,13 +1022,12 @@ Configure forward action to route requests to a target group.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">target_group</td>
-    <td></td>
+    <td width="100%">target_group</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the target group to route traffic to
 
@@ -1099,13 +1038,12 @@ The ARN of the target group to route traffic to
 
 #### gateway_load_balancer
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#listener">listener</a>)</code></td>
-    <td width="100%">listener</td>
-    <td></td>
+    <td width="100%">listener</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure the listener
 
@@ -1114,10 +1052,9 @@ Configure the listener
 </td></tr>
 <tr>
     <td><code>object(<a href="#attributes">attributes</a>)</code></td>
-    <td width="100%">attributes</td>
-    <td><code>{}</code></td>
+    <td width="100%">attributes</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure the load balancer attributes
 
@@ -1128,13 +1065,12 @@ Configure the load balancer attributes
 
 #### gateway_load_balancer_listeners
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the listener
 
@@ -1149,13 +1085,12 @@ Configure the listener
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#default_action">default_action</a>)</code></td>
-    <td width="100%">default_action</td>
-    <td></td>
+    <td width="100%">default_action</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the default action that triggers for the incoming requests.
 
@@ -1164,10 +1099,9 @@ Specify the default action that triggers for the incoming requests.
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the listener
 
@@ -1182,13 +1116,12 @@ Map of listeners in the `<protocol>:<port>` format
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#default_action">default_action</a>)</code></td>
-    <td width="100%">default_action</td>
-    <td></td>
+    <td width="100%">default_action</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the default action that triggers for the incoming requests.
 
@@ -1197,10 +1130,9 @@ Specify the default action that triggers for the incoming requests.
 </td></tr>
 <tr>
     <td><code>object(<a href="#attributes">attributes</a>)</code></td>
-    <td width="100%">attributes</td>
-    <td><code>{}</code></td>
+    <td width="100%">attributes</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure the listener attributes
 
@@ -1209,10 +1141,9 @@ Configure the listener attributes
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the listener
 
@@ -1221,10 +1152,9 @@ Additional tags for the listener
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">alpn_policy</td>
-    <td><code>null</code></td>
+    <td width="100%">alpn_policy</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the Application-Layer Protocol Negotiation (ALPN) policy. Only applicable if protocol is `TLS`.
 
@@ -1241,10 +1171,9 @@ Specify the Application-Layer Protocol Negotiation (ALPN) policy. Only applicabl
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">certificates_for_sni</td>
-    <td></td>
+    <td width="100%">certificates_for_sni</td><td></td><td><code>[]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional certificates for Server Name Indication (SNI). This enables the load balancer to support multiple domains on the same port and provide a different certificate for each domain.
 
@@ -1253,10 +1182,9 @@ Additional certificates for Server Name Indication (SNI). This enables the load 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">default_ssl_certificate_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">default_ssl_certificate_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The certificate to use if a client connects without SNI protocol, or if there are no matching certificates. This is required if a `TLS` listener is specified.
 
@@ -1265,10 +1193,9 @@ The certificate to use if a client connects without SNI protocol, or if there ar
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">security_policy</td>
-    <td><code>"ELBSecurityPolicy-TLS13-1-2-Res-2021-06"</code></td>
+    <td width="100%">security_policy</td><td></td><td><code>"ELBSecurityPolicy-TLS13-1-2-Res-2021-06"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Name of the SSL Policy for the listener. This is required if a `TLS` listener is specified.
 
@@ -1279,13 +1206,12 @@ Name of the SSL Policy for the listener. This is required if a `TLS` listener is
 
 #### load_balancer
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the load balancer
 
@@ -1294,10 +1220,9 @@ The ARN of the load balancer
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">dns_name</td>
-    <td></td>
+    <td width="100%">dns_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 DNS name of the load balancer
 
@@ -1306,10 +1231,9 @@ DNS name of the load balancer
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">zone_id</td>
-    <td></td>
+    <td width="100%">zone_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Canonical hosted zone ID of the load balancer (to be used in a Route 53 Alias record).
 
@@ -1324,13 +1248,12 @@ Configure the HTTP headers added by the load balancer when using TLS or mTLS
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">x_amzn_mtls_clientcert</td>
-    <td><code>null</code></td>
+    <td width="100%">x_amzn_mtls_clientcert</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Carries the full client certificate. Allowing the target to verify the certificate’s authenticity, validate the certificate chain, and authenticate the client during the mTLS handshake process.
 
@@ -1339,10 +1262,9 @@ Carries the full client certificate. Allowing the target to verify the certifica
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_amzn_mtls_clientcert_issuer</td>
-    <td><code>null</code></td>
+    <td width="100%">x_amzn_mtls_clientcert_issuer</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Helps the target validate and authenticate the client certificate by identifying the certificate authority that issued the certificate.
 
@@ -1351,10 +1273,9 @@ Helps the target validate and authenticate the client certificate by identifying
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_amzn_mtls_clientcert_leaf</td>
-    <td><code>null</code></td>
+    <td width="100%">x_amzn_mtls_clientcert_leaf</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Provides the client certificate used in the mTLS handshake, allowing the server to authenticate the client and validate the certificate chain. This ensures the connection is secure and authorized.
 
@@ -1363,10 +1284,9 @@ Provides the client certificate used in the mTLS handshake, allowing the server 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_amzn_mtls_clientcert_serial_number</td>
-    <td><code>null</code></td>
+    <td width="100%">x_amzn_mtls_clientcert_serial_number</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Ensures that the target can identify and verify the specific certificate presented by the client during the TLS handshake.
 
@@ -1375,10 +1295,9 @@ Ensures that the target can identify and verify the specific certificate present
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_amzn_mtls_clientcert_subject</td>
-    <td><code>null</code></td>
+    <td width="100%">x_amzn_mtls_clientcert_subject</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Provides the target with detailed information about the entity the client certificate was issued to, which helps in identification, authentication, authorization, and logging during mTLS authentication.
 
@@ -1387,10 +1306,9 @@ Provides the target with detailed information about the entity the client certif
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_amzn_mtls_clientcert_validity</td>
-    <td><code>null</code></td>
+    <td width="100%">x_amzn_mtls_clientcert_validity</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Allows the target to verify that the client certificate being used is within its defined validity period, ensuring the certificate is not expired or prematurely used.
 
@@ -1399,10 +1317,9 @@ Allows the target to verify that the client certificate being used is within its
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_amzn_tls_cipher_suite</td>
-    <td><code>null</code></td>
+    <td width="100%">x_amzn_tls_cipher_suite</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Indicates the combination of cryptographic algorithms used to secure a connection in TLS. This allows the server to assess the security of the connection, helping with compatibility troubleshooting, and ensuring compliance with security policies.
 
@@ -1411,10 +1328,9 @@ Indicates the combination of cryptographic algorithms used to secure a connectio
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">x_amzn_tls_version</td>
-    <td><code>null</code></td>
+    <td width="100%">x_amzn_tls_version</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Indicates the version of the TLS protocol used for a connection. It facilitates determining the security level of the communication, troubleshoot connection issues and ensuring compliance.
 
@@ -1425,13 +1341,12 @@ Indicates the version of the TLS protocol used for a connection. It facilitates 
 
 #### network_load_balancer
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#listeners">listeners</a>))</code></td>
-    <td width="100%">listeners</td>
-    <td></td>
+    <td width="100%">listeners</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Map of listeners in the `<protocol>:<port>` format
 
@@ -1440,10 +1355,9 @@ Map of listeners in the `<protocol>:<port>` format
 </td></tr>
 <tr>
     <td><code>object(<a href="#attributes">attributes</a>)</code></td>
-    <td width="100%">attributes</td>
-    <td><code>{}</code></td>
+    <td width="100%">attributes</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configure the load balancer attributes
 
@@ -1454,13 +1368,12 @@ Configure the load balancer attributes
 
 #### network_load_balancer_listeners
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">arn</td>
-    <td></td>
+    <td width="100%">arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the listener
 
@@ -1471,13 +1384,12 @@ The ARN of the listener
 
 #### network_mapping
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#subnets">subnets</a>))</code></td>
-    <td width="100%">subnets</td>
-    <td></td>
+    <td width="100%">subnets</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Map of subnet ARNs where the load balancer routes traffic to. You can only specify one subnet per availability zone. If you enabled dual-stack mode for the load balancer, select subnets with associated IPv6 CIDR blocks. You must specify at least two subnets
 
@@ -1486,10 +1398,9 @@ Map of subnet ARNs where the load balancer routes traffic to. You can only speci
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ipam_pool_id</td>
-    <td><code>null</code></td>
+    <td width="100%">ipam_pool_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the IPAM pool to use with this load balancer. IPAM pools allow your Application Load Balancers to use IPv4 addresses you own. Only applicable to `application_load_balancer` and `internet_facing = true`
 
@@ -1504,13 +1415,12 @@ Create a new trust store using an existing CA bundle and optionally certificate 
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#certificate_authority_bundle">certificate_authority_bundle</a>)</code></td>
-    <td width="100%">certificate_authority_bundle</td>
-    <td></td>
+    <td width="100%">certificate_authority_bundle</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The CA bundle
 
@@ -1519,10 +1429,9 @@ The CA bundle
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the trust store
 
@@ -1531,10 +1440,9 @@ Additional tags for the trust store
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#certificate_revocation_lists">certificate_revocation_lists</a>))</code></td>
-    <td width="100%">certificate_revocation_lists</td>
-    <td><code>{}</code></td>
+    <td width="100%">certificate_revocation_lists</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Map of CRLs to be imported into the trust store. The keys of the map are the S3 URI where the CRL resides.
 
@@ -1549,13 +1457,12 @@ Configures an Open ID Connect (OIDC) IdP for authentication
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">authorization_endpoint</td>
-    <td></td>
+    <td width="100%">authorization_endpoint</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 OpenID provider server endpoint.
 
@@ -1564,10 +1471,9 @@ OpenID provider server endpoint.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">client_id</td>
-    <td></td>
+    <td width="100%">client_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of an app client in your user pool.
 
@@ -1576,10 +1482,9 @@ The ID of an app client in your user pool.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">client_secret</td>
-    <td></td>
+    <td width="100%">client_secret</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Provide a client secret associated with this client ID.
 
@@ -1588,10 +1493,9 @@ Provide a client secret associated with this client ID.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">issuer</td>
-    <td></td>
+    <td width="100%">issuer</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 OpenID provider.
 
@@ -1600,10 +1504,9 @@ OpenID provider.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">token_endpoint</td>
-    <td></td>
+    <td width="100%">token_endpoint</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 URL of your token endpoint.
 
@@ -1612,10 +1515,9 @@ URL of your token endpoint.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">user_info_endpoint</td>
-    <td></td>
+    <td width="100%">user_info_endpoint</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 URL of your user info endpoint.
 
@@ -1630,13 +1532,12 @@ Redirect client requests from one URL to another. You cannot redirect HTTPS to H
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">url</td>
-    <td></td>
+    <td width="100%">url</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The redirect URL. You can retain URI components of the original URL in the target URL by using the following reserved keywords:
 
@@ -1655,10 +1556,9 @@ To avoid a redirect loop, you must modify at least one of the following componen
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">status_code</td>
-    <td><code>301</code></td>
+    <td width="100%">status_code</td><td></td><td><code>301</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 HTTP response code.
 
@@ -1678,13 +1578,12 @@ Configure multiple listener rules
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">priority</td>
-    <td></td>
+    <td width="100%">priority</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The rule priority. Rules are evaluated in priority order from the lowest value to the highest value.
 
@@ -1693,10 +1592,9 @@ The rule priority. Rules are evaluated in priority order from the lowest value t
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the listener rule
 
@@ -1705,10 +1603,9 @@ Additional tags for the listener rule
 </td></tr>
 <tr>
     <td><code>object(<a href="#action">action</a>)</code></td>
-    <td width="100%">action</td>
-    <td></td>
+    <td width="100%">action</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The action to trigger when an incoming request matches all conditions.
 
@@ -1717,10 +1614,9 @@ The action to trigger when an incoming request matches all conditions.
 </td></tr>
 <tr>
     <td><code>list(object(<a href="#conditions">conditions</a>))</code></td>
-    <td width="100%">conditions</td>
-    <td></td>
+    <td width="100%">conditions</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify specific conditions a request must match for the rules actions to be performed. You can specify up to 5 condition values per rule.
 
@@ -1739,13 +1635,12 @@ Map of subnet ARNs where the load balancer routes traffic to. You can only speci
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">elastic_ip_allocation_id</td>
-    <td><code>null</code></td>
+    <td width="100%">elastic_ip_allocation_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify an elastic IP allocation ID to provide your load balancer with a static IPv4 address in the selected Availability Zone. Only applicable to `network_load_balancer`
 
@@ -1754,10 +1649,9 @@ Specify an elastic IP allocation ID to provide your load balancer with a static 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ipv6_address</td>
-    <td><code>null</code></td>
+    <td width="100%">ipv6_address</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The front-end IPv6 address of the load balancer in the selected Availability Zone. It can be any available IP address within the subnet’s CIDR. Only applicable to `network_load_balancer`
 
@@ -1766,10 +1660,9 @@ The front-end IPv6 address of the load balancer in the selected Availability Zon
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">private_ipv4_address</td>
-    <td><code>null</code></td>
+    <td width="100%">private_ipv4_address</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Private IPv4 address for an internal load balancer. It can be any available IP address within the subnet’s CIDR. Only applicable to `network_load_balancer` and `internet_facing = false`
 
@@ -1788,13 +1681,12 @@ Map of destination target groups in `<target_group_arn> = {<config>}` format. Yo
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">weight</td>
-    <td><code>null</code></td>
+    <td width="100%">weight</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify a weight that controls the prioritization and selection of each target group. Weights must be set as an integer between `0 - 999`.
 
@@ -1809,13 +1701,12 @@ Enables the load balancer to bind a user's session to a specific target group. T
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">duration</td>
-    <td><code>"1 hour"</code></td>
+    <td width="100%">duration</td><td></td><td><code>"1 hour"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The stickiness duration. Valid values: `"1 second" - "7 days"`
 
@@ -1830,13 +1721,12 @@ The load balancer and client verify each other's identity and establish a TLS co
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">advertise_trust_store_ca_subject_name</td>
-    <td><code>false</code></td>
+    <td width="100%">advertise_trust_store_ca_subject_name</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether the listener will advertise the Certificate Authorities (CAs) subject names trusted by its trust store.
 
@@ -1845,10 +1735,9 @@ Whether the listener will advertise the Certificate Authorities (CAs) subject na
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">allow_expired_client_certificates</td>
-    <td><code>false</code></td>
+    <td width="100%">allow_expired_client_certificates</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether incoming connection requests with an expired client certificates should be allowed
 
@@ -1857,10 +1746,9 @@ Whether incoming connection requests with an expired client certificates should 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">trust_store_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">trust_store_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 An existing trust store that contain the certificate authority (CA) bundle that you trust to identify clients. Mutually exclusive to `new_trust_store`
 
@@ -1869,10 +1757,9 @@ An existing trust store that contain the certificate authority (CA) bundle that 
 </td></tr>
 <tr>
     <td><code>object(<a href="#new_trust_store">new_trust_store</a>)</code></td>
-    <td width="100%">new_trust_store</td>
-    <td><code>null</code></td>
+    <td width="100%">new_trust_store</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Create a new trust store using an existing CA bundle and optionally certificate revocation lists. Mutually exclusive to `trust_store_arn`
 

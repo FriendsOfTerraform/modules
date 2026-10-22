@@ -78,8 +78,7 @@ module "rolesanywhere" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#trust_anchors">trust_anchors</a>))</code></td>
-    <td width="100%">trust_anchors</td>
-    <td></td>
+    <td width="100%">trust_anchors</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -95,8 +94,7 @@ Manages multiple [trust anchors][iam-roles-anywhere-trust-anchor]. A trust ancho
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -107,8 +105,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#profiles">profiles</a>))</code></td>
-    <td width="100%">profiles</td>
-    <td><code>{}</code></td>
+    <td width="100%">profiles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -124,8 +121,7 @@ Manages multiple [profiles][iam-roles-anywhere-profile]. Profiles are predefined
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">profile_arns</td>
-    <td></td>
+    <td width="100%">profile_arns</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -136,8 +132,7 @@ Map of ARNs of all profiles
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">profile_ids</td>
-    <td></td>
+    <td width="100%">profile_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -148,8 +143,7 @@ Map of IDs of all profiles
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">trust_anchor_arns</td>
-    <td></td>
+    <td width="100%">trust_anchor_arns</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -160,8 +154,7 @@ Map of ARNs of all trust anchors
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">trust_anchor_ids</td>
-    <td></td>
+    <td width="100%">trust_anchor_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -180,13 +173,12 @@ Specify the source of trust (Certificate authority source)
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">aws_private_certificate_authority_arn</td>
-    <td></td>
+    <td width="100%">aws_private_certificate_authority_arn</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of the Certificate authorities (CA) from AWS Certificate Manager in your account for this region. Mutually exclusive to `external_certificate_bundle`
 
@@ -195,10 +187,9 @@ The ARN of the Certificate authorities (CA) from AWS Certificate Manager in your
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">external_certificate_bundle</td>
-    <td></td>
+    <td width="100%">external_certificate_bundle</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the PEM-encoded private CA certificate bundle. Mutually exclusive to `aws_private_certificate_authority_arn`. The certificate must meet the following constrains:
 
@@ -214,13 +205,12 @@ Specify the PEM-encoded private CA certificate bundle. Mutually exclusive to `aw
 
 #### profiles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#roles">roles</a>))</code></td>
-    <td width="100%">roles</td>
-    <td></td>
+    <td width="100%">roles</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Manages multiple IAM roles that are attached to this profile
 
@@ -229,10 +219,9 @@ Manages multiple IAM roles that are attached to this profile
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the profile
 
@@ -241,10 +230,9 @@ Additional tags for the profile
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">require_instance_properties</td>
-    <td></td>
+    <td width="100%">require_instance_properties</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies whether instance properties are required in CreateSession requests with this profile.
 
@@ -253,10 +241,9 @@ Specifies whether instance properties are required in CreateSession requests wit
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">session_duration_seconds</td>
-    <td></td>
+    <td width="100%">session_duration_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of seconds the vended session credentials are valid for. Defaults to `3600`.
 
@@ -265,10 +252,9 @@ The number of seconds the vended session credentials are valid for. Defaults to 
 </td></tr>
 <tr>
     <td><code>object(<a href="#session_policy">session_policy</a>)</code></td>
-    <td width="100%">session_policy</td>
-    <td></td>
+    <td width="100%">session_policy</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify [IAM session policies][iam-session-policy] that apply to the vended session credentials
 
@@ -283,13 +269,12 @@ Manages multiple IAM roles that are attached to this profile
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">attached_policy_arns</td>
-    <td></td>
+    <td width="100%">attached_policy_arns</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of IAM policy ARNs to be attached to the individual role
 
@@ -298,10 +283,9 @@ A list of IAM policy ARNs to be attached to the individual role
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">trust_anchor_name</td>
-    <td></td>
+    <td width="100%">trust_anchor_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the name of the trust anchor this role constraints to. Valid values include only the trust anchors created by this module.
 
@@ -310,10 +294,9 @@ Specify the name of the trust anchor this role constraints to. Valid values incl
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">conditions</td>
-    <td></td>
+    <td width="100%">conditions</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify conditions that further restrict which workloads may assume this role. Please see below for valid values:
 
@@ -348,10 +331,9 @@ Specify conditions that further restrict which workloads may assume this role. P
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">permissions_boundary</td>
-    <td></td>
+    <td width="100%">permissions_boundary</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the ARN of the policy that is used to set the permissions boundary for the role.
 
@@ -366,13 +348,12 @@ Specify [IAM session policies][iam-session-policy] that apply to the vended sess
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">inline_policy</td>
-    <td></td>
+    <td width="100%">inline_policy</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 An inline JSON session policy document
 
@@ -381,10 +362,9 @@ An inline JSON session policy document
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">managed_policy_arns</td>
-    <td></td>
+    <td width="100%">managed_policy_arns</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of `up to 10` managed policy ARNs that apply to the vended session credentials.
 
@@ -395,13 +375,12 @@ A list of `up to 10` managed policy ARNs that apply to the vended session creden
 
 #### trust_anchors
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#certificate_authority_source">certificate_authority_source</a>)</code></td>
-    <td width="100%">certificate_authority_source</td>
-    <td></td>
+    <td width="100%">certificate_authority_source</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the source of trust (Certificate authority source)
 
@@ -410,10 +389,9 @@ Specify the source of trust (Certificate authority source)
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the trust anchor
 

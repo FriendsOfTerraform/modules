@@ -102,8 +102,7 @@ module "aks_cluster" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">azure</a>)</code></td>
-    <td width="100%">azure</td>
-    <td></td>
+    <td width="100%">azure</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -111,8 +110,8 @@ The resource group name and the location where the resources will be deployed to
 
 ```terraform
 azure = {
-resource_group_name = "sandbox"
-location = "westus"
+  resource_group_name = "sandbox"
+  location = "westus"
 }
 ```
 
@@ -121,8 +120,7 @@ location = "westus"
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">cluster_admin_active_directory_group_ids</td>
-    <td></td>
+    <td width="100%">cluster_admin_active_directory_group_ids</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -133,8 +131,7 @@ List of Azure active directory group IDs that will be added as the `cluster admi
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -145,8 +142,7 @@ The name of the Kubernetes cluster. This will also be used as a prefix to all as
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#node_pools">node_pools</a>))</code></td>
-    <td width="100%">node_pools</td>
-    <td></td>
+    <td width="100%">node_pools</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -154,10 +150,10 @@ Configures the cluster's node pools. In `{node_pool_name = {configurations}}` fo
 
 ```terraform
 default = {
-vm_size            = "Standard_DS2_v2"
-vnet_subnet_id     = module.aks_vnet.subnet_ids["default-node-pool"] # referencing the default-node-pool subnet in the aks_vnet module
-desired_instances  = 2
-kubernetes_version = local.kubernetes_version
+  vm_size            = "Standard_DS2_v2"
+  vnet_subnet_id     = module.aks_vnet.subnet_ids["default-node-pool"] # referencing the default-node-pool subnet in the aks_vnet module
+  desired_instances  = 2
+  kubernetes_version = local.kubernetes_version
 }
 ```
 
@@ -171,8 +167,7 @@ kubernetes_version = local.kubernetes_version
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#add_ons">add_ons</a>)</code></td>
-    <td width="100%">add_ons</td>
-    <td><code>null</code></td>
+    <td width="100%">add_ons</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -184,19 +179,19 @@ Manages [AKS add-ons][aks-add-ons]. The following list of add-ons are currently 
 
 ```terraform
 add_ons = {
-azure_key_vault_secrets_provider = {
-enabled = true
-key_vault_name = "demo-keyvault"
-}
+  azure_key_vault_secrets_provider = {
+    enabled = true
+    key_vault_name = "demo-keyvault"
+  }
 
-azure_policy = {
-enabled = true
-}
+  azure_policy = {
+    enabled = true
+  }
 
-monitoring = {
-enabled = true
-retention_days = 180
-}
+  monitoring = {
+    enabled = true
+    retention_days = 180
+  }
 }
 ```
 
@@ -205,8 +200,7 @@ retention_days = 180
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -217,8 +211,7 @@ Additional tags for the Kubernetes cluster
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -229,8 +222,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">apiserver_authorized_ip_ranges</td>
-    <td><code>[
+    <td width="100%">apiserver_authorized_ip_ranges</td><td><code>[
   "0.0.0.0/0"
 ]</code></td>
 </tr>
@@ -243,8 +235,7 @@ List of IP addresses that are allowed to communicate with the API server. This o
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">azure_container_registry_attachments</td>
-    <td><code>[]</code></td>
+    <td width="100%">azure_container_registry_attachments</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -255,8 +246,7 @@ List of ACR resource IDs to grant pull access to the cluster's kubelet identity.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_private_cluster</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_private_cluster</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -267,8 +257,7 @@ Enables [private AKS cluster][private-aks-cluster], where the control plane can 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kubernetes_version</td>
-    <td><code>null</code></td>
+    <td width="100%">kubernetes_version</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -279,8 +268,7 @@ The Kubernetes version for the control plane. The `latest` version is used if un
 </td></tr>
 <tr>
     <td><code>object(<a href="#networking_config">networking_config</a>)</code></td>
-    <td width="100%">networking_config</td>
-    <td><code>null</code></td>
+    <td width="100%">networking_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -288,7 +276,7 @@ Networking options for the Kubernetes control plane
 
 ```terraform
 networking_config = {
-plugin = "kubenet"
+  plugin = "kubenet"
 }
 ```
 
@@ -297,8 +285,7 @@ plugin = "kubenet"
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">user_assigned_managed_identity_ids</td>
-    <td><code>[]</code></td>
+    <td width="100%">user_assigned_managed_identity_ids</td><td><code>[]</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -313,13 +300,12 @@ List of managed identity IDs used by the cluster to manage azure resources
 
 #### add_ons
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure_key_vault_secrets_provider">azure_key_vault_secrets_provider</a>)</code></td>
-    <td width="100%">azure_key_vault_secrets_provider</td>
-    <td></td>
+    <td width="100%">azure_key_vault_secrets_provider</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 
@@ -328,10 +314,9 @@ Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 </td></tr>
 <tr>
     <td><code>object(<a href="#azure_policy">azure_policy</a>)</code></td>
-    <td width="100%">azure_policy</td>
-    <td></td>
+    <td width="100%">azure_policy</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the [Azure Policy][azure-policy] add-on
 
@@ -340,10 +325,9 @@ Configures the [Azure Policy][azure-policy] add-on
 </td></tr>
 <tr>
     <td><code>object(<a href="#monitoring">monitoring</a>)</code></td>
-    <td width="100%">monitoring</td>
-    <td></td>
+    <td width="100%">monitoring</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures the [Container Insights][container-insights] add-on
 
@@ -354,13 +338,12 @@ Configures the [Container Insights][container-insights] add-on
 
 #### azure
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">resource_group_name</td>
-    <td></td>
+    <td width="100%">resource_group_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure resource group where the cluster will be deployed
 
@@ -369,10 +352,9 @@ The name of an Azure resource group where the cluster will be deployed
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">location</td>
-    <td><code>null</code></td>
+    <td width="100%">location</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure location where the cluster will be deployed. If unspecified, the resource group's location will be used.
 
@@ -387,13 +369,12 @@ Configures the [Azure Key Vault Provider][azure-key-vault-provider] add-on
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td></td>
+    <td width="100%">enabled</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables this add-on
 
@@ -402,10 +383,9 @@ Enables this add-on
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">key_vault_name</td>
-    <td></td>
+    <td width="100%">key_vault_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Name of the Azure Key Vault to allow this cluster to retrieve secrets from
 
@@ -414,10 +394,9 @@ Name of the Azure Key Vault to allow this cluster to retrieve secrets from
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">secret_rotation_interval_minutes</td>
-    <td><code>2</code></td>
+    <td width="100%">secret_rotation_interval_minutes</td><td></td><td><code>2</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The interval in minutes that the secrets in the cluster will be refreshed
 
@@ -432,13 +411,12 @@ Configures the [Azure Policy][azure-policy] add-on
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td></td>
+    <td width="100%">enabled</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables this add-on
 
@@ -453,13 +431,12 @@ Configures the [Container Insights][container-insights] add-on
 
 **Since:** 0.0.1
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td></td>
+    <td width="100%">enabled</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables this add-on
 
@@ -468,10 +445,9 @@ Enables this add-on
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">retention_days</td>
-    <td><code>60</code></td>
+    <td width="100%">retention_days</td><td></td><td><code>60</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 How long in days the logs will be retained
 
@@ -482,13 +458,12 @@ How long in days the logs will be retained
 
 #### networking_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">plugin</td>
-    <td></td>
+    <td width="100%">plugin</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Kubernetes network plugin to use.
 
@@ -502,10 +477,9 @@ The Kubernetes network plugin to use.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kubernetes_service_address_range</td>
-    <td><code>"10.0.0.0/16"</code></td>
+    <td width="100%">kubernetes_service_address_range</td><td></td><td><code>"10.0.0.0/16"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Network Range used by the Kubernetes service
 
@@ -514,10 +488,9 @@ The Network Range used by the Kubernetes service
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kubernetes_dns_service_ip_address</td>
-    <td><code>"10.0.0.10"</code></td>
+    <td width="100%">kubernetes_dns_service_ip_address</td><td></td><td><code>"10.0.0.10"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns)
 
@@ -526,10 +499,9 @@ IP address within the Kubernetes service address range that will be used by clus
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">docker_bridge_address</td>
-    <td><code>"172.17.0.1/16"</code></td>
+    <td width="100%">docker_bridge_address</td><td></td><td><code>"172.17.0.1/16"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 IP address (in CIDR notation) used as the Docker bridge IP address on nodes
 
@@ -538,10 +510,9 @@ IP address (in CIDR notation) used as the Docker bridge IP address on nodes
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kubernetes_pod_address_range</td>
-    <td><code>"10.244.0.0/16"</code></td>
+    <td width="100%">kubernetes_pod_address_range</td><td></td><td><code>"10.244.0.0/16"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The CIDR to use for pod IP addresses. This field can only be set when `plugin = kubenet`
 
@@ -552,13 +523,12 @@ The CIDR to use for pod IP addresses. This field can only be set when `plugin = 
 
 #### node_pools
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">desired_instances</td>
-    <td></td>
+    <td width="100%">desired_instances</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The initial number of nodes for this node pool
 
@@ -567,10 +537,9 @@ The initial number of nodes for this node pool
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">vm_size</td>
-    <td></td>
+    <td width="100%">vm_size</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 [Azure VM size][azure-vm-size]. Also see [Azure VM Naming Convention][azure-vm-naming-convention]
 
@@ -579,10 +548,9 @@ The initial number of nodes for this node pool
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">vnet_subnet_id</td>
-    <td></td>
+    <td width="100%">vnet_subnet_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the subnet where new nodes from this pool will be deployed into
 
@@ -591,10 +559,9 @@ The ID of the subnet where new nodes from this pool will be deployed into
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for this node pool
 
@@ -603,10 +570,9 @@ Additional tags for this node pool
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">disk_size</td>
-    <td><code>512</code></td>
+    <td width="100%">disk_size</td><td></td><td><code>512</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The size of OS disk in GB, defaults to `512 GB`
 
@@ -615,10 +581,9 @@ The size of OS disk in GB, defaults to `512 GB`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kubernetes_version</td>
-    <td><code>null</code></td>
+    <td width="100%">kubernetes_version</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Kubernetes version for the node pool, defaults to the latest version. This value must be specified for cluster upgrade to work.
 
@@ -627,10 +592,9 @@ The Kubernetes version for the node pool, defaults to the latest version. This v
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_pods_per_node</td>
-    <td><code>30</code></td>
+    <td width="100%">max_pods_per_node</td><td></td><td><code>30</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The max number of pods that can be deployed on each node.
 
@@ -639,10 +603,9 @@ The max number of pods that can be deployed on each node.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_instances</td>
-    <td><code>null</code></td>
+    <td width="100%">max_instances</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum number of nodes this pool can scale up to. `cluster auto scaling` will be enabled if both this and `min_instances` are specified.
 
@@ -651,10 +614,9 @@ The maximum number of nodes this pool can scale up to. `cluster auto scaling` wi
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">min_instances</td>
-    <td><code>null</code></td>
+    <td width="100%">min_instances</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The minimum number of nodes this pool can scale down to. `cluster auto scaling` will be enabled if both this and `man_instances` are specified.
 
@@ -663,10 +625,9 @@ The minimum number of nodes this pool can scale down to. `cluster auto scaling` 
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">zones</td>
-    <td><code>null</code></td>
+    <td width="100%">zones</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of availability zones the nodes should be deployed onto
 

@@ -98,8 +98,7 @@ module "demo_ec2" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">ami_id</td>
-    <td></td>
+    <td width="100%">ami_id</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -110,8 +109,7 @@ Specify the ID of the AMI used to launch the instance
 </td></tr>
 <tr>
     <td><code>object(<a href="#ebs_volume">ebs_volume</a>)</code></td>
-    <td width="100%">ebs_volume</td>
-    <td></td>
+    <td width="100%">ebs_volume</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -122,8 +120,7 @@ Configures the root EBS volume
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">key_pair_name</td>
-    <td></td>
+    <td width="100%">key_pair_name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -134,8 +131,7 @@ Specify the name of the [Key Pair][ec2-key-pair] to use for the instance
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -147,8 +143,7 @@ name prefixed with this value
 </td></tr>
 <tr>
     <td><code>object(<a href="#network_interface">network_interface</a>)</code></td>
-    <td width="100%">network_interface</td>
-    <td></td>
+    <td width="100%">network_interface</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -164,8 +159,7 @@ Configures the primary network interface
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#additional_ebs_volumes">additional_ebs_volumes</a>))</code></td>
-    <td width="100%">additional_ebs_volumes</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_ebs_volumes</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -180,8 +174,7 @@ Configures additional EBS volumes attached to this instance.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#additional_network_interfaces">additional_network_interfaces</a>))</code></td>
-    <td width="100%">additional_network_interfaces</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_network_interfaces</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -196,8 +189,7 @@ Configures additional ENIs attached to this instance.
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -208,8 +200,7 @@ Additional tags for the EC2 instance
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -220,8 +211,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">cpu_credit_specification</td>
-    <td><code>"standard"</code></td>
+    <td width="100%">cpu_credit_specification</td><td><code>"standard"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -241,9 +231,19 @@ Credit option for CPU usage. Only applicable to the T family.
 
 </td></tr>
 <tr>
+    <td><code>object(<a href="#cpu_options">cpu_options</a>)</code></td>
+    <td width="100%">cpu_options</td><td><code>{}</code></td>
+</tr>
+<tr><td colspan="3">
+
+Configures CPU options for this instance.
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_auto_recovery</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_auto_recovery</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -254,8 +254,7 @@ Enables [EC2 auto recovery][ec2-auto-recovery]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_detailed_monitoring</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_detailed_monitoring</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -266,8 +265,7 @@ Enables [detailed monitoring][ec2-detailed-monitoring]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_instance_hibernation</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_instance_hibernation</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -279,8 +277,7 @@ after the instance launched will result in replacement.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_instance_stop_protection</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_instance_stop_protection</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -291,8 +288,7 @@ Enables [instance stop protection][instance-stop-protection]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_instance_termination_protection</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_instance_termination_protection</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -303,8 +299,19 @@ Enables [instance termination protection][instance-termination-protection]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">get_windows_password</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_nitro_enclaves</td><td><code>false</code></td>
+</tr>
+<tr><td colspan="3">
+
+A Nitro Enclave is a trusted execution environment (TEE) in which you can securely process sensitive data.
+It extends the security and isolation characteristics of the AWS Nitro System and allows you to create isolated compute environments within Amazon EC2 instances.
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">get_windows_password</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -316,8 +323,7 @@ instance. The values will be exported to the `password_data` output
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">iam_role_name</td>
-    <td><code>null</code></td>
+    <td width="100%">iam_role_name</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -332,8 +338,7 @@ The name of the IAM role to attach to the instance.
 </td></tr>
 <tr>
     <td><code>object(<a href="#instance_metadata_options">instance_metadata_options</a>)</code></td>
-    <td width="100%">instance_metadata_options</td>
-    <td><code>null</code></td>
+    <td width="100%">instance_metadata_options</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -344,8 +349,7 @@ Configures the [metadata options][instance-metadata-service] of the instance.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_type</td>
-    <td><code>"t2.micro"</code></td>
+    <td width="100%">instance_type</td><td><code>"t2.micro"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -355,9 +359,19 @@ Specify the [instance type][ec2-instance-type] of instance
 
 </td></tr>
 <tr>
+    <td><code>object(<a href="#purchasing_option">purchasing_option</a>)</code></td>
+    <td width="100%">purchasing_option</td><td><code>null</code></td>
+</tr>
+<tr><td colspan="3">
+
+Launch instances into Spot Instances, Capacity Blocks, or Interruptible Capacity Reservations
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
     <td><code>object(<a href="#resource_based_naming_options">resource_based_naming_options</a>)</code></td>
-    <td width="100%">resource_based_naming_options</td>
-    <td><code>null</code></td>
+    <td width="100%">resource_based_naming_options</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -369,8 +383,7 @@ of the instance.
 </td></tr>
 <tr>
     <td><code>object(<a href="#user_data_config">user_data_config</a>)</code></td>
-    <td width="100%">user_data_config</td>
-    <td><code>null</code></td>
+    <td width="100%">user_data_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -386,8 +399,7 @@ Configures the [user data][ec2-user-data] of the instance.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_arn</td>
-    <td></td>
+    <td width="100%">instance_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -398,8 +410,7 @@ The ARN of the EC2 instance
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_password_data</td>
-    <td></td>
+    <td width="100%">instance_password_data</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -410,8 +421,7 @@ Base-64 encoded encrypted password data for the instance. Useful for getting the
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_primary_network_interface_id</td>
-    <td></td>
+    <td width="100%">instance_primary_network_interface_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -422,8 +432,7 @@ ID of the instance's primary network interface
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_private_dns</td>
-    <td></td>
+    <td width="100%">instance_private_dns</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -434,8 +443,7 @@ Private DNS name assigned to the instance. Can only be used inside the Amazon EC
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">instance_public_dns</td>
-    <td></td>
+    <td width="100%">instance_public_dns</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -450,13 +458,12 @@ Public DNS name assigned to the instance. For EC2-VPC, this is only available if
 
 #### additional_ebs_volumes
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">device_name</td>
-    <td></td>
+    <td width="100%">device_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the name of the device this EBS volume is mounted to. Please
 refer to the following documentations for valid values.
@@ -467,10 +474,9 @@ refer to the following documentations for valid values.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">size</td>
-    <td></td>
+    <td width="100%">size</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The size of the EBS volume, in GiB
 
@@ -479,10 +485,9 @@ The size of the EBS volume, in GiB
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">volume_type</td>
-    <td></td>
+    <td width="100%">volume_type</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the [volume type][volume-type].
 
@@ -501,10 +506,9 @@ Specify the [volume type][volume-type].
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the EBS volume
 
@@ -513,10 +517,9 @@ Additional tags for the EBS volume
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">delete_on_termination</td>
-    <td><code>true</code></td>
+    <td width="100%">delete_on_termination</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether the volume should be destroyed on instance termination
 
@@ -525,10 +528,9 @@ Whether the volume should be destroyed on instance termination
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">final_snapshot</td>
-    <td></td>
+    <td width="100%">final_snapshot</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether a final snapshot should be taken when the volume is being
 destroyed
@@ -538,10 +540,9 @@ destroyed
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_id</td>
-    <td></td>
+    <td width="100%">kms_key_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the KMS Key to use to encrypt the volume
 
@@ -550,10 +551,9 @@ ARN of the KMS Key to use to encrypt the volume
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">provisioned_iops</td>
-    <td></td>
+    <td width="100%">provisioned_iops</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the amount of provisioned IOPS. Only valid for volume_type of
 `"io1"`, `"io2"` or `"gp3"`.
@@ -563,10 +563,9 @@ Specify the amount of provisioned IOPS. Only valid for volume_type of
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">snapshot_id</td>
-    <td></td>
+    <td width="100%">snapshot_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the snapshot ID this volume is created from
 
@@ -575,10 +574,9 @@ Specify the snapshot ID this volume is created from
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">throughput</td>
-    <td></td>
+    <td width="100%">throughput</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Throughput to provision for a volume in mebibytes per second (MiB/s).
 This is only valid for volume_type of `"gp3"`
@@ -590,13 +588,12 @@ This is only valid for volume_type of `"gp3"`
 
 #### additional_network_interfaces
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">device_index</td>
-    <td></td>
+    <td width="100%">device_index</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the device index this ENI mounted on
 
@@ -605,10 +602,9 @@ Specify the device index this ENI mounted on
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">security_group_ids</td>
-    <td></td>
+    <td width="100%">security_group_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of security group IDs attached to this ENI
 
@@ -617,10 +613,9 @@ List of security group IDs attached to this ENI
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">subnet_id</td>
-    <td></td>
+    <td width="100%">subnet_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the subnet ID this ENI is created on
 
@@ -629,10 +624,9 @@ Specify the subnet ID this ENI is created on
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the ENI
 
@@ -641,10 +635,9 @@ Additional tags for the ENI
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td></td>
+    <td width="100%">description</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the description of the ENI
 
@@ -653,10 +646,9 @@ Specify the description of the ENI
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_elastic_fabric_adapter</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_elastic_fabric_adapter</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables [elastic fabric adapter][elastic-fabric-adapter]
 
@@ -665,10 +657,9 @@ Enables [elastic fabric adapter][elastic-fabric-adapter]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_source_destination_checking</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_source_destination_checking</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Controls if traffic is routed to the instance when the destination
 address does not match the instance. Used for NAT or VPNs
@@ -678,10 +669,9 @@ address does not match the instance. Used for NAT or VPNs
 </td></tr>
 <tr>
     <td><code>object(<a href="#private_ip_addresses">private_ip_addresses</a>)</code></td>
-    <td width="100%">private_ip_addresses</td>
-    <td></td>
+    <td width="100%">private_ip_addresses</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures custom private IP addresses for the ENI.
 
@@ -690,10 +680,9 @@ Configures custom private IP addresses for the ENI.
 </td></tr>
 <tr>
     <td><code>object(<a href="#prefix_delegation">prefix_delegation</a>)</code></td>
-    <td width="100%">prefix_delegation</td>
-    <td></td>
+    <td width="100%">prefix_delegation</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Assigns a private CIDR range, either automatically or manually, to the
 ENI. By assigning [prefixes][ec2-prefixes], you scale and simplify the
@@ -707,15 +696,64 @@ Nitro System][nitro-system-type].
 </td></tr>
 </tbody></table>
 
-#### ebs_volume
+#### cpu_options
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">size</td>
-    <td></td>
+    <td width="100%">core_count</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
+
+Sets the number of CPU cores for an instance. This option is only supported on creation of instance type that support CPU Options.
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_amd_sev_snp</td><td></td><td><code>null</code></td>
+</tr>
+<tr><td colspan="4">
+
+Indicates whether to enable the instance for AMD SEV-SNP. AMD SEV-SNP is supported with M6a, R6a, and C6a instance types only
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
+    <td><code>bool</code></td>
+    <td width="100%">enable_nested_virtualization</td><td></td><td><code>null</code></td>
+</tr>
+<tr><td colspan="4">
+
+Indicates whether to enable the instance for nested virtualization. Nested virtualization is supported on 8th generation Intel-based instance types (C8i, M8i, R8i, and their flex variants) only.
+When nested virtualization is enabled, Virtual Secure Mode (VSM) is automatically disabled for the instance.
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
+    <td><code>number</code></td>
+    <td width="100%">threads_per_core</td><td></td><td><code>null</code></td>
+</tr>
+<tr><td colspan="4">
+
+If set to 1, hyperthreading is disabled on the launched instance. Defaults to 2 if not set. has no effect unless `core_count` is also set
+
+**Since:** 1.1.0
+
+</td></tr>
+</tbody></table>
+
+#### ebs_volume
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>number</code></td>
+    <td width="100%">size</td><td>Yes</td><td><em>n/a</em></td>
+</tr>
+<tr><td colspan="4">
 
 The size of the EBS volume, in GiB
 
@@ -724,10 +762,9 @@ The size of the EBS volume, in GiB
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">volume_type</td>
-    <td></td>
+    <td width="100%">volume_type</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the [volume type][volume-type]
 
@@ -746,10 +783,9 @@ Specify the [volume type][volume-type]
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the EBS volume
 
@@ -758,10 +794,9 @@ Additional tags for the EBS volume
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">delete_on_termination</td>
-    <td><code>true</code></td>
+    <td width="100%">delete_on_termination</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether the volume should be destroyed on instance termination
 
@@ -770,10 +805,9 @@ Whether the volume should be destroyed on instance termination
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_id</td>
-    <td></td>
+    <td width="100%">kms_key_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the KMS Key to use to encrypt the volume
 
@@ -782,10 +816,9 @@ ARN of the KMS Key to use to encrypt the volume
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">provisioned_iops</td>
-    <td></td>
+    <td width="100%">provisioned_iops</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the amount of provisioned IOPS. Only valid for volume_type of
 `"io1"`, `"io2"` or `"gp3"`.
@@ -795,10 +828,9 @@ Specify the amount of provisioned IOPS. Only valid for volume_type of
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">throughput</td>
-    <td></td>
+    <td width="100%">throughput</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Throughput to provision for a volume in mebibytes per second (MiB/s).
 This is only valid for volume_type of `"gp3"`
@@ -810,13 +842,12 @@ This is only valid for volume_type of `"gp3"`
 
 #### instance_metadata_options
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_instance_metadata_service</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_instance_metadata_service</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether the instance metadata service is turned on
 
@@ -825,10 +856,9 @@ Whether the instance metadata service is turned on
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">requires_imdsv2</td>
-    <td><code>true</code></td>
+    <td width="100%">requires_imdsv2</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Requires the use of IMDSv2 when requesting instance metadata
 
@@ -837,10 +867,9 @@ Requires the use of IMDSv2 when requesting instance metadata
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">allow_tags_in_instance_metadata</td>
-    <td><code>false</code></td>
+    <td width="100%">allow_tags_in_instance_metadata</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether instance tags are retrievable from instance metadata
 
@@ -855,13 +884,12 @@ Configures prefix delegation for IPv4
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">auto_assign_count</td>
-    <td></td>
+    <td width="100%">auto_assign_count</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the number of prefixes AWS chooses from your VPC subnet's
 IPv4 CIDR block and assigns it to your network interface. Mutually
@@ -872,10 +900,9 @@ exclusive to `custom_prefixes`
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">custom_prefixes</td>
-    <td></td>
+    <td width="100%">custom_prefixes</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the prefixes from your VPC subnet's CIDR block to assign it
 to your network interface. Mutually exclusive to `auto_assign_count`
@@ -887,13 +914,12 @@ to your network interface. Mutually exclusive to `auto_assign_count`
 
 #### network_interface
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">security_group_ids</td>
-    <td></td>
+    <td width="100%">security_group_ids</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of security group IDs attached to this ENI
 
@@ -902,10 +928,9 @@ List of security group IDs attached to this ENI
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">subnet_id</td>
-    <td></td>
+    <td width="100%">subnet_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the subnet ID this ENI is created on
 
@@ -914,10 +939,9 @@ Specify the subnet ID this ENI is created on
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the ENI
 
@@ -925,11 +949,21 @@ Additional tags for the ENI
 
 </td></tr>
 <tr>
-    <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td></td>
+    <td><code>bool</code></td>
+    <td width="100%">auto_assign_public_ip</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
+
+Assign a public IPv4 address to a network interface. This option can be enabled for any network interface but will only apply to the primary network interface
+
+**Since:** 1.0.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">description</td><td></td><td></td>
+</tr>
+<tr><td colspan="4">
 
 Specify the description of the ENI
 
@@ -938,10 +972,9 @@ Specify the description of the ENI
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_elastic_fabric_adapter</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_elastic_fabric_adapter</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Enables [elastic fabric adapter][elastic-fabric-adapter]
 
@@ -950,10 +983,9 @@ Enables [elastic fabric adapter][elastic-fabric-adapter]
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_source_destination_checking</td>
-    <td><code>true</code></td>
+    <td width="100%">enable_source_destination_checking</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Controls if traffic is routed to the instance when the destination
 address does not match the instance. Used for NAT or VPNs
@@ -963,10 +995,9 @@ address does not match the instance. Used for NAT or VPNs
 </td></tr>
 <tr>
     <td><code>object(<a href="#private_ip_addresses">private_ip_addresses</a>)</code></td>
-    <td width="100%">private_ip_addresses</td>
-    <td></td>
+    <td width="100%">private_ip_addresses</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures custom private IP addresses for the ENI.
 
@@ -975,10 +1006,9 @@ Configures custom private IP addresses for the ENI.
 </td></tr>
 <tr>
     <td><code>object(<a href="#prefix_delegation">prefix_delegation</a>)</code></td>
-    <td width="100%">prefix_delegation</td>
-    <td></td>
+    <td width="100%">prefix_delegation</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Assigns a private CIDR range, either automatically or manually, to the
 ENI. By assigning [prefixes][ec2-prefixes], you scale and simplify the
@@ -1003,13 +1033,12 @@ Nitro System][nitro-system-type].
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#ipv4">ipv4</a>)</code></td>
-    <td width="100%">ipv4</td>
-    <td></td>
+    <td width="100%">ipv4</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configures prefix delegation for IPv4
 
@@ -1024,13 +1053,12 @@ Configures custom private IP addresses for the ENI.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">ipv4</td>
-    <td></td>
+    <td width="100%">ipv4</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of private IPv4 addresses to assign to the ENI, the first address
 will be used as the primary IP address
@@ -1040,15 +1068,30 @@ will be used as the primary IP address
 </td></tr>
 </tbody></table>
 
+#### purchasing_option
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>object(<a href="#spot_instances">spot_instances</a>)</code></td>
+    <td width="100%">spot_instances</td><td></td><td><code>null</code></td>
+</tr>
+<tr><td colspan="4">
+
+Request Spot Instances at the Spot price, capped at the On-Demand price`
+
+**Since:** 1.1.0
+
+</td></tr>
+</tbody></table>
+
 #### resource_based_naming_options
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">use_resource_based_naming_as_os_hostname</td>
-    <td><code>false</code></td>
+    <td width="100%">use_resource_based_naming_as_os_hostname</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether the `"EC2 instance ID"` is included in the hostname of the
 instance. For example: `i-0123456789abcdef.ec2.internal` If false, the
@@ -1060,10 +1103,9 @@ instead. For example: `ip-10-24-34-0.ec2.internal`
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">answer_dns_hostname_ipv4_request</td>
-    <td><code>false</code></td>
+    <td width="100%">answer_dns_hostname_ipv4_request</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether requests to your resource name resolve to the private IPv4
 address (A record) of this EC2 instance
@@ -1073,15 +1115,74 @@ address (A record) of this EC2 instance
 </td></tr>
 </tbody></table>
 
-#### user_data_config
+#### spot_instances
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+Request Spot Instances at the Spot price, capped at the On-Demand price`
+
+**Since:** 1.1.0
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">user_data</td>
-    <td></td>
+    <td width="100%">interruption_behavior</td><td></td><td><code>"terminate"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
+
+The behavior when a Spot Instance is interrupted. Valid values:
+`request_type = "persistent"`: `"hibernate"`, `"stop"`
+`request_type = "one-time"`: `"terminate"`
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">maximum_price</td><td></td><td><code>null</code></td>
+</tr>
+<tr><td colspan="4">
+
+The maximum price per instance hour that you’re willing to pay. If you do not specify a value,
+your maximum price is the value specified in the launch template. If the launch template does not specify a maximum price,
+you are charged the Spot price, capped at the On-Demand price.
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">request_expiry_date</td><td></td><td><code>null</code></td>
+</tr>
+<tr><td colspan="4">
+
+The expiration date for a persistent Spot request. Valid only for persistent requests.
+If you do not specify a date, EC2 uses the date specified in the launch template.
+If the launch template does not specify an expiration date, a persistent request remains active until you cancel it.
+Valid value in UTC format `"YYYY-MM-DDTHH:MM:SSZ"`
+
+**Since:** 1.1.0
+
+</td></tr>
+<tr>
+    <td><code>string</code></td>
+    <td width="100%">request_type</td><td></td><td><code>"one-time"</code></td>
+</tr>
+<tr><td colspan="4">
+
+Specify a persistent request so that interrupted Spot Instances are requested again. one-time requests are not re-requested after interruption. Valid values: `"persistent"`, `"one-time"`
+
+**Since:** 1.1.0
+
+</td></tr>
+</tbody></table>
+
+#### user_data_config
+
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+        <tr>
+    <td><code>string</code></td>
+    <td width="100%">user_data</td><td></td><td></td>
+</tr>
+<tr><td colspan="4">
 
 User data document in clear text. Mutually exclusive to `user_data_base64`
 
@@ -1090,10 +1191,9 @@ User data document in clear text. Mutually exclusive to `user_data_base64`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">user_data_base64</td>
-    <td></td>
+    <td width="100%">user_data_base64</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 User data document in base64. Mutually exclusive to `user_data`
 
@@ -1102,6 +1202,7 @@ User data document in base64. Mutually exclusive to `user_data`
 </td></tr>
 </tbody></table>
 
+[cpu-options]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html#cpu-options-supported-instances-values
 [device-name-linux]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html
 [device-name-windows]: https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/device_naming.html?icmpid=docs_ec2_console#available-ec2-device-names
 [ec2-auto-recovery]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-recover.html

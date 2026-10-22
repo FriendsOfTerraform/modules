@@ -81,8 +81,7 @@ module "security_group_basic_usage" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -93,8 +92,7 @@ The name of the security group. All associated resources will also have their na
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">vpc_id</td>
-    <td></td>
+    <td width="100%">vpc_id</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -106,8 +104,7 @@ The name of the security group. All associated resources will also have their na
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -118,8 +115,7 @@ Additional tags for the security group
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -130,8 +126,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -142,8 +137,7 @@ Description of the security group
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#egress_rules">egress_rules</a>))</code></td>
-    <td width="100%">egress_rules</td>
-    <td><code>{}</code></td>
+    <td width="100%">egress_rules</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -158,8 +152,7 @@ Configures multiple [egress rules][security-group-rules].
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#ingress_rules">ingress_rules</a>))</code></td>
-    <td width="100%">ingress_rules</td>
-    <td><code>{}</code></td>
+    <td width="100%">ingress_rules</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -179,8 +172,7 @@ Configures multiple [ingress rules][security-group-rules].
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">security_group_arn</td>
-    <td></td>
+    <td width="100%">security_group_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -191,8 +183,7 @@ ARN of the security group
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">security_group_id</td>
-    <td></td>
+    <td width="100%">security_group_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -207,13 +198,12 @@ ID of the security group
 
 #### egress_rules
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">destinations</td>
-    <td></td>
+    <td width="100%">destinations</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of destinations this rule applies to. Destinations can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
 
@@ -222,10 +212,9 @@ A list of destinations this rule applies to. Destinations can be a combination o
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the egress rule
 
@@ -234,10 +223,9 @@ Additional tags for the egress rule
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td></td>
+    <td width="100%">description</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Description for the egress rule
 
@@ -248,13 +236,12 @@ Description for the egress rule
 
 #### ingress_rules
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">sources</td>
-    <td></td>
+    <td width="100%">sources</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of sources this rule applies to. Sources can be a combination of IPv4 CIDRs, IPv6 CIDRs, security group IDs, or prefix list IDs
 
@@ -263,10 +250,9 @@ A list of sources this rule applies to. Sources can be a combination of IPv4 CID
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the ingress rule
 
@@ -275,10 +261,9 @@ Additional tags for the ingress rule
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td></td>
+    <td width="100%">description</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Description for the ingress rule
 

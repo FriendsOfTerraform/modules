@@ -65,8 +65,7 @@ module "demo_nsg" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#azure">azure</a>)</code></td>
-    <td width="100%">azure</td>
-    <td></td>
+    <td width="100%">azure</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -74,8 +73,8 @@ The resource group name and the location where the resources will be deployed to
 
 ```terraform
 azure = {
-resource_group_name = "sandbox"
-location = "westus"
+  resource_group_name = "sandbox"
+  location = "westus"
 }
 ```
 
@@ -84,8 +83,7 @@ location = "westus"
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">name</td>
-    <td></td>
+    <td width="100%">name</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -101,8 +99,7 @@ The name of the network security group. This will also be used as a prefix to al
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -113,8 +110,7 @@ Additional tags for the network security group
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -125,8 +121,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#inbound_security_rules">inbound_security_rules</a>))</code></td>
-    <td width="100%">inbound_security_rules</td>
-    <td><code>{}</code></td>
+    <td width="100%">inbound_security_rules</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -134,12 +129,12 @@ Manages multiple inbound security rules, in `{rule_name = {configuration}}` form
 
 ```terraform
 inbound_security_rules = {
-rdp = {
-priority            = 100
-description         = "Allows RDP from a particular CIDR"
-source_ip_addresses = ["10.0.0.0/24"]
-port_ranges         = ["3389"]
-}
+  rdp = {
+    priority            = 100
+    description         = "Allows RDP from a particular CIDR"
+    source_ip_addresses = ["10.0.0.0/24"]
+    port_ranges         = ["3389"]
+  }
 }
 ```
 
@@ -148,8 +143,7 @@ port_ranges         = ["3389"]
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#outbound_security_rules">outbound_security_rules</a>))</code></td>
-    <td width="100%">outbound_security_rules</td>
-    <td><code>{}</code></td>
+    <td width="100%">outbound_security_rules</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -157,12 +151,12 @@ Manages multiple outbound security rules, in `{rule_name = {configuration}}` for
 
 ```terraform
 outbound_security_rules = {
-dns = {
-priority    = 100
-description = "Allow all outbound DNS call"
-port_ranges = ["53"]
-protocol    = "Udp"
-}
+  dns = {
+    priority    = 100
+    description = "Allow all outbound DNS call"
+    port_ranges = ["53"]
+    protocol    = "Udp"
+  }
 }
 ```
 
@@ -176,8 +170,7 @@ protocol    = "Udp"
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">id</td>
-    <td></td>
+    <td width="100%">id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -192,13 +185,12 @@ The ID of the network security group
 
 #### azure
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">resource_group_name</td>
-    <td></td>
+    <td width="100%">resource_group_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure resource group where the virtual network will be deployed
 
@@ -207,10 +199,9 @@ The name of an Azure resource group where the virtual network will be deployed
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">location</td>
-    <td><code>null</code></td>
+    <td width="100%">location</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of an Azure location where the virtual network will be deployed. If unspecified, the resource group's location will be used.
 
@@ -221,13 +212,12 @@ The name of an Azure location where the virtual network will be deployed. If uns
 
 #### inbound_security_rules
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">priority</td>
-    <td></td>
+    <td width="100%">priority</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The priority of the rule. Lower number has higher priority
 
@@ -236,10 +226,9 @@ The priority of the rule. Lower number has higher priority
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">action</td>
-    <td><code>"Allow"</code></td>
+    <td width="100%">action</td><td></td><td><code>"Allow"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines if the matching rule should be allowed or denied.
 
@@ -253,10 +242,9 @@ Defines if the matching rule should be allowed or denied.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Description of the security rule
 
@@ -265,10 +253,9 @@ Description of the security rule
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">destination_application_security_group_ids</td>
-    <td><code>null</code></td>
+    <td width="100%">destination_application_security_group_ids</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of destination application security group IDs that match this rule. This option is mutually exclusive to `destination_ip_addresses` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
@@ -277,10 +264,9 @@ Defines a list of destination application security group IDs that match this rul
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">destination_ip_addresses</td>
-    <td><code>null</code></td>
+    <td width="100%">destination_ip_addresses</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of destination ip addresses or CIDR that match this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
@@ -289,10 +275,9 @@ Defines a list of destination ip addresses or CIDR that match this rule. This op
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">destination_service_tag</td>
-    <td><code>null</code></td>
+    <td width="100%">destination_service_tag</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a destination [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_ip_addresses`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
@@ -301,10 +286,9 @@ Defines a destination [Service Tag][service-tag] that matches this rule. This op
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">port_ranges</td>
-    <td><code>null</code></td>
+    <td width="100%">port_ranges</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of port ranges that match this rule. Input can either be a range eg. `"0-1024"` or a port number eg. `"8080"`
 
@@ -313,10 +297,9 @@ Defines a list of port ranges that match this rule. Input can either be a range 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">protocol</td>
-    <td><code>"Tcp"</code></td>
+    <td width="100%">protocol</td><td></td><td><code>"Tcp"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The protocol of the connection that matches this rule.
 
@@ -334,10 +317,9 @@ The protocol of the connection that matches this rule.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">source_application_security_group_ids</td>
-    <td><code>null</code></td>
+    <td width="100%">source_application_security_group_ids</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of source application security group IDs that match this rule. This option is mutually exclusive to `source_ip_addresses` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
 
@@ -346,10 +328,9 @@ Defines a list of source application security group IDs that match this rule. Th
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">source_ip_addresses</td>
-    <td><code>null</code></td>
+    <td width="100%">source_ip_addresses</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of source ip addresses or CIDR that match this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
 
@@ -358,10 +339,9 @@ Defines a list of source ip addresses or CIDR that match this rule. This option 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">source_service_tag</td>
-    <td><code>null</code></td>
+    <td width="100%">source_service_tag</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a source [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_ip_addresses`. If none of the sources are specified, all sources (`Any`) will be used.
 
@@ -372,13 +352,12 @@ Defines a source [Service Tag][service-tag] that matches this rule. This option 
 
 #### outbound_security_rules
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">priority</td>
-    <td></td>
+    <td width="100%">priority</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The priority of the rule. Lower number has higher priority
 
@@ -387,10 +366,9 @@ The priority of the rule. Lower number has higher priority
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">action</td>
-    <td><code>"Allow"</code></td>
+    <td width="100%">action</td><td></td><td><code>"Allow"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines if the matching rule should be allowed or denied.
 
@@ -404,10 +382,9 @@ Defines if the matching rule should be allowed or denied.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Description of the security rule
 
@@ -416,10 +393,9 @@ Description of the security rule
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">destination_application_security_group_ids</td>
-    <td><code>null</code></td>
+    <td width="100%">destination_application_security_group_ids</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of destination application security group IDs that match this rule. This option is mutually exclusive to `destination_ip_addresses` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
@@ -428,10 +404,9 @@ Defines a list of destination application security group IDs that match this rul
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">destination_ip_addresses</td>
-    <td><code>null</code></td>
+    <td width="100%">destination_ip_addresses</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of destination ip addresses or CIDR that match this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_service_tag`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
@@ -440,10 +415,9 @@ Defines a list of destination ip addresses or CIDR that match this rule. This op
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">destination_service_tag</td>
-    <td><code>null</code></td>
+    <td width="100%">destination_service_tag</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a destination [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `destination_application_security_group_ids` and `destination_ip_addresses`. If none of the destinations are specified, all destinations (`Any`) will be used.
 
@@ -452,10 +426,9 @@ Defines a destination [Service Tag][service-tag] that matches this rule. This op
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">port_ranges</td>
-    <td><code>null</code></td>
+    <td width="100%">port_ranges</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of port ranges that match this rule. Input can either be a range eg. `"0-1024"` or a port number eg. `"8080"`
 
@@ -464,10 +437,9 @@ Defines a list of port ranges that match this rule. Input can either be a range 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">protocol</td>
-    <td><code>"Tcp"</code></td>
+    <td width="100%">protocol</td><td></td><td><code>"Tcp"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The protocol of the connection that matches this rule.
 
@@ -485,10 +457,9 @@ The protocol of the connection that matches this rule.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">source_application_security_group_ids</td>
-    <td><code>null</code></td>
+    <td width="100%">source_application_security_group_ids</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of source application security group IDs that match this rule. This option is mutually exclusive to `source_ip_addresses` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
 
@@ -497,10 +468,9 @@ Defines a list of source application security group IDs that match this rule. Th
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">source_ip_addresses</td>
-    <td><code>null</code></td>
+    <td width="100%">source_ip_addresses</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a list of source ip addresses or CIDR that match this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_service_tag`. If none of the sources are specified, all sources (`Any`) will be used.
 
@@ -509,10 +479,9 @@ Defines a list of source ip addresses or CIDR that match this rule. This option 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">source_service_tag</td>
-    <td><code>null</code></td>
+    <td width="100%">source_service_tag</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Defines a source [Service Tag][service-tag] that matches this rule. This option is mutually exclusive to `source_application_security_group_ids` and `source_ip_addresses`. If none of the sources are specified, all sources (`Any`) will be used.
 

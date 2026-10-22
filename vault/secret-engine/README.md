@@ -227,8 +227,7 @@ module "terraform_cloud" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">mount_path</td>
-    <td></td>
+    <td width="100%">mount_path</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -239,8 +238,7 @@ The mount path of the secret engine
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">secret_engine</td>
-    <td></td>
+    <td width="100%">secret_engine</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -272,8 +270,7 @@ The Vault secret engine to configure, currently the following values are support
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#aws_config">aws_config</a>)</code></td>
-    <td width="100%">aws_config</td>
-    <td><code>null</code></td>
+    <td width="100%">aws_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -281,11 +278,11 @@ Configuration of an AWS secret engine. This is **OPTIONAL** even if `secret_engi
 
 ```terraform
 aws_config = {
-access_key_id       = "AKIAXXXXXXXXXXXX"
-secret_access_key   = "5LoxXag/XXXXXXXXXXXXXXXX"
-region              = "us-east-1"
-max_ttl_seconds     = 1800
-default_ttl_seconds = 300
+  access_key_id       = "AKIAXXXXXXXXXXXX"
+  secret_access_key   = "5LoxXag/XXXXXXXXXXXXXXXX"
+  region              = "us-east-1"
+  max_ttl_seconds     = 1800
+  default_ttl_seconds = 300
 }
 ```
 
@@ -294,8 +291,7 @@ default_ttl_seconds = 300
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#aws_secret_backend_roles">aws_secret_backend_roles</a>))</code></td>
-    <td width="100%">aws_secret_backend_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">aws_secret_backend_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -303,9 +299,9 @@ default_ttl_seconds = 300
 
 ```terraform
 aws_secret_backend_roles = {
-s3-operator = {
-aws_managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
-}
+  s3-operator = {
+    aws_managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
+  }
 }
 ```
 
@@ -314,8 +310,7 @@ aws_managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonS3FullAccess"]
 </td></tr>
 <tr>
     <td><code>object(<a href="#azure_config">azure_config</a>)</code></td>
-    <td width="100%">azure_config</td>
-    <td><code>null</code></td>
+    <td width="100%">azure_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -323,12 +318,12 @@ Configuration of an Azure secret engine. This is **OPTIONAL** even if `secret_en
 
 ```terraform
 azure_config = {
-subscription_id     = "5390980b-4d73-483f-bf52-xxxxxxx"
-tenant_id           = "accd881f-e517-4dbf-a61b-xxxxxxx"
-client_id           = "3446d619-f7aa-4aba-ba50-xxxxxxx"
-client_secret       = "oIG8Q~RAn3_XjtAAJ-xxxxxxx"
-default_ttl_seconds = 300
-max_ttl_seconds     = 300
+  subscription_id     = "5390980b-4d73-483f-bf52-xxxxxxx"
+  tenant_id           = "accd881f-e517-4dbf-a61b-xxxxxxx"
+  client_id           = "3446d619-f7aa-4aba-ba50-xxxxxxx"
+  client_secret       = "oIG8Q~RAn3_XjtAAJ-xxxxxxx"
+  default_ttl_seconds = 300
+  max_ttl_seconds     = 300
 }
 ```
 
@@ -337,8 +332,7 @@ max_ttl_seconds     = 300
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#azure_secret_backend_roles">azure_secret_backend_roles</a>))</code></td>
-    <td width="100%">azure_secret_backend_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">azure_secret_backend_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -346,14 +340,14 @@ max_ttl_seconds     = 300
 
 ```terraform
 azure_secret_backend_roles = {
-"terraform-readonly" = {
-azure_roles = [
-{
-role_name = "Reader"
-scope     = "/subscriptions/5390980b-4d73-483f-bf52-xxxxxxx"
-}
-]
-}
+  "terraform-readonly" = {
+    azure_roles = [
+      {
+        role_name = "Reader"
+        scope     = "/subscriptions/5390980b-4d73-483f-bf52-xxxxxxx"
+      }
+    ]
+  }
 }
 ```
 
@@ -362,8 +356,7 @@ scope     = "/subscriptions/5390980b-4d73-483f-bf52-xxxxxxx"
 </td></tr>
 <tr>
     <td><code>object(<a href="#database_config">database_config</a>)</code></td>
-    <td width="100%">database_config</td>
-    <td><code>null</code></td>
+    <td width="100%">database_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -371,12 +364,12 @@ Configuration of a Database secret engine. This is required if `secret_engine = 
 
 ```terraform
 database_config = {
-postgres = {
-test = {
-allowed_roles  = ["test-role"]
-connection_url = "postgresql://postgres:password@postgresql.friendsofterraform.com:5432/postgres?sslmode=disable"
-}
-}
+  postgres = {
+    test = {
+      allowed_roles  = ["test-role"]
+      connection_url = "postgresql://postgres:password@postgresql.friendsofterraform.com:5432/postgres?sslmode=disable"
+    }
+  }
 }
 ```
 
@@ -385,8 +378,7 @@ connection_url = "postgresql://postgres:password@postgresql.friendsofterraform.c
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#database_static_backend_roles">database_static_backend_roles</a>))</code></td>
-    <td width="100%">database_static_backend_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">database_static_backend_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -394,7 +386,7 @@ Configures the mapping of a Vault role to a database user, in `username = {confi
 
 ```terraform
 database_static_backend_roles = {
-"test-role" = {database_name = "test"}
+  "test-role" = {database_name = "test"}
 }
 ```
 
@@ -403,8 +395,7 @@ database_static_backend_roles = {
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">default_ttl_seconds</td>
-    <td><code>null</code></td>
+    <td width="100%">default_ttl_seconds</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -415,8 +406,7 @@ Global default TTL (time-to-live) in seconds for all secrets within this secret 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>"Managed by Terraform"</code></td>
+    <td width="100%">description</td><td><code>"Managed by Terraform"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -427,8 +417,7 @@ Description of the secret engine
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_ttl_seconds</td>
-    <td><code>null</code></td>
+    <td width="100%">max_ttl_seconds</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -439,8 +428,7 @@ Global max TTL (time-to-live) in seconds for all secrets within this secret moun
 </td></tr>
 <tr>
     <td><code>object(<a href="#pki_config">pki_config</a>)</code></td>
-    <td width="100%">pki_config</td>
-    <td><code>null</code></td>
+    <td width="100%">pki_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -448,7 +436,7 @@ Configuration of a PKI secret engine. This is required if `secret_engine = pki`.
 
 ```terraform
 pki_config = {
-cert_type = "root"
+  cert_type = "root"
 }
 ```
 
@@ -457,8 +445,7 @@ cert_type = "root"
 </td></tr>
 <tr>
     <td><code>object(<a href="#pki_intermediate_ca">pki_intermediate_ca</a>)</code></td>
-    <td width="100%">pki_intermediate_ca</td>
-    <td><code>null</code></td>
+    <td width="100%">pki_intermediate_ca</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -466,9 +453,9 @@ Options for configuring an intermediate CA, this is required if `pki_config.cert
 
 ```terraform
 pki_intermediate_ca = {
-signing_ca_mount_path = module.root_ca.mount_path # signs the intermediate CA with this CA
-common_name           = "intermediate-ca"
-ttl_seconds           = 157680000 # 5 years
+  signing_ca_mount_path = module.root_ca.mount_path # signs the intermediate CA with this CA
+  common_name           = "intermediate-ca"
+  ttl_seconds           = 157680000 # 5 years
 }
 ```
 
@@ -477,8 +464,7 @@ ttl_seconds           = 157680000 # 5 years
 </td></tr>
 <tr>
     <td><code>object(<a href="#pki_root_cert">pki_root_cert</a>)</code></td>
-    <td width="100%">pki_root_cert</td>
-    <td><code>null</code></td>
+    <td width="100%">pki_root_cert</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -486,9 +472,9 @@ Options for configuring a Root CA, this is required if `pki_config.cert_type = r
 
 ```terraform
 pki_root_cert = {
-common_name       = "root-ca"
-ttl_seconds       = 315360000 # 10 years
-vault_address     = "https://vault.friendsofterraform.sh"
+  common_name       = "root-ca"
+  ttl_seconds       = 315360000 # 10 years
+  vault_address     = "https://vault.friendsofterraform.sh"
 }
 ```
 
@@ -497,8 +483,7 @@ vault_address     = "https://vault.friendsofterraform.sh"
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#pki_secret_backend_roles">pki_secret_backend_roles</a>))</code></td>
-    <td width="100%">pki_secret_backend_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">pki_secret_backend_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -506,11 +491,11 @@ vault_address     = "https://vault.friendsofterraform.sh"
 
 ```terraform
 pki_secret_backend_roles = {
-friendsofterraform-sh = {
-ttl_seconds      = 259200 # 72 hours
-max_ttl_seconds  = 259200 # 72 hours
-allowed_domains  = ["friendsofterraform.sh"]
-}
+  friendsofterraform-sh = {
+    ttl_seconds      = 259200 # 72 hours
+    max_ttl_seconds  = 259200 # 72 hours
+    allowed_domains  = ["friendsofterraform.sh"]
+  }
 }
 ```
 
@@ -519,8 +504,7 @@ allowed_domains  = ["friendsofterraform.sh"]
 </td></tr>
 <tr>
     <td><code>object(<a href="#terraform_config">terraform_config</a>)</code></td>
-    <td width="100%">terraform_config</td>
-    <td><code>null</code></td>
+    <td width="100%">terraform_config</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -528,7 +512,7 @@ Configures the Terraform Cloud secret engine. This is required if `secret_engine
 
 ```terraform
 terraform_config = {
-token = "Q3JtWYZK5Zx81w........"
+  token = "Q3JtWYZK5Zx81w........"
 }
 ```
 
@@ -537,8 +521,7 @@ token = "Q3JtWYZK5Zx81w........"
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#terraform_secret_backend_roles">terraform_secret_backend_roles</a>))</code></td>
-    <td width="100%">terraform_secret_backend_roles</td>
-    <td><code>{}</code></td>
+    <td width="100%">terraform_secret_backend_roles</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -546,11 +529,11 @@ token = "Q3JtWYZK5Zx81w........"
 
 ```terraform
 terraform_secret_backend_roles = {
-user-role = {
-token_identity  = "user-xxxxxxxxxxxx"
-ttl_seconds     = null
-max_ttl_seconds = null
-}
+  user-role = {
+    token_identity  = "user-xxxxxxxxxxxx"
+    ttl_seconds     = null
+    max_ttl_seconds = null
+  }
 }
 ```
 
@@ -564,8 +547,7 @@ max_ttl_seconds = null
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">mount_path</td>
-    <td></td>
+    <td width="100%">mount_path</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -580,13 +562,12 @@ The mount path of the secret engine
 
 #### aws_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">access_key_id</td>
-    <td></td>
+    <td width="100%">access_key_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 AWS access key ID
 
@@ -595,10 +576,9 @@ AWS access key ID
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">secret_access_key</td>
-    <td></td>
+    <td width="100%">secret_access_key</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 AWS secret access key
 
@@ -607,10 +587,9 @@ AWS secret access key
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">region</td>
-    <td></td>
+    <td width="100%">region</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 AWS region
 
@@ -619,10 +598,9 @@ AWS region
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">default_ttl_seconds</td>
-    <td></td>
+    <td width="100%">default_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Default TTL (time-to-live) for new IAM credential created by this this secret engine
 
@@ -631,10 +609,9 @@ Default TTL (time-to-live) for new IAM credential created by this this secret en
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Max TTL (time-to-live) for new IAM credential created by this this secret engine
 
@@ -645,13 +622,12 @@ Max TTL (time-to-live) for new IAM credential created by this this secret engine
 
 #### aws_secret_backend_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">role_arns</td>
-    <td></td>
+    <td width="100%">role_arns</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the ARNs of the AWS roles this Vault role is allowed to assume. This option is mutually exclusive with `iam_group_names`
 
@@ -660,10 +636,9 @@ Specifies the ARNs of the AWS roles this Vault role is allowed to assume. This o
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">iam_group_names</td>
-    <td></td>
+    <td width="100%">iam_group_names</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of IAM group names. IAM users generated against this vault role will be added to these IAM Groups. This option is mutually exclusive with `aws_managed_policy_arns`
 
@@ -672,10 +647,9 @@ A list of IAM group names. IAM users generated against this vault role will be a
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">aws_managed_policy_arns</td>
-    <td></td>
+    <td width="100%">aws_managed_policy_arns</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies a list of AWS managed policy ARNs that will be attached to the IAM user generated
 
@@ -684,10 +658,9 @@ Specifies a list of AWS managed policy ARNs that will be attached to the IAM use
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">inline_policy_document</td>
-    <td></td>
+    <td width="100%">inline_policy_document</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 An AWS IAM policy document that will be attached to the IAM user generated as an inline policy
 
@@ -698,13 +671,12 @@ An AWS IAM policy document that will be attached to the IAM user generated as an
 
 #### azure_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">subscription_id</td>
-    <td></td>
+    <td width="100%">subscription_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the Azure subscription to configure
 
@@ -713,10 +685,9 @@ The ID of the Azure subscription to configure
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">tenant_id</td>
-    <td></td>
+    <td width="100%">tenant_id</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the Azure tenant to configure
 
@@ -725,10 +696,9 @@ The ID of the Azure tenant to configure
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">client_id</td>
-    <td></td>
+    <td width="100%">client_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The client ID of the registered app used for authentication
 
@@ -737,10 +707,9 @@ The client ID of the registered app used for authentication
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">client_secret</td>
-    <td></td>
+    <td width="100%">client_secret</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The client secret of the registered app used for authentication
 
@@ -749,10 +718,9 @@ The client secret of the registered app used for authentication
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">default_ttl_seconds</td>
-    <td></td>
+    <td width="100%">default_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Default TTL (time-to-live) for new Azure credential created by this this secret engine
 
@@ -761,10 +729,9 @@ Default TTL (time-to-live) for new Azure credential created by this this secret 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Max TTL (time-to-live) for new Azure credential created by this this secret engine
 
@@ -775,21 +742,19 @@ Max TTL (time-to-live) for new Azure credential created by this this secret engi
 
 #### azure_groups
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">group_name</td>
-    <td></td>
+    <td width="100%">group_name</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">object_id</td>
-    <td></td>
+    <td width="100%">object_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 </tbody></table>
@@ -800,13 +765,12 @@ List of Azure roles to be assigned to the generated service principal. Please re
 
 **Since:** 0.0.2
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">role_id</td>
-    <td></td>
+    <td width="100%">role_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of an Azure role to be attached to the credential generated by this Vault role. `role_name` is ignored if this is set.
 
@@ -815,10 +779,9 @@ The ID of an Azure role to be attached to the credential generated by this Vault
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">role_name</td>
-    <td></td>
+    <td width="100%">role_name</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Name of an Azure role to be attached to the credential generated by this Vault role. If only this is set, Vault will perform a lookup for the actual `role_id`. If `role_id` is set, this option is ignored.
 
@@ -827,10 +790,9 @@ The Name of an Azure role to be attached to the credential generated by this Vau
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">scope</td>
-    <td></td>
+    <td width="100%">scope</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The scope this role is applied to
 
@@ -841,13 +803,12 @@ The scope this role is applied to
 
 #### azure_secret_backend_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">application_object_id</td>
-    <td></td>
+    <td width="100%">application_object_id</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Application Object ID for an existing service principal that will be used instead of creating dynamic service principals. If present, `azure_roles` will be ignored.
 
@@ -856,10 +817,9 @@ Application Object ID for an existing service principal that will be used instea
 </td></tr>
 <tr>
     <td><code>list(object(<a href="#azure_roles">azure_roles</a>))</code></td>
-    <td width="100%">azure_roles</td>
-    <td></td>
+    <td width="100%">azure_roles</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of Azure roles to be assigned to the generated service principal. Please refer to [this documentation][azure-role] for examples. If dynamic service principals are used, Azure roles must be configured on the Vault role.
 
@@ -868,39 +828,35 @@ List of Azure roles to be assigned to the generated service principal. Please re
 </td></tr>
 <tr>
     <td><code>list(object(<a href="#azure_groups">azure_groups</a>))</code></td>
-    <td width="100%">azure_groups</td>
-    <td></td>
+    <td width="100%">azure_groups</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">ttl_seconds</td>
-    <td></td>
+    <td width="100%">ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 </tbody></table>
 
 #### database_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#postgres">postgres</a>))</code></td>
-    <td width="100%">postgres</td>
-    <td></td>
+    <td width="100%">postgres</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Establish a connection to a Postgres database
 
@@ -911,13 +867,12 @@ Establish a connection to a Postgres database
 
 #### database_static_backend_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">database_name</td>
-    <td></td>
+    <td width="100%">database_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the database to manage
 
@@ -926,10 +881,9 @@ The name of the database to manage
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">rotation_period_seconds</td>
-    <td></td>
+    <td width="100%">rotation_period_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The rotation period for the password of the managed user
 
@@ -940,13 +894,12 @@ The rotation period for the password of the managed user
 
 #### pki_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">cert_type</td>
-    <td></td>
+    <td width="100%">cert_type</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The type of certificate to configure,
 
@@ -962,13 +915,12 @@ The type of certificate to configure,
 
 #### pki_intermediate_ca
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">signing_ca_mount_path</td>
-    <td></td>
+    <td width="100%">signing_ca_mount_path</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the the secret engine mount path of a CA certificate that will be used to sign this intermediate CA certificate
 
@@ -977,10 +929,9 @@ Specifies the the secret engine mount path of a CA certificate that will be used
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">common_name</td>
-    <td></td>
+    <td width="100%">common_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the common name for this intermediate CA certificate
 
@@ -989,10 +940,9 @@ Specifies the common name for this intermediate CA certificate
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">alternative_names</td>
-    <td></td>
+    <td width="100%">alternative_names</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies a list of SAN (server alternative names) for this intermediate CA certificate
 
@@ -1001,10 +951,9 @@ Specifies a list of SAN (server alternative names) for this intermediate CA cert
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">ttl_seconds</td>
-    <td></td>
+    <td width="100%">ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the TTL (time-to-live) for this intermediate CA certificate
 
@@ -1015,13 +964,12 @@ Specifies the TTL (time-to-live) for this intermediate CA certificate
 
 #### pki_root_cert
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">common_name</td>
-    <td></td>
+    <td width="100%">common_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the common name for this Root CA certificate
 
@@ -1030,10 +978,9 @@ Specifies the common name for this Root CA certificate
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">alternative_names</td>
-    <td></td>
+    <td width="100%">alternative_names</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies a list of SAN (server alternative names) for this Root CA certificate
 
@@ -1042,10 +989,9 @@ Specifies a list of SAN (server alternative names) for this Root CA certificate
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">ttl_seconds</td>
-    <td></td>
+    <td width="100%">ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the TTL (time-to-live) for this Root CA certificate
 
@@ -1054,10 +1000,9 @@ Specifies the TTL (time-to-live) for this Root CA certificate
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">vault_address</td>
-    <td></td>
+    <td width="100%">vault_address</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the address of the Hashicorp Vault server. issuing certificate endpoints, CRL distribution points, and OCSP server endpoints that will be encoded into issued certificates. Please refer to [this doc][pki-config-urls] for more information. The generated endpoints will be in this format `<vault_address>/v1/<pki_mount_path>/ca`
 
@@ -1068,13 +1013,12 @@ Specifies the address of the Hashicorp Vault server. issuing certificate endpoin
 
 #### pki_secret_backend_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">ttl_seconds</td>
-    <td></td>
+    <td width="100%">ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the TTL (time-to-live) for certificates generated from this role
 
@@ -1083,10 +1027,9 @@ Specifies the TTL (time-to-live) for certificates generated from this role
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the max TTL (time-to-live) for certificates generated from this role
 
@@ -1095,10 +1038,9 @@ Specifies the max TTL (time-to-live) for certificates generated from this role
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allowed_domains</td>
-    <td></td>
+    <td width="100%">allowed_domains</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of domain names this role is allowed to sign the certificate for
 
@@ -1107,10 +1049,9 @@ A list of domain names this role is allowed to sign the certificate for
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allowed_uri_sans</td>
-    <td></td>
+    <td width="100%">allowed_uri_sans</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 A list of URI SANs (Subject alternative names) this role is allowed to sign the certificate for
 
@@ -1125,21 +1066,19 @@ Establish a connection to a Postgres database
 
 **Since:** 0.0.10
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allowed_roles</td>
-    <td></td>
+    <td width="100%">allowed_roles</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">connection_url</td>
-    <td></td>
+    <td width="100%">connection_url</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The connection string for the database, in this formation `postgresql://{{username}}:{{password}}@localhost:5432/postgres?sslmode=disable`
 
@@ -1148,10 +1087,9 @@ The connection string for the database, in this formation `postgresql://{{userna
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_open_connections</td>
-    <td></td>
+    <td width="100%">max_open_connections</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum number of open connections to use
 
@@ -1160,10 +1098,9 @@ The maximum number of open connections to use
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_idle_connections</td>
-    <td></td>
+    <td width="100%">max_idle_connections</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum number of idle connections to maintain
 
@@ -1172,10 +1109,9 @@ The maximum number of idle connections to maintain
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_connection_lifetime_seconds</td>
-    <td></td>
+    <td width="100%">max_connection_lifetime_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The maximum number of seconds to keep a connection alive for
 
@@ -1186,13 +1122,12 @@ The maximum number of seconds to keep a connection alive for
 
 #### terraform_config
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">token</td>
-    <td></td>
+    <td width="100%">token</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The Terraform Cloud management token this backend should use to issue new tokens
 
@@ -1203,13 +1138,12 @@ The Terraform Cloud management token this backend should use to issue new tokens
 
 #### terraform_secret_backend_roles
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">token_identity</td>
-    <td></td>
+    <td width="100%">token_identity</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the Terraform Cloud entity to be used to generate new tokens with. Must follow the following format:
 
@@ -1224,10 +1158,9 @@ Note that you must use the Terraform Cloud API to get the [Team ID][terraform-ap
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">ttl_seconds</td>
-    <td></td>
+    <td width="100%">ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the TTL (time-to-live) for tokens generated from this role
 
@@ -1236,10 +1169,9 @@ Specifies the TTL (time-to-live) for tokens generated from this role
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">max_ttl_seconds</td>
-    <td></td>
+    <td width="100%">max_ttl_seconds</td><td></td><td></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specifies the max TTL (time-to-live) for tokens generated from this role
 

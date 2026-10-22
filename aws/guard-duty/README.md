@@ -198,8 +198,7 @@ _No required inputs._
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -210,8 +209,7 @@ Additional tags for Guard Duty
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -222,8 +220,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>true</code></td>
+    <td width="100%">enabled</td><td><code>true</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -234,8 +231,7 @@ Whether GuardDuty is enabled. Setting to 'false' is equivalent to 'suspending' G
 </td></tr>
 <tr>
     <td><code>object(<a href="#findings_export_options">findings_export_options</a>)</code></td>
-    <td width="100%">findings_export_options</td>
-    <td><code>{}</code></td>
+    <td width="100%">findings_export_options</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -250,8 +246,7 @@ Configures findings export options
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#member_accounts">member_accounts</a>))</code></td>
-    <td width="100%">member_accounts</td>
-    <td><code>{}</code></td>
+    <td width="100%">member_accounts</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -266,8 +261,7 @@ Map of member AWS accounts to onboard to GuardDuty with their email addresses an
 </td></tr>
 <tr>
     <td><code>object(<a href="#protection_plans">protection_plans</a>)</code></td>
-    <td width="100%">protection_plans</td>
-    <td><code>{}</code></td>
+    <td width="100%">protection_plans</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -284,8 +278,7 @@ Configuration for GuardDuty protection plans including EKS, Lambda, Malware, Run
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#suppression_rules">suppression_rules</a>))</code></td>
-    <td width="100%">suppression_rules</td>
-    <td><code>{}</code></td>
+    <td width="100%">suppression_rules</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -300,8 +293,7 @@ GuardDuty suppression rules to archive specific findings. Each rule consists of 
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#threat_ip_lists">threat_ip_lists</a>))</code></td>
-    <td width="100%">threat_ip_lists</td>
-    <td><code>{}</code></td>
+    <td width="100%">threat_ip_lists</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -316,8 +308,7 @@ Map of threat IP lists for GuardDuty. Each list includes location (S3 path), for
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#trusted_ip_lists">trusted_ip_lists</a>))</code></td>
-    <td width="100%">trusted_ip_lists</td>
-    <td><code>{}</code></td>
+    <td width="100%">trusted_ip_lists</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -337,8 +328,7 @@ Map of trusted IP lists for GuardDuty. Each list includes location (S3 path), fo
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">detector_account_id</td>
-    <td></td>
+    <td width="100%">detector_account_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -349,8 +339,7 @@ The AWS account ID of the GuardDuty detector
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">detector_arn</td>
-    <td></td>
+    <td width="100%">detector_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -361,8 +350,7 @@ The ARN of the GuardDuty detector
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">detector_id</td>
-    <td></td>
+    <td width="100%">detector_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -373,8 +361,7 @@ The ID of the GuardDuty detector
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">filter_ids</td>
-    <td></td>
+    <td width="100%">filter_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -385,8 +372,7 @@ Map of GuardDuty filter IDs for suppression rules
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">ipset_ids</td>
-    <td></td>
+    <td width="100%">ipset_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -397,8 +383,7 @@ Map of trusted IP set IDs
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">malware_protection_plan_ids</td>
-    <td></td>
+    <td width="100%">malware_protection_plan_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -409,8 +394,7 @@ Map of S3 bucket names to their GuardDuty malware protection plan IDs
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">malware_protection_s3_role_arns</td>
-    <td></td>
+    <td width="100%">malware_protection_s3_role_arns</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -421,8 +405,7 @@ Map of S3 bucket names to their GuardDuty malware protection IAM role ARNs
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">malware_protection_s3_role_ids</td>
-    <td></td>
+    <td width="100%">malware_protection_s3_role_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -433,8 +416,7 @@ Map of S3 bucket names to their GuardDuty malware protection IAM role IDs
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">member_account_ids</td>
-    <td></td>
+    <td width="100%">member_account_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -445,8 +427,7 @@ Map of member account IDs to their relationship IDs
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">publishing_destination_id</td>
-    <td></td>
+    <td width="100%">publishing_destination_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -457,8 +438,7 @@ The ID of the GuardDuty publishing destination (if configured)
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">threat_intellset_ids</td>
-    <td></td>
+    <td width="100%">threat_intellset_ids</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -477,13 +457,12 @@ EC2 automated agent configuration
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether to enable automated agent for EC2
 
@@ -498,13 +477,12 @@ EKS automated agent configuration
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether to enable automated agent for EKS
 
@@ -519,13 +497,12 @@ Automated agent configuration for runtime monitoring
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#amazon_eks">amazon_eks</a>)</code></td>
-    <td width="100%">amazon_eks</td>
-    <td><code>{}</code></td>
+    <td width="100%">amazon_eks</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 EKS automated agent configuration
 
@@ -534,10 +511,9 @@ EKS automated agent configuration
 </td></tr>
 <tr>
     <td><code>object(<a href="#amazon_ec2">amazon_ec2</a>)</code></td>
-    <td width="100%">amazon_ec2</td>
-    <td><code>{}</code></td>
+    <td width="100%">amazon_ec2</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 EC2 automated agent configuration
 
@@ -546,10 +522,9 @@ EC2 automated agent configuration
 </td></tr>
 <tr>
     <td><code>object(<a href="#aws_fargate_ecs">aws_fargate_ecs</a>)</code></td>
-    <td width="100%">aws_fargate_ecs</td>
-    <td><code>{}</code></td>
+    <td width="100%">aws_fargate_ecs</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Fargate ECS automated agent configuration
 
@@ -564,13 +539,12 @@ Fargate ECS automated agent configuration
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether to enable automated agent for Fargate ECS
 
@@ -585,13 +559,12 @@ EC2 malware protection settings
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether EC2 malware protection is enabled
 
@@ -606,13 +579,12 @@ EKS Protection settings
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>true</code></td>
+    <td width="100%">enabled</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether EKS Protection is enabled
 
@@ -623,13 +595,12 @@ Whether EKS Protection is enabled
 
 #### findings_export_options
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">frequency</td>
-    <td><code>"SIX_HOURS"</code></td>
+    <td width="100%">frequency</td><td></td><td><code>"SIX_HOURS"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Export frequency.
 
@@ -644,10 +615,9 @@ Export frequency.
 </td></tr>
 <tr>
     <td><code>object(<a href="#s3_destination">s3_destination</a>)</code></td>
-    <td width="100%">s3_destination</td>
-    <td><code>null</code></td>
+    <td width="100%">s3_destination</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 S3 destination for findings export
 
@@ -662,13 +632,12 @@ Lambda Protection settings
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>true</code></td>
+    <td width="100%">enabled</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether Lambda Protection is enabled
 
@@ -683,13 +652,12 @@ Malware protection configuration
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#ec2">ec2</a>)</code></td>
-    <td width="100%">ec2</td>
-    <td><code>{}</code></td>
+    <td width="100%">ec2</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 EC2 malware protection settings
 
@@ -698,10 +666,9 @@ EC2 malware protection settings
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#s3">s3</a>))</code></td>
-    <td width="100%">s3</td>
-    <td><code>{}</code></td>
+    <td width="100%">s3</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 S3 malware protection configuration. Map key is the bucket name.
 
@@ -712,13 +679,12 @@ S3 malware protection configuration. Map key is the bucket name.
 
 #### member_accounts
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">email_address</td>
-    <td></td>
+    <td width="100%">email_address</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Email address for the member account
 
@@ -727,10 +693,9 @@ Email address for the member account
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">invite</td>
-    <td><code>true</code></td>
+    <td width="100%">invite</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether to invite the member account to GuardDuty
 
@@ -739,10 +704,9 @@ Whether to invite the member account to GuardDuty
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">invitation_message</td>
-    <td><code>null</code></td>
+    <td width="100%">invitation_message</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Optional invitation message for the member account
 
@@ -751,10 +715,9 @@ Optional invitation message for the member account
 </td></tr>
 <tr>
     <td><code>object(<a href="#protection_plans">protection_plans</a>)</code></td>
-    <td width="100%">protection_plans</td>
-    <td><code>{}</code></td>
+    <td width="100%">protection_plans</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Protection plan overrides for the member account
 
@@ -765,13 +728,12 @@ Protection plan overrides for the member account
 
 #### protection_plans
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#eks_protection">eks_protection</a>)</code></td>
-    <td width="100%">eks_protection</td>
-    <td><code>{}</code></td>
+    <td width="100%">eks_protection</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 EKS Protection settings
 
@@ -780,10 +742,9 @@ EKS Protection settings
 </td></tr>
 <tr>
     <td><code>object(<a href="#lambda_protection">lambda_protection</a>)</code></td>
-    <td width="100%">lambda_protection</td>
-    <td><code>{}</code></td>
+    <td width="100%">lambda_protection</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Lambda Protection settings
 
@@ -792,10 +753,9 @@ Lambda Protection settings
 </td></tr>
 <tr>
     <td><code>object(<a href="#malware_protection">malware_protection</a>)</code></td>
-    <td width="100%">malware_protection</td>
-    <td><code>{}</code></td>
+    <td width="100%">malware_protection</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Malware protection configuration
 
@@ -804,10 +764,9 @@ Malware protection configuration
 </td></tr>
 <tr>
     <td><code>object(<a href="#runtime_monitoring">runtime_monitoring</a>)</code></td>
-    <td width="100%">runtime_monitoring</td>
-    <td><code>{}</code></td>
+    <td width="100%">runtime_monitoring</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Runtime monitoring configuration
 
@@ -816,10 +775,9 @@ Runtime monitoring configuration
 </td></tr>
 <tr>
     <td><code>object(<a href="#rds_protection">rds_protection</a>)</code></td>
-    <td width="100%">rds_protection</td>
-    <td><code>{}</code></td>
+    <td width="100%">rds_protection</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 RDS Protection settings
 
@@ -828,10 +786,9 @@ RDS Protection settings
 </td></tr>
 <tr>
     <td><code>object(<a href="#s3_protection">s3_protection</a>)</code></td>
-    <td width="100%">s3_protection</td>
-    <td><code>{}</code></td>
+    <td width="100%">s3_protection</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 S3 Protection settings
 
@@ -846,13 +803,12 @@ RDS Protection settings
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>true</code></td>
+    <td width="100%">enabled</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether RDS Protection is enabled
 
@@ -867,13 +823,12 @@ Runtime monitoring configuration
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#automated_agent_configuration">automated_agent_configuration</a>)</code></td>
-    <td width="100%">automated_agent_configuration</td>
-    <td><code>{}</code></td>
+    <td width="100%">automated_agent_configuration</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Automated agent configuration for runtime monitoring
 
@@ -882,10 +837,9 @@ Automated agent configuration for runtime monitoring
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>false</code></td>
+    <td width="100%">enabled</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether runtime monitoring is enabled
 
@@ -900,13 +854,12 @@ S3 malware protection configuration. Map key is the bucket name.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">iam_role_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">iam_role_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Existing IAM role ARN for malware protection. If not specified, a role will be auto-created
 
@@ -915,10 +868,9 @@ Existing IAM role ARN for malware protection. If not specified, a role will be a
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">kms_key_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the KMS key to use for decrypting encrypted objects
 
@@ -927,10 +879,9 @@ ARN of the KMS key to use for decrypting encrypted objects
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">prefixes</td>
-    <td><code>null</code></td>
+    <td width="100%">prefixes</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of S3 object key prefixes to scan. If null, the entire bucket is scanned
 
@@ -939,10 +890,9 @@ List of S3 object key prefixes to scan. If null, the entire bucket is scanned
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">tag_scanned_objects</td>
-    <td><code>true</code></td>
+    <td width="100%">tag_scanned_objects</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether to tag scanned objects with malware scan results
 
@@ -951,10 +901,9 @@ Whether to tag scanned objects with malware scan results
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the malware protection plan
 
@@ -969,13 +918,12 @@ S3 destination for findings export
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">bucket_arn</td>
-    <td></td>
+    <td width="100%">bucket_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the S3 bucket where findings will be exported
 
@@ -984,10 +932,9 @@ ARN of the S3 bucket where findings will be exported
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">kms_key_arn</td>
-    <td></td>
+    <td width="100%">kms_key_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 ARN of the KMS key used to encrypt findings in the S3 bucket
 
@@ -1002,13 +949,12 @@ S3 Protection settings
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>bool</code></td>
-    <td width="100%">enabled</td>
-    <td><code>true</code></td>
+    <td width="100%">enabled</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether S3 Protection is enabled
 
@@ -1019,13 +965,12 @@ Whether S3 Protection is enabled
 
 #### suppression_rules
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">criteria</td>
-    <td></td>
+    <td width="100%">criteria</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of criteria in format "field operator value". Supported operators: =, !=, >, <, >=, <=, matches, not_matches. Example: `"resource.type = AwsEc2Instance"`
 
@@ -1044,10 +989,9 @@ Example Matches:
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Optional description of the suppression rule
 
@@ -1056,10 +1000,9 @@ Optional description of the suppression rule
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">rank</td>
-    <td><code>null</code></td>
+    <td width="100%">rank</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Optional rank to determine rule priority
 
@@ -1070,13 +1013,12 @@ Optional rank to determine rule priority
 
 #### threat_ip_lists
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">location</td>
-    <td></td>
+    <td width="100%">location</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 HTTPS URL to the threat IP list (e.g., https://s3.amazonaws.com/bucket-name/file.txt)
 
@@ -1085,10 +1027,9 @@ HTTPS URL to the threat IP list (e.g., https://s3.amazonaws.com/bucket-name/file
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">list_format</td>
-    <td><code>"TXT"</code></td>
+    <td width="100%">list_format</td><td></td><td><code>"TXT"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Format of the IP list.
 
@@ -1106,10 +1047,9 @@ Format of the IP list.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">expected_bucket_owner</td>
-    <td><code>null</code></td>
+    <td width="100%">expected_bucket_owner</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Optional AWS account ID of the S3 bucket owner
 
@@ -1118,10 +1058,9 @@ Optional AWS account ID of the S3 bucket owner
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the threat IP list
 
@@ -1132,13 +1071,12 @@ Additional tags for the threat IP list
 
 #### trusted_ip_lists
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">location</td>
-    <td></td>
+    <td width="100%">location</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 HTTPS URL to the trusted IP list (e.g., https://s3.amazonaws.com/bucket-name/file.txt)
 
@@ -1147,10 +1085,9 @@ HTTPS URL to the trusted IP list (e.g., https://s3.amazonaws.com/bucket-name/fil
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">list_format</td>
-    <td><code>"TXT"</code></td>
+    <td width="100%">list_format</td><td></td><td><code>"TXT"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Format of the IP list.
 
@@ -1168,10 +1105,9 @@ Format of the IP list.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">expected_bucket_owner</td>
-    <td><code>null</code></td>
+    <td width="100%">expected_bucket_owner</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Optional AWS account ID of the S3 bucket owner
 
@@ -1180,10 +1116,9 @@ Optional AWS account ID of the S3 bucket owner
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Additional tags for the trusted IP list
 

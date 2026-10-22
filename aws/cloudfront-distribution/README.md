@@ -86,8 +86,7 @@ module "basic_usage" {
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(object(<a href="#behaviors">behaviors</a>))</code></td>
-    <td width="100%">behaviors</td>
-    <td></td>
+    <td width="100%">behaviors</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -104,8 +103,7 @@ precedence 0. The default behavior (`"*"`) must be specified.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#origins">origins</a>))</code></td>
-    <td width="100%">origins</td>
-    <td></td>
+    <td width="100%">origins</td><td><em>n/a</em></td>
 </tr>
 <tr><td colspan="3">
 
@@ -125,8 +123,7 @@ Map of origins for this distribution.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -137,8 +134,7 @@ Additional tags for the distribution
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">additional_tags_all</td>
-    <td><code>{}</code></td>
+    <td width="100%">additional_tags_all</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -149,8 +145,7 @@ Additional tags for all resources deployed with this module
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">alternate_domain_names</td>
-    <td><code>null</code></td>
+    <td width="100%">alternate_domain_names</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -162,8 +157,7 @@ served by this distribution
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#custom_error_responses">custom_error_responses</a>))</code></td>
-    <td width="100%">custom_error_responses</td>
-    <td><code>{}</code></td>
+    <td width="100%">custom_error_responses</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -183,8 +177,7 @@ code.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">default_root_object</td>
-    <td><code>null</code></td>
+    <td width="100%">default_root_object</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -196,8 +189,7 @@ instead of a specific object
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">description</td>
-    <td><code>null</code></td>
+    <td width="100%">description</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -208,8 +200,7 @@ The description of the distribution
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">enable_ipv6</td>
-    <td><code>false</code></td>
+    <td width="100%">enable_ipv6</td><td><code>false</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -220,8 +211,7 @@ Whether IPv6 is enabled for the distribution.
 </td></tr>
 <tr>
     <td><code>object(<a href="#geographic_restrictions">geographic_restrictions</a>)</code></td>
-    <td width="100%">geographic_restrictions</td>
-    <td><code>null</code></td>
+    <td width="100%">geographic_restrictions</td><td><code>null</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -234,8 +224,7 @@ specified, the distribution is unrestricted.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">max_http_version</td>
-    <td><code>"http2"</code></td>
+    <td width="100%">max_http_version</td><td><code>"http2"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -253,8 +242,7 @@ Specify the max HTTP version this distribution supports.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#origin_groups">origin_groups</a>))</code></td>
-    <td width="100%">origin_groups</td>
-    <td><code>{}</code></td>
+    <td width="100%">origin_groups</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -270,8 +258,7 @@ distribution.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">price_class</td>
-    <td><code>"PriceClass_All"</code></td>
+    <td width="100%">price_class</td><td><code>"PriceClass_All"</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -292,8 +279,7 @@ Specify the price class for this distribution.
 </td></tr>
 <tr>
     <td><code>object(<a href="#viewer_certificate">viewer_certificate</a>)</code></td>
-    <td width="100%">viewer_certificate</td>
-    <td><code>{}</code></td>
+    <td width="100%">viewer_certificate</td><td><code>{}</code></td>
 </tr>
 <tr><td colspan="3">
 
@@ -310,8 +296,7 @@ the CloudFront default certificate will be used.
 <table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Sensitive</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">distribution_arn</td>
-    <td></td>
+    <td width="100%">distribution_arn</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -322,8 +307,7 @@ ARN for the distribution
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">distribution_domain_name</td>
-    <td></td>
+    <td width="100%">distribution_domain_name</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -334,8 +318,7 @@ Domain name corresponding to the distribution.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">distribution_hosted_zone_id</td>
-    <td></td>
+    <td width="100%">distribution_hosted_zone_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -346,8 +329,7 @@ CloudFront Route 53 zone ID that can be used to route an Alias Resource Record S
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">distribution_id</td>
-    <td></td>
+    <td width="100%">distribution_id</td><td></td>
 </tr>
 <tr><td colspan="3">
 
@@ -362,13 +344,12 @@ Identifier for the distribution
 
 #### behaviors
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">target_origin</td>
-    <td></td>
+    <td width="100%">target_origin</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Name of the origin or origin group that you want CloudFront to route
 requests to when a request matches the path pattern
@@ -378,10 +359,9 @@ requests to when a request matches the path pattern
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">cache_policy_name</td>
-    <td></td>
+    <td width="100%">cache_policy_name</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The name of the [cache policy][cloudfront-cache-policy] that is attached
 to the cache behavior.
@@ -391,10 +371,9 @@ to the cache behavior.
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allowed_http_methods</td>
-    <td></td>
+    <td width="100%">allowed_http_methods</td><td></td><td><code>["GET", "HEAD"]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Controls which HTTP methods CloudFront processes and forwards to your
 origin.
@@ -414,10 +393,9 @@ origin.
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">compress_objects_automatically</td>
-    <td><code>true</code></td>
+    <td width="100%">compress_objects_automatically</td><td></td><td><code>true</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether you want CloudFront to automatically compress content for web
 requests that include `Accept-Encoding: gzip` in the request header.
@@ -427,10 +405,9 @@ requests that include `Accept-Encoding: gzip` in the request header.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">field_level_encryption_id</td>
-    <td><code>null</code></td>
+    <td width="100%">field_level_encryption_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Associate a [field-level encryption configuration][cloudfront-field-level-encryption-configuration]
 with the cache behavior
@@ -440,10 +417,9 @@ with the cache behavior
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">origin_request_policy_name</td>
-    <td><code>null</code></td>
+    <td width="100%">origin_request_policy_name</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Associate an [origin request policy][cloudfront-origin-request-policy]
 with the cache behavior
@@ -453,10 +429,9 @@ with the cache behavior
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">realtime_log_config_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">realtime_log_config_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Associate a [real-time logs configuration][cloudfront-real-time-logs-configuration]
 with the cache behavior
@@ -466,10 +441,9 @@ with the cache behavior
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">response_headers_policy_name</td>
-    <td><code>null</code></td>
+    <td width="100%">response_headers_policy_name</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Associate a [response headers policy][cloudfront-response-headers-policy]
 with the cache behavior
@@ -479,10 +453,9 @@ with the cache behavior
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">smooth_streaming</td>
-    <td><code>false</code></td>
+    <td width="100%">smooth_streaming</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whether you want to distribute media files in Microsoft Smooth Streaming
 format using the origin that is associated with this cache behavior
@@ -492,10 +465,9 @@ format using the origin that is associated with this cache behavior
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">trusted_key_groups</td>
-    <td><code>null</code></td>
+    <td width="100%">trusted_key_groups</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 List of key group IDs that CloudFront can use to validate signed URLs or
 signed cookies.
@@ -509,10 +481,9 @@ signed cookies.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">viewer_protocol_policy</td>
-    <td><code>"redirect-to-https"</code></td>
+    <td width="100%">viewer_protocol_policy</td><td></td><td><code>"redirect-to-https"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the protocol that users can use to access the files in the origin
 when a request matches.
@@ -528,10 +499,9 @@ when a request matches.
 </td></tr>
 <tr>
     <td><code>map(object(<a href="#function_associations">function_associations</a>))</code></td>
-    <td width="100%">function_associations</td>
-    <td><code>{}</code></td>
+    <td width="100%">function_associations</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Associate multiple edge functions (CloudFront Function or Lambda@Edge) to
 various CloudFront events. With edge functions you can write your own code
@@ -552,13 +522,12 @@ available for `"viewer-request"` and `"viewer-response"` event types.
 
 #### custom_error_responses
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">error_caching_minimum_ttl</td>
-    <td><code>10</code></td>
+    <td width="100%">error_caching_minimum_ttl</td><td></td><td><code>10</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the error caching minimum time to live (TTL), in seconds.
 
@@ -567,10 +536,9 @@ Specify the error caching minimum time to live (TTL), in seconds.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">http_response_code</td>
-    <td><code>null</code></td>
+    <td width="100%">http_response_code</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the HTTP status code to return to the viewer. CloudFront can
 return a different status code to the viewer than what it received from
@@ -581,10 +549,9 @@ the origin
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">response_page_path</td>
-    <td><code>null</code></td>
+    <td width="100%">response_page_path</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the path to the custom error response page.
 
@@ -599,13 +566,12 @@ Configurations for [CloudFront custom origins][cloudfront-origins]
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">http_port</td>
-    <td><code>80</code></td>
+    <td width="100%">http_port</td><td></td><td><code>80</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the origin's HTTP port
 
@@ -614,10 +580,9 @@ Specify the origin's HTTP port
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">https_port</td>
-    <td><code>443</code></td>
+    <td width="100%">https_port</td><td></td><td><code>443</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the origin's HTTPS port
 
@@ -626,10 +591,9 @@ Specify the origin's HTTPS port
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">keep_alive_timeout</td>
-    <td><code>5</code></td>
+    <td width="100%">keep_alive_timeout</td><td></td><td><code>5</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of seconds that CloudFront maintains an idle connection with
 the origin, from `1 - 60`
@@ -639,10 +603,9 @@ the origin, from `1 - 60`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">minimum_ssl_protocol</td>
-    <td><code>"TLSv1.2"</code></td>
+    <td width="100%">minimum_ssl_protocol</td><td></td><td><code>"TLSv1.2"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The minimum SSL protocol that CloudFront uses with the origin.
 
@@ -658,10 +621,9 @@ The minimum SSL protocol that CloudFront uses with the origin.
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">protocol_policy</td>
-    <td><code>"https-only"</code></td>
+    <td width="100%">protocol_policy</td><td></td><td><code>"https-only"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The origin protocol policy determines the protocol (HTTP or HTTPS) that
 you want CloudFront to use when connecting to the origin.
@@ -677,10 +639,9 @@ you want CloudFront to use when connecting to the origin.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">response_timeout</td>
-    <td><code>30</code></td>
+    <td width="100%">response_timeout</td><td></td><td><code>30</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of seconds that CloudFront waits for a response from the
 origin, from `1 - 60`
@@ -698,13 +659,12 @@ availability
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">region</td>
-    <td></td>
+    <td width="100%">region</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the origin shield region
 
@@ -729,13 +689,12 @@ available for `"viewer-request"` and `"viewer-response"` event types.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">function_arn</td>
-    <td></td>
+    <td width="100%">function_arn</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ARN of a CloudFront function or Lambda@Edge function
 
@@ -744,10 +703,9 @@ The ARN of a CloudFront function or Lambda@Edge function
 </td></tr>
 <tr>
     <td><code>bool</code></td>
-    <td width="100%">include_body</td>
-    <td><code>false</code></td>
+    <td width="100%">include_body</td><td></td><td><code>false</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 When using Lambda@Edge, your function code can access the body of the
 HTTP request.
@@ -759,13 +717,12 @@ HTTP request.
 
 #### geographic_restrictions
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">allow_list</td>
-    <td><code>null</code></td>
+    <td width="100%">allow_list</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Whitelist a list of locations in this distribution. Please refer to
 [this file](./_common.tf) for a list of supported values.
@@ -775,10 +732,9 @@ Whitelist a list of locations in this distribution. Please refer to
 </td></tr>
 <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">block_list</td>
-    <td><code>null</code></td>
+    <td width="100%">block_list</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Blacklist a list of locations in this distribution. Please refer to
 [this file](./_common.tf) for a list of supported values.
@@ -797,13 +753,12 @@ including support of S3 buckets in all AWS Regions.
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">origin_access_control_id</td>
-    <td><code>null</code></td>
+    <td width="100%">origin_access_control_id</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the origin access control to be associated to this origin.
 Mutually exclusive to `origin_access_identity`
@@ -813,10 +768,9 @@ Mutually exclusive to `origin_access_identity`
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">origin_access_identity</td>
-    <td><code>null</code></td>
+    <td width="100%">origin_access_identity</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The ID of the origin access identity to be associated to this origin.
 Mutually exclusive to `origin_access_control_id`
@@ -828,13 +782,12 @@ Mutually exclusive to `origin_access_control_id`
 
 #### origin_groups
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>list(string)</code></td>
-    <td width="100%">origins</td>
-    <td></td>
+    <td width="100%">origins</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify a list of members for this origin group
 
@@ -843,10 +796,9 @@ Specify a list of members for this origin group
 </td></tr>
 <tr>
     <td><code>list(number)</code></td>
-    <td width="100%">failover_criteria</td>
-    <td></td>
+    <td width="100%">failover_criteria</td><td></td><td><code>[500]</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify the criteria for failover when CloudFront returns specific HTTP
 response status codes that indicate a failure
@@ -858,13 +810,12 @@ response status codes that indicate a failure
 
 #### origins
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>number</code></td>
-    <td width="100%">connection_attempts</td>
-    <td><code>3</code></td>
+    <td width="100%">connection_attempts</td><td></td><td><code>3</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of times that CloudFront attempts to connect to the origin.
 
@@ -879,10 +830,9 @@ The number of times that CloudFront attempts to connect to the origin.
 </td></tr>
 <tr>
     <td><code>number</code></td>
-    <td width="100%">connection_timeout</td>
-    <td><code>10</code></td>
+    <td width="100%">connection_timeout</td><td></td><td><code>10</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The number of seconds that CloudFront waits for a response from the
 origin, from `1 - 10`
@@ -892,10 +842,9 @@ origin, from `1 - 10`
 </td></tr>
 <tr>
     <td><code>map(string)</code></td>
-    <td width="100%">custom_headers</td>
-    <td><code>{}</code></td>
+    <td width="100%">custom_headers</td><td></td><td><code>{}</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Map of headers that CloudFront includes in all requests that it sends to
 your origin
@@ -905,10 +854,9 @@ your origin
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">origin_path</td>
-    <td><code>null</code></td>
+    <td width="100%">origin_path</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify a URL path to append to the origin domain name for origin requests
 
@@ -917,10 +865,9 @@ Specify a URL path to append to the origin domain name for origin requests
 </td></tr>
 <tr>
     <td><code>object(<a href="#custom_origin_config">custom_origin_config</a>)</code></td>
-    <td width="100%">custom_origin_config</td>
-    <td><code>null</code></td>
+    <td width="100%">custom_origin_config</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configurations for [CloudFront custom origins][cloudfront-origins]
 
@@ -929,10 +876,9 @@ Configurations for [CloudFront custom origins][cloudfront-origins]
 </td></tr>
 <tr>
     <td><code>object(<a href="#enable_origin_shield">enable_origin_shield</a>)</code></td>
-    <td width="100%">enable_origin_shield</td>
-    <td><code>null</code></td>
+    <td width="100%">enable_origin_shield</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 [Origin shield][cloudfront-origin-shield] is an additional caching layer
 that can help reduce the load on your origin and help protect its
@@ -943,10 +889,9 @@ availability
 </td></tr>
 <tr>
     <td><code>object(<a href="#s3_origin_config">s3_origin_config</a>)</code></td>
-    <td width="100%">s3_origin_config</td>
-    <td><code>null</code></td>
+    <td width="100%">s3_origin_config</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Configurations for [S3 origins][cloudfront-origins]
 
@@ -961,13 +906,12 @@ Configurations for [S3 origins][cloudfront-origins]
 
 **Since:** 1.0.0
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>object(<a href="#origin_access">origin_access</a>)</code></td>
-    <td width="100%">origin_access</td>
-    <td></td>
+    <td width="100%">origin_access</td><td>Yes</td><td><em>n/a</em></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 You can limit the access to your origin to only authenticated requests
 from CloudFront. We recommend using origin access control (OAC) in favor
@@ -981,13 +925,12 @@ including support of S3 buckets in all AWS Regions.
 
 #### viewer_certificate
 
-<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Default&nbsp;Value</th></tr></thead><tbody>
+<table><thead><tr><th>Type</th><th align="left" width="100%">Name</th><th>Required</th><th>Default&nbsp;Value</th></tr></thead><tbody>
         <tr>
     <td><code>string</code></td>
-    <td width="100%">acm_certificate_arn</td>
-    <td><code>null</code></td>
+    <td width="100%">acm_certificate_arn</td><td></td><td><code>null</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Associate a certificate from AWS Certificate Manager. The certificate must
 be in the US East (N. Virginia) Region (us-east-1). If not specified, the
@@ -998,10 +941,9 @@ CloudFront default certificate will be used
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">security_policy</td>
-    <td><code>"TLSv1.2_2021"</code></td>
+    <td width="100%">security_policy</td><td></td><td><code>"TLSv1.2_2021"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 The security policy determines the SSL or TLS protocol and the specific
 ciphers that CloudFront uses for HTTPS connections with viewers (clients).
@@ -1020,10 +962,9 @@ ciphers that CloudFront uses for HTTPS connections with viewers (clients).
 </td></tr>
 <tr>
     <td><code>string</code></td>
-    <td width="100%">ssl_support_method</td>
-    <td><code>"sni-only"</code></td>
+    <td width="100%">ssl_support_method</td><td></td><td><code>"sni-only"</code></td>
 </tr>
-<tr><td colspan="3">
+<tr><td colspan="4">
 
 Specify how you want CloudFront to serve HTTPS requests.
 
